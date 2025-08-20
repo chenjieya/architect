@@ -1,0 +1,52 @@
+{
+  "items": [
+    {
+      "type": "file",
+      "ctime": 1693067792145,
+      "path": "未命名/未命名.md",
+      "title": "knk"
+    },
+    {
+      "type": "group",
+      "ctime": 1693185978340,
+      "items": [
+        {
+          "type": "file",
+          "ctime": 1710305843651,
+          "path": "工作日志/2024-3.md"
+        },
+        {
+          "type": "file",
+          "ctime": 1695274617472,
+          "path": "工作日志/2023-09.md"
+        },
+        {
+          "type": "file",
+          "ctime": 1695274604042,
+          "path": "工作日志/2023-08.md"
+        },
+        {
+          "type": "file",
+          "ctime": 1693529658965,
+          "path": "my_note_data/工作日志/2023-09.md"
+        },
+        {
+          "type": "file",
+          "ctime": 1693186064600,
+          "path": "my_note_data/工作日志/2023-08.md"
+        }
+      ],
+      "title": "工作日志"
+    },
+    {
+      "type": "file",
+      "ctime": 1697019149264,
+      "path": "学习计划表.xls"
+    },
+    {
+      "type": "file",
+      "ctime": 1710305825963,
+      "path": "杭州初鸣建筑科技有限公司/资料信息.md"
+    }
+  ]
+}
