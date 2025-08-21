@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "rollup/初始Rollup.md",
+                "file": "rollup/Rollup基本配置（默认特性）.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "初始Rollup"
+              "title": "Rollup基本配置（默认特性）"
             }
           }
         ]
@@ -162,13 +162,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "rollup/初始Rollup.md",
+                "file": "rollup/Rollup基本配置（默认特性）.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "初始Rollup 的大纲"
+              "title": "Rollup基本配置（默认特性） 的大纲"
             }
           },
           {
@@ -204,6 +204,8 @@
   },
   "active": "5e96e65d72d7b98c",
   "lastOpenFiles": [
+    "rollup/初始Rollup.md",
+    "rollup/Rollup基本配置（默认特性）.md",
     "架构师笔记/rollup/初始Rollup.md",
     "架构师笔记/rollup",
     "架构师笔记",
@@ -238,7 +240,6 @@
     "linux/linux更换apt镜像源.html",
     "内网穿透",
     "杭州初鸣建筑科技有限公司/资料信息.md",
-    "擎宏科技有限公司/交接文档/消防装备后勤保障系统.md",
     "笔记/image/image_9ViibmeAvU.png",
     "笔记/image/img002.e1ac8197.png",
     "笔记/image/image-20231023114531521.png",
