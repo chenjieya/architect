@@ -258,6 +258,29 @@ dist/
 - **避免重复**：公共模块只打包一次。
 - **按需加载**：只加载需要的部分。
 
+#### 2.7.3 manualChunks自定义代码分割
+
+`manualChunks`用于自定义代码分割，将特定模块或依赖打包到独立的 chunk（**默认是不打包外部依赖的，如果手动配置打包外部依赖，需要删除[[#2.9.1 external]]**）：
+
+```js
+output: {
+  dir: 'dist',
+  format: 'es',
+  manualChunks: {
+    vendor: ['react', 'react-dom']
+  }
+  // 或者写成函数
+  manualChunks(id) {
+	  if(id.includes('vue')) {
+		  return 'vue'
+	  }
+  }
+}
+```
+
+- 可以把第三方库单独打包也可以自定义内部依赖分包
+- 提高浏览器缓存利用率
+
 ### 2.8 Tree-shaking
 
 - 自动删除未使用的导出代码。
@@ -350,6 +373,112 @@ import utils from './utils';
 import { foo } from './utils';
 ```
 
+
+### 2.9 外部依赖与打包控制
+
+在 Rollup 打包中，有时我们并不希望所有依赖都被打包进最终产物(默认不会将外部依赖打包到产物里面)。尤其是大型库或 Node.js 内置模块，如果强制打包，不仅会增加体积，还可能引入不必要的重复代码。Rollup 提供了几种机制来灵活管理这些依赖：
+#### 2.9.1 external
+
+通过 `external` 配置，可以明确告诉 Rollup 哪些模块是外部依赖，不需要打包。 如果不配置，rollup会在控制台抛出警告：
+
+```js
+export default {
+  input: 'src/index.js',
+  output: { file: 'dist/bundle.js', format: 'cjs' },
+  external: ['react', 'vue'] // 这些不会打包进 bundle
+}
+```
+
+- 减小打包体积
+- 保持 Node.js 内置模块或全局库使用方式
+- 注意 ESM 输出时需保证外部依赖存在，否则运行时报错
+
+#### 2.9.2 globals（UMD/IIFE 外部依赖全局变量映射）
+
+当你打包 UMD 或 IIFE 格式时，Rollup 会把模块转换为一个全局可访问的变量（例如 `window.MyLib`）。但是，如果你的库依赖了外部库（比如 `react` 或 `lodash`），你并不希望把它们打包进最终文件，而是通过全局变量来使用。
+
+**使用场景**：
+
+- 你的库是一个前端组件库，需要依赖 `React`，但用户在浏览器中已经通过 `<script>` 引入了 `React`。
+- 如果不配置 `globals`，UMD 打包会报错，因为 Rollup 不知道全局变量名对应哪个外部模块。
+
+👉 举个例子：
+
+```js
+export default {
+  input: 'src/index.js',
+  output: {
+    file: 'dist/my-lib.umd.js',
+    format: 'umd',
+    name: 'MyLib',
+    globals: {
+      react: 'React',  // 外部模块 react 对应全局变量 React
+      'react-dom': 'ReactDOM'
+    }
+  },
+  external: ['react', 'react-dom']  // 告诉 Rollup 这些不打包
+}
+```
+
+**解析**：
+- `external` 表示哪些模块不打包
+- `globals` 映射外部模块到浏览器全局变量
+- 打包后，你的 UMD 文件就可以直接在浏览器中使用，不会把 React 和 ReactDOM 打包进来
+
+**Key&Value解析**
+**key**：必须是你在 `import` 或 `external` 中指定的 **模块名**。
+- 也就是你在代码里写的 `import React from 'react'` 里的 `'react'`。
+- 它不是随便起的名字，必须和模块名匹配，否则 Rollup 找不到对应关系。
+
+**value**：是这个外部模块在 **全局环境中** 暴露出来的变量名。
+- 例如你在浏览器通过 `<script src="https://unpkg.com/react/umd/react.development.js"></script>` 引入 React，它会在全局变量 `window.React` 上暴露。
+- 这时候 `globals` 的 value 就写 `'React'`。
+
+#### 2.9.3 paths（模块路径重写）
+
+`paths` 配置用于 **修改 Rollup 在打包时解析模块的路径**，常用于以下场景：
+
+- 从 CDN 加载库，而不是打包本地模块
+- 替换模块路径，避免重复打包或引入特定版本
+
+```js
+export default {
+  input: 'src/index.js',
+  output: {
+    file: 'dist/my-lib.esm.js',
+    format: 'esm',
+    name: 'MyLib',
+    globals: {
+      react: 'React',  // 外部模块 react 对应全局变量 React
+      'react-dom': 'ReactDOM'
+    }
+  },
+  external: ['react', 'react-dom'],  // 告诉 Rollup 这些不打包
+  paths: {
+    "react": "https://cdn.jsdelivr.net/npm/react@18.2.0/+esm",
+    "react-dom": "https://cdn.jsdelivr.net/npm/react-dom@18.2.0/+esm",
+  }
+}
+```
+
+打包后，Rollup 会把 `import react from 'react'` 替换为从指定 URL 加载的模块，而不是本地打包。
+
+
+示例 2：模块路径重定向
+
+```js
+external: ['my-lib'],
+paths: {
+  'my-lib': './custom-lib/my-lib.js'
+}
+```
+
+- Rollup 会把 `import { foo } from 'my-lib'` 定向到 `./custom-lib/my-lib.js`
+- 适用于替换模块或做兼容处理
+
+**注意**：
+- `paths` 只对 **外部依赖（external）** 生效
+- 必须和 `external` 配合使用，否则 Rollup 会尝试打包模块，而不是替换路径
 
 ## 3. 总结
 
