@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "docker.md",
+                "file": "架构师笔记/rollup/初始Rollup.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "docker"
+              "title": "初始Rollup"
             }
           }
         ]
@@ -162,13 +162,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "docker.md",
+                "file": "架构师笔记/rollup/初始Rollup.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "docker 的大纲"
+              "title": "初始Rollup 的大纲"
             }
           },
           {
@@ -177,8 +177,8 @@
             "state": {
               "type": "advanced-tables-toolbar",
               "state": {},
-              "icon": "spreadsheet",
-              "title": "Advanced Tables"
+              "icon": "lucide-file",
+              "title": "插件不再活动"
             }
           }
         ],
@@ -190,8 +190,6 @@
   },
   "left-ribbon": {
     "hiddenItems": {
-      "obsidian42-brat:BRAT": false,
-      "obsidian-excalidraw-plugin:新建绘图文件": false,
       "switcher:打开快速切换": false,
       "graph:查看关系图谱": false,
       "canvas:新建白板": false,
@@ -199,11 +197,16 @@
       "templates:插入模板": false,
       "command-palette:打开命令面板": false,
       "callout-manager:Insert Callout": false,
-      "table-editor-obsidian:Advanced Tables Toolbar": false
+      "table-editor-obsidian:Advanced Tables Toolbar": false,
+      "obsidian42-brat:BRAT": false,
+      "obsidian-excalidraw-plugin:新建绘图文件": false
     }
   },
   "active": "5e96e65d72d7b98c",
   "lastOpenFiles": [
+    "架构师笔记/rollup/初始Rollup.md",
+    "架构师笔记/rollup",
+    "架构师笔记",
     "杭州初鸣建筑科技有限公司/微信小程序.md",
     "杭州初鸣建筑科技有限公司/微信小程序商家入驻.md",
     "写作图标存储.md",
@@ -236,9 +239,6 @@
     "内网穿透",
     "杭州初鸣建筑科技有限公司/资料信息.md",
     "擎宏科技有限公司/交接文档/消防装备后勤保障系统.md",
-    "擎宏科技有限公司/交接文档/红桥展板.md",
-    "杭州初鸣建筑科技有限公司/文档/中建三局一模到底小程序",
-    "杭州初鸣建筑科技有限公司/文档",
     "笔记/image/image_9ViibmeAvU.png",
     "笔记/image/img002.e1ac8197.png",
     "笔记/image/image-20231023114531521.png",
