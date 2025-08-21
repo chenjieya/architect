@@ -1,6 +1,0 @@
-img {
-    -webkit-filter: drop-shadow(10px 10px 10px rgba(0,0,0,.5)); 
-    filter: drop-shadow(10px 10px 10px rgba(0,0,0,.5));
-    border-style: solid;  /*图片边框: 实线*/
-    border-width: 1px;  /*边框宽度: 0.5px*/
-}
