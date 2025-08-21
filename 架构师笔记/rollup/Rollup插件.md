@@ -1,3 +1,4 @@
+## 前言
 
 ```sh
 # react预设
@@ -531,6 +532,313 @@ export default {
   ]
 ```
 
+
+### 2.6 rollup-plugin-clear
+
+`rollup-plugin-clear` 是一个用于 Rollup 构建工具的插件，它的**核心功能非常简单且专一：在每次新的构建（build）任务开始前，自动清空（删除）指定的输出目录**。
+
+##### 安装
+
+```sh
+pnpm add -D rollup-plugin-clear
+```
+
+
+##### 配置
+
+```js
+// 导入插件
+import clear from 'rollup-plugin-clear';
+
+export default {
+  input: 'src/main.js',
+  output: {
+    dir: 'dist',
+    format: 'esm'
+  },
+  plugins: [
+    // 将其放在插件数组的最前面或靠前的位置是一个好习惯。
+    // 这样能确保在其他插件（如写入文件的插件）执行前，目录已被清空。
+    clear({
+      // 核心选项：指定要清空的目录
+      targets: ['dist'],
+      
+      // 可选选项（通常使用默认值即可）：
+      watch: true,     // 在监听（watch）模式下也清空，默认为 true
+      // hook: ‘buildStart’, // 指定在哪个 Rollup 钩子上执行清空操作，默认为 'buildStart'
+    })
+  ]
+};
+```
+
+
+### 2.7 rollup-plugin-generate-html-template
+
+`rollup-plugin-generate-html-template` 是一个用于 **Rollup** 的插件，它的主要功能是**自动生成一个或多个 HTML 文件，并自动将 Rollup 打包生成的 JavaScript 和 CSS 文件（chunks）注入到这些 HTML 文件中**。
+
+它解决了手动管理 HTML 文件引用的问题。在开发过程中，尤其是使用代码分割（code splitting）时，打包输出的文件名可能包含哈希值（用于缓存破坏），手动更新 HTML 中的 `<script>` 和 `<link>` 标签会非常繁琐且容易出错。这个插件自动化了这个过程。
+
+
+##### 安装
+
+```sh
+pnpm add -D rollup-plugin-generate-html-template
+```
+
+##### 基本配置
+
+```js
+// 导入插件
+import generateHTML from 'rollup-plugin-generate-html-template';
+
+export default {
+  input: 'src/main.js',
+  output: {
+    dir: 'dist',
+    format: 'esm',
+    // 通常与哈希文件名一起使用
+    entryFileNames: '[name]-[hash].js',
+    chunkFileNames: '[name]-[hash].js'
+  },
+  plugins: [
+    // ... 其他插件 (如 terser, postcss, etc.)
+
+    // 将此插件放在最后
+    generateHTML({
+      // 核心选项：指定一个HTML模板
+      template: 'src/template.html',
+
+      // 输出选项：生成的HTML文件名和路径
+      filename: 'index.html', // 默认也是 'index.html'
+      // target: 'dist/index.html', // 另一种指定输出路径的方式
+
+      // 注入选项：控制如何注入资源
+      // attrs: ['defer'], // 给script标签添加属性，如 defer
+      // links: [ { path: 'custom.css' } ] // 手动添加额外的link标签
+    })
+  ]
+};
+```
+
+
+### 2.8 @rollup/plugin-alias
+
+`@rollup/plugin-alias` 是一个 **Rollup 官方维护的插件**，它的主要功能是**在打包过程中为模块路径创建别名（alias）**。
+
+这允许你在代码中使用简短、易记的别名来代替冗长、复杂的相对路径或绝对路径，从而大幅提高代码的可读性和可维护性。
+
+##### 安装
+
+```sh
+pnpm add -D @rollup/plugin-alias
+```
+
+##### 基本配置
+
+```js
+// 导入插件
+import alias from '@rollup/plugin-alias';
+import { fileURLToPath } from "node:url";
+
+export default {
+  input: 'src/main.js',
+  output: {
+    file: 'dist/bundle.js',
+    format: 'esm'
+  },
+  plugins: [
+    // 将此插件放在其他插件之前（如 node-resolve, commonjs 等）
+    alias({
+      entries: [
+        // 将 `@utils` 映射到 `src/utils` 目录
+        { find: '@utils', replacement: '/path/to/your/src/utils' },
+        
+        // 将 `@components` 映射到 `src/components` 目录
+        { find: '@components', replacement: '/path/to/your/src/components' },
+        
+        // 你也可以映射到具体的文件
+        { find: 'my-package', replacement: './src/custom-implementation.js' }
+      ]
+    }),
+    // ... 其他插件
+  ]
+};
+```
+
+
+### 2.9 @rollup/plugin-terser
+
+`@rollup/plugin-terser` 是一个 **Rollup 官方维护的插件**，它的主要功能是**对 Rollup 打包生成的代码进行压缩（minification）和混淆（obfuscation）**，使用 Terser 这个强大的 JavaScript 压缩工具。
+
+👉 举个例子：
+
+压缩前的代码：
+
+```js
+// 用户服务模块
+class UserService {
+  constructor() {
+    this.baseUrl = 'https://api.example.com';
+  }
+
+  // 获取用户信息
+  async getUserProfile(userId) {
+    try {
+      const response = await fetch(`${this.baseUrl}/users/${userId}`);
+      return await response.json();
+    } catch (error) {
+      console.error('获取用户信息失败:', error);
+      throw error;
+    }
+  }
+}
+```
+
+
+压缩后的代码：
+
+```js
+class a{constructor(){this.baseUrl="https://api.example.com"}async getUserProfile(a){try{return await(await fetch(`${this.baseUrl}/users/${a}`)).json()}catch(a){throw console.error("获取用户信息失败:",a),a}}}
+```
+
+
+##### 安装
+
+```sh
+pnpm add -D @rollup/plugin-terser
+```
+
+##### 基本配置
+
+```js
+// 导入插件
+import terser from '@rollup/plugin-terser';
+
+export default {
+  input: 'src/main.js',
+  output: {
+    file: 'dist/bundle.min.js',
+    format: 'iife',
+    name: 'MyApp'
+  },
+  plugins: [
+    // ... 其他插件（如 commonjs, node-resolve, typescript 等）
+    
+    // 将此插件放在最后，对最终生成的代码进行压缩
+    terser()
+  ]
+};
+```
+
+
+```js
+terser({
+  // 压缩选项
+  compress: {
+    drop_console: true,     // 移除所有 console.* 调用
+    drop_debugger: true,    // 移除 debugger 语句
+    pure_funcs: ['console.log'], // 移除特定的函数调用
+    dead_code: true,        // 移除不可达的代码
+    unused: true,           // 移除未使用的变量和函数
+  },
+  
+  // 格式化选项（mangle：混淆）
+  mangle: {
+    properties: false,      // 是否混淆属性名（通常保持 false）
+    reserved: ['$'],        // 保留不被混淆的标识符
+  },
+  
+  // 输出格式选项
+  format: {
+    comments: false,        // 移除所有注释
+    beautify: false,        // 是否美化输出（与压缩相反）
+    preamble: '// My App v1.0.0', // 在文件开头添加的内容
+  },
+  
+  // 其他选项
+  ecma: 2020,               // 指定输出的 ECMAScript 版本
+  keep_classnames: false,   // 保持类名不被混淆
+  keep_fnames: false,       // 保持函数名不被混淆
+  module: false,            // 是否处理 ES6 模块
+  toplevel: false,          // 是否压缩顶级作用域的变量
+})
+```
+
+
+### 2.10 rollup-plugin-visualizer
+
+`rollup-plugin-visualizer` 是一个 **分析和可视化 Rollup 打包结果的插件**。它的主要功能是**生成一个直观的、交互式的可视化图表，帮助你分析最终打包产物（bundle）的构成**，让你清楚地看到每个模块占用了多少空间。
+
+##### 安装
+
+```sh
+pnpm add -D rollup-plugin-visualizer
+```
+
+##### 基本配置
+
+```js
+// 导入插件
+import { visualizer } from "rollup-plugin-visualizer";
+
+export default {
+  input: "src/main.js",
+  output: {
+    file: "dist/bundle.js",
+    format: "esm",
+  },
+  plugins: [
+    // ... 其他插件
+    visualizer({
+      // 基本选项
+      filename: "stats.html",        // 输出文件名
+      title: "Bundle Visualization", // HTML 标题
+      open: true,                    // 完成后自动在浏览器打开
+      
+      // 模板选项
+      template: "sunburst",          // 可视化图表类型
+      
+      // 数据选项
+      gzipSize: true,               // 显示gzip后的大小
+      brotliSize: false,            // 显示brotli压缩后的大小
+    }),
+  ],
+};
+```
+
+
+### 2.11 @rollup/plugin-image
+
+**将图片文件导入为 Base64 编码或 ES 模块**。
+
+##### 安装
+
+```sh
+pnpm add @rollup/plugin-image -D
+```
+
+##### 基本配置
+
+```js
+import image from '@rollup/plugin-image';
+
+export default {
+  input: 'src/main.js',
+  output: { file: 'dist/bundle.js', format: 'esm' },
+  plugins: [
+    image({
+      // 输出格式：base64 | es
+      format: 'base64',
+      // 文件大小限制（小于此值转为 base64）
+      limit: 8192,
+      // 排除的文件
+      exclude: ['**/*.svg'],
+      // 包含的文件
+      include: ['**/*.png', '**/*.jpg', '**/*.jpeg', '**/*.gif']
+    })
+  ]
+};
+```
 
 
 
