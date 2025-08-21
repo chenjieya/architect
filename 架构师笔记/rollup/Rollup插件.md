@@ -349,3 +349,188 @@ commonjs({
 })
 ```
 
+
+### 2.3 @rollup/plugin-replace
+
+`@rollup/plugin-replace` 是 Rollup 官方提供的一个 **文本替换插件**，主要用于在打包过程中将代码中的指定字符串或变量替换为其他内容。
+
+它的典型使用场景是:
+- 注入环境变量（比如 `process.env.NODE_ENV` → `"production"`）
+- 在构建时删除/替换调试代码
+- 动态切换配置或常量
+
+##### 安装
+
+```bash
+pnpm add @rollup/plugin-replace --save-dev
+```
+
+##### 基本用法
+
+```js
+import replace from '@rollup/plugin-replace';
+
+export default {
+  input: 'src/main.js',
+  output: {
+    file: 'bundle.js',
+    format: 'es'
+  },
+  plugins: [
+    replace({
+      preventAssignment: true, // 推荐开启，避免意外替换赋值语句
+      'process.env.NODE_ENV': JSON.stringify('production')
+    })
+  ]
+};
+```
+
+这里会把源码中所有的
+
+```js
+if (process.env.NODE_ENV === 'production') {
+  console.log('生产环境');
+}
+```
+
+替换成
+
+```js
+if ("production" === 'production') {
+  console.log('生产环境');
+}
+```
+
+
+##### 常用配置
+
+**`preventAssignment`**
+- 默认 `false`，建议设置为 `true`。
+- 作用：避免把 `process.env.NODE_ENV = "dev"` 这样的赋值语句错误替换成 `production = "dev"`。
+
+**`values`**
+- 可以批量替换多个变量：
+```js
+replace({
+  preventAssignment: true,
+  values: {
+    __VERSION__: '1.0.0',
+    __API_URL__: 'https://api.example.com'
+  }
+})
+```
+
+**`delimiters`**
+- 默认是 `['\\b', '\\b']`（单词边界），如果需要自定义占位符，可以修改：
+```js
+replace({
+  preventAssignment: true,
+  delimiters: ['{{', '}}'],
+  values: {
+    APP_NAME: 'MyApp'
+  }
+})
+```
+
+### 2.4 rollup-plugin-serve
+
+- 在 **开发环境**下启动一个本地静态服务器，方便你调试打包后的文件。
+- 可以指定端口、根目录、是否自动打开浏览器等。
+
+##### 安装
+
+```sh
+pnpm add rollup-plugin-serve --save-dev
+```
+
+##### 基本用法
+
+```js
+import serve from 'rollup-plugin-serve';
+
+export default {
+  input: 'src/main.js',
+  output: {
+    file: 'dist/bundle.js',
+    format: 'es'
+  },
+  plugins: [
+    serve({
+      open: true,        // 启动时自动打开浏览器
+      contentBase: ['dist'], // 静态文件根目录
+      port: 3000         // 端口
+    })
+  ]
+};
+```
+
+
+### 2.5 rollup-plugin-livereload
+
+- 监控指定目录的文件变化，**文件修改时自动刷新浏览器**。
+- 常配合 `rollup-plugin-serve` 一起使用，实现热刷新体验。
+
+##### 安装
+
+```sh
+pnpm add rollup-plugin-livereload --save-dev
+```
+
+##### 基本用法
+
+```js
+import livereload from 'rollup-plugin-livereload';
+
+export default {
+  input: 'src/main.js',
+  output: {
+    file: 'dist/bundle.js',
+    format: 'es'
+  },
+  plugins: [
+    serve({
+      open: true,
+      contentBase: ['dist'],
+      port: 3000
+    }),
+    livereload({
+      watch: 'src',  // 监听目录
+      verbose: true   // 输出日志
+    })
+  ]
+};
+```
+
+
+**骚操作**
+
+> ✅ 一般组合使用：先启动服务器，再监听`src`目录变化，实现开发时的“自动刷新 + 实时预览”。
+
+
+```json
+{
+	"scripts": {
+		"build": "rollup -c -w"
+	}
+}
+```
+
+启动服务时候，`-w`可以监听文件变化，并自动进行构建。 `serve`监听的是构件之后的目录`dist`，这样更改`src`目录下文件，就会自动打包，并实时预览。
+
+```js
+  plugins: [
+    serve({
+      open: true,
+      contentBase: ['dist'],
+      port: 3000
+    }),
+    livereload({
+      watch: 'src',  // 监听目录
+      verbose: true   // 输出日志
+    })
+  ]
+```
+
+
+
+
