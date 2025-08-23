@@ -1,0 +1,22 @@
+{
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "targets": [">0.25%", "not dead"], // 兼容浏览器的范围
+        "modules": false,
+        "useBuiltIns": "usage", // 按需引入 polyfill
+        "corejs": 3 // 使用 core-js 版本 3  polyfill的库
+      }
+    ],
+    ["@babel/preset-react"]
+  ],
+  "plugins": [
+    [
+      "@babel/plugin-transform-runtime",
+      {
+        "corejs": 3
+      }
+    ]
+  ]
+}
