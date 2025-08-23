@@ -12,6 +12,8 @@ import replace from "@rollup/plugin-replace";
 import clear from "rollup-plugin-clear"; // 清理输出目录
 import serve from "rollup-plugin-serve"; // 本地服务器
 import livereload from "rollup-plugin-livereload"; // 热更新
+import { visualizer } from "rollup-plugin-visualizer"; // 打包分析
+import terser from "@rollup/plugin-terser"; // 代码压缩
 
 const config: RollupOptions = {
   input: "src/main.tsx", // 入口文件
@@ -19,8 +21,20 @@ const config: RollupOptions = {
     dir: "dist", // 输出目录
     format: "esm", // 输出格式
     name: "rollupDemo",
-    sourcemap: true // 生成 source map 文件
+    sourcemap: true, // 生成 source map 文件
+    entryFileNames: "index-chunk/[name]-[hash].js", // 输出文件名
+    chunkFileNames: "other-chunk/[name]-[hash].js",
+    plugins: [terser()],
+    globals: {
+      react: "React",
+      "react-dom": "ReactDOM"
+    },
+    paths: {
+      react: "https://cdn.jsdelivr.net/npm/react@19.1.1/+esm",
+      "react-dom": "https://cdn.jsdelivr.net/npm/react-dom@19.1.1/+esm"
+    }
   },
+  external: ["react", "react-dom"], // 外部依赖
   plugins: [
     nodeResolve(),
     commonjs(),
@@ -54,7 +68,7 @@ const config: RollupOptions = {
       "process.env.NODE_ENV": JSON.stringify("production")
     }),
     serve({
-      open: true,
+      open: false,
       contentBase: ["dist"],
       port: 3000
     }),
@@ -66,7 +80,8 @@ const config: RollupOptions = {
       template: "public/index.html",
       target: "dist/index.html",
       attrs: ['type="module"']
-    })
+    }),
+    visualizer()
   ]
 };
 
