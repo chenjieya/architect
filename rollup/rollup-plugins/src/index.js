@@ -9,6 +9,8 @@ import pkg from '../package.json'
 console.log(pkg.name)
 console.log(pkg.version)
 
+import test from './test.json'
+
 // import("./sum.js").then((chunk) => {
 //   console.log(chunk.default(1, 2));
 // });

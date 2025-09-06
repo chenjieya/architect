@@ -14,7 +14,6 @@ const config = defineConfig({
 	plugins: [
 		virtualExample(),
 		json({
-			include: './package.json',
 			exclude: 'node_modules/**'
 		})
 	]

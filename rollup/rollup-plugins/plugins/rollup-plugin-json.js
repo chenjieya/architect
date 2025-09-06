@@ -24,7 +24,7 @@ export default function (options = {}) {
 						map: { mappings: '' }
 					}
 				}catch(err) {
-					const message = `Error Path: ${id}`
+					const message = `不能转换的JSON: ${id}`
 					this.error({ message, cause: err, id })
 					return null
 				}
