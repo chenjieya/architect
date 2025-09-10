@@ -94,5 +94,7 @@ vim编辑器：
 列出命中条件的上下文： `cat xxx | grep -A 5(后五行) -B 5 abc`
 
 
-
+`sort`、`sort -c`、`sort -cn`
+`awk "{print $1}"`
+`cut -d ":"`
 
