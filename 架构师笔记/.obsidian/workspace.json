@@ -219,7 +219,6 @@
   },
   "left-ribbon": {
     "hiddenItems": {
-      "bases:创建新数据库": false,
       "switcher:打开快速切换": false,
       "graph:查看关系图谱": false,
       "canvas:新建白板": false,
@@ -240,6 +239,8 @@
     "linux",
     "rollup/初始Rollup.md",
     "rollup/Rollup基本配置（默认特性）.md",
+    "rollup/Rollup插件.md",
+    "rollup/初始Rollup.md",
     "架构师笔记/rollup/初始Rollup.md",
     "架构师笔记/rollup",
     "架构师笔记",

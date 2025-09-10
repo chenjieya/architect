@@ -12,6 +12,10 @@
   "license": "ISC",
   "packageManager": "pnpm@10.10.0",
   "devDependencies": {
-    "rollup": "^4.48.0"
+    "@rollup/plugin-commonjs": "^28.0.6",
+    "@rollup/plugin-node-resolve": "^16.0.1",
+    "@rollup/pluginutils": "^5.3.0",
+    "rollup": "^4.48.0",
+    "rollup-plugin-clear": "^2.0.7"
   }
 }
