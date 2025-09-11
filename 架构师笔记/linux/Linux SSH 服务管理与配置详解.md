@@ -12,11 +12,20 @@ SSH 服务默认监听 **22 端口**，你可以通过以下命令确认服务�
 
 在不同的 Linux 发行版中，管理方式略有不同：
 
-`# 使用 systemctl 管理 systemctl start sshd.service systemctl stop sshd.service systemctl restart sshd.service systemctl status sshd.service
+```bash
+# 使用 systemctl 管理 
+systemctl start sshd.service 
+systemctl stop sshd.service 
+systemctl restart sshd.service 
+systemctl status sshd.service
+```
 
 ### 2. 设置开机自启
 
-`systemctl enable sshd.service    # 开机自启 systemctl disable sshd.service   # 取消开机自启`
+```bash
+systemctl enable sshd.service    # 开机自启 
+systemctl disable sshd.service   # 取消开机自启
+```
 
 ---
 
@@ -30,7 +39,13 @@ SSH 服务的配置文件位于：
 
 常见配置项：
 
-`# 指定监听的地址和端口 ListenAddress 192.168.0.1 Port 22  # 是否允许 root 用户远程登录 PermitRootLogin yes   # 允许 PermitRootLogin no    # 禁止`
+```bash
+# 指定监听的地址和端口 
+ListenAddress 192.168.0.1 Port 22  
+# 是否允许 root 用户远程登录 
+PermitRootLogin yes   # 允许 
+PermitRootLogin no    # 禁止
+```
 
 ---
 
@@ -50,9 +65,14 @@ SSH 提供 **两种级别的安全验证**：
 
 ### 1. 密码登录方式
 
-`# 使用默认端口（22） ssh user@192.168.116.3  # 指定端口 ssh user@192.168.116.3 -p 2222`
+```bash
+# 使用默认端口（22） 
+ssh user@192.168.116.3  
+# 指定端口 
+ssh user@192.168.116.3 -p 2222
 
-`ssh  192.168.116.3   相当于ssh 宿主机客户端用户名@192.168.116.3    -p  22`
+ssh  192.168.116.3  # 相当于 ssh 宿主机客户端用户名@192.168.116.3    -p  22
+```
 
 ---
 
@@ -73,11 +93,15 @@ SSH 提供 **两种级别的安全验证**：
 
 将公钥拷贝到服务器（192.168.77.128）：
 
-`scp ~/.ssh/id_rsa.pub root@192.168.77.128:/root/.ssh`
+`scp ~/.ssh/id_rsa.pub root@192.168.77.128:/home/
 
 在服务器端：
 
-`touch /root/.ssh/authorized_keys cat /root/.ssh/id_rsa.pub >> /root/.ssh/authorized_keys`
+```bash
+# 这个文件若不存在的话，先创建
+touch /root/.ssh/authorized_keys 
+cat /home/id_rsa.pub >> /root/.ssh/authorized_keys
+```
 
 测试登录：
 
@@ -89,7 +113,7 @@ SSH 提供 **两种级别的安全验证**：
 
 客户端执行：
 
-`ssh-keygen ssh-copy-id -i ~/.ssh/id_rsa.pub root@192.168.77.128`
+`ssh-copy-id -i ~/.ssh/id_rsa.pub root@192.168.77.128`
 
 然后直接登录：
 
@@ -101,13 +125,22 @@ SSH 提供 **两种级别的安全验证**：
 
 ### 1. 文件传输
 
-`# 传输文件 scp file user@192.168.116.3:/tmp  # 传输目录（-r 递归） scp -r directory user@192.168.116.3:/tmp`
+```bash
+# 传输文件 
+scp file user@192.168.116.3:/tmp  
+# 传输目录（-r 递归） 
+scp -r directory user@192.168.116.3:/tmp
+```
 
 > 注意：已有文件会被覆盖。
 
 ### 2. 远程执行命令
 
-`ssh 192.168.116.3 "command"  # 示例：查看远程主机网卡信息 ssh 192.168.116.3 "ifconfig eth0"`
+```bash
+ssh 192.168.116.3 "command"  
+# 示例：查看远程主机网卡信息 
+ssh 192.168.116.3 "ifconfig eth0"
+```
 
 ---
 
