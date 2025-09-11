@@ -27,16 +27,30 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "linux/linux基础命令.md",
+                "file": "rollup/Rollup插件.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "linux基础命令"
+              "title": "Rollup插件"
+            }
+          },
+          {
+            "id": "32a111c61e30463c",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "linux/Linux SSH 服务管理与配置详解.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Linux SSH 服务管理与配置详解"
             }
           }
         ],
-        "currentTab": 1
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -177,13 +191,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "linux/linux基础命令.md",
+                "file": "linux/Linux SSH 服务管理与配置详解.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "linux基础命令 的大纲"
+              "title": "Linux SSH 服务管理与配置详解 的大纲"
             }
           },
           {
@@ -205,6 +219,7 @@
   },
   "left-ribbon": {
     "hiddenItems": {
+      "bases:创建新数据库": false,
       "switcher:打开快速切换": false,
       "graph:查看关系图谱": false,
       "canvas:新建白板": false,
@@ -217,15 +232,15 @@
       "obsidian-excalidraw-plugin:新建绘图文件": false
     }
   },
-  "active": "1d369931b65fd327",
+  "active": "32a111c61e30463c",
   "lastOpenFiles": [
-    "rollup/Rollup插件.md",
+    "linux/Linux 常用命令总结.md",
+    "linux/Linux SSH 服务管理与配置详解.md",
     "linux/虚拟机基础事项.md",
-    "linux/ssh.md",
-    "linux/linux基础命令.md",
+    "rollup/初始Rollup.md",
+    "rollup/Rollup插件.md",
     "linux",
     "rollup/Rollup基本配置（默认特性）.md",
-    "rollup/初始Rollup.md",
     "架构师笔记/rollup/初始Rollup.md",
     "架构师笔记/rollup",
     "架构师笔记",
@@ -248,8 +263,6 @@
     "linux/Linux命令.md",
     "擎宏科技有限公司/红桥展板/2023-07-19.md",
     "服务器域名/23.105.202.161.md",
-    "nginx_sgg/docker_nginx.md",
-    "服务器域名/alvis.org.cn.md",
     "linux/用U盘安装Linux(Debian11).html",
     "javascript/javascript_note.pdf",
     "javascript",
