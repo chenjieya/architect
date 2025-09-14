@@ -6,6 +6,8 @@ import virtualExample from './plugins/rollup-plugin-virtual.js'
 import json from './plugins/rollup-plugin-json.js'
 import custom from './plugins/rollup-plugin-custom.js'
 import imagePlugin from './plugins/rollup-plugin-image.js'
+import bundleStat from './plugins/rollup-plugin-bundle-stat.js'
+import ugfilyPlugin from './plugins/rollup-plugin-ugfily.js'
 
 const config = defineConfig({
 	input: 'src/index.js',
@@ -37,7 +39,9 @@ const config = defineConfig({
 			exclude: 'node_modules/*',
 			// fileSize: 1024 * 10000,
 			target: './dist/assets'
-		})
+		}),
+		bundleStat(),
+		ugfilyPlugin()
 	]
 })
 
