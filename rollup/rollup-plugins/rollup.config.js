@@ -33,7 +33,11 @@ const config = defineConfig({
 			include: 'src/**/*.js ',
 			emitFile: true
 		}),
-		imagePlugin()
+		imagePlugin({
+			exclude: 'node_modules/*',
+			// fileSize: 1024 * 10000,
+			target: './dist/assets'
+		})
 	]
 })
 
