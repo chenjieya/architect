@@ -7,16 +7,16 @@ export default function virtual(options = {}) {
   return {
     name: "virtual-example",
     resolveId(source) {
-      if(source === virtualModuleId) {
-        return resolvedVirtualModuleId
+      if (source === virtualModuleId) {
+        return resolvedVirtualModuleId;
       }
-      return null
+      return null;
     },
     load(id) {
-      if(id === resolvedVirtualModuleId) {
-        return `export default "This is example;"`
+      if (id === resolvedVirtualModuleId) {
+        return `export default "This is example;"`;
       }
-      return null
+      return null;
     }
   };
 }
