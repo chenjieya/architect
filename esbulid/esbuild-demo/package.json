@@ -1,0 +1,20 @@
+{
+  "name": "esbuild-demo",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "tsc:build": "tsc src/index.ts --outFile dist/tsc_index.js --target es6",
+    "esbuild:build": "esbuild src/index.ts --bundle --outfile=dist/esbuild_index.js --target=es6 --minify"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@types/react": "^19.1.13",
+    "@types/react-dom": "^19.1.9",
+    "esbuild": "^0.25.9",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1"
+  }
+}
