@@ -27,12 +27,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "esbuild/esbuild调用总结.md",
+                "file": "esbuild/esbuild插件开发.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "esbuild调用总结"
+              "title": "esbuild插件开发"
             }
           }
         ],
@@ -177,13 +177,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "esbuild/esbuild调用总结.md",
+                "file": "esbuild/esbuild插件开发.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "esbuild调用总结 的大纲"
+              "title": "esbuild插件开发 的大纲"
             }
           },
           {
@@ -205,8 +205,6 @@
   },
   "left-ribbon": {
     "hiddenItems": {
-      "bases:创建新数据库": false,
-      "obsidian-excalidraw-plugin:新建绘图文件": false,
       "switcher:打开快速切换": false,
       "graph:查看关系图谱": false,
       "canvas:新建白板": false,
@@ -215,20 +213,22 @@
       "command-palette:打开命令面板": false,
       "callout-manager:Insert Callout": false,
       "table-editor-obsidian:Advanced Tables Toolbar": false,
-      "obsidian42-brat:BRAT": false
+      "obsidian42-brat:BRAT": false,
+      "obsidian-excalidraw-plugin:新建绘图文件": false
     }
   },
   "active": "1d369931b65fd327",
   "lastOpenFiles": [
-    "esbuild/esbuild 代码调用.md",
+    "linux/Linux 常用命令总结.md",
+    "esbuild/esbuild插件开发.md",
     "esbuild/esbuild调用总结.md",
-    "rollup/Rollup插件.md",
-    "rollup/初始Rollup.md",
     "rollup/Rollup插件开发.md",
     "esbuild/esbuild 概述.md",
-    "rollup/Rollup基本配置（默认特性）.md",
-    "linux/Linux 常用命令总结.md",
+    "esbuild/esbuild 代码调用.md",
     "esbuild",
+    "rollup/初始Rollup.md",
+    "rollup/Rollup基本配置（默认特性）.md",
+    "rollup/Rollup插件.md",
     "linux/Linux SSH 服务管理与配置详解.md",
     "linux/linux基础命令.md",
     "linux/虚拟机基础事项.md",
@@ -251,7 +251,6 @@
     "服务器域名/81.70.185.79.md",
     "docker_kuangshen/docker网络.md",
     "docker_kuangshen/docker的常用命令.md",
-    "docker_kuangshen/容器数据卷.md",
     "linux/用U盘安装Linux(Debian11).html",
     "javascript/javascript_note.pdf",
     "javascript",
