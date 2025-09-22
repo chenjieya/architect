@@ -1,4 +1,5 @@
 import esbuild from "esbuild";
+import esbuildPluginTime from './plugins/esbuild-plugin-time.js'
 
 (async () => {
   const ctx = await esbuild.context({
@@ -15,7 +16,10 @@ import esbuild from "esbuild";
       ".js": "jsx",
       ".png": "dataurl",
       ".svg": "dataurl"
-    }
+    },
+    plugins: [
+      esbuildPluginTime()
+    ]
   });
 
   ctx.watch();
