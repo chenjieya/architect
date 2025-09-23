@@ -12,6 +12,7 @@ import esbuildPluginHtml from './plugins/esbuild-plugin-html.js'
     bundle: true,
     // 打包输出文件夹
     outdir: "./dist",
+    metafile: true,
     sourcemap: true,
     minify: true,
     target: ["es2020", "chrome58", "firefox57", "safari11"],
@@ -21,8 +22,8 @@ import esbuildPluginHtml from './plugins/esbuild-plugin-html.js'
       ".png": "dataurl",
       ".svg": "dataurl"
     },
-    // entryNames: '[dir]/[name]-[hash]',
-    chunkNames: 'chunks/[name]-[hash]',
+    entryNames: '[dir]/[name]-[hash]',
+    // chunkNames: 'chunks/[name]-[hash]',
     plugins: [
       esbuildPluginClear(),
       esbuildPluginTime(),

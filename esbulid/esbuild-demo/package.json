@@ -18,6 +18,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "build:esbuild": "node esbuild.config.mjs",
+    "build:dev": "node esbuild.config.mjs development",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
