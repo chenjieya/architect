@@ -1,8 +1,10 @@
 import React from "react";
 import logo from "./logo.svg";
 import "./App.css";
+import _ from 'lodash-es'
 
 function App() {
+  _.debounce(() => console.log("hello world"), 1000)()
   return (
     <div className="App">
       <header className="App-header">
