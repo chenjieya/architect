@@ -3,12 +3,16 @@ import logo from "./logo.svg";
 import "./App.css";
 import _ from "lodash-es";
 import world from "./assets/world.txt";
+import markdown from "./assets/note.md";
 
 function App() {
   _.debounce(() => console.log("hello world"), 1000)();
   console.log(world.name, world.age, world.desc);
   return (
     <div className="App">
+      <div dangerouslySetInnerHTML={{ __html: markdown.html }} />
+
+      <hr />
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>

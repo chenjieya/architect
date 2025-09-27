@@ -4,6 +4,7 @@ import esbuildPluginClear from "./plugins/esbuild-plugin-clear.js";
 import esbuildPluginHtml from "./plugins/esbuild-plugin-html.js";
 import esbuildPluginExternalLodash from "./plugins/esbuild-plugin-external-lodash.js";
 import esbuildPlugintxt from "./plugins/esbuild-plugin-txt.js";
+import esbuildPluginMarkdown from "./plugins/esbuild-plugin-markdown.js";
 
 (async () => {
   const productionMode = "production" === process.argv[2];
@@ -37,7 +38,8 @@ import esbuildPlugintxt from "./plugins/esbuild-plugin-txt.js";
       esbuildPluginTime(),
       esbuildPluginHtml(),
       esbuildPluginExternalLodash(),
-      esbuildPlugintxt()
+      esbuildPlugintxt(),
+      esbuildPluginMarkdown()
     ]
   };
 
