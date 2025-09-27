@@ -27,12 +27,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "esbuild/esbuild插件开发.md",
+                "file": "linux/软件和包管理(未整理).md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "esbuild插件开发"
+              "title": "软件和包管理(未整理)"
             }
           }
         ],
@@ -177,13 +177,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "esbuild/esbuild插件开发.md",
+                "file": "linux/软件和包管理(未整理).md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "esbuild插件开发 的大纲"
+              "title": "软件和包管理(未整理) 的大纲"
             }
           },
           {
@@ -219,11 +219,11 @@
   },
   "active": "1d369931b65fd327",
   "lastOpenFiles": [
-    "linux/Linux 常用命令总结.md",
     "esbuild/esbuild插件开发.md",
+    "linux/Linux 常用命令总结.md",
     "rollup/Rollup基本配置（默认特性）.md",
     "esbuild/esbuild 代码调用.md",
-    "linux/软件和包管理.md",
+    "linux/软件和包管理(未整理).md",
     "esbuild/esbuild调用总结.md",
     "rollup/Rollup插件开发.md",
     "esbuild/esbuild 概述.md",
