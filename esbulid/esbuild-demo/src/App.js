@@ -1,10 +1,12 @@
 import React from "react";
 import logo from "./logo.svg";
 import "./App.css";
-import _ from 'lodash-es'
+import _ from "lodash-es";
+import world from "./assets/world.txt";
 
 function App() {
-  _.debounce(() => console.log("hello world"), 1000)()
+  _.debounce(() => console.log("hello world"), 1000)();
+  console.log(world.name, world.age, world.desc);
   return (
     <div className="App">
       <header className="App-header">

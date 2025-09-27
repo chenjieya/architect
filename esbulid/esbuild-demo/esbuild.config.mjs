@@ -1,15 +1,12 @@
 import esbuild from "esbuild";
-import esbuildPluginTime from './plugins/esbuild-plugin-time.js'
-import esbuildPluginClear from './plugins/esbuild-plugin-clear.js'
-import esbuildPluginHtml from './plugins/esbuild-plugin-html.js'
-import esbuildPluginExternalLodash from './plugins/esbuild-plugin-external-lodash.js'
-
-
+import esbuildPluginTime from "./plugins/esbuild-plugin-time.js";
+import esbuildPluginClear from "./plugins/esbuild-plugin-clear.js";
+import esbuildPluginHtml from "./plugins/esbuild-plugin-html.js";
+import esbuildPluginExternalLodash from "./plugins/esbuild-plugin-external-lodash.js";
+import esbuildPlugintxt from "./plugins/esbuild-plugin-txt.js";
 
 (async () => {
-
   const productionMode = "production" === process.argv[2];
-
 
   const config = {
     // 入口文件
@@ -23,9 +20,9 @@ import esbuildPluginExternalLodash from './plugins/esbuild-plugin-external-lodas
     sourcemap: true,
     minify: true,
     // external: ['lodash-es'],
-    platform: 'browser',
+    platform: "browser",
     // 输出格式 iife, esm, cjs 默认是 iife，如果是 node 环境，默认为 cjs
-    format: 'esm',
+    format: "esm",
     target: ["es2020", "chrome58", "firefox57", "safari11"],
     loader: {
       // ".html": "copy",
@@ -33,26 +30,26 @@ import esbuildPluginExternalLodash from './plugins/esbuild-plugin-external-lodas
       ".png": "dataurl",
       ".svg": "dataurl"
     },
-    entryNames: '[dir]/[name]-[hash]',
+    entryNames: "[dir]/[name]-[hash]",
     // chunkNames: 'chunks/[name]-[hash]',
     plugins: [
       esbuildPluginClear(),
       esbuildPluginTime(),
       esbuildPluginHtml(),
-      esbuildPluginExternalLodash()
+      esbuildPluginExternalLodash(),
+      esbuildPlugintxt()
     ]
-  }
+  };
 
   // 生产环境
-  if(productionMode) {
-    const ctx = await esbuild.build(config)
+  if (productionMode) {
+    const ctx = await esbuild.build(config);
     // console.log(ctx, 'ctx')
 
     const text = await esbuild.analyzeMetafile(ctx.metafile, {
       verbose: true
-    })
-    console.log(text, 'text')
-
+    });
+    console.log(text, "text");
   } else {
     // 开发环境
     const ctx = await esbuild.context(config);
@@ -68,5 +65,4 @@ import esbuildPluginExternalLodash from './plugins/esbuild-plugin-external-lodas
         console.log("http://localhost:" + res.port);
       });
   }
- 
 })();
