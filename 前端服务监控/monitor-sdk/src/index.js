@@ -1,6 +1,15 @@
-import { fn, getTextss } from "./text.js";
+import { setConfig } from "./config/index";
+import watchError from "./error/index";
 
-fn();
+const monitor = {
+  start(options = {}) {
+    console.log("==== start ====");
+    // 1. 合并配置文件
+    setConfig(options);
 
-const a = getTextss("hello world");
-console.log(a);
+    // 2. 启动错误监控
+    watchError();
+  }
+};
+
+export default monitor;

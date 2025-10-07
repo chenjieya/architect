@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>前端服务监控</title>
+  </head>
+  <body>
+    <div>
+      <button id="jsError">js错误</button>
+      <button id="promiseError">promise错误</button>
+      <button id="resourceError">resource错误</button>
+
+      <img
+        id="imgs"
+        src="https://picgo-1300696809.cos.ap-beijing.myqcloud.com/202405021420136.png"
+        alt="博客中的图片"
+      />
+    </div>
+  </body>
+  <script src="./bundle.js"></script>
+
+  <script>
+    window.onload = function () {
+      bundle.start();
+
+      const jsError = document.getElementById("jsError");
+      const promiseError = document.getElementById("promiseError");
+      const resourceError = document.getElementById("resourceError");
+      const img1 = document.getElementById("imgs");
+
+      resourceError.addEventListener("click", function () {
+        img1.setAttribute("src", "../assets/logo1.png");
+      });
+
+      promiseError.addEventListener("click", function () {
+        Promise.reject(Error("promise error"));
+      });
+
+      jsError.addEventListener("click", function jsErrorFn() {
+        let str = null;
+        console.log(str.length);
+      });
+    };
+  </script>
+</html>
