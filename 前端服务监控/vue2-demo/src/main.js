@@ -6,7 +6,11 @@ import "./style.css";
 
 Vue.config.productionTip = false;
 
-console.log(bundle, "bundle");
+bundle.start({
+  vue: {
+    Vue
+  }
+});
 
 const app = new Vue({
   render: (h) => h(App),

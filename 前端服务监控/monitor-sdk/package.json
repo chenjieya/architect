@@ -1,10 +1,11 @@
 {
   "name": "monitor-sdk",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "src/index.js",
   "type": "module",
   "scripts": {
-    "build": "rollup -c rollup.config.js -w"
+    "build": "rollup -c rollup.config.js",
+    "dev": "rollup -c rollup.config.js -w"
   },
   "keywords": [],
   "author": "",

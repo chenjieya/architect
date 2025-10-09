@@ -47,8 +47,8 @@ var bundle = function () {
 
     // 监听vue错误
     if ((_config$vue = config.vue) !== null && _config$vue !== void 0 && _config$vue.Vue) {
-      console.log("vue错误");
       config.vue.Vue.config.errorHandler = function (err, vm, info) {
+        console.log("vue错误");
         console.log(err, vm, info);
         //上报vue错误 todo...
       };

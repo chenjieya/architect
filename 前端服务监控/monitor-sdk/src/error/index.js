@@ -30,8 +30,8 @@ export default function () {
 
   // 监听vue错误
   if (config.vue?.Vue) {
-    console.log("vue错误");
     config.vue.Vue.config.errorHandler = function (err, vm, info) {
+      console.log("vue错误");
       console.log(err, vm, info);
       //上报vue错误 todo...
     };
