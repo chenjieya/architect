@@ -32,7 +32,8 @@ AI 的出现使其出现了新的开发模式：对话驱动开发
 
 在 Cursor 中，提供了几种不同的对话模式：
 
-<img src="https://xiejie-typora.oss-cn-chengdu.aliyuncs.com/2025-05-13-034448.png" alt="image-20250513114448189" style="zoom:50%;" />
+![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251009150242895.png)
+
 
 - Ask：PDD驱动
 - Agent：AI 驱动
@@ -114,10 +115,12 @@ Agent 模式下会自动的更改文件，当然更改也需要用户选择是�
 
 在 Chat 窗口中，右下角有一个 Restore 按钮，可以回滚到之前的版本。
 
-<img src="https://xiejie-typora.oss-cn-chengdu.aliyuncs.com/2025-05-13-085624.png" alt="image-20250513165624124" style="zoom:50%;" />
+![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251009150255602.png)
+
 
 在回滚之后，还可以使用撤销按钮，撤销回滚。
 
-<img src="https://xiejie-typora.oss-cn-chengdu.aliyuncs.com/2025-05-13-085558.png" alt="image-20250513165558020" style="zoom:50%;" />
+![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251009150313702.png)
+
 
 ---

@@ -17,15 +17,17 @@ Cursor 具备如下的特点：
 
 点击 Sign in 按钮进行登录，可以选择从 Google 或者 Github 进行登录。
 
-<img src="https://xiejie-typora.oss-cn-chengdu.aliyuncs.com/2025-05-13-015548.png" alt="image-20250513095548787" style="zoom:40%;" />
+![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251009150336111.png)
+
 
 也可以选择 Sign up 进行注册，邮箱可以用国内邮箱，比如 QQ 邮箱，163 邮箱，126 邮箱等。
 
-<img src="https://xiejie-typora.oss-cn-chengdu.aliyuncs.com/2025-05-13-020042.png" alt="image-20250513100041551" style="zoom:40%;" />
+![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251009150351989.png)
+
 
 成功登录之后，会自动跳转到 Cursor 的个人设置页面，该页面会展示你的账号信息以及额度信息。新用户默认会有一些体验额度，可以免费使用 15 天（体验 Pro 版本）。
 
-![image-20250513100436079](https://xiejie-typora.oss-cn-chengdu.aliyuncs.com/2025-05-13-020436.png)
+![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251009150414347.png)
 
 Cursor 版本更新还是比较频繁的，此前 Cursor 会自动升级到最新版本，但有时新版本不太稳定，会遇到一些问题，也有的用户更习惯使用旧版本的体验， Github 上有个开源的[仓库](https://github.com/oslook/cursor-ai-downloads)，维护了 0.36.2 版本之后所有 Cursor 的历史版本。
 
@@ -33,7 +35,8 @@ Cursor 版本更新还是比较频繁的，此前 Cursor 会自动升级到最�
 
 Cursor 提供了 3 种不同的订阅计划，可以选择按月付费或者按年付费（年付可节省20%）
 
-<img src="https://xiejie-typora.oss-cn-chengdu.aliyuncs.com/2025-06-30-011943.png" alt="image-20250630091942855" style="zoom:50%;" />
+![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251009150430034.png)
+
 
 **Hobby 版本（免费）**
 
@@ -75,7 +78,8 @@ Cursor 提供了 3 种不同的订阅计划，可以选择按月付费或者按�
 
 Cursor 在结构布局上与 VSCode 十分类似，但它增加了面向 AI 编程的核心区域。
 
-<img src="https://xiejie-typora.oss-cn-chengdu.aliyuncs.com/2025-05-13-034409.png" alt="image-20250513114408392"  />
+![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251009150445283.png)
+
 
 - 左侧：资源管理区（Explorer）
 
