@@ -7,7 +7,8 @@
 
 *NativeBase* 官网地址：*https://nativebase.io/*
 
-![image-20220613105357209](https://xiejie-typora.oss-cn-chengdu.aliyuncs.com/2022-06-13-025357.png)
+![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251021160542188.png)
+
 
 ### 1.2 Ant Design Mobile RN*组件库
 
@@ -23,7 +24,8 @@
 
 *Ant Design Mobile RN* 官网地址：*https://rn.mobile.ant.design/index-cn*
 
-![image-20220613105415118](https://xiejie-typora.oss-cn-chengdu.aliyuncs.com/2022-06-13-025415.png)
+![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251021160551228.png)
+
 
 
 
@@ -33,7 +35,8 @@
 
 *React Native Elements* 官网地址：*https://reactnativeelements.com/*
 
-![image-20220613105437053](https://xiejie-typora.oss-cn-chengdu.aliyuncs.com/2022-06-13-025437.png)
+![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251021160602682.png)
+
 
 
 
@@ -43,7 +46,8 @@
 
 *React Native Material* 官网地址：*https://www.react-native-material.com/*
 
-![image-20220613105454110](https://xiejie-typora.oss-cn-chengdu.aliyuncs.com/2022-06-13-025454.png)
+![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251021160611957.png)
+
 
 
 
@@ -53,7 +57,8 @@
 
 *Nachos UI* 官网地址：*https://avocode.com/nachos-ui*
 
-![image-20220613105512543](https://xiejie-typora.oss-cn-chengdu.aliyuncs.com/2022-06-13-025513.png)
+![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251021160621493.png)
+
 
 
 
@@ -65,7 +70,8 @@
 
 
 
-![image-20220613105531647](https://xiejie-typora.oss-cn-chengdu.aliyuncs.com/2022-06-13-025532.png)
+![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251021160632372.png)
+
 
 
 
@@ -81,13 +87,15 @@
 
 
 
-![image-20220613105550132](https://xiejie-typora.oss-cn-chengdu.aliyuncs.com/2022-06-13-025550.png)
+![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251021160643637.png)
+
 
 可以看到，在安装指南中，官方根据开发者不同形式搭建的 *RN* 项目，提供了对应的安装方式。
 
 由于我们目前的 *RN* 项目是使用 *expo* 搭建的，因此选择对应的安装指南。
 
-![image-20220613105606306](https://xiejie-typora.oss-cn-chengdu.aliyuncs.com/2022-06-13-025606.png)
+![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251021160654444.png)
+
 
 上面分为了“新项目”和“已有项目”，选择已有项目，然后根据指南输入下面的指令：
 
@@ -107,7 +115,8 @@ expo init my-app --template @native-base/expo-template
 
 具体的操作如下图所示：
 
-![image-20220613105623400](https://xiejie-typora.oss-cn-chengdu.aliyuncs.com/2022-06-13-025623.png)
+![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251021160703655.png)
+
 
 最后，我们可以测试一下组件库是否安装成功。
 
@@ -253,7 +262,8 @@ export default NativeBaseIcon;
 
 效果如下图所示：
 
-<img src="https://xiejie-typora.oss-cn-chengdu.aliyuncs.com/2022-06-13-025650.png" alt="image-20220613105649867" style="zoom:50%;" />
+![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251021160713997.png)
+
 
 至此，我们就成功了引入了 *NativeBase* 组件库，之后要使用该组件库中的某一个组件，只需要按照文档说明引入然后使用即可。
 

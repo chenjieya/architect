@@ -15,13 +15,15 @@
 
 *RN* 官网：*https://reactnative.dev/*
 
-![image-20220602141555963](https://xiejie-typora.oss-cn-chengdu.aliyuncs.com/2022-06-02-061556.png)
+![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251021160233511.png)
+
 
 
 
 *RN* 中文网：*https://reactnative.cn/*
 
-![image-20220602141614461](https://xiejie-typora.oss-cn-chengdu.aliyuncs.com/2022-06-02-061614.png)
+![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251021160244704.png)
+
 
 
 
@@ -55,13 +57,15 @@
 
 根据官方的介绍，*RN* 所开发最终产品是一个真正的移动应用，从使用感受上和原生应用相比几乎是无法区分的。
 
-![image-20220602141649879](https://xiejie-typora.oss-cn-chengdu.aliyuncs.com/2022-06-02-061650.png)
+![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251021160254944.png)
+
 
 
 
 在 *RN* 中所使用的基础 *UI* 组件会映射到原生应用中的对应组件。
 
-![image-20220602141706862](https://xiejie-typora.oss-cn-chengdu.aliyuncs.com/2022-06-02-061707.png)
+![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251021160307693.png)
+
 
 
 
@@ -71,7 +75,8 @@
 
 *RN* 让你可以快速迭代开发应用。比起传统原生应用漫长的编译过程，现在你可以在瞬间刷新你的应用。开启 *Hot Reloading* 的话，甚至能在保持应用运行状态的情况下热替换新代码！
 
-![image-20220602141803449](https://xiejie-typora.oss-cn-chengdu.aliyuncs.com/2022-06-02-061803.png)
+![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251021160317831.png)
+
 
 
 
@@ -79,7 +84,8 @@
 
 使用 *RN* 所开发的移动端应用是无缝跨平台的，原生代码和 *API* 会被封装到 *RN* 组件中，开发者只需要掌握 *React* 和 *JavaScript* 知识即可进行开发。
 
-<img src="https://xiejie-typora.oss-cn-chengdu.aliyuncs.com/2022-06-02-061835.png" alt="image-20220602141835452" style="zoom:67%;" />
+![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251021160328100.png)
+
 
 
 
@@ -87,7 +93,8 @@
 
 *RN* 从 *2015* 年开源至今，已经有非常多的国内外厂商选择使用 *RN* 来开发移动端应用，因为比起以前开发 *Andriod* 和 *iOS* 应用要各自找一波开发工程师，现在只需要找一个前端工程师即可。
 
-<img src="https://xiejie-typora.oss-cn-chengdu.aliyuncs.com/2022-06-02-061857.png" alt="image-20220602141856881" style="zoom:67%;" />
+![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251021160340837.png)
+
 
 更多使用厂商，可以参阅：*https://reactnative.dev/showcase*
 
@@ -99,7 +106,8 @@
 
 官网为我们提供了搭建开发环境的详细步骤：*https://reactnative.dev/docs/environment-setup*
 
-![image-20220602150930027](https://xiejie-typora.oss-cn-chengdu.aliyuncs.com/2022-06-02-070930.png)
+![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251021160358226.png)
+
 
 
 
@@ -123,11 +131,13 @@ npm install -g expo-cli
 
 安装完毕后可以使用 *expo -V* 来查看所安装的脚手架版本
 
-<img src="https://xiejie-typora.oss-cn-chengdu.aliyuncs.com/2022-06-02-070951.png" alt="image-20220602150951138" style="zoom:50%;" />
+![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251021160407857.png)
+
 
 接下来我们就可以快速拉取一个项目，使用命令 *expo init <项目名称>*
 
-![image-20220602151013904](https://xiejie-typora.oss-cn-chengdu.aliyuncs.com/2022-06-02-071014.png)
+![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251021160416418.png)
+
 
 首先会让我们选择项目的模板，如果不用 *TypeScript* 的话，一般选择第一个即可。
 
@@ -135,13 +145,15 @@ npm install -g expo-cli
 
 在科学上网的环境下，拉取项目还是比较快的，项目拉取完成图如下：
 
-![image-20220602151034878](https://xiejie-typora.oss-cn-chengdu.aliyuncs.com/2022-06-02-071035.png)
+![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251021160426355.png)
+
 
 接下来 *cd* 到项目里面，使用 *npm start* 启动项目即可。
 
 启动效果如下图所示，会有一个二维码，至此我们的 *RN* 开发环境已经搭建完毕。
 
-<img src="https://xiejie-typora.oss-cn-chengdu.aliyuncs.com/2022-06-02-071052.png" alt="image-20220602151051871" style="zoom: 50%;" />
+![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251021160438231.png)
+
 
 接下来需要搞定 *RN* 项目的预览环境。以前写 *PC* 网页的时候，电脑上的浏览器就是我们的预览环境，而现在我们使用 *RN* 开发的是移动端应用，因此自然预览环境使用的是我们的手机。
 
@@ -149,17 +161,20 @@ npm install -g expo-cli
 
 你可以在[这里](https://expo.dev/tools)根据你的手机系统版本下载对应的 *Client* 的文件。
 
-<img src="https://xiejie-typora.oss-cn-chengdu.aliyuncs.com/2022-06-02-071125.png" alt="image-20220602151125112" style="zoom:50%;" />
+![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251021160458363.png)
+
 
 之后在手机上进行安装，安装完毕后确保手机和电脑是连接的同一个网络，打开该应用，点击 *Scan QR code* 进行扫码。
 
 >如果是苹果手机，直接使用自带的相机应用进行扫码。
 
-<img src="https://xiejie-typora.oss-cn-chengdu.aliyuncs.com/2022-06-02-071151.png" alt="image-20220602151150979" style="zoom:50%;" />
+![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251021160514796.png)
+
 
 扫码后会进入到项目打包构建过程，之后就会显示出当前项目的效果。
 
-<img src="https://xiejie-typora.oss-cn-chengdu.aliyuncs.com/2022-06-02-071211.png" alt="image-20220602151210602" style="zoom:50%;" />
+![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251021160525616.png)
+
 
 至此，我们就快速的利用 *expo* 沙盒环境搭建了一个 *RN* 项目，并在手机上安装了 *expo-client* 来预览项目效果。
 

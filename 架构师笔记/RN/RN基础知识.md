@@ -279,11 +279,13 @@ const styles = StyleSheet.create({
 
 在 *Android* 设备中，*Button* 组件显示为一个按钮，而在 *IOS* 设备中，则显示为一行文本。
 
-<img src="https://xiejie-typora.oss-cn-chengdu.aliyuncs.com/2022-06-03-014042.png" alt="image-20220603094042200" style="zoom:50%;" />
+![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251021160147337.png)
+
 
 该组件需要传递两个必须的属性，一个是 *onPress*，对应点击后的事件，另一个是 *title*，用来指定按钮内的文本信息。
 
-<img src="https://xiejie-typora.oss-cn-chengdu.aliyuncs.com/2022-06-03-014108.png" alt="image-20220603094107945" style="zoom:50%;" />
+![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251021160159498.png)
+
 
 下面是 *Button* 组件的一个简单示例：
 
@@ -314,7 +316,8 @@ const styles = StyleSheet.create({
 
 由于 *Button* 组件是调用原生代码，因此不同的平台显示的外观是不同的，如果想要各个平台显示的外观都相同，则可以使用 *Touchable* 系列组件。
 
-<img src="https://xiejie-typora.oss-cn-chengdu.aliyuncs.com/2022-06-03-014131.png" alt="image-20220603094130542" style="zoom: 50%;" />
+![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251021160213262.png)
+
 
 *Touchable* 系列组件一共有 *4* 个，其中跨平台的有 *3* 个：
 
