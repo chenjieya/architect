@@ -160,6 +160,10 @@ export default function App() {
     return (
       <SectionList
         sections={sectionData}
+        refreshing={isHeaderRefreshing}
+        onRefresh={beginHeaderRefresh}
+        onEndReached={beginFooterRefresh}
+        onEndReachedThreshold={0.1}
         renderItem={({ item }) => {
           return renderItem({
             data: item,
