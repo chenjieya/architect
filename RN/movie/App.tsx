@@ -9,7 +9,8 @@ import {
   GestureResponderEvent,
   ActivityIndicator,
   Dimensions,
-  SectionList
+  SectionList,
+  StatusBar
 } from "react-native";
 import { queryMovies, randomRefreshMovies } from "./data/service";
 import moviesData from "./data/movies.json";
@@ -221,6 +222,13 @@ export default function App() {
 
   return (
     <View style={styles.container}>
+      <StatusBar
+        animated={true}
+        backgroundColor="#61dafb"
+        barStyle="dark-content"
+        showHideTransition="fade"
+        hidden={false}
+      />
       {/* 渲染表头 */}
       {renderTitle()}
 
