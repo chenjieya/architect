@@ -15,7 +15,9 @@ export default function App() {
       return;
     }
     // 2. 打开相册
-    const pickerResult = await ImagePicker.launchImageLibraryAsync();
+    const pickerResult = await ImagePicker.launchImageLibraryAsync({
+      allowsEditing: true
+    });
     if (pickerResult.canceled) {
       // 用户取消图片选择
       return;
