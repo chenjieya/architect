@@ -8,7 +8,8 @@ import {
   Pressable,
   GestureResponderEvent,
   ActivityIndicator,
-  Dimensions
+  Dimensions,
+  SectionList
 } from "react-native";
 import { queryMovies, randomRefreshMovies } from "./data/service";
 import moviesData from "./data/movies.json";
@@ -26,11 +27,21 @@ export default function App() {
   const [isHeaderRefreshing, setHeaderRefreshing] = useState(false);
   const [isFooterRefreshing, setFooterRefreshing] = useState(false);
 
+  const displayingMovies = queryMovies(1, 10); // 获取第一个 10 条数据
+  const incomingMovies = queryMovies(2, 10); // 获取第二个 10 条数据
+  const [sectionData, setSectionData] = useState<
+    { title: string; data: typeof data }[]
+  >([]);
+
   // 模拟发送请求获取数据
   useEffect(() => {
     setLoaded(true);
     setTimeout(() => {
-      setMovieList(data);
+      // setMovieList(data);
+      setSectionData([
+        { title: "正在上映", data: displayingMovies },
+        { title: "即将上映", data: incomingMovies }
+      ]);
       setLoaded(false);
     }, 5000);
   }, []);
@@ -125,14 +136,30 @@ export default function App() {
     }
   }
 
+  // function renderItemList() {
+  //   return (
+  //     <FlatList
+  //       data={movieList}
+  //       refreshing={isHeaderRefreshing}
+  //       onRefresh={beginHeaderRefresh}
+  //       onEndReached={beginFooterRefresh}
+  //       onEndReachedThreshold={0.1}
+  //       renderItem={({ item }) => {
+  //         return renderItem({
+  //           data: item,
+  //           onPress: () => {
+  //             alert("点击的电影名：" + item.title);
+  //           }
+  //         });
+  //       }}
+  //     />
+  //   );
+  // }
+
   function renderItemList() {
     return (
-      <FlatList
-        data={movieList}
-        refreshing={isHeaderRefreshing}
-        onRefresh={beginHeaderRefresh}
-        onEndReached={beginFooterRefresh}
-        onEndReachedThreshold={0.1}
+      <SectionList
+        sections={sectionData}
         renderItem={({ item }) => {
           return renderItem({
             data: item,
@@ -141,6 +168,12 @@ export default function App() {
             }
           });
         }}
+        renderSectionHeader={({ section: { title } }) => (
+          <View style={styles.sectionHeader}>
+            <Text style={styles.sectionTitle}>{title}</Text>
+          </View>
+        )}
+        stickySectionHeadersEnabled={true}
       />
     );
   }
@@ -278,5 +311,14 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "#fff"
+  },
+  sectionHeader: {
+    padding: 10,
+    backgroundColor: "#268dcd"
+  },
+  sectionTitle: {
+    fontSize: 16,
+    fontWeight: "bold",
+    color: "#fff"
   }
 });
