@@ -10,14 +10,21 @@ import {
   ActivityIndicator,
   Dimensions
 } from "react-native";
-import { queryMovies } from "./data/service";
+import { queryMovies, randomRefreshMovies } from "./data/service";
+import moviesData from "./data/movies.json";
 
 const windowHeight = Dimensions.get("window").height;
+
+let currentPage = 1; // 当前页
+let pageSize = 10; // 每一页加载多少条
+let totalPage = Math.ceil(moviesData.length / pageSize); // 总页数
 
 export default function App() {
   const data = queryMovies();
   const [movieList, setMovieList] = useState<typeof data>([]);
   const [loaded, setLoaded] = useState(false);
+  const [isHeaderRefreshing, setHeaderRefreshing] = useState(false);
+  const [isFooterRefreshing, setFooterRefreshing] = useState(false);
 
   // 模拟发送请求获取数据
   useEffect(() => {
@@ -25,7 +32,7 @@ export default function App() {
     setTimeout(() => {
       setMovieList(data);
       setLoaded(false);
-    }, 10000);
+    }, 5000);
   }, []);
 
   function renderItem(props: {
@@ -89,10 +96,43 @@ export default function App() {
     );
   }
 
+  // 下拉刷新
+  function beginHeaderRefresh() {
+    // 开始加载
+    setHeaderRefreshing(true);
+
+    // 获取数据
+    const newMovie = randomRefreshMovies();
+    const data = [...newMovie, ...movieList];
+    setTimeout(() => {
+      setMovieList(data);
+      // 关闭加载
+      setHeaderRefreshing(false);
+    }, 1000);
+  }
+
+  // 上拉加载
+  function beginFooterRefresh() {
+    setFooterRefreshing(true);
+    if (currentPage < totalPage) {
+      currentPage++;
+      const newMovie = queryMovies(currentPage, pageSize); // 查询对应页码的新数据
+      const data = [...movieList, ...newMovie];
+      setTimeout(() => {
+        setMovieList(data);
+        setFooterRefreshing(false);
+      }, 1000);
+    }
+  }
+
   function renderItemList() {
     return (
       <FlatList
         data={movieList}
+        refreshing={isHeaderRefreshing}
+        onRefresh={beginHeaderRefresh}
+        onEndReached={beginFooterRefresh}
+        onEndReachedThreshold={0.1}
         renderItem={({ item }) => {
           return renderItem({
             data: item,
@@ -124,6 +164,24 @@ export default function App() {
     }
   }
 
+  function renderFooterLoad() {
+    if (isFooterRefreshing) {
+      return (
+        <View style={styles.footerStyle}>
+          <ActivityIndicator size="small" color="#268dcd" />
+          <Text
+            style={{
+              color: "#666",
+              paddingLeft: 10
+            }}
+          >
+            努力加载中
+          </Text>
+        </View>
+      );
+    }
+  }
+
   return (
     <View style={styles.container}>
       {/* 渲染表头 */}
@@ -134,6 +192,9 @@ export default function App() {
 
       {/* 渲染电影每一项 */}
       {renderItemList()}
+
+      {/* 上拉加载 */}
+      {renderFooterLoad()}
     </View>
   );
 }
@@ -210,5 +271,12 @@ const styles = StyleSheet.create({
   name: {
     color: "#333333",
     flex: 1
+  },
+  footerStyle: {
+    height: 48,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#fff"
   }
 });
