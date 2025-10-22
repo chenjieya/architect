@@ -1,55 +1,48 @@
-import { useState, useRef } from "react";
+import { useRef } from "react";
 import {
   View,
-  Text,
-  Pressable,
-  StyleSheet,
   Animated,
-  Dimensions
+  Dimensions,
+  StyleSheet,
+  Image,
+  ScrollView
 } from "react-native";
 
 const { width } = Dimensions.get("window");
 export default function App() {
-  const fadeAnim = useRef(new Animated.Value(1)).current;
-
-  function showHandler() {
-    Animated.timing(fadeAnim, {
-      duration: 1000,
-      toValue: 1,
-      useNativeDriver: true
-    }).start();
-  }
-  function hideHandler() {
-    Animated.timing(fadeAnim, {
-      duration: 1000,
-      toValue: 0,
-      useNativeDriver: true
-    }).start();
-  }
+  const offectX = useRef(new Animated.Value(0)).current;
 
   return (
-    <View style={styles.container}>
-      <Animated.View
-        style={{
-          width: 100,
-          height: 100,
-          backgroundColor: "red",
-          opacity: fadeAnim,
-          justifyContent: "center",
-          alignItems: "center"
-        }}
+    <View>
+      <ScrollView
+        horizontal={true}
+        style={styles.imageStyle}
+        onScroll={Animated.event(
+          [{ nativeEvent: { contentOffset: { x: offectX } } }],
+          {
+            useNativeDriver: false
+          }
+        )}
       >
-        <Text>Hello World</Text>
-      </Animated.View>
-      <Pressable
-        style={[styles.btnContainer, { marginBottom: 15, marginTop: 15 }]}
-        onPress={showHandler}
-      >
-        <Text style={styles.textStyle}>显示</Text>
-      </Pressable>
-      <Pressable style={styles.btnContainer} onPress={hideHandler}>
-        <Text style={styles.textStyle}>隐藏</Text>
-      </Pressable>
+        <Animated.Image
+          style={[
+            styles.imageStyle,
+            {
+              opacity: offectX.interpolate({
+                inputRange: [0, width],
+                outputRange: [1, 0]
+              })
+            }
+          ]}
+          src="https://img1.baidu.com/it/u=2438160282,1620721127&fm=253&app=138&f=JPEG?w=1283&h=800"
+          resizeMode="cover"
+        />
+        <Image
+          style={styles.imageStyle}
+          src="https://img0.baidu.com/it/u=2140465804,1539393789&fm=253&app=138&f=JPEG?w=1256&h=800"
+          resizeMode="cover"
+        />
+      </ScrollView>
     </View>
   );
 }
@@ -57,23 +50,10 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center"
+    backgroundColor: "#fff"
   },
-  btnContainer: {
-    marginTop: 15,
-    marginLeft: 10,
-    marginRight: 10,
-    backgroundColor: "#EE7942",
-    height: 38,
-    width: width - 100,
-    borderRadius: 5,
-    justifyContent: "center",
-    alignItems: "center"
-  },
-  textStyle: {
-    color: "#ffffff",
-    fontSize: 18
+  imageStyle: {
+    height: 200,
+    width: width
   }
 });
