@@ -1,84 +1,54 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import {
   View,
-  StyleSheet,
-  Pressable,
   Text,
-  LayoutAnimation,
-  Platform,
-  UIManager
+  Pressable,
+  StyleSheet,
+  Animated,
+  Dimensions
 } from "react-native";
 
-if (
-  Platform.OS === "android" &&
-  UIManager.setLayoutAnimationEnabledExperimental
-) {
-  UIManager.setLayoutAnimationEnabledExperimental(true);
-}
-
-const customAnime = {
-  // 第一个动画
-  customSpring: {
-    duration: 10000,
-    create: {
-      springDamping: 0.3, // 弹跳动画阻尼系数
-      type: LayoutAnimation.Types.spring, // 动画类型
-      property: LayoutAnimation.Properties.scaleXY // 动画属性
-    },
-    update: {
-      springDamping: 0.6, // 弹跳动画阻尼系数
-      type: LayoutAnimation.Types.spring, // 动画类型
-      property: LayoutAnimation.Properties.scaleXY // 动画属性
-    }
-  },
-  // 第二个动画
-  customLinear: {
-    duration: 1000,
-    create: {
-      springDamping: 0.6, // 弹跳动画阻尼系数
-      type: LayoutAnimation.Types.linear, // 动画类型
-      property: LayoutAnimation.Properties.opacity // 动画属性
-    },
-    update: {
-      springDamping: 0.6, // 弹跳动画阻尼系数
-      type: LayoutAnimation.Types.linear, // 动画类型
-      property: LayoutAnimation.Properties.opacity // 动画属性
-    }
-  }
-};
-
+const { width } = Dimensions.get("window");
 export default function App() {
-  const [width, setWidth] = useState(200);
-  const [height, setHeight] = useState(200);
+  const fadeAnim = useRef(new Animated.Value(1)).current;
 
-  function pressHandler() {
-    // 设置动画
-    LayoutAnimation.configureNext(customAnime.customLinear);
-
-    setWidth(width + 20);
-    setHeight(height + 20);
+  function showHandler() {
+    Animated.timing(fadeAnim, {
+      duration: 1000,
+      toValue: 1,
+      useNativeDriver: true
+    }).start();
+  }
+  function hideHandler() {
+    Animated.timing(fadeAnim, {
+      duration: 1000,
+      toValue: 0,
+      useNativeDriver: true
+    }).start();
   }
 
   return (
     <View style={styles.container}>
-      <View
+      <Animated.View
         style={{
-          width,
-          height,
-          backgroundColor: "orange",
-          marginBottom: 30
+          width: 100,
+          height: 100,
+          backgroundColor: "red",
+          opacity: fadeAnim,
+          justifyContent: "center",
+          alignItems: "center"
         }}
-      ></View>
-      <Pressable
-        style={({ pressed }) => [
-          {
-            backgroundColor: pressed ? "yellow" : "red"
-          },
-          styles.button
-        ]}
-        onPress={pressHandler}
       >
-        <Text>Press me</Text>
+        <Text>Hello World</Text>
+      </Animated.View>
+      <Pressable
+        style={[styles.btnContainer, { marginBottom: 15, marginTop: 15 }]}
+        onPress={showHandler}
+      >
+        <Text style={styles.textStyle}>显示</Text>
+      </Pressable>
+      <Pressable style={styles.btnContainer} onPress={hideHandler}>
+        <Text style={styles.textStyle}>隐藏</Text>
       </Pressable>
     </View>
   );
@@ -87,11 +57,23 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center"
   },
-  button: {
-    padding: 10,
-    borderRadius: 5
+  btnContainer: {
+    marginTop: 15,
+    marginLeft: 10,
+    marginRight: 10,
+    backgroundColor: "#EE7942",
+    height: 38,
+    width: width - 100,
+    borderRadius: 5,
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  textStyle: {
+    color: "#ffffff",
+    fontSize: 18
   }
 });
