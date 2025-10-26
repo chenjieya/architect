@@ -15,6 +15,7 @@ Thumbs.db
 !.vscode/launch.json
 !.vscode/extensions.json
 *.code-workspace
+.history
 
 # IntelliJ IDEA
 .idea/
