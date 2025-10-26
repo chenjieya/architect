@@ -30,12 +30,17 @@ export default function DetailScreen({ route, navigation }: Props) {
 
 	function onChangeParamsFunction() {
 		navigation.setParams({
-			otherParam: 'Updated Param'
+			otherParam: 'Updated Param',
+			itemId: 100,
 		})
 	}
 
 	function onPreScreenParamsFunction() {
 		navigation.popTo("Home", { post: otherParam })
+	}
+
+	function onChangeOptionsFunction() {
+		navigation.setOptions({ title: `${itemId}详情页_update` })
 	}
 
 
@@ -61,6 +66,10 @@ export default function DetailScreen({ route, navigation }: Props) {
 
 			<Pressable onPress={onPreScreenParamsFunction} style={styles.buttonContainer}>
 				<Text style={styles.textStyle}>将参数传递给上一个屏幕</Text>
+			</Pressable>
+
+			<Pressable onPress={onChangeOptionsFunction} style={styles.buttonContainer}>
+				<Text style={styles.textStyle}>修改Detail的Options配置</Text>
 			</Pressable>
 		</View>
 	)
