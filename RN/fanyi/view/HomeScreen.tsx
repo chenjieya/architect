@@ -42,7 +42,8 @@ export default function HomeScreen() {
         }
       );
       const data = await res.json();
-      if (data.trans_result.length) {
+      console.log(data, "data");
+      if (data.trans_result?.length) {
         const res = data.trans_result[0].dst;
         console.log(res, "res");
         setResult(res);
@@ -51,7 +52,8 @@ export default function HomeScreen() {
       } else {
         alert("翻译有误");
       }
-    } catch {
+    } catch (err) {
+      console.log(err, "err");
       alert("翻译失败");
     }
   }
@@ -79,11 +81,10 @@ export default function HomeScreen() {
         onChangeText={setText}
         textAlignVertical="top"
         returnKeyType="search"
-        onKeyPress={async ({ nativeEvent }) => {
-          if (nativeEvent.key === "Enter") {
-            Keyboard.dismiss();
-            translateHandler();
-          }
+        submitBehavior="blurAndSubmit"
+        onSubmitEditing={() => {
+          Keyboard.dismiss();
+          translateHandler();
         }}
         placeholder="请输入要翻译的文本"
       />
