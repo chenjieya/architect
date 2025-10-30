@@ -27,12 +27,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "RN/RN第三方组件库.md",
+                "file": "linux/虚拟机基础事项.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "RN第三方组件库"
+              "title": "虚拟机基础事项"
             }
           }
         ],
@@ -177,13 +177,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "RN/RN第三方组件库.md",
+                "file": "linux/虚拟机基础事项.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "RN第三方组件库 的大纲"
+              "title": "虚拟机基础事项 的大纲"
             }
           },
           {
@@ -219,9 +219,9 @@
   },
   "active": "1d369931b65fd327",
   "lastOpenFiles": [
+    "RN/RN第三方组件库.md",
     "RN/RN基本介绍.md",
     "RN/RN基础知识.md",
-    "RN/RN第三方组件库.md",
     "前端AI/cursor代码库索引.md",
     "RN",
     "前端AI/cursor @命令.md",

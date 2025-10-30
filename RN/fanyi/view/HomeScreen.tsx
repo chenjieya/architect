@@ -29,7 +29,7 @@ export default function HomeScreen() {
     }
     const appid = "20251029002485895";
     const salt = new Date().getTime();
-    const sign = MD5(`${appid}${text}${salt}gkdvzlTMeqK53WQfa9CD`);
+    const sign = MD5(`${appid}${text.trim()}${salt}gkdvzlTMeqK53WQfa9CD`);
     const to = languageList[currentIndex].lang;
     try {
       const res = await fetch(
