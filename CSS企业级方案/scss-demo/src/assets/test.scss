@@ -1,0 +1,51 @@
+@use "sass:map";
+@use "sass:color";
+.color {
+  color: red;
+}
+
+$arr1: 1 2 3 4;
+$fontSize: 12px;
+
+$obj: (
+  color: red,
+  font-size: 12px
+);
+
+div {
+  span {
+    padding: $arr1;
+    font-size: $fontSize + 15px;
+    color: map.get($obj, color);
+    font-size: map.get($obj, font-size);
+  }
+}
+
+$color: red;
+
+// 下面的颜色函数已经被移除
+// .div1 {
+//   width: 200px;
+//   height: 200px;
+//   background-color: lighten($color, 10%); // 亮度增加10%
+// }
+
+// .div2 {
+//   width: 200px;
+//   height: 200px;
+//   background-color: darken($color, 10%); // 亮度减少10%
+// }
+
+$color: #4caf50;
+
+.div1 {
+  width: 200px;
+  height: 200px;
+  background-color: color.adjust($color, $lightness: 10%); // 饱和度增加10%
+}
+
+.div2 {
+  width: 200px;
+  height: 200px;
+  background-color: color.scale($color, $lightness: 10%); // 饱和度减少10%
+}
