@@ -384,16 +384,16 @@ button {
 
 *HSL* 函数
 
-| 函数名和参数类型                         | 函数作用                                                     |
-| ---------------------------------------- | ------------------------------------------------------------ |
-| hsl($hue,$saturation,$lightness)         | 通过色相（hue）、饱和度(saturation)和亮度（lightness）的值创建一个颜色 |
+| 函数名和参数类型                                 | 函数作用                                                      |
+| ---------------------------------------- | --------------------------------------------------------- |
+| hsl($hue,$saturation,$lightness)         | 通过色相（hue）、饱和度(saturation)和亮度（lightness）的值创建一个颜色           |
 | hsla($hue,$saturation,$lightness,$alpha) | 通过色相（hue）、饱和度(saturation)、亮度（lightness）和透明（alpha）的值创建一个颜色 |
-| saturation($color)                       | 从一个颜色中获取饱和度（saturation）值                       |
-| lightness($color)                        | 从一个颜色中获取亮度（lightness）值                          |
-| adjust-hue($color,$degrees)              | 通过改变一个颜色的色相值，创建一个新的颜色                   |
-| lighten($color,$amount)                  | 通过改变颜色的亮度值，让颜色变亮，创建一个新的颜色           |
-| darken($color,$amount)                   | 通过改变颜色的亮度值，让颜色变暗，创建一个新的颜色           |
-| hue($color)                              | 从一个颜色中获取亮度色相（hue）值                            |
+| saturation($color)                       | 从一个颜色中获取饱和度（saturation）值                                  |
+| lightness($color)                        | 从一个颜色中获取亮度（lightness）值                                    |
+| adjust-hue($color,$degrees)              | 通过改变一个颜色的色相值，创建一个新的颜色                                     |
+| lighten($color,$amount)                  | 通过改变颜色的亮度值，让颜色变亮，创建一个新的颜色                                 |
+| darken($color,$amount)                   | 通过改变颜色的亮度值，让颜色变暗，创建一个新的颜色                                 |
+| hue($color)                              | 从一个颜色中获取亮度色相（hue）值                                        |
 
 *Opacity* 函数
 

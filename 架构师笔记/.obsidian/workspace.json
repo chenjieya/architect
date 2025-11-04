@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "CSS企业级方案/预处理器SCSS基础语法.md",
+                "file": "linux/Linux 常用命令总结.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "预处理器SCSS基础语法"
+              "title": "Linux 常用命令总结"
             }
           }
         ]
@@ -162,13 +162,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "CSS企业级方案/预处理器SCSS基础语法.md",
+                "file": "linux/Linux 常用命令总结.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "预处理器SCSS基础语法 的大纲"
+              "title": "Linux 常用命令总结 的大纲"
             }
           },
           {
@@ -204,22 +204,26 @@
   },
   "active": "bcba3bf3aeaaabb3",
   "lastOpenFiles": [
+    "linux/虚拟机基础事项.md",
+    "linux/Linux SSH 服务管理与配置详解.md",
+    "linux/Linux 常用命令总结.md",
+    "CSS企业级方案/Tailwindcss基本介绍.md",
+    "CSS企业级方案/后处理器介绍.md",
+    "CSS企业级方案/预处理器SCSS最佳实践和展望.md",
+    "CSS企业级方案/预处理器SCSS @ 规则.md",
+    "CSS企业级方案/预处理器SCSS函数指令.md",
+    "CSS企业级方案/预处理器SCSS混合指令.md",
+    "CSS企业级方案/预处理器SCSS控制指令.md",
+    "CSS企业级方案/预处理器SCSS基础语法.md",
     "rollup(finish)/Rollup插件.md",
     "rollup(finish)/Rollup插件开发.md",
     "rollup(finish)/初始Rollup.md",
     "CSS企业级方案/预处理器基本介绍.md",
-    "CSS企业级方案/预处理器SCSS @ 规则.md",
     "CSS企业级方案/CSS工程化.md",
     "CSS企业级方案/工程化概述.md",
     "CSS企业级方案/预处理器介绍.md",
-    "CSS企业级方案/预处理器SCSS最佳实践和展望.md",
-    "CSS企业级方案/预处理器SCSS函数指令.md",
-    "CSS企业级方案/预处理器SCSS混合指令.md",
-    "CSS企业级方案/预处理器SCSS基础语法.md",
-    "CSS企业级方案/预处理器SCSS控制指令.md",
     "esbuild(finish)/esbuild 代码调用.md",
     "CSS企业级方案",
-    "linux/虚拟机基础事项.md",
     "RN(finish)/RN第三方组件库.md",
     "RN(finish)/RN基本介绍.md",
     "RN(finish)/RN基础知识.md",
@@ -228,11 +232,7 @@
     "前端AI/cursor @命令.md",
     "前端AI/cursor智能补全.md",
     "前端AI/cursor基本介绍.md",
-    "前端AI/cursor对话驱动开发.md",
-    "linux/Linux SSH 服务管理与配置详解.md",
     "前端AI",
-    "linux/Linux 常用命令总结.md",
-    "前端服务监控/前端服务监控概述.md",
     "前端服务监控",
     "esbuild(finish)",
     "linux",

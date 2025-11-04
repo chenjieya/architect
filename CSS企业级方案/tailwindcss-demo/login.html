@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="./src/output/output.css" />
+  </head>
+  <body
+    class="flex flex-col justify-center items-center h-screen bg-[#c9d6ff] bg-linear-to-r from-[#e2e2e2] to-[#c9d6ff]"
+  >
+    <div
+      class="container bg-white w-3xl max-w-full min-h-[480px] rounded-4xl overflow-hidden shadow-[0_5px_15px_rgba(0,0,0,0.35)] relative"
+      id="container"
+    >
+      <div
+        class="form-container bg-white absolute z-1 opacity-0 top-0 left-0 [.active_&]:translate-x-full [.active_&]:animate-wiggle transition-all ease-in-out duration-[0.6s] w-[50%] h-full"
+      >
+        <form
+          action="#"
+          class="h-full px-10 flex flex-col justify-center items-center"
+        >
+          <!-- Sign Up -->
+          <h1 class="text-[2em] font-bold">Create Account</h1>
+
+          <!-- logo -->
+          <div class="social-icons my-5">
+            <a
+              href="#"
+              class="icon w-10 h-10 my-[3px] border border-[#ccc] rounded-[20%] inline-flex justify-center items-center text-[13px] text-[#333] no-underline"
+              ><i class="fa-brands fa-google-plus-g"></i
+            ></a>
+            <a
+              href="#"
+              class="icon w-10 h-10 my-[3px] border border-[#ccc] rounded-[20%] inline-flex justify-center items-center text-[13px] text-[#333] no-underline"
+              ><i class="fa-brands fa-facebook-f"></i
+            ></a>
+            <a
+              href="#"
+              class="icon w-10 h-10 my-[3px] border border-[#ccc] rounded-[20%] inline-flex justify-center items-center text-[13px] text-[#333] no-underline"
+              ><i class="fa-brands fa-github"></i
+            ></a>
+            <a
+              href="#"
+              class="icon w-10 h-10 my-[3px] border border-[#ccc] rounded-[20%] inline-flex justify-center items-center text-[13px] text-[#333] no-underline"
+              ><i class="fa-brands fa-linkedin-in"></i
+            ></a>
+          </div>
+
+          <!-- tooltip -->
+          <span class="text-xs">or use your email for registeration</span>
+
+          <!-- 输入 -->
+          <input
+            type="text"
+            placeholder="Name"
+            class="bg-[#eee] border-none my-2 px-3.5 py-2.5 text-[13px] rounded-lg outline-none w-full"
+          />
+          <input
+            type="email"
+            placeholder="Email"
+            class="bg-[#eee] border-none my-2 px-3.5 py-2.5 text-[13px] rounded-lg outline-none w-full"
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            class="bg-[#eee] border-none my-2 px-3.5 py-2.5 text-[13px] rounded-lg outline-none w-full"
+          />
+
+          <!-- 注册 -->
+          <button
+            class="bg-[#512da8] text-white text-[12px] py-2.5 px-11 rounded-lg border border-transparent font-semibold tracking-[0.5px] cursor-pointer uppercase mt-2.5"
+          >
+            Sign Up
+          </button>
+        </form>
+      </div>
+      <div
+        class="form-container bg-white absolute top-0 z-10 [.active_&]:translate-x-full transition-all ease-in-out duration-[0.6s] left-0 w-[50%] h-full"
+      >
+        <form
+          action="#"
+          class="h-full px-10 flex flex-col justify-center items-center"
+        >
+          <!-- Sign In -->
+          <h1 class="text-[2em] font-bold">Sign In</h1>
+
+          <!-- logo -->
+          <div class="social-icons my-5">
+            <a
+              href="#"
+              class="icon w-10 h-10 my-[3px] border border-[#ccc] rounded-[20%] inline-flex justify-center items-center text-[13px] text-[#333] no-underline"
+              ><i class="fa-brands fa-google-plus-g"></i
+            ></a>
+            <a
+              href="#"
+              class="icon w-10 h-10 my-[3px] border border-[#ccc] rounded-[20%] inline-flex justify-center items-center text-[13px] text-[#333] no-underline"
+              ><i class="fa-brands fa-facebook-f"></i
+            ></a>
+            <a
+              href="#"
+              class="icon w-10 h-10 my-[3px] border border-[#ccc] rounded-[20%] inline-flex justify-center items-center text-[13px] text-[#333] no-underline"
+              ><i class="fa-brands fa-github"></i
+            ></a>
+            <a
+              href="#"
+              class="icon w-10 h-10 my-[3px] border border-[#ccc] rounded-[20%] inline-flex justify-center items-center text-[13px] text-[#333] no-underline"
+              ><i class="fa-brands fa-linkedin-in"></i
+            ></a>
+          </div>
+
+          <!-- tooltip -->
+          <span class="text-xs">or use your email password</span>
+
+          <!-- 输入 -->
+          <input
+            type="email"
+            placeholder="Email"
+            class="bg-[#eee] border-none my-2 px-3.5 py-2.5 text-[13px] rounded-lg outline-none w-full"
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            class="bg-[#eee] border-none my-2 px-3.5 py-2.5 text-[13px] rounded-lg outline-none w-full"
+          />
+
+          <a
+            href="#"
+            class="text-[13px] text-[#333] no-underline mt-[15px] mb-2.5"
+            >Forget Your Password?</a
+          >
+
+          <!-- 登陆 -->
+          <button
+            class="bg-[#512da8] text-white text-[12px] py-2.5 px-11 rounded-lg border border-transparent font-semibold tracking-[0.5px] cursor-pointer uppercase mt-2.5"
+          >
+            Sign In
+          </button>
+        </form>
+      </div>
+      <div
+        class="toggle-container absolute z-[1000] top-0 left-[50%] w-[50%] h-full overflow-hidden rounded-tl-[150px] rounded-bl-[100px] transition-all ease-in-out duration-[0.6s] [.active_&]:-translate-x-full [.active_&]:rounded-tr-[150px] [.active_&]:rounded-br-[100px] [.active_&]:rounded-tl-none [.active_&]:rounded-bl-none"
+      >
+        <div
+          class="toggle bg-[#512da8] h-full bg-linear-to-r from-[#5c6bc0] to-[#512da8] text-white w-[200%] relative top-0 -left-full translate-x-0 [.active_&]:translate-x-[50%]"
+        >
+          <div
+            class="toggle-panel toggle-left absolute w-[50%] h-full flex flex-col justify-center items-center px-[30px] text-center -translate-x-[200%] [.active_&]:translate-x-0"
+          >
+            <h1 class="text-[2em] font-bold">Welcome Back!</h1>
+            <p class="text-[14px] leading-5 tracking-[0.3px] mt-5">
+              Enter your personal details to use all of site features
+            </p>
+            <button
+              class="bg-transparent border border-white text-white text-[12px] py-2.5 px-[45px] rounded-lg font-semibold tracking-[0.5px] uppercase mt-2.5 cursor-pointer"
+              id="login"
+            >
+              Sign In
+            </button>
+          </div>
+          <div
+            class="toggle-panel toggle-right absolute w-[50%] h-full flex flex-col justify-center items-center px-[30px] text-center right-0 translate-x-0 [.active_&]:translate-x-[200%]"
+          >
+            <h1 class="text-[2em] font-bold">Hello, Friend!</h1>
+            <p class="text-[14px] leading-5 tracking-[0.3px] mt-5">
+              Register with your personal details to use all of site features
+            </p>
+            <button
+              class="bg-transparent border border-white text-white text-[12px] py-2.5 px-[45px] rounded-lg font-semibold tracking-[0.5px] uppercase mt-2.5 cursor-pointer"
+              id="register"
+            >
+              Sign Up
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="./src/login.js"></script>
+  </body>
+</html>
