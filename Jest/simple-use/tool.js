@@ -13,3 +13,10 @@ exports.mul = function(a, b) {
 exports.div = function(a, b) {
   return a / b;
 }
+
+
+exports.forEach = function(arr, callback) {
+  for(let i = 0; i < arr.length; i++) {
+    callback(arr[i], i);
+  }
+}

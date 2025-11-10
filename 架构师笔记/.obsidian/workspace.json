@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "测试框架/【Jest】生命周期方法.md",
+                "file": "测试框架/【Jest】模拟函数.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "【Jest】生命周期方法"
+              "title": "【Jest】模拟函数"
             }
           }
         ]
@@ -162,13 +162,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "测试框架/【Jest】生命周期方法.md",
+                "file": "测试框架/【Jest】模拟函数.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "【Jest】生命周期方法 的大纲"
+              "title": "【Jest】模拟函数 的大纲"
             }
           },
           {
@@ -205,6 +205,7 @@
   },
   "active": "bcba3bf3aeaaabb3",
   "lastOpenFiles": [
+    "测试框架/【Jest】生命周期方法.md",
     "测试框架/【Jest】匹配器.md",
     "测试框架/【Jest】基础使用.md",
     "测试框架/前端自动化测试.md",
@@ -225,7 +226,6 @@
     "测试框架/【Jest进阶】测试快照.md",
     "测试框架/【Jest进阶】测试 Vue 组件.md",
     "测试框架/【Jest进阶】测试 Hook.md",
-    "测试框架/【Jest】生命周期方法.md",
     "测试框架/【Jest】模拟模块.md",
     "测试框架/【Jest】模拟函数.md",
     "测试框架/【Jest】 配置文件.md",
