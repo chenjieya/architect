@@ -1,0 +1,14 @@
+import storage from "../utils/storage";
+describe("storage", () => {
+  // 测试存储
+  test("测试存储", () => {
+    storage.set("newKey", "Hello");
+    expect(localStorage.getItem("my-app-newKey")).toBe("Hello");
+  });
+
+  // 测试获取
+  test("测试获取", () => {
+    localStorage.setItem("my-app-newKey", "World");
+    expect(storage.get("newKey")).toBe("World");
+  });
+});
