@@ -1,4 +1,4 @@
-// const { forEach } = require('./tool')
+const { forEach } = require("./tool");
 // // console.log(jest);
 
 // test("基本演示", () => {
@@ -33,39 +33,36 @@
 //   expect(mockFn()).toBe(40);
 // })
 
+const params = [10, 20, 30];
+test("模拟 forEach", () => {
+  //  创建模拟函数
+  const mockFn = jest.fn((x) => x + 100);
 
-// const params = [10, 20, 30];
-// test("模拟 forEach", () => {
+  // 调用forEach函数，传入模拟函数
+  forEach(params, mockFn);
 
-//   //  创建模拟函数
-//   const mockFn = jest.fn(x => x + 100)
-  
-//   // 调用forEach函数，传入模拟函数
-//   forEach(params, mockFn)
+  // 验证模拟函数的参数长度
+  expect(mockFn.mock.calls).toHaveLength(params.length);
+  expect(mockFn.mock.calls.length).toBe(params.length);
 
-//   // 验证模拟函数的参数长度
-//   expect(mockFn.mock.calls).toHaveLength(params.length)
-//   expect(mockFn.mock.calls.length).toBe(params.length)
+  // 验证每次调用模拟函数 模拟函数接收到的参数
+  expect(mockFn.mock.calls[0][0]).toBe(10);
+  expect(mockFn.mock.calls[1][0]).toBe(20);
+  expect(mockFn.mock.calls[2][0]).toBe(30);
 
-//   // 验证每次调用模拟函数 模拟函数接收到的参数
-//   expect(mockFn.mock.calls[0][0]).toBe(10)
-//   expect(mockFn.mock.calls[1][0]).toBe(20)
-//   expect(mockFn.mock.calls[2][0]).toBe(30)  
+  // 验证每次调用模拟函数时，模拟函数的返回值，是否符合预期
+  expect(mockFn.mock.results[0].value).toBe(110);
+  expect(mockFn.mock.results[1].value).toBe(120);
+  expect(mockFn.mock.results[2].value).toBe(130);
 
-//   // 验证每次调用模拟函数时，模拟函数的返回值，是否符合预期
-//   expect(mockFn.mock.results[0].value).toBe(110)
-//   expect(mockFn.mock.results[1].value).toBe(120)
-//   expect(mockFn.mock.results[2].value).toBe(130)
+  // 模拟函数是否被调用过
+  expect(mockFn).toHaveBeenCalled();
 
-//   // 模拟函数是否被调用过
-//   expect(mockFn).toHaveBeenCalled()
-
-//   // 校验模拟函数每次调用的参数
-//   expect(mockFn).toHaveBeenNthCalledWith(1, 10, 0)
-//   expect(mockFn).toHaveBeenNthCalledWith(2, 20, 1)
-//   expect(mockFn).toHaveBeenNthCalledWith(3, 30, 2)
-
-// })
+  // 校验模拟函数每次调用的参数
+  expect(mockFn).toHaveBeenNthCalledWith(1, 10, 0);
+  expect(mockFn).toHaveBeenNthCalledWith(2, 20, 1);
+  expect(mockFn).toHaveBeenNthCalledWith(3, 30, 2);
+});
 
 // // 模拟异步函数
 // const fetchFn = jest.fn()
@@ -86,4 +83,4 @@
 //   await expect(fetchFn()).resolves.toEqual(fetchData)
 // })
 
-test("空实例防止报错", () => {})
+test("空实例防止报错", () => {});
