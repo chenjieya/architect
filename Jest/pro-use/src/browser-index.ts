@@ -1,4 +1,4 @@
-import storage from "./utils/storage";
+import storage from "./utils/storages";
 
 // 获取 DOM 元素
 const saveBtn = document.getElementById("saveBtn") as HTMLButtonElement;

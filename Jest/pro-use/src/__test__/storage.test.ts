@@ -1,4 +1,4 @@
-import storage from "../utils/storage";
+import storage from "../utils/storages";
 describe("storage", () => {
   // 测试存储
   test("测试存储", () => {
