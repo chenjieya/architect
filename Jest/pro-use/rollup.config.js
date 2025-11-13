@@ -3,36 +3,61 @@ import generateHTML from "rollup-plugin-generate-html-template";
 import clear from "rollup-plugin-clear";
 import typescript from "@rollup/plugin-typescript";
 
-const plugins = [
-  clear({
-    targets: ["dist"],
-    watch: false
-  }),
-  typescript({
-    declaration: true,
-    declarationDir: "dist",
-    declarationMap: true,
-    // 关键配置：确保输出的文件名正确
-    outDir: "dist",
-    rootDir: "src",
-    exclude: ["**/*.test.ts", "**/*.spec.ts"]
-  })
-];
+const BROWSER_OUTPUT_DIR = "dist/browser";
+const TIMER_OUTPUT_DIR = "dist/timer";
+
+function createPlugins(
+  { clearOptions, typescriptOptions, generateHtmlOptions } = {
+    clearOptions: {},
+    typescriptOptions: {},
+    generateHtmlOptions: {}
+  }
+) {
+  return [
+    clear({
+      targets: ["dist"],
+      watch: false,
+      ...clearOptions
+    }),
+    typescript({
+      declaration: false,
+      // declarationDir: "dist",
+      declarationMap: false,
+      // 关键配置：确保输出的文件名正确
+      outDir: "dist",
+      rootDir: "src",
+      exclude: ["**/*.test.ts", "**/*.spec.ts"],
+      ...typescriptOptions
+    }),
+    generateHTML({
+      template: "./index.html",
+      ...generateHtmlOptions
+    })
+  ];
+}
 
 // 浏览器环境案列
 const buildBorwer = {
   input: "src/browser-index.ts",
   output: [
     {
-      file: "dist/browser-index.js",
+      dir: BROWSER_OUTPUT_DIR,
       format: "esm",
-      sourcemap: true
+      sourcemap: "inline"
     }
   ],
   plugins: [
-    ...plugins,
-    generateHTML({
-      template: "./index.html"
+    ...createPlugins({
+      clearOptions: {
+        watch: true
+      },
+      typescriptOptions: {
+        // declarationDir: BROWSER_OUTPUT_DIR,
+        outDir: BROWSER_OUTPUT_DIR
+      },
+      generateHtmlOptions: {
+        template: "./index.html"
+      }
     })
   ]
 };
@@ -42,15 +67,23 @@ const buildTimer = {
   input: "src/timer-index.ts",
   output: [
     {
-      file: "dist/timer-index.js",
+      dir: TIMER_OUTPUT_DIR,
       format: "esm",
-      sourcemap: true
+      sourcemap: "inline"
     }
   ],
   plugins: [
-    ...plugins,
-    generateHTML({
-      template: "./timer.html"
+    ...createPlugins({
+      clearOptions: {
+        watch: false
+      },
+      typescriptOptions: {
+        // declarationDir: TIMER_OUTPUT_DIR,
+        outDir: TIMER_OUTPUT_DIR
+      },
+      generateHtmlOptions: {
+        template: "./timer.html"
+      }
     })
   ]
 };
