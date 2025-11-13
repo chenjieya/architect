@@ -7,18 +7,12 @@ const BROWSER_OUTPUT_DIR = "dist/browser";
 const TIMER_OUTPUT_DIR = "dist/timer";
 
 function createPlugins(
-  { clearOptions, typescriptOptions, generateHtmlOptions } = {
-    clearOptions: {},
+  { typescriptOptions, generateHtmlOptions } = {
     typescriptOptions: {},
     generateHtmlOptions: {}
   }
 ) {
   return [
-    clear({
-      targets: ["dist"],
-      watch: false,
-      ...clearOptions
-    }),
     typescript({
       declaration: false,
       // declarationDir: "dist",
@@ -47,10 +41,11 @@ const buildBorwer = {
     }
   ],
   plugins: [
+    clear({
+      targets: ["dist"],
+      watch: true
+    }),
     ...createPlugins({
-      clearOptions: {
-        watch: true
-      },
       typescriptOptions: {
         // declarationDir: BROWSER_OUTPUT_DIR,
         outDir: BROWSER_OUTPUT_DIR
@@ -74,9 +69,6 @@ const buildTimer = {
   ],
   plugins: [
     ...createPlugins({
-      clearOptions: {
-        watch: false
-      },
       typescriptOptions: {
         // declarationDir: TIMER_OUTPUT_DIR,
         outDir: TIMER_OUTPUT_DIR
