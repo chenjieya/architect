@@ -27,12 +27,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "linux/Linux特殊权限与隐藏属性详解.md",
+                "file": "linux/Linux文件系统与磁盘管理完全指南.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Linux特殊权限与隐藏属性详解"
+              "title": "Linux文件系统与磁盘管理完全指南"
             }
           },
           {
@@ -191,13 +191,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "linux/Linux特殊权限与隐藏属性详解.md",
+                "file": "linux/Linux文件系统与磁盘管理完全指南.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Linux特殊权限与隐藏属性详解 的大纲"
+              "title": "Linux文件系统与磁盘管理完全指南 的大纲"
             }
           },
           {
@@ -234,8 +234,9 @@
   },
   "active": "7cd64b8371698641",
   "lastOpenFiles": [
-    "linux/用户和组以及权限.md",
     "linux/Linux特殊权限与隐藏属性详解.md",
+    "linux/Linux文件系统与磁盘管理完全指南.md",
+    "linux/用户和组以及权限.md",
     "linux/Linux权限提升详解：su与sudo的完整指南.md",
     "linux/Linux 常用命令总结.md",
     "esbuild(finish)/esbuild调用总结.md",
@@ -260,7 +261,6 @@
     "测试框架/【Jest进阶】模拟 ES6 类.md",
     "测试框架/【Jest进阶】模拟计时器.md",
     "rollup(finish)/Rollup插件开发.md",
-    "rollup(finish)/Rollup基本配置（默认特性）.md",
     "未命名.canvas",
     "测试框架",
     "CSS企业级方案",
