@@ -1,0 +1,21 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`新增代办事项 1`] = `
+<div>
+  <!-- 渲染待办事项每一条项目 -->
+  
+  <div
+    data-test="todo"
+  >
+    Learn Vue.js 3
+  </div>
+  
+  <form
+    data-test="form"
+  >
+    <input
+      data-test="new-todo"
+    />
+  </form>
+</div>
+`;

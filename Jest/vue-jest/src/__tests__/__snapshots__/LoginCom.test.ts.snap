@@ -1,0 +1,45 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`LoginComp.vue snapshot 1`] = `
+"<div>
+  <form>
+    <div><label for="usernameInput">Username</label><input id="usernameInput"></div>
+    <div><label for="passwordInput">Password</label><input id="passwordInput" type="password"></div><button type="submit">Submit</button>
+  </form>Login
+  <!--v-if-->
+  <!--v-if-->
+</div>"
+`;
+
+exports[`测试请求失败 1`] = `
+"<div>
+  <form>
+    <div><label for="usernameInput">Username</label><input id="usernameInput"></div>
+    <div><label for="passwordInput">Password</label><input id="passwordInput" type="password"></div><button type="submit">Submit</button>
+  </form>Login
+  <!--v-if-->
+  <!--v-if-->
+</div>"
+`;
+
+exports[`测试请求成功 1`] = `
+"<div>
+  <form>
+    <div><label for="usernameInput">Username</label><input id="usernameInput"></div>
+    <div><label for="passwordInput">Password</label><input id="passwordInput" type="password"></div><button type="submit">Submit</button>
+  </form>Login
+  <!--v-if-->
+  <!--v-if-->
+</div>"
+`;
+
+exports[`测试请求成功 2`] = `
+"<div>
+  <form>
+    <div><label for="usernameInput">Username</label><input id="usernameInput"></div>
+    <div><label for="passwordInput">Password</label><input id="passwordInput" type="password"></div><button type="submit">Submit</button>
+  </form>Login
+  <!--v-if-->
+  <!--v-if-->
+</div>"
+`;
