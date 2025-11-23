@@ -27,12 +27,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "测试框架/【实战】搭建部署文档网站.md",
+                "file": "测试框架/【实战】开源协议和准备工作.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "【实战】搭建部署文档网站"
+              "title": "【实战】开源协议和准备工作"
             }
           },
           {
@@ -191,13 +191,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "测试框架/【实战】搭建部署文档网站.md",
+                "file": "测试框架/【实战】开源协议和准备工作.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "【实战】搭建部署文档网站 的大纲"
+              "title": "【实战】开源协议和准备工作 的大纲"
             }
           },
           {
@@ -234,6 +234,13 @@
   },
   "active": "7cd64b8371698641",
   "lastOpenFiles": [
+    "测试框架/【实战】项目开发与测试.md",
+    "rollup(finish)/Rollup基本配置（默认特性）.md",
+    "rollup(finish)/Rollup插件.md",
+    "测试框架/【Jest进阶】浏览器环境下的测试.md",
+    "测试框架/【Jest进阶】整合 TypeScript.md",
+    "rollup(finish)/Rollup插件开发.md",
+    "测试框架/【实战】搭建部署文档网站.md",
     "测试框架/【实战】开源协议和准备工作.md",
     "测试框架/【Jest】生命周期方法.md",
     "测试框架/【实战】JavaScript库设计.md",
@@ -253,14 +260,7 @@
     "前端AI/cursor代码库索引.md",
     "前端AI/cursor对话驱动开发.md",
     "前端AI/cursor基本介绍.md",
-    "前端AI/cursor智能补全.md",
-    "地图核心体系/【Cesium】Cesium地图核心体系.md",
-    "linux/Linux SSH 服务管理与配置详解.md",
     "地图核心体系",
-    "测试框架/【Jest进阶】测试React组件.md",
-    "未命名.md",
-    "测试框架/【Jest进阶】测试快照.md",
-    "rollup(finish)/Rollup插件.md",
     "未命名.canvas",
     "测试框架",
     "CSS企业级方案",
