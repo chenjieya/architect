@@ -1,9 +1,7 @@
 {
   "name": "jstooldesign",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "this is a js tool",
-  "main": "index.js",
-  "type": "module",
   "scripts": {
     "test": "jest",
     "build": "rollup -c rollup.config.ts"
