@@ -1,6 +1,6 @@
 {
   "name": "jstooldesign",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "this is a js tool",
   "main": "index.js",
   "type": "module",
@@ -13,7 +13,7 @@
       "require": "./dist/bundle.cjs.js",
       "import": "./dist/bundle.esm.js",
       "browser": "./dist/bundle.umd.js",
-      "type": "./dist/index.d.ts",
+      "type": "./dist/index.d.ts"
     }
   },
   "files": [

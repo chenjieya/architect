@@ -1,8 +1,6 @@
-
-
 type FuncType = (...args: any[]) => any
 
-export function debounce<T extends FuncType>(func: T, await: number = 300) {
+export function debounce<T extends FuncType>(func: T, wait: number = 300) {
 
   let timer: ReturnType<typeof setTimeout> | null = null
 
@@ -14,7 +12,7 @@ export function debounce<T extends FuncType>(func: T, await: number = 300) {
 
     timer = setTimeout(() => {
       func(...args)
-    }, await);
+    }, wait);
 
   }
 }

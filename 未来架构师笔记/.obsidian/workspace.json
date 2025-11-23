@@ -27,12 +27,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "测试框架/【实战】开源协议和准备工作.md",
+                "file": "测试框架/【实战】发布代码.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "【实战】开源协议和准备工作"
+              "title": "【实战】发布代码"
             }
           },
           {
@@ -191,13 +191,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "测试框架/【实战】开源协议和准备工作.md",
+                "file": "测试框架/【实战】发布代码.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "【实战】开源协议和准备工作 的大纲"
+              "title": "【实战】发布代码 的大纲"
             }
           },
           {
@@ -234,6 +234,7 @@
   },
   "active": "7cd64b8371698641",
   "lastOpenFiles": [
+    "测试框架/【实战】开源协议和准备工作.md",
     "测试框架/【实战】项目开发与测试.md",
     "rollup(finish)/Rollup基本配置（默认特性）.md",
     "rollup(finish)/Rollup插件.md",
@@ -241,7 +242,6 @@
     "测试框架/【Jest进阶】整合 TypeScript.md",
     "rollup(finish)/Rollup插件开发.md",
     "测试框架/【实战】搭建部署文档网站.md",
-    "测试框架/【实战】开源协议和准备工作.md",
     "测试框架/【Jest】生命周期方法.md",
     "测试框架/【实战】JavaScript库设计.md",
     "测试框架/JavaScript库设计.md",
