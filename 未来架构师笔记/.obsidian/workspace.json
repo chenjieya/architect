@@ -13,12 +13,26 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Linux/Linux 常用命令总结.md",
+                "file": "linux/Linux 常用命令总结.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
               "title": "Linux 常用命令总结"
+            }
+          },
+          {
+            "id": "7cd64b8371698641",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "主题切换方案/主题切换.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "主题切换"
             }
           },
           {
@@ -35,7 +49,8 @@
               "title": "用户和组以及权限"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -176,13 +191,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Linux/Linux 常用命令总结.md",
+                "file": "主题切换方案/主题切换.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Linux 常用命令总结 的大纲"
+              "title": "主题切换 的大纲"
             }
           },
           {
@@ -191,8 +206,8 @@
             "state": {
               "type": "advanced-tables-toolbar",
               "state": {},
-              "icon": "lucide-ghost",
-              "title": "advanced-tables-toolbar"
+              "icon": "lucide-file",
+              "title": "插件不再活动"
             }
           }
         ],
@@ -217,44 +232,45 @@
       "obsidian-excalidraw-plugin:新建绘图文件": false
     }
   },
-  "active": "b126c51181683d12",
+  "active": "7cd64b8371698641",
   "lastOpenFiles": [
-    "未命名.base",
-    "Linux/Linux 常用命令总结.md",
+    "linux/Linux 常用命令总结.md",
+    "主题切换方案/主题切换.md",
+    "主题切换方案",
+    "linux/Linux SSH 服务管理与配置详解.md",
+    "linux/Linux文件系统与磁盘管理完全指南.md",
+    "测试框架(finish)/测试基本认知.md",
+    "测试框架(finish)/前端自动化测试.md",
     "测试框架(finish)/【实战】项目开发与测试.md",
-    "NestJs",
+    "测试框架(finish)/【实战】搭建部署文档网站.md",
+    "测试框架(finish)/【实战】开源协议和准备工作.md",
     "测试框架(finish)/【实战】开源代码.md",
     "测试框架(finish)/【实战】发布代码.md",
-    "Rollup(finish)/Rollup插件.md",
-    "实战思路.md",
-    "测试框架(finish)/【实战】开源协议和准备工作.md",
-    "Rollup(finish)/Rollup基本配置（默认特性）.md",
-    "测试框架(finish)/【Jest进阶】浏览器环境下的测试.md",
-    "测试框架(finish)/【Jest进阶】整合 TypeScript.md",
-    "Rollup(finish)/Rollup插件开发.md",
-    "测试框架(finish)/【实战】搭建部署文档网站.md",
-    "测试框架(finish)/【Jest】生命周期方法.md",
     "测试框架(finish)/【实战】JavaScript库设计.md",
-    "测试框架(finish)/JavaScript库设计.md",
-    "Linux/Linux文件系统与磁盘管理完全指南.md",
-    "Linux/Linux特殊权限与隐藏属性详解.md",
-    "Linux/用户和组以及权限.md",
-    "Linux/Linux权限提升详解：su与sudo的完整指南.md",
-    "Esbuild(finish)/esbuild调用总结.md",
-    "Esbuild(finish)/esbuild 代码调用.md",
-    "Esbuild(finish)/esbuild插件开发.md",
-    "Esbuild(finish)/esbuild 概述.md",
-    "Linux/虚拟机基础事项.md",
-    "Linux/软件和包管理.md",
+    "测试框架(finish)/【Jest进阶】浏览器环境下的测试.md",
+    "测试框架(finish)/【Jest进阶】测试快照.md",
+    "测试框架(finish)/【Jest进阶】测试React组件.md",
+    "测试框架(finish)/【Jest进阶】测试 Vue 组件.md",
+    "测试框架(finish)/【Jest进阶】测试 Hook.md",
+    "测试框架(finish)/【Jest进阶】模拟计时器.md",
+    "测试框架(finish)/【Jest进阶】模拟 ES6 类.md",
+    "测试框架(finish)/【Jest进阶】整合 webpack 综合练习.md",
+    "测试框架(finish)/【Jest进阶】整合 TypeScript.md",
+    "测试框架(finish)/【Jest扩展】测试 Express 应用.md",
+    "测试框架(finish)/【Jest扩展】手写简易版测试框架.md",
+    "测试框架(finish)/【Jest】生命周期方法.md",
+    "测试框架(finish)/【Jest】模拟模块.md",
+    "测试框架(finish)/【Jest】模拟函数.md",
+    "测试框架(finish)",
     "地图核心体系",
     "未命名.canvas",
-    "测试框架(finish)",
+    "测试框架",
     "CSS企业级方案",
     "RN(finish)",
     "前端AI",
     "前端服务监控",
-    "Esbuild(finish)",
-    "Linux",
+    "esbuild(finish)",
+    "linux",
     "笔记/image/image_9ViibmeAvU.png",
     "笔记/image/img002.e1ac8197.png",
     "笔记/image/image-20231023114531521.png",
