@@ -1,11 +1,15 @@
 <script setup lang="ts">
 import { useThemeStore } from '@/stores/pinia/themePinia'
+import { storeToRefs } from 'pinia'
 
-const { changeTheme, initTheme } = useThemeStore()
-// 初始化
+const store = useThemeStore()
+const { changeTheme, changeOsTheme, initTheme } = store
+const { isOsDark } = storeToRefs(store)
+
 initTheme()
-
 const handleToggle = () => changeTheme()
+
+const handleAuto = () => changeOsTheme()
 </script>
 
 <template>
@@ -36,6 +40,25 @@ const handleToggle = () => changeTheme()
       </div>
 
       <div class="app-header-right">
+        <button :class="isOsDark ? 'os-default-active' : 'os-default'" @click="handleAuto">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" role="img">
+            <circle cx="8" cy="8" r="7.25" stroke="#5B5B66" stroke-width="1.5" />
+            <mask
+              id="a"
+              style="mask-type: alpha"
+              maskUnits="userSpaceOnUse"
+              x="0"
+              y="0"
+              width="16"
+              height="16"
+            >
+              <circle cx="8" cy="8" r="7.25" fill="#5B5B66" stroke="#5B5B66" stroke-width="1.5" />
+            </mask>
+            <g mask="url(#a)">
+              <path fill="#5B5B66" d="M0 0h8v16H0z" />
+            </g>
+          </svg>
+        </button>
         <button class="mode-switch" title="Switch Theme" @click="handleToggle">
           <svg
             class="moon"
@@ -922,6 +945,30 @@ a {
   line-height: 24px;
   font-weight: 700;
   margin: 0 32px;
+}
+
+.os-default {
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  color: var(--main-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20px;
+  height: 20px;
+}
+
+.os-default-active {
+  background-color: transparent;
+  padding: 1px;
+  border: 1px dashed var(--main-color);
+  color: var(--main-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20px;
+  height: 20px;
 }
 
 .mode-switch {
