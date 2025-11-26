@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/index.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="layout">
+        <input type="radio" value="primary" name="theme" />白色 <br />
+        <input type="radio" value="dark" name="theme" />黑色 <br />
+        <input type="radio" value="green" name="theme" />绿色 <br />
+        <input type="radio" value="purple" name="theme" />紫色 <br />
+      </div>
+      <div class="layout">
+        <div class="layer">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius, maiores
+          ducimus cumque consectetur nemo voluptate vel nesciunt beatae ipsum
+          aliquam.
+        </div>
+        <div class="layer">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius, maiores
+          ducimus cumque consectetur nemo voluptate vel nesciunt beatae ipsum
+          aliquam.
+        </div>
+        <div class="layer">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius, maiores
+          ducimus cumque consectetur nemo voluptate vel nesciunt beatae ipsum
+          aliquam.
+        </div>
+        <div class="layer">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius, maiores
+          ducimus cumque consectetur nemo voluptate vel nesciunt beatae ipsum
+          aliquam.
+        </div>
+      </div>
+    </div>
+  </body>
+
+  <script>
+    const themeList = document.querySelectorAll('input[name="theme"]');
+
+    // 循环监听事件
+    themeList.forEach((theme) => {
+      theme.addEventListener("change", () => {
+        document.body.className = theme.value;
+        // 计入缓存
+        localStorage.setItem("theme", theme.value);
+      });
+    });
+
+    window.onload = function () {
+      // 获取缓存
+      const theme = localStorage.getItem("theme");
+      if (theme) {
+        // 读取缓存
+        document.body.className = theme;
+        // 重新赋值
+        themeList.forEach((item) => {
+          if (item.value === theme) {
+            item.checked = true;
+          }
+        });
+      }
+    };
+  </script>
+</html>
