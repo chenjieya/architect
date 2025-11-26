@@ -27,7 +27,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "主题切换方案/主题切换.md",
+                "file": "主题切换方案(finish)/主题切换.md",
                 "mode": "source",
                 "source": false
               },
@@ -191,7 +191,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "主题切换方案/主题切换.md",
+                "file": "主题切换方案(finish)/主题切换.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
@@ -232,11 +232,13 @@
       "obsidian-excalidraw-plugin:新建绘图文件": false
     }
   },
-  "active": "7cd64b8371698641",
+  "active": "b126c51181683d12",
   "lastOpenFiles": [
+    "实战思路.md",
+    "主题切换方案(finish)/主题切换.md",
+    "NestJs",
     "linux/Linux 常用命令总结.md",
-    "主题切换方案/主题切换.md",
-    "主题切换方案",
+    "主题切换方案(finish)",
     "linux/Linux SSH 服务管理与配置详解.md",
     "linux/Linux文件系统与磁盘管理完全指南.md",
     "测试框架(finish)/测试基本认知.md",
@@ -260,7 +262,6 @@
     "测试框架(finish)/【Jest扩展】手写简易版测试框架.md",
     "测试框架(finish)/【Jest】生命周期方法.md",
     "测试框架(finish)/【Jest】模拟模块.md",
-    "测试框架(finish)/【Jest】模拟函数.md",
     "测试框架(finish)",
     "地图核心体系",
     "未命名.canvas",
@@ -270,7 +271,6 @@
     "前端AI",
     "前端服务监控",
     "esbuild(finish)",
-    "linux",
     "笔记/image/image_9ViibmeAvU.png",
     "笔记/image/img002.e1ac8197.png",
     "笔记/image/image-20231023114531521.png",
