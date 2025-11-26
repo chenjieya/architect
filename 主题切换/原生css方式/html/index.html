@@ -39,7 +39,7 @@
     </div>
   </body>
 
-  <script>
+  <!-- <script>
     const themeList = document.querySelectorAll('input[name="theme"]');
 
     // 循环监听事件
@@ -65,5 +65,23 @@
         });
       }
     };
+  </script> -->
+
+  <script>
+    // 主题颜色跟随系统变化
+    const mediaStatus = window.matchMedia("(prefers-color-scheme: dark)");
+    // console.log(mediaStatus, "mediaStatus");
+
+    const toggleTheme = () => {
+      if (mediaStatus.matches) {
+        document.documentElement.setAttribute("class", "dark");
+      } else {
+        document.documentElement.setAttribute("class", "primary");
+      }
+    };
+
+    toggleTheme();
+
+    mediaStatus.addEventListener("change", toggleTheme);
   </script>
 </html>
