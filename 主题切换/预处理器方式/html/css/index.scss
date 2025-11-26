@@ -1,0 +1,120 @@
+// :root {
+//   --theme-color: #222;
+//   --theme-background-color: #fff;
+// }
+
+// .primary {
+//   --theme-color: #222;
+//   --theme-background-color: #fff;
+// }
+
+// .dark {
+//   --theme-color: #fff;
+//   --theme-background-color: #222;
+//   color-scheme: dark;
+// }
+
+// .green {
+//   --theme-color: #fff;
+//   --theme-background-color: #008f8e;
+// }
+
+// .purple {
+//   --theme-color: #fbd26a;
+//   --theme-background-color: #422256;
+// }
+
+$themeMap: (
+  primary: (
+    theme-color: #222,
+    theme-background-color: #fff
+  ),
+  dark: (
+    theme-color: #fff,
+    theme-background-color: #222
+  ),
+  green: (
+    theme-color: #fff,
+    theme-background-color: #008f8e
+  ),
+  purple: (
+    theme-color: #fbd26a,
+    theme-background-color: #422256
+  )
+);
+
+@mixin themeMixin {
+  @each $themeKey, $themeValue in $themeMap {
+    body.#{$themeKey} & {
+      // 全局变量
+      $currentTheme: $themeValue !global;
+
+      // 插槽
+      @content;
+
+      // 清空全局变量
+      $currentTheme: null !global;
+    }
+  }
+}
+
+@function getVar($key) {
+  @return map-get($currentTheme, $key);
+}
+
+@mixin background_color($color) {
+  @include themeMixin {
+    background-color: getVar($color);
+  }
+}
+
+@mixin color($color) {
+  @include themeMixin {
+    color: getVar($color);
+  }
+}
+
+@mixin border_color($color) {
+  @include themeMixin {
+    border-color: getVar($color);
+  }
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  transition: color 0.5s, background-color 0.5s;
+  // color: var(--theme-color);
+  // background-color: var(--theme-background-color);
+  // @include themeMixin {
+  //   color: getVar(theme-color);
+  //   background-color: getVar(theme-background-color);
+  // }
+
+  @include background_color(theme-background-color);
+  @include color(theme-color);
+}
+.layout {
+  display: flex;
+  justify-content: center;
+}
+
+.layer {
+  width: 300px;
+  height: 300px;
+  padding: 8px;
+  margin: 10px;
+  // border: 1px solid var(--theme-color);
+  // background-color: var(--theme-background-color);
+  @include themeMixin {
+    border: 1px solid getVar(theme-color);
+    background-color: getVar(theme-background-color);
+  }
+}
