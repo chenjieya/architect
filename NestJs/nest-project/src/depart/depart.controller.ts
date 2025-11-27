@@ -1,34 +1,50 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  Query,
+  UploadedFiles,
+  UseInterceptors,
+} from '@nestjs/common';
 import { DepartService } from './depart.service';
 import { CreateDepartDto } from './dto/create-depart.dto';
 import { UpdateDepartDto } from './dto/update-depart.dto';
+import { AnyFilesInterceptor } from '@nestjs/platform-express';
 
 @Controller('depart')
 export class DepartController {
   constructor(private readonly departService: DepartService) {}
 
-  @Post()
-  create(@Body() createDepartDto: CreateDepartDto) {
-    return this.departService.create(createDepartDto);
+  @Post('formUrlEncoded')
+  formUrlEncoded(@Body() createDepartDto: CreateDepartDto) {
+    return `received: ${JSON.stringify(createDepartDto)}; age类型: ${typeof createDepartDto.age}`;
   }
 
-  @Get()
-  findAll() {
-    return this.departService.findAll();
+  @Get('queryParam')
+  queryParam(@Query('name') name: string, @Query('age') age: string) {
+    return `received name: ${name}, age: ${age}, age类型:${typeof age}`;
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.departService.findOne(+id);
+  @Get('urlParam/:id')
+  urlParam(@Param('id') id: string) {
+    return `received id: ${id}`;
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateDepartDto: UpdateDepartDto) {
-    return this.departService.update(+id, updateDepartDto);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.departService.remove(+id);
+  @Post('file')
+  @UseInterceptors(
+    AnyFilesInterceptor({
+      dest: 'uploads/',
+    }),
+  )
+  getFile(
+    @Body() createDepartDto: CreateDepartDto,
+    @UploadedFiles() files: Array<Express.Multer.File>,
+  ) {
+    console.log(files);
+    return `received: ${JSON.stringify(createDepartDto)}`;
   }
 }
