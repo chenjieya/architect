@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "NestJs/三层架构.md",
+                "file": "NestJs/IoC的核心思想.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "三层架构"
+              "title": "IoC的核心思想"
             }
           }
         ]
@@ -162,13 +162,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "NestJs/三层架构.md",
+                "file": "NestJs/IoC的核心思想.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "三层架构 的大纲"
+              "title": "IoC的核心思想 的大纲"
             }
           },
           {
@@ -205,9 +205,10 @@
   },
   "active": "c9bca59b2ef096aa",
   "lastOpenFiles": [
+    "NestJs/三层架构.md",
+    "NestJs/IoC的核心思想.md",
     "NestJs/五种HTTP数据传输方式.md",
     "linux/Linux 常用命令总结.md",
-    "NestJs/三层架构.md",
     "NestJs/Nest CLI的安装与命令.md",
     "linux/用户和组以及权限.md",
     "主题切换方案(finish)/主题切换.md",
@@ -232,7 +233,6 @@
     "测试框架(finish)/【Jest进阶】模拟计时器.md",
     "测试框架(finish)/【Jest进阶】模拟 ES6 类.md",
     "测试框架(finish)/【Jest进阶】整合 webpack 综合练习.md",
-    "测试框架(finish)/【Jest进阶】整合 TypeScript.md",
     "测试框架(finish)",
     "地图核心体系",
     "未命名.canvas",
