@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "NestJs/IoC在Nest中的应用.md",
+                "file": "TypeScript/【装饰器】理解装饰器.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "IoC在Nest中的应用"
+              "title": "【装饰器】理解装饰器"
             }
           }
         ]
@@ -162,13 +162,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "NestJs/IoC在Nest中的应用.md",
+                "file": "TypeScript/【装饰器】理解装饰器.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "IoC在Nest中的应用 的大纲"
+              "title": "【装饰器】理解装饰器 的大纲"
             }
           },
           {
@@ -205,8 +205,17 @@
   },
   "active": "c9bca59b2ef096aa",
   "lastOpenFiles": [
-    "NestJs/IoC的核心思想.md",
+    "TypeScript/【装饰器】元数据相关的库.md",
+    "TypeScript/【装饰器】reflect-metadata.md",
+    "TypeScript/【装饰器】访问器属性装饰器.md",
+    "TypeScript/【装饰器】方法装饰器.md",
+    "TypeScript/【装饰器】装饰器的本质.md",
+    "TypeScript/【装饰器】理解装饰器.md",
+    "TypeScript/【装饰器】属性装饰器.md",
+    "NestJs/Nest中的装饰器.md",
+    "TypeScript",
     "NestJs/IoC在Nest中的应用.md",
+    "NestJs/IoC的核心思想.md",
     "NestJs/三层架构.md",
     "NestJs/五种HTTP数据传输方式.md",
     "linux/Linux 常用命令总结.md",
@@ -225,14 +234,6 @@
     "测试框架(finish)/【实战】开源协议和准备工作.md",
     "测试框架(finish)/【实战】开源代码.md",
     "测试框架(finish)/【实战】发布代码.md",
-    "测试框架(finish)/【实战】JavaScript库设计.md",
-    "测试框架(finish)/【Jest进阶】浏览器环境下的测试.md",
-    "测试框架(finish)/【Jest进阶】测试快照.md",
-    "测试框架(finish)/【Jest进阶】测试React组件.md",
-    "测试框架(finish)/【Jest进阶】测试 Vue 组件.md",
-    "测试框架(finish)/【Jest进阶】测试 Hook.md",
-    "测试框架(finish)/【Jest进阶】模拟计时器.md",
-    "测试框架(finish)/【Jest进阶】模拟 ES6 类.md",
     "测试框架(finish)",
     "地图核心体系",
     "未命名.canvas",
@@ -241,7 +242,6 @@
     "RN(finish)",
     "前端AI",
     "前端服务监控",
-    "esbuild(finish)",
     "笔记/image/image_9ViibmeAvU.png",
     "笔记/image/img002.e1ac8197.png",
     "笔记/image/image-20231023114531521.png",
