@@ -3,22 +3,17 @@ import {
   Get,
   Post,
   Body,
-  Patch,
   Param,
-  Delete,
   Query,
   UploadedFiles,
   UseInterceptors,
 } from '@nestjs/common';
 import { DepartService } from './depart.service';
 import { CreateDepartDto } from './dto/create-depart.dto';
-import { UpdateDepartDto } from './dto/update-depart.dto';
 import { AnyFilesInterceptor } from '@nestjs/platform-express';
 
 @Controller('depart')
 export class DepartController {
-  constructor(private readonly departService: DepartService) {}
-
   @Post('formUrlEncoded')
   formUrlEncoded(@Body() createDepartDto: CreateDepartDto) {
     return `received: ${JSON.stringify(createDepartDto)}; age类型: ${typeof createDepartDto.age}`;
