@@ -7,10 +7,14 @@ import {
   Query,
   UploadedFiles,
   UseInterceptors,
+  Ip,
+  Headers,
+  Req,
+  Res,
 } from '@nestjs/common';
-import { DepartService } from './depart.service';
 import { CreateDepartDto } from './dto/create-depart.dto';
 import { AnyFilesInterceptor } from '@nestjs/platform-express';
+import type { Request, Response } from 'express';
 
 @Controller('depart')
 export class DepartController {
@@ -41,5 +45,23 @@ export class DepartController {
   ) {
     console.log(files);
     return `received: ${JSON.stringify(createDepartDto)}`;
+  }
+
+  @Get('other')
+  other(
+    @Ip() ip: string,
+    @Headers() headers: string,
+    @Req() req: Request,
+    @Res() res: Response,
+  ) {
+    console.log(ip);
+    console.log(headers);
+    // console.log(headerType);
+    console.log(req);
+
+    // 注意： 如果定义了res响应体，就必须使用自己定义的响应体去做返回的信息处理
+    console.log(res);
+    res.send('other');
+    // return 'other';
   }
 }
