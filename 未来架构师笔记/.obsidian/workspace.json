@@ -13,30 +13,15 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "linux/Linux 常用命令总结.md",
+                "file": "NestJs/三层架构.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Linux 常用命令总结"
-            }
-          },
-          {
-            "id": "7cd64b8371698641",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "NestJs/Nest CLI的安装与命令.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Nest CLI的安装与命令"
+              "title": "三层架构"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -177,13 +162,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "NestJs/Nest CLI的安装与命令.md",
+                "file": "NestJs/三层架构.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Nest CLI的安装与命令 的大纲"
+              "title": "三层架构 的大纲"
             }
           },
           {
@@ -218,14 +203,16 @@
       "obsidian-excalidraw-plugin:新建绘图文件": false
     }
   },
-  "active": "7cd64b8371698641",
+  "active": "c9bca59b2ef096aa",
   "lastOpenFiles": [
-    "linux/用户和组以及权限.md",
+    "NestJs/五种HTTP数据传输方式.md",
+    "linux/Linux 常用命令总结.md",
+    "NestJs/三层架构.md",
     "NestJs/Nest CLI的安装与命令.md",
+    "linux/用户和组以及权限.md",
     "主题切换方案(finish)/主题切换.md",
     "实战思路.md",
     "NestJs",
-    "linux/Linux 常用命令总结.md",
     "主题切换方案(finish)",
     "linux/Linux SSH 服务管理与配置详解.md",
     "linux/Linux文件系统与磁盘管理完全指南.md",
@@ -246,8 +233,6 @@
     "测试框架(finish)/【Jest进阶】模拟 ES6 类.md",
     "测试框架(finish)/【Jest进阶】整合 webpack 综合练习.md",
     "测试框架(finish)/【Jest进阶】整合 TypeScript.md",
-    "测试框架(finish)/【Jest扩展】测试 Express 应用.md",
-    "测试框架(finish)/【Jest扩展】手写简易版测试框架.md",
     "测试框架(finish)",
     "地图核心体系",
     "未命名.canvas",
