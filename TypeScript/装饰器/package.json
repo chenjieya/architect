@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "npx tsc",
-    "dev": "npx ts-node ./src/paramsDecorator.ts"
+    "dev": "npx ts-node ./src/reflectDecorator.ts"
   },
   "keywords": [],
   "author": "",
@@ -14,5 +14,8 @@
   "devDependencies": {
     "@types/node": "^24.10.1",
     "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "reflect-metadata": "^0.2.2"
   }
 }

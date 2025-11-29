@@ -13,6 +13,7 @@
     "target": "esnext",
     "types": [],
     "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
     // For nodejs:
     // "lib": ["esnext"],
     // "types": ["node"],
