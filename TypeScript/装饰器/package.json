@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "npx tsc",
-    "dev": "npx ts-node ./src/classDecorator.ts"
+    "dev": "npx ts-node ./src/propDecorator.ts"
   },
   "keywords": [],
   "author": "",
