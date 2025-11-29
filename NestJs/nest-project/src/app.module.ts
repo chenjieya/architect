@@ -4,9 +4,18 @@ import { AppService } from './app.service';
 import { UserModule } from './user/user.module';
 import { PersonModule } from './person/person.module';
 import { DepartModule } from './depart/depart.module';
+import { DyModuleRegisterModule } from './dy-module-register/dy-module-register.module';
 
 @Module({
-  imports: [UserModule, PersonModule, DepartModule],
+  imports: [
+    UserModule,
+    PersonModule,
+    DepartModule,
+    DyModuleRegisterModule.register({
+      option1: 'value1',
+      option2: 'value2',
+    }),
+  ],
   controllers: [AppController],
   providers: [
     AppService,
@@ -19,7 +28,10 @@ import { DepartModule } from './depart/depart.module';
     },
     {
       provide: 'random',
-      useFactory: (car, appService: AppService) => {
+      useFactory: (
+        car: { name: string; price: number },
+        appService: AppService,
+      ) => {
         return {
           random: Math.random(),
           car: car,

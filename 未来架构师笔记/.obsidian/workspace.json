@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "TypeScript/【装饰器】理解装饰器.md",
+                "file": "NestJs/模块的概念.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "【装饰器】理解装饰器"
+              "title": "模块的概念"
             }
           }
         ]
@@ -162,13 +162,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "TypeScript/【装饰器】理解装饰器.md",
+                "file": "NestJs/模块的概念.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "【装饰器】理解装饰器 的大纲"
+              "title": "模块的概念 的大纲"
             }
           },
           {
@@ -205,14 +205,15 @@
   },
   "active": "c9bca59b2ef096aa",
   "lastOpenFiles": [
+    "NestJs/Nest中的装饰器.md",
+    "NestJs/模块的概念.md",
+    "TypeScript/【装饰器】理解装饰器.md",
     "TypeScript/【装饰器】元数据相关的库.md",
     "TypeScript/【装饰器】reflect-metadata.md",
     "TypeScript/【装饰器】访问器属性装饰器.md",
     "TypeScript/【装饰器】方法装饰器.md",
     "TypeScript/【装饰器】装饰器的本质.md",
-    "TypeScript/【装饰器】理解装饰器.md",
     "TypeScript/【装饰器】属性装饰器.md",
-    "NestJs/Nest中的装饰器.md",
     "TypeScript",
     "NestJs/IoC在Nest中的应用.md",
     "NestJs/IoC的核心思想.md",
@@ -233,7 +234,6 @@
     "测试框架(finish)/【实战】搭建部署文档网站.md",
     "测试框架(finish)/【实战】开源协议和准备工作.md",
     "测试框架(finish)/【实战】开源代码.md",
-    "测试框架(finish)/【实战】发布代码.md",
     "测试框架(finish)",
     "地图核心体系",
     "未命名.canvas",

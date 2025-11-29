@@ -11,13 +11,24 @@ import {
   Headers,
   Req,
   Res,
+  Inject,
 } from '@nestjs/common';
 import { CreateDepartDto } from './dto/create-depart.dto';
 import { AnyFilesInterceptor } from '@nestjs/platform-express';
 import type { Request, Response } from 'express';
+import { UserService } from 'src/user/user.service';
 
 @Controller('depart')
 export class DepartController {
+  // 测试全局注册的模块
+  @Inject()
+  private readonly userService: UserService;
+
+  @Get()
+  getTest() {
+    return this.userService.getUser();
+  }
+
   @Post('formUrlEncoded')
   formUrlEncoded(@Body() createDepartDto: CreateDepartDto) {
     return `received: ${JSON.stringify(createDepartDto)}; age类型: ${typeof createDepartDto.age}`;

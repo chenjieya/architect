@@ -11,6 +11,7 @@ import {
 import { PersonService } from './person.service';
 import { CreatePersonDto } from './dto/create-person.dto';
 import { UpdatePersonDto } from './dto/update-person.dto';
+import { UserService } from 'src/user/user.service';
 
 @Controller('person')
 export class PersonController {
@@ -20,6 +21,9 @@ export class PersonController {
   @Inject(PersonService)
   private personService: PersonService;
 
+  @Inject(UserService)
+  private userService: UserService;
+
   @Post()
   create(@Body() createPersonDto: CreatePersonDto) {
     return this.personService.create(createPersonDto);
@@ -27,6 +31,7 @@ export class PersonController {
 
   @Get()
   findAll() {
+    console.log(this.userService.getUser());
     return this.personService.findAll();
   }
 
