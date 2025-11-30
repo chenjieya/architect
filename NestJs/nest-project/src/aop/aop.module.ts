@@ -11,6 +11,7 @@ import { AopMiddleware } from './aop.middleware';
 @Module({
   controllers: [AopController],
   providers: [AopService],
+  // exports: [AopService],
 })
 export class AopModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {

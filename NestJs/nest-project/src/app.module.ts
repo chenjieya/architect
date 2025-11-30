@@ -6,6 +6,8 @@ import { PersonModule } from './person/person.module';
 import { DepartModule } from './depart/depart.module';
 import { DyModuleRegisterModule } from './dy-module-register/dy-module-register.module';
 import { AopModule } from './aop/aop.module';
+import { APP_GUARD } from '@nestjs/core';
+import { GlobalGuardGuard } from './global-guard.guard';
 
 @Module({
   imports: [
@@ -41,6 +43,10 @@ import { AopModule } from './aop/aop.module';
         };
       },
       inject: ['car', AppService],
+    },
+    {
+      provide: APP_GUARD,
+      useClass: GlobalGuardGuard,
     },
   ],
 })
