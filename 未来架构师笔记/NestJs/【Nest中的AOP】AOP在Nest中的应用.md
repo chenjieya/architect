@@ -1,7 +1,8 @@
 ## 1. 中间件
 中间件是 Express 里的概念，Nest 的底层默认是 Express，它在请求流程中的位置大致如下：
 
-![image-20250116155649092](./assets/image-20250116155649092.png)
+![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251201215125690.png)
+
 
 **中间件**可以在**路由处理程序之前**或者**之后插入**需要执行的任务，Nest做了进一步细分，主要分为**全局中间件**和**局部中间件**
 
@@ -151,7 +152,8 @@ bootstrap();
 
 守卫的职责一般很明确，通常用于权限、角色等授权操作，守卫所在的位置与中间件类似，可以对请求进行拦截和过滤，其实，Guard 就可以理解为**路由守卫**的意思，可以用于在调用某个 Controller 之前判断权限，返回 **true** 或者 **false** 来决定是否放行
 
-![image-20250116160157181](./assets/image-20250116160157181.png)
+![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251201215149585.png)
+
 
 **守卫在调用路由程序之前返回`true`或者`false`来判断是否通行**，同样分为**全局守卫**和**局部守卫**
 
@@ -261,13 +263,12 @@ ERROR [ExceptionsHandler] Cannot read properties of undefined (reading 'findAll'
 export class AppModule {}
 ```
 
-
-
 ## 3. 拦截器
 
 拦截器不同于中间件和守卫，它在路由请求之前和之后都可以进行逻辑处理，能够充分操作`request`和`response`对象。拦截器通常用于记录请求日志、转换或者格式化相应数据等等
 
-![image-20250121104548954](./assets/image-20250121104548954.png)
+![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251201215208854.png)
+
 
 我们现在可以创建一个简单的拦截器，比如使用`nest g itc timeout`命令，直接帮我们创建一个`timeout`文件夹，并且创建`timeout.interceptor.ts`的拦截器文件。
 
@@ -524,13 +525,12 @@ export class AuthInterceptor implements NestInterceptor {
   }
 ```
 
-
-
 ## 4. 管道
 
 Pipe 就是管道的意思，主要的作用就是解析和验证请求数据。
 
-![image-20250122162002384](./assets/image-20250122162002384.png)
+![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251201215229596.png)
+
 
 在后端开发中，数据库表的字段类型在创建式就已经被明确定义了，任何不符合预期类型的数据保存操作都会导致错误。为了确保传入的数据满足预期的格式和规范，Nest会在客户端发起请求的时候，将请求数据传递给管道进行预处理。这些预处理操作包括数据验证、转换或者过滤等等，以确保数据的准确性。处理之后的数据会被传递给路由处理程序。
 
@@ -778,10 +778,10 @@ bootstrap();
 export class AppModule {}
 ```
 
-
 ## 5. 过滤器
 
-![image-20250123141912674](./assets/image-20250123141912674.png)
+![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251201215300792.png)
+
 
 nest中最常见的是HTTP异常过滤器，通常用于在后端服务发生异常时向客户端报告异常的类型，目前[内置的HTTP异常](https://docs.nestjs.com/exception-filters#built-in-http-exceptions)包括下面几种，它们全部也都包含在`@nestjs/common`包中：
 
@@ -1020,6 +1020,7 @@ makeItQuack(chickenAdapter);  // 输出: 鸡：咯咯咯
 
 所以，Nest对于请求响应的底层处理，就是通过这种适配器模式，可以非常方便的进行替换，到底是使用`express`，还是`fastify`，进本的情况如下图：
 
-![image-20250206174152626](./assets/image-20250206174152626.png)
+![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251201215323091.png)
+
 
 当然，默认Nest使用的`express`，如果你要使用`fastify`，导入`fastify`相应的包即可
