@@ -12,11 +12,13 @@ import {
   ParseIntPipe,
   HttpException,
   HttpStatus,
+  UseFilters,
 } from '@nestjs/common';
 import { AopService } from './aop.service';
 import { AopGuard } from './aop.guard';
 import { TimeoutInterceptor } from 'src/timeout.interceptor';
 import { ValidatePipe } from 'src/validate.pipe';
+import { MyExpectionFilter } from 'src/my-expection.filter';
 
 @Controller('aop')
 // 在类上使用，作用于全部接口
@@ -61,22 +63,32 @@ export class AopController {
   //   return this.aopService.remove(id);
   // }
 
+  // @Delete(':id')
+  // remove(
+  //   @Param(
+  //     'id',
+  //     new ParseIntPipe({
+  //       exceptionFactory() {
+  //         const obj = {
+  //           statusCode: HttpStatus.NOT_ACCEPTABLE,
+  //           message: '参数必须是数字类型的字符串',
+  //           error: 'Not Acceptable',
+  //           success: false,
+  //         };
+  //         throw new HttpException(obj, HttpStatus.NOT_ACCEPTABLE);
+  //       },
+  //     }),
+  //   )
+  //   id: number,
+  // ) {
+  //   console.log(id, typeof id, 'id');
+  //   return this.aopService.remove(id);
+  // }
+
   @Delete(':id')
+  @UseFilters(MyExpectionFilter)
   remove(
-    @Param(
-      'id',
-      new ParseIntPipe({
-        exceptionFactory() {
-          const obj = {
-            statusCode: HttpStatus.NOT_ACCEPTABLE,
-            message: '参数必须是数字类型的字符串',
-            error: 'Not Acceptable',
-            success: false,
-          };
-          throw new HttpException(obj, HttpStatus.NOT_ACCEPTABLE);
-        },
-      }),
-    )
+    @Param('id', ParseIntPipe)
     id: number,
   ) {
     console.log(id, typeof id, 'id');
