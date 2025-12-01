@@ -7,9 +7,11 @@ import {
   Param,
   Delete,
   UseGuards,
+  UseInterceptors,
 } from '@nestjs/common';
 import { AopService } from './aop.service';
 import { AopGuard } from './aop.guard';
+import { TimeoutInterceptor } from 'src/timeout.interceptor';
 
 @Controller('aop')
 // 在类上使用，作用于全部接口
@@ -18,7 +20,9 @@ export class AopController {
   constructor(private readonly aopService: AopService) {}
 
   @Post()
+  @UseInterceptors(TimeoutInterceptor)
   create() {
+    console.log('controller 层方法执行');
     return this.aopService.create();
   }
 

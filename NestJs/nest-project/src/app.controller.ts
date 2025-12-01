@@ -1,6 +1,14 @@
-import { Controller, Get, Inject, UseGuards } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Inject,
+  UseGuards,
+  UseInterceptors,
+} from '@nestjs/common';
 import { AppService } from './app.service';
 import { AopGuard } from './aop/aop.guard';
+import { AuthInterceptor } from './auth.interceptor';
+import { from, Observable } from 'rxjs';
 // import { UserService } from './user/user.service';
 
 @Controller()
@@ -37,5 +45,11 @@ export class AppController {
   @Get('random')
   getRandom(): any {
     return this.crateFactory;
+  }
+
+  @Get('auth')
+  @UseInterceptors(AuthInterceptor)
+  getAuth(): Observable<string> {
+    return from(['hello', 'worldA', 'abc']);
   }
 }

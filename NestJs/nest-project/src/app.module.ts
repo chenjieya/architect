@@ -6,8 +6,9 @@ import { PersonModule } from './person/person.module';
 import { DepartModule } from './depart/depart.module';
 import { DyModuleRegisterModule } from './dy-module-register/dy-module-register.module';
 import { AopModule } from './aop/aop.module';
-import { APP_GUARD } from '@nestjs/core';
+import { APP_GUARD, APP_INTERCEPTOR } from '@nestjs/core';
 import { GlobalGuardGuard } from './global-guard.guard';
+import { TimeoutInterceptor } from './timeout.interceptor';
 
 @Module({
   imports: [
@@ -44,10 +45,16 @@ import { GlobalGuardGuard } from './global-guard.guard';
       },
       inject: ['car', AppService],
     },
+    // 注册成全局守卫
     {
       provide: APP_GUARD,
       useClass: GlobalGuardGuard,
     },
+    // 注册成全局拦截器
+    // {
+    //   provide: APP_INTERCEPTOR,
+    //   useClass: TimeoutInterceptor,
+    // },
   ],
 })
 export class AppModule {}
