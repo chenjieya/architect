@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "NestJs/Metadata和Reflector.md",
+                "file": "NestJs/ExecutionContext：切换不同上下文.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Metadata和Reflector"
+              "title": "ExecutionContext：切换不同上下文"
             }
           }
         ]
@@ -162,13 +162,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "NestJs/Metadata和Reflector.md",
+                "file": "NestJs/ExecutionContext：切换不同上下文.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Metadata和Reflector 的大纲"
+              "title": "ExecutionContext：切换不同上下文 的大纲"
             }
           },
           {
@@ -205,8 +205,9 @@
   },
   "active": "c9bca59b2ef096aa",
   "lastOpenFiles": [
-    "metadata.md",
     "NestJs/Metadata和Reflector.md",
+    "NestJs/ExecutionContext：切换不同上下文.md",
+    "metadata.md",
     "NestJs/【Nest中的IoC】IoC在Nest中的应用.md",
     "NestJs/【Nest中的AOP】AOP在Nest中的应用.md",
     "NestJs/AOP.md",
@@ -233,7 +234,6 @@
     "NestJs",
     "主题切换方案(finish)",
     "linux/Linux SSH 服务管理与配置详解.md",
-    "linux/Linux文件系统与磁盘管理完全指南.md",
     "测试框架(finish)",
     "地图核心体系",
     "未命名.canvas",

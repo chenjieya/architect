@@ -1,7 +1,6 @@
 
 [[【装饰器】reflect-metadata]]
 
-
 ## 1. Reflect 的 metadata 的 api
 
 不知道大家有没有感觉很神奇，只是通过装饰器声明了一下，然后启动 Nest 应用，这时候对象就给创建好了，依赖也给注入了。
