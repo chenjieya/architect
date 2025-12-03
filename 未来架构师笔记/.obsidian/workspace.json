@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "NestJs/【Nest中的AOP】AOP在Nest中的应用.md",
+                "file": "NestJs/Metadata和Reflector.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "【Nest中的AOP】AOP在Nest中的应用"
+              "title": "Metadata和Reflector"
             }
           }
         ]
@@ -162,13 +162,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "NestJs/【Nest中的AOP】AOP在Nest中的应用.md",
+                "file": "NestJs/Metadata和Reflector.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "【Nest中的AOP】AOP在Nest中的应用 的大纲"
+              "title": "Metadata和Reflector 的大纲"
             }
           },
           {
@@ -205,11 +205,13 @@
   },
   "active": "c9bca59b2ef096aa",
   "lastOpenFiles": [
-    "NestJs/AOP.md",
+    "metadata.md",
+    "NestJs/Metadata和Reflector.md",
+    "NestJs/【Nest中的IoC】IoC在Nest中的应用.md",
     "NestJs/【Nest中的AOP】AOP在Nest中的应用.md",
+    "NestJs/AOP.md",
     "TypeScript/【装饰器】reflect-metadata.md",
     "NestJs/适配器模式.md",
-    "NestJs/【Nest中的IoC】IoC在Nest中的应用.md",
     "TypeScript/【装饰器】访问器属性装饰器.md",
     "TypeScript/【装饰器】方法装饰器.md",
     "TypeScript/【装饰器】属性装饰器.md",
@@ -232,8 +234,6 @@
     "主题切换方案(finish)",
     "linux/Linux SSH 服务管理与配置详解.md",
     "linux/Linux文件系统与磁盘管理完全指南.md",
-    "测试框架(finish)/测试基本认知.md",
-    "测试框架(finish)/前端自动化测试.md",
     "测试框架(finish)",
     "地图核心体系",
     "未命名.canvas",
