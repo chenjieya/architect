@@ -1,17 +1,29 @@
 import {
   Controller,
   Get,
+  Headers,
   Inject,
+  Query,
   UseGuards,
   UseInterceptors,
 } from '@nestjs/common';
 import { AppService } from './app.service';
-import { AopGuard } from './aop/aop.guard';
+// import { AopGuard } from './aop/aop.guard';
 import { AuthInterceptor } from './auth.interceptor';
 import { from, Observable } from 'rxjs';
+import {
+  MyCombinedDecorator,
+  MyController,
+  MyHeaders,
+  MyParams,
+  MyQuery,
+  SetUser,
+} from './custom.decorator';
+import { CustomGuard } from './custom.guard';
 // import { UserService } from './user/user.service';
 
-@Controller()
+// @Controller()
+@MyController('', '自定义类装饰器')
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
@@ -51,5 +63,35 @@ export class AppController {
   @UseInterceptors(AuthInterceptor)
   getAuth(): Observable<string> {
     return from(['hello', 'worldA', 'abc']);
+  }
+
+  @Get('custom')
+  @SetUser('user', 'admin')
+  @UseGuards(CustomGuard)
+  custom() {
+    return 'Hello Custom Decorator';
+  }
+
+  @Get('custom2')
+  custom2(@MyHeaders('host') host1: string, @Headers('host') host2: string) {
+    console.log(host1, host2);
+    return 'Hello Custom Decorator';
+  }
+
+  @Get('custom3')
+  custom3(@MyQuery('id') id: string) {
+    console.log(id);
+    return 'Hello Custom Decorator';
+  }
+
+  @Get('custom4/:id')
+  custom4(@MyParams('id') id: string) {
+    console.log(id);
+    return 'Hello Custom Decorator';
+  }
+
+  @MyCombinedDecorator('custom5', 'user', 'admin')
+  custom5() {
+    return 'Hello Custom Decorator';
   }
 }
