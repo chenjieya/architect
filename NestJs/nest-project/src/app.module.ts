@@ -10,6 +10,7 @@ import { APP_GUARD, APP_INTERCEPTOR, APP_PIPE } from '@nestjs/core';
 import { GlobalGuardGuard } from './global-guard.guard';
 import { TimeoutInterceptor } from './timeout.interceptor';
 import { ValidatePipe } from './validate.pipe';
+import { UploadFileModule } from './upload-file/upload-file.module';
 
 @Module({
   imports: [
@@ -21,6 +22,7 @@ import { ValidatePipe } from './validate.pipe';
       option2: 'value2',
     }),
     AopModule,
+    UploadFileModule,
   ],
   controllers: [AppController],
   providers: [
