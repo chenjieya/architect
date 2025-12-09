@@ -41,7 +41,7 @@ export class BookService {
     const bookList: Book[] = await this.DbService.readFile();
 
     if (name) {
-      return bookList.find((item) => item.name.includes(name)) || [];
+      return bookList.filter((item) => item.name.includes(name)) || [];
     }
 
     return bookList || [];
