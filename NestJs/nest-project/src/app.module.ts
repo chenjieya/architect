@@ -11,9 +11,25 @@ import { GlobalGuardGuard } from './global-guard.guard';
 import { TimeoutInterceptor } from './timeout.interceptor';
 import { ValidatePipe } from './validate.pipe';
 import { UploadFileModule } from './upload-file/upload-file.module';
+import { TypeOrmNestModule } from './type-orm-nest/type-orm-nest.module';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { TypeOrmNest } from './type-orm-nest/entities/type-orm-nest.entity';
+import { join } from 'node:path';
 
 @Module({
   imports: [
+    TypeOrmModule.forRoot({
+      type: 'mysql',
+      host: 'alvis.org.cn',
+      port: 3306,
+      timezone: 'Z',
+      database: 'nest-typeorm',
+      username: 'root',
+      password: 'xiaozhai',
+      synchronize: true,
+      // entities: [join(__dirname, 'src', '**', '*.entity.ts')],
+      entities: [TypeOrmNest],
+    }),
     UserModule,
     PersonModule,
     DepartModule,
@@ -23,6 +39,7 @@ import { UploadFileModule } from './upload-file/upload-file.module';
     }),
     AopModule,
     UploadFileModule,
+    TypeOrmNestModule,
   ],
   controllers: [AppController],
   providers: [
