@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "NestJs/NestJS ValidationPipe 深度解析：从入门到精通.md",
+                "file": "NestJs/【数据库】TypeOrm.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "NestJS ValidationPipe 深度解析：从入门到精通"
+              "title": "【数据库】TypeOrm"
             }
           }
         ]
@@ -162,13 +162,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "NestJs/NestJS ValidationPipe 深度解析：从入门到精通.md",
+                "file": "NestJs/【数据库】TypeOrm.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "NestJS ValidationPipe 深度解析：从入门到精通 的大纲"
+              "title": "【数据库】TypeOrm 的大纲"
             }
           },
           {
@@ -205,15 +205,23 @@
   },
   "active": "c9bca59b2ef096aa",
   "lastOpenFiles": [
-    "NestJs/文件上传.md",
-    "NestJs/自定义装饰器.md",
-    "NestJs/Nest中的装饰器.md",
-    "NestJs/IoC在Nest中的应用.md",
-    "NestJs/IoC的核心思想.md",
-    "NestJs/AOP在Nest中的应用.md",
-    "NestJs/NestJS ValidationPipe 深度解析：从入门到精通.md",
-    "NestJs/【MySql】数据库表关系.md",
-    "NestJs/五种HTTP数据传输方式.md",
+    "NestJs/【进阶】NestJS ValidationPipe 深度解析：从入门到精通.md",
+    "NestJs/【数据库】TypeOrm.md",
+    "NestJs/适配器模式.md",
+    "NestJs/【基础】Nest中的装饰器.md",
+    "NestJs/【基础】Nest CLI的安装与命令.md",
+    "NestJs/【进阶】Metadata和Reflector.md",
+    "NestJs/【基础】IoC在Nest中的应用.md",
+    "NestJs/【基础】IoC的核心思想.md",
+    "NestJs/【基础】ExecutionContext：切换不同上下文.md",
+    "NestJs/【基础】AOP在Nest中的应用.md",
+    "NestJs/【基础】AOP.md",
+    "NestJs/【进阶】自定义装饰器.md",
+    "NestJs/【基础】五种HTTP数据传输方式.md",
+    "NestJs/【文件】文件上传.md",
+    "NestJs/【基础】三层架构.md",
+    "NestJs/【基础】模块的概念.md",
+    "NestJs/【数据库】数据库表关系.md",
     "TypeScript/【装饰器】reflect-metadata.md",
     "TypeScript/【装饰器】访问器属性装饰器.md",
     "TypeScript/【装饰器】方法装饰器.md",
@@ -221,15 +229,8 @@
     "TypeScript/【装饰器】属性装饰器.md",
     "TypeScript/【装饰器】元数据相关的库.md",
     "TypeScript/【装饰器】装饰器的本质.md",
-    "NestJs/Metadata和Reflector.md",
-    "NestJs/ExecutionContext：切换不同上下文.md",
-    "NestJs/Nest CLI的安装与命令.md",
     "metadata.md",
-    "NestJs/AOP.md",
-    "NestJs/适配器模式.md",
-    "NestJs/模块的概念.md",
     "TypeScript",
-    "NestJs/三层架构.md",
     "linux/Linux 常用命令总结.md",
     "NestJs",
     "主题切换方案(finish)",
