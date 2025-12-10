@@ -16,7 +16,18 @@ async function bootstrap() {
   // app.useGlobalGuards(new AopGuard());
   // 全局守卫的注册方式请查看app.module.ts中的相关配置
 
-  app.useGlobalPipes(new ValidationPipe());
+  app.useGlobalPipes(
+    new ValidationPipe({
+      whitelist: true,
+      // forbidNonWhitelisted: true,
+      // 相当于总开关，如果下面未配置，则默认是严格模式。需要使用@Type进行类型转换
+      transform: true,
+      transformOptions: {
+        // 总开关下的细节配置，总开关没开的情况，全都失效
+        enableImplicitConversion: true,
+      },
+    }),
+  );
 
   await app.listen(process.env.PORT ?? 3000);
 }

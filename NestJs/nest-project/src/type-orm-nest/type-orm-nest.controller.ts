@@ -28,20 +28,21 @@ export class TypeOrmNestController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
+  findOne(@Param('id') id: number) {
+    console.log(typeof id, 'id');
     return this.typeOrmNestService.findOne(+id);
   }
 
   @Patch(':id')
   update(
-    @Param('id') id: string,
+    @Param('id') id: number,
     @Body() updateTypeOrmNestDto: UpdateTypeOrmNestDto,
   ) {
     return this.typeOrmNestService.update(+id, updateTypeOrmNestDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
+  remove(@Param('id') id: number) {
     return this.typeOrmNestService.remove(+id);
   }
 }
