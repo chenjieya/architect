@@ -11,7 +11,6 @@ import {
 import { SessionNestService } from './session-nest.service';
 import type { Request, Response } from 'express';
 import { JwtService } from '@nestjs/jwt';
-import { count } from 'console';
 
 @Controller('session-nest')
 export class SessionNestController {
