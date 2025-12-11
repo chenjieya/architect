@@ -18,6 +18,7 @@ import { join } from 'node:path';
 import { DataSource } from 'typeorm';
 import { RedisModule } from './redis.module';
 import { RedisNestModule } from './redis-nest/redis-nest.module';
+import { SessionNestModule } from './session-nest/session-nest.module';
 
 @Module({
   imports: [
@@ -47,6 +48,7 @@ import { RedisNestModule } from './redis-nest/redis-nest.module';
     TypeOrmNestModule,
     RedisModule,
     RedisNestModule,
+    SessionNestModule,
   ],
   controllers: [AppController],
   providers: [

@@ -4,6 +4,7 @@ import { NestExpressApplication } from '@nestjs/platform-express';
 import { LoggerMiddleware } from './logger.middleware';
 import { AopGuard } from './aop/aop.guard';
 import { ValidationPipe } from '@nestjs/common';
+import session from 'express-session';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
@@ -26,6 +27,15 @@ async function bootstrap() {
         // 总开关下的细节配置，总开关没开的情况，全都失效
         enableImplicitConversion: true,
       },
+    }),
+  );
+
+  // 使用session
+  app.use(
+    session({
+      secret: 'alvis',
+      resave: false,
+      saveUninitialized: false,
     }),
   );
 
