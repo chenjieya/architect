@@ -15,6 +15,9 @@ import { TypeOrmNestModule } from './type-orm-nest/type-orm-nest.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { TypeOrmNest } from './type-orm-nest/entities/type-orm-nest.entity';
 import { join } from 'node:path';
+import { DataSource } from 'typeorm';
+import { RedisModule } from './redis.module';
+import { RedisNestModule } from './redis-nest/redis-nest.module';
 
 @Module({
   imports: [
@@ -27,8 +30,10 @@ import { join } from 'node:path';
       username: 'root',
       password: 'xiaozhai',
       synchronize: true,
-      // entities: [join(__dirname, 'src', '**', '*.entity.ts')],
-      entities: [TypeOrmNest],
+      autoLoadEntities: true,
+      // nest11中，放弃了这种通配符路径的方式，推荐上面的方式 + forFeature
+      // entities: [__dirname + '/**/*.entity{.ts,.js}'],
+      // entities: [TypeOrmNest],
     }),
     UserModule,
     PersonModule,
@@ -40,6 +45,8 @@ import { join } from 'node:path';
     AopModule,
     UploadFileModule,
     TypeOrmNestModule,
+    RedisModule,
+    RedisNestModule,
   ],
   controllers: [AppController],
   providers: [
@@ -83,4 +90,6 @@ import { join } from 'node:path';
     // },
   ],
 })
-export class AppModule {}
+export class AppModule {
+  // constructor(private dataSource: DataSource) {}
+}
