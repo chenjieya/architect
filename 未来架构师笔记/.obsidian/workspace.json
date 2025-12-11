@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "NestJs/【数据库】TypeOrm.md",
+                "file": "NestJs/【基础】状态保存的方式.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "【数据库】TypeOrm"
+              "title": "【基础】状态保存的方式"
             }
           }
         ]
@@ -162,13 +162,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "NestJs/【数据库】TypeOrm.md",
+                "file": "NestJs/【基础】状态保存的方式.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "【数据库】TypeOrm 的大纲"
+              "title": "【基础】状态保存的方式 的大纲"
             }
           },
           {
@@ -205,8 +205,13 @@
   },
   "active": "c9bca59b2ef096aa",
   "lastOpenFiles": [
-    "NestJs/【进阶】NestJS ValidationPipe 深度解析：从入门到精通.md",
+    "NestJs/【基础】如何灵活创建DTO.md",
+    "NestJs/【基础】状态保存的方式.md",
+    "NestJs/【基础】AOP在Nest中的应用.md",
+    "NestJs/【数据库】Redis简介和安装.md",
+    "rollup(finish)/Rollup插件.md",
     "NestJs/【数据库】TypeOrm.md",
+    "NestJs/【进阶】NestJS ValidationPipe 深度解析：从入门到精通.md",
     "NestJs/适配器模式.md",
     "NestJs/【基础】Nest中的装饰器.md",
     "NestJs/【基础】Nest CLI的安装与命令.md",
@@ -214,7 +219,6 @@
     "NestJs/【基础】IoC在Nest中的应用.md",
     "NestJs/【基础】IoC的核心思想.md",
     "NestJs/【基础】ExecutionContext：切换不同上下文.md",
-    "NestJs/【基础】AOP在Nest中的应用.md",
     "NestJs/【基础】AOP.md",
     "NestJs/【进阶】自定义装饰器.md",
     "NestJs/【基础】五种HTTP数据传输方式.md",
@@ -227,11 +231,7 @@
     "TypeScript/【装饰器】方法装饰器.md",
     "TypeScript/【装饰器】理解装饰器.md",
     "TypeScript/【装饰器】属性装饰器.md",
-    "TypeScript/【装饰器】元数据相关的库.md",
-    "TypeScript/【装饰器】装饰器的本质.md",
-    "metadata.md",
     "TypeScript",
-    "linux/Linux 常用命令总结.md",
     "NestJs",
     "主题切换方案(finish)",
     "测试框架(finish)",
