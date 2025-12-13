@@ -19,6 +19,7 @@ import { DataSource } from 'typeorm';
 import { RedisModule } from './redis.module';
 import { RedisNestModule } from './redis-nest/redis-nest.module';
 import { SessionNestModule } from './session-nest/session-nest.module';
+import { LoginJwtModule } from './login-jwt/login-jwt.module';
 
 @Module({
   imports: [
@@ -49,6 +50,7 @@ import { SessionNestModule } from './session-nest/session-nest.module';
     RedisModule,
     RedisNestModule,
     SessionNestModule,
+    LoginJwtModule,
   ],
   controllers: [AppController],
   providers: [
