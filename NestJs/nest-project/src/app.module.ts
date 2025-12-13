@@ -21,23 +21,43 @@ import { RedisNestModule } from './redis-nest/redis-nest.module';
 import { SessionNestModule } from './session-nest/session-nest.module';
 import { LoginJwtModule } from './login-jwt/login-jwt.module';
 import { AuthModule } from './auth/auth.module';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 
 @Module({
   imports: [
-    TypeOrmModule.forRoot({
-      type: 'mysql',
-      host: 'alvis.org.cn',
-      port: 3306,
-      timezone: 'Z',
-      database: 'nest-typeorm',
-      username: 'root',
-      password: 'xiaozhai',
-      synchronize: true,
-      autoLoadEntities: true,
-      // nest11中，放弃了这种通配符路径的方式，推荐上面的方式 + forFeature
-      // entities: [__dirname + '/**/*.entity{.ts,.js}'],
-      // entities: [TypeOrmNest],
+    ConfigModule.forRoot({
+      isGlobal: true,
     }),
+    TypeOrmModule.forRootAsync({
+      inject: [ConfigService],
+      useFactory(configService: ConfigService) {
+        return {
+          type: 'mysql',
+          host: configService.get('DB_HOST'),
+          port: configService.get('DB_PORT'),
+          timezone: 'Z',
+          database: configService.get('DB_DATABASE'),
+          username: configService.get('DB_NAME'),
+          password: configService.get('DB_PWD'),
+          synchronize: true,
+          autoLoadEntities: true,
+        };
+      },
+    }),
+    // TypeOrmModule.forRoot({
+    //   type: 'mysql',
+    //   host: 'alvis.org.cn',
+    //   port: 3306,
+    //   timezone: 'Z',
+    //   database: 'nest-typeorm',
+    //   username: 'root',
+    //   password: 'xiaozhai',
+    //   synchronize: true,
+    //   autoLoadEntities: true,
+    //   // nest11中，放弃了这种通配符路径的方式，推荐上面的方式 + forFeature
+    //   // entities: [__dirname + '/**/*.entity{.ts,.js}'],
+    //   // entities: [TypeOrmNest],
+    // }),
     UserModule,
     PersonModule,
     DepartModule,
