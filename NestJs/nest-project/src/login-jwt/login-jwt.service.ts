@@ -11,6 +11,14 @@ export class LoginJwtService {
   @InjectRepository(Login)
   private readonly loginRespotity: Repository<Login>;
 
+  async getOne(username: string) {
+    const user = await this.loginRespotity.findOneBy({
+      username: username,
+    });
+
+    return user;
+  }
+
   async login(loginDto: LoginUserDto) {
     // 根据用户名检查用户是否存在
     const user = await this.loginRespotity.findOneBy({

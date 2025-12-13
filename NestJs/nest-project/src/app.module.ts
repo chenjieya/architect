@@ -20,6 +20,7 @@ import { RedisModule } from './redis.module';
 import { RedisNestModule } from './redis-nest/redis-nest.module';
 import { SessionNestModule } from './session-nest/session-nest.module';
 import { LoginJwtModule } from './login-jwt/login-jwt.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -51,6 +52,7 @@ import { LoginJwtModule } from './login-jwt/login-jwt.module';
     RedisNestModule,
     SessionNestModule,
     LoginJwtModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [

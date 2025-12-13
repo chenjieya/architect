@@ -4,22 +4,41 @@ import {
   Get,
   Inject,
   Post,
+  Req,
   Res,
   UseGuards,
 } from '@nestjs/common';
 import { LoginJwtService } from './login-jwt.service';
 import { LoginUserDto } from './dto/login-user.dto';
 import { RegisterLoginDto } from './dto/register-login.dto';
-import type { Response } from 'express';
+import type { Request, Response } from 'express';
 import { JwtService } from '@nestjs/jwt';
 import { LoginGuard } from 'src/login.guard';
+import { AuthGuard } from '@nestjs/passport';
+import { AuthService } from 'src/auth/auth.service';
 
 @Controller('login-jwt')
 export class LoginJwtController {
   @Inject(JwtService)
   private readonly jwt: JwtService;
 
+  @Inject(AuthService)
+  private readonly authService: AuthService;
+
   constructor(private readonly loginJwtService: LoginJwtService) {}
+
+  @Post('passport-jwt-login')
+  @UseGuards(AuthGuard('local'))
+  passportJwtLogin(@Body() loginDto: LoginUserDto, @Req() req: Request) {
+    console.log(req.user, 'user');
+    return this.authService.login(loginDto);
+  }
+
+  @Post('passport-login')
+  @UseGuards(AuthGuard('local'))
+  passportLogin(@Req() request: Request) {
+    return request.user;
+  }
 
   @Post('login')
   async login(
@@ -63,6 +82,12 @@ export class LoginJwtController {
   @UseGuards(LoginGuard)
   getUserInfo() {
     return '获取用户详细信息';
+  }
+
+  @Get('info2')
+  @UseGuards(AuthGuard('jwt'))
+  getUserInfo2() {
+    return '获取用户详细信息2';
   }
 
   @Get('list')

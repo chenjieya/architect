@@ -1,9 +1,10 @@
-import { Module } from '@nestjs/common';
+import { forwardRef, Module } from '@nestjs/common';
 import { LoginJwtService } from './login-jwt.service';
 import { LoginJwtController } from './login-jwt.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Login } from './entities/login.entity';
 import { JwtModule } from '@nestjs/jwt';
+import { AuthModule } from 'src/auth/auth.module';
 
 @Module({
   imports: [
@@ -14,8 +15,10 @@ import { JwtModule } from '@nestjs/jwt';
         expiresIn: '7d',
       },
     }),
+    forwardRef(() => AuthModule),
   ],
   controllers: [LoginJwtController],
   providers: [LoginJwtService],
+  exports: [LoginJwtService],
 })
 export class LoginJwtModule {}
