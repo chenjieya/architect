@@ -1,3 +1,4 @@
+import { Exclude } from 'class-transformer';
 import { Role } from 'src/role/entities/role.entity';
 import {
   Column,
@@ -16,6 +17,7 @@ export class User {
   username: string;
 
   @Column()
+  @Exclude()
   password: string;
 
   @ManyToMany(() => Role, {

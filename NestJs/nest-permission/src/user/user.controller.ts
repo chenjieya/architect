@@ -1,31 +1,23 @@
 import {
   Body,
+  ClassSerializerInterceptor,
   Controller,
   Get,
   Inject,
   Post,
   Req,
   UseGuards,
+  UseInterceptors,
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { Request } from 'express';
 import { AuthGuard } from '@nestjs/passport';
 import { LoginUserDto } from './dto/login-user.dto';
 import { AuthService } from 'src/auth/auth.service';
-import { Role } from 'src/role/entities/role.entity';
 import { NoNeedPermission } from 'src/custom-decorator.decorator';
 
-interface RequestPlus extends Request {
-  user: {
-    id: number;
-    username: string;
-    password: string;
-    roles: Role[];
-  };
-}
-
 @Controller('user')
-// @NoNeedPermission()
+@NoNeedPermission()
 export class UserController {
   @Inject(AuthService)
   private readonly authService: AuthService;
@@ -41,10 +33,11 @@ export class UserController {
   @UseGuards(AuthGuard('local'))
   @NoNeedPermission()
   login(@Body() loginDto: LoginUserDto, @Req() req: Request) {
-    return this.authService.loginCallback(req as RequestPlus, loginDto);
+    return this.authService.loginCallback(req, loginDto);
   }
 
   @Post('register')
+  @UseInterceptors(ClassSerializerInterceptor)
   async register(@Body() registerDto: LoginUserDto) {
     return await this.userService.register(registerDto);
   }

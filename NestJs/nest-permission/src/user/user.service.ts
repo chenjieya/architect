@@ -96,6 +96,7 @@ export class UserService {
     }
     // 不存在则进行数据保存操作
     await this.userRepository.save(registerDto);
-    return registerDto;
+    const newUser = await this.findOneByName(registerDto.username);
+    return newUser;
   }
 }

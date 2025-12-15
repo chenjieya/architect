@@ -7,38 +7,6 @@
       "title": "knk"
     },
     {
-      "type": "group",
-      "ctime": 1693185978340,
-      "items": [
-        {
-          "type": "file",
-          "ctime": 1710305843651,
-          "path": "工作日志/2024-3.md"
-        },
-        {
-          "type": "file",
-          "ctime": 1695274617472,
-          "path": "工作日志/2023-09.md"
-        },
-        {
-          "type": "file",
-          "ctime": 1695274604042,
-          "path": "工作日志/2023-08.md"
-        },
-        {
-          "type": "file",
-          "ctime": 1693529658965,
-          "path": "my_note_data/工作日志/2023-09.md"
-        },
-        {
-          "type": "file",
-          "ctime": 1693186064600,
-          "path": "my_note_data/工作日志/2023-08.md"
-        }
-      ],
-      "title": "工作日志"
-    },
-    {
       "type": "file",
       "ctime": 1697019149264,
       "path": "学习计划表.xls"
@@ -47,6 +15,36 @@
       "type": "file",
       "ctime": 1710305825963,
       "path": "杭州初鸣建筑科技有限公司/资料信息.md"
+    },
+    {
+      "type": "file",
+      "ctime": 1765773315306,
+      "path": "Nginx(finish)/docker_nginx.md"
+    },
+    {
+      "type": "file",
+      "ctime": 1765773345521,
+      "path": "Rollup(finish)/Rollup插件.md"
+    },
+    {
+      "type": "file",
+      "ctime": 1765773362395,
+      "path": "实战思路.md"
+    },
+    {
+      "type": "file",
+      "ctime": 1765773392278,
+      "path": "Linux/Linux 常用命令总结.md"
+    },
+    {
+      "type": "file",
+      "ctime": 1765773397492,
+      "path": "Linux/Linux SSH 服务管理与配置详解.md"
+    },
+    {
+      "type": "file",
+      "ctime": 1765773410419,
+      "path": "Docker(finish)/dock-componse.yml.md"
     }
   ]
 }

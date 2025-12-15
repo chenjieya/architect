@@ -21,6 +21,6 @@ export class EmployService {
   }
 
   remove(id: number) {
-    return `This action removes a #${id} employ`;
+    return `This action removes a #${id} employ ${typeof id}`;
   }
 }

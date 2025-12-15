@@ -309,7 +309,7 @@ export class AppController {
 为了获得更好的TypeScript支持，可以扩展Express的Request类型：
 
 ```typescript
-// types/express.d.ts
+// types/express.d.tsexpress.d.ts
 import { User } from '../user/user.entity';
 
 declare global {

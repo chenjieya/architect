@@ -10,8 +10,9 @@ import { RoleModule } from './role/role.module';
 import { PermissionModule } from './permission/permission.module';
 import { AuthModule } from './auth/auth.module';
 import { APP_GUARD } from '@nestjs/core';
-import { AuthGuard } from '@nestjs/passport';
+// import { AuthGuard } from '@nestjs/passport';
 import { NoNeedPermissionGuard } from './custom-guard/no-need-permission.guard';
+import { PermissionGuard } from './custom-guard/permission.guard';
 
 @Module({
   imports: [
@@ -51,6 +52,10 @@ import { NoNeedPermissionGuard } from './custom-guard/no-need-permission.guard';
     //   provide: APP_GUARD,
     //   useClass: AuthGuard('jwt'),
     // },
+    {
+      provide: APP_GUARD,
+      useClass: PermissionGuard,
+    },
   ],
 })
 export class AppModule {}

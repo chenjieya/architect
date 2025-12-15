@@ -5,15 +5,6 @@ import { Role } from 'src/role/entities/role.entity';
 import { LoginUserDto } from 'src/user/dto/login-user.dto';
 import { UserService } from 'src/user/user.service';
 
-interface RequestPlus extends Request {
-  user: {
-    id: number;
-    username: string;
-    password: string;
-    roles: Role[];
-  };
-}
-
 @Injectable()
 export class AuthService {
   @Inject(UserService)
@@ -37,9 +28,9 @@ export class AuthService {
     return user;
   }
 
-  loginCallback(req: RequestPlus, loginDto: LoginUserDto) {
+  loginCallback(req: Request, loginDto: LoginUserDto) {
     const token = this.jwtService.sign({
-      userId: loginDto.id,
+      id: loginDto.id,
       username: loginDto.username,
       roles: req.user?.roles,
     });

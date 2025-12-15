@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { PassportStrategy } from '@nestjs/passport';
 import { ExtractJwt, Strategy } from 'passport-jwt';
-import { Role } from 'src/role/entities/role.entity';
+import { User } from 'src/user/entities/user.entity';
 
 @Injectable()
 export class JwtGrategy extends PassportStrategy(Strategy) {
@@ -16,11 +16,12 @@ export class JwtGrategy extends PassportStrategy(Strategy) {
     });
   }
 
-  validate(payload: { userId: number; username: string; roles: Role[] }) {
+  validate(payload?: Omit<User, 'password'>) {
+    console.log(payload, 'payload');
     return {
-      userId: payload.userId,
-      username: payload.username,
-      roles: payload.roles,
+      id: payload?.id,
+      username: payload?.username,
+      roles: payload?.roles,
     };
   }
 }
