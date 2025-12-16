@@ -1,0 +1,9 @@
+#chat-room-container {
+  height: 100%;
+  overflow-y: auto;
+  .loading {
+    text-align: center;
+    color: white;
+    font-size: 12px;
+  }
+}

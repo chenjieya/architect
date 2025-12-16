@@ -1,0 +1,36 @@
+.el-dialog {
+  background-color: var(--chat-background-color) !important;
+  backdrop-filter: var(--chat-backdrop-filter) !important;
+  border-radius: 10px !important;
+  overflow: hidden !important;
+
+  .el-dialog__header {
+    margin-right: 0px !important;
+
+    .el-dialog__title {
+      color: white !important;
+    }
+  }
+
+  .el-dialog__body,
+  .el-dialog__footer {
+    color: white !important;
+    background-color: var(--chat-main-background-color) !important;
+    backdrop-filter: var(--chat-main-backdrop-filter) !important;
+  }
+
+  .el-dialog__body {
+    max-height: 400px !important;
+    overflow-y: auto !important;
+  }
+
+  .el-dialog__footer {
+    padding: {
+      bottom: 12px !important;
+    }
+  }
+}
+
+.el-checkbox__input .el-checkbox__inner:hover {
+  border-color: transparent !important;
+}

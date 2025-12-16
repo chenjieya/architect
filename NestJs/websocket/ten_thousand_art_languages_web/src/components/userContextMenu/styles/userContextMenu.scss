@@ -1,0 +1,17 @@
+.mx-context-menu {
+  padding: {
+    top: 5px;
+    bottom: 5px;
+  }
+  min-width: 30px;
+  background-color: #626162;
+  opacity: 0.8;
+
+  .mx-context-menu-item {
+    color: white;
+    height: 20px;
+    &:hover {
+      background-color: #6897e4;
+    }
+  }
+}

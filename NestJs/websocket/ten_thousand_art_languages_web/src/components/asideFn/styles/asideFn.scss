@@ -1,0 +1,37 @@
+#aside-fn-container {
+  width: var(--aside-width);
+  max-height: 45%;
+  min-height: 150px;
+  overflow-y: hidden;
+  border-radius: 12px;
+  margin-bottom: 12px;
+
+  background-color: var(--chat-background-color);
+  backdrop-filter: var(--chat-backdrop-filter);
+
+  color: white;
+
+  @include flex(null, center, column);
+
+  .item-project {
+    width: 90%;
+    height: 30px;
+    margin: 4px 0;
+    border: 2px solid rgba(255, 255, 255, 0.68);
+    background-color: transparent;
+    color: #ffffffa3;
+    border-radius: 10px;
+    cursor: pointer;
+
+    @include flex(center, center);
+
+    &:hover {
+      color: aqua;
+      border-color: aqua;
+    }
+  }
+
+  .badge {
+    animation: friend-request 3s infinite;
+  }
+}

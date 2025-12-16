@@ -1,0 +1,43 @@
+.aside-card-container {
+  width: var(--aside-width);
+  max-height: 45%;
+  min-height: 150px;
+  overflow-y: hidden;
+  border-radius: 12px;
+  margin-bottom: 12px;
+
+  background-color: var(--chat-background-color);
+  backdrop-filter: var(--chat-backdrop-filter);
+
+  color: white;
+  .header {
+    color: white;
+    font-weight: 700;
+    text-align: center;
+    height: 50px;
+    line-height: 50px;
+
+    .online,
+    .myfriend {
+      display: inline-block;
+      width: 70%;
+
+      // todo 打点
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      user-select: none;
+    }
+  }
+
+  .online-detail {
+    height: calc(100% - 50px);
+    overflow-y: auto;
+
+    .loading {
+      text-align: center;
+      font-size: 12px;
+      padding-bottom: 10px;
+    }
+  }
+}

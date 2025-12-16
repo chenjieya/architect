@@ -1,0 +1,21 @@
+.dialog-footer {
+  @include flex(flex-end);
+  .item-project {
+    width: 85px;
+    height: 32px;
+
+    border: 2px solid rgba(255, 255, 255, 0.68);
+    background-color: transparent;
+    border-radius: 10px;
+    cursor: pointer;
+
+    margin-left: 15px;
+
+    @include flex(center, center);
+
+    &:hover {
+      color: aqua;
+      border-color: aqua;
+    }
+  }
+}

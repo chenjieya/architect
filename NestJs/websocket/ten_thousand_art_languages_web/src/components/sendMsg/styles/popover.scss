@@ -1,0 +1,28 @@
+.enjoy-popover {
+  width: 306px !important;
+  background-color: #1f150a99 !important;
+  border: none !important;
+  border-radius: 10px !important;
+  .enjoy-container {
+    max-height: 258px;
+    @include flex;
+    flex-wrap: wrap;
+    li {
+      width: 40px;
+      height: 40px;
+      @include flex(center, center);
+      font-size: 24px;
+      cursor: pointer;
+      line-height: 1;
+    }
+  }
+
+  &.is-light {
+    .el-popper__arrow {
+      &::before {
+        background: #1f150a99 !important;
+        border: none !important;
+      }
+    }
+  }
+}

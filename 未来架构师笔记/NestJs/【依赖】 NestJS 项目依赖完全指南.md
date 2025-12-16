@@ -12,7 +12,9 @@ NestJS 是一个用于构建高效、可扩展的 Node.js 服务器端应用程�
     "@nestjs/mapped-types": "*",
     "@nestjs/passport": "^11.0.5",
     "@nestjs/platform-express": "^11.0.1",
+    "@nestjs/platform-socket.io": "^11.1.9",
     "@nestjs/typeorm": "^11.0.0",
+    "@nestjs/websockets": "^11.1.9",
     "@types/express-session": "^1.18.2",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.3",
@@ -26,6 +28,7 @@ NestJS 是一个用于构建高效、可扩展的 Node.js 服务器端应用程�
     "redis": "^5.10.0",
     "reflect-metadata": "^0.2.2",
     "rxjs": "^7.8.1",
+    "socket.io": "^4.8.1",
     "typeorm": "^0.3.28"
   },
   "devDependencies": {

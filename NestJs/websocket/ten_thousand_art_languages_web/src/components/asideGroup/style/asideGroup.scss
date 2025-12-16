@@ -1,0 +1,53 @@
+#aside-group-container {
+  li.session {
+    padding: 0 20px;
+    height: 56px;
+    overflow-x: hidden;
+    @include flex(null, center);
+    color: white;
+    cursor: pointer;
+
+    &:hover {
+      margin-left: -8px;
+      background-color: var(--chat-main-background-color);
+    }
+
+    img {
+      width: 40px;
+      height: 40px;
+      margin-right: 20px;
+    }
+
+    .group-name {
+      display: inline-block;
+      max-width: 120px;
+
+      // todo 打点
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      &.active {
+        color: #409eff;
+      }
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 1px 4px;
+      margin-left: 4px;
+      font-size: 12px;
+      font-weight: 700;
+      color: #c59512;
+      background-color: #efe2bb;
+      border-radius: 4px;
+      -webkit-transform: scale(0.8);
+      transform: scale(0.8);
+    }
+
+    .message-time {
+      flex: 1;
+
+      @include flex(flex-end);
+    }
+  }
+}
