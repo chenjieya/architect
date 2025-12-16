@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>扫码登录</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/axios@1.5.0/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <img id="img" src="" alt="" />
+    <div id="info"></div>
+
+    <script>
+      const baseUrl = 'http://localhost:3000';
+      axios.get(baseUrl + '/qrcode/generate').then((res) => {
+        document.getElementById('img').src = res.data.img;
+
+        queryStatus(res.data.qrcode_id);
+      });
+
+      async function queryStatus(id) {
+        const { data } = await axios.get(`${baseUrl}/qrcode/check?id=${id}`);
+
+        let content = '';
+        switch (data.status) {
+          case 'noscan':
+            content = '未扫码';
+            break;
+          case 'scan-wait-confirm':
+            content = '已扫码，等待确认';
+            break;
+          case 'scan-confirm':
+            content = '已确认';
+            break;
+          case 'scan-cancel':
+            content = '已取消';
+            break;
+        }
+
+        // 设置状态展示
+        document.getElementById('info').textContent = content;
+
+        // 轮巡
+        if (data.status === 'noscan' || data.status === 'scan-wait-confirm') {
+          setTimeout(async () => {
+            await queryStatus(id);
+          }, 1000);
+        }
+      }
+    </script>
+  </body>
+</html>
