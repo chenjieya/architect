@@ -337,10 +337,10 @@
 
         <div class="success-state" id="success-state">
           <i class="fas fa-check-circle"></i>
-          <h3>登录成功！</h3>
+          <h3>前往登录！</h3>
           <p>
-            您已成功登录到 <strong>example.com</strong
-            ><br />即将自动跳转到目标页面...
+            您即将前往到 <strong>alvis.org.cn</strong
+            ><br />即将自动跳转到登录页面...
           </p>
         </div>
       </div>
@@ -364,7 +364,7 @@
         axios
           .get(baseUrl + '/qrcode/scan?id=' + params.get('id'))
           .catch((e) => {
-            alert('二维码已过期');
+            alert(e.response?.data?.message || '二维码过期');
           });
 
         // 确认登录按钮事件
@@ -391,7 +391,8 @@
               // }, 3000);
             })
             .catch((e) => {
-              alert('二维码已过期');
+              console.log(e, 'eee');
+              alert(e.response?.data?.message || '二维码过期');
             });
 
           // 模拟API请求延迟
@@ -426,13 +427,13 @@
                     `;
             })
             .catch((e) => {
-              alert('二维码已过期');
+              alert(e.response?.data?.message || '二维码过期');
             });
           // }, 1000);
         });
 
         // 模拟真实网站名称（实际应用中应从后端获取）
-        const websites = ['example.com'];
+        const websites = ['alvis.org.cn'];
 
         // 随机选择一个网站名称（仅用于演示）
         const randomSite =
