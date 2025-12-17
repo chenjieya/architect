@@ -1,0 +1,449 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>扫码登录确认 | 安全验证</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+      }
+
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        padding: 20px;
+      }
+
+      .container {
+        width: 100%;
+        max-width: 500px;
+        animation: fadeIn 0.8s ease-out;
+      }
+
+      .header {
+        text-align: center;
+        margin-bottom: 30px;
+      }
+
+      .header h1 {
+        color: #2c3e50;
+        font-size: 28px;
+        font-weight: 600;
+        margin-bottom: 8px;
+        letter-spacing: 1px;
+      }
+
+      .header p {
+        color: #7f8c8d;
+        font-size: 16px;
+      }
+
+      .login-card {
+        background-color: white;
+        border-radius: 20px;
+        box-shadow:
+          0 15px 35px rgba(50, 50, 93, 0.1),
+          0 5px 15px rgba(0, 0, 0, 0.07);
+        overflow: hidden;
+        transition:
+          transform 0.3s ease,
+          box-shadow 0.3s ease;
+      }
+
+      .login-card:hover {
+        transform: translateY(-5px);
+        box-shadow:
+          0 18px 40px rgba(50, 50, 93, 0.15),
+          0 8px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      .card-header {
+        background: linear-gradient(to right, #3498db, #2ecc71);
+        padding: 30px;
+        text-align: center;
+        color: white;
+        position: relative;
+      }
+
+      .card-header i {
+        font-size: 64px;
+        margin-bottom: 15px;
+        display: block;
+        text-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .card-header h2 {
+        font-size: 24px;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+      }
+
+      .website-info {
+        padding: 35px;
+        text-align: center;
+      }
+
+      .website-info h3 {
+        color: #2c3e50;
+        font-size: 22px;
+        font-weight: 500;
+        margin-bottom: 15px;
+      }
+
+      .website-name {
+        display: inline-block;
+        background: linear-gradient(120deg, #3498db, #2ecc71);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        font-size: 28px;
+        font-weight: 700;
+        margin: 10px 0;
+        padding: 5px 15px;
+        border-radius: 10px;
+        box-shadow: 0 4px 15px rgba(52, 152, 219, 0.2);
+      }
+
+      .warning {
+        background-color: #fff9e6;
+        border-left: 4px solid #f1c40f;
+        padding: 15px;
+        margin: 25px 0;
+        border-radius: 0 8px 8px 0;
+        text-align: left;
+        display: flex;
+        align-items: flex-start;
+      }
+
+      .warning i {
+        color: #f39c12;
+        margin-right: 12px;
+        font-size: 20px;
+        margin-top: 2px;
+      }
+
+      .warning p {
+        color: #7d6608;
+        font-size: 15px;
+        line-height: 1.5;
+      }
+
+      .button-container {
+        display: flex;
+        flex-direction: column;
+        padding: 0 35px 35px;
+        gap: 18px;
+      }
+
+      .btn {
+        border: none;
+        border-radius: 12px;
+        padding: 18px;
+        font-size: 18px;
+        font-weight: 600;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: all 0.3s ease;
+        letter-spacing: 0.5px;
+      }
+
+      .btn-confirm {
+        background: linear-gradient(to right, #2ecc71, #27ae60);
+        color: white;
+        box-shadow: 0 6px 20px rgba(46, 204, 113, 0.3);
+      }
+
+      .btn-confirm:hover {
+        background: linear-gradient(to right, #27ae60, #219653);
+        box-shadow: 0 8px 25px rgba(46, 204, 113, 0.4);
+        transform: translateY(-3px);
+      }
+
+      .btn-confirm:active {
+        transform: translateY(1px);
+      }
+
+      .btn-cancel {
+        background-color: white;
+        color: #e74c3c;
+        border: 2px solid #e74c3c;
+      }
+
+      .btn-cancel:hover {
+        background-color: #e74c3c;
+        color: white;
+        box-shadow: 0 6px 15px rgba(231, 76, 60, 0.2);
+        transform: translateY(-3px);
+      }
+
+      .btn-cancel:active {
+        transform: translateY(1px);
+      }
+
+      .btn i {
+        margin-right: 10px;
+        font-size: 20px;
+      }
+
+      .footer {
+        text-align: center;
+        margin-top: 25px;
+        color: #95a5a6;
+        font-size: 14px;
+      }
+
+      .footer a {
+        color: #3498db;
+        text-decoration: none;
+        font-weight: 500;
+      }
+
+      .footer a:hover {
+        text-decoration: underline;
+      }
+
+      /* 动画效果 */
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes pulse {
+        0% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.05);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+
+      .pulse {
+        animation: pulse 2s infinite;
+      }
+
+      /* 响应式设计 */
+      @media (max-width: 600px) {
+        .container {
+          max-width: 100%;
+        }
+
+        .card-header {
+          padding: 25px 20px;
+        }
+
+        .website-info,
+        .button-container {
+          padding: 25px;
+        }
+
+        .website-name {
+          font-size: 24px;
+        }
+
+        .btn {
+          padding: 16px;
+          font-size: 16px;
+        }
+      }
+
+      /* 确认登录后的状态 */
+      .success-state {
+        display: none;
+        text-align: center;
+        padding: 40px;
+      }
+
+      .success-state i {
+        font-size: 80px;
+        color: #2ecc71;
+        margin-bottom: 25px;
+        animation: fadeIn 1s ease-out;
+      }
+
+      .success-state h3 {
+        color: #2c3e50;
+        font-size: 26px;
+        margin-bottom: 15px;
+      }
+
+      .success-state p {
+        color: #7f8c8d;
+        font-size: 18px;
+        line-height: 1.6;
+      }
+    </style>
+    <script src="https://unpkg.com/axios@1.5.0/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h1>扫码登录确认</h1>
+        <p>请确认您正在尝试登录以下网站</p>
+      </div>
+
+      <div class="login-card">
+        <div class="card-header">
+          <i class="fas fa-qrcode pulse"></i>
+          <h2>扫码登录验证</h2>
+        </div>
+
+        <div id="main-content">
+          <div class="website-info">
+            <h3>是否确认登录以下网站？</h3>
+            <div class="website-name">example.com</div>
+            <p style="color: #7f8c8d; margin-top: 10px">
+              您正在使用扫码登录功能
+            </p>
+
+            <div class="warning">
+              <i class="fas fa-exclamation-triangle"></i>
+              <p>
+                请确认您认识此网站。登录后，该网站将可以访问您的部分账户信息。如果您未尝试登录，请点击"取消"。
+              </p>
+            </div>
+          </div>
+
+          <div class="button-container">
+            <button class="btn btn-confirm" id="confirm">
+              <i class="fas fa-check-circle"></i> 确认登录
+            </button>
+            <button class="btn btn-cancel" id="cancel">
+              <i class="fas fa-times-circle"></i> 取消
+            </button>
+          </div>
+        </div>
+
+        <div class="success-state" id="success-state">
+          <i class="fas fa-check-circle"></i>
+          <h3>登录成功！</h3>
+          <p>
+            您已成功登录到 <strong>example.com</strong
+            ><br />即将自动跳转到目标页面...
+          </p>
+        </div>
+      </div>
+
+      <div class="footer">
+        <p style="margin-top: 5px">© 2025 安全登录系统 | 版本 2.1.0</p>
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        const baseUrl = 'http://192.168.0.168:3000';
+        // 获取元素
+        const confirmBtn = document.getElementById('confirm');
+        const cancelBtn = document.getElementById('cancel');
+        const mainContent = document.getElementById('main-content');
+        const successState = document.getElementById('success-state');
+
+        // 改变状态变成扫描二维码
+        const params = new URLSearchParams(window.location.search.slice(1));
+        axios
+          .get(baseUrl + '/qrcode/scan?id=' + params.get('id'))
+          .catch((e) => {
+            alert('二维码已过期');
+          });
+
+        // 确认登录按钮事件
+        confirmBtn.addEventListener('click', function () {
+          // 显示加载状态
+          confirmBtn.innerHTML =
+            '<i class="fas fa-spinner fa-spin"></i> 登录中...';
+          confirmBtn.disabled = true;
+          cancelBtn.disabled = true;
+
+          axios
+            .get(baseUrl + '/qrcode/confirm?id=' + params.get('id'))
+            .then((res) => {
+              // 隐藏主要内容，显示成功状态
+              mainContent.style.display = 'none';
+              successState.style.display = 'block';
+
+              // successState.innerHTML = `
+              //               <i class="fas fa-check-circle"></i>
+              //               <h3>登录成功！</h3>
+              //           `;
+              // setTimeout(() => {
+              window.location.href = 'login.html?id=' + params.get('id');
+              // }, 3000);
+            })
+            .catch((e) => {
+              alert('二维码已过期');
+            });
+
+          // 模拟API请求延迟
+          // setTimeout(function () {
+          //   // 模拟跳转延迟
+          //   setTimeout(function () {}, 2000);
+          // }, 1500);
+        });
+
+        // 取消按钮事件
+        cancelBtn.addEventListener('click', function () {
+          cancelBtn.innerHTML =
+            '<i class="fas fa-spinner fa-spin"></i> 取消中...';
+          cancelBtn.disabled = true;
+          confirmBtn.disabled = true;
+
+          // 模拟取消操作延迟
+          // setTimeout(function () {
+          axios
+            .get(baseUrl + '/qrcode/cancel?id=' + params.get('id'))
+            .then((res) => {
+              // 更新界面显示取消状态
+              mainContent.innerHTML = `
+                        <div class="website-info">
+                            <h3>登录已取消</h3>
+                            <div class="website-name">example.com</div>
+                            <p style="color: #7f8c8d; margin-top: 20px; font-size: 18px;">
+                                <i class="fas fa-info-circle" style="color: #3498db; font-size: 24px; margin-bottom: 15px; display: block;"></i>
+                                您已取消本次登录操作
+                            </p>
+                        </div>
+                    `;
+            })
+            .catch((e) => {
+              alert('二维码已过期');
+            });
+          // }, 1000);
+        });
+
+        // 模拟真实网站名称（实际应用中应从后端获取）
+        const websites = ['example.com'];
+
+        // 随机选择一个网站名称（仅用于演示）
+        const randomSite =
+          websites[Math.floor(Math.random() * websites.length)];
+        document.querySelector('.website-name').textContent = randomSite;
+        document.querySelectorAll('.website-name').forEach((el) => {
+          if (el.tagName === 'STRONG') {
+            el.textContent = randomSite;
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

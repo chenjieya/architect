@@ -1,8 +1,17 @@
-import { Column, Entity, JoinColumn, ManyToOne } from 'typeorm';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 import { User } from './user.entity';
 
 @Entity()
 export class FriendShip {
+  @PrimaryGeneratedColumn()
+  id: number;
+
   @Column({
     comment: '用户ID',
     name: 'user_id',

@@ -10,6 +10,7 @@ import { FriendShip } from './friend-ship.entity';
 import { FriendRequest } from './friend-request.entity';
 import { UserChatroom } from './user-chatroom.entity';
 import { ChatHistory } from './chat-history.entity';
+import { Exclude } from 'class-transformer';
 
 @Entity()
 export class User {
@@ -25,14 +26,18 @@ export class User {
     comment: '密码',
     length: 50,
   })
+  @Exclude({ toPlainOnly: true })
   password: string;
 
   @Column({
+    type: 'varchar',
     comment: '昵称',
     length: 50,
+    nullable: true,
+    default: null,
     name: 'nick_name',
   })
-  nickName: string;
+  nickName: string | null;
 
   @Column({
     comment: '邮箱',
@@ -41,11 +46,14 @@ export class User {
   email: string;
 
   @Column({
+    type: 'varchar',
     comment: '头像',
     length: 100,
+    nullable: true,
+    default: null,
     name: 'head_pic',
   })
-  headPic: string;
+  headPic: string | null;
 
   @CreateDateColumn({
     comment: '创建时间',

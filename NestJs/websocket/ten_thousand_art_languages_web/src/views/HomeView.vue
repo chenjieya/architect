@@ -10,11 +10,24 @@ import SendMsg from '@/components/sendMsg/index.vue'
 /**自定义方法 */
 import eventBus from '@/utils/eventBus'
 import type { DataType } from '@/components/asideGroup/types/asideGroup'
+import { useCheckLogin } from './composeable/useCheckLogin'
+import { generateCode } from '@/api/userApi'
+import { useUserStore } from '@/stores/user'
 
 const qrCodeVisable = ref<boolean>(false)
+const QrCode = ref<string>('')
+const qrcodeId = ref<string>('')
+
+const { isLogin } = useUserStore()
+
 /**点击登录按钮 */
-const handleLogin = () => {
+const handleLogin = async () => {
   qrCodeVisable.value = true
+  await getCode()
+
+  startPolling(1000, () => {
+    qrCodeVisable.value = false
+  })
 }
 
 /**右键菜单配置 */
@@ -65,6 +78,22 @@ const sessionInfo = ref<DataType>()
 eventBus.on('clickSession', (e) => {
   sessionInfo.value = e
 })
+
+async function getCode() {
+  const res = await generateCode()
+  QrCode.value = res.img
+  qrcodeId.value = res.qrcode_id
+}
+
+const { showMask, maskText, canRefresh, startPolling, stopPolling } = useCheckLogin(qrcodeId)
+
+const refreshQrCode = async () => {
+  stopPolling()
+  await getCode()
+  startPolling(1000, () => {
+    qrCodeVisable.value = false
+  })
+}
 </script>
 
 <template>
@@ -97,7 +126,7 @@ eventBus.on('clickSession', (e) => {
             <ChatRoom />
           </main>
           <footer class="chat-content-footer">
-            <div class="login-frame" v-if="true" @click="handleLogin">点击登录才能发送消息</div>
+            <div class="login-frame" v-if="!isLogin" @click="handleLogin">点击登录才能发送消息</div>
             <SendMsg v-else />
           </footer>
         </main>
@@ -108,10 +137,33 @@ eventBus.on('clickSession', (e) => {
     </aside>
 
     <!-- 二维码弹出框 -->
-    <el-dialog class="QrCode-dialog" v-model="qrCodeVisable" :show-close="false" width="376px">
-      <div style="width: 100%; display: flex; align-items: center; justify-content: center">
-        <!-- <img :src="QrCode" alt="" style="width: 330px;"> -->
-        <QrcodeVue value="test my qrcode, this is my create code;" :margin="3" :size="330" />
+    <el-dialog
+      class="QrCode-dialog"
+      v-model="qrCodeVisable"
+      :before-close="
+        (done) => {
+          stopPolling()
+          done()
+        }
+      "
+      :show-close="false"
+      width="376px"
+    >
+      <div
+        class="qr-wrapper"
+        style="width: 100%; display: flex; align-items: center; justify-content: center"
+      >
+        <img :src="QrCode" alt="" style="width: 330px" />
+        <!-- <QrcodeVue :value="qrcodeValue" :margin="3" :size="330" /> -->
+        <div
+          v-if="showMask"
+          class="qr-mask"
+          :class="{ clickable: canRefresh }"
+          @click="canRefresh && refreshQrCode()"
+        >
+          <span>{{ maskText }}</span>
+          <span v-if="canRefresh" class="refresh-tip">点击刷新</span>
+        </div>
       </div>
       <div class="QrCode-msg">
         <span>请使用「<strong class="login-desc-bold">微信</strong>」扫描二维码登录</span>
@@ -239,6 +291,43 @@ eventBus.on('clickSession', (e) => {
   }
 
   .QrCode-dialog {
+    .qr-wrapper {
+      position: relative;
+      width: 330px;
+      height: 330px;
+
+      .qr-img {
+        width: 100%;
+        height: 100%;
+      }
+
+      .qr-mask {
+        position: absolute;
+        width: 344px;
+        height: 330px;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.55);
+        color: #fff;
+        @include flex(center, center, column);
+        font-size: 18px;
+        cursor: default;
+
+        &.clickable {
+          cursor: pointer;
+
+          &:hover {
+            background: rgba(0, 0, 0, 0.65);
+          }
+        }
+
+        .refresh-tip {
+          font-size: 14px;
+          margin-top: 8px;
+          color: #67c23a;
+        }
+      }
+    }
+
     .QrCode-msg {
       width: 100%;
       @include flex(center, center);

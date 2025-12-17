@@ -4,12 +4,16 @@ import {
   Entity,
   JoinColumn,
   ManyToOne,
+  PrimaryGeneratedColumn,
 } from 'typeorm';
 import { User } from './user.entity';
 import { Chatroom } from './chatroom.entity';
 
 @Entity()
 export class UserChatroom {
+  @PrimaryGeneratedColumn()
+  id: number;
+
   @Column({
     comment: '用户ID',
     name: 'user_id',
