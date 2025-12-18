@@ -1,12 +1,14 @@
 <script setup lang="ts" name="UserContextMenuComp">
+import type { IUserInfo } from '@/api/userApi'
 import { ContextMenu, ContextMenuItem, type MenuOptions } from '@imengyu/vue3-context-menu'
 interface contextItemOptionsInter {
   label: string
-  handler: () => void
+  handler: (params: IUserInfo) => void
 }
 
 const props = defineProps<{
   menuOptions?: MenuOptions
+  currentUserInfo?: IUserInfo
   contextItemOptions: contextItemOptionsInter[]
 }>()
 </script>
@@ -23,7 +25,7 @@ const props = defineProps<{
       v-for="item in props.contextItemOptions"
       :key="item.label"
       :label="item.label"
-      @click="item.handler"
+      @click="() => item.handler(props.currentUserInfo!)"
     />
   </context-menu>
 </template>

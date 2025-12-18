@@ -1,27 +1,12 @@
-import {
-  Column,
-  Entity,
-  JoinColumn,
-  ManyToOne,
-  PrimaryGeneratedColumn,
-} from 'typeorm';
+import { Entity, JoinColumn, ManyToOne, PrimaryColumn } from 'typeorm';
 import { User } from './user.entity';
 
 @Entity()
 export class FriendShip {
-  @PrimaryGeneratedColumn()
-  id: number;
-
-  @Column({
-    comment: '用户ID',
-    name: 'user_id',
-  })
+  @PrimaryColumn({ name: 'user_id', comment: '用户ID' })
   userId: number;
 
-  @Column({
-    comment: '好友ID',
-    name: 'friend_id',
-  })
+  @PrimaryColumn({ name: 'friend_id', comment: '好友ID' })
   friendId: number;
 
   // 用户（关系拥有者）

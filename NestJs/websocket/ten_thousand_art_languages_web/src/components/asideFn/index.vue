@@ -2,12 +2,27 @@
 import CheckoutRow from '@/components/checkoutRow/index.vue'
 import MyDialog from '@/components/myDialog/index.vue'
 import FriendRequest from '@/components/friendRequest/index.vue'
+import type { IUserInfo } from '@/api/userApi'
+import { friendList, type IFriendRequest, friendRequestList } from '@/api/friendApi'
+import eventBus from '@/utils/eventBus'
 
 const myGroupDialogRef = ref<InstanceType<typeof MyDialog> | null>(null)
 const checkoutRef = ref<InstanceType<typeof CheckoutRow> | null>(null)
 
 /**打开创建群组弹框 */
-const handleClick = () => myGroupDialogRef.value?.openMyDialog()
+const handleClick = () => {
+  getFriendList()
+  myGroupDialogRef.value?.openMyDialog()
+}
+
+// 好友列表
+const friendlist = ref<IUserInfo[]>([])
+
+// 获取好友的请求
+async function getFriendList() {
+  const res = await friendList()
+  friendlist.value = res
+}
 
 /**关闭弹框要做的事情-初始化 */
 const handleCloseMyDialog = () => {
@@ -41,16 +56,41 @@ const handleSubmitMyBugDialog = () => {
 /**
  * 新的朋友
  */
+const friendRequestListData = ref<IFriendRequest[]>([])
 const myFriendDialogRef = ref<InstanceType<typeof MyDialog> | null>(null)
-const handleFriendClick = () => myFriendDialogRef.value?.openMyDialog()
+const handleFriendClick = () => {
+  getFriendRequestList()
+  myFriendDialogRef.value?.openMyDialog()
+}
 const handleCloseMyFriendDialog = () => {}
 const handleSubmitMyFriendDialog = () => {}
+
+// 获取好友申请
+async function getFriendRequestList() {
+  const res = await friendRequestList()
+  friendRequestListData.value = res
+}
+
+eventBus.on('handleFriendRequest', () => {
+  getFriendRequestList()
+})
+
+// const timer = setInterval(() => {
+//   getFriendRequestList()
+// }, 5000)
+
+// onUnmounted(() => clearInterval(timer))
 </script>
 
 <template>
   <div id="aside-fn-container">
     <div class="item-project" @click="handleClick">创建群聊</div>
-    <div class="item-project badge" @click="handleFriendClick">新的朋友</div>
+    <div
+      :class="{ 'item-project': true, badge: friendRequestListData.length }"
+      @click="handleFriendClick"
+    >
+      新的朋友
+    </div>
     <div class="item-project">个人信息</div>
     <div class="item-project" @click="handleBugClick">BUG反馈</div>
     <!-- 创建群聊 -->
@@ -60,7 +100,19 @@ const handleSubmitMyFriendDialog = () => {}
       @closeMyDialog="handleCloseMyDialog"
       @submitMyDialog="handleSubmitMyDialog"
     >
-      <CheckoutRow v-for="item in 20" :key="item" ref="checkoutRef" />
+      <p
+        v-if="!friendlist.length"
+        style="text-align: center; font-size: 12px; padding-bottom: 10px; padding-top: 10px"
+      >
+        暂无更多
+      </p>
+      <CheckoutRow
+        v-for="item in friendlist"
+        :key="item.id"
+        :data="item"
+        ref="checkoutRef"
+        v-else
+      />
     </MyDialog>
     <!-- 新的朋友 -->
     <MyDialog
@@ -69,7 +121,13 @@ const handleSubmitMyFriendDialog = () => {}
       @closeMyDialog="handleCloseMyFriendDialog"
       @submitMyDialog="handleSubmitMyFriendDialog"
     >
-      <FriendRequest v-for="item in 20" :key="item" />
+      <p
+        v-if="!friendRequestListData.length"
+        style="text-align: center; font-size: 12px; padding-bottom: 10px; padding-top: 10px"
+      >
+        暂无更多
+      </p>
+      <FriendRequest v-for="item in friendRequestListData" :data="item" :key="item.id" v-else />
     </MyDialog>
     <!-- 个人信息 -->
     <!-- BUG反馈 -->

@@ -84,7 +84,7 @@ class HttpClient {
           return Promise.reject(new Error('登录已过期，请重新登录'))
         }
 
-        if (status !== 200 && status !== 0) {
+        if (status !== 200 && status !== 201 && status !== 304) {
           // 业务错误
           if ((response.config as RequestConfig)?.showError !== false) {
             ElMessage.error(data.message || '请求失败')
@@ -156,7 +156,7 @@ class HttpClient {
       // 服务器响应错误
       switch (error.response.status) {
         case 400:
-          ElMessage.error('请求参数错误')
+          ElMessage.error(error.response.data?.message || '程序异常，请联系管理员')
           break
         case 401:
           ElMessage.error('未授权，请先登录')

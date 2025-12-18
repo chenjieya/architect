@@ -48,7 +48,7 @@ export class User {
   @Column({
     type: 'varchar',
     comment: '头像',
-    length: 100,
+    length: 500,
     nullable: true,
     default: null,
     name: 'head_pic',
@@ -68,7 +68,7 @@ export class User {
   updateTime: Date;
 
   // 作为用户拥有的好友关系
-  @OneToMany(() => FriendShip, (friendShip) => friendShip.friend)
+  @OneToMany(() => FriendShip, (friendShip) => friendShip.user)
   friends: FriendShip[];
 
   // 作为好友被别人添加的关系

@@ -1,5 +1,6 @@
 import './assets/css/main.css'
 import '@/assets/css/custom-element-ui.scss'
+import 'element-plus/dist/index.css'
 import '@imengyu/vue3-context-menu/lib/vue3-context-menu.css'
 import 'default-passive-events'
 

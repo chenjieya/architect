@@ -15,6 +15,7 @@ import { APP_GUARD } from '@nestjs/core';
 import { MyAuthGuard } from './custom-guard/auth.guard';
 import { ScanModule } from './scan/scan.module';
 import { RedisModule } from './redis/redis.module';
+import { FriendShipModule } from './friend-ship/friend-ship.module';
 
 const envFilePath = (() => {
   const env = process.env.NODE_ENV;
@@ -64,6 +65,7 @@ const envFilePath = (() => {
     AuthModule,
     ScanModule,
     RedisModule,
+    FriendShipModule,
   ],
   controllers: [AppController],
   providers: [

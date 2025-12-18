@@ -12,8 +12,10 @@ import SendMsg from '@/components/sendMsg/index.vue'
 import eventBus from '@/utils/eventBus'
 import type { DataType } from '@/components/asideGroup/types/asideGroup'
 import { useCheckLogin } from './composeable/useCheckLogin'
-import { generateCode } from '@/api/userApi'
+import { generateCode, type IUserInfo } from '@/api/userApi'
 import { useUserStore } from '@/stores/user'
+import { ElMessage } from 'element-plus'
+import { deleteFriend, postFriendRequest } from '@/api/friendApi'
 
 const qrCodeVisable = ref<boolean>(false)
 const QrCode = ref<string>('')
@@ -43,8 +45,10 @@ const contextItemGroupOptions = reactive(
     },
     {
       label: '添加好友',
-      handler: () => {
+      handler: async (userInfo: IUserInfo) => {
         console.log('添加好友')
+        await postFriendRequest({ friendId: userInfo.id })
+        ElMessage.success('发送好友请求成功')
       }
     },
     {
@@ -61,8 +65,11 @@ const contextItemFriendOptions = reactive(
   [
     {
       label: '删除好友',
-      handler: () => {
+      handler: async (userInfo: IUserInfo) => {
         console.log('删除好友')
+        await deleteFriend(userInfo.id)
+        ElMessage.success('好友删除成功')
+        eventBus.emit('handleFriendRequest', true)
       }
     },
     {
@@ -95,6 +102,10 @@ const refreshQrCode = async () => {
     qrCodeVisable.value = false
   })
 }
+
+onUnmounted(() => {
+  eventBus.off('handleFriendRequest')
+})
 </script>
 
 <template>
@@ -102,7 +113,7 @@ const refreshQrCode = async () => {
     <aside class="left drap-container" v-drag>
       <AsideCardComp
         draggable="true"
-        title="在线人数:120000"
+        title="群友人数:1"
         :context-item-options="contextItemGroupOptions"
       />
       <AsideCardComp

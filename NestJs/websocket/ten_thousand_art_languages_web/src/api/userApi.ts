@@ -16,7 +16,7 @@ export async function check(params: { id: string }) {
     id?: string
     status: QRCODE_STATUS
     access_token?: string
-  }>('/api/qrcode/check', params)
+  }>('/api/qrcode/check', params, { showError: true })
 }
 
 export async function generateCode() {
@@ -24,9 +24,9 @@ export async function generateCode() {
     qrcode_id: string
     img: string
     content: string
-  }>('/api/qrcode/generate')
+  }>('/api/qrcode/generate', {}, { showError: true })
 }
 
 export async function getUserInfo() {
-  return await http.get<IUserInfo>('/api/user/info')
+  return await http.get<IUserInfo>('/api/user/info', {}, { showError: true })
 }

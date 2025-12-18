@@ -8,6 +8,7 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 import { User } from './user.entity';
+import { FRIEND_REQUEST_ENUM } from 'src/enum/friend';
 
 @Entity()
 export class FriendRequest {
@@ -29,10 +30,9 @@ export class FriendRequest {
   toUserId: number;
 
   @Column({
-    comment: '状态（待处理、已同意、已拒绝）',
-    length: 10,
+    comment: '状态（0待处理、1已同意、2已拒绝）',
   })
-  status: string;
+  status: FRIEND_REQUEST_ENUM;
 
   @CreateDateColumn({
     comment: '创建时间',

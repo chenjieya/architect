@@ -6,6 +6,7 @@ import type { sendMsgType } from '@/components/sendMsg/types/sendMsg'
 type Events = {
   clickSession: DataType
   clickSendMsg: sendMsgType
+  handleFriendRequest: boolean
 }
 
 const emitter: Emitter<Events> = mitt<Events>()

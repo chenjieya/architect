@@ -1,6 +1,9 @@
 <script setup lang="ts" name="CheckoutRowComp">
 /**自定义组件 */
+import type { IUserInfo } from '@/api/userApi'
 import AvatarName from '@/components/avatarName/index.vue'
+
+const props = defineProps<{ data: IUserInfo }>()
 
 const isSelect = ref<boolean>(false)
 const handleClick = () => {
@@ -19,7 +22,7 @@ defineExpose({
 <template>
   <div id="checkout-container" @click="handleClick">
     <el-checkbox v-model="isSelect" @click="handleClick" style="margin-right: 5px" />
-    <AvatarName />
+    <AvatarName :avatar-url="data.headPic" :nickname="data.nickName || data.username" />
   </div>
 </template>
 
