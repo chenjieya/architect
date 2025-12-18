@@ -11,6 +11,15 @@ export class UserService {
     @InjectRepository(User) private readonly userReposity: Repository<User>,
   ) {}
 
+  // 根据id查找用户
+  async findUserById(id: number) {
+    return await this.userReposity.findOne({
+      where: {
+        id,
+      },
+    });
+  }
+
   // 根据名字查找用户
   async findUserByName(username: string) {
     return await this.userReposity.findOne({

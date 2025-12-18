@@ -1,5 +1,6 @@
 <script setup lang="ts" name="HomeView">
 import QrcodeVue from 'qrcode.vue'
+import { storeToRefs } from 'pinia'
 /**自定义组件 */
 import AsideCardComp from '@/components/asideCard/index.vue'
 import AsideGroupComp from '@/components/asideGroup/index.vue'
@@ -18,7 +19,7 @@ const qrCodeVisable = ref<boolean>(false)
 const QrCode = ref<string>('')
 const qrcodeId = ref<string>('')
 
-const { isLogin } = useUserStore()
+const { isLogin } = storeToRefs(useUserStore())
 
 /**点击登录按钮 */
 const handleLogin = async () => {

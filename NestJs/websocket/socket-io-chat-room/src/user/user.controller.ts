@@ -8,6 +8,7 @@ import {
   ClassSerializerInterceptor,
   Inject,
   forwardRef,
+  Get,
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { LoginUserDto } from './dto/login-user.dto';
@@ -15,7 +16,7 @@ import { RegisterUserDto } from './dto/register-user.dto';
 import { AuthGuard } from '@nestjs/passport';
 import type { Request } from 'express';
 import { AuthService } from 'src/auth/auth.service';
-import { NoNeedToken } from 'src/custom-decorator/custom.decorator';
+import { NoNeedToken, UserInfo } from 'src/custom-decorator/custom.decorator';
 
 @Controller('user')
 export class UserController {
@@ -36,7 +37,13 @@ export class UserController {
   @UseGuards(AuthGuard('local'))
   @NoNeedToken()
   login(@Body() loginDto: LoginUserDto, @Req() req: Request) {
-    console.log(req.user, 'cotroller');
     return this.authService.loginCallback(req, loginDto);
+  }
+
+  @Get('info')
+  @UseInterceptors(ClassSerializerInterceptor)
+  async getInfo(@UserInfo('id') id: string) {
+    const user = await this.userService.findUserById(+id);
+    return user;
   }
 }

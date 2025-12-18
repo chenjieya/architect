@@ -3,9 +3,10 @@ import type { Ref } from 'vue'
 import { check } from '@/api/userApi'
 import { QRCODE_STATUS } from '@/enum/qrcode'
 import { useUserStore } from '@/stores/user'
+import { ElMessage } from 'element-plus'
 
 export function useCheckLogin(qrcodeId: Ref<string>) {
-  const { setToken } = useUserStore()
+  const { setToken, getUserInfo } = useUserStore()
   const status = ref<QRCODE_STATUS | null>(null)
   const loading = ref(false)
   const timer = ref<number | null>(null)
@@ -55,6 +56,8 @@ export function useCheckLogin(qrcodeId: Ref<string>) {
     if (res.access_token) {
       localStorage.setItem('token', res.access_token)
       setToken(res.access_token)
+      await getUserInfo()
+      ElMessage.success('登录成功🏅')
       stopPolling()
       return true
     }
