@@ -1,27 +1,35 @@
 <script setup lang="ts" name="HomeView">
-import QrcodeVue from 'qrcode.vue'
+// import QrcodeVue from 'qrcode.vue'
 import { storeToRefs } from 'pinia'
 /**自定义组件 */
 import AsideCardComp from '@/components/asideCard/index.vue'
-import AsideGroupComp from '@/components/asideGroup/index.vue'
+import AsideGroupComp, { type IChatSession } from '@/components/asideGroup/index.vue'
 import ChatRoom from '@/components/chatRoom/index.vue'
 import AsideFn from '@/components/asideFn/index.vue'
 import SendMsg from '@/components/sendMsg/index.vue'
 
 /**自定义方法 */
 import eventBus from '@/utils/eventBus'
-import type { DataType } from '@/components/asideGroup/types/asideGroup'
 import { useCheckLogin } from './composeable/useCheckLogin'
 import { generateCode, type IUserInfo } from '@/api/userApi'
 import { useUserStore } from '@/stores/user'
 import { ElMessage } from 'element-plus'
 import { deleteFriend, postFriendRequest } from '@/api/friendApi'
+import { createPrivateChat } from '@/api/chatroomApi'
 
 const qrCodeVisable = ref<boolean>(false)
 const QrCode = ref<string>('')
 const qrcodeId = ref<string>('')
 
 const { isLogin } = storeToRefs(useUserStore())
+
+const chatSessionRef = ref()
+provide(
+  'instanceRef',
+  reactive({
+    chatSessionRef: chatSessionRef
+  })
+)
 
 /**点击登录按钮 */
 const handleLogin = async () => {
@@ -74,15 +82,18 @@ const contextItemFriendOptions = reactive(
     },
     {
       label: '发消息',
-      handler: () => {
+      handler: async (userInfo: IUserInfo) => {
         console.log('发消息')
+        await createPrivateChat(userInfo.id)
+        // 刷新获取谈话列表
+        chatSessionRef.value.getChatSession()
       }
     }
   ]
 )
 
 /**监听会话窗口的点击事件 */
-const sessionInfo = ref<DataType>()
+const sessionInfo = ref<IChatSession>()
 eventBus.on('clickSession', (e) => {
   sessionInfo.value = e
 })
@@ -104,7 +115,7 @@ const refreshQrCode = async () => {
 }
 
 onUnmounted(() => {
-  eventBus.off('handleFriendRequest')
+  // eventBus.off('handleFriendRequest')
 })
 </script>
 
@@ -112,13 +123,13 @@ onUnmounted(() => {
   <div id="home-container">
     <aside class="left drap-container" v-drag>
       <AsideCardComp
+        :isQun="true"
         draggable="true"
-        title="群友人数:1"
         :context-item-options="contextItemGroupOptions"
       />
       <AsideCardComp
+        :isQun="false"
         draggable="true"
-        title="我的好友"
         :context-item-options="contextItemFriendOptions"
       />
     </aside>
@@ -126,16 +137,16 @@ onUnmounted(() => {
       <div class="content">
         <aside class="session-aside">
           <el-scrollbar>
-            <AsideGroupComp />
+            <AsideGroupComp ref="chatSessionRef" />
           </el-scrollbar>
         </aside>
         <main class="session-main">
           <header class="chat-content-header">
-            <div class="name">{{ sessionInfo?.groupName }}</div>
+            <div class="name">{{ sessionInfo?.name }}</div>
             <div class="config">...</div>
           </header>
           <main class="chat-content-main">
-            <ChatRoom />
+            <ChatRoom v-if="sessionInfo" />
           </main>
           <footer class="chat-content-footer">
             <div class="login-frame" v-if="!isLogin" @click="handleLogin">点击登录才能发送消息</div>

@@ -5,9 +5,15 @@ import FriendRequest from '@/components/friendRequest/index.vue'
 import type { IUserInfo } from '@/api/userApi'
 import { friendList, type IFriendRequest, friendRequestList } from '@/api/friendApi'
 import eventBus from '@/utils/eventBus'
+import { useChatroomStore } from '@/stores/chatroom'
+import { storeToRefs } from 'pinia'
+import { createGroupChat } from '@/api/chatroomApi'
 
 const myGroupDialogRef = ref<InstanceType<typeof MyDialog> | null>(null)
 const checkoutRef = ref<InstanceType<typeof CheckoutRow> | null>(null)
+const { selectChatUser } = storeToRefs(useChatroomStore())
+
+const instanceRef = inject<{ chatSessionRef?: { getChatSession: () => void } }>('instanceRef')
 
 /**打开创建群组弹框 */
 const handleClick = () => {
@@ -35,8 +41,14 @@ const handleCloseMyDialog = () => {
 }
 
 /**点击弹框内确定按钮要做的事情-提交表单 */
-const handleSubmitMyDialog = () => {
+const handleSubmitMyDialog = async () => {
   console.log('提交表单')
+  // 创建群聊
+  await createGroupChat(selectChatUser.value.map((item) => item.id))
+  ElMessage.success('群聊创建成功')
+
+  // 刷新群聊
+  instanceRef?.chatSessionRef?.getChatSession()
 }
 
 /**

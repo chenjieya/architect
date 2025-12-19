@@ -29,7 +29,7 @@ async function rejectAddFriend() {
 }
 
 onBeforeUnmount(() => {
-  eventBus.off('handleFriendRequest')
+  // eventBus.off('handleFriendRequest')
 })
 </script>
 

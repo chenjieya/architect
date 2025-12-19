@@ -10,5 +10,6 @@ import { User } from 'src/entities/user.entity';
   imports: [TypeOrmModule.forFeature([FriendRequest, FriendShip, User])],
   controllers: [FriendShipController],
   providers: [FriendShipService],
+  exports: [FriendShipService],
 })
 export class FriendShipModule {}

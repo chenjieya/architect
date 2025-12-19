@@ -194,4 +194,13 @@ export class FriendShipService {
       success: true,
     };
   }
+
+  // 检查是否是好友关系
+  async checkFriendShip(userId: number, friendIds: number[]) {
+    const myFriendList = await this.getMyFriendList(userId);
+
+    return friendIds.every((friendId) => {
+      return myFriendList.some((item) => item.id === friendId);
+    });
+  }
 }

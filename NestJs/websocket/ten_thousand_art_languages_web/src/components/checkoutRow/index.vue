@@ -2,8 +2,11 @@
 /**自定义组件 */
 import type { IUserInfo } from '@/api/userApi'
 import AvatarName from '@/components/avatarName/index.vue'
+import { useChatroomStore } from '@/stores/chatroom'
 
 const props = defineProps<{ data: IUserInfo }>()
+
+const { selectChatUserFn, removeSelectChatUserFn } = useChatroomStore()
 
 const isSelect = ref<boolean>(false)
 const handleClick = () => {
@@ -13,6 +16,14 @@ const handleClick = () => {
 const toggleRowSelection = (flag: boolean) => {
   isSelect.value = flag
 }
+
+watchEffect(() => {
+  if (isSelect.value) {
+    selectChatUserFn(JSON.parse(JSON.stringify(props.data)))
+  } else {
+    removeSelectChatUserFn(props.data.id)
+  }
+})
 
 defineExpose({
   toggleSelection: toggleRowSelection

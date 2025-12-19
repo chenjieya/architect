@@ -16,6 +16,7 @@ import { MyAuthGuard } from './custom-guard/auth.guard';
 import { ScanModule } from './scan/scan.module';
 import { RedisModule } from './redis/redis.module';
 import { FriendShipModule } from './friend-ship/friend-ship.module';
+import { ChatroomModule } from './chatroom/chatroom.module';
 
 const envFilePath = (() => {
   const env = process.env.NODE_ENV;
@@ -49,6 +50,7 @@ const envFilePath = (() => {
           database: config.get('DB_DATABASE'),
           username: config.get('DB_NAME'),
           password: config.get('DB_PWD'),
+          timezone: 'local',
           entities: [
             ChatHistory,
             Chatroom,
@@ -57,6 +59,7 @@ const envFilePath = (() => {
             UserChatroom,
             User,
           ],
+          logger: 'simple-console',
           synchronize: config.get('DB_CREATE') === 'true',
         };
       },
@@ -66,6 +69,7 @@ const envFilePath = (() => {
     ScanModule,
     RedisModule,
     FriendShipModule,
+    ChatroomModule,
   ],
   controllers: [AppController],
   providers: [

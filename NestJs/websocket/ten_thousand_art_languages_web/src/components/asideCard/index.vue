@@ -1,4 +1,5 @@
 <script setup lang="ts" name="AsideCardComp">
+import { getChatroomUser } from '@/api/chatroomApi'
 import { friendList } from '@/api/friendApi'
 import type { IUserInfo } from '@/api/userApi'
 import AvatarName from '@/components/avatarName/index.vue'
@@ -14,15 +15,16 @@ interface contextItemOptionsInter {
 }
 const props = withDefaults(
   defineProps<{
-    title: string
+    isQun: boolean
   }>(),
   {
-    title: '我的好友'
+    isQun: false
   }
 )
 
 // 好友列表
 const friendlist = ref<IUserInfo[]>([])
+const roomList = ref<IUserInfo[]>([])
 
 // 获取好友的请求
 async function getFriendList() {
@@ -30,9 +32,21 @@ async function getFriendList() {
   friendlist.value = res
 }
 
+// 获取群好友
+async function chatroomUser(roomId: number) {
+  const res = await getChatroomUser({ chatroomId: roomId })
+  roomList.value = res
+}
+
+eventBus.on('chatroomUserRequest', (roomId) => {
+  if (props.isQun && roomId) {
+    chatroomUser(roomId)
+  }
+})
+
 // 登陆成功刷新
 watchEffect(() => {
-  if (isLogin.value) {
+  if (isLogin.value && !props.isQun) {
     getFriendList()
   }
 })
@@ -41,6 +55,20 @@ eventBus.on('handleFriendRequest', (isAdd) => {
   if (isAdd) {
     getFriendList()
   }
+})
+
+const listData = computed(() => {
+  if (props.isQun) {
+    return roomList.value
+  }
+  return friendlist.value
+})
+
+const roomTitle = computed(() => {
+  if (props.isQun) {
+    return `群友人数:${roomList.value.length}`
+  }
+  return '我的好友'
 })
 
 const userContextMenuVisable = ref(false)
@@ -60,7 +88,7 @@ const handleRightClick = (event: PointerEvent, item: IUserInfo) => {
 <template>
   <div class="aside-card-container">
     <header class="header">
-      <span class="online">{{ props.title }}</span>
+      <span class="online">{{ roomTitle }}</span>
     </header>
     <div class="online-detail">
       <el-scrollbar>
@@ -68,7 +96,7 @@ const handleRightClick = (event: PointerEvent, item: IUserInfo) => {
         <div>
           <!-- :class="'outline-item'" -->
           <AvatarName
-            v-for="item in friendlist"
+            v-for="item in listData"
             :key="item.id"
             :nickname="item.nickName || item.username"
             :avatar-url="item.headPic"
@@ -76,7 +104,7 @@ const handleRightClick = (event: PointerEvent, item: IUserInfo) => {
           />
         </div>
         <!-- <p v-if="loading" class="loading">Loading...</p> -->
-        <p v-if="!friendlist.length" class="loading">暂无更多</p>
+        <p v-if="!listData.length" class="loading">暂无更多</p>
       </el-scrollbar>
 
       <UserContextMenu

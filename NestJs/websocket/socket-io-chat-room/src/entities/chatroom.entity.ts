@@ -23,7 +23,7 @@ export class Chatroom {
   name: string;
 
   @Column({
-    comment: '类型（单聊，群聊）',
+    comment: '类型（false单聊，true群聊）',
   })
   type: boolean;
 
