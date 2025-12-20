@@ -1,0 +1,9 @@
+#person-info {
+  padding: 10px 20px;
+
+  :deep(.el-form-item) {
+    .el-form-item__content {
+      justify-content: center;
+    }
+  }
+}

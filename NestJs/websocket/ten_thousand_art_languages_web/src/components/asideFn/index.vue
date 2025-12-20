@@ -8,6 +8,7 @@ import eventBus from '@/utils/eventBus'
 import { useChatroomStore } from '@/stores/chatroom'
 import { storeToRefs } from 'pinia'
 import { createGroupChat } from '@/api/chatroomApi'
+import PersonInfo from '@/components/personInfo/index.vue'
 
 const myGroupDialogRef = ref<InstanceType<typeof MyDialog> | null>(null)
 const checkoutRef = ref<InstanceType<typeof CheckoutRow> | null>(null)
@@ -49,6 +50,25 @@ const handleSubmitMyDialog = async () => {
 
   // 刷新群聊
   instanceRef?.chatSessionRef?.getChatSession()
+}
+
+/**
+ * 个人信息
+ */
+const personInfoVisible = ref(false)
+const personSubmit = ref(false)
+const myPersonInfoDialogRef = ref<InstanceType<typeof MyDialog> | null>(null)
+function handlePersonInfoClick() {
+  myPersonInfoDialogRef.value?.openMyDialog()
+  personInfoVisible.value = true
+  personSubmit.value = false
+}
+
+function handleCloseMyPersonInfoDialog() {
+  personInfoVisible.value = false
+}
+function handleSubmitMyPersonInfoDialog() {
+  personSubmit.value = true
 }
 
 /**
@@ -103,7 +123,7 @@ eventBus.on('handleFriendRequest', () => {
     >
       新的朋友
     </div>
-    <div class="item-project">个人信息</div>
+    <div class="item-project" @click="handlePersonInfoClick">个人信息</div>
     <div class="item-project" @click="handleBugClick">BUG反馈</div>
     <!-- 创建群聊 -->
     <MyDialog
@@ -142,6 +162,14 @@ eventBus.on('handleFriendRequest', () => {
       <FriendRequest v-for="item in friendRequestListData" :data="item" :key="item.id" v-else />
     </MyDialog>
     <!-- 个人信息 -->
+    <MyDialog
+      ref="myPersonInfoDialogRef"
+      title="修改个人信息"
+      @closeMyDialog="handleCloseMyPersonInfoDialog"
+      @submitMyDialog="handleSubmitMyPersonInfoDialog"
+    >
+      <PersonInfo :personSubmit="personSubmit" :personInfoVisible="personInfoVisible" />
+    </MyDialog>
     <!-- BUG反馈 -->
     <MyDialog
       ref="myBugDialogRef"

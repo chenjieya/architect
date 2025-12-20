@@ -29,6 +29,13 @@
       bottom: 12px !important;
     }
   }
+
+  .el-form-item__label-wrap {
+    label,
+    .el-form-item__label {
+      color: #fff;
+    }
+  }
 }
 
 .el-checkbox__input .el-checkbox__inner:hover {

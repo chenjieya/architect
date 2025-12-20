@@ -49,7 +49,7 @@ export default defineConfig({
     proxy: {
       // 代理所有以 /api 开头的请求
       '/api': {
-        target: 'http://192.168.0.168:3000', // 后端地址
+        target: 'http://127.0.0.1:3000', // 后端地址
         changeOrigin: true, // 允许跨域
         rewrite: (path) => path.replace(/^\/api/, ''), // 去掉 /api 前缀
         // 其他可选配置
@@ -67,10 +67,10 @@ export default defineConfig({
       }
 
       // 如果需要代理多个路径，可以继续添加
-      // '/auth': {
-      //   target: 'http://192.168.0.168:3000',
+      // '/minio': {
+      //   target: 'http://127.0.0.1:9000',
       //   changeOrigin: true,
-      //   rewrite: (path) => path.replace(/^\/auth/, '')
+      //   rewrite: (path) => path.replace(/^\/minio/, '')
       // }
     },
 

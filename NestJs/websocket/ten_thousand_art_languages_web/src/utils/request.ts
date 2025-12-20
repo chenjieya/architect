@@ -260,4 +260,8 @@ const http = new HttpClient({
   }
 })
 
+export const minioAxios = axios.create({
+  timeout: 60000
+})
+
 export default http

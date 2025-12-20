@@ -14,7 +14,7 @@ export class ScanController {
   async generate() {
     const uuid = randomUUID();
     const qrcodeUrl = await qrcode.toDataURL(
-      `http://192.168.0.168:3000/public/confirm.html?id=${uuid}`,
+      `http://127.0.0.1:3000/public/confirm.html?id=${uuid}`,
     );
 
     // 在redis中设置对应的二维码，并加上过期时间
@@ -30,7 +30,7 @@ export class ScanController {
     return {
       qrcode_id: uuid,
       img: qrcodeUrl,
-      content: `http://192.168.0.168:3000/public/confirm.html?id=${uuid}`,
+      content: `http://127.0.0.1:3000/public/confirm.html?id=${uuid}`,
     };
   }
   // 客户端轮询来查询 二维码 状态

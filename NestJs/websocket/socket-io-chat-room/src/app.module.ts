@@ -17,6 +17,7 @@ import { ScanModule } from './scan/scan.module';
 import { RedisModule } from './redis/redis.module';
 import { FriendShipModule } from './friend-ship/friend-ship.module';
 import { ChatroomModule } from './chatroom/chatroom.module';
+import { MinioModule } from './minio/minio.module';
 
 const envFilePath = (() => {
   const env = process.env.NODE_ENV;
@@ -70,6 +71,7 @@ const envFilePath = (() => {
     RedisModule,
     FriendShipModule,
     ChatroomModule,
+    MinioModule,
   ],
   controllers: [AppController],
   providers: [
