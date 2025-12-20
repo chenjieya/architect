@@ -50,6 +50,11 @@
       "type": "file",
       "ctime": 1765871901817,
       "path": "NestJs/【依赖】 NestJS 项目依赖完全指南.md"
+    },
+    {
+      "type": "file",
+      "ctime": 1766213943847,
+      "path": "NestJs/【mino】MinIO mc 客户端完整使用指南.md"
     }
   ]
 }
