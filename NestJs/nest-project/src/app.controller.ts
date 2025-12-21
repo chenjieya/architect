@@ -3,6 +3,7 @@ import {
   Controller,
   Get,
   Headers,
+  HttpStatus,
   Inject,
   Query,
   UseGuards,
@@ -22,6 +23,7 @@ import {
 } from './custom.decorator';
 import { CustomGuard } from './custom.guard';
 import { MyLogger } from './logger/myLogger';
+import { ApiOperation, ApiResponse } from '@nestjs/swagger';
 // import { UserService } from './user/user.service';
 
 // @Controller()
@@ -45,6 +47,15 @@ export class AppController {
   @Inject(MyLogger)
   private readonly logger: MyLogger;
 
+  @ApiOperation({
+    summary: '测试swagger',
+    description: '测试swagger的描述',
+  })
+  @ApiResponse({
+    status: HttpStatus.OK,
+    description: '测试swagger成功',
+    type: String,
+  })
   @Get()
   // 该守卫中包含了内部的Service模块的调用，如果没有导出和注入的情况下是不能进行全局使用的
   // @UseGuards(AopGuard)
@@ -53,7 +64,7 @@ export class AppController {
     this.logger.error('产生了错误信息', AppService.name);
     this.logger.log('log测试', AppService.name);
     console.log(this.options);
-    throw new BadRequestException('错误了');
+    // throw new BadRequestException('错误了');
     return this.appService.getHello();
   }
 

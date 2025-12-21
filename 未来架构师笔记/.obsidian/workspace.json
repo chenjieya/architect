@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "NestJs/【logger】面向切面的日志处理.md",
+                "file": "NestJs(finish)/【进阶】大文件分片上传.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "【logger】面向切面的日志处理"
+              "title": "【进阶】大文件分片上传"
             }
           }
         ]
@@ -162,13 +162,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "NestJs/【logger】面向切面的日志处理.md",
+                "file": "NestJs(finish)/【进阶】大文件分片上传.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "【logger】面向切面的日志处理 的大纲"
+              "title": "【进阶】大文件分片上传 的大纲"
             }
           },
           {
@@ -203,22 +203,25 @@
       "obsidian-excalidraw-plugin:新建绘图文件": false
     }
   },
-  "active": "b169b35178e21aa2",
+  "active": "b126c51181683d12",
   "lastOpenFiles": [
-    "NestJs/【logger】日志处理.md",
-    "NestJs/【GraphQL】Nest中使用GraphQL.md",
-    "NestJs/【GraphQL】快速入门GraphQL.md",
-    "NestJs/【logger】面向切面的日志处理.md",
-    "NestJs/【基础】如何灵活创建DTO.md",
-    "NestJs/【mino】MinIO mc 客户端完整使用指南.md",
-    "NestJs/【登陆】扫码登录系统.md",
-    "NestJs/【依赖】 NestJS 项目依赖完全指南.md",
-    "NestJs/【数据库】Redis简介和安装.md",
-    "NestJs/【配置】NestJS 环境变量配置全指南.md",
-    "NestJs/【数据库】数据库表关系.md",
-    "NestJs/【Socket】WebSocket 的完整指南.md",
-    "NestJs/【定时器】NestJS定时任务完全指南.md",
-    "NestJs/【登陆】passport身份认证.md",
+    "NestJs(finish)/【进阶】流式传输与分片下载的深度解析.md",
+    "NestJs(finish)/【进阶】大文件分片上传.md",
+    "NestJs(finish)/【swagger】swagger自动生成API.md",
+    "NestJs(finish)/【GraphQL】Nest中使用GraphQL.md",
+    "NestJs(finish)/【logger】面向切面的日志处理.md",
+    "NestJs(finish)/【logger】日志处理.md",
+    "NestJs(finish)/【GraphQL】快速入门GraphQL.md",
+    "NestJs(finish)/【基础】如何灵活创建DTO.md",
+    "NestJs(finish)/【mino】MinIO mc 客户端完整使用指南.md",
+    "NestJs(finish)/【登陆】扫码登录系统.md",
+    "NestJs(finish)/【依赖】 NestJS 项目依赖完全指南.md",
+    "NestJs(finish)/【数据库】Redis简介和安装.md",
+    "NestJs(finish)/【配置】NestJS 环境变量配置全指南.md",
+    "NestJs(finish)/【数据库】数据库表关系.md",
+    "NestJs(finish)/【Socket】WebSocket 的完整指南.md",
+    "NestJs(finish)/【定时器】NestJS定时任务完全指南.md",
+    "NestJs(finish)/【登陆】passport身份认证.md",
     "Nginx(finish)/Nginx 基础使用.pdf",
     "Nginx(finish)/Nginx高级课程扩容与高效真.md",
     "Nginx(finish)/Nginx高级课件.pdf",
@@ -231,16 +234,13 @@
     "Rollup(finish)/Rollup插件开发.md",
     "Nginx(finish)/docker_nginx.md",
     "Docker(finish)/docker准备工作.md",
-    "Docker(finish)/docker网络.md",
-    "Docker(finish)/docker的常用命令.md",
-    "Docker(finish)/容器数据卷.md",
     "nginx(finish)/高级进阶",
     "Nginx(finish)/Nginx 安装.pdf",
     "nginx(finish)/核心技术",
     "Docker(finish)",
     "Nginx(finish)",
     "TypeScript",
-    "NestJs",
+    "NestJs(finish)",
     "未命名.canvas",
     "笔记/image/image_9ViibmeAvU.png",
     "笔记/image/img002.e1ac8197.png",
