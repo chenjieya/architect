@@ -23,6 +23,7 @@ import { LoginJwtModule } from './login-jwt/login-jwt.module';
 import { AuthModule } from './auth/auth.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { MinioModule } from './minio/minio.module';
+import { LoggerModule } from './logger/logger.module';
 
 @Module({
   imports: [
@@ -75,6 +76,7 @@ import { MinioModule } from './minio/minio.module';
     LoginJwtModule,
     AuthModule,
     MinioModule,
+    LoggerModule,
   ],
   controllers: [AppController],
   providers: [

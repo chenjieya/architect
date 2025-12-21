@@ -20,6 +20,7 @@ import {
   SetUser,
 } from './custom.decorator';
 import { CustomGuard } from './custom.guard';
+import { MyLogger } from './logger/myLogger';
 // import { UserService } from './user/user.service';
 
 // @Controller()
@@ -40,11 +41,16 @@ export class AppController {
   @Inject('OPTIONS')
   private options: Record<string, any>;
 
+  @Inject(MyLogger)
+  private readonly logger: MyLogger;
+
   @Get()
   // 该守卫中包含了内部的Service模块的调用，如果没有导出和注入的情况下是不能进行全局使用的
   // @UseGuards(AopGuard)
   getHello(): string {
     // console.log(this.userService.getUser(), '在不导出的情况下进行测试');
+    this.logger.error('产生了错误信息', AppService.name);
+    this.logger.log('log测试', AppService.name);
     console.log(this.options);
     return this.appService.getHello();
   }

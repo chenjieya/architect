@@ -5,10 +5,22 @@ import { LoggerMiddleware } from './logger.middleware';
 import { AopGuard } from './aop/aop.guard';
 import { ValidationPipe } from '@nestjs/common';
 import session from 'express-session';
+import { MyLogger } from './logger/myLogger';
 
 async function bootstrap() {
-  const app = await NestFactory.create<NestExpressApplication>(AppModule);
+  const app = await NestFactory.create<NestExpressApplication>(AppModule, {
+    // logger: ['warn', 'error'],
+
+    // 将日志放到buffer缓存区中，等到自定义的logger加载完毕之后，在进行打印
+    // bufferLogs: true,
+
+    logger: false,
+  });
   app.useStaticAssets('public', { prefix: '/static' });
+
+  // logger
+  app.useLogger(app.get(MyLogger));
+
   // 全局使用中间件
   const logger = new LoggerMiddleware();
   app.use(logger.use.bind(logger));
