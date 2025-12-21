@@ -14,5 +14,6 @@ import { Chatroom } from 'src/entities/chatroom.entity';
   ],
   controllers: [ChatroomController],
   providers: [ChatroomService],
+  exports: [ChatroomService],
 })
 export class ChatroomModule {}

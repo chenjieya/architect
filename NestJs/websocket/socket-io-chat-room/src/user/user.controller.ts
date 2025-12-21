@@ -9,6 +9,7 @@ import {
   Inject,
   forwardRef,
   Get,
+  Put,
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { LoginUserDto } from './dto/login-user.dto';
@@ -17,6 +18,7 @@ import { AuthGuard } from '@nestjs/passport';
 import type { Request } from 'express';
 import { AuthService } from 'src/auth/auth.service';
 import { NoNeedToken, UserInfo } from 'src/custom-decorator/custom.decorator';
+import { UpdateUserDto } from './dto/update-user.dto';
 
 @Controller('user')
 export class UserController {
@@ -45,5 +47,11 @@ export class UserController {
   async getInfo(@UserInfo('id') id: string) {
     const user = await this.userService.findUserById(+id);
     return user;
+  }
+
+  @Put('update-info')
+  @UseInterceptors(ClassSerializerInterceptor)
+  async updateUser(@Body() updateUser: UpdateUserDto) {
+    return await this.userService.updateUser(updateUser);
   }
 }

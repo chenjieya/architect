@@ -62,6 +62,20 @@ const envFilePath = (() => {
           ],
           logger: 'simple-console',
           synchronize: config.get('DB_CREATE') === 'true',
+          extra: {
+            connectionLimit: 10, // 最大连接数
+            connectTimeout: 10000, // 连接超时时间（毫秒）
+            acquireTimeout: 10000, // 获取连接超时时间
+            waitForConnections: true, // 等待连接
+            queueLimit: 0,
+            enableKeepAlive: true, // 启用 keep-alive
+            keepAliveInitialDelay: 0, // keep-alive 初始延迟
+          },
+          // 其他优化配置
+          poolSize: 10, // 连接池大小
+          connectorPackage: 'mysql2', // 使用 mysql2 驱动（已使用）
+          retryAttempts: 3, // 重试次数
+          retryDelay: 3000, // 重试延迟（毫秒）
         };
       },
     }),

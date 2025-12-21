@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable, OnModuleInit } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Chatroom } from 'src/entities/chatroom.entity';
 import { UserChatroom } from 'src/entities/user-chatroom.entity';
@@ -8,7 +8,7 @@ import { FriendShipService } from 'src/friend-ship/friend-ship.service';
 import { In, Repository } from 'typeorm';
 
 @Injectable()
-export class ChatroomService {
+export class ChatroomService implements OnModuleInit {
   constructor(
     private readonly shipService: FriendShipService,
     @InjectRepository(User) private readonly userRepository: Repository<User>,
@@ -17,6 +17,12 @@ export class ChatroomService {
     @InjectRepository(Chatroom)
     private readonly chatroomRepository: Repository<Chatroom>,
   ) {}
+
+  // 在模块初始化时调用
+  async onModuleInit() {
+    console.log('初始化聊天室模块...');
+    await this.createGuanFangChatroom();
+  }
 
   // 创建私聊聊天室
   async createPrivateChat(friendId: number, userInfo: UserType) {
@@ -240,5 +246,44 @@ export class ChatroomService {
     return {
       success: true,
     };
+  }
+
+  // 脚本，创建官方聊天室
+  async createGuanFangChatroom() {
+    const chatroom = await this.chatroomRepository.findOne({
+      where: {
+        name: '官方',
+      },
+    });
+
+    if (chatroom) {
+      return true;
+    }
+
+    const chatroomEntity = this.chatroomRepository.create({
+      name: '官方',
+      type: true,
+    });
+
+    await this.chatroomRepository.save(chatroomEntity);
+    return true;
+  }
+
+  // 加入官方聊天室
+  async joinGuanFangChatroom(userId: number) {
+    // 查询聊天室是不是单聊
+    const chatroom = await this.chatroomRepository.findOne({
+      where: {
+        name: '官方',
+      },
+    });
+
+    const userRelationChatroom = this.userChatroomRepository.create({
+      userId,
+      chatroomId: chatroom?.id,
+    });
+
+    await this.userChatroomRepository.save(userRelationChatroom);
+    return true;
   }
 }

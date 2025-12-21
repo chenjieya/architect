@@ -4,11 +4,14 @@ import { Repository } from 'typeorm';
 import { User } from 'src/entities/user.entity';
 import md5 from 'md5';
 import { InjectRepository } from '@nestjs/typeorm';
+import { UpdateUserDto } from './dto/update-user.dto';
+import { ChatroomService } from 'src/chatroom/chatroom.service';
 
 @Injectable()
 export class UserService {
   constructor(
     @InjectRepository(User) private readonly userReposity: Repository<User>,
+    private readonly chatroomService: ChatroomService,
   ) {}
 
   // 根据id查找用户
@@ -46,6 +49,39 @@ export class UserService {
     newUser.headPic = registerUserDto.headPic;
 
     const newUserRes = await this.userReposity.save(newUser);
+
+    // 用户注册成功之后，添加到 默认 的官方群聊中
+    await this.chatroomService.joinGuanFangChatroom(newUserRes.id);
+
     return newUserRes;
+  }
+
+  async updateUser(updateUser: UpdateUserDto) {
+    const { id: userId } = updateUser;
+    // 根据用户id查找出对应的用户
+    const userEntity = await this.userReposity.findOne({
+      where: {
+        id: userId,
+      },
+    });
+
+    // 用户不存在则报错
+    if (!userEntity) {
+      throw new BadRequestException('用户不存在');
+    }
+
+    // 更新用户信息
+    await this.userReposity.update(
+      {
+        id: userId,
+      },
+      {
+        email: updateUser.email,
+        nickName: updateUser.nickName,
+        headPic: updateUser.headPic,
+      },
+    );
+
+    return await this.findUserById(userId);
   }
 }

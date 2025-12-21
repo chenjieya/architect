@@ -11,6 +11,12 @@ export interface IUserInfo {
   updateTime: string
 }
 
+export type UpdateUserInfoType = {
+  [key in keyof Pick<IUserInfo, 'email' | 'id' | 'headPic' | 'nickName'>]: NonNullable<
+    IUserInfo[key]
+  >
+}
+
 export async function check(params: { id: string }) {
   return await http.get<{
     id?: string
@@ -29,4 +35,8 @@ export async function generateCode() {
 
 export async function getUserInfo() {
   return await http.get<IUserInfo>('/api/user/info', {}, { showError: true })
+}
+
+export async function updateUserInfo(params: UpdateUserInfoType) {
+  return await http.put<IUserInfo>('/api/user/update-info', params, { showError: true })
 }

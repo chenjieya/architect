@@ -3,11 +3,16 @@ import { getChatroomList, type IChatroom } from '@/api/chatroomApi'
 import eventBus from '@/utils/eventBus'
 import { triggerClick } from '@/utils/index'
 import { parseTime } from '@/utils/index'
+import { useUserStore } from '@/stores/user'
+import { storeToRefs } from 'pinia'
 
 export interface IChatSession extends IChatroom {
   avatarUrl: string
   isBoss: boolean
 }
+
+const store = useUserStore()
+const { isLogin } = storeToRefs(store)
 
 const chatSession = ref<IChatSession[]>()
 
@@ -32,7 +37,17 @@ async function initGetChatSession() {
 
 getChatSessionFn = initGetChatSession
 
-getChatSessionFn()
+watch(
+  () => isLogin.value,
+  (newVal) => {
+    if (newVal) {
+      getChatSessionFn()
+    }
+  },
+  {
+    immediate: true
+  }
+)
 
 let currentSession = ref<IChatSession>()
 const handleSession = (item: IChatSession) => {

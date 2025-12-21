@@ -22,11 +22,15 @@ export const useUserStore = defineStore(
       userInfo.value = res
     }
 
+    const setUserInfo = (user: IUserInfo) => {
+      userInfo.value = user
+    }
+
     const isLogin = computed(() => {
-      return token.value
+      return token.value || localStorage.getItem('token')
     })
 
-    return { setToken, getToken, token, isLogin, getUserInfo, userInfo }
+    return { setToken, getToken, token, isLogin, getUserInfo, userInfo, setUserInfo }
   },
   {
     persist: true
