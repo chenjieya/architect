@@ -65,7 +65,7 @@ const envFilePath = (() => {
           extra: {
             connectionLimit: 10, // 最大连接数
             connectTimeout: 10000, // 连接超时时间（毫秒）
-            acquireTimeout: 10000, // 获取连接超时时间
+            // acquireTimeout: 10000, // 获取连接超时时间
             waitForConnections: true, // 等待连接
             queueLimit: 0,
             enableKeepAlive: true, // 启用 keep-alive
