@@ -1,1 +1,12 @@
 {"context":"AppService","level":"error","message":"产生了错误信息","timestamp":"2025-12-21 17:11:18"}
+{"context":"AppService","level":"error","message":"产生了错误信息","timestamp":"2025-12-21 17:45:12"}
+{"context":"AppService","level":"error","message":"产生了错误信息","timestamp":"2025-12-21 17:52:29"}
+{"context":"AppService","level":"error","message":"产生了错误信息","timestamp":"2025-12-21 17:57:23"}
+{"context":"AppService","level":"error","message":"产生了错误信息","timestamp":"2025-12-21 17:58:26"}
+{"context":"AppService","level":"error","message":"产生了错误信息","timestamp":"2025-12-21 18:00:39"}
+{"context":"AppService","level":"error","message":"产生了错误信息","timestamp":"2025-12-21 18:08:52"}
+{"context":"AppService","level":"error","message":"产生了错误信息","timestamp":"2025-12-21 18:09:16"}
+{"context":"AppService","level":"error","message":"产生了错误信息","timestamp":"2025-12-21 18:11:10"}
+{"context":"HttpExceptionFilter","level":"error","message":"\n    ################################################\n    Request original url: /\n    Method: GET\n    IP: ::ffff:127.0.0.1\n    Status code: 400\n    Response: BadRequestException: 错误了(错误了)\n    ","timestamp":"2025-12-21 18:11:10"}
+{"context":"AppService","level":"error","message":"产生了错误信息","timestamp":"2025-12-21 18:12:22"}
+{"context":"HttpExceptionFilter","level":"error","message":"\n    ################################################\n    Request original url: /\n    Method: GET\n    IP: ::ffff:127.0.0.1\n    Status code: 400\n    Response: BadRequestException: 错误了({\"message\":\"错误了\",\"error\":\"Bad Request\",\"statusCode\":400})\n    ","timestamp":"2025-12-21 18:12:22"}

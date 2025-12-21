@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UserModule } from './user/user.module';
@@ -6,7 +6,7 @@ import { PersonModule } from './person/person.module';
 import { DepartModule } from './depart/depart.module';
 import { DyModuleRegisterModule } from './dy-module-register/dy-module-register.module';
 import { AopModule } from './aop/aop.module';
-import { APP_GUARD, APP_INTERCEPTOR, APP_PIPE } from '@nestjs/core';
+import { APP_FILTER, APP_GUARD, APP_INTERCEPTOR, APP_PIPE } from '@nestjs/core';
 import { GlobalGuardGuard } from './global-guard.guard';
 import { TimeoutInterceptor } from './timeout.interceptor';
 import { ValidatePipe } from './validate.pipe';
@@ -24,6 +24,10 @@ import { AuthModule } from './auth/auth.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { MinioModule } from './minio/minio.module';
 import { LoggerModule } from './logger/logger.module';
+import { NextFunction, Request, Response } from 'express';
+import { LoggerMiddleware } from './logger.middleware';
+import { LoggerInterceptor } from './logger.interceptor';
+import { LoggerFilter } from './logger.filter';
 
 @Module({
   imports: [
@@ -112,14 +116,26 @@ import { LoggerModule } from './logger/logger.module';
     //   provide: APP_INTERCEPTOR,
     //   useClass: TimeoutInterceptor,
     // },
+    {
+      provide: APP_INTERCEPTOR,
+      useClass: LoggerInterceptor,
+    },
 
     // 注册成全局管道
     // {
     //   provide: APP_PIPE,
     //   useClass: ValidatePipe,
     // },
+
+    {
+      provide: APP_FILTER,
+      useClass: LoggerFilter,
+    },
   ],
 })
-export class AppModule {
+export class AppModule implements NestModule {
   // constructor(private dataSource: DataSource) {}
+  configure(consumer: MiddlewareConsumer) {
+    consumer.apply(LoggerMiddleware).forRoutes('*');
+  }
 }

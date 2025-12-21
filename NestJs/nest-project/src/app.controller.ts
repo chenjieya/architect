@@ -1,4 +1,5 @@
 import {
+  BadRequestException,
   Controller,
   Get,
   Headers,
@@ -52,6 +53,7 @@ export class AppController {
     this.logger.error('产生了错误信息', AppService.name);
     this.logger.log('log测试', AppService.name);
     console.log(this.options);
+    throw new BadRequestException('错误了');
     return this.appService.getHello();
   }
 

@@ -22,8 +22,8 @@ async function bootstrap() {
   app.useLogger(app.get(MyLogger));
 
   // 全局使用中间件
-  const logger = new LoggerMiddleware();
-  app.use(logger.use.bind(logger));
+  // const logger = new LoggerMiddleware();
+  // app.use(logger.use.bind(logger));
   // 使用全局的守卫
   // 该方法是失败的，因为nest是全局的container来管理对象的，如果在此处new一个对象，会导致无法使用依赖注入
   // app.useGlobalGuards(new AopGuard());
