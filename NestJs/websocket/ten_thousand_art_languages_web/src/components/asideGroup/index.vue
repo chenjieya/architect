@@ -64,7 +64,7 @@ watch(currentSession, (newVal) => {
 })
 
 onBeforeUnmount(() => {
-  eventBus.off('clickSession')
+  // eventBus.off('clickSession')
 })
 
 defineExpose({
@@ -83,7 +83,7 @@ defineExpose({
     >
       <img :src="item.avatarUrl" alt="群头像" />
       <span class="group-name" :class="item?.id === currentSession?.id ? 'active' : ''">{{
-        item.name
+        !item.type ? item.showChatroomName : item.name
       }}</span>
       <!-- <span class="group-name">{{ (Math.random()*10+"").substring(2, parseInt(Math.random()*10)) }}</span> -->
       <span class="tag" v-if="item.isBoss">官方</span>

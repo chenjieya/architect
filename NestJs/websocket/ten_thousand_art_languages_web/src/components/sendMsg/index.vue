@@ -7,6 +7,10 @@ import MyIcon from '@/components/myIcon/index.vue'
 /**自定义方法 */
 import { emojis as enjoys } from '@/utils/constant/enjoy'
 import eventBus from '@/utils/eventBus'
+import { useUserStore } from '@/stores/user'
+import { storeToRefs } from 'pinia'
+const store = useUserStore()
+const { userInfo } = storeToRefs(store)
 
 /**控制语音和键盘类型 */
 const isAudio = ref(false)
@@ -50,9 +54,15 @@ const handleSendMsg = () => {
 
   // 先添加消息在发送请求
   const currentMsg: sendMsgType = {
-    from: '我',
+    from: userInfo.value?.id!,
     to: null,
-    content: input.value
+    content: input.value,
+    sender: {
+      id: userInfo.value?.id!,
+      username: userInfo.value!.username,
+      nickName: userInfo.value!.nickName,
+      headPic: userInfo.value!.headPic
+    }
   }
   addChatMsg(currentMsg)
   // todo 发送请求

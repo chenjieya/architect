@@ -15,6 +15,8 @@ import vDrag from './directives/v-drag'
 
 import autoExpose from 'unplugin-vue-setup-extend-plus/dist/client/index'
 
+import Socketio from '@/plugins/socket.io'
+
 const app = createApp(App)
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
   app.component(key, component)
@@ -23,5 +25,12 @@ app.use(pinia)
 app.directive('drag', vDrag)
 app.use(autoExpose)
 app.use(router)
+
+app.use(Socketio, {
+  connection: import.meta.env.VITE_WS_URL,
+  options: {
+    autoConnect: false
+  }
+})
 
 app.mount('#app')

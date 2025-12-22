@@ -86,9 +86,7 @@ export class ChatroomService implements OnModuleInit {
 
     await this.userChatroomRepository.save([entity1, entity2]);
 
-    return {
-      success: true,
-    };
+    return chatroom;
   }
 
   // 创建群聊聊天室
@@ -133,9 +131,7 @@ export class ChatroomService implements OnModuleInit {
 
     await this.userChatroomRepository.save(userRelationChatroom);
 
-    return {
-      success: true,
-    };
+    return chatroom;
   }
 
   // 获取用户所属群聊接口
@@ -161,12 +157,34 @@ export class ChatroomService implements OnModuleInit {
       relations: ['userChatrooms'],
     });
 
-    return chatroomList.map((item) => {
-      return {
-        ...item,
-        userCount: item.userChatrooms.length,
-      };
-    });
+    const res = await Promise.all(
+      chatroomList.map(async (item) => {
+        // 单聊展示对方用户的信息
+        if (!item.type) {
+          // 找到除了自己的另外一个用户
+          const otherUser = item.userChatrooms.find(
+            (user) => user.userId !== userId,
+          );
+          const user = await this.userRepository.findOne({
+            where: {
+              id: otherUser?.userId,
+            },
+          });
+
+          return {
+            ...item,
+            showChatroomName: user?.nickName || user?.username,
+            userCount: item.userChatrooms.length,
+          };
+        }
+        return {
+          ...item,
+          userCount: item.userChatrooms.length,
+        };
+      }),
+    );
+
+    return res;
   }
 
   // 查询聊天室有哪些用户

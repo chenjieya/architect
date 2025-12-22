@@ -1,5 +1,11 @@
 export type sendMsgType = {
-  from: string
+  from: number
   to: string | null
   content: string
+  sender: {
+    id: number
+    username: string
+    nickName: string | null
+    headPic: string | null
+  }
 }

@@ -16,12 +16,14 @@ import { useUserStore } from '@/stores/user'
 import { ElMessage } from 'element-plus'
 import { deleteFriend, postFriendRequest } from '@/api/friendApi'
 import { createPrivateChat } from '@/api/chatroomApi'
+import { socketKey } from '@/plugins/socket.io'
 
 const qrCodeVisable = ref<boolean>(false)
 const QrCode = ref<string>('')
 const qrcodeId = ref<string>('')
+const socket = inject(socketKey)
 
-const { isLogin } = storeToRefs(useUserStore())
+const { isLogin, userInfo: userInfoStore } = storeToRefs(useUserStore())
 
 const chatSessionRef = ref()
 provide(
@@ -84,7 +86,16 @@ const contextItemFriendOptions = reactive(
       label: '发消息',
       handler: async (userInfo: IUserInfo) => {
         console.log('发消息')
-        await createPrivateChat(userInfo.id)
+        const chatroom = await createPrivateChat(userInfo.id)
+
+        // 触发用户加入聊天室的消息
+        // socket?.emit('joinRoom', {
+        //   userId: [userInfo.id],
+        //   chatroomId: chatroom.id,
+        //   formId: userInfoStore.value!.id,
+        //   fromName: userInfoStore.value!.nickName || userInfoStore.value!.username
+        // })
+
         // 刷新获取谈话列表
         chatSessionRef.value.getChatSession()
       }
@@ -95,6 +106,7 @@ const contextItemFriendOptions = reactive(
 /**监听会话窗口的点击事件 */
 const sessionInfo = ref<IChatSession>()
 eventBus.on('clickSession', (e) => {
+  console.log('session')
   sessionInfo.value = e
 })
 
@@ -142,11 +154,13 @@ onUnmounted(() => {
         </aside>
         <main class="session-main">
           <header class="chat-content-header">
-            <div class="name">{{ sessionInfo?.name }}</div>
+            <div class="name">
+              {{ !sessionInfo?.type ? sessionInfo?.showChatroomName : sessionInfo?.name }}
+            </div>
             <div class="config">...</div>
           </header>
           <main class="chat-content-main">
-            <ChatRoom v-if="sessionInfo" />
+            <ChatRoom v-if="sessionInfo" :sessionInfo="sessionInfo" />
           </main>
           <footer class="chat-content-footer">
             <div class="login-frame" v-if="!isLogin" @click="handleLogin">点击登录才能发送消息</div>

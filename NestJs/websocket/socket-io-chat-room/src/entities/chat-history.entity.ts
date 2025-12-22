@@ -1,5 +1,6 @@
 import {
   Column,
+  CreateDateColumn,
   Entity,
   JoinColumn,
   ManyToOne,
@@ -34,7 +35,7 @@ export class ChatHistory {
   })
   senderId: number;
 
-  @Column({
+  @CreateDateColumn({
     comment: '发送时间',
     name: 'send_time',
   })

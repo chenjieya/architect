@@ -18,6 +18,8 @@ import { RedisModule } from './redis/redis.module';
 import { FriendShipModule } from './friend-ship/friend-ship.module';
 import { ChatroomModule } from './chatroom/chatroom.module';
 import { MinioModule } from './minio/minio.module';
+import { ChatModule } from './chat/chat.module';
+import { ChatHistoryModule } from './chat-history/chat-history.module';
 
 const envFilePath = (() => {
   const env = process.env.NODE_ENV;
@@ -86,6 +88,8 @@ const envFilePath = (() => {
     FriendShipModule,
     ChatroomModule,
     MinioModule,
+    ChatModule,
+    ChatHistoryModule,
   ],
   controllers: [AppController],
   providers: [

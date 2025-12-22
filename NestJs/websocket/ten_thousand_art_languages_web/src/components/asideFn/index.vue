@@ -9,10 +9,14 @@ import { useChatroomStore } from '@/stores/chatroom'
 import { storeToRefs } from 'pinia'
 import { createGroupChat } from '@/api/chatroomApi'
 import PersonInfo from '@/components/personInfo/index.vue'
+import { socketKey } from '@/plugins/socket.io'
+import { useUserStore } from '@/stores/user'
 
 const myGroupDialogRef = ref<InstanceType<typeof MyDialog> | null>(null)
 const checkoutRef = ref<InstanceType<typeof CheckoutRow> | null>(null)
 const { selectChatUser } = storeToRefs(useChatroomStore())
+const { userInfo: userInfoStore } = storeToRefs(useUserStore())
+const socket = inject(socketKey)
 
 const instanceRef = inject<{ chatSessionRef?: { getChatSession: () => void } }>('instanceRef')
 
@@ -45,8 +49,16 @@ const handleCloseMyDialog = () => {
 const handleSubmitMyDialog = async () => {
   console.log('提交表单')
   // 创建群聊
-  await createGroupChat(selectChatUser.value.map((item) => item.id))
+  const ids = selectChatUser.value.map((item) => item.id)
+  const chatroom = await createGroupChat(ids)
   ElMessage.success('群聊创建成功')
+
+  socket?.emit('joinRoom', {
+    userId: ids,
+    chatroomId: chatroom.id,
+    formId: userInfoStore.value!.id,
+    fromName: userInfoStore.value!.nickName || userInfoStore.value!.username
+  })
 
   // 刷新群聊
   instanceRef?.chatSessionRef?.getChatSession()

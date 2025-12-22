@@ -24,6 +24,7 @@
     "pinia": "^2.1.7",
     "pinia-plugin-persistedstate": "^4.7.1",
     "qrcode.vue": "^3.4.1",
+    "socket.io-client": "^4.8.1",
     "unplugin-auto-import": "^0.17.3",
     "unplugin-vue-setup-extend-plus": "^1.0.1",
     "vue": "^3.4.31",

@@ -4,6 +4,7 @@ import type { IUserInfo } from './userApi'
 export interface IChatroom {
   id: number
   name: string
+  showChatroomName: string
   type: boolean
   createTime: string
   updateTime: string
@@ -24,12 +25,17 @@ export interface IChatroomUser extends Omit<IChatroom, 'userChatrooms'> {
 
 // 创建私聊聊天室
 export async function createPrivateChat(id: number) {
-  return await http.get<{ success: boolean }>(`/api/chatroom/create-private-chat/${id}`)
+  return await http.get<Omit<IChatroom, 'userChatrooms' | 'userCount'>>(
+    `/api/chatroom/create-private-chat/${id}`
+  )
 }
 
 // 创建群聊聊天室
 export async function createGroupChat(params: number[]) {
-  return await http.post<{ success: boolean }>(`/api/chatroom/create-group-chat`, params)
+  return await http.post<Omit<IChatroom, 'userChatrooms' | 'userCount'>>(
+    `/api/chatroom/create-group-chat`,
+    params
+  )
 }
 
 // 获取用户所有的聊天室

@@ -1,6 +1,6 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { RegisterUserDto } from './dto/register-user.dto';
-import { Repository } from 'typeorm';
+import { In, Repository } from 'typeorm';
 import { User } from 'src/entities/user.entity';
 import md5 from 'md5';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -13,6 +13,15 @@ export class UserService {
     @InjectRepository(User) private readonly userReposity: Repository<User>,
     private readonly chatroomService: ChatroomService,
   ) {}
+
+  // 根据id查找用户
+  async findUserByIds(ids: number[]) {
+    return await this.userReposity.find({
+      where: {
+        id: In(ids),
+      },
+    });
+  }
 
   // 根据id查找用户
   async findUserById(id: number) {

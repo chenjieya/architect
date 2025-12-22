@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "NestJs(finish)/【进阶】大文件分片上传.md",
+                "file": "NestJs(finish)/【Socket】WebSocket 的完整指南.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "【进阶】大文件分片上传"
+              "title": "【Socket】WebSocket 的完整指南"
             }
           }
         ]
@@ -162,13 +162,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "NestJs(finish)/【进阶】大文件分片上传.md",
+                "file": "NestJs(finish)/【Socket】WebSocket 的完整指南.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "【进阶】大文件分片上传 的大纲"
+              "title": "【Socket】WebSocket 的完整指南 的大纲"
             }
           },
           {
@@ -203,14 +203,14 @@
       "obsidian-excalidraw-plugin:新建绘图文件": false
     }
   },
-  "active": "b126c51181683d12",
+  "active": "b169b35178e21aa2",
   "lastOpenFiles": [
-    "NestJs(finish)/【进阶】流式传输与分片下载的深度解析.md",
+    "NestJs(finish)/【logger】日志处理.md",
     "NestJs(finish)/【进阶】大文件分片上传.md",
+    "NestJs(finish)/【进阶】流式传输与分片下载的深度解析.md",
     "NestJs(finish)/【swagger】swagger自动生成API.md",
     "NestJs(finish)/【GraphQL】Nest中使用GraphQL.md",
     "NestJs(finish)/【logger】面向切面的日志处理.md",
-    "NestJs(finish)/【logger】日志处理.md",
     "NestJs(finish)/【GraphQL】快速入门GraphQL.md",
     "NestJs(finish)/【基础】如何灵活创建DTO.md",
     "NestJs(finish)/【mino】MinIO mc 客户端完整使用指南.md",
