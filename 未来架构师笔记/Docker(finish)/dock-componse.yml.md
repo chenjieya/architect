@@ -1,4 +1,6 @@
 
+## 1. ruoyi框架得yml
+
 ```yml
 version : '3'
 services:
@@ -82,6 +84,9 @@ networks:
   net:
 	  name: mynet
 ```
+
+
+## 2. dockerComponse.yml 分析
 
 ```yaml
 Compose和Docker兼容性：
@@ -377,4 +382,113 @@ Compose和Docker兼容性：
         deploy:
           placement:
             constraints: [node.role == manager]
+```
+
+## 3. NestJs聊天室yml
+
+```yaml
+version: "3.9"
+services:
+  # ======================
+  # 后端 NestJS
+  # ======================
+  nest-backend:
+    build:
+      context: ../socket-io-chat-room
+      dockerfile: Dockerfile
+    container_name: nest-backend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - redis
+      - minio
+      - mysql
+    environment:
+      - NODE_ENV=production
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - MINIO_HOST=minio
+      - MINIO_PORT=9000
+      - MINIO_BUCKET=chat-room
+      - MINIO_ACCESS_KEY=jie.chen
+      - MINIO_SECRET_KEY=chenjie+00
+      - DB_HOST=mysql
+      - DB_PORT=3306  # 端口对应得是容器得端口，不是宿主机暴露出来得端口
+      - DB_DATABASE=nest-chat-production
+      - JWT_SECRET=alvis
+      - DB_NAME=root
+      - DB_PWD=chenjie+00
+      - DB_CREATE=true
+    networks:
+      - app-network
+
+  # ======================
+  # 前端 Vue3 + Nginx
+  # ======================
+  frontend:
+    image: nginx:latest
+    container_name: vue-frontend
+    ports:
+      - "5173:80"
+    volumes:
+      - ../dist:/usr/share/nginx/html
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - nest-backend
+    networks:
+      - app-network
+
+  # ======================
+  # Redis
+  # ======================
+  redis:
+    image: redis:7
+    container_name: redis
+    ports:
+      - "6380:6379"
+    networks:
+      - app-network
+
+  # ======================
+  # MinIO
+  # ======================
+  minio:
+    image: minio/minio
+    container_name: minio
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    environment:
+      MINIO_ROOT_USER: jie.chen
+      MINIO_ROOT_PASSWORD: chenjie+00
+    command: server /data --console-address ":9001"
+    volumes:
+      - minio-data:/data
+    networks:
+      - app-network
+
+  # ======================
+  # MySQL
+  # ======================
+  mysql:
+    image: mysql:8.0
+    container_name: mysql
+    ports:
+      - "3307:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: chenjie+00
+      MYSQL_DATABASE: nest-chat-production
+    volumes:
+      - mysql-data:/var/lib/mysql
+    networks:
+      - app-network
+
+# 使用docker得默认数据卷地址
+volumes:
+  minio-data:
+  mysql-data:
+
+networks:
+  app-network:
+    driver: bridge
 ```

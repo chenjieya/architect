@@ -11,12 +11,42 @@
             "id": "b169b35178e21aa2",
             "type": "leaf",
             "state": {
-              "type": "pdf",
+              "type": "markdown",
               "state": {
-                "file": "Docker(finish)/docker.pdf"
+                "file": "Docker(finish)/dock-componse.yml.md",
+                "mode": "source",
+                "source": false
               },
-              "icon": "lucide-file-text",
-              "title": "docker"
+              "icon": "lucide-file",
+              "title": "dock-componse.yml"
+            }
+          },
+          {
+            "id": "3f2fe13500fb70d0",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Docker(finish)/容器数据卷.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "容器数据卷"
+            }
+          },
+          {
+            "id": "bbcc5aae2ce30fce",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "NestJs(finish)/【mino】MinIO mc 客户端完整使用指南.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "【mino】MinIO mc 客户端完整使用指南"
             }
           }
         ]
@@ -160,13 +190,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Docker(finish)/docker.pdf",
+                "file": "Docker(finish)/dock-componse.yml.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "docker 的大纲"
+              "title": "dock-componse.yml 的大纲"
             }
           },
           {
@@ -203,9 +233,14 @@
   },
   "active": "b169b35178e21aa2",
   "lastOpenFiles": [
+    "Docker(finish)/容器数据卷.md",
+    "Docker(finish)/docker的常用命令.md",
+    "Docker(finish)/docker准备工作.md",
+    "Docker(finish)/docker.pdf",
+    "Docker(finish)/docker网络.md",
+    "NestJs(finish)/【mino】MinIO mc 客户端完整使用指南.md",
     "Docker(finish)/dock-componse.yml.md",
     "Nginx(finish)/docker_nginx.md",
-    "Docker(finish)/docker.pdf",
     "NestJs(finish)/【Socket】WebSocket 的完整指南.md",
     "NestJs(finish)/【logger】日志处理.md",
     "NestJs(finish)/【进阶】大文件分片上传.md",
@@ -215,7 +250,6 @@
     "NestJs(finish)/【logger】面向切面的日志处理.md",
     "NestJs(finish)/【GraphQL】快速入门GraphQL.md",
     "NestJs(finish)/【基础】如何灵活创建DTO.md",
-    "NestJs(finish)/【mino】MinIO mc 客户端完整使用指南.md",
     "NestJs(finish)/【登陆】扫码登录系统.md",
     "NestJs(finish)/【依赖】 NestJS 项目依赖完全指南.md",
     "NestJs(finish)/【数据库】Redis简介和安装.md",
@@ -228,10 +262,6 @@
     "Nginx(finish)/Nginx高级课件.pdf",
     "Nginx(finish)/Nginx课件.pdf",
     "Linux/Linux SSH 服务管理与配置详解.md",
-    "Linux/Linux 常用命令总结.md",
-    "TypeScript/【装饰器】reflect-metadata.md",
-    "Rollup(finish)/Rollup插件.md",
-    "Rollup(finish)/Rollup插件开发.md",
     "nginx(finish)/高级进阶",
     "Nginx(finish)/Nginx 安装.pdf",
     "nginx(finish)/核心技术",
