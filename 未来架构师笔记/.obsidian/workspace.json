@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Docker(finish)/dock-componse.yml.md",
+                "file": "前端工具链/【概述】前端工具链简介.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "dock-componse.yml"
+              "title": "【概述】前端工具链简介"
             }
           },
           {
@@ -190,13 +190,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Docker(finish)/dock-componse.yml.md",
+                "file": "前端工具链/【概述】前端工具链简介.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "dock-componse.yml 的大纲"
+              "title": "【概述】前端工具链简介 的大纲"
             }
           },
           {
@@ -233,13 +233,15 @@
   },
   "active": "b169b35178e21aa2",
   "lastOpenFiles": [
+    "Docker(finish)/dock-componse.yml.md",
+    "前端工具链/【概述】前端工具链简介.md",
+    "前端工具链",
     "Docker(finish)/容器数据卷.md",
     "Docker(finish)/docker的常用命令.md",
     "Docker(finish)/docker准备工作.md",
     "Docker(finish)/docker.pdf",
     "Docker(finish)/docker网络.md",
     "NestJs(finish)/【mino】MinIO mc 客户端完整使用指南.md",
-    "Docker(finish)/dock-componse.yml.md",
     "Nginx(finish)/docker_nginx.md",
     "NestJs(finish)/【Socket】WebSocket 的完整指南.md",
     "NestJs(finish)/【logger】日志处理.md",
@@ -267,7 +269,6 @@
     "nginx(finish)/核心技术",
     "Docker(finish)",
     "Nginx(finish)",
-    "TypeScript",
     "未命名.canvas",
     "笔记/image/image_9ViibmeAvU.png",
     "笔记/image/img002.e1ac8197.png",
