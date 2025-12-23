@@ -11,14 +11,12 @@
             "id": "b169b35178e21aa2",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "pdf",
               "state": {
-                "file": "NestJs(finish)/【Socket】WebSocket 的完整指南.md",
-                "mode": "source",
-                "source": false
+                "file": "Docker(finish)/docker.pdf"
               },
-              "icon": "lucide-file",
-              "title": "【Socket】WebSocket 的完整指南"
+              "icon": "lucide-file-text",
+              "title": "docker"
             }
           }
         ]
@@ -162,13 +160,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "NestJs(finish)/【Socket】WebSocket 的完整指南.md",
+                "file": "Docker(finish)/docker.pdf",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "【Socket】WebSocket 的完整指南 的大纲"
+              "title": "docker 的大纲"
             }
           },
           {
@@ -177,8 +175,8 @@
             "state": {
               "type": "advanced-tables-toolbar",
               "state": {},
-              "icon": "lucide-file",
-              "title": "插件不再活动"
+              "icon": "lucide-ghost",
+              "title": "advanced-tables-toolbar"
             }
           }
         ],
@@ -205,6 +203,10 @@
   },
   "active": "b169b35178e21aa2",
   "lastOpenFiles": [
+    "Docker(finish)/dock-componse.yml.md",
+    "Nginx(finish)/docker_nginx.md",
+    "Docker(finish)/docker.pdf",
+    "NestJs(finish)/【Socket】WebSocket 的完整指南.md",
     "NestJs(finish)/【logger】日志处理.md",
     "NestJs(finish)/【进阶】大文件分片上传.md",
     "NestJs(finish)/【进阶】流式传输与分片下载的深度解析.md",
@@ -219,28 +221,23 @@
     "NestJs(finish)/【数据库】Redis简介和安装.md",
     "NestJs(finish)/【配置】NestJS 环境变量配置全指南.md",
     "NestJs(finish)/【数据库】数据库表关系.md",
-    "NestJs(finish)/【Socket】WebSocket 的完整指南.md",
     "NestJs(finish)/【定时器】NestJS定时任务完全指南.md",
     "NestJs(finish)/【登陆】passport身份认证.md",
     "Nginx(finish)/Nginx 基础使用.pdf",
     "Nginx(finish)/Nginx高级课程扩容与高效真.md",
     "Nginx(finish)/Nginx高级课件.pdf",
     "Nginx(finish)/Nginx课件.pdf",
-    "Docker(finish)/dock-componse.yml.md",
     "Linux/Linux SSH 服务管理与配置详解.md",
     "Linux/Linux 常用命令总结.md",
     "TypeScript/【装饰器】reflect-metadata.md",
     "Rollup(finish)/Rollup插件.md",
     "Rollup(finish)/Rollup插件开发.md",
-    "Nginx(finish)/docker_nginx.md",
-    "Docker(finish)/docker准备工作.md",
     "nginx(finish)/高级进阶",
     "Nginx(finish)/Nginx 安装.pdf",
     "nginx(finish)/核心技术",
     "Docker(finish)",
     "Nginx(finish)",
     "TypeScript",
-    "NestJs(finish)",
     "未命名.canvas",
     "笔记/image/image_9ViibmeAvU.png",
     "笔记/image/img002.e1ac8197.png",
