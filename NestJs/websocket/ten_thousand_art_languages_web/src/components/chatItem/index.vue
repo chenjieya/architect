@@ -48,7 +48,7 @@ const dialogVisible = ref(false)
     </div>
 
     <el-dialog v-model="dialogVisible">
-      <img w-full :src="props.message.content" alt="聊天预览图片" />
+      <img style="width: 100%; height: 100%" :src="props.message.content" alt="聊天预览图片" />
     </el-dialog>
   </div>
 </template>
