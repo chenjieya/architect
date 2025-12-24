@@ -1,11 +1,14 @@
 <script setup lang="ts" name="ChatItemComp">
 /**类型 */
 import type { sendMsgType } from '@/components/sendMsg/types/sendMsg'
+import { CHAT_HISTORY_TYPE_ENUM } from '@/enum/chat-history'
 import { useUserStore } from '@/stores/user'
 import { storeToRefs } from 'pinia'
 const store = useUserStore()
 const { userInfo } = storeToRefs(store)
 const props = withDefaults(defineProps<sendMsgType>(), {})
+
+const dialogVisible = ref(false)
 </script>
 
 <template>
@@ -25,9 +28,28 @@ const props = withDefaults(defineProps<sendMsgType>(), {})
         <span>(未知)</span>
       </div>
       <div class="chat-content">
-        <div class="text">{{ props.content }}</div>
+        <div class="text" v-if="props.message.type === CHAT_HISTORY_TYPE_ENUM.IMAGE">
+          <img
+            @dblclick="() => (dialogVisible = true)"
+            style="max-width: 100px; max-height: 100px"
+            :src="props.message.content"
+            alt="聊天图片"
+          />
+        </div>
+        <div class="text" v-if="props.message.type === CHAT_HISTORY_TYPE_ENUM.FILE">
+          <a :href="props.message.content" download style="color: #1d90f5">{{
+            props.message.content
+          }}</a>
+        </div>
+        <div class="text" v-else>
+          {{ props.message.content }}
+        </div>
       </div>
     </div>
+
+    <el-dialog v-model="dialogVisible">
+      <img w-full :src="props.message.content" alt="聊天预览图片" />
+    </el-dialog>
   </div>
 </template>
 

@@ -9,6 +9,7 @@ import {
 } from 'typeorm';
 import { Chatroom } from './chatroom.entity';
 import { User } from './user.entity';
+import { CHAT_HISTORY_TYPE_ENUM } from 'src/enum/chat-history';
 
 @Entity()
 export class ChatHistory {
@@ -22,6 +23,12 @@ export class ChatHistory {
     length: 500,
   })
   content: string;
+
+  @Column({
+    comment: '聊天内容类型（0文本、1图片、2文件）',
+    default: CHAT_HISTORY_TYPE_ENUM.TEXT,
+  })
+  type: CHAT_HISTORY_TYPE_ENUM;
 
   @Column({
     comment: '聊天室ID',

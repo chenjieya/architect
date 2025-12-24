@@ -89,7 +89,10 @@ function initSocket() {
         localMsgContent.value.push({
           from: payload.userId,
           to: null,
-          content: payload.message.content,
+          message: {
+            type: payload.message.type,
+            content: payload.message.content
+          },
           sender: {
             id: payload.userId,
             username: payload.username,
@@ -152,8 +155,8 @@ const addChat = (msg: sendMsgType) => {
     sendUserId: msg.from,
     chatroomId: porps.sessionInfo?.id,
     message: {
-      type: 'text',
-      content: msg.content
+      type: msg.message.type,
+      content: msg.message.content
     }
   })
 }
@@ -182,7 +185,10 @@ watch(
       return {
         from: item.sender.id,
         to: null,
-        content: item.content,
+        message: {
+          type: item.type,
+          content: item.content
+        },
         sender: {
           id: item.sender.id,
           username: item.sender.username,
@@ -231,7 +237,7 @@ onBeforeUnmount(() => {
               </div>
             </div>
           </div> -->
-          <ChatItem v-bind="item" v-for="item in realMsgContent" :key="item.content" />
+          <ChatItem v-bind="item" v-for="item in realMsgContent" :key="item.message.content" />
         </div>
       </div>
     </el-scrollbar>

@@ -8,6 +8,7 @@ import { Server, Socket } from 'socket.io';
 import { ChatService } from './chat.service';
 import { UserService } from 'src/user/user.service';
 import { ChatHistoryService } from 'src/chat-history/chat-history.service';
+import { CHAT_HISTORY_TYPE_ENUM } from 'src/enum/chat-history';
 
 interface IJoinRoomPayload {
   chatroomId: number;
@@ -23,7 +24,7 @@ interface ISendMessagePayload {
 }
 
 interface Message {
-  type: 'text' | 'image';
+  type: CHAT_HISTORY_TYPE_ENUM;
   content: string;
 }
 
@@ -70,6 +71,7 @@ export class ChatGateway {
       chatroomId: +roomName,
       senderId: +payload.sendUserId,
       content: payload.message.content,
+      type: payload.message.type,
     });
 
     const user = await this.userService.findUserById(+payload.sendUserId);
@@ -78,7 +80,10 @@ export class ChatGateway {
     this.service.to(roomName).emit('message', {
       type: 'sendMessage',
       userId: payload.sendUserId,
-      message: payload.message,
+      message: {
+        type: payload.message.type,
+        content: payload.message.content,
+      },
       username: user?.username,
       nickName: user?.nickName,
       headPic: user?.headPic,

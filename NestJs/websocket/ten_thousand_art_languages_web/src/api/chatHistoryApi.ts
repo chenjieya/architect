@@ -1,8 +1,10 @@
+import type { CHAT_HISTORY_TYPE_ENUM } from '@/enum/chat-history'
 import http from '@/utils/request'
 
 interface IChatHistory {
   id: number
   content: string
+  type: CHAT_HISTORY_TYPE_ENUM
   chatroomId: number
   senderId: number
   sendTime: string
