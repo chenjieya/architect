@@ -36,7 +36,7 @@ const dialogVisible = ref(false)
             alt="聊天图片"
           />
         </div>
-        <div class="text" v-if="props.message.type === CHAT_HISTORY_TYPE_ENUM.FILE">
+        <div class="text" v-else-if="props.message.type === CHAT_HISTORY_TYPE_ENUM.FILE">
           <a :href="props.message.content" download style="color: #1d90f5">{{
             props.message.content
           }}</a>
