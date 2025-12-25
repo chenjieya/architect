@@ -93,6 +93,7 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
 
   @SubscribeMessage('joinRoom')
   async joinRoom(client: Socket, payload: IJoinRoomPayload) {
+    console.log(payload, 'joinROom');
     if (!payload.chatroomId || !payload.userId.length) {
       return '用户ID 和 房间ID 不能为空';
     }
@@ -153,7 +154,6 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
     const userId = client.data.userId;
     if (!userId) return;
-    console.log(payload.chatroomIds, 'ids');
     payload.chatroomIds.forEach((chatroomId) => {
       // 重新加入到之前的所有房间中
       client.join(chatroomId.toString());
@@ -173,6 +173,7 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
         // 通知所有用户 的socket 房间已经创建了
         this.service.to(socketId).emit('chatroomCreated', {
           chatroomId: payload.chatroomId,
+          memberIds: payload.memberIds,
         });
       });
     });

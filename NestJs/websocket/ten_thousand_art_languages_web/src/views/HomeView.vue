@@ -87,19 +87,6 @@ const contextItemFriendOptions = reactive(
       handler: async (userInfo: IUserInfo) => {
         console.log('发消息')
         await createPrivateChat(userInfo.id)
-
-        // 触发用户加入聊天室的消息
-        socket?.on('chatroomCreated', (payload: { chatroomId: number }) => {
-          socket?.emit('joinRoom', {
-            userId: [userInfo.id],
-            chatroomId: payload.chatroomId,
-            formId: userInfoStore.value!.id,
-            fromName: userInfoStore.value!.nickName || userInfoStore.value!.username
-          })
-
-          // 刷新获取谈话列表
-          chatSessionRef.value.getChatSession()
-        })
       }
     }
   ]
@@ -129,6 +116,22 @@ const refreshQrCode = async () => {
     qrCodeVisable.value = false
   })
 }
+
+onMounted(() => {
+  // 触发用户加入聊天室的消息
+  socket?.on('chatroomCreated', (payload: { chatroomId: number; memberIds: number[] }) => {
+    console.log(payload, 'payload')
+    socket?.emit('joinRoom', {
+      userId: payload.memberIds.filter((id) => id !== userInfoStore.value?.id),
+      chatroomId: payload.chatroomId,
+      formId: userInfoStore.value!.id,
+      fromName: userInfoStore.value!.nickName || userInfoStore.value!.username
+    })
+
+    // 刷新获取谈话列表
+    chatSessionRef.value.getChatSession()
+  })
+})
 
 onUnmounted(() => {
   // eventBus.off('handleFriendRequest')

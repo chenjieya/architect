@@ -50,20 +50,8 @@ const handleSubmitMyDialog = async () => {
   console.log('提交表单')
   // 创建群聊
   const ids = selectChatUser.value.map((item) => item.id)
-  const chatroom = await createGroupChat(ids)
+  await createGroupChat(ids)
   ElMessage.success('群聊创建成功')
-
-  socket?.on('chatroomCreated', (payload: { chatroomId: number }) => {
-    socket?.emit('joinRoom', {
-      userId: ids,
-      chatroomId: payload.chatroomId,
-      formId: userInfoStore.value!.id,
-      fromName: userInfoStore.value!.nickName || userInfoStore.value!.username
-    })
-
-    // 刷新群聊
-    instanceRef?.chatSessionRef?.getChatSession()
-  })
 }
 
 /**
@@ -126,6 +114,19 @@ eventBus.on('handleFriendRequest', () => {
 // }, 5000)
 
 // onUnmounted(() => clearInterval(timer))
+onMounted(() => {
+  socket?.on('chatroomCreated', (payload: { chatroomId: number; memberIds: number[] }) => {
+    socket?.emit('joinRoom', {
+      userId: payload.memberIds.filter((id) => id !== userInfoStore.value?.id),
+      chatroomId: payload.chatroomId,
+      formId: userInfoStore.value!.id,
+      fromName: userInfoStore.value!.nickName || userInfoStore.value!.username
+    })
+
+    // 刷新群聊
+    instanceRef?.chatSessionRef?.getChatSession()
+  })
+})
 </script>
 
 <template>
