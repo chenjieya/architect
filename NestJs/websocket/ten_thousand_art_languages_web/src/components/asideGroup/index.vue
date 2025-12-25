@@ -58,9 +58,9 @@ const handleSession = (item: IChatSession, index: number) => {
   if (currentSession.value?.id === item.id) {
     return
   }
-  currentSession.value = item
   localStorage.setItem(key, index + '')
   selectNum.value = index
+  currentSession.value = item
   eventBus.emit('clickSession', [item, chatSession.value!])
 }
 

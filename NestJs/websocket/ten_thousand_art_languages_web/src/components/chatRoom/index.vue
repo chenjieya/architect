@@ -218,6 +218,7 @@ watch(
     initSocket()
 
     // 1. 获取到一百条历史记录 - 加载到本地的历史记录中
+    cursorPagination.value.cursor = undefined
     const historyChatRecord = await getHistoryChatRecord(cursorPagination.value.limit)
     firstRequestMsgContent.value = historyChatRecord.map((item) => {
       return {
