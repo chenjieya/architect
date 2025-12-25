@@ -9,6 +9,7 @@ export interface IChatroom {
   createTime: string
   updateTime: string
   userChatrooms: IUserChatroom[]
+  otherUser?: IUserInfo
   userCount: number
 }
 

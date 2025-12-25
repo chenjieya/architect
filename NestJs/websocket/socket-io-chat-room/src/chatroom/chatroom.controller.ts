@@ -36,6 +36,7 @@ export class ChatroomController {
   }
 
   @Get('list')
+  @UseInterceptors(ClassSerializerInterceptor)
   async list(@UserInfo('id') userId: string) {
     return await this.chatroomService.getChatWindowList(+userId);
   }

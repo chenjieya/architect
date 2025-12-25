@@ -13,6 +13,8 @@ export interface IChatSession extends IChatroom {
 
 const store = useUserStore()
 const { isLogin } = storeToRefs(store)
+const key = 'selectSessionNum'
+const selectNum = ref(Number(localStorage.getItem(key)))
 
 const chatSession = ref<IChatSession[]>()
 
@@ -22,16 +24,18 @@ async function initGetChatSession() {
   const res = (await getChatroomList()) as IChatSession[]
   res.forEach((item) => {
     item.avatarUrl =
-      'https://pic2.zhimg.com/v2-31cbe31a6a08c35ff3b8b8bae295e6fe_r.jpg?source=1940ef5c'
+      !item.type && item.otherUser?.headPic
+        ? item.otherUser.headPic
+        : 'https://pic2.zhimg.com/v2-31cbe31a6a08c35ff3b8b8bae295e6fe_r.jpg?source=1940ef5c'
+
     if (item.name === '官方') {
       item.isBoss = true
     }
   })
   chatSession.value = res
-  const selectNum = chatSession.value.length - 1 >= 0 ? chatSession.value.length - 1 : 0
-  triggerClick('#aside-group-container .session', selectNum)
+  triggerClick('#aside-group-container .session', selectNum.value)
   nextTick(() => {
-    currentSession.value = { ...chatSession.value![selectNum] }
+    currentSession.value = { ...chatSession.value![selectNum.value] }
   })
 }
 
@@ -50,11 +54,13 @@ watch(
 )
 
 let currentSession = ref<IChatSession>()
-const handleSession = (item: IChatSession) => {
+const handleSession = (item: IChatSession, index: number) => {
   if (currentSession.value?.id === item.id) {
     return
   }
   currentSession.value = item
+  localStorage.setItem(key, index + '')
+  selectNum.value = index
   eventBus.emit('clickSession', [item, chatSession.value!])
 }
 
@@ -76,10 +82,10 @@ defineExpose({
   <ul id="aside-group-container">
     <li
       class="session"
-      v-for="item in chatSession"
+      v-for="(item, index) in chatSession"
       :key="item.name"
       :title="item.name"
-      @click="handleSession(item)"
+      @click="handleSession(item, index)"
     >
       <img :src="item.avatarUrl" alt="群头像" />
       <span class="group-name" :class="item?.id === currentSession?.id ? 'active' : ''">{{

@@ -188,6 +188,7 @@ export class ChatroomService implements OnModuleInit {
           return {
             ...item,
             showChatroomName: user?.nickName || user?.username,
+            otherUser: user,
             userCount: item.userChatrooms.length,
           };
         }
