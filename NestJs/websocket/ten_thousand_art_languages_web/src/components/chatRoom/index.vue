@@ -13,11 +13,11 @@ import { useUserStore } from '@/stores/user'
 import { storeToRefs } from 'pinia'
 import { debounce } from '@/utils/index'
 const store = useUserStore()
-const { userInfo } = storeToRefs(store)
+const { userInfo, token } = storeToRefs(store)
 
-const socket = inject(socketKey)
+const socket = inject(socketKey)!
 
-const porps = defineProps<{ sessionInfo: IChatSession }>()
+const porps = defineProps<{ sessionInfo: IChatSession; allSessionInfo: IChatSession[] }>()
 
 const cursorPagination = ref<ICursorPagination>({
   cursor: undefined,
@@ -95,6 +95,9 @@ function initSocket() {
 
   // 连接socket（如果未连接）
   if (!socket?.connected) {
+    socket.auth = {
+      token: token.value
+    }
     socket?.connect()
   }
 
@@ -137,11 +140,8 @@ function initSocket() {
   socket?.on('connect', async () => {
     console.log('Socket已连接')
     if (porps.sessionInfo?.id) {
-      socket.emit('joinRoom', {
-        chatroomId: porps.sessionInfo.id,
-        userId: [userInfo.value?.id],
-        formId: userInfo.value!.id,
-        fromName: userInfo.value!.nickName || userInfo.value!.username
+      socket.emit('rejoinRooms', {
+        chatroomIds: porps.allSessionInfo.map((item) => item.id) || []
       })
     }
   })

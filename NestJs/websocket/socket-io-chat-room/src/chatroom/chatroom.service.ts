@@ -6,6 +6,7 @@ import { User } from 'src/entities/user.entity';
 import type { User as UserType } from 'src/auth/local.gratety';
 import { FriendShipService } from 'src/friend-ship/friend-ship.service';
 import { In, Repository } from 'typeorm';
+import { EventEmitter2 } from '@nestjs/event-emitter';
 
 @Injectable()
 export class ChatroomService implements OnModuleInit {
@@ -16,6 +17,7 @@ export class ChatroomService implements OnModuleInit {
     private readonly userChatroomRepository: Repository<UserChatroom>,
     @InjectRepository(Chatroom)
     private readonly chatroomRepository: Repository<Chatroom>,
+    private readonly eventEmitter: EventEmitter2,
   ) {}
 
   // 在模块初始化时调用
@@ -86,6 +88,12 @@ export class ChatroomService implements OnModuleInit {
 
     await this.userChatroomRepository.save([entity1, entity2]);
 
+    // 提醒socket创建聊天室成功
+    this.eventEmitter.emit('chatroom.created', {
+      chatroomId: chatroom.id,
+      memberIds: [userInfo.id, friendId],
+    });
+
     return chatroom;
   }
 
@@ -130,6 +138,12 @@ export class ChatroomService implements OnModuleInit {
     });
 
     await this.userChatroomRepository.save(userRelationChatroom);
+
+    // 提醒socket创建聊天室成功
+    this.eventEmitter.emit('chatroom.created', {
+      chatroomId: chatroom.id,
+      memberIds: [userInfo.id, ...friendIds],
+    });
 
     return chatroom;
   }

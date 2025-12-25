@@ -53,15 +53,17 @@ const handleSubmitMyDialog = async () => {
   const chatroom = await createGroupChat(ids)
   ElMessage.success('群聊创建成功')
 
-  socket?.emit('joinRoom', {
-    userId: ids,
-    chatroomId: chatroom.id,
-    formId: userInfoStore.value!.id,
-    fromName: userInfoStore.value!.nickName || userInfoStore.value!.username
-  })
+  socket?.on('chatroomCreated', (payload: { chatroomId: number }) => {
+    socket?.emit('joinRoom', {
+      userId: ids,
+      chatroomId: payload.chatroomId,
+      formId: userInfoStore.value!.id,
+      fromName: userInfoStore.value!.nickName || userInfoStore.value!.username
+    })
 
-  // 刷新群聊
-  instanceRef?.chatSessionRef?.getChatSession()
+    // 刷新群聊
+    instanceRef?.chatSessionRef?.getChatSession()
+  })
 }
 
 /**

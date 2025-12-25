@@ -3,12 +3,18 @@ import {
   SubscribeMessage,
   WebSocketServer,
   MessageBody,
+  OnGatewayConnection,
+  OnGatewayDisconnect,
+  ConnectedSocket,
 } from '@nestjs/websockets';
 import { Server, Socket } from 'socket.io';
 import { ChatService } from './chat.service';
 import { UserService } from 'src/user/user.service';
 import { ChatHistoryService } from 'src/chat-history/chat-history.service';
 import { CHAT_HISTORY_TYPE_ENUM } from 'src/enum/chat-history';
+import { BadGatewayException } from '@nestjs/common';
+import { AuthService } from 'src/auth/auth.service';
+import { OnEvent } from '@nestjs/event-emitter';
 
 interface IJoinRoomPayload {
   chatroomId: number;
@@ -30,14 +36,60 @@ interface Message {
 }
 
 @WebSocketGateway({ cors: { origin: '*' } })
-export class ChatGateway {
+export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
   constructor(
     private readonly chatService: ChatService,
     private readonly userService: UserService,
     private readonly chatHistoryService: ChatHistoryService,
+    private readonly authService: AuthService,
   ) {}
 
   @WebSocketServer() service: Server;
+  private userSocketIdMap: Map<number, Set<string>> = new Map();
+
+  handleConnection(client: Socket) {
+    try {
+      const { token } = client.handshake.auth;
+      if (!token) {
+        throw new BadGatewayException('没有token');
+      }
+
+      // 解析token
+      const user = this.authService.verferJwtToken(token);
+      if (!user?.id) {
+        console.log('用户id不存在');
+        throw new BadGatewayException('没有token');
+      }
+
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+      client.data.userId = user.id;
+
+      if (!this.userSocketIdMap.has(user.id)) {
+        this.userSocketIdMap.set(user.id, new Set([]));
+      }
+
+      this.userSocketIdMap.get(user.id)!.add(client.id);
+      console.log(this.userSocketIdMap, 'map-connection', user.id);
+    } catch {
+      client.disconnect(true);
+    }
+  }
+
+  handleDisconnect(client: Socket) {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+    const userId = client.data.userId;
+    if (!userId) return;
+
+    const socketIds = this.userSocketIdMap.get(userId);
+    socketIds?.delete(client.id);
+
+    if (socketIds && socketIds.size === 0) {
+      this.userSocketIdMap.delete(userId);
+    }
+
+    console.log('socket disconnected', client.id);
+    console.log(this.userSocketIdMap, 'map-disconnect');
+  }
 
   @SubscribeMessage('joinRoom')
   async joinRoom(client: Socket, payload: IJoinRoomPayload) {
@@ -89,6 +141,40 @@ export class ChatGateway {
       username: user?.username,
       nickName: user?.nickName,
       headPic: user?.headPic,
+    });
+  }
+
+  // 断开链接之后重新加入所有的房间
+  @SubscribeMessage('rejoinRooms')
+  rejoinRooms(
+    @ConnectedSocket() client: Socket,
+    @MessageBody() payload: { chatroomIds: number[] },
+  ) {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+    const userId = client.data.userId;
+    if (!userId) return;
+    console.log(payload.chatroomIds, 'ids');
+    payload.chatroomIds.forEach((chatroomId) => {
+      // 重新加入到之前的所有房间中
+      client.join(chatroomId.toString());
+    });
+
+    console.log(client.rooms, 'rooms');
+  }
+
+  @OnEvent('chatroom.created')
+  handleCreateRoom(payload: { chatroomId: number; memberIds: number[] }) {
+    console.log(payload.memberIds, 'adasdaljdalsjd');
+    payload.memberIds.forEach((userId) => {
+      console.log(this.userSocketIdMap, 'this.userSocketIdMap.');
+      const socketIds = this.userSocketIdMap.get(userId);
+      console.log(socketIds, userId, 'xxxxxxx');
+      socketIds?.forEach((socketId) => {
+        // 通知所有用户 的socket 房间已经创建了
+        this.service.to(socketId).emit('chatroomCreated', {
+          chatroomId: payload.chatroomId,
+        });
+      });
     });
   }
 }

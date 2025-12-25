@@ -4,7 +4,7 @@ import type { sendMsgType } from '@/components/sendMsg/types/sendMsg'
 import type { IChatSession } from '@/components/asideGroup/index.vue'
 
 type Events = {
-  clickSession: IChatSession
+  clickSession: [IChatSession, IChatSession[]]
   clickSendMsg: sendMsgType
   handleFriendRequest: boolean
   chatroomUserRequest: number

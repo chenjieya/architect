@@ -86,18 +86,20 @@ const contextItemFriendOptions = reactive(
       label: '发消息',
       handler: async (userInfo: IUserInfo) => {
         console.log('发消息')
-        const chatroom = await createPrivateChat(userInfo.id)
+        await createPrivateChat(userInfo.id)
 
         // 触发用户加入聊天室的消息
-        // socket?.emit('joinRoom', {
-        //   userId: [userInfo.id],
-        //   chatroomId: chatroom.id,
-        //   formId: userInfoStore.value!.id,
-        //   fromName: userInfoStore.value!.nickName || userInfoStore.value!.username
-        // })
+        socket?.on('chatroomCreated', (payload: { chatroomId: number }) => {
+          socket?.emit('joinRoom', {
+            userId: [userInfo.id],
+            chatroomId: payload.chatroomId,
+            formId: userInfoStore.value!.id,
+            fromName: userInfoStore.value!.nickName || userInfoStore.value!.username
+          })
 
-        // 刷新获取谈话列表
-        chatSessionRef.value.getChatSession()
+          // 刷新获取谈话列表
+          chatSessionRef.value.getChatSession()
+        })
       }
     }
   ]
@@ -105,9 +107,11 @@ const contextItemFriendOptions = reactive(
 
 /**监听会话窗口的点击事件 */
 const sessionInfo = ref<IChatSession>()
+const allSessionInfo = ref<IChatSession[]>()
 eventBus.on('clickSession', (e) => {
   console.log('session')
-  sessionInfo.value = e
+  sessionInfo.value = e[0]
+  allSessionInfo.value = e[1]
 })
 
 async function getCode() {
@@ -160,7 +164,11 @@ onUnmounted(() => {
             <div class="config">...</div>
           </header>
           <main class="chat-content-main">
-            <ChatRoom v-if="sessionInfo" :sessionInfo="sessionInfo" />
+            <ChatRoom
+              v-if="sessionInfo"
+              :sessionInfo="sessionInfo"
+              :allSessionInfo="allSessionInfo!"
+            />
           </main>
           <footer class="chat-content-footer">
             <div class="login-frame" v-if="!isLogin" @click="handleLogin">点击登录才能发送消息</div>

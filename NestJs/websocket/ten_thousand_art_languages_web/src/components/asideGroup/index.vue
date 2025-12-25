@@ -55,7 +55,7 @@ const handleSession = (item: IChatSession) => {
     return
   }
   currentSession.value = item
-  eventBus.emit('clickSession', item)
+  eventBus.emit('clickSession', [item, chatSession.value!])
 }
 
 watch(currentSession, (newVal) => {

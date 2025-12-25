@@ -20,6 +20,7 @@ import { ChatroomModule } from './chatroom/chatroom.module';
 import { MinioModule } from './minio/minio.module';
 import { ChatModule } from './chat/chat.module';
 import { ChatHistoryModule } from './chat-history/chat-history.module';
+import { EventEmitterModule } from '@nestjs/event-emitter';
 
 const envFilePath = (() => {
   const env = process.env.NODE_ENV;
@@ -81,6 +82,7 @@ const envFilePath = (() => {
         };
       },
     }),
+    EventEmitterModule.forRoot(),
     UserModule,
     AuthModule,
     ScanModule,

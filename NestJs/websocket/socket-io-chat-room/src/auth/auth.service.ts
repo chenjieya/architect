@@ -11,6 +11,7 @@ import { JwtService } from '@nestjs/jwt';
 import type { Request } from 'express';
 import { RedisService } from 'src/redis/redis.service';
 import { QRCODE_STATUS } from 'src/enum/qrcode';
+import { User } from './local.gratety';
 
 @Injectable()
 export class AuthService {
@@ -66,5 +67,9 @@ export class AuthService {
     return {
       access_token: token,
     };
+  }
+
+  verferJwtToken(token: string): User {
+    return this.jwtService.verify(token) as User;
   }
 }
