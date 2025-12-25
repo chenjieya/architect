@@ -1,6 +1,7 @@
 import type { CHAT_HISTORY_TYPE_ENUM } from '@/enum/chat-history'
 
 export type sendMsgType = {
+  id: number
   from: number
   to: string | null
   message: {

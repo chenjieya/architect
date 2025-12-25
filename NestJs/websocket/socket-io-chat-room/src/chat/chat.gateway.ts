@@ -18,6 +18,7 @@ interface IJoinRoomPayload {
 }
 
 interface ISendMessagePayload {
+  id: number;
   sendUserId: number;
   chatroomId: number;
   message: Message;
@@ -79,6 +80,7 @@ export class ChatGateway {
     // 向房间内的所有成员发送消息
     this.service.to(roomName).emit('message', {
       type: 'sendMessage',
+      id: payload.id,
       userId: payload.sendUserId,
       message: {
         type: payload.message.type,

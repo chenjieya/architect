@@ -8,9 +8,10 @@ import eventBus from '@/utils/eventBus'
 import type { sendMsgType } from '../sendMsg/types/sendMsg'
 import type { IChatSession } from '../asideGroup/index.vue'
 import { socketKey } from '@/plugins/socket.io'
-import { getHistoryList } from '@/api/chatHistoryApi'
+import { getHistoryList, type ICursorPagination } from '@/api/chatHistoryApi'
 import { useUserStore } from '@/stores/user'
 import { storeToRefs } from 'pinia'
+import { debounce } from '@/utils/index'
 const store = useUserStore()
 const { userInfo } = storeToRefs(store)
 
@@ -18,24 +19,48 @@ const socket = inject(socketKey)
 
 const porps = defineProps<{ sessionInfo: IChatSession }>()
 
-const count = ref(0)
+const cursorPagination = ref<ICursorPagination>({
+  cursor: undefined,
+  limit: 50
+})
+
 /**聊天页面的滚动条是否进行加载 */
 const loading = ref(false)
 /**聊天页面的所有信息都已经加载完毕 */
-const noMore = computed(() => {
-  return count.value >= 10
-})
+const hasMore = ref<boolean>(false)
+
 /**当滚动条加载或者已经没有新消息的时候，禁止滚动条在继续加载 */
-const disabled = computed(() => loading.value || noMore.value)
+const disabled = computed(() => loading.value || !hasMore.value)
 /**滚动条加载时候做的事情-分页加载历史消息记录 */
-const load = (fn: () => void) => {
+const load = async (fn: () => void) => {
   loading.value = true
-  setTimeout(() => {
-    count.value += 2
+  try {
+    const data = await getHistoryChatRecord(cursorPagination.value.limit)
+    afterRequestMsgContent.value = data.map((item) => {
+      return {
+        id: item.id,
+        from: item.sender.id,
+        to: null,
+        message: {
+          type: item.type,
+          content: item.content
+        },
+        sender: {
+          id: item.sender.id,
+          username: item.sender.username,
+          nickName: item.sender.nickName,
+          headPic: item.sender.headPic
+        }
+      }
+    })
+    await nextTick()
     fn()
+  } finally {
     loading.value = false
-  }, 2000)
+  }
 }
+
+const debounceFn = debounce(load)
 
 /**测试滚动条-开始 */
 const handleScroll = (e: { scrollLeft: number; scrollTop: number }) => {
@@ -44,7 +69,7 @@ const handleScroll = (e: { scrollLeft: number; scrollTop: number }) => {
   }
   // 处理滚动事件
   if (e.scrollTop == 0) {
-    // load(() => scrollRef.value?.setScrollTop(30))
+    debounceFn(() => scrollRef.value?.setScrollTop(80 * cursorPagination.value.limit))
   }
 }
 
@@ -87,6 +112,7 @@ function initSocket() {
       // 确保消息添加到当前活跃的会话
       if (payload.userId !== userInfo.value?.id) {
         localMsgContent.value.push({
+          id: payload.id,
           from: payload.userId,
           to: null,
           message: {
@@ -152,6 +178,7 @@ const addChat = (msg: sendMsgType) => {
 
   // 发送消息，通知其他用户
   socket?.emit('sendMessage', {
+    id: msg.id,
     sendUserId: msg.from,
     chatroomId: porps.sessionInfo?.id,
     message: {
@@ -162,8 +189,19 @@ const addChat = (msg: sendMsgType) => {
 }
 
 /** 获取当前聊天室的所有聊天记录 */
-async function getHistoryChatRecord() {
-  return (await getHistoryList({ chatroomId: +porps.sessionInfo?.id! })) || []
+async function getHistoryChatRecord(limit: number) {
+  const res = await getHistoryList(
+    { chatroomId: +porps.sessionInfo?.id! },
+    {
+      limit,
+      cursor: cursorPagination.value.cursor
+    }
+  )
+
+  hasMore.value = res.hasMore
+  cursorPagination.value.cursor = res.nextCursor
+
+  return res.data.reverse()
 }
 
 /**sendMsg组件-点击发送消息按钮了 */
@@ -180,9 +218,10 @@ watch(
     initSocket()
 
     // 1. 获取到一百条历史记录 - 加载到本地的历史记录中
-    const historyChatRecord = await getHistoryChatRecord()
+    const historyChatRecord = await getHistoryChatRecord(cursorPagination.value.limit)
     firstRequestMsgContent.value = historyChatRecord.map((item) => {
       return {
+        id: item.id,
         from: item.sender.id,
         to: null,
         message: {
@@ -198,6 +237,7 @@ watch(
       }
     })
     localMsgContent.value = []
+    afterRequestMsgContent.value = []
     // 滚动到底部
     scrollBottom(scrollRef.value!)
   },
@@ -216,7 +256,7 @@ onBeforeUnmount(() => {
   <div id="chat-room-container">
     <el-scrollbar @scroll="handleScroll" ref="scrollRef">
       <p v-if="loading" class="loading">Loading...</p>
-      <p v-if="noMore" class="loading">暂无更多</p>
+      <p v-if="hasMore" class="loading">暂无更多</p>
       <div ref="chatRef">
         <!-- <div v-for="i in count" :key="i">{{ i }}</div> -->
         <div>
@@ -237,7 +277,7 @@ onBeforeUnmount(() => {
               </div>
             </div>
           </div> -->
-          <ChatItem v-bind="item" v-for="item in realMsgContent" :key="item.message.content" />
+          <ChatItem v-bind="item" v-for="item in realMsgContent" :key="item.id" />
         </div>
       </div>
     </el-scrollbar>

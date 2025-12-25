@@ -203,8 +203,13 @@ class HttpClient {
   }
 
   // POST 请求
-  public post<T = any>(url: string, data?: any, config?: RequestConfig): Promise<BaseResponse<T>> {
-    return this.instance.post(url, data, config)
+  public post<T = any>(
+    url: string,
+    data?: any,
+    config?: RequestConfig,
+    params?: any
+  ): Promise<BaseResponse<T>> {
+    return this.instance.post(url, data, { params, ...config })
   }
 
   // PUT 请求

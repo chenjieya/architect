@@ -69,3 +69,56 @@ export function parseTime(time: string | number, cFormat: string) {
   })
   return time_str
 }
+
+interface DebouncedFunction<T extends (...args: any[]) => any> {
+  (...args: Parameters<T>): ReturnType<T> | undefined
+  cancel: () => void
+  flush: (...args: Parameters<T>) => ReturnType<T>
+}
+
+export function debounce<T extends (...args: any[]) => any>(
+  fn: T,
+  delay: number = 300,
+  immediate: boolean = false
+): DebouncedFunction<T> {
+  let timer: number | null = null
+  let result: ReturnType<T> | undefined
+
+  const debounced = function (this: any, ...args: Parameters<T>): ReturnType<T> | undefined {
+    const context = this
+
+    if (timer) {
+      clearTimeout(timer)
+    }
+
+    if (immediate && !timer) {
+      result = fn.apply(context, args)
+    }
+
+    timer = setTimeout(() => {
+      if (!immediate) {
+        result = fn.apply(context, args)
+      }
+      timer = null
+    }, delay)
+
+    return result
+  } as DebouncedFunction<T>
+
+  debounced.cancel = function (): void {
+    if (timer) {
+      clearTimeout(timer)
+      timer = null
+    }
+  }
+
+  debounced.flush = function (...args: Parameters<T>): ReturnType<T> {
+    if (timer) {
+      clearTimeout(timer)
+      timer = null
+    }
+    return fn.apply(this, args)
+  }
+
+  return debounced
+}

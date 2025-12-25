@@ -1,6 +1,12 @@
 import type { CHAT_HISTORY_TYPE_ENUM } from '@/enum/chat-history'
 import http from '@/utils/request'
 
+interface ICursorPaginationReposeon<T> {
+  data: T
+  hasMore: boolean
+  nextCursor: number
+}
+
 interface IChatHistory {
   id: number
   content: string
@@ -22,6 +28,16 @@ interface ISenderUser {
   updateTime: string
 }
 
-export async function getHistoryList(params: { chatroomId: number }) {
-  return await http.get<IChatHistory[]>('/api/chat-history/list', params)
+export interface ICursorPagination {
+  limit: number
+  cursor?: number
+}
+
+export async function getHistoryList(params: { chatroomId: number }, data: ICursorPagination) {
+  return await http.post<ICursorPaginationReposeon<IChatHistory[]>>(
+    '/api/chat-history/list',
+    data,
+    {},
+    params
+  )
 }

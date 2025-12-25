@@ -56,6 +56,7 @@ const handleSendMsg = () => {
 
   // 先添加消息在发送请求
   const currentMsg: sendMsgType = {
+    id: new Date().getTime(),
     from: userInfo.value?.id!,
     to: null,
     message: {
@@ -122,6 +123,7 @@ async function fileUpload(options: UploadRequestOptions) {
     // 通知chatRoom组件，添加消息
     // 先添加消息在发送请求
     const currentMsg: sendMsgType = {
+      id: new Date().getTime(),
       from: userInfo.value?.id!,
       to: null,
       message: {
@@ -155,6 +157,7 @@ async function fileUploads(options: UploadRequestOptions) {
     // 通知chatRoom组件，添加消息
     // 先添加消息在发送请求
     const currentMsg: sendMsgType = {
+      id: new Date().getTime(),
       from: userInfo.value?.id!,
       to: null,
       message: {
