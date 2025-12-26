@@ -113,7 +113,7 @@ function initSocket() {
       // })
     } else {
       // 确保消息添加到当前活跃的会话
-      if (payload.userId !== userInfo.value?.id) {
+      if (payload.userId !== userInfo.value?.id && payload.chatroomId === porps.sessionInfo?.id) {
         localMsgContent.value.push({
           id: payload.id,
           from: payload.userId,

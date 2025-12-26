@@ -139,6 +139,7 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
         type: payload.message.type,
         content: payload.message.content,
       },
+      chatroomId: +roomName,
       username: user?.username,
       nickName: user?.nickName,
       headPic: user?.headPic,
@@ -164,11 +165,8 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
 
   @OnEvent('chatroom.created')
   handleCreateRoom(payload: { chatroomId: number; memberIds: number[] }) {
-    console.log(payload.memberIds, 'adasdaljdalsjd');
     payload.memberIds.forEach((userId) => {
-      console.log(this.userSocketIdMap, 'this.userSocketIdMap.');
       const socketIds = this.userSocketIdMap.get(userId);
-      console.log(socketIds, userId, 'xxxxxxx');
       socketIds?.forEach((socketId) => {
         // 通知所有用户 的socket 房间已经创建了
         this.service.to(socketId).emit('chatroomCreated', {
@@ -177,5 +175,27 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
         });
       });
     });
+  }
+
+  @OnEvent('send.request')
+  sendFriendRequest(payload: { toUserId: number; fromUserId: number }) {
+    const socketIds = this.userSocketIdMap.get(payload.toUserId);
+
+    socketIds?.forEach((socketId) => {
+      this.service.to(socketId).emit('friendRequest', {
+        toUserId: payload.toUserId,
+        fromUserId: payload.fromUserId,
+      });
+    });
+  }
+
+  // 用户注册之后默认加入到官方群聊， 通知所有用户刷新官方好友列表
+  @OnEvent('chatroom.refresh')
+  registerUserRefershGuanFangFriendList() {
+    for (const [, socketIds] of this.userSocketIdMap) {
+      socketIds.forEach((socketId) => {
+        this.service.to(socketId).emit('userRegister');
+      });
+    }
   }
 }

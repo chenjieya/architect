@@ -6,6 +6,7 @@ import { Repository } from 'typeorm';
 import { FRIEND_REQUEST_ENUM } from 'src/enum/friend';
 import { FriendShip } from 'src/entities/friend-ship.entity';
 import { User } from 'src/entities/user.entity';
+import { EventEmitter2 } from '@nestjs/event-emitter';
 
 @Injectable()
 export class FriendShipService {
@@ -16,35 +17,42 @@ export class FriendShipService {
     private readonly friendShipRepository: Repository<FriendShip>,
     @InjectRepository(User)
     private readonly userRepository: Repository<User>,
+    private readonly eventEmitter: EventEmitter2,
   ) {}
 
   // 发送好友请求
   async postFriendRequest(userId: number, friendRequestDto: FriendRequestDto) {
     // 从请求关系表中，查找是否存在相同的请求记录
     const friendRequest = await this.friendRequestRepository.findOne({
-      where: {
-        fromUserId: userId,
-        toUserId: friendRequestDto.friendId,
-      },
+      where: [
+        { fromUserId: userId, toUserId: friendRequestDto.friendId },
+        { fromUserId: friendRequestDto.friendId, toUserId: userId },
+      ],
       order: {
         createTime: 'DESC',
       },
     });
 
-    // 请求记录不是待处理中，或者不存在，则可以继续添加一条新的好友请求记录
-    if (
-      !friendRequest ||
-      friendRequest.status !== FRIEND_REQUEST_ENUM.PENDING
-    ) {
-      // 将好友请求记录保存到数据库中
-      const newRequest = new FriendRequest();
-      newRequest.fromUserId = userId;
-      newRequest.toUserId = friendRequestDto.friendId;
-      newRequest.status = FRIEND_REQUEST_ENUM.PENDING;
-      return await this.friendRequestRepository.save(newRequest);
+    if (friendRequest && friendRequest.status === FRIEND_REQUEST_ENUM.PENDING) {
+      throw new BadRequestException('好友请求已存在');
     }
 
-    return friendRequest;
+    // 请求记录不是待处理中，或者不存在，则可以继续添加一条新的好友请求记录
+    // 将好友请求记录保存到数据库中
+    const newRequest = new FriendRequest();
+    newRequest.fromUserId = userId;
+    newRequest.toUserId = friendRequestDto.friendId;
+    newRequest.status = FRIEND_REQUEST_ENUM.PENDING;
+    const newFriendRequest =
+      await this.friendRequestRepository.save(newRequest);
+
+    // 添加完请求记录之后，需要通知socket进行更新
+    this.eventEmitter.emit('send.request', {
+      fromUserId: userId,
+      toUserId: friendRequestDto.friendId,
+    });
+
+    return newFriendRequest;
   }
 
   // 拒绝添加好友
@@ -129,11 +137,10 @@ export class FriendShipService {
           success: true,
         };
       }
+      throw new BadRequestException('当前已经是好友了');
     } catch {
       // 有可能已经是好友了
-      return {
-        success: false,
-      };
+      throw new BadRequestException('当前已经是好友了');
     }
   }
 

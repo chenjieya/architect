@@ -4,7 +4,6 @@ import MyDialog from '@/components/myDialog/index.vue'
 import FriendRequest from '@/components/friendRequest/index.vue'
 import type { IUserInfo } from '@/api/userApi'
 import { friendList, type IFriendRequest, friendRequestList } from '@/api/friendApi'
-import eventBus from '@/utils/eventBus'
 import { useChatroomStore } from '@/stores/chatroom'
 import { storeToRefs } from 'pinia'
 import { createGroupChat } from '@/api/chatroomApi'
@@ -105,15 +104,7 @@ async function getFriendRequestList() {
   friendRequestListData.value = res
 }
 
-eventBus.on('handleFriendRequest', () => {
-  getFriendRequestList()
-})
-
-// const timer = setInterval(() => {
-//   getFriendRequestList()
-// }, 5000)
-
-// onUnmounted(() => clearInterval(timer))
+getFriendRequestList()
 onMounted(() => {
   socket?.on('chatroomCreated', (payload: { chatroomId: number; memberIds: number[] }) => {
     socket?.emit('joinRoom', {
@@ -125,6 +116,13 @@ onMounted(() => {
 
     // 刷新群聊
     instanceRef?.chatSessionRef?.getChatSession()
+  })
+
+  socket?.on('friendRequest', (payload: { toUserId: number; fromUserId: number }) => {
+    // 发送给我的请求
+    if (payload.toUserId === userInfoStore.value?.id) {
+      getFriendRequestList()
+    }
   })
 })
 </script>

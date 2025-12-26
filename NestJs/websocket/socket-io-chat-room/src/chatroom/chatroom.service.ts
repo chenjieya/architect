@@ -317,6 +317,10 @@ export class ChatroomService implements OnModuleInit {
     });
 
     await this.userChatroomRepository.save(userRelationChatroom);
+
+    // 通知所有用户，刷新一下群聊好友列表
+    this.eventEmitter.emit('chatroom.refresh');
+
     return true;
   }
 }

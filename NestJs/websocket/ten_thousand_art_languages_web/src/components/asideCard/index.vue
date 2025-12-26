@@ -4,10 +4,12 @@ import { friendList } from '@/api/friendApi'
 import type { IUserInfo } from '@/api/userApi'
 import AvatarName from '@/components/avatarName/index.vue'
 import UserContextMenu from '@/components/userContextMenu/index.vue'
+import { socketKey } from '@/plugins/socket.io'
 import { useUserStore } from '@/stores/user'
 import eventBus from '@/utils/eventBus'
 import { storeToRefs } from 'pinia'
 
+const socket = inject(socketKey)
 const { isLogin } = storeToRefs(useUserStore())
 interface contextItemOptionsInter {
   label: string
@@ -41,6 +43,14 @@ async function chatroomUser(roomId: number) {
 eventBus.on('chatroomUserRequest', (roomId) => {
   if (props.isQun && roomId) {
     chatroomUser(roomId)
+  }
+})
+
+onMounted(() => {
+  if (props.isQun) {
+    socket?.on('userRegister', () => {
+      chatroomUser(1)
+    })
   }
 })
 
