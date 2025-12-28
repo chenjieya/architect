@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "前端工具链/【概述】前端工具链简介.md",
+                "file": "前端工具链/【prettier】Prettier介绍.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "【概述】前端工具链简介"
+              "title": "【prettier】Prettier介绍"
             }
           },
           {
@@ -190,13 +190,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "前端工具链/【概述】前端工具链简介.md",
+                "file": "前端工具链/【prettier】Prettier介绍.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "【概述】前端工具链简介 的大纲"
+              "title": "【prettier】Prettier介绍 的大纲"
             }
           },
           {
@@ -233,8 +233,20 @@
   },
   "active": "b169b35178e21aa2",
   "lastOpenFiles": [
-    "Docker(finish)/dock-componse.yml.md",
+    "前端工具链/【Eslint】CLI命令行工具.md",
+    "前端工具链/未命名.md",
+    "前端工具链/【Eslint】配置文件.md",
+    "前端工具链/【Eslint】检查规则.md",
+    "前端工具链/【Eslint】Linter介绍.md",
+    "前端工具链/【Eslint】.md",
+    "前端工具链/【prettier】API.md",
+    "前端工具链/【prettier】实现简易 CLI.md",
+    "前端工具链/【prettier】格式化规则.md",
+    "前端工具链/【perttier】命令行工具.md",
+    "前端工具链/【概述】抽象语法树.md",
     "前端工具链/【概述】前端工具链简介.md",
+    "前端工具链/【prettier】Prettier介绍.md",
+    "Docker(finish)/dock-componse.yml.md",
     "前端工具链",
     "Docker(finish)/容器数据卷.md",
     "Docker(finish)/docker的常用命令.md",
@@ -249,21 +261,9 @@
     "NestJs(finish)/【进阶】流式传输与分片下载的深度解析.md",
     "NestJs(finish)/【swagger】swagger自动生成API.md",
     "NestJs(finish)/【GraphQL】Nest中使用GraphQL.md",
-    "NestJs(finish)/【logger】面向切面的日志处理.md",
-    "NestJs(finish)/【GraphQL】快速入门GraphQL.md",
-    "NestJs(finish)/【基础】如何灵活创建DTO.md",
-    "NestJs(finish)/【登陆】扫码登录系统.md",
-    "NestJs(finish)/【依赖】 NestJS 项目依赖完全指南.md",
-    "NestJs(finish)/【数据库】Redis简介和安装.md",
-    "NestJs(finish)/【配置】NestJS 环境变量配置全指南.md",
-    "NestJs(finish)/【数据库】数据库表关系.md",
-    "NestJs(finish)/【定时器】NestJS定时任务完全指南.md",
-    "NestJs(finish)/【登陆】passport身份认证.md",
     "Nginx(finish)/Nginx 基础使用.pdf",
-    "Nginx(finish)/Nginx高级课程扩容与高效真.md",
     "Nginx(finish)/Nginx高级课件.pdf",
     "Nginx(finish)/Nginx课件.pdf",
-    "Linux/Linux SSH 服务管理与配置详解.md",
     "nginx(finish)/高级进阶",
     "Nginx(finish)/Nginx 安装.pdf",
     "nginx(finish)/核心技术",
