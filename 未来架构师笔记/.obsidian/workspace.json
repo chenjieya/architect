@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "前端工具链/【prettier】实现简易 CLI.md",
+                "file": "前端工具链/【Eslint】配置文件.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "【prettier】实现简易 CLI"
+              "title": "【Eslint】配置文件"
             }
           },
           {
@@ -190,13 +190,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "前端工具链/【prettier】实现简易 CLI.md",
+                "file": "前端工具链/【Eslint】配置文件.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "【prettier】实现简易 CLI 的大纲"
+              "title": "【Eslint】配置文件 的大纲"
             }
           },
           {
@@ -233,16 +233,16 @@
   },
   "active": "b169b35178e21aa2",
   "lastOpenFiles": [
+    "前端工具链/【Eslint】检查规则.md",
+    "前端工具链/【Eslint】Linter介绍.md",
+    "前端工具链/【prettier】实现简易 CLI.md",
     "前端工具链/【prettier】API.md",
     "前端工具链/【prettier】格式化规则.md",
     "前端工具链/【prettier】Prettier介绍.md",
     "前端工具链/【Eslint】配置文件.md",
     "前端工具链/【Eslint】CLI命令行工具.md",
     "前端工具链/未命名.md",
-    "前端工具链/【Eslint】检查规则.md",
-    "前端工具链/【Eslint】Linter介绍.md",
     "前端工具链/【Eslint】.md",
-    "前端工具链/【prettier】实现简易 CLI.md",
     "前端工具链/【perttier】命令行工具.md",
     "前端工具链/【概述】抽象语法树.md",
     "前端工具链/【概述】前端工具链简介.md",

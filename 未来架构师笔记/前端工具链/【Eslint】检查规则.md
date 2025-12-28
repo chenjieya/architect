@@ -27,9 +27,9 @@ ASI 英语全称叫做 automatic semicolon insertion，这个翻译成中文就�
 ```js
 function example() {
 return
-{
-message: 'Hello, world!'
-}
+	{
+		message: 'Hello, world!'
+	}
 }
 ```
 
@@ -119,7 +119,7 @@ console.log('Hello');
 
 那么上面的这一条行内注释规则就变成了一条无用的注释规则
 
-更多关于行内注释规则，可以参阅官网资料：https://eslint.org/docs/latest/use/configure/rules#using-configuration-comments
+更多关于行内注释规则，可以参阅官网资料：[https://eslint.org/docs/latest/use/configure/rules#using-configuration-comments](https://eslint.org/docs/latest/use/configure/rules#using-configuration-comments)
 ## 3. 规则参照表
 
 你可以在 https://eslint.org/docs/latest/rules/ 看到 ESLint 里面的所有规则

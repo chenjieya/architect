@@ -1,5 +1,5 @@
 
-首先需要注意，在谢老师讲课的当前的这个节点，配置文件系统处于一个更新期，存在两套配置文件系统，旧的配置文件系统适用于 v9.0.0 之前的版本，而新的配置文件系统适用于 v9.0.0之后的版本，但是目前就讲课的这个节点，还处于 v8.x.x 的大版本。
+首先需要注意，当前的这个节点，配置文件系统处于一个更新期，存在两套配置文件系统，旧的配置文件系统适用于 v9.0.0 之前的版本，而新的配置文件系统适用于 v9.0.0之后的版本，但是目前就讲课的这个节点，还处于 v8.x.x 的大版本。
 ## 1. 配置文件格式
 
 在 ESLint 中，支持如下格式的配置文件：
@@ -131,18 +131,17 @@ semi: ['error', 'always']
 
 ```js
 {
-"rules": {
-"quotes": ["error", "double"]
-},
-"overrides": [
-{
-"files": ["bin/*.js", "lib/*.js"],
-"excludedFiles": "*.test.js",
-"rules": {
-"quotes": ["error", "single"]
-}
-}
-]
+	"rules": {
+		"quotes": ["error", "double"]
+	},
+	"overrides": [
+		{
+			"files": ["bin/*.js", "lib/*.js"],
+			"excludedFiles": "*.test.js",
+			"rules": {
+			"quotes": ["error", "single"]
+		}
+	]
 }
 ```
 
@@ -162,17 +161,16 @@ any-project/
 
 ```js
 {
-"rules": {
-"quotes": ["error", "double"]
-},
-"overrides": [
-{
-"files": ["lib/*.js"],
-"rules": {
-"quotes": ["error", "single"]
-}
-}
-]
+	"rules": {
+		"quotes": ["error", "double"]
+	},
+	"overrides": [
+		{
+			"files": ["lib/*.js"],
+			"rules": {
+			"quotes": ["error", "single"]
+		}
+	]
 }
 ```
 
@@ -181,48 +179,45 @@ any-project/
 overrides 对应的值是一个数组，那么这意味着可以有多个配置项，当多个配置项之间匹配上了相同的文件，那么以后面的配置项为准。
 ```js
 {
-"rules": {
-"quotes": ["error", "double"]
-},
-"overrides": [
-{
-"files": ["**/*.js"],
-"rules": {
-"quotes": ["error", "single"]
-}
-},
-{
-"files": ["lib/*.js"],
-"rules": {
-"quotes": ["error", "double"]
-}
-}
-]
+	"rules": {
+		"quotes": ["error", "double"]
+	},
+	"overrides": [
+		{
+			"files": ["**/*.js"],
+			"rules": {
+			"quotes": ["error", "single"]
+		},
+		{
+			"files": ["lib/*.js"],
+			"rules": {
+			"quotes": ["error", "double"]
+		}
+	]
 }
 ```
 
 overrides 是支持嵌套，例如：
 ```js
 {
-"rules": {
-"quotes": ["error", "double"]
-},
-"overrides": [
-{
-"files": ["lib/*.js"],
-"rules": {
-"quotes": ["error", "single"]
-},
-"overrides": [
-{
-"files": ["util.js"],
-"rules": {
-"quotes": ["error", "double"]
-},
-}
-]
-}
-]
+	"rules": {
+		"quotes": ["error", "double"]
+	},
+	"overrides": [
+		{
+			"files": ["lib/*.js"],
+			"rules": {
+			"quotes": ["error", "single"]
+			%% 在lib下面去找 %%
+			"overrides": [
+				{
+					"files": ["util.js"],
+					"rules": {
+					"quotes": ["error", "double"]
+				},
+			]
+		},
+	]
 }
 ```
 
@@ -231,12 +226,12 @@ overrides 是支持嵌套，例如：
 从 v9.0.0 开始，官方推荐的配置文件格式为 eslint.config.js，并且支持 ESM 模块化风格，可以通过 export default 来导出配置内容
 ```js
 export default [
-{
-rules: {
-semi: "error",
-"prefer-const": "error"
-}
-}
+	{
+		rules: {
+			semi: "error",
+			"prefer-const": "error"
+		}
+	}
 ];
 ```
 
