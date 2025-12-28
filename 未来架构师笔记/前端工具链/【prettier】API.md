@@ -1,6 +1,6 @@
 
 在前面我们对代码进行格式化的时候，我们采用的是命令行工具的形式，但是这些命令行工具所提供的命令实际上也是调用的 prettier 背后对应的各种 API。
-在官网能够查看到这些 API：https://prettier.io/docs/en/api.html
+在官网能够查看到这些 API：[https://prettier.io/docs/en/api.html](https://prettier.io/docs/en/api.html)
 
 ## 1. prettier.format(source, options)
 
