@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "前端工具链/【Babel】自定义插件.md",
+                "file": "前端工具链/【Swc】SWC.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "【Babel】自定义插件"
+              "title": "【Swc】SWC"
             }
           },
           {
@@ -176,13 +176,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "前端工具链/【Babel】自定义插件.md",
+                "file": "前端工具链/【Swc】SWC.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "【Babel】自定义插件 的大纲"
+              "title": "【Swc】SWC 的大纲"
             }
           },
           {
@@ -219,8 +219,10 @@
   },
   "active": "3f2fe13500fb70d0",
   "lastOpenFiles": [
-    "前端工具链/【Babel】API.md",
+    "前端工具链/【Terser】Terser.md",
+    "前端工具链/【Swc】SWC.md",
     "前端工具链/【Babel】自定义插件.md",
+    "前端工具链/【Babel】API.md",
     "前端工具链/【Babel】使用插件.md",
     "前端工具链/【Babel】CLI.md",
     "前端工具链/【Babel】配置文件.md",
@@ -244,8 +246,6 @@
     "前端工具链/【概述】前端工具链简介.md",
     "Docker(finish)/dock-componse.yml.md",
     "前端工具链",
-    "Docker(finish)/docker的常用命令.md",
-    "Docker(finish)/docker准备工作.md",
     "Docker(finish)/docker.pdf",
     "Nginx(finish)/Nginx 基础使用.pdf",
     "Nginx(finish)/Nginx高级课件.pdf",
