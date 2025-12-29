@@ -83,29 +83,28 @@ pnpm add eslint -D
 const hello = "world";
 console.log(hello);
 function sayHello(name) {
-console.log("Hello, " + name + "!");
+	console.log("Hello, " + name + "!");
 }
 sayHello("world");
 ```
   
 上面随便写了一些代码，接下来在项目根目录下面创建一个 eslint 的配置文件 .eslintrc，里面会书写一些配置信息：
 ```js
-
 {
-"env": {
-"browser": true,
-"es2021": true
-},
-"extends": "eslint:recommended",
-"parserOptions": {
-"ecmaVersion": 12,
-"sourceType": "module"
-},
-"rules": {
-"indent": ["error", 2],
-"quotes": ["error", "single"],
-"semi": ["error", "always"]
-}
+	"env": {
+		"browser": true,
+		"es2021": true
+	},
+	"extends": "eslint:recommended",
+	"parserOptions": {
+	"ecmaVersion": 12,
+		"sourceType": "module"
+	},
+	"rules": {
+		"indent": ["error", 2],
+		"quotes": ["error", "single"],
+		"semi": ["error", "always"]
+	}
 }
 ```
 
@@ -113,7 +112,7 @@ sayHello("world");
 - browser：这份配置适用于浏览器环境，预定义了诸如 window、document 之类的浏览器才会有的全局变量
 - es2021: 表示我们使用的是 ES 2021 的标准，肯定会预定义一些新版本的全局变量，Promise、Symbol 这些全局变量是支持的
 - extends：这里我们所设置的值为 eslint:recommended，这其实是 ESLint 团队推荐的一组核心规则，你可以将其视为最佳实践
-- parserOptions：和解析器相关的配置
+- parserOptions：和解析器相关的配置，`parserOptions` 用来告诉 ESLint 的 parser, 你这段源码应该被当作“哪一版 ECMAScript + 哪种模块系统”来解析成AST抽象语法树
 - ecmaVersion：使用的 ECMAScript 的版本，12 也就是 2021
 - sourceType：模块类型，这里设置为 module，表示我们使用的 ESM 模块规则，支持 import 和 export 语法
 - rules：定义代码风格，功能类似于 prettier

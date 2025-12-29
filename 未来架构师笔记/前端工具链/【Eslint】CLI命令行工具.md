@@ -8,7 +8,7 @@ eslint --fix .
 eslint [options] [file|dir|glob]*
 ```
 
-我们先来看后面的 [file|dir|glob]* ， 这个部分主要是用来指定 ESLint 应该检查哪些文件：
+我们先来看后面的 [file|dir|glob]， 这个部分主要是用来指定 ESLint 应该检查哪些文件：
 - file：用于指定一个具体的文件名
 ```bash
 eslint app.js # 使用 eslint 检查 app.js 这个文件
