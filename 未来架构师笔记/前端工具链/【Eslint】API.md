@@ -1,6 +1,7 @@
-*While ESLint is designed to be run on the command line, it’s possible to use ESLint programmatically through the Node.js API. The purpose of the Node.js API is to allow plugin and tool authors to use the ESLint functionality directly, without going through the command line interface.*
+_While ESLint is designed to be run on the command line, it’s possible to use ESLint programmatically through the Node.js API. The purpose of the Node.js API is to allow plugin and tool authors to use the ESLint functionality directly, without going through the command line interface._
 
 一般在如下的场景中，我们会涉及到使用 API 来编程：
+
 - 要将工具集成到代码编辑器或者 IDE 里面
 - 自定义 linter 工具
 - 一些在线的学习平台
@@ -8,9 +9,7 @@
 首先我们初始化一个项目 eslint-api-demo，然后使用 pnpm init 进行一个初始化，之后安装 eslint 依赖：
 
 ```bash
-
 pnpm add eslint
-
 ```
 
 安装的时候一定要注意，这一次安装是安装为项目依赖，而非开发依赖，因为我们是使用的 API 的形式来检查其他项目，本项目类似于提供给其他项目的一个第三方库，因此在我们这个项目中，eslint 即便是在运行期间也是需要的。
@@ -73,15 +72,15 @@ module.exports = {
 
 ```js
 /**
-* 该函数负责对传入的文件做 lint 检查以及修复
-* @param {*} eslint
-* @param {*} filePaths
-*/
-async function lintAndFix(eslint, filePaths){
-	// 要做 lint 检查，很明显就是调用 eslint 实例对象上面的方法
-	const results = await eslint.lintFiles(filePaths);
-	
-	console.log(results);
+ * 该函数负责对传入的文件做 lint 检查以及修复
+ * @param {*} eslint
+ * @param {*} filePaths
+ */
+async function lintAndFix(eslint, filePaths) {
+  // 要做 lint 检查，很明显就是调用 eslint 实例对象上面的方法
+  const results = await eslint.lintFiles(filePaths)
+
+  console.log(results)
 }
 ```
 
@@ -91,24 +90,27 @@ async function lintAndFix(eslint, filePaths){
 
 ```js
 /**
-* 该方法负责对 lint 后的结果进行一个友好的输出
-* @param {*} results
-*/
-function outputLintingResults(results){
-	// 拿到 lint 后错误的总数（包含警告）
-	const problems = results.reduce((a, b)=> a + b.errorCount + b.warningCount, 0);
-	if(problems > 0) {
-		console.log("Linging errors found! \n");
-	
-		const messages = results[0].messages;
-		for(let i=0;i<messages.length;i++) {
-			console.error(chalk.red.bold(" FAIL ") + " " + messages[i].message);
-		}
-		// dim 是 chalk 库里面的一个方法，用于创建一种暗淡模式的输出
-		console.log("\n" + chalk.dim(results[0].filePath));
-	} else {
-		console.log("No linting errors found");
-	}
+ * 该方法负责对 lint 后的结果进行一个友好的输出
+ * @param {*} results
+ */
+function outputLintingResults(results) {
+  // 拿到 lint 后错误的总数（包含警告）
+  const problems = results.reduce(
+    (a, b) => a + b.errorCount + b.warningCount,
+    0,
+  )
+  if (problems > 0) {
+    console.log('Linging errors found! \n')
+
+    const messages = results[0].messages
+    for (let i = 0; i < messages.length; i++) {
+      console.error(chalk.red.bold(' FAIL ') + ' ' + messages[i].message)
+    }
+    // dim 是 chalk 库里面的一个方法，用于创建一种暗淡模式的输出
+    console.log('\n' + chalk.dim(results[0].filePath))
+  } else {
+    console.log('No linting errors found')
+  }
 }
 ```
 

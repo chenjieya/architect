@@ -1,0 +1,2 @@
+overrides:
+  eslint-plugin-custom: link:../../../../Library/pnpm/global/5/node_modules/eslint-plugin-custom

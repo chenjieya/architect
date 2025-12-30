@@ -6,9 +6,6 @@ function sayHello(name) {
   console.log("Hello, " + name + "!");
 }
 
-document.getElementById('123')
-console.log(window)
+alert("xxx");
 
-window.Array
-
-sayHello('world');
+sayHello("world");

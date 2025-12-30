@@ -1,7 +1,7 @@
-
 关于 babel 所提供的 CLI，你可以在 https://babeljs.io/docs/babel-cli 看到所有所支持的 CLI 命令。
 
 要使用 CLI 命令，首先第一步是安装：
+
 ```bash
 pnpm add --save-dev @babel/core @babel/cli
 ```
@@ -19,6 +19,7 @@ babel [file | dir | glob] --out-[file | dir]
 如果你没有指定 --out，那么 babel 会将编译后的结果输出到控制台。
 
 常见的格式如下：
+
 ```bash
 # 编译结果输出到控制台
 babel script.js
@@ -46,6 +47,7 @@ babel script.js --out-file script-compiled.js --source-maps inline
 ## 2. 忽略文件和拷贝文件
 
 有些时候我们在进行编译的时候，想要忽略某些文件
+
 ```bash
 # 忽略 src 目录下面的所有测试文件
 babel src --out-dir lib --ignore "src/**/*.spec.js","src/**/*.test.js"
