@@ -1,14 +1,16 @@
-
 在 babel 要使用一个插件，步骤实际上非常简单，就分为两步：
+
 - 安装插件
 - 在配置文件或者 CLI 中指定插件
 
 举个例子，例如有一个专门将箭头函数转为普通函数的插件：
+
 ```bash
 pnpm add @babel/plugin-transform-arrow-functions -D
 ```
 
 之后在配置文件中进行插件配置即可
+
 ```js
 {
 	"plugins": ["@babel/plugin-transform-arrow-functions"]
@@ -20,6 +22,7 @@ pnpm add @babel/plugin-transform-arrow-functions -D
 1. 插件的运行顺序
 
 plugins 对应的值为一个数组，说明是可以指定多个插件的
+
 ```js
 {
 	"plugins": ["transform-decorators-legacy", "transform-class-properties"]
@@ -33,6 +36,7 @@ plugins 对应的值为一个数组，说明是可以指定多个插件的
 2. 插件选项
 
 在使用插件的时候，是可以传递插件选项的，例如有三种写法：
+
 ```js
 {
 	"plugins": ["pluginA", ["pluginA"], ["pluginA", {}]]
@@ -56,7 +60,7 @@ plugins 对应的值为一个数组，说明是可以指定多个插件的
 ```
 
 关于插件究竟有哪些配置项，这个需要去参阅插件相关的文档。
-  
+
 ## 2. 插件列表
 
 你可以在 https://babeljs.io/docs/plugins-list 看到 babel 中支持的大多数插件。

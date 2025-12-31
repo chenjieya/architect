@@ -1,16 +1,16 @@
-
 - 配置文件格式
 - 配置文件选项
 
 ## 1. 配置文件的格式
 
 在 babel 中，配置文件本身又可以分为两种：
+
 - 项目范围的配置文件
 - 文件相关配置文件
 
 **项目范围配置文件：**
 
-顾名思义，就是该配置文件针对整个项目生效的一个配置，这种类型的配置文件一般放在项目根目录下面，babel 对项目范围级别的配置文件是有格式要求的，一般是指 babel.config.* 这种格式的配置文件，后面的 * 支持各种类型的扩展名：.json .js .cjs .mjs .cts ...
+顾名思义，就是该配置文件针对整个项目生效的一个配置，这种类型的配置文件一般放在项目根目录下面，babel 对项目范围级别的配置文件是有格式要求的，一般是指 babel.config._ 这种格式的配置文件，后面的 _ 支持各种类型的扩展名：.json .js .cjs .mjs .cts ...
 
 - babel.config.js ✅
 - babel.config.json ✅
@@ -20,7 +20,7 @@
 
 这种类型的配置文件就是对特定的文件或者特定的目录以及子目录生效。在 babel 中，如下格式的配置文件是文件级别：
 
-- .babelrc.* （.json .js .cjs .mjs .cts）
+- .babelrc.\* （.json .js .cjs .mjs .cts）
 - .babelrc.js
 - .babelrc.json
 - .babelrc
@@ -49,9 +49,10 @@
 }
 ```
 
-上面配置文件中所指定的预设，会在整个项目中国都被用到。
+上面配置文件中所指定的预设，会在整个项目中都被用到。
 
 假设 frontend/.babelrc.json 有如下的配置：
+
 ```js
 {
 	"plugins": [
@@ -76,7 +77,7 @@
 - 源码映射选项
 - 其他选项
 - 代码生成器选项
-- *AMD / UMD / SystemJS* 选项
+- _AMD / UMD / SystemJS_ 选项
 - 选项概念
 
 这里我们不需要一开始就对所有的配置项完全掌握，下面我们就介绍一些常见的配置项。
@@ -84,6 +85,7 @@
 ### 2.1 插件和预设配置
 
 - plugins：对应的值为一个数组，配置要使用的插件，可以配置多个，注意在配置文件中配置的插件需要提前进行安装
+
 ```js
 {
 	"plugins": [["@babel/plugin-transform-arrow-functions", {}]]
@@ -91,6 +93,7 @@
 ```
 
 - presets：配置一个预设，对应的值也是一个数组，表示可以配置多个
+
 ```js
 {
 	"presets": ["@babel/preset-env"]
@@ -100,6 +103,7 @@
 ### 2.2 输出目标选项
 
 - targets: 该配置项目用于指定要兼容的浏览器版本范围
+
 ```js
 {
 	"targets": "> 0.25%, not dead"
@@ -109,6 +113,7 @@
 关于指定浏览器范围，有多种多样的形式，例如可以在项目根目录下创建一个 .browserslistrc 配置文件来指定范围，也可以在 package.json 中通过 browserslist 这个键来指定范围。
 
 优先级顺序如下：
+
 1. targets
 2. .browserslistrc
 3. package.json
@@ -128,6 +133,7 @@
 ### 2.3 配置合并选项
 
 - extends：允许你扩展其他的 babel 配置文件，你可以提供一个路径，该路径对应的 babel 配置文件就会作为基础的配置
+
 ```js
 {
 	"extends": "./base.babelrc.json"
@@ -135,6 +141,7 @@
 ```
 
 - env：为你不同的环境提供不同的配置，例如在开发环境或者生成环境需要使用不同的插件或者预设，那么就可以通过 env 来指定环境。
+
 ```js
 {
 	"env": {
@@ -149,9 +156,9 @@
 ```
 
 - overrides ：该配置项用于对匹配上的特定文件或者目录应用不同的配置
-- test：做匹配
-- include：包含哪些目录
-- exclude：排除哪些目录
+  - test：做匹配
+  - include：包含哪些目录
+  - exclude：排除哪些目录
 
 ```js
 {
@@ -166,6 +173,7 @@
 ```
 
 - ignore 和 only ：ignore 控制忽略文件，only 指定特有文件
+
 ```js
 {
 	"ignore": ["node_modules"],
@@ -176,6 +184,7 @@
 ### 2.4 源码映射选项
 
 - sourceMaps：告诉 babel 是否要生成 source map
+
 ```js
 {
 	"sourceMaps": true
@@ -183,6 +192,7 @@
 ```
 
 - sourceFileName：指定 source map 文件的文件名
+
 ```js
 {
 	"sourceFileName": "customFileName.js"
@@ -190,18 +200,20 @@
 ```
 
 - sourceRoot：source map 文件对应的 URL 前缀
+
 ```js
 {
 	"sourceMaps": true,
 	"sourceRoot": "/root/path/to/source/files/" // 前缀
 }
 ```
+
 ### 2.5 其他选项
 
 - sourceType：指定 babel 应该如何去解析 js 代码
-- module：如果你的代码使用的 ESM 模块化，里面涉及到了 export 、import，那么应该指定为这个值
-- script：普通的 JS 脚本，没有使用模块化
-- unambiguous：让 babel 自己来判断，babel 检查到你的代码使用了 export 、 import，就会视为模块文件，否则就会视为普通的 script 脚本
+  - module：如果你的代码使用的 ESM 模块化，里面涉及到了 export 、import，那么应该指定为这个值
+  - script：普通的 JS 脚本，没有使用模块化
+  - unambiguous：让 babel 自己来判断，babel 检查到你的代码使用了 export 、 import，就会视为模块文件，否则就会视为普通的 script 脚本
 - assumptions：从 babel 7.13.0 开始引入的一项配置项，让开发者对自己的代码做一个假定（更像是对 babel 的一个承诺）
 
 ```js

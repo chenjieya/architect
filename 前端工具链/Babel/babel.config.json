@@ -1,0 +1,20 @@
+{
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "targets": {
+          "chrome": "58",
+          "ie": "11"
+        },
+        // 谷歌浏览器最新的两个版本
+        // "targets": "last 2 Chrome versions",
+        // 如何使用polyfills, 如果你的源码中使用了缺失特性，然后才引入polyfills, 如果是 entry， 会根据浏览器版本来添加缺失特性
+        "useBuiltIns": "usage",
+        // 其实就是 polyfills
+        "corejs": "3.47",
+        "modules": false
+      }
+    ]
+  ]
+}

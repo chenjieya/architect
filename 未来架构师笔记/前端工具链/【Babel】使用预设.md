@@ -1,4 +1,3 @@
-
 ## 1. 预设的基本使用
 
 首先第一步仍然是先要安装对应的预设
@@ -8,6 +7,7 @@ pnpm add --save-dev @babel/preset-env
 ```
 
 安装完成后，在配置文件中进行配置：
+
 ```js
 {
 	"presets": ["@babel/preset-env"]
@@ -30,21 +30,22 @@ pnpm add --save-dev @babel/preset-env
 
 官方提供了 4 套预设：
 
-- *@babel/preset-env* 用于编译 *ES2015* 及以上版本的语法
-- *@babel/preset-typescript* 用于 *TypeScript*
-- *@babel/preset-react* 用于 *React*
-- *@babel/preset-flow* 用于 *Flow*
+- _@babel/preset-env_ 用于编译 _ES2015_ 及以上版本的语法
+- _@babel/preset-typescript_ 用于 _TypeScript_
+- _@babel/preset-react_ 用于 _React_
+- _@babel/preset-flow_ 用于 _Flow_
 
 ### 2.1 stage-x 预设
 
 在 babel v7.0.0 之前，支持一种叫做 state-x 的预设特性。
 
 JavaScript 的新特性是由 TC39 的小组提出并且通过一系列的阶段来推动的。一般来讲，这个阶段分为从 0 到 4，每个阶段对应了新特性的不同状态：
-- *Stage 0 - Strawman*：只是一个想法或者提案，还没有任何实现。
-- *Stage 1 - Proposal*：这是一个正式的提案，包含 *API* 的描述，但可能还没有完全实现。
-- *Stage 2 - Draft*：初步版本，已经有了初步的规范文本，并且大部分细节都已经确定。
-- *Stage 3 - Candidate*：候选阶段，规范已经完成，并且已经完成了浏览器的初步实现，这个阶段主要是为了获取反馈和评估。
-- *Stage 4 - Finished*：完成阶段，已经在多个浏览器中实现并通过了实际使用的测试，可以被添加到 *ECMAScript* 标准中。
+
+- _Stage 0 - Strawman_：只是一个想法或者提案，还没有任何实现。
+- _Stage 1 - Proposal_：这是一个正式的提案，包含 _API_ 的描述，但可能还没有完全实现。
+- _Stage 2 - Draft_：初步版本，已经有了初步的规范文本，并且大部分细节都已经确定。
+- _Stage 3 - Candidate_：候选阶段，规范已经完成，并且已经完成了浏览器的初步实现，这个阶段主要是为了获取反馈和评估。
+- _Stage 4 - Finished_：完成阶段，已经在多个浏览器中实现并通过了实际使用的测试，可以被添加到 _ECMAScript_ 标准中。
 
 在早期的时候（babel v7.x.x 之前），可以安装对应阶段的预设
 
@@ -53,6 +54,7 @@ npm install --save-dev @babel/preset-stage-2
 ```
 
 这个预设对应了 stage2 阶段的新特性的编译
+
 ```js
 {
 	"presets": ["@babel/preset-stage-2"]
@@ -63,7 +65,7 @@ npm install --save-dev @babel/preset-stage-2
 
 但是上面的 stage-x 的预设从 v7.0.0 版本开始就已经废弃了。
 
->As of Babel 7, we've decided to deprecate the Stage-X presets and stop publishing them. Because these proposals are inherently subject to change, it seems better to ask users to specify individual proposals as plugins vs. a catch all preset that you would need to check up on anyway.
+> As of Babel 7, we've decided to deprecate the Stage-X presets and stop publishing them. Because these proposals are inherently subject to change, it seems better to ask users to specify individual proposals as plugins vs. a catch all preset that you would need to check up on anyway.
 
 目前官方推荐的做法是要使用哪个新特性，直接安装对应的插件即可。
 
@@ -87,8 +89,9 @@ npm install --save-dev @babel/preset-stage-2
 ```
 
 在上面的配置中，我们就使用了 @babel/preset-env 预设，并且对这套预设做了一些配置。
-  
+
 - targets：指定浏览器需要支持的版本范围
+
 ```js
 {
 	"presets": [
@@ -99,12 +102,12 @@ npm install --save-dev @babel/preset-stage-2
 }
 ```
 
-
 - useBuiltIns：让你决定如何使用 polyfills
-	- entry：该选项值会根据项目中 browserslist 对应的浏览器版本范围来添加 polyfills，这个选项不会管你源码中是否用到缺失的特性，只要对应的浏览器版本是缺失的，那么就会添加对应的特性。而且在使用这个选项值的时候，还需要在源码的入口文件中手动引入 core-js
-	- usage：根据你的源码中是否使用了缺失的特性，如果使用到了缺失的特性，那么才添加对应的 polyfills
-	- false：这个是默认值，关闭自动引入 polyfills。
+  - entry：该选项值会根据项目中 browserslist 对应的浏览器版本范围来添加 polyfills，这个选项不会管你源码中是否用到缺失的特性，只要对应的浏览器版本是缺失的，那么就会添加对应的特性。而且在使用这个选项值的时候，还需要在源码的入口文件中手动引入 core-js
+  - usage：根据你的源码中是否使用了缺失的特性，如果使用到了缺失的特性，那么才添加对应的 polyfills
+  - false：这个是默认值，关闭自动引入 polyfills。
 - corejs：指定你的 corejs 版本，polyfills 实际上就是通过 corejs 来实现的。该配置项一般就和 useBuiltIns 一起使用
+
 ```js
 {
 	"presets": [
@@ -118,21 +121,14 @@ npm install --save-dev @babel/preset-stage-2
 
 corejs 支持的配置项有 2、3 还有 false：
 
-- "*2*": 使用 *core-js* 的版本 *2*。这是旧版本的 *core-js*，它包含 *ES5、ES6* 和 *ES7* 的特性。在 *Babel 7.4.0* 之前，这是默认值。
-- "*3*": 使用 *core-js* 的版本 *3*。这是新版本的 *core-js*，它包含 *ES5、ES6、ES7、ES8* 和更高版本的特性。在 *Babel 7.4.0* 及更高版本，这是推荐的值。
-- *false*: 不使用 *core-js*。如果你不想让 *Babel* 添加任何 *polyfill*，你可以将 *corejs* 设置为 *false*。
+- "_2_": 使用 _core-js_ 的版本 _2_。这是旧版本的 _core-js_，它包含 _ES5、ES6_ 和 _ES7_ 的特性。在 _Babel 7.4.0_ 之前，这是默认值。
+- "_3_": 使用 _core-js_ 的版本 _3_。这是新版本的 _core-js_，它包含 _ES5、ES6、ES7、ES8_ 和更高版本的特性。在 _Babel 7.4.0_ 及更高版本，这是推荐的值。
+- _false_: 不使用 _core-js_。如果你不想让 _Babel_ 添加任何 _polyfill_，你可以将 _corejs_ 设置为 _false_。
 
-- modules：设置模块的类型
-	- amd
-	- umd
-	- systemjs
-	- commonjs
-	- cjs
-	- auto
-	- false
-默认值为 auto，根据你的环境和代码自动来决定使用的模块版本。
-  
+- modules：设置模块的类型 - amd - umd - systemjs - commonjs - cjs - auto - false
+  默认值为 auto，根据你的环境和代码自动来决定使用的模块版本。
 - include：允许你显式的指定要包含的插件（这个插件是本身在预设里面，但是因为 targets 的设置，可能会被排除掉）
+
 ```js
 {
 	"presets": [

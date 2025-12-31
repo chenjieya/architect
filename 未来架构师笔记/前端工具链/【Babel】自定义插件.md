@@ -1,12 +1,8 @@
-
-
 关于 babel 中如何创建自定义插件，官方是有一个 handbook：[https://github.com/jamiebuilds/babel-handbook/blob/master/translations/en/plugin-handbook.md](https://github.com/jamiebuilds/babel-handbook/blob/master/translations/en/plugin-handbook.md)
-
 
 - AST
 - Babel处理代码流程
 - 遍历
-  
 
 ## 1. AST
 
@@ -14,7 +10,7 @@
 
 ```js
 function square(n) {
-	return n * n;
+  return n * n
 }
 ```
 
@@ -147,7 +143,7 @@ Babel 对代码进行处理的时候，核心的流程就分为三步：
 所谓词法分析，就是将源码转为 token
 
 ```js
-let i = "Hello";
+let i = 'Hello'
 ```
 
 ```
@@ -157,7 +153,7 @@ let、i、=、 "Hello"
 转为 token 时，每一个 token 会包含一些额外的信息：
 
 ```js
-n * n;
+n * n
 ```
 
 会形成如下的 token：
@@ -191,9 +187,7 @@ n * n;
 }
 ```
 
-
 形成一个一个 token 之后，接下来就会进入到语法分析阶段，该阶段就是将所得到的 token 转为 AST 树结构，便于后续的操作。
-
 
 ### 2.2 转换（transform）
 
@@ -241,12 +235,12 @@ n * n;
 }
 ```
 
-1. 于是我们从 *FunctionDeclaration* 开始并且我们知道它的内部属性（即：*id，params，body*），所以我们依次访问每一个属性及它们的子节点。
-2. 接着我们来到 *id*，它是一个 *Identifier*。*Identifier* 没有任何子节点属性，所以我们继续。
-3. 之后是 *params*，由于它是一个数组节点所以我们访问其中的每一个，它们都是 *Identifier* 类型的单一节点，然后我们继续。
-4. 此时我们来到了 *body*，这是一个 *BlockStatement* 并且也有一个 *body* 节点，而且也是一个数组节点，我们继续访问其中的每一个。
-5. 这里唯一的一个属性是 *ReturnStatement* 节点，它有一个 *argument*，我们访问 *argument* 就找到了 *BinaryExpression**（二元表达式）。
-6. *BinaryExpression* 有一个 *operator*，一个 *left*，和一个 *right*。*Operator* 不是一个节点，它只是一个值因此我们不用继续向内遍历，我们只需要访问 *left* 和 *right*。
+1. 于是我们从 _FunctionDeclaration_ 开始并且我们知道它的内部属性（即：_id，params，body_），所以我们依次访问每一个属性及它们的子节点。
+2. 接着我们来到 _id_，它是一个 _Identifier_。_Identifier_ 没有任何子节点属性，所以我们继续。
+3. 之后是 _params_，由于它是一个数组节点所以我们访问其中的每一个，它们都是 _Identifier_ 类型的单一节点，然后我们继续。
+4. 此时我们来到了 _body_，这是一个 _BlockStatement_ 并且也有一个 _body_ 节点，而且也是一个数组节点，我们继续访问其中的每一个。
+5. 这里唯一的一个属性是 _ReturnStatement_ 节点，它有一个 _argument_，我们访问 _argument_ 就找到了 \*BinaryExpression\*\*（二元表达式）。
+6. _BinaryExpression_ 有一个 _operator_，一个 _left_，和一个 _right_。_Operator_ 不是一个节点，它只是一个值因此我们不用继续向内遍历，我们只需要访问 _left_ 和 _right_。
 
 ### 3.1 访问者
 
@@ -254,10 +248,10 @@ n * n;
 
 ```js
 const MyVisitor = {
-	Identifier() {
-		console.log("Called!");
-	}
-};
+  Identifier() {
+    console.log('Called!')
+  },
+}
 ```
 
 该访问者对象会在遍历这颗树的时候，当遇见 Identifier 节点的时候就会被调用。
@@ -265,14 +259,14 @@ const MyVisitor = {
 例如上面的那颗 AST 树，我们只表示 type，表示出来的形式如下：
 
 ```js
-- FunctionDeclaration
-  - Identifier (id)
-  - Identifier (params[0])
-  - BlockStatement (body)
-    - ReturnStatement (body)
-      - BinaryExpression (argument)
-        - Identifier (left)
-        - Identifier (right)
+;-FunctionDeclaration -
+  Identifier(id) -
+  Identifier(params[0]) -
+  BlockStatement(body) -
+  ReturnStatement(body) -
+  BinaryExpression(argument) -
+  Identifier(left) -
+  Identifier(right)
 ```
 
 因此在遍历上面这颗树的时候，Identifier 方法就会被调用四次。
@@ -281,15 +275,15 @@ const MyVisitor = {
 
 ```js
 const MyVisitor = {
-	Identifier: {
-		enter() {
-			console.log("Entered!");
-		},
-		exit() {
-			console.log("Exited!");
-		}
-	}
-};
+  Identifier: {
+    enter() {
+      console.log('Entered!')
+    },
+    exit() {
+      console.log('Exited!')
+    },
+  },
+}
 ```
 
 这里还是以上面的抽象语法树为例，整体的进入节点和退出节点的流程如下：
@@ -320,11 +314,11 @@ const MyVisitor = {
 现在你可能比较好奇的是访问者对象除了 Identifier 方法，还能够有哪些方法？
 
 一般来讲，不同的节点类型就有节点 type 所对应的方法，例如：
-- *Identifier(path, state)*: 这个方法在遍历到标识符节点时会被调用。
-- *FunctionDeclaration(path, state)*: 这个方法在遍历到函数声明节点时会被调用。
+
+- _Identifier(path, state)_: 这个方法在遍历到标识符节点时会被调用。
+- _FunctionDeclaration(path, state)_: 这个方法在遍历到函数声明节点时会被调用。
 
 至于节点究竟有哪些类型，可以参阅 estree：https://github.com/estree/estree/blob/master/es5.md
-  
 
 ### 3.2 路径
 
@@ -335,23 +329,23 @@ AST 是由一个一个的节点组成的，但是这些节点之间并非孤立�
 在实际编写插件的时候，我们经常就会利用 path 对象来获取节点的相关信息：
 
 ```js
-const babel = require("@babel/core");
-const traverse = require("@babel/traverse").default;
+const babel = require('@babel/core')
+const traverse = require('@babel/traverse').default
 
 const code = `function square(n) {
   return n * n;
-}`;
+}`
 
-const ast = babel.parse(code);
+const ast = babel.parse(code)
 
 // traverse 接收两个参数
 // 第一个参数就是抽象语法树
 // 第二个参数就是访问者对象
 traverse(ast, {
   enter(path) {
-    console.log(path.node.type);
+    console.log(path.node.type)
   },
-});
+})
 ```
 
 ### 3.3 状态
@@ -361,13 +355,13 @@ traverse(ast, {
 例如，现在我们有一个需求，重命名一个函数的参数。
 
 ```js
-let paramName; // 存储函数参数名
+let paramName // 存储函数参数名
 
 const MyVisitor = {
   FunctionDeclaration(path) {
-    const param = path.node.params[0]; // 同 path 对象拿到当前节点的参数
-    paramName = param.name; // 将参数的名称存储到 paramName 里面（全局变量）
-    param.name = "x";
+    const param = path.node.params[0] // 同 path 对象拿到当前节点的参数
+    paramName = param.name // 将参数的名称存储到 paramName 里面（全局变量）
+    param.name = 'x'
   },
 
   Identifier(path) {
@@ -375,10 +369,10 @@ const MyVisitor = {
     // 判断当前节点的名称是否等于 paramName（之前的函数参数名称）
     if (path.node.name === paramName) {
       // 进行修改
-      path.node.name = "x";
+      path.node.name = 'x'
     }
-  }
-};
+  },
+}
 ```
 
 上面的代码看上去没有什么问题，但是上面的代码可能在某些情况下不能够正常的工作。
@@ -391,56 +385,54 @@ const MyVisitor = {
 const updateParamNameVisitor = {
   Identifier(path) {
     if (path.node.name === this.paramName) {
-      path.node.name = "x";
+      path.node.name = 'x'
     }
-  }
-};
+  },
+}
 
 const MyVisitor = {
   FunctionDeclaration(path) {
-    const param = path.node.params[0];
-    const paramName = param.name;
-    param.name = "x";
+    const param = path.node.params[0]
+    const paramName = param.name
+    param.name = 'x'
 
-    path.traverse(updateParamNameVisitor, { paramName });
-  }
-};
+    path.traverse(updateParamNameVisitor, { paramName })
+  },
+}
 
-path.traverse(MyVisitor);
+path.traverse(MyVisitor)
 ```
-
 
 ## 4. 自定义插件
 
 要自定义 babel 的插件，实际上有一个固定的格式：
 
 ```js
-module.exports = function(babel){
-	// 该函数会自动传入 babel 对象
-	// types 也是一个对象，该对象上面有很多的方法，方便我们对 AST 的节点进行操作
-	const { types } = babel;
-	return {
-		name: "插件的名字",
-		visitor: {
-		// ...
-		// 这里书写不同类别的方法，不同的方法会被进入不同类别的节点触发
-		}
-	}
+module.exports = function (babel) {
+  // 该函数会自动传入 babel 对象
+  // types 也是一个对象，该对象上面有很多的方法，方便我们对 AST 的节点进行操作
+  const { types } = babel
+  return {
+    name: '插件的名字',
+    visitor: {
+      // ...
+      // 这里书写不同类别的方法，不同的方法会被进入不同类别的节点触发
+    },
+  }
 }
 ```
 
-
 ### 4.1 示例一
 
-创建一个自定义插件，该插件能够把 ES6 里面的 ** 转换为 Math.pow
+创建一个自定义插件，该插件能够把 ES6 里面的 \*\* 转换为 Math.pow
 
 在编写自定义插件的时候，会使用到 types 对象的一些方法：
 
-- t.callExpression(callee, arguments)：这个函数用于**创建一个**表示<u>函数调用</u>的 *AST* 节点。*callee* 参数是一个表示被调用的函数的表达式节点，*arguments* 参数是一个数组，包含了所有的参数表达式节点。
+- t.callExpression(callee, arguments)：这个函数用于**创建一个**表示<u>函数调用</u>的 _AST_ 节点。_callee_ 参数是一个表示被调用的函数的表达式节点，_arguments_ 参数是一个数组，包含了所有的参数表达式节点。
 
-- *t.memberExpression(object, property, computed = false)*：这个函数用于**创建一个**表示<u>属性访问</u>的 ***AST* 节点**。*object* 参数是一个表示对象的表达式节点，*property* 参数是一个表示属性名的标识符或表达式节点。*computed* 参数是一个布尔值，表示属性名是否是动态计算的。
+- _t.memberExpression(object, property, computed = false)_：这个函数用于**创建一个**表示<u>属性访问</u>的 **_AST_ 节点**。_object_ 参数是一个表示对象的表达式节点，_property_ 参数是一个表示属性名的标识符或表达式节点。_computed_ 参数是一个布尔值，表示属性名是否是动态计算的。
 
-- *t.identifier( )*: 创建 AST 节点，只不过**创建**的是 identifier 类型的 **AST 节点**。
+- _t.identifier( )_: 创建 AST 节点，只不过**创建**的是 identifier 类型的 **AST 节点**。
 
 插件的核心，其实就是创建一些新的 AST 节点，去替换旧的 AST 节点。
 
@@ -451,10 +443,10 @@ module.exports = function(babel){
 // 例如 2 ** 3 ---> Math.pow(2, 3)
 
 module.exports = function (babel) {
-  const { types: t } = babel;
+  const { types: t } = babel
 
   return {
-    name: "transform-to-mathpow",
+    name: 'transform-to-mathpow',
     visitor: {
       // 当你遍历 AST 节点的时候
       // 遍历到二元表达式的时候会自动执行该方法
@@ -464,8 +456,8 @@ module.exports = function (babel) {
         // 1 / 2
         // 检查当前的节点的运算符是否是 **
         // 如果不是，直接返回
-        if (path.node.operator !== "**") {
-          return;
+        if (path.node.operator !== '**') {
+          return
         }
         // 说明当前是 ** 我们要做一个替换操作
         // 首先需要生成新的 AST 节点，因为替换使用新的 AST 节点来替换的旧的 AST 节点
@@ -478,16 +470,16 @@ module.exports = function (babel) {
         // t.memberExpress(t.identifier("Math"), t.identifier("pow"));
 
         const mathpowAstNode = t.callExpression(
-          t.memberExpression(t.identifier("Math"), t.identifier("pow")),
-          [path.node.left, path.node.right]
-        );
+          t.memberExpression(t.identifier('Math'), t.identifier('pow')),
+          [path.node.left, path.node.right],
+        )
 
         // 用新的 AST 节点替换旧的 AST 节点
-        path.replaceWith(mathpowAstNode);
+        path.replaceWith(mathpowAstNode)
       },
     },
-  };
-};
+  }
+}
 ```
 
 在上面的代码中，我们就创建了一个自定义的插件，该插件首先对外暴露一个函数，该函数需要返回一个对象，对象里面就有访问器对象，访问器对象里面会有一些特定的方法，这些方法会在进入到特定的节点的时候被调用。
@@ -502,24 +494,24 @@ module.exports = function (babel) {
 // a => {...}
 // function(a){...}
 module.exports = function (babel) {
-  const { types: t } = babel;
+  const { types: t } = babel
 
   return {
-    name: "transform-arrow-to-function",
+    name: 'transform-arrow-to-function',
     visitor: {
       // 当你的节点类型为箭头函数表达式的时候
       // 执行特定的方法
       ArrowFunctionExpression(path) {
-        let body; // 存储函数体
+        let body // 存储函数体
 
-        if (path.node.body.type !== "BlockStatement") {
+        if (path.node.body.type !== 'BlockStatement') {
           // 进入此 if，说明箭头函数是一个表达式，需要将 body 部分转为返回语句
           // a => b
           // function(a){return b}
-          body = t.blockStatement([t.returnStatement(path.node.body)]);
+          body = t.blockStatement([t.returnStatement(path.node.body)])
         } else {
           // 可以直接使用箭头函数的方法体
-          body = path.node.body;
+          body = path.node.body
         }
         // 该方法创建一个普通函数表达式的 AST 节点（  function(){} ）
         const functionExpression = t.functionExpression(
@@ -527,12 +519,12 @@ module.exports = function (babel) {
           path.node.params, // 函数参数，和箭头函数的参数是一致的
           body, // 函数方法体
           false, // 不是一个生成器函数
-          path.node.async // 是否是异步函数，和箭头函数是一致的
-        );
+          path.node.async, // 是否是异步函数，和箭头函数是一致的
+        )
 
-        path.replaceWith(functionExpression);
+        path.replaceWith(functionExpression)
       },
     },
-  };
-};
+  }
+}
 ```
