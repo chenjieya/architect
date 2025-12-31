@@ -1,7 +1,7 @@
-
 目前我们所学习的两个工具：Pretter 和 ESLint，两者都有管理代码风格的功能，因此两者往往就会在代码风格的管理上面存在一些冲突。
 
 例如举一个例子：
+
 - ESLint 配置了单引号规则
 - Prettier 配置了要使用双引号
 
@@ -27,21 +27,21 @@ eslint 配置文件
 
 ```js
 module.exports = {
-	env: {
-		browser: true,
-		es2021: true,
-		node: true,
-	},
-	extends: 'eslint:recommended',
-	parserOptions: {
-		ecmaVersion: 12,
-		sourceType: 'module',
-	},
-	rules: {
-		indent: ['error', 2],
-		quotes: ['error', 'double'],
-		semi: ['error', 'always'],
-	},
+  env: {
+    browser: true,
+    es2021: true,
+    node: true,
+  },
+  extends: 'eslint:recommended',
+  parserOptions: {
+    ecmaVersion: 12,
+    sourceType: 'module',
+  },
+  rules: {
+    indent: ['error', 2],
+    quotes: ['error', 'double'],
+    semi: ['error', 'always'],
+  },
 }
 ```
 
@@ -51,17 +51,17 @@ src/index.js
 const str = 'Helo World'
 
 const arr = [
-	1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22,
-	23, 24, 25, 26, 27, 28, 29, 30,
+  1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22,
+  23, 24, 25, 26, 27, 28, 29, 30,
 ]
 
 const obj = {
-	name: 'John Doe',
-	age: 30,
-	address: {
-		city: 'New York',
-		state: 'NY',
-	},
+  name: 'John Doe',
+  age: 30,
+  address: {
+    city: 'New York',
+    state: 'NY',
+  },
 }
 
 console.log(str)
@@ -75,8 +75,8 @@ console.log(obj)
 
 - 手动的将其中一个工具的配置文件进行修改，改成和另外一个工具的配置是相同的。这种方式肯定是没有问题的，但是缺点在于这种方式是手动的，如果涉及到大量的规则，那么手动操作比较繁琐
 - 使用一些插件来帮助我们解决这个
-- *eslint-config-prettier* 会关闭所有与 *Prettier* 冲突的 *ESLint* 规则
-- *eslint-plugin-prettier* 将 *Prettier* 作为 *ESLint* 规则来运行，这样在运行 *ESLint* 时也会运行 *Prettier*。
+  - _eslint-config-prettier_ 会关闭所有与 _Prettier_ 冲突的 _ESLint_ 规则
+  - _eslint-plugin-prettier_ 将 _Prettier_ 作为 _ESLint_ 规则来运行，这样在运行 _ESLint_ 时也会运行 _Prettier_。
 
 接下来我们来安装这两个插件：
 
@@ -88,24 +88,24 @@ pnpm add eslint-config-prettier eslint-plugin-prettier -D
 
 ```js
 module.exports = {
-	env: {
-		browser: true,
-		es2021: true,
-		node: true,
-	},
-	extends: ['eslint:recommended', 'plugin:prettier/recommended'],
-	parserOptions: {
-		ecmaVersion: 12,
-		sourceType: 'module',
-	},
-	rules: {
-		'prettier/prettier': [
-			'warn',
-			{
-				semi: false,
-			},
-		],
-	},
+  env: {
+    browser: true,
+    es2021: true,
+    node: true,
+  },
+  extends: ['eslint:recommended', 'plugin:prettier/recommended'],
+  parserOptions: {
+    ecmaVersion: 12,
+    sourceType: 'module',
+  },
+  rules: {
+    'prettier/prettier': [
+      'warn',
+      {
+        semi: false,
+      },
+    ],
+  },
 }
 ```
 
