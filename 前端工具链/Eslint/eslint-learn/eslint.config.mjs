@@ -1,22 +1,26 @@
-// import js from "@eslint/js";
+import js from "@eslint/js";
 import globals from "globals";
 import { defineConfig } from "eslint/config";
+import custom from "./plugins/index.mjs";
 
 export default defineConfig([
   {
-    files: ["**/*.{js,mjs,cjs}"],
+    files: ["**/index.{js,mjs,cjs}"],
     plugins: {
-      // js
+      js,
+      custom: custom.pluginA,
+      customB: custom.pluginB
     },
-    // extends: ["js/recommended"],
+    extends: ["js/recommended"],
     languageOptions: { globals: globals.browser },
     rules: {
-      "custom/no-alert": "error"
+      "custom/no-console": "error",
+      "customB/no-alert": "error"
     }
   },
   {
     files: ["**/*.{eslint}.{js}"],
-    extends: ["js/recommended"],
+    plugins: {},
     languageOptions: { globals: globals.node }
   }
 ]);
