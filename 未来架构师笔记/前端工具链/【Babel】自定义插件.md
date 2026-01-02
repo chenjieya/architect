@@ -318,7 +318,7 @@ const MyVisitor = {
 - _Identifier(path, state)_: 这个方法在遍历到标识符节点时会被调用。
 - _FunctionDeclaration(path, state)_: 这个方法在遍历到函数声明节点时会被调用。
 
-至于节点究竟有哪些类型，可以参阅 estree：https://github.com/estree/estree/blob/master/es5.md
+至于节点究竟有哪些类型，可以参阅 estree：[https://github.com/estree/estree/blob/master/es5.md](https://github.com/estree/estree/blob/master/es5.md)
 
 ### 3.2 路径
 

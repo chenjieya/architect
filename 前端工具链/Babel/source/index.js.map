@@ -1,0 +1,27 @@
+{
+  "version": 3,
+  "file": "index.js",
+  "names": [
+    "greet",
+    "name",
+    "concat",
+    "console",
+    "log",
+    "arr",
+    "toReversed",
+    "_Promise$withResolver",
+    "Promise",
+    "withResolvers",
+    "promise",
+    "resolve",
+    "reject"
+  ],
+  "sources": [
+    "../src/index.js"
+  ],
+  "sourcesContent": [
+    "const greet = (name) => `Hello, ${name}!`;\r\nconsole.log(greet(\"World\"));\r\n\r\n// 专门处理异步可迭代对象 corejs 3.47才支持\r\n// async function* asyncGen() {\r\n//   yield 1;\r\n//   yield 2;\r\n//   yield 3;\r\n// }\r\n\r\n// const result = await Array.fromAsync(asyncGen());\r\n// console.log(result); // [1, 2, 3]\r\n\r\n// test.js\r\n// 测试 3.47 新增的特性\r\nconst arr = [1, 2, 3];\r\n\r\n// 使用 3.44+ 新增的方法\r\nconsole.log(arr.toReversed());\r\n\r\n// 使用 3.47 新增的方法\r\nconst { promise, resolve, reject } = Promise.withResolvers();\r\n"
+  ],
+  "mappings": ";;;;AAAA,IAAMA,KAAK,GAAG,SAARA,KAAKA,CAAIC,IAAI;EAAA,iBAAAC,MAAA,CAAeD,IAAI;AAAA,CAAG;AACzCE,OAAO,CAACC,GAAG,CAACJ,KAAK,CAAC,OAAO,CAAC,CAAC;;AAE3B;AACA;AACA;AACA;AACA;AACA;;AAEA;AACA;;AAEA;AACA;AACA,IAAMK,GAAG,GAAG,CAAC,CAAC,EAAE,CAAC,EAAE,CAAC,CAAC;;AAErB;AACAF,OAAO,CAACC,GAAG,CAACC,GAAG,CAACC,UAAU,CAAC,CAAC,CAAC;;AAE7B;AACA,IAAAC,qBAAA,GAAqCC,OAAO,CAACC,aAAa,CAAC,CAAC;EAApDC,OAAO,GAAAH,qBAAA,CAAPG,OAAO;EAAEC,OAAO,GAAAJ,qBAAA,CAAPI,OAAO;EAAEC,MAAM,GAAAL,qBAAA,CAANK,MAAM",
+  "ignoreList": []
+}

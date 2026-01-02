@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "babel": "babel src  --out-dir lib"
+    "babel": "babel src  --out-dir lib",
+    "bable-sourcemap": "babel src --out-dir source --source-maps"
   },
   "keywords": [],
   "author": "",
