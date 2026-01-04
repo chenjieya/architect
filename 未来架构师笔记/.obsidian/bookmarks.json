@@ -19,42 +19,55 @@
     {
       "type": "file",
       "ctime": 1765773315306,
-      "path": "Nginx(finish)/docker_nginx.md"
+      "path": "Nginx(finish)/docker_nginx.md",
+      "title": "[docker]nginx容器"
     },
     {
       "type": "file",
       "ctime": 1765773410419,
-      "path": "Docker(finish)/dock-componse.yml.md"
+      "path": "Docker(finish)/dock-componse.yml.md",
+      "title": "[docker]dock-componse.yml"
     },
     {
       "type": "file",
       "ctime": 1765773345521,
-      "path": "Rollup(finish)/Rollup插件.md"
+      "path": "Rollup(finish)/Rollup插件.md",
+      "title": "[Rollup]插件"
     },
     {
       "type": "file",
       "ctime": 1765773392278,
-      "path": "Linux/Linux 常用命令总结.md"
+      "path": "Linux/Linux 常用命令总结.md",
+      "title": "[Linux]常用命令总结"
     },
     {
       "type": "file",
       "ctime": 1765773397492,
-      "path": "Linux/Linux SSH 服务管理与配置详解.md"
+      "path": "Linux/Linux SSH 服务管理与配置详解.md",
+      "title": "[Linux]SSH 服务管理与配置详解"
+    },
+    {
+      "type": "file",
+      "ctime": 1766213943847,
+      "path": "NestJs(finish)/【mino】MinIO mc 客户端完整使用指南.md",
+      "title": "[Minio]mc相关指令"
+    },
+    {
+      "type": "file",
+      "ctime": 1767492612012,
+      "path": "企业包管理方案/【Npm】npm进阶指令.md",
+      "title": "[Npm]进阶指令"
+    },
+    {
+      "type": "file",
+      "ctime": 1767497660193,
+      "path": "企业包管理方案/【Npm】包描述文件.md",
+      "title": "[Npm]package.json"
     },
     {
       "type": "file",
       "ctime": 1765773362395,
       "path": "实战思路.md"
-    },
-    {
-      "type": "file",
-      "ctime": 1765871901817,
-      "path": "NestJs(finish)/【依赖】 NestJS 项目依赖完全指南.md"
-    },
-    {
-      "type": "file",
-      "ctime": 1766213943847,
-      "path": "NestJs(finish)/【mino】MinIO mc 客户端完整使用指南.md"
     }
   ]
 }

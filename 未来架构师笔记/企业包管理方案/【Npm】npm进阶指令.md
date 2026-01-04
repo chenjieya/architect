@@ -6,7 +6,7 @@
 - `npm install xxx`（简写 `npm i xxx`）- 安装依赖
 - `npm uninstall xxx`（简写 `npm rm xxx`）- 卸载依赖
 
-然而 npm 的功能远不止于此。官方文档（https://docs.npmjs.com/cli/v9/commands）中包含了大量实用但鲜为人知的指令。本文将为你详细介绍这些指令，帮助你更高效地使用 npm。
+然而 npm 的功能远不止于此。官方文档（[https://docs.npmjs.com/cli/v9/commands](https://docs.npmjs.com/cli/v9/commands)）中包含了大量实用但鲜为人知的指令。本文将为你详细介绍这些指令，帮助你更高效地使用 npm。
 
 ## 1. 查看相关信息类指令
 

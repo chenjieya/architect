@@ -1,0 +1,23 @@
+{
+  "name": "alvis-tools-pack",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "rollup -c"
+  },
+  "author": "alvis",
+  "license": "ISC",
+  "description": "第一次尝试发布一个包",
+  "files": [
+    "dist",
+    "package.json"
+  ],
+  "dependencies": {},
+  "devDependencies": {
+    "rollup": "^2.79.2",
+    "@rollup/plugin-commonjs": "^29.0.0",
+    "@rollup/plugin-node-resolve": "^16.0.3",
+    "@rollup/plugin-terser": "^0.4.4"
+  }
+}
