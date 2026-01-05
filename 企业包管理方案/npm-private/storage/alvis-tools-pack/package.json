@@ -1,0 +1,130 @@
+{
+	"name": "alvis-tools-pack",
+	"versions": {
+		"1.0.0": {
+			"name": "alvis-tools-pack",
+			"version": "1.0.0",
+			"main": "index.js",
+			"scripts": {
+				"test": "echo \"Error: no test specified\" && exit 1",
+				"build": "rollup -c"
+			},
+			"author": {
+				"name": "alvis"
+			},
+			"license": "ISC",
+			"description": "第一次尝试发布一个包",
+			"dependencies": {},
+			"devDependencies": {
+				"rollup": "^2.79.2",
+				"@rollup/plugin-commonjs": "^29.0.0",
+				"@rollup/plugin-node-resolve": "^16.0.3",
+				"@rollup/plugin-terser": "^0.4.4"
+			},
+			"_id": "alvis-tools-pack@1.0.0",
+			"gitHead": "c936f156ff115230e5f8912e12da3837dcbf98da",
+			"_nodeVersion": "20.15.1",
+			"_npmVersion": "10.7.0",
+			"dist": {
+				"integrity": "sha512-VR7zdQe5VrfnzvKVqLlMaFYp2vjDedVJhmbS6zEtbcqJxTt3yrgufMNBQPptpyZiAZH5M/EVooH4MMrOtgGsNQ==",
+				"shasum": "c8d2790c6163cd6f246eb3822c2449831cd757ab",
+				"tarball": "https://registry.npmjs.org/alvis-tools-pack/-/alvis-tools-pack-1.0.0.tgz",
+				"fileCount": 4,
+				"unpackedSize": 1314,
+				"signatures": [
+					{
+						"keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+						"sig": "MEUCIQCjLoN+OFXQIeUfUoy0rZGDq2PpamncVu1yvZkG9xLr4AIgA/zlvVIfSgZMNBf6v6Wo/AUssALCPiN48yIMIfON8r4="
+					}
+				]
+			},
+			"_npmUser": {
+				"name": "jie.chen.alvis",
+				"email": "alvis.goodday@gmail.com"
+			},
+			"directories": {},
+			"maintainers": [
+				{
+					"name": "jie.chen.alvis",
+					"email": "alvis.goodday@gmail.com"
+				}
+			],
+			"_npmOperationalInternal": {
+				"host": "s3://npm-registry-packages-npm-production",
+				"tmp": "tmp/alvis-tools-pack_1.0.0_1767516457385_0.21596834977140356"
+			},
+			"_hasShrinkwrap": false,
+			"contributors": []
+		},
+		"1.0.1": {
+			"name": "alvis-tools-pack",
+			"version": "1.0.1",
+			"main": "index.js",
+			"scripts": {
+				"test": "echo \"Error: no test specified\" && exit 1",
+				"build": "rollup -c"
+			},
+			"author": {
+				"name": "alvis"
+			},
+			"license": "ISC",
+			"description": "第一次尝试发布一个包",
+			"files": [
+				"dist",
+				"package.json"
+			],
+			"dependencies": {},
+			"devDependencies": {
+				"rollup": "^2.79.2",
+				"@rollup/plugin-commonjs": "^29.0.0",
+				"@rollup/plugin-node-resolve": "^16.0.3",
+				"@rollup/plugin-terser": "^0.4.4"
+			},
+			"_id": "alvis-tools-pack@1.0.1",
+			"gitHead": "7969a2c7ace9a01c0ccd57906e9e93cf4908c7eb",
+			"_nodeVersion": "20.15.1",
+			"_npmVersion": "10.7.0",
+			"dist": {
+				"integrity": "sha512-HcGKlyhnFakGHQl70lgjzjq+HjRNpHVTIOQiwNvLoBNm5VtGYPCj3x37O00rpT4FAE9IgDm3Fkf71viS9E0ShQ==",
+				"shasum": "dd34f51217ee1f1590ce3195e8844569df0f7873",
+				"tarball": "http://localhost:4873/alvis-tools-pack/-/alvis-tools-pack-1.0.1.tgz"
+			},
+			"contributors": []
+		}
+	},
+	"time": {
+		"created": "2026-01-04T08:47:37.280Z",
+		"1.0.0": "2026-01-04T08:47:37.530Z",
+		"modified": "2026-01-05T05:29:01.386Z",
+		"1.0.1": "2026-01-05T05:29:01.386Z"
+	},
+	"users": {},
+	"dist-tags": {
+		"latest": "1.0.1"
+	},
+	"_uplinks": {
+		"npmjs": {
+			"etag": "W/\"af084a20c40969f13fba0841023fd859\"",
+			"fetched": 1767591595407
+		}
+	},
+	"_distfiles": {
+		"alvis-tools-pack-1.0.0.tgz": {
+			"url": "https://registry.npmjs.org/alvis-tools-pack/-/alvis-tools-pack-1.0.0.tgz",
+			"sha": "c8d2790c6163cd6f246eb3822c2449831cd757ab",
+			"registry": "npmjs"
+		}
+	},
+	"_attachments": {
+		"alvis-tools-pack-1.0.0.tgz": {
+			"shasum": "c8d2790c6163cd6f246eb3822c2449831cd757ab"
+		},
+		"alvis-tools-pack-1.0.1.tgz": {
+			"shasum": "dd34f51217ee1f1590ce3195e8844569df0f7873",
+			"version": "1.0.1"
+		}
+	},
+	"_rev": "7-27e2794a22c46b30",
+	"_id": "alvis-tools-pack",
+	"readme": "ERROR: No README data found!"
+}
