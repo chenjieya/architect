@@ -152,7 +152,7 @@ packages:
 
 ### 3.3 中枢管理操作
 
-在 workspace 模式下，代码仓根目录通常不会作为一个子模块或者 npm 包，而是**主要作为一个管理中枢，执行一些全局操作，安装一些共有的依赖。**下面介绍一些常用的中枢管理操作。
+在 workspace 模式下，代码仓根目录通常不会作为一个子模块或者 npm 包，而是**主要作为一个管理中枢，执行一些全局操作，安装一些共有的依赖。** 下面介绍一些常用的中枢管理操作。
 
 - 创建一个 package.json 文件。
 
@@ -283,10 +283,10 @@ pnpm --filter "...[HEAD~1]" run build
 1. **项目仅仅使用组件库的个别组件，不希望全量引入，增大产物体积(其实按需引入、摇树机制可以规避)。**
 2. **组件库的维护者往往会做整体更新，但是项目维护者却只希望最小限度变更。例如项目方面需要 Button 组件修复一个问题，仅仅希望升级这个 Button 组件，而不要升级其他无关组件，以免带来更多的风险。**
 
-我们为这个示例组件库起名为 openx-ui。在我们的组件库正式投入开发前，我们先确定以下模块划分思路。这个思路可能会随着后续需求的增加不断地调整。
+我们为这个示例组件库起名为 alvis-ui。在我们的组件库正式投入开发前，我们先确定以下模块划分思路。这个思路可能会随着后续需求的增加不断地调整。
 
 ```
-openx-ui
+alvis-ui
 ├── docs          # 组件库文档 demo 模块
 ├── packages      # 组件库的各个实现模块放在 packages 目录下
 |   ├── button    # 按钮组件
@@ -308,8 +308,8 @@ openx-ui
 接下来创建我们的工程吧！
 
 ```bash
-mkdir openx-ui
-cd openx-ui
+mkdir alvis-ui
+cd alvis-ui
 pnpm init
 ```
 
@@ -317,7 +317,7 @@ pnpm init
 
 ```diff
 {
-  "name": "openx-ui",
+  "name": "alvis-ui",
 - "version": "1.0.0",
 - "description": "",
 - "main": "index.js",
@@ -343,7 +343,7 @@ packages:
 那么我们开始实际建立这些工作空间，并将根目录下的 package.json 文件复制到每个工作空间中。为了方便演示，暂时只建立 UI 组件 button(按钮)、input(输入框) 以及公共方法模块 shared。这里展示出完成操作后的目录树：
 
 ```
-📦openx-ui
+📦alvis-ui
  ┣ 📂docs
  ┃ ┗ 📜package.json
  ┣ 📂packages
@@ -367,9 +367,9 @@ packages:
 #### 5.1.1 根目录的 package.json
 
 ```json
-// openx-ui/package.json
+// alvis-ui/package.json
 {
-  "name": "openx-ui",
+  "name": "alvis-ui",
   "private": true,
   "scripts": {
     // 定义脚本
@@ -389,7 +389,7 @@ packages:
 这里只举一个组件的例子，其他组件包的配置除了 name 以外大体相同。
 
 ```json
-// openx-ui/packages/button/package.json
+// alvis-ui/packages/button/package.json
 {
   // 标识信息
   "name": "@openxui/button",
@@ -400,13 +400,13 @@ packages:
   "keywords": ["vue", "ui", "component library"],
   "author": "OpenX",
   "license": "MIT",
-  "homepage": "https://github.com/gkn1234/openx-ui/blob/master/README.md",
+  "homepage": "https://github.com/gkn1234/alvis-ui/blob/master/README.md",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/gkn1234/openx-ui.git"
+    "url": "git+https://github.com/gkn1234/alvis-ui.git"
   },
   "bugs": {
-    "url": "https://github.com/gkn1234/openx-ui/issues"
+    "url": "https://github.com/gkn1234/alvis-ui/issues"
   },
 
   // 定义脚本，由于还没有集成实际的构建流程，这里先以打印命令代替
@@ -450,7 +450,7 @@ packages:
 #### 5.1.3 项目文档的 package.json
 
 ```json
-// openx-ui/docs/package.json
+// alvis-ui/docs/package.json
 {
   "name": "@openxui/docs",
   "private": true,
