@@ -187,7 +187,7 @@ pnpm 通过巧妙的设计解决了传统包管理器的根本问题：
 # 如果两个版本 90% 文件相同，只存储 10% 的差异
 ```
 
-在 pnpm 中，直接依赖使用**硬链接**，而间接依赖使用**符号链接**。下面来做一个和 npm 安装包的对比：
+在 pnpm 中，硬链接解决“内容复用”，符号链接解决“依赖关系”，两者分工明确，和依赖层级没有任何对应关系。下面来做一个和 npm 安装包的对比：
 
 两个项目 ProjectA 和 ProjectB，它们都依赖同一个库 libraryX。
 
@@ -198,6 +198,7 @@ ProjectA 和 ProjectB 都会在各自的 node_modules 文件夹中创建一个�
 ```bash
 # 安装依赖
 cd ProjectA
+
 npm install libraryX
 
 cd ../ProjectB
@@ -250,6 +251,17 @@ pnpm 在处理间接依赖时，会使用符号链接。
 #### 2.3.1 什么是幽灵依赖？
 
 所谓幽灵依赖，是指当一个包（A）依赖于另一个包（B）时，后者会被放置在前者的 node_modules 目录中。这意味着一个包可能会意外地访问并使用另一个包的依赖，即使它没有在自己的 package.json 文件中声明这些依赖。
+
+> 顺便说一句： 对于引入模块，是“向上逐级查找”。
+> 假设文件在：
+> `/project/src/index.js`
+> 执行：
+> `require('lodash')`
+>
+> 结果：
+> /project/src/node_modules/lodash
+> /project/node_modules/lodash
+> /node_modules/lodash
 
 ```javascript
 // 项目 package.json
