@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "企业包管理方案/【Npm】从 npm 到 Yarn 再到 pnpm.md",
+                "file": "企业包管理方案/【Npm】pnpm + Workspace 搭建 Monorepo 工程实践.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "【Npm】从 npm 到 Yarn 再到 pnpm"
+              "title": "【Npm】pnpm + Workspace 搭建 Monorepo 工程实践"
             }
           },
           {
@@ -176,13 +176,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "企业包管理方案/【Npm】从 npm 到 Yarn 再到 pnpm.md",
+                "file": "企业包管理方案/【Npm】pnpm + Workspace 搭建 Monorepo 工程实践.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "【Npm】从 npm 到 Yarn 再到 pnpm 的大纲"
+              "title": "【Npm】pnpm + Workspace 搭建 Monorepo 工程实践 的大纲"
             }
           },
           {
@@ -219,18 +219,19 @@
   },
   "active": "a549c4a3f8cf3b62",
   "lastOpenFiles": [
-    "企业包管理方案/【Npm】搭建企业级 npm 私有服务器：Verdaccio 完全指南.md",
-    "企业包管理方案/【Npm】npm进阶指令.md",
-    "Docker(finish)/dock-componse.yml.md",
+    "企业包管理方案/【Npm】npm回顾.md",
+    "企业包管理方案/【Npm】pnpm + Workspace 搭建 Monorepo 工程实践.md",
     "企业包管理方案/【Npm】发布npm包.md",
+    "企业包管理方案/【Npm】包描述文件.md",
+    "企业包管理方案/【Npm】npm进阶指令.md",
+    "企业包管理方案/【Npm】从 npm 到 Yarn 再到 pnpm.md",
+    "企业包管理方案/【Npm】搭建企业级 npm 私有服务器：Verdaccio 完全指南.md",
+    "Docker(finish)/dock-componse.yml.md",
     "Rollup(finish)/Rollup基本配置（默认特性）.md",
     "Rollup(finish)/Rollup插件.md",
     "Rollup(finish)/Rollup插件开发.md",
-    "企业包管理方案/【Npm】包描述文件.md",
     "前端工具链(finish)/【prettier】实现简易 CLI.md",
     "Nginx(finish)/Nginx高级课程扩容与高效真.md",
-    "企业包管理方案/【Npm】从 npm 到 Yarn 再到 pnpm.md",
-    "企业包管理方案/【Npm】npm回顾.md",
     "Nginx(finish)/docker_nginx.md",
     "Linux/Linux 常用命令总结.md",
     "Linux/Linux SSH 服务管理与配置详解.md",
@@ -244,7 +245,6 @@
     "前端工具链(finish)/【prettier】API.md",
     "前端工具链(finish)/【perttier】命令行工具.md",
     "前端工具链(finish)/【Terser】Terser.md",
-    "前端工具链(finish)/【Swc】SWC.md",
     "前端工具链(finish)",
     "企业包管理方案",
     "前端工具链",
