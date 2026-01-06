@@ -1,0 +1,33 @@
+{
+  "compilerOptions": {
+    // "rootDir": "./src",
+    "outDir": "./dist",
+
+    "module": "esnext",
+    "target": "esnext",
+    "moduleResolution": "bundler",
+    "types": ["vitest/globals"],
+
+    "sourceMap": false,
+    "declaration": true,
+    "declarationDir": "./dist/types",
+    "declarationMap": false,
+
+    "noUncheckedIndexedAccess": true,
+    "exactOptionalPropertyTypes": true,
+
+    "strict": true,
+    "jsx": "react-jsx",
+    "verbatimModuleSyntax": true,
+    "isolatedModules": true,
+    "noUncheckedSideEffectImports": true,
+    "moduleDetection": "force",
+    "skipLibCheck": true,
+
+    "esModuleInterop": true,
+
+    "importHelpers": true,
+    "noEmitHelpers": true
+  }
+  // "include": ["src/**/*"]
+}

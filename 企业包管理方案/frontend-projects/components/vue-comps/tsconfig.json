@@ -1,0 +1,19 @@
+{
+  "extends": "@vue/tsconfig/tsconfig.dom.json",
+  "include": ["src/**/*", "src/**/*.vue", "src/**/__tests__/*.ts"],
+  // "exclude": ["src/**/__tests__/*"],
+  "exclude": ["src/main.ts", "src/App.vue", "node_modules", "dist"],
+  "compilerOptions": {
+    "declaration": true,
+    "declarationDir": "./dist/types",
+    "moduleResolution": "bundler",
+    "target": "es2015",
+    "module": "esnext",
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
+    "types": ["vitest/globals", "@vue/test-utils"],
+
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  }
+}

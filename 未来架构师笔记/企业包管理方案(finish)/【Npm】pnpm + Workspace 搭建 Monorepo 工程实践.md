@@ -125,10 +125,20 @@ pnpm 支持 monorepo 模式的工作机制叫做 workspace(工作空间)。
 例如以下的 pnpm-workspace.yaml 文件定义：a 目录、b 目录、c 目录下的所有子目录，都会各自被视为独立的模块。
 
 ```yaml
+# 实例一
 packages:
   - a
   - b
   - c/*
+
+# 实例二
+packages:
+  # packages/ 下所有子包，但是不包括子包下面的包
+  - 'packages/*'
+  # components/ 下所有的包，包含子包下面的子包
+  - 'components/**'
+  # 排除 test 目录
+  - '!**/test/**'
 ```
 
 ```

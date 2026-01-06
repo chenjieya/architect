@@ -1,0 +1,23 @@
+{
+  "name": "tools",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/tool.cjs.js",
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./dist/tools.esm.js",
+      "require": "./dist/tools.cjs.js",
+      "types": "./dist/types/src/index.d.ts"
+    }
+  },
+  "browser": "./dist/tools.umd.js",
+  "scripts": {
+    "test": "vitest -c ./vitest.config.ts",
+    "build": "rollup -c rollup.config.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.18.1"
+}
