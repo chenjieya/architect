@@ -123,8 +123,8 @@ $secondary-color: #6c757d;
 }
 
 // button.scss
-@import "./variables";
-@import "./mixins";
+@import './variables';
+@import './mixins';
 
 .button {
   @include button($primary-color);
@@ -145,15 +145,15 @@ export default {
     preprocessorOptions: {
       scss: {
         // 全局变量：每个 SCSS 文件都会自动导入
-        additionalData: `@import "./src/styles/variables.scss";`
+        additionalData: `@import "./src/styles/variables.scss";`,
         // 或使用函数形式
         // additionalData: (content, loaderContext) => {
         //   return `@import "./src/styles/variables.scss";\n${content}`;
         // },
-      }
-    }
-  }
-};
+      },
+    },
+  },
+}
 ```
 
 **配置说明：**
@@ -251,10 +251,10 @@ secondary-color = #6c757d
 
 ```javascript
 // Button.jsx
-import styles from "./Button.module.css";
+import styles from './Button.module.css'
 
 function Button() {
-  return <button className={styles.button}>Click me</button>;
+  return <button className={styles.button}>Click me</button>
 }
 
 // 编译后的类名：Button_button_abc123
@@ -277,15 +277,15 @@ export default {
   css: {
     modules: {
       // 类名生成规则
-      generateScopedName: "[name]__[local]___[hash:base64:5]",
+      generateScopedName: '[name]__[local]___[hash:base64:5]',
       // 或使用函数
       generateScopedName: (name, filename, css) => {
         // 自定义生成逻辑
-        return `${name}_${hash}`;
-      }
-    }
-  }
-};
+        return `${name}_${hash}`
+      },
+    },
+  },
+}
 ```
 
 ---
@@ -331,11 +331,11 @@ npm install -D postcss autoprefixer
 // postcss.config.js
 module.exports = {
   plugins: [
-    require("autoprefixer")({
-      overrideBrowserslist: ["last 2 versions"]
-    })
-  ]
-};
+    require('autoprefixer')({
+      overrideBrowserslist: ['last 2 versions'],
+    }),
+  ],
+}
 ```
 
 ```css
@@ -367,12 +367,12 @@ npm install -D postcss-pxtorem
 // postcss.config.js
 module.exports = {
   plugins: [
-    require("postcss-pxtorem")({
+    require('postcss-pxtorem')({
       rootValue: 16, // 根字体大小
-      propList: ["*"] // 所有属性都转换
-    })
-  ]
-};
+      propList: ['*'], // 所有属性都转换
+    }),
+  ],
+}
 ```
 
 ---
@@ -391,14 +391,14 @@ npm install -D postcss-preset-env
 // postcss.config.js
 module.exports = {
   plugins: [
-    require("postcss-preset-env")({
+    require('postcss-preset-env')({
       // 包含 autoprefixer
-      browsers: "last 2 versions",
+      browsers: 'last 2 versions',
       // 使用 can i use 数据
-      stage: 2
-    })
-  ]
-};
+      stage: 2,
+    }),
+  ],
+}
 ```
 
 **关键词解释：**
@@ -422,11 +422,11 @@ npm install -D cssnano
 // postcss.config.js
 module.exports = {
   plugins: [
-    require("cssnano")({
-      preset: "default"
-    })
-  ]
-};
+    require('cssnano')({
+      preset: 'default',
+    }),
+  ],
+}
 ```
 
 ---
@@ -440,10 +440,10 @@ module.exports = {
 export default {
   css: {
     postcss: {
-      plugins: [require("autoprefixer")(), require("postcss-preset-env")()]
-    }
-  }
-};
+      plugins: [require('autoprefixer')(), require('postcss-preset-env')()],
+    },
+  },
+}
 ```
 
 **或使用独立配置文件：**
@@ -453,11 +453,11 @@ export default {
 module.exports = {
   plugins: {
     autoprefixer: {},
-    "postcss-preset-env": {
-      browsers: "last 2 versions"
-    }
-  }
-};
+    'postcss-preset-env': {
+      browsers: 'last 2 versions',
+    },
+  },
+}
 ```
 
 **关键词解释：**
@@ -503,23 +503,23 @@ npm install -D babel-plugin-styled-components
 
 ```javascript
 // vite.config.js
-import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react";
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
 
 export default defineConfig({
   plugins: [
     react({
       babel: {
-        plugins: ["babel-plugin-styled-components"]
-      }
-    })
-  ]
-});
+        plugins: ['babel-plugin-styled-components'],
+      },
+    }),
+  ],
+})
 ```
 
 ```javascript
 // Button.jsx
-import styled from "styled-components";
+import styled from 'styled-components'
 
 const Button = styled.button`
   padding: 10px 20px;
@@ -531,9 +531,9 @@ const Button = styled.button`
   &:hover {
     opacity: 0.8;
   }
-`;
+`
 
-export default Button;
+export default Button
 ```
 
 **配置说明：**
@@ -554,13 +554,13 @@ npm install @emotion/react @emotion/styled
 
 ```javascript
 // Button.jsx
-import styled from "@emotion/styled";
+import styled from '@emotion/styled'
 
 const Button = styled.button`
   padding: 10px 20px;
   background-color: #007bff;
   color: white;
-`;
+`
 ```
 
 **Vite 配置：**
@@ -602,34 +602,34 @@ npx tailwindcss init -p
 
 ```javascript
 module.exports = {
-  content: ["./index.html", "./src/**/*.{vue,js,ts,jsx,tsx}"],
+  content: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
   theme: {
-    extend: {}
+    extend: {},
   },
-  plugins: []
-};
+  plugins: [],
+}
 ```
 
 **代码演示：tailwind.config.js**
 
 ```javascript
 module.exports = {
-  content: ["./index.html", "./src/**/*.{vue,js,ts,jsx,tsx}"],
+  content: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
   theme: {
-    extend: {}
+    extend: {},
   },
-  plugins: []
-};
+  plugins: [],
+}
 ```
 
 **代码演示：Vite 配置中的 PostCSS 配置**
 
 ```javascript
 // vite.config.js
-import { defineConfig } from "vite";
-import tailwindcss from "tailwindcss";
-import autoprefixer from "autoprefixer";
-import presetEnv from "postcss-preset-env";
+import { defineConfig } from 'vite'
+import tailwindcss from 'tailwindcss'
+import autoprefixer from 'autoprefixer'
+import presetEnv from 'postcss-preset-env'
 
 export default defineConfig({
   css: {
@@ -638,13 +638,13 @@ export default defineConfig({
         // 也可以是 autoprefixer
         // autoprefixer()
         presetEnv({
-          browsers: "last 2 versions"
+          browsers: 'last 2 versions',
         }),
-        tailwindcss()
-      ]
-    }
-  }
-});
+        tailwindcss(),
+      ],
+    },
+  },
+})
 ```
 
 **或使用独立的 postcss.config.js：**
@@ -654,9 +654,9 @@ export default defineConfig({
 module.exports = {
   plugins: {
     tailwindcss: {},
-    autoprefixer: {}
-  }
-};
+    autoprefixer: {},
+  },
+}
 ```
 
 **代码演示：引入指令**
@@ -714,11 +714,11 @@ npm install -D windicss vite-plugin-windicss
 
 ```javascript
 // vite.config.js
-import WindiCSS from "vite-plugin-windicss";
+import WindiCSS from 'vite-plugin-windicss'
 
 export default {
-  plugins: [WindiCSS()]
-};
+  plugins: [WindiCSS()],
+}
 ```
 
 **Windi CSS 特点：**

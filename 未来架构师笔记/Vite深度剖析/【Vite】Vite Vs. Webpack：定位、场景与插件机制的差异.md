@@ -62,6 +62,7 @@ module.exports = {
 **详细说明：**
 
 Vite 是一个更上层的工具链方案，它整合了：
+
 - **Webpack**：打包能力（通过 Rollup）
 - **针对 Web 的常用配置**：开箱即用的配置
 - **webpack-dev-server**：开发服务器功能
@@ -78,7 +79,7 @@ export default {
   },
   // 构建配置（类似 webpack）
   build: {
-    outDir: "dist",
+    outDir: 'dist',
     rollupOptions: {
       // Rollup 配置
     },

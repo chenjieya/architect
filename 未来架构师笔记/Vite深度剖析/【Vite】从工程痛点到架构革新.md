@@ -12,9 +12,9 @@
 
 ```javascript
 // ES Module 语法
-import { debounce } from "lodash-es";
-import App from "./App.vue";
-export default App;
+import { debounce } from 'lodash-es'
+import App from './App.vue'
+export default App
 ```
 
 **特点：**
@@ -27,8 +27,8 @@ export default App;
 
 ```javascript
 // CommonJS 语法
-const { debounce } = require("lodash");
-module.exports = App;
+const { debounce } = require('lodash')
+module.exports = App
 ```
 
 **特点：**
@@ -73,13 +73,13 @@ export default App;
 
 ```javascript
 // 编译后：App.js
-import React from "react";
+import React from 'react'
 
 const App = ({ title }) => {
-  return React.createElement("h1", null, title);
-};
+  return React.createElement('h1', null, title)
+}
 
-export default App;
+export default App
 ```
 
 ---
@@ -100,7 +100,7 @@ export default App;
 ```javascript
 // webpack.config.js
 module.exports = {
-  entry: "./src/main.js"
+  entry: './src/main.js',
   // 启动前需要：
   // 1. 解析所有依赖（递归扫描）
   // 2. 构建完整依赖图
@@ -108,7 +108,7 @@ module.exports = {
   // 4. 打包所有模块到内存
   // 5. 启动 dev server
   // 问题：即使只访问一个页面，也要全量构建
-};
+}
 ```
 
 **本质问题：**
@@ -157,11 +157,11 @@ module.exports = {
 
 ```javascript
 // src/main.js
-import { createApp } from "vue";
-import App from "./App.vue";
+import { createApp } from 'vue'
+import App from './App.vue'
 
 // 浏览器会直接请求这些模块
-createApp(App).mount("#app");
+createApp(App).mount('#app')
 ```
 
 **工作流程：**
@@ -207,15 +207,15 @@ Vite 服务器按需编译 App.vue
 export default {
   optimizeDeps: {
     // 强制预构建的依赖
-    include: ["vue", "vue-router"],
+    include: ['vue', 'vue-router'],
     // 排除预构建的依赖
-    exclude: ["some-large-library"],
+    exclude: ['some-large-library'],
     // esbuild 选项
     esbuildOptions: {
-      target: "es2020"
-    }
-  }
-};
+      target: 'es2020',
+    },
+  },
+}
 ```
 
 **工作流程：**
@@ -240,10 +240,10 @@ export default {
 
 ```javascript
 // 源代码
-import { debounce } from "lodash-es";
+import { debounce } from 'lodash-es'
 
 // 预构建后，路径被重写
-import { debounce } from "/node_modules/.vite/deps/lodash-es.js";
+import { debounce } from '/node_modules/.vite/deps/lodash-es.js'
 ```
 
 **关键词解释：**
@@ -309,13 +309,13 @@ export default {
       output: {
         // 代码分割配置
         manualChunks: {
-          vendor: ["vue", "vue-router"],
-          utils: ["./src/utils"]
-        }
-      }
-    }
-  }
-};
+          vendor: ['vue', 'vue-router'],
+          utils: ['./src/utils'],
+        },
+      },
+    },
+  },
+}
 ```
 
 **关键词解释：**
@@ -339,11 +339,11 @@ Vite 提供了丰富的默认配置：
 ```typescript
 // 直接使用 TypeScript，无需配置
 // src/main.ts
-import { createApp } from "vue";
-import App from "./App.vue";
-import "./style.scss"; // 直接导入 SCSS
+import { createApp } from 'vue'
+import App from './App.vue'
+import './style.scss' // 直接导入 SCSS
 
-createApp(App).mount("#app");
+createApp(App).mount('#app')
 ```
 
 ---

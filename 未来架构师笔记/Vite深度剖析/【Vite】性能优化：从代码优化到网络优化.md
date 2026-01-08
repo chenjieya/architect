@@ -120,16 +120,16 @@ npm install -D rollup-plugin-visualizer
 
 ```javascript
 // vite.config.js
-import { visualizer } from "rollup-plugin-visualizer";
+import { visualizer } from 'rollup-plugin-visualizer'
 
 export default {
   plugins: [
     visualizer({
       open: true, // 自动打开
-      filename: "stats.html", // 输出文件
+      filename: 'stats.html', // 输出文件
     }),
   ],
-};
+}
 ```
 
 **功能说明：**
@@ -316,7 +316,13 @@ export default defineConfig({
 <!-- 一般会声明 href 和 as 属性，分别表示资源地址和资源类型 -->
 <link rel="preload" href="/assets/main.js" as="script" />
 <link rel="preload" href="/assets/main.css" as="style" />
-<link rel="preload" href="/assets/font.woff2" as="font" type="font/woff2" crossorigin />
+<link
+  rel="preload"
+  href="/assets/font.woff2"
+  as="font"
+  type="font/woff2"
+  crossorigin
+/>
 ```
 
 **代码演示：Modulepreload（原生 ESM 的预加载）**
@@ -374,14 +380,14 @@ export default {
   build: {
     rollupOptions: {
       // 外部化依赖：不打包这些依赖
-      external: ["vue", "vue-router", "element-plus", "vue-echarts"],
+      external: ['vue', 'vue-router', 'element-plus', 'vue-echarts'],
       output: {
         globals: {
-          vue: "Vue",
-          "vue-router": "VueRouter",
-          "element-plus": "ElementPlus",
-          echarts: "echarts",
-          "vue-echarts": "VueECharts",
+          vue: 'Vue',
+          'vue-router': 'VueRouter',
+          'element-plus': 'ElementPlus',
+          echarts: 'echarts',
+          'vue-echarts': 'VueECharts',
         },
       },
     },
@@ -422,7 +428,10 @@ export default {
   rel="stylesheet"
   href="https://cdn.jsdelivr.net/npm/element-plus@2.3.12/dist/index.min.css"
 />
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vue-echarts@6.6.1/dist/csp/style.min.css">
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/vue-echarts@6.6.1/dist/csp/style.min.css"
+/>
 <script src="https://cdn.jsdelivr.net/npm/vue@3.3.4/dist/vue.global.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue-router@4.2.4/dist/vue-router.global.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/element-plus@2.3.12/dist/index.full.min.js"></script>
@@ -439,9 +448,9 @@ export default {
 export default {
   resolve: {
     alias: {
-      "@": resolve(__dirname, "src"),
+      '@': resolve(__dirname, 'src'),
       // 配置 CDN
-      "lodash-es": "https://cdn.jsdelivr.net/npm/lodash-es@4.17.21/+esm",
+      'lodash-es': 'https://cdn.jsdelivr.net/npm/lodash-es@4.17.21/+esm',
     },
   },
 }
@@ -451,7 +460,7 @@ export default {
 
 ```javascript
 // 代码中正常使用
-import { debounce } from "lodash-es";
+import { debounce } from 'lodash-es'
 // 实际会从 CDN 加载
 ```
 
@@ -494,7 +503,7 @@ npm install -D vite-plugin-compression2
 
 ```javascript
 // vite.config.js
-import compression from "vite-plugin-compression2";
+import compression from 'vite-plugin-compression2'
 
 export default {
   plugins: [
@@ -537,7 +546,7 @@ export default {
 http {
     # 启用静态压缩模块
     gzip_static on;
-    
+
     # 如果 .gz 文件不存在，回退到动态压缩
     gzip on;
 }
@@ -580,7 +589,7 @@ pnpm vite-plugin-imagemin -D
 
 ```javascript
 // vite.config.js
-import viteImagemin from "vite-plugin-imagemin";
+import viteImagemin from 'vite-plugin-imagemin'
 
 export default {
   plugins: [
@@ -602,17 +611,17 @@ export default {
       svgo: {
         plugins: [
           {
-            name: "removeViewBox",
+            name: 'removeViewBox',
           },
           {
-            name: "removeEmptyAttrs",
+            name: 'removeEmptyAttrs',
             active: false,
           },
         ],
       },
     }),
   ],
-};
+}
 ```
 
 **压缩配置说明：**

@@ -384,15 +384,15 @@ Vite 在开发环境模拟 Rollup 的行为，创建一个插件容器来调用 
 // 让 Rollup 插件可以在开发环境使用
 
 // vite.config.js
-import { defineConfig } from "vite";
-import rollupPlugin from "some-rollup-plugin";
+import { defineConfig } from 'vite'
+import rollupPlugin from 'some-rollup-plugin'
 
 export default defineConfig({
   plugins: [
     // Rollup 插件可以直接使用
     rollupPlugin(),
   ],
-});
+})
 ```
 
 **工作原理：**

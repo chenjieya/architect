@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Vite深度剖析/【Vite】Vite 静态资源处理：从路径别名到动态导入.md",
+                "file": "Vite深度剖析/【Vite】Vite Vs. Webpack：定位、场景与插件机制的差异.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "【Vite】Vite 静态资源处理：从路径别名到动态导入"
+              "title": "【Vite】Vite Vs. Webpack：定位、场景与插件机制的差异"
             }
           }
         ]
@@ -162,13 +162,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Vite深度剖析/【Vite】Vite 静态资源处理：从路径别名到动态导入.md",
+                "file": "Vite深度剖析/【Vite】Vite Vs. Webpack：定位、场景与插件机制的差异.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "【Vite】Vite 静态资源处理：从路径别名到动态导入 的大纲"
+              "title": "【Vite】Vite Vs. Webpack：定位、场景与插件机制的差异 的大纲"
             }
           },
           {
@@ -206,16 +206,16 @@
   },
   "active": "af3e0b00180e6333",
   "lastOpenFiles": [
-    "Vite深度剖析/【Vite】Vite 配置文件详解：从基础到高级配置.md",
-    "Vite深度剖析/【Vite】Vite 双引擎架构：Esbuild 与 Rollup 的完美结合.md",
-    "Vite深度剖析/【Vite】Vite 性能优化：从代码优化到网络优化.md",
-    "Vite深度剖析/【Vite】Vite CSS 工程化处理：从预处理器到原子化框架.md",
+    "Vite深度剖析/【Vite】 CSS 工程化处理：从预处理器到原子化框架.md",
+    "Vite深度剖析/【Vite】性能优化：从代码优化到网络优化.md",
+    "Vite深度剖析/【Vite】双引擎架构：Esbuild 与 Rollup 的完美结合.md",
+    "Vite深度剖析/【Vite】配置文件详解：从基础到高级配置.md",
+    "Vite深度剖析/【Vite】命令详解：从开发到生产的完整流程.md",
+    "Vite深度剖析/【Vite】框架集成：Vue 3 与 React 18 的完整指南.md",
+    "Vite深度剖析/【Vite】静态资源处理：从路径别名到动态导入.md",
+    "Vite深度剖析/【Vite】代码分割（Code Splitting）：从基础到高级策略.md",
+    "Vite深度剖析/【Vite】从工程痛点到架构革新.md",
     "Vite深度剖析/【Vite】Vite Vs. Webpack：定位、场景与插件机制的差异.md",
-    "Vite深度剖析/【Vite】Vite 命令详解：从开发到生产的完整流程.md",
-    "Vite深度剖析/【Vite】Vite 框架集成：Vue 3 与 React 18 的完整指南.md",
-    "Vite深度剖析/【Vite】Vite 静态资源处理：从路径别名到动态导入.md",
-    "Vite深度剖析/【Vite】Vite 概述：从工程痛点到架构革新.md",
-    "Vite深度剖析/【Vite】Vite 代码分割（Code Splitting）：从基础到高级策略.md",
     "Vite深度剖析/【ViteAi】插件是如何真正参与 Dev 与 Build 的？.md",
     "Vite深度剖析/【ViteAi】从工程痛点到架构革新（为什么 Vite 会出现）.md",
     "Vite深度剖析/【ViteAi】为什么项目变大后你会“感觉它变慢了”？.md",

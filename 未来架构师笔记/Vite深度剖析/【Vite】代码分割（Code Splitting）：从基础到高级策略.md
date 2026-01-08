@@ -235,14 +235,14 @@ export default {
       output: {
         manualChunks: {
           // 将 vue 和 vue-router 打包到 vendor
-          vendor: ["vue", "vue-router"],
+          vendor: ['vue', 'vue-router'],
           // 将工具函数打包到 utils
-          utils: ["./src/utils/index.js"],
+          utils: ['./src/utils/index.js'],
         },
       },
     },
   },
-};
+}
 ```
 
 **对象形式说明：**
@@ -274,29 +274,29 @@ export default {
       output: {
         manualChunks(id) {
           // node_modules 中的依赖
-          if (id.includes("node_modules")) {
+          if (id.includes('node_modules')) {
             // 大型库单独打包
-            if (id.includes("vue") || id.includes("vue-router")) {
-              return "vendor-vue";
+            if (id.includes('vue') || id.includes('vue-router')) {
+              return 'vendor-vue'
             }
             // 其他依赖
-            return "vendor";
+            return 'vendor'
           }
 
           // 工具函数
-          if (id.includes("/utils/")) {
-            return "utils";
+          if (id.includes('/utils/')) {
+            return 'utils'
           }
 
           // 组件
-          if (id.includes("/components/")) {
-            return "components";
+          if (id.includes('/components/')) {
+            return 'components'
           }
         },
       },
     },
   },
-};
+}
 ```
 
 **函数形式说明：**
@@ -389,14 +389,14 @@ export default {
 // 路由懒加载
 const routes = [
   {
-    path: "/home",
-    component: () => import("./pages/Home.vue"), // 异步 chunk
+    path: '/home',
+    component: () => import('./pages/Home.vue'), // 异步 chunk
   },
   {
-    path: "/about",
-    component: () => import("./pages/About.vue"), // 异步 chunk
+    path: '/about',
+    component: () => import('./pages/About.vue'), // 异步 chunk
   },
-];
+]
 ```
 
 **Vite 的优化机制：**
@@ -452,16 +452,16 @@ npm install -D vite-plugin-chunk-split
 
 ```javascript
 // vite.config.js
-import { chunkSplitPlugin } from "vite-plugin-chunk-split";
+import { chunkSplitPlugin } from 'vite-plugin-chunk-split'
 
 export default {
   plugins: [
     chunkSplitPlugin({
-      strategy: "split-by-size",
+      strategy: 'split-by-size',
       minChunkSize: 20000,
     }),
   ],
-};
+}
 ```
 
 **插件功能：**
@@ -497,7 +497,7 @@ export default {
   build: {
     rollupOptions: {
       output: {
-        chunkFileNames: "chunks/[name]-[hash].js",
+        chunkFileNames: 'chunks/[name]-[hash].js',
         // [name]: chunk 名称
         // [hash]: 内容哈希值
       },
@@ -536,7 +536,7 @@ export default {
   build: {
     rollupOptions: {
       output: {
-        entryFileNames: "js/[name]-[hash].js",
+        entryFileNames: 'js/[name]-[hash].js',
       },
     },
   },
@@ -566,13 +566,13 @@ export default {
   build: {
     rollupOptions: {
       output: {
-        assetFileNames: "assets/[name]-[hash].[ext]",
+        assetFileNames: 'assets/[name]-[hash].[ext]',
         // 或使用函数
         assetFileNames: (assetInfo) => {
-          if (assetInfo.name.endsWith(".css")) {
-            return "css/[name]-[hash].[ext]";
+          if (assetInfo.name.endsWith('.css')) {
+            return 'css/[name]-[hash].[ext]'
           }
-          return "assets/[name]-[hash].[ext]";
+          return 'assets/[name]-[hash].[ext]'
         },
       },
     },

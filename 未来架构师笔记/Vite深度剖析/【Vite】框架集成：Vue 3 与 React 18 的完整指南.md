@@ -198,20 +198,20 @@ export default App
 ```tsx
 // ✅ 正确：默认导出组件（函数声明）
 export default function App() {
-  return <div>App</div>;
+  return <div>App</div>
 }
 
 // ✅ 正确：命名导出组件（函数声明）
 export function App() {
-  return <div>App</div>;
+  return <div>App</div>
 }
 
 // ✅ 正确：箭头函数（但需要直接导出）
-export const App = () => <div>App</div>;
+export const App = () => <div>App</div>
 
 // ❌ 错误：导出常量（可能导致 HMR 失效）
-const App = () => <div>App</div>;
-export { App };
+const App = () => <div>App</div>
+export { App }
 ```
 
 **为什么会导致 HMR 失效？**
@@ -241,20 +241,20 @@ module.exports = {
   root: true,
   env: { browser: true, es2020: true },
   extends: [
-    "eslint:recommended",
-    "plugin:@typescript-eslint/recommended",
-    "plugin:react-hooks/recommended",
+    'eslint:recommended',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:react-hooks/recommended',
   ],
-  ignorePatterns: ["dist", ".eslintrc.cjs"],
-  parser: "@typescript-eslint/parser",
-  plugins: ["react-refresh"],
+  ignorePatterns: ['dist', '.eslintrc.cjs'],
+  parser: '@typescript-eslint/parser',
+  plugins: ['react-refresh'],
   rules: {
-    "react-refresh/only-export-components": [
-      "warn",
+    'react-refresh/only-export-components': [
+      'warn',
       { allowConstantExport: true },
     ],
   },
-};
+}
 ```
 
 **代码演示：package.json**
@@ -316,6 +316,7 @@ npm create vite@latest my-react-app -- --template react-ts
 **模板位置：**
 
 Vite 的模板存放在 [create-vite](https://github.com/vitejs/vite/tree/main/packages/create-vite) 仓库中，每个模板都包含：
+
 - 预配置的 `vite.config.js`
 - 示例代码
 - 必要的依赖
