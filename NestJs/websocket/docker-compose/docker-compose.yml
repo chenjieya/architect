@@ -18,12 +18,20 @@ services:
     environment:
       - NODE_ENV=production
       - REDIS_HOST=redis
-      - REDIS_PORT=6380
-      - MINIO_HOST=minio
+      - REDIS_PORT=6379
+      - MINIO_HOST=alvis.org.cn
       - MINIO_PORT=9000
+      - MINIO_BUCKET=chat-room
+      - MINIO_ACCESS_KEY=jie.chen
+      - MINIO_SECRET_KEY=chenjie+00
+      - MINIO_PUBLIC_HOST=alvis.org.cn
       - DB_HOST=mysql
-      - DB_PORT=3307
+      - DB_PORT=3306
       - DB_DATABASE=nest-chat-production
+      - JWT_SECRET=alvis
+      - DB_NAME=root
+      - DB_PWD=chenjie+00
+      - DB_CREATE=true
     networks:
       - app-network
 
@@ -36,7 +44,7 @@ services:
     ports:
       - "5173:80"
     volumes:
-      - ../ten_thousand_art_languages_web/dist:/usr/share/nginx/html
+      - ../dist:/usr/share/nginx/html
       - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
     depends_on:
       - nest-backend
