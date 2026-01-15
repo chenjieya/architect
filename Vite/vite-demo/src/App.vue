@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { debounce } from "lodash-es";
+import NotFound from "./views/NotFound.vue";
 // 框架
 // 组件
 // 方法/类型
@@ -19,11 +20,13 @@ const inputFun = debounce(handleInput, 1000);
 </script>
 
 <template>
-  <div class="app-container">
-    <h1>welcome!!!</h1>
+  <!-- <div class="app-container"> -->
+  <!-- <h1>welcome!!!</h1>
     <input type="text" @input="inputFun" />
-    <button @click="handleCount">{{ count }}</button>
-  </div>
+    <button @click="handleCount">{{ count }}</button> -->
+
+  <NotFound />
+  <!-- </div> -->
 </template>
 
 <style scoped lang="scss"></style>

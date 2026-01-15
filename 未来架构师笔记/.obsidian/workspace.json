@@ -27,12 +27,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Esbuild(finish)/esbuild 代码调用.md",
+                "file": "Vite深度剖析/【Vite】静态资源处理：从路径别名到动态导入.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "esbuild 代码调用"
+              "title": "【Vite】静态资源处理：从路径别名到动态导入"
             }
           }
         ],
@@ -177,13 +177,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Esbuild(finish)/esbuild 代码调用.md",
+                "file": "Vite深度剖析/【Vite】静态资源处理：从路径别名到动态导入.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "esbuild 代码调用 的大纲"
+              "title": "【Vite】静态资源处理：从路径别名到动态导入 的大纲"
             }
           },
           {
@@ -220,6 +220,7 @@
   },
   "active": "248ecb8cd5919a47",
   "lastOpenFiles": [
+    "Esbuild(finish)/esbuild 代码调用.md",
     "Esbuild(finish)/esbuild插件开发.md",
     "NestJs(finish)/【mino】MinIO mc 客户端完整使用指南.md",
     "Docker(finish)/docker.pdf",
@@ -239,7 +240,6 @@
     "前端工具链(finish)/【Swc】SWC.md",
     "Esbuild(finish)/esbuild 概述.md",
     "Esbuild(finish)/esbuild调用总结.md",
-    "Esbuild(finish)/esbuild 代码调用.md",
     "Vite深度剖析/【Vite】Vite Vs. Webpack：定位、场景与插件机制的差异.md",
     "Vite深度剖析/vite.xmind",
     "Vite深度剖析/【Vite】性能优化：从代码优化到网络优化.md",
