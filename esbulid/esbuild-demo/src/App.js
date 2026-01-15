@@ -8,9 +8,18 @@ import markdown from "./assets/note.md";
 function App() {
   _.debounce(() => console.log("hello world"), 1000)();
   console.log(world.name, world.age, world.desc);
+
+  function handleInput(e) {
+    console.log(e.target.value);
+  }
+
+  const test = _.debounce(handleInput, 1000);
+
   return (
     <div className="App">
       <div dangerouslySetInnerHTML={{ __html: markdown.html }} />
+
+      <input type="text" onInput={test} />
 
       <hr />
       <header className="App-header">
