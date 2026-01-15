@@ -6,20 +6,26 @@ import esbuildPluginExternalLodash from "./plugins/esbuild-plugin-external-lodas
 import esbuildPlugintxt from "./plugins/esbuild-plugin-txt.js";
 import esbuildPluginMarkdown from "./plugins/esbuild-plugin-markdown.js";
 
+// vite相关模拟--预构建
+import esbuildPluginResolve from "./plugins/prebunlder/esbuild-plugin-resolve.js";
+import { prebundle } from "./plugins/prebunlder/prebundler.js";
+
 (async () => {
   const productionMode = "production" === process.argv[2];
 
-  const config = {
+  // 开发环境开始依赖预构建
+  if (!productionMode) {
+    await prebundle();
+  }
+
+  const baseConfig = {
     // 入口文件
     // entryPoints: ["src/index.js", 'src/index.html'],
     entryPoints: ["src/index.js"],
-    // bundle 打包
-    bundle: true,
     // 打包输出文件夹
     outdir: "./dist",
     metafile: true,
     sourcemap: true,
-    minify: true,
     // external: ['lodash-es'],
     platform: "browser",
     // 输出格式 iife, esm, cjs 默认是 iife，如果是 node 环境，默认为 cjs
@@ -31,8 +37,23 @@ import esbuildPluginMarkdown from "./plugins/esbuild-plugin-markdown.js";
       ".png": "dataurl",
       ".svg": "dataurl"
     },
-    entryNames: "[dir]/[name]-[hash]",
+    entryNames: "[dir]/[name]-[hash]"
     // chunkNames: 'chunks/[name]-[hash]',
+    // plugins: [
+    //   esbuildPluginClear(),
+    //   // esbuildPluginTime(),
+    //   esbuildPluginHtml(),
+    //   esbuildPluginExternalLodash(),
+    //   esbuildPlugintxt(),
+    //   esbuildPluginMarkdown()
+    // ]
+  };
+
+  const productionConfig = {
+    ...baseConfig,
+    // bundle 打包
+    bundle: true,
+    minify: true,
     plugins: [
       esbuildPluginClear(),
       esbuildPluginTime(),
@@ -43,9 +64,27 @@ import esbuildPluginMarkdown from "./plugins/esbuild-plugin-markdown.js";
     ]
   };
 
+  const developmentConfig = {
+    ...baseConfig,
+    // bundle 打包
+    bundle: true,
+    minify: false,
+    external: ["react", "react-dom", "web-vitals", "lodash-es"],
+    plugins: [
+      esbuildPluginClear(),
+      esbuildPluginTime(),
+      // 依赖预构建，路径替换
+      esbuildPluginResolve(),
+      esbuildPluginHtml(),
+      // esbuildPluginExternalLodash(),
+      esbuildPlugintxt(),
+      esbuildPluginMarkdown()
+    ]
+  };
+
   // 生产环境
   if (productionMode) {
-    const ctx = await esbuild.build(config);
+    const ctx = await esbuild.build(productionConfig);
     // console.log(ctx, 'ctx')
 
     const text = await esbuild.analyzeMetafile(ctx.metafile, {
@@ -54,17 +93,17 @@ import esbuildPluginMarkdown from "./plugins/esbuild-plugin-markdown.js";
     console.log(text, "text");
   } else {
     // 开发环境
-    const ctx = await esbuild.context(config);
+    const ctx = await esbuild.context(developmentConfig);
 
     ctx.watch();
     ctx
       .serve({
-        servedir: "dist",
+        servedir: ".",
         port: 3000,
         host: "0.0.0.0"
       })
       .then((res) => {
-        console.log("http://localhost:" + res.port);
+        console.log("🚀 http://localhost:" + res.port);
       });
   }
 })();

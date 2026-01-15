@@ -1,13 +1,13 @@
 import React from "react";
 import logo from "./logo.svg";
-import "./App.css";
+// import "./App.css";
 import _ from "lodash-es";
-import world from "./assets/world.txt";
-import markdown from "./assets/note.md";
+// import world from "./assets/world.txt";
+// import markdown from "./assets/note.md";
 
 function App() {
   _.debounce(() => console.log("hello world"), 1000)();
-  console.log(world.name, world.age, world.desc);
+  // console.log(world.name, world.age, world.desc);
 
   function handleInput(e) {
     console.log(e.target.value);
@@ -17,7 +17,7 @@ function App() {
 
   return (
     <div className="App">
-      <div dangerouslySetInnerHTML={{ __html: markdown.html }} />
+      {/* <div dangerouslySetInnerHTML={{ __html: markdown.html }} /> */}
 
       <input type="text" onInput={test} />
 
