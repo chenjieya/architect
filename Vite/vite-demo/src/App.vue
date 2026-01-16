@@ -20,13 +20,13 @@ const inputFun = debounce(handleInput, 1000);
 </script>
 
 <template>
-  <!-- <div class="app-container"> -->
-  <!-- <h1>welcome!!!</h1>
+  <div class="app-container">
+    <h1>welcome!!</h1>
     <input type="text" @input="inputFun" />
-    <button @click="handleCount">{{ count }}</button> -->
+    <button @click="handleCount">{{ count }}</button>
 
-  <NotFound />
-  <!-- </div> -->
+    <NotFound />
+  </div>
 </template>
 
 <style scoped lang="scss"></style>
