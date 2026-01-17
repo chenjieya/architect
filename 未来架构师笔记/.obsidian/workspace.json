@@ -27,12 +27,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Vite深度剖析/【Vite】静态资源处理：从路径别名到动态导入.md",
+                "file": "Vite深度剖析/【代码分割】Code Splitting.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "【Vite】静态资源处理：从路径别名到动态导入"
+              "title": "【代码分割】Code Splitting"
             }
           }
         ],
@@ -177,13 +177,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Vite深度剖析/【Vite】静态资源处理：从路径别名到动态导入.md",
+                "file": "Vite深度剖析/【代码分割】Code Splitting.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "【Vite】静态资源处理：从路径别名到动态导入 的大纲"
+              "title": "【代码分割】Code Splitting 的大纲"
             }
           },
           {
@@ -214,12 +214,13 @@
       "command-palette:打开命令面板": false,
       "callout-manager:Insert Callout": false,
       "table-editor-obsidian:Advanced Tables Toolbar": false,
-      "obsidian42-brat:BRAT": false,
-      "obsidian-excalidraw-plugin:新建绘图文件": false
+      "obsidian42-brat:BRAT": false
     }
   },
   "active": "248ecb8cd5919a47",
   "lastOpenFiles": [
+    "Vite深度剖析/【Vite】静态资源处理：从路径别名到动态导入.md",
+    "Vite深度剖析/【代码分割】Code Splitting.md",
     "Esbuild(finish)/esbuild 代码调用.md",
     "Esbuild(finish)/esbuild插件开发.md",
     "NestJs(finish)/【mino】MinIO mc 客户端完整使用指南.md",
@@ -233,7 +234,6 @@
     "Docker(finish)/docker准备工作.md",
     "Linux/Linux SSH 服务管理与配置详解.md",
     "Linux/Linux特殊权限与隐藏属性详解.md",
-    "Vite深度剖析/【Vite】静态资源处理：从路径别名到动态导入.md",
     "Vite深度剖析/【Vite】命令详解：从开发到生产的完整流程.md",
     "Vite深度剖析/【Vite】双引擎架构：Esbuild 与 Rollup 的完美结合.md",
     "Vite深度剖析/【Vite】从工程痛点到架构革新.md",
@@ -247,7 +247,6 @@
     "Vite深度剖析/【Vite】 CSS 工程化处理：从预处理器到原子化框架.md",
     "Vite深度剖析/【Vite】配置文件详解：从基础到高级配置.md",
     "Vite深度剖析/【Vite】框架集成：Vue 3 与 React 18 的完整指南.md",
-    "Vite深度剖析/【ViteAi】插件是如何真正参与 Dev 与 Build 的？.md",
     "Vite深度剖析/未确认 40697.crdownload",
     "Vite深度剖析",
     "前端工具链(finish)",
