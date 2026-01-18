@@ -27,12 +27,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "自定义脚手架/快速开始.md",
+                "file": "自定义脚手架(finish)/【CLI】修改模板.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "快速开始"
+              "title": "【CLI】修改模板"
             }
           }
         ],
@@ -177,13 +177,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "自定义脚手架/快速开始.md",
+                "file": "自定义脚手架(finish)/【CLI】修改模板.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "快速开始 的大纲"
+              "title": "【CLI】修改模板 的大纲"
             }
           },
           {
@@ -218,11 +218,17 @@
       "obsidian-excalidraw-plugin:新建绘图文件": false
     }
   },
-  "active": "248ecb8cd5919a47",
+  "active": "b126c51181683d12",
   "lastOpenFiles": [
+    "自定义脚手架(finish)/【CLI】命令行询问.md",
+    "自定义脚手架(finish)/【CLI】修改模板.md",
+    "自定义脚手架(finish)/【CLI】unicode字符与table美化.md",
+    "自定义脚手架(finish)/【CLI】读取JSON文件.md",
+    "自定义脚手架(finish)/【CLI】终端美化.md",
+    "自定义脚手架(finish)/【CLI】快速开始.md",
+    "自定义脚手架(finish)/【CLI】解析命令行指令参数.md",
     "Vite深度剖析(finish)/【Vite】性能优化：从代码优化到网络优化.md",
-    "自定义脚手架/快速开始.md",
-    "自定义脚手架",
+    "自定义脚手架(finish)",
     "Vite深度剖析(finish)/【代码分割】Code Splitting.md",
     "Vite深度剖析(finish)/【Vite】静态资源处理：从路径别名到动态导入.md",
     "Esbuild(finish)/esbuild 代码调用.md",
@@ -242,13 +248,7 @@
     "Vite深度剖析(finish)/【Vite】双引擎架构：Esbuild 与 Rollup 的完美结合.md",
     "Vite深度剖析(finish)/【Vite】从工程痛点到架构革新.md",
     "前端工具链(finish)/【Swc】SWC.md",
-    "Esbuild(finish)/esbuild 概述.md",
-    "Esbuild(finish)/esbuild调用总结.md",
-    "Vite深度剖析(finish)/【Vite】Vite Vs. Webpack：定位、场景与插件机制的差异.md",
     "Vite深度剖析(finish)/vite.xmind",
-    "Vite深度剖析(finish)/【Vite】代码分割（Code Splitting）：从基础到高级策略.md",
-    "Vite深度剖析(finish)/【Vite】 CSS 工程化处理：从预处理器到原子化框架.md",
-    "Vite深度剖析(finish)/【Vite】配置文件详解：从基础到高级配置.md",
     "Vite深度剖析/未确认 40697.crdownload",
     "Vite深度剖析(finish)",
     "前端工具链(finish)",
