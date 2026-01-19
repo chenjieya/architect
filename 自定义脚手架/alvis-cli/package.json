@@ -24,5 +24,10 @@
     "ora": "^9.0.0",
     "shelljs": "^0.10.0",
     "table": "^6.9.0"
-  }
+  },
+  "files": [
+    "lib/",
+    "utils/",
+    "index.js"
+  ]
 }
