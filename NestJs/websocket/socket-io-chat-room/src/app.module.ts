@@ -63,6 +63,7 @@ const envFilePath = (() => {
             UserChatroom,
             User,
           ],
+          logging: true, // 开启所有日志
           logger: 'simple-console',
           synchronize: config.get('DB_CREATE') === 'true',
           extra: {
