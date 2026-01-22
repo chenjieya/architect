@@ -27,12 +27,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "企业包管理方案(finish)/【Npm】发布npm包.md",
+                "file": "TypeScript/【高级】类型编程（类型体操）.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "【Npm】发布npm包"
+              "title": "【高级】类型编程（类型体操）"
             }
           },
           {
@@ -191,13 +191,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "企业包管理方案(finish)/【Npm】发布npm包.md",
+                "file": "TypeScript/【高级】类型编程（类型体操）.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "【Npm】发布npm包 的大纲"
+              "title": "【高级】类型编程（类型体操） 的大纲"
             }
           },
           {
@@ -234,6 +234,22 @@
   },
   "active": "a8b3cd96c2cd7989",
   "lastOpenFiles": [
+    "TypeScript/【高级】工程化.md",
+    "TypeScript/【入门】快速入门.md",
+    "TypeScript/【基础类型】深入理解类型.md",
+    "TypeScript/【类】类和接口.md",
+    "TypeScript/【高级】类型编程（类型体操）.md",
+    "TypeScript/【函数类型】函数与泛型.md",
+    "TypeScript/【入门】开发相关设置.md",
+    "TypeScript/tsconfig.json.xmind",
+    "TypeScript/课程大纲.xmind",
+    "TypeScript/【装饰器】属性装饰器.md",
+    "TypeScript/【装饰器】元数据相关的库.md",
+    "TypeScript/【装饰器】装饰器的本质.md",
+    "TypeScript/【装饰器】理解装饰器.md",
+    "TypeScript/【装饰器】方法装饰器.md",
+    "TypeScript/【装饰器】reflect-metadata.md",
+    "企业包管理方案(finish)/【Npm】发布npm包.md",
     "自定义脚手架(finish)/【CLI】读取JSON文件.md",
     "自定义脚手架(finish)/【CLI】修改模板.md",
     "自定义脚手架(finish)/【CLI】终端美化.md",
@@ -247,29 +263,13 @@
     "前端工具链(finish)/【Eslint】配置文件.md",
     "自定义脚手架(finish)",
     "Vite深度剖析(finish)/【代码分割】Code Splitting.md",
-    "Vite深度剖析(finish)/【Vite】静态资源处理：从路径别名到动态导入.md",
-    "Vite深度剖析(finish)/【Vite】配置文件详解：从基础到高级配置.md",
-    "Vite深度剖析(finish)/【Vite】框架集成：Vue 3 与 React 18 的完整指南.md",
-    "Vite深度剖析(finish)/【Vite】性能优化：从代码优化到网络优化.md",
-    "Vite深度剖析(finish)/【Vite】命令详解：从开发到生产的完整流程.md",
-    "Vite深度剖析(finish)/【Vite】双引擎架构：Esbuild 与 Rollup 的完美结合.md",
-    "Vite深度剖析(finish)/【Vite】代码分割（Code Splitting）：从基础到高级策略.md",
-    "Vite深度剖析(finish)/【Vite】从工程痛点到架构革新.md",
-    "Vite深度剖析(finish)/【Vite】Vite Vs. Webpack：定位、场景与插件机制的差异.md",
-    "Vite深度剖析(finish)/【Vite】 CSS 工程化处理：从预处理器到原子化框架.md",
     "Vite深度剖析(finish)/vite.xmind",
     "Vite深度剖析(finish)",
-    "Vite深度剖析/【Vite】Vite Vs. Webpack：定位、场景与插件机制的差异.md",
-    "Vite深度剖析/【Vite】静态资源处理：从路径别名到动态导入.md",
-    "Vite深度剖析/【Vite】性能优化：从代码优化到网络优化.md",
-    "Vite深度剖析/【Vite】双引擎架构：Esbuild 与 Rollup 的完美结合.md",
     "Docker(finish)/docker.pdf",
     "Vite深度剖析/vite.xmind",
     "Vite深度剖析/未确认 40697.crdownload",
     "Vite深度剖析",
     "前端工具链(finish)",
-    "企业包管理方案(finish)",
-    "前端工具链",
     "未命名.canvas",
     "笔记/image/image_9ViibmeAvU.png",
     "笔记/image/img002.e1ac8197.png",
