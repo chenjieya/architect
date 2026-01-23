@@ -66,6 +66,16 @@ verdaccio &
 
 # 指定配置文件启动
 verdaccio --config ./config.yaml
+
+
+# 后端运行切换到前端
+jobs  # 查看后台作业
+# 如果有 Verdaccio
+[1]+  Running    verdaccio &
+
+# 1. 切换到前台然后 Ctrl+C
+fg %1  # %1 是作业号
+Ctrl + C
 ```
 
 启动成功后，默认访问地址：http://localhost:4873

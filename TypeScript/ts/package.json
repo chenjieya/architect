@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "ts": "nodemon --exec ts-node ./index.ts"
+    "ts": "nodemon --exec ts-node ./index.ts",
+    "dev": "parcel serve ./dist/index.html"
   },
   "keywords": [],
   "author": "",
