@@ -1,0 +1,26 @@
+{
+  "name": "vue",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "buildOptions": {
+    "name": "Vue"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/vue.d.ts",
+      "import": "./dist/vue.esm.js",
+      "require": "./dist/vue.cjs.js"
+    }
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.28.0",
+  "dependencies": {
+    "@alvis/shared": "workspace:*"
+  }
+}
