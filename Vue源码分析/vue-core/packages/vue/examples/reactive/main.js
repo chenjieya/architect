@@ -27,20 +27,73 @@ const obj2 = '123'
 // console.log(test5 === test6)
 
 // 访问器属性问题
-const obj3 = {
-  firstName: 'chen',
-  lastName: 'jie',
-  get fullName() {
-    return this.firstName + this.lastName
-  },
-  set changeName(name) {
-    this.firstName = name.val1
-    this.lastName = name.val2
-  },
-}
-const test7 = reactive(obj3)
-// 正常来说应该是访问三次，因为fullName里面还有两次访问了，里面的两个属性应该也被依赖收集
-console.log(test7.fullName)
+// const obj3 = {
+//   firstName: 'chen',
+//   lastName: 'jie',
+//   get fullName() {
+//     return this.firstName + this.lastName
+//   },
+//   set changeName(name) {
+//     this.firstName = name.val1
+//     this.lastName = name.val2
+//   },
+// }
+// const test7 = reactive(obj3)
+// // 正常来说应该是访问三次，因为fullName里面还有两次访问了，里面的两个属性应该也被依赖收集
+// console.log(test7.fullName)
 
-test7.changeName = { val1: 'ac', val2: 'lajsd' }
-console.log(test7.fullName)
+// test7.changeName = { val1: 'ac', val2: 'lajsd' }
+// console.log(test7.fullName)
+
+// 对象嵌套问题
+// const obj4 = {
+//   a: 1,
+//   b: 2,
+//   c: {
+//     d: 3,
+//   },
+// }
+
+// const test8 = reactive(obj4)
+// // 应该收集c d两个属性
+// test8.c.d = '123'
+// console.log(test8.c.d)
+
+// 对象属性是否存在的问题
+// const obj5 = {
+//   a: 1,
+//   b: 2,
+//   c: {
+//     d: 3,
+//   },
+// }
+
+// const test9 = reactive(obj5)
+
+// test9.a = 'abc'
+// console.log('a' in test9)
+
+// test9.e = 'abc'
+// console.log('e' in test9)
+
+// 循环遍历
+// const test10 = reactive(obj1)
+// for (const key in test10) {
+//   console.log(key)
+// }
+
+// Object.keys(test10)
+
+const test11 = reactive(obj1)
+
+// 触发新增依赖收集
+test11.e = 10
+
+// 值没有发生改变，不会触发依赖收集
+test11.a = 1
+
+// 收集b属性的依赖
+test11.b = 123
+
+// 删除属性触发依赖更新
+delete test11.e
