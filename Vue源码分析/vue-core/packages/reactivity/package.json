@@ -1,13 +1,23 @@
 {
-  "name": "reactivity",
+  "name": "@alvis/reactivity",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "exports": {
+    ".": {
+      "types": "./dist/reactivity.d.ts",
+      "import": "./dist/reactivity.esm.js",
+      "require": "./dist/reactivity.cjs.js"
+    }
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "packageManager": "pnpm@10.28.0"
+  "packageManager": "pnpm@10.28.0",
+  "dependencies": {
+    "@alvis/shared": "workspace:*"
+  }
 }

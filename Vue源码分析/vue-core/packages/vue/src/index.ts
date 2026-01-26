@@ -1,1 +1,1 @@
-export * from '@alvis/shared'
+export * from '@alvis/reactivity'

@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "dev": "node esbuild.config.js vue shared",
+    "dev": "node esbuild.config.js vue reactivity shared -f cjs",
     "format": "prettier --write ."
   },
   "keywords": [],

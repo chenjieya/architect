@@ -55,12 +55,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Esbuild(finish)/esbuild 代码调用.md",
+                "file": "TypeScript/【高级】工程化.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "esbuild 代码调用"
+              "title": "【高级】工程化"
             }
           },
           {
@@ -247,13 +247,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Esbuild(finish)/esbuild 代码调用.md",
+                "file": "TypeScript/【高级】工程化.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "esbuild 代码调用 的大纲"
+              "title": "【高级】工程化 的大纲"
             }
           },
           {
@@ -275,7 +275,7 @@
   },
   "left-ribbon": {
     "hiddenItems": {
-      "bases:创建新数据库": false,
+      "bases:新建数据库": false,
       "switcher:打开快速切换": false,
       "graph:查看关系图谱": false,
       "canvas:新建白板": false,
@@ -290,6 +290,7 @@
   },
   "active": "3beadaadea0a2fae",
   "lastOpenFiles": [
+    "Esbuild(finish)/esbuild 代码调用.md",
     "Rollup(finish)/Rollup插件.md",
     "企业包管理方案(finish)/【Npm】搭建企业级 npm 私有服务器：Verdaccio 完全指南.md",
     "企业包管理方案(finish)/【Npm】npm回顾.md",
@@ -317,7 +318,6 @@
     "自定义脚手架(finish)/【CLI】unicode字符与table美化.md",
     "自定义脚手架(finish)/【CLI】命令行询问.md",
     "自定义脚手架(finish)/【CLI】快速开始.md",
-    "自定义脚手架(finish)/【CLI】解析命令行指令参数.md",
     "自定义脚手架(finish)",
     "Vite深度剖析(finish)/vite.xmind",
     "Vite深度剖析(finish)",
