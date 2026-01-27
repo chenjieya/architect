@@ -41,3 +41,10 @@ export function reactive(target: object) {
 
   return proxy
 }
+
+/**
+ * 是否是Reactive代理对象
+ */
+export function isReactive(value: unknown): boolean {
+  return !!(value && (value as Target)[ReactiveFlags.IS_REACTIVE])
+}

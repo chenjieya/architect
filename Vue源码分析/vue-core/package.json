@@ -6,7 +6,9 @@
   "type": "module",
   "scripts": {
     "dev": "node esbuild.config.js vue reactivity shared -f cjs",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "test": "vitest",
+    "test:util": "vitest --project util"
   },
   "keywords": [],
   "author": "",
