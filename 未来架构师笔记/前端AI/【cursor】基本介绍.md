@@ -1,4 +1,3 @@
-
 ## 1.基本介绍
 
 Cursor 是一款**基于 VS Code** 打造的 AI 编程增强编辑器，它集成了 GPT-4、Claude 等主流大模型，具备强大的 **代码自动补全、对话生成、智能重构** 等能力。无论你是初学者还是经验丰富的开发者，Cursor 都能成为你得力的“编程助手”。
@@ -19,11 +18,9 @@ Cursor 具备如下的特点：
 
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251009150336111.png)
 
-
 也可以选择 Sign up 进行注册，邮箱可以用国内邮箱，比如 QQ 邮箱，163 邮箱，126 邮箱等。
 
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251009150351989.png)
-
 
 成功登录之后，会自动跳转到 Cursor 的个人设置页面，该页面会展示你的账号信息以及额度信息。新用户默认会有一些体验额度，可以免费使用 15 天（体验 Pro 版本）。
 
@@ -37,7 +34,6 @@ Cursor 提供了 3 种不同的订阅计划，可以选择按月付费或者按�
 
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251009150430034.png)
 
-
 **Hobby 版本（免费）**
 
 完全免费使用，包含以下功能：
@@ -45,8 +41,6 @@ Cursor 提供了 3 种不同的订阅计划，可以选择按月付费或者按�
 - Pro 两周试用
 - Agent 请求受限
 - Tab 补全受限
-
-
 
 **Pro 版本（$20/月）**
 
@@ -57,8 +51,6 @@ Cursor 提供了 3 种不同的订阅计划，可以选择按月付费或者按�
 - 访问后台 Agent
 - 访问 Bug Bot
 - 访问最大上下文窗口
-
-
 
 **Ultra 版本（$200/用户/月）**
 
@@ -72,14 +64,11 @@ Cursor 提供了 3 种不同的订阅计划，可以选择按月付费或者按�
 
 - 优先使用新功能
 
-
-
 ### 1.3 Cursor主界面
 
 Cursor 在结构布局上与 VSCode 十分类似，但它增加了面向 AI 编程的核心区域。
 
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251009150445283.png)
-
 
 - 左侧：资源管理区（Explorer）
 
@@ -88,14 +77,12 @@ Cursor 在结构布局上与 VSCode 十分类似，但它增加了面向 AI 编�
 - 下方：终端（Terminal）
 
 - 右侧：AI 聊天面板（Chat Assistant）
-
   - New chat区域：可直接发起 AI 对话
   - `@ Add context`：绑定当前文件上下文（代码自动传入对话）
   - 输入框：支持提问、代码生成、bug 解释等自然语言操作
   - `Agent` 下拉：选择对话模式
 
 - 底部状态栏右下角：Cursor Tab 与模型状态
-
   - 显示当前是否连接到 AI 服务、当前模型类型
 
   - 如果网络或模型切换，通常会在这里提示
@@ -111,8 +98,6 @@ Cursor 在结构布局上与 VSCode 十分类似，但它增加了面向 AI 编�
 - **Background Agents**：管理运行中的智能 Agent（NEW，可能是 Cursor 最新引入的功能）
 - **Tools & Integrations**：集成 Git、终端、测试框架等工具
 - **Rules / Indexing & Docs / Network / Beta / Docs**：其他开发者相关设置和文档入口
-
-
 
 这里我们先说一下 General 通用设置。
 
@@ -138,8 +123,6 @@ Cursor 在结构布局上与 VSCode 十分类似，但它增加了面向 AI 编�
 5. Reset “Don’t Ask Again” Dialogs
    - 功能：重置你之前选中“不再提示”的对话框
    - 用于恢复提醒（比如保存前提示、执行高危命令的确认框等）
-
-
 
 下面有一个隐私设置
 
