@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "前端AI/【LLM】嵌入.md",
+                "file": "前端AI/【LLM】MCP Client.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "【LLM】嵌入"
+              "title": "【LLM】MCP Client"
             }
           }
         ]
@@ -162,13 +162,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "前端AI/【LLM】嵌入.md",
+                "file": "前端AI/【LLM】MCP Client.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "【LLM】嵌入 的大纲"
+              "title": "【LLM】MCP Client 的大纲"
             }
           },
           {
@@ -205,33 +205,33 @@
   },
   "active": "d61b54353b008745",
   "lastOpenFiles": [
+    "前端AI/【LLM】MCP 远程通信方式.md",
+    "前端AI/【LLM】MCP Client.md",
+    "前端AI/【LLM】MCPPrompts.md",
+    "前端AI/【LLM】MCP 监听资源更新.md",
+    "前端AI/【LLM】MCP Resources.md",
+    "前端AI/【LLM】MCP Schema.md",
+    "前端AI/【LLM】MCP理论知识.md",
     "前端AI/【LLM】Function Calling.md",
-    "前端AI/【LLM】获取实时消息.md",
+    "前端AI/【LLM】嵌入.md",
+    "前端AI/【LLM】Transformer.md",
+    "前端AI/【LLM】N-Gram模型.md",
+    "前端AI/【LLM】词袋模型.md",
+    "前端AI/【LLM】Agent.md",
+    "前端AI/【LLM】发展历史.md",
+    "前端AI/【LLM】词元.md",
+    "NestJs(finish)/【登陆】JWT登录注册后端实现.md",
+    "NestJs(finish)/【登陆】单token实现无感刷新.md",
     "前端AI/【LLM】外接DeepSeek.md",
     "前端AI/【LLM】流式返回信息.md",
-    "前端AI/【LLM】Agent.md",
     "前端AI/【LLM】本地部署大模型.md",
-    "前端AI/【LLM】Transformer.md",
-    "前端AI/【LLM】嵌入.md",
-    "前端AI/【LLM】发展历史.md",
-    "前端AI/【LLM】N-Gram模型.md",
-    "前端AI/【LLM】词元.md",
-    "前端AI/【LLM】词袋模型.md",
-    "前端AI/【cursor】智能补全.md",
-    "前端AI/【cursor】基本介绍.md",
-    "前端AI/【cursor】对话驱动开发.md",
-    "前端AI/【cursor】代码库索引.md",
-    "前端AI/【cursor】@命令.md",
-    "Node/【Global】全局模块详解.md",
-    "Node/【Path】path 模块核心 API 详解.md",
-    "Node/【OS】OS 模块核心 API 详解.md",
-    "企业包管理方案(finish)/【Npm】pnpm + Workspace 搭建 Monorepo 工程实践.md",
+    "前端AI/【LLM】获取实时消息.md",
+    "NestJs(finish)/【GraphQL】Nest中使用GraphQL.md",
+    "NestJs(finish)/【logger】面向切面的日志处理.md",
+    "NestJs(finish)/【基础】AOP在Nest中的应用.md",
+    "NestJs(finish)/【基础】AOP.md",
+    "NestJs(finish)/【基础】三层架构.md",
     "Node",
-    "Esbuild(finish)/esbuild调用总结.md",
-    "Esbuild(finish)/esbuild插件开发.md",
-    "Esbuild(finish)/esbuild 概述.md",
-    "Esbuild(finish)/esbuild 代码调用.md",
-    "Rollup(finish)/Rollup基本配置（默认特性）.md",
     "TypeScript/tsconfig.json.xmind",
     "TypeScript/课程大纲.xmind",
     "自定义脚手架(finish)",
