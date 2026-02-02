@@ -141,13 +141,13 @@ class HttpClient {
     localStorage.removeItem('token')
     localStorage.removeItem('userInfo')
 
-    ElMessageBox.confirm('登录已过期，请重新登录', '提示', {
-      confirmButtonText: '重新登录',
-      cancelButtonText: '取消',
-      type: 'warning'
-    }).then(() => {
-      window.location.href = '/login'
-    })
+    // ElMessageBox.confirm('登录已过期，请重新登录', '提示', {
+    //   confirmButtonText: '重新登录',
+    //   cancelButtonText: '取消',
+    //   type: 'warning'
+    // }).then(() => {
+    // window.location.href = '/login'
+    // })
   }
 
   // 处理错误
@@ -259,7 +259,7 @@ class HttpClient {
 
 // 创建实例
 const http = new HttpClient({
-  timeout: 10000,
+  timeout: 60000,
   headers: {
     'Content-Type': 'application/json;charset=UTF-8'
   }

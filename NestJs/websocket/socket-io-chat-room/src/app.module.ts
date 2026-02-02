@@ -21,6 +21,7 @@ import { MinioModule } from './minio/minio.module';
 import { ChatModule } from './chat/chat.module';
 import { ChatHistoryModule } from './chat-history/chat-history.module';
 import { EventEmitterModule } from '@nestjs/event-emitter';
+import { AiModule } from './ai/ai.module';
 
 const envFilePath = (() => {
   const env = process.env.NODE_ENV;
@@ -63,7 +64,7 @@ const envFilePath = (() => {
             UserChatroom,
             User,
           ],
-          logging: true, // 开启所有日志
+          logging: false, // 开启所有日志
           logger: 'simple-console',
           synchronize: config.get('DB_CREATE') === 'true',
           extra: {
@@ -93,6 +94,7 @@ const envFilePath = (() => {
     MinioModule,
     ChatModule,
     ChatHistoryModule,
+    AiModule,
   ],
   controllers: [AppController],
   providers: [

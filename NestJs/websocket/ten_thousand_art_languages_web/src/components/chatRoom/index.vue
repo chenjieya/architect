@@ -12,6 +12,7 @@ import { getHistoryList, type ICursorPagination } from '@/api/chatHistoryApi'
 import { useUserStore } from '@/stores/user'
 import { storeToRefs } from 'pinia'
 import { debounce } from '@/utils/index'
+import { chatAi } from '@/api/aiApi'
 const store = useUserStore()
 const { userInfo, token } = storeToRefs(store)
 
@@ -171,21 +172,82 @@ const realMsgContent = computed<sendMsgType[]>(() => {
   ]
 })
 
-const addChat = (msg: sendMsgType) => {
+const addChat = async (msg: sendMsgType) => {
   localMsgContent.value.push(msg)
+  // 滚动到底部
+  scrollBottom(scrollRef.value!)
+  // TODO
+  // 发送消息，并增加ai回复
+  // const response = await chatAi({
+  //   question: msg.message.content
+  // })
+  const botMessage = reactive({
+    id: new Date().getTime(),
+    from: 10,
+    to: null,
+    message: {
+      type: 0,
+      content: ''
+    },
+    sender: {
+      id: 10,
+      username: 'AI',
+      nickName: null,
+      headPic: null
+    }
+  })
+
+  localMsgContent.value.push(botMessage)
+  const response = await fetch('/api/ai/ask', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ question: msg.message.content })
+  })
+  console.log(response, 'response')
+
+  const reader = response.body!.getReader() // 拿到 Reader 对象
+  const decoder = new TextDecoder('utf-8') // 创建一个 utf-8 的解码器
+
+  while (true) {
+    const { done, value } = await reader.read() // 读取当前块的内容
+    if (done) break
+
+    // 对二进制数据进行解码
+    const chunk = decoder.decode(value, { stream: true })
+    // chunk = '{"response":"你好"}\n{"response":"，"}\n'
+
+    // 后面就是一些 JS 相关的基操了
+    const lines = chunk.split('\n').filter((line) => line.trim())
+
+    for (const line of lines) {
+      try {
+        const data = JSON.parse(line) // data = {"response":"你好"}
+        if (data.response) {
+          // 发送给客户端
+          // res += `${JSON.stringify({ response: data.response })}\n`;
+          botMessage.message.content += `${data.response}`
+        }
+      } catch (e) {
+        console.error('JSON解析失败☹️', e.message)
+      }
+    }
+  }
+
   // 滚动到底部
   scrollBottom(scrollRef.value!)
 
   // 发送消息，通知其他用户
-  socket?.emit('sendMessage', {
-    id: msg.id,
-    sendUserId: msg.from,
-    chatroomId: porps.sessionInfo?.id,
-    message: {
-      type: msg.message.type,
-      content: msg.message.content
-    }
-  })
+  // socket?.emit('sendMessage', {
+  //   id: msg.id,
+  //   sendUserId: msg.from,
+  //   chatroomId: porps.sessionInfo?.id,
+  //   message: {
+  //     type: msg.message.type,
+  //     content: msg.message.content
+  //   }
+  // })
 }
 
 /** 获取当前聊天室的所有聊天记录 */

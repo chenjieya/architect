@@ -42,7 +42,17 @@ const dialogVisible = ref(false)
           }}</a>
         </div>
         <div class="text" v-else>
-          {{ props.message.content }}
+          <!-- loading效果 -->
+          <div v-if="!props.message.content" class="chat-msg bot">
+            <div class="bubble">
+              <span class="role-label">🤖 模型</span>
+              <div class="text">
+                正在思考<span class="dot">.</span><span class="dot">.</span
+                ><span class="dot">.</span>
+              </div>
+            </div>
+          </div>
+          <span v-else>{{ props.message.content }}</span>
         </div>
       </div>
     </div>
