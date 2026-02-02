@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "前端AI/【LLM】本地部署大模型.md",
+                "file": "前端AI/【LLM】嵌入.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "【LLM】本地部署大模型"
+              "title": "【LLM】嵌入"
             }
           }
         ]
@@ -162,13 +162,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "前端AI/【LLM】本地部署大模型.md",
+                "file": "前端AI/【LLM】嵌入.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "【LLM】本地部署大模型 的大纲"
+              "title": "【LLM】嵌入 的大纲"
             }
           },
           {
@@ -205,9 +205,12 @@
   },
   "active": "d61b54353b008745",
   "lastOpenFiles": [
+    "前端AI/【LLM】Function Calling.md",
+    "前端AI/【LLM】获取实时消息.md",
+    "前端AI/【LLM】外接DeepSeek.md",
+    "前端AI/【LLM】流式返回信息.md",
     "前端AI/【LLM】Agent.md",
     "前端AI/【LLM】本地部署大模型.md",
-    "前端AI/【LLM】流式返回信息.md",
     "前端AI/【LLM】Transformer.md",
     "前端AI/【LLM】嵌入.md",
     "前端AI/【LLM】发展历史.md",
@@ -229,9 +232,6 @@
     "Esbuild(finish)/esbuild 概述.md",
     "Esbuild(finish)/esbuild 代码调用.md",
     "Rollup(finish)/Rollup基本配置（默认特性）.md",
-    "Rollup(finish)/初始Rollup.md",
-    "前端工具链(finish)/【Eslint】配置文件.md",
-    "前端工具链(finish)/【prettier】格式化规则.md",
     "TypeScript/tsconfig.json.xmind",
     "TypeScript/课程大纲.xmind",
     "自定义脚手架(finish)",
