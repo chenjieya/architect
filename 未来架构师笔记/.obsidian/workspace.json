@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "前端AI/【LLM】RAG：实践.md",
+                "file": "前端服务监控/用户行为监控.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "【LLM】RAG：实践"
+              "title": "用户行为监控"
             }
           }
         ]
@@ -162,13 +162,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "前端AI/【LLM】RAG：实践.md",
+                "file": "前端服务监控/用户行为监控.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "【LLM】RAG：实践 的大纲"
+              "title": "用户行为监控 的大纲"
             }
           },
           {
@@ -205,6 +205,16 @@
   },
   "active": "d61b54353b008745",
   "lastOpenFiles": [
+    "前端服务监控/页面性能监控.md",
+    "前端服务监控/用户行为监控.md",
+    "assets",
+    "前端服务监控/错误监控.md",
+    "前端服务监控/数据上报.md",
+    "前端服务监控/前端服务监控概述.md",
+    "前端AI/【LLM】RAG：实践.md",
+    "国际化i18n/国际化.xmind",
+    "国际化i18n/未确认 233160.crdownload",
+    "国际化i18n",
     "前端AI/【LLM】RAG：架构演进.md",
     "前端AI/【LLM】RAG：基础知识.md",
     "前端AI/【LLM】MCP：Prompts.md",
@@ -216,7 +226,6 @@
     "前端AI/【LLM】MCP：远程通信方式.md",
     "前端AI/【LLM】微调：LoRA微调.md",
     "前端AI/【LLM】微调：大模型微调.md",
-    "前端AI/【LLM】RAG：实践.md",
     "前端AI/【LLM】提示词：提示词评估工具.md",
     "前端AI/【LLM】提示词：改善提示效果.md",
     "前端AI/【LLM】提示词：基于反馈迭代优化.md",
@@ -226,21 +235,12 @@
     "前端AI/【LLM】Function Calling.md",
     "前端AI/【LLM】嵌入.md",
     "前端AI/【LLM】Transformer.md",
-    "前端AI/【LLM】词袋模型.md",
-    "前端AI/【LLM】Agent.md",
-    "前端AI/【LLM】发展历史.md",
-    "前端AI/【LLM】词元.md",
-    "NestJs(finish)/【登陆】JWT登录注册后端实现.md",
     "Node",
     "TypeScript/tsconfig.json.xmind",
     "TypeScript/课程大纲.xmind",
     "自定义脚手架(finish)",
     "Vite深度剖析(finish)/vite.xmind",
     "Vite深度剖析(finish)",
-    "Docker(finish)/docker.pdf",
-    "Vite深度剖析/vite.xmind",
-    "Vite深度剖析/未确认 40697.crdownload",
-    "Vite深度剖析",
     "未命名.canvas",
     "笔记/image/image_9ViibmeAvU.png",
     "笔记/image/img002.e1ac8197.png",
