@@ -1,4 +1,3 @@
-
 ## 1. 用户切换基础概念
 
 在Linux系统中，我们经常需要在不同用户身份之间切换来执行特定任务，主要有两种方式：`su` 和 `sudo`。
@@ -18,12 +17,12 @@ su - username
 
 ### 2.2 su - 与 su 的区别
 
-| 特性 | `su -` | `su` |
-|------|--------|------|
-| 环境变量 | 读取目标用户的完整环境 | 保留当前用户环境 |
-| 工作目录 | 切换到目标用户的家目录 | 保持当前工作目录 |
-| PATH变量 | 使用目标用户的PATH | 使用当前用户的PATH |
-| 推荐程度 | ✅ **推荐使用** | ❌ 不推荐 |
+| 特性     | `su -`                 | `su`               |
+| -------- | ---------------------- | ------------------ |
+| 环境变量 | 读取目标用户的完整环境 | 保留当前用户环境   |
+| 工作目录 | 切换到目标用户的家目录 | 保持当前工作目录   |
+| PATH变量 | 使用目标用户的PATH     | 使用当前用户的PATH |
+| 推荐程度 | ✅ **推荐使用**        | ❌ 不推荐          |
 
 ### 2.3 实际示例
 
@@ -77,11 +76,13 @@ sudo -u username command  # 以指定用户身份执行
 #### 3.2.1 编辑方式
 
 **推荐使用：**
+
 ```bash
 sudo visudo
 ```
 
 **也可以使用（不推荐）：**
+
 ```bash
 vim /etc/sudoers
 ```
@@ -91,6 +92,7 @@ vim /etc/sudoers
 ### 3.3 sudo配置语法
 
 基本格式：
+
 ```
 用户或组  登录的主机 = (可切换的身份)  [NOPASSWD:] 可执行的命令
 ```
@@ -122,33 +124,42 @@ vim /etc/sudoers
 ### 3.4 配置示例
 
 #### 示例1：wheel组管理员权限
+
 ```
 %wheel ALL=(ALL) ALL
 ```
+
 **说明**：wheel组成员可以在任何主机上切换为任何用户执行任何命令，需要输入自己的密码。
 
 #### 示例2：无密码管理员权限
+
 ```
 %wheel ALL=(ALL) NOPASSWD: ALL
 ```
+
 **说明**：wheel组成员可以无密码执行所有命令。
 
 #### 示例3：精细的密码管理权限
+
 ```
 User_Alias ADMPW = jsmith, mikem
 ADMPW ALL = NOPASSWD: !/usr/bin/passwd, /usr/bin/passwd [A-Za-z]*, !/usr/bin/passwd root
 ```
+
 **说明**：
+
 - 用户jsmith和mikem可以无密码执行passwd命令
 - 但不能修改root密码（`!/usr/bin/passwd root`）
 - 可以修改其他用户密码（`/usr/bin/passwd [A-Za-z]*`）
 
 #### 示例4：软件管理权限
+
 ```
 Cmnd_Alias SOFTWARE = /bin/rpm, /usr/bin/up2date, /usr/bin/yum
 User_Alias ADMINS = %wheel
 ADMINS ALL = SOFTWARE
 ```
+
 **说明**：管理员可以执行软件包管理相关命令。
 
 ### 3.5 高级配置技巧
@@ -211,6 +222,7 @@ sudo -s
 ## 5. 实际工作场景
 
 ### 场景1：开发环境
+
 ```bash
 # 开发人员需要重启web服务
 User_Alias DEVS = alice, bob
@@ -218,6 +230,7 @@ DEVS ALL = NOPASSWD: /bin/systemctl restart nginx, /bin/systemctl restart php-fp
 ```
 
 ### 场景2：数据库管理
+
 ```bash
 # DBA需要管理数据库服务
 User_Alias DBAS = charlie
@@ -225,6 +238,7 @@ DBAS ALL = (mysql) /bin/systemctl *, /usr/bin/mysql*, /usr/bin/mysqldump
 ```
 
 ### 场景3：系统监控
+
 ```bash
 # 监控用户需要查看系统状态
 User_Alias MONITORS = nagios, zabbix

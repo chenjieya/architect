@@ -3,6 +3,7 @@
 ### 1.1 文件系统基础概念
 
 #### 节点和块
+
 - **块(Block)**：文件系统的最小存储单位
   - 小文件较多的应用：建议使用较小的块大小
   - 存储大容量文件：建议使用较大的块大小
@@ -13,6 +14,7 @@
   - **Block**：实际存储文件内容，对于目录则存储文件关联性信息
 
 **查看文件系统信息命令：**
+
 ```bash
 dumpe2fs /dev/sda1
 ```
@@ -20,6 +22,7 @@ dumpe2fs /dev/sda1
 ### 1.2 文件读取机制
 
 文件读取过程遵循以下步骤：
+
 1. 从根目录获取文件上层目录的inode
 2. 通过目录记录的关联性获取目标文件的inode
 3. 定位文件属性和数据存储位置
@@ -28,12 +31,14 @@ dumpe2fs /dev/sda1
 ### 1.3 文件删除原理
 
 文件删除实际上是删除文件的指针信息，而非立即清除数据块内容。这使得数据恢复成为可能：
+
 - 前提：没有新数据写入覆盖原有数据块
 - 原理：重新建立数据连接关系
 
 ### 1.4 磁盘空间满的问题
 
 **模拟实验：**
+
 ```bash
 # 创建小分区并测试
 mkfs.ext3 -N 20 /dev/sdb1
@@ -47,16 +52,17 @@ df -ih     # 查看inode使用情况
 
 ### 1.5 主流文件系统比较
 
-| 特性 | ext2 | ext3 | ext4 | XFS |
-|------|------|------|------|-----|
-| **Inode大小** | 128字节 | 128字节 | 256字节 | - |
-| **文件系统最大** | 16TB | 16TB | 1EB | 18EB |
-| **单个文件最大** | 2TB | 2TB | 16TB | 9EB |
-| **日志功能** | 无 | 有 | 有(可关闭) | 有 |
-| **索引方式** | blockmaps | blockmaps | extents | B+树 |
-| **修复工具** | fsck | fsck | fsck | xfs_repair |
+| 特性             | ext2      | ext3      | ext4       | XFS        |
+| ---------------- | --------- | --------- | ---------- | ---------- |
+| **Inode大小**    | 128字节   | 128字节   | 256字节    | -          |
+| **文件系统最大** | 16TB      | 16TB      | 1EB        | 18EB       |
+| **单个文件最大** | 2TB       | 2TB       | 16TB       | 9EB        |
+| **日志功能**     | 无        | 有        | 有(可关闭) | 有         |
+| **索引方式**     | blockmaps | blockmaps | extents    | B+树       |
+| **修复工具**     | fsck      | fsck      | fsck       | xfs_repair |
 
 **XFS文件系统修复：**
+
 ```bash
 xfs_repair -L /dev/sda1
 ```
@@ -66,12 +72,14 @@ xfs_repair -L /dev/sda1
 ### 2.1 分区基础
 
 #### MBR分区结构
+
 - **MBR(Master Boot Recorder)**：位于硬盘第0磁道
   - 前446字节：系统引导程序
   - 中间64字节：分区表信息
   - 最多支持4个主分区
 
 #### 分区类型
+
 - **主分区**：最多4个
 - **扩展分区**：3P+1E模式中的1E
 - **逻辑分区**：在扩展分区内创建
@@ -79,12 +87,14 @@ xfs_repair -L /dev/sda1
 ### 2.2 分区操作
 
 **查看磁盘信息：**
+
 ```bash
 fdisk -l    # 查看分区信息
 df -h       # 查看挂载情况
 ```
 
 **分区管理：**
+
 ```bash
 fdisk /dev/sdc   # 进入分区管理界面
 ```
@@ -92,14 +102,16 @@ fdisk /dev/sdc   # 进入分区管理界面
 ### 2.3 文件系统格式化与挂载
 
 **格式化命令：**
+
 ```bash
 mkfs.ext2 /dev/sdc1
-mkfs.ext3 /dev/sdc1  
+mkfs.ext3 /dev/sdc1
 mkfs.ext4 /dev/sdc1
 mkfs.ext4 -L "firstp" /dev/sdc1  # 指定标签格式化
 ```
 
 **挂载操作：**
+
 ```bash
 mount /dev/sdc1 /mnt              # 设备挂载
 mount -L firstp /mnt              # 标签挂载
@@ -118,17 +130,19 @@ mount -a           # 挂载/etc/fstab中的所有配置
 ### 2.5 自动挂载配置
 
 **/etc/fstab文件格式：**
+
 ```
 UUID=60ab619d-0db0-4d74-9951-c7bd3f67ed85 /data ext4 defaults 0 0
 ```
 
 **查看UUID方法：**
+
 ```bash
 # ext文件系统
 tune2fs -l /dev/sdb2
 dumpe2fs /dev/sdb2
 
-# XFS文件系统  
+# XFS文件系统
 xfs_admin -u /dev/sdb1
 lsblk --fs /dev/sdb1
 ```
@@ -168,6 +182,7 @@ swapon -s               # 查看已激活的swap
 ### 3.3 自动挂载配置
 
 **/etc/fstab配置示例：**
+
 ```
 /dev/vgsrv/swap2 swap swap defaults 0 0
 ```
@@ -175,6 +190,7 @@ swapon -s               # 查看已激活的swap
 ### 3.4 增加交换分区
 
 **方法一：使用分区**
+
 ```bash
 # 创建swap分区
 fdisk /dev/sdc  # 设置类型为82
@@ -183,6 +199,7 @@ swapon /dev/sdc1
 ```
 
 **方法二：使用文件**
+
 ```bash
 # 创建swap文件
 dd if=/dev/zero of=/tmp/swap bs=10M count=100
@@ -191,6 +208,7 @@ swapon /tmp/swap
 ```
 
 **验证结果：**
+
 ```bash
 free -m  # 查看内存和swap使用情况
 ```
@@ -198,6 +216,7 @@ free -m  # 查看内存和swap使用情况
 ## 四、磁盘管理练习
 
 ### 练习要求：
+
 1. 利用剩余空间创建三个分区（1G、100M、32M）
 2. 将1G分区设置为开机自动挂载到/data目录
 3. 使用32M分区模拟inode空间满的情况
@@ -225,6 +244,7 @@ mount /dev/sdc3 /mnt/test
 ### 5.1 LVM基本概念
 
 **LVM组成：**
+
 - **物理卷(PV)**：标记为LVM的分区，类型0x8e
 - **卷组(VG)**：一个或多个PV的集合
 - **逻辑卷(LV)**：VG的虚拟分区

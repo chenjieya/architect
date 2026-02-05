@@ -1,5 +1,5 @@
-
 SSH（Secure Shell）是 Linux/Unix 系统中最常用的远程登录和管理工具。通过 SSH，我们可以安全地连接到远程主机，执行命令、传输文件，甚至做端口转发。本文将带你快速了解 **SSH 服务的安装、配置、验证方式以及常用操作**。
+
 ## 一、SSH 服务安装与管理
 
 SSH 服务默认监听 **22 端口**，你可以通过以下命令确认服务是否在运行：
@@ -8,22 +8,22 @@ SSH 服务默认监听 **22 端口**，你可以通过以下命令确认服务�
 
 ### 1. 启动与关闭 SSH 服务
 
-默认服务在22端口监听   `netstat -ntpl | grep :22`
+默认服务在22端口监听 `netstat -ntpl | grep :22`
 
 在不同的 Linux 发行版中，管理方式略有不同：
 
 ```bash
-# 使用 systemctl 管理 
-systemctl start sshd.service 
-systemctl stop sshd.service 
-systemctl restart sshd.service 
+# 使用 systemctl 管理
+systemctl start sshd.service
+systemctl stop sshd.service
+systemctl restart sshd.service
 systemctl status sshd.service
 ```
 
 ### 2. 设置开机自启
 
 ```bash
-systemctl enable sshd.service    # 开机自启 
+systemctl enable sshd.service    # 开机自启
 systemctl disable sshd.service   # 取消开机自启
 ```
 
@@ -40,10 +40,10 @@ SSH 服务的配置文件位于：
 常见配置项：
 
 ```bash
-# 指定监听的地址和端口 
-ListenAddress 192.168.0.1 Port 22  
-# 是否允许 root 用户远程登录 
-PermitRootLogin yes   # 允许 
+# 指定监听的地址和端口
+ListenAddress 192.168.0.1 Port 22
+# 是否允许 root 用户远程登录
+PermitRootLogin yes   # 允许
 PermitRootLogin no    # 禁止
 ```
 
@@ -54,21 +54,19 @@ PermitRootLogin no    # 禁止
 SSH 提供 **两种级别的安全验证**：
 
 1. **基于口令的验证（Password Authentication）**  
-    只需用户名和密码即可登录远程主机。
-    
+   只需用户名和密码即可登录远程主机。
 2. **基于密钥的验证（Public Key Authentication）**  
-    通过公钥和私钥实现身份验证，更安全。  
-    服务器保存公钥，客户端用私钥解密“质询”完成认证。
-    
+   通过公钥和私钥实现身份验证，更安全。  
+   服务器保存公钥，客户端用私钥解密“质询”完成认证。
 
 ---
 
 ### 1. 密码登录方式
 
 ```bash
-# 使用默认端口（22） 
-ssh user@192.168.116.3  
-# 指定端口 
+# 使用默认端口（22）
+ssh user@192.168.116.3
+# 指定端口
 ssh user@192.168.116.3 -p 2222
 
 ssh  192.168.116.3  # 相当于 ssh 宿主机客户端用户名@192.168.116.3    -p  22
@@ -87,9 +85,7 @@ ssh  192.168.116.3  # 相当于 ssh 宿主机客户端用户名@192.168.116.3   
 生成后会在 `~/.ssh/` 下生成：
 
 - `id_rsa` —— 私钥
-    
 - `id_rsa.pub` —— 公钥
-    
 
 将公钥拷贝到服务器（192.168.77.128）：
 
@@ -99,7 +95,7 @@ ssh  192.168.116.3  # 相当于 ssh 宿主机客户端用户名@192.168.116.3   
 
 ```bash
 # 这个文件若不存在的话，先创建
-touch /root/.ssh/authorized_keys 
+touch /root/.ssh/authorized_keys
 cat /home/id_rsa.pub >> /root/.ssh/authorized_keys
 ```
 
@@ -126,9 +122,9 @@ cat /home/id_rsa.pub >> /root/.ssh/authorized_keys
 ### 1. 文件传输
 
 ```bash
-# 传输文件 
-scp file user@192.168.116.3:/tmp  
-# 传输目录（-r 递归） 
+# 传输文件
+scp file user@192.168.116.3:/tmp
+# 传输目录（-r 递归）
 scp -r directory user@192.168.116.3:/tmp
 ```
 
@@ -137,8 +133,8 @@ scp -r directory user@192.168.116.3:/tmp
 ### 2. 远程执行命令
 
 ```bash
-ssh 192.168.116.3 "command"  
-# 示例：查看远程主机网卡信息 
+ssh 192.168.116.3 "command"
+# 示例：查看远程主机网卡信息
 ssh 192.168.116.3 "ifconfig eth0"
 ```
 
@@ -149,17 +145,11 @@ ssh 192.168.116.3 "ifconfig eth0"
 除了 Linux 终端自带的 `ssh` 命令，还有许多常见的 SSH 客户端工具可供选择：
 
 - **Linux 终端**
-    
 - **gcm**（gnome-connection-manager）
-    
 - **Putty**
-    
 - **SecureCRT**
-    
 - **Xshell**
-    
 - **xterm**
-    
 
 ---
 
@@ -170,12 +160,7 @@ ssh 192.168.116.3 "ifconfig eth0"
 在生产环境中，建议：
 
 - 修改默认端口（22），提高安全性
-    
 - 禁止 root 用户直接登录
-    
 - 使用 **基于密钥的验证** 代替密码登录
-    
 
 这样既能提升安全性，又能方便日常远程管理。
-
-
