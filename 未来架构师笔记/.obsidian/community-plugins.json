@@ -10,6 +10,5 @@
   "obsidian-excalidraw-plugin",
   "obsidian-html-tags-autocomplete",
   "obsidian-table-generator",
-  "prettier",
-  "xmind-viewer"
+  "prettier-dev"
 ]

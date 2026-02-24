@@ -11,14 +11,10 @@
             "id": "d61b54353b008745",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Linux/【进程】系统状态和进程管理.md",
-                "mode": "source",
-                "source": false
-              },
+              "type": "empty",
+              "state": {},
               "icon": "lucide-file",
-              "title": "【进程】系统状态和进程管理"
+              "title": "新标签页"
             }
           }
         ]
@@ -162,13 +158,12 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Linux/【进程】系统状态和进程管理.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "【进程】系统状态和进程管理 的大纲"
+              "title": "大纲"
             }
           },
           {
@@ -177,8 +172,8 @@
             "state": {
               "type": "advanced-tables-toolbar",
               "state": {},
-              "icon": "lucide-ghost",
-              "title": "advanced-tables-toolbar"
+              "icon": "spreadsheet",
+              "title": "Advanced Tables"
             }
           }
         ],
@@ -190,7 +185,7 @@
   },
   "left-ribbon": {
     "hiddenItems": {
-      "bases:创建新数据库": false,
+      "bases:新建数据库": false,
       "switcher:打开快速切换": false,
       "graph:查看关系图谱": false,
       "canvas:新建白板": false,
@@ -200,47 +195,48 @@
       "callout-manager:Insert Callout": false,
       "table-editor-obsidian:Advanced Tables Toolbar": false,
       "obsidian42-brat:BRAT": false,
-      "obsidian-excalidraw-plugin:新建绘图文件": false
+      "obsidian-excalidraw-plugin:新建绘图文件": false,
+      "markdown-importer:打开 Markdown 格式转换器": false
     }
   },
-  "active": "d61b54353b008745",
+  "active": "b126c51181683d12",
   "lastOpenFiles": [
-    "Linux/【命令】Linux 常用命令总结.md",
-    "Linux/【进程】系统状态和进程管理.md",
-    "Linux/【磁盘】Linux文件系统与磁盘管理完全指南.md",
-    "Linux/【权限】Linux权限提升详解：su与sudo的完整指南.md",
-    "Linux/虚拟机基础事项.md",
-    "Linux/【软件包】软件和包管理.md",
-    "Linux/【权限】用户和组以及权限.md",
-    "Linux/【SSH】Linux SSH 服务管理与配置详解.md",
-    "Linux/【权限】Linux特殊权限与隐藏属性详解.md",
-    "前端服务监控/用户行为监控.md",
-    "前端服务监控/页面性能监控.md",
+    "面试总结/网络/输入URL地址后.md",
+    "面试总结/网络/网路性能优化.md",
+    "面试总结/网络/断点续传.md",
+    "面试总结/网络/文件下载.md",
+    "面试总结/网络/文件上传.md",
+    "面试总结/网络/常见请求方法.md",
+    "面试总结/网络/域名和DNS.md",
+    "面试总结/网络/同源策略.md",
+    "面试总结/网络/加密.md",
+    "面试总结/网络/五层网络模型.md",
+    "面试总结/网络/【跨域】代理.md",
+    "面试总结/网络/【跨域】JSONP.md",
+    "面试总结/网络/【跨域】CORS.md",
+    "面试总结/网络/cookie、sessionStorage、localStorage 的区别.md",
+    "面试总结/网络/_网络面试题汇总_.md",
+    "面试总结/网络/XSS攻击.md",
+    "面试总结/网络/Websocket.md",
+    "面试总结/网络/TCP协议.md",
+    "面试总结/网络/Session.md",
+    "面试总结/网络/SSL、TLS、HTTPS.md",
+    "面试总结/网络/JWT.md",
+    "面试总结/网络/HTTP缓存协议.md",
+    "面试总结/网络/HTTP各版本差异.md",
+    "面试总结/网络/Cookie.md",
+    "面试总结/网络/CSRF攻击.md",
+    "面试总结/浏览器/跨标签页通信.md",
+    "面试总结/网络",
+    "面试总结/浏览器",
+    "面试总结/Promise",
+    "面试总结/JavaScript",
+    "面试总结/Html",
+    "面试总结/Css",
+    "面试总结",
+    "面试总结/JavaScript/未命名",
     "assets",
-    "前端服务监控/错误监控.md",
-    "前端服务监控/数据上报.md",
-    "前端服务监控/前端服务监控概述.md",
-    "前端AI/【LLM】RAG：实践.md",
     "国际化i18n/国际化.xmind",
-    "国际化i18n/未确认 233160.crdownload",
-    "国际化i18n",
-    "前端AI/【LLM】RAG：架构演进.md",
-    "前端AI/【LLM】RAG：基础知识.md",
-    "前端AI/【LLM】MCP：Prompts.md",
-    "前端AI/【LLM】MCP：理论知识.md",
-    "前端AI/【LLM】MCP：监听资源更新.md",
-    "前端AI/【LLM】MCP：Schema.md",
-    "前端AI/【LLM】MCP：Resources.md",
-    "前端AI/【LLM】MCP：Client.md",
-    "前端AI/【LLM】MCP：远程通信方式.md",
-    "前端AI/【LLM】微调：LoRA微调.md",
-    "前端AI/【LLM】微调：大模型微调.md",
-    "Node",
-    "TypeScript/tsconfig.json.xmind",
-    "TypeScript/课程大纲.xmind",
-    "自定义脚手架(finish)",
-    "Vite深度剖析(finish)/vite.xmind",
-    "Vite深度剖析(finish)",
     "未命名.canvas",
     "笔记/image/image_9ViibmeAvU.png",
     "笔记/image/img002.e1ac8197.png",
