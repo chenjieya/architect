@@ -4,17 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "d62622769499bda5",
+        "id": "74adf5dba9dd7fd2",
         "type": "tabs",
         "children": [
           {
-            "id": "d61b54353b008745",
+            "id": "caf7312e6995fc37",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "面试总结/工程化/工程化面试题汇总.md",
+                "mode": "source",
+                "source": false
+              },
               "icon": "lucide-file",
-              "title": "新标签页"
+              "title": "工程化面试题汇总"
             }
           }
         ]
@@ -158,12 +162,13 @@
             "state": {
               "type": "outline",
               "state": {
+                "file": "面试总结/工程化/工程化面试题汇总.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "大纲"
+              "title": "工程化面试题汇总 的大纲"
             }
           },
           {
@@ -199,44 +204,44 @@
       "markdown-importer:打开 Markdown 格式转换器": false
     }
   },
-  "active": "b126c51181683d12",
+  "active": "caf7312e6995fc37",
   "lastOpenFiles": [
-    "面试总结/网络/输入URL地址后.md",
-    "面试总结/网络/网路性能优化.md",
-    "面试总结/网络/断点续传.md",
-    "面试总结/网络/文件下载.md",
-    "面试总结/网络/文件上传.md",
-    "面试总结/网络/常见请求方法.md",
-    "面试总结/网络/域名和DNS.md",
-    "面试总结/网络/同源策略.md",
-    "面试总结/网络/加密.md",
-    "面试总结/网络/五层网络模型.md",
-    "面试总结/网络/【跨域】代理.md",
-    "面试总结/网络/【跨域】JSONP.md",
-    "面试总结/网络/【跨域】CORS.md",
-    "面试总结/网络/cookie、sessionStorage、localStorage 的区别.md",
-    "面试总结/网络/_网络面试题汇总_.md",
-    "面试总结/网络/XSS攻击.md",
-    "面试总结/网络/Websocket.md",
-    "面试总结/网络/TCP协议.md",
-    "面试总结/网络/Session.md",
-    "面试总结/网络/SSL、TLS、HTTPS.md",
-    "面试总结/网络/JWT.md",
-    "面试总结/网络/HTTP缓存协议.md",
-    "面试总结/网络/HTTP各版本差异.md",
-    "面试总结/网络/Cookie.md",
-    "面试总结/网络/CSRF攻击.md",
-    "面试总结/浏览器/跨标签页通信.md",
+    "111",
+    "未命名文件夹",
+    "1111",
+    "课件.md",
+    "面试总结/工程化/工程化面试题汇总.md",
+    "面试总结/工程化/模块联邦.md",
+    "企业包管理方案(finish)/【Npm】包描述文件.md",
+    "面试总结/工程化/Npm.md",
+    "[[【Npm】包描述文件.md",
+    "面试总结/工程化/ESLINT.md",
+    "面试总结/JavaScript/let、var、const的区别.md",
+    "面试总结/就业指导/自我介绍.md",
+    "面试总结/Vue3/watch面试题.md",
+    "面试总结/就业指导",
+    "面试总结/Vue3/Vue运行机制.md",
+    "面试总结/Vue3/Vue项目性能优化.md",
+    "面试总结/Vue3/Vue3整体变化.md",
+    "面试总结/Vue3/Vue2响应式回顾.md",
+    "面试总结/Vue3/Vue3响应式变化.md",
+    "面试总结/Vue3/nextTick实现原理.md",
+    "面试总结/Vue3/computed面试题.md",
+    "面试总结/Vue3/最长递增子序列.md",
+    "面试总结/Vue3/组件name作用.md",
+    "面试总结/Vue3/渲染器核心功能.md",
+    "面试总结/Vue3/图解双端diff.md",
+    "面试总结/Vue3/图解快速diff.md",
+    "面试总结/Vue3/事件绑定与更新.md",
+    "面试总结/Vue3/模板编译提升.md",
+    "面试总结/Vue3/模板编译器.md",
+    "面试总结/Vue3",
+    "面试总结/工程化",
     "面试总结/网络",
     "面试总结/浏览器",
     "面试总结/Promise",
     "面试总结/JavaScript",
     "面试总结/Html",
-    "面试总结/Css",
-    "面试总结",
-    "面试总结/JavaScript/未命名",
-    "assets",
-    "国际化i18n/国际化.xmind",
     "未命名.canvas",
     "笔记/image/image_9ViibmeAvU.png",
     "笔记/image/img002.e1ac8197.png",
