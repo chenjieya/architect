@@ -3,6 +3,7 @@ import watchError from "./error/index";
 
 const monitor = {
   start(options = {}) {
+    console.log("init");
     // 1. 合并配置文件
     setConfig(options);
 

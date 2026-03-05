@@ -30,6 +30,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
   var lastEventCapture = null;
   ["click", "dblclick", "mousedown", "mouseup", "keydown", "keyup", "touchstart", "touchend", "touchmove"].forEach(function (eventType) {
     document.addEventListener(eventType, function (event) {
+      console.log(event, "saljd");
       lastEventCapture = event;
     }, {
       capture: true,
@@ -144,7 +145,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
 
     // 资源错误没有冒泡，所以只能在采集阶段捕获错误
     window.addEventListener("error", function (e) {
-      console.log(e);
+      console.log(e, "event");
       var target = e.target;
       var lastEvent = getLastEvent();
       var paths = getPaths(lastEvent);
@@ -237,6 +238,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
   var monitor = {
     start: function start() {
       var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+      console.log("init");
       // 1. 合并配置文件
       setConfig(options);
 

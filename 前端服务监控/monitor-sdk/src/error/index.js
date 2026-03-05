@@ -61,7 +61,7 @@ export default function () {
   window.addEventListener(
     "error",
     function (e) {
-      console.log(e);
+      console.log(e, "event");
 
       const target = e.target;
 
