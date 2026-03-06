@@ -1,6 +1,6 @@
 <template>
   <div>
-    <button @click="$monitor.tracker">手动上报</button>
+    <button @click="test">手动上报</button>
     <button data-tracker="true">data-set自动上报</button>
     <button>auto自动上报</button>
   </div>
@@ -8,7 +8,10 @@
 
 <script>
 export default {
-}
+  methods: {
+    test: function ($event) {
+      this.$monitor.tracker($event);
+    }
+  }
+};
 </script>
-
-

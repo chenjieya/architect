@@ -17,5 +17,8 @@
     "@rollup/plugin-commonjs": "^28.0.6",
     "@rollup/plugin-node-resolve": "^16.0.1",
     "rollup": "^4.52.3"
+  },
+  "dependencies": {
+    "web-vitals": "^5.1.0"
   }
 }

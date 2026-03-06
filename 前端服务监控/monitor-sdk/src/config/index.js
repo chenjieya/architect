@@ -1,8 +1,8 @@
-const config = {
+export const config = {
   appId: "alvis.org.cn",
   userId: "alvis",
   // 上报地址
-  reportUrl: "https://report.alvis.org.cn/report",
+  reportUrl: "http://127.0.0.1:3001/report/actions",
   // 是否全埋点
   isTrackAll: false,
   vue: {

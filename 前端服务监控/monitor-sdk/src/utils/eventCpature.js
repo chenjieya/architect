@@ -14,7 +14,6 @@ let lastEventCapture = null;
   document.addEventListener(
     eventType,
     (event) => {
-      console.log(event, "saljd");
       lastEventCapture = event;
     },
     {

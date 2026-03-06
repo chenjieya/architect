@@ -99,34 +99,12 @@ app.use("/api/get/behaviorLog", async (req, res) => {
 
 app.use("/report/actions", async (req, res) => {
   const logs = typeof req.body === "object" ? req.body : JSON.parse(req.body);
-
   const { id, appId, userId, type, data, currentTime, currentPage, ua } = logs;
-  console.log(logs);
-
-  /*
-  const errorLog = new ErrorLog({
-    id,
-    appId,
-    userId,
-    filename: data.filename,
-    functionName: data.functionName,
-    errorType: data.errorType,
-    tagName: data.tagName,
-    errMsg: data.message,
-    stack: data.stack,
-    colno: data.colno,
-    lineno: data.lineno,
-    createTime: currentTime,
-    currentPage, 
-    ua
-  });
-
-  await errorLog.save();
-  */
 
   data?.forEach(async (item) => {
     switch (type) {
       case "action":
+        console.log("action");
         const userAction = new UserAction({
           id,
           appId,
@@ -145,6 +123,7 @@ app.use("/report/actions", async (req, res) => {
         await userAction.save();
         break;
       case "error":
+        console.log("error");
         const errorLog = new ErrorLog({
           id,
           appId,
@@ -164,6 +143,7 @@ app.use("/report/actions", async (req, res) => {
         await errorLog.save();
         break;
       case "behavior":
+        console.log("behavior");
         const behaviorLog = new BehaviorLog({
           id,
           appId,

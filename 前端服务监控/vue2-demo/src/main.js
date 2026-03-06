@@ -11,6 +11,8 @@ bundle.start({
     Vue
   }
 });
+Vue.prototype.$monitor = bundle;
+bundle.onVueRouter();
 
 const app = new Vue({
   render: (h) => h(App),

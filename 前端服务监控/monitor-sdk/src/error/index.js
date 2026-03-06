@@ -1,6 +1,7 @@
 import config from "../config";
 import { getLastEvent } from "../utils/eventCpature";
 import { getPaths } from "../utils/paths";
+import { layzeReport } from "../report";
 
 /**
  * 这个正则表达式用于匹配 JavaScript 错误栈中的堆栈跟踪信息中的单个条目，其中包含文件名、行号和列号等信息。
@@ -61,8 +62,6 @@ export default function () {
   window.addEventListener(
     "error",
     function (e) {
-      console.log(e, "event");
-
       const target = e.target;
 
       const lastEvent = getLastEvent();
@@ -71,17 +70,16 @@ export default function () {
 
       // 资源错误
       if (target && (target.src || target.href)) {
-        console.log("资源错误");
         const data = {
           errorType: "resourceError",
           filename: target.src || target.href,
           tagName: target.tagName,
           message: `加载${target.tagName}失败`
         };
-        console.log(data);
+
+        layzeReport("error", data);
       } else {
         // js错误
-        console.log("js错误");
         const errs = parseErrorStack(e.error);
 
         const { functionName, fileName, rowNo, colNo } = errs[0] || {};
@@ -96,7 +94,8 @@ export default function () {
           stack: e.error.stack,
           paths
         };
-        console.log(data);
+
+        layzeReport("error", data);
       }
     },
     true
@@ -104,9 +103,6 @@ export default function () {
 
   // 监听primise错误
   window.addEventListener("unhandledrejection", function (e) {
-    console.log(e);
-    console.log("promise错误");
-
     const lastEvent = getLastEvent();
 
     const paths = getPaths(lastEvent);
@@ -123,14 +119,13 @@ export default function () {
       stack: e.reason.stack,
       paths
     };
-    console.log(data);
+
+    layzeReport("error", data);
   });
 
   // 监听vue错误
   if (config.vue?.Vue) {
     config.vue.Vue.config.errorHandler = function (err) {
-      console.log("vue错误");
-
       const lastEvent = getLastEvent();
 
       const paths = getPaths(lastEvent);
@@ -146,8 +141,8 @@ export default function () {
         stack: err.stack,
         paths
       };
-      console.log(data);
-      //上报vue错误 todo...
+
+      layzeReport("error", data);
     };
   }
 }
