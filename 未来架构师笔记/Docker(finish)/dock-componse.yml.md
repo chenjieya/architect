@@ -1,4 +1,3 @@
-
 ## 1. ruoyi框架得yml
 
 ```yml
@@ -84,7 +83,6 @@ networks:
   net:
 	  name: mynet
 ```
-
 
 ## 2. dockerComponse.yml 分析
 
@@ -491,4 +489,24 @@ volumes:
 networks:
   app-network:
     driver: bridge
+```
+
+## 4. 2026最新镜像加速配置
+
+```json
+{
+  "builder": {
+    "gc": {
+      "defaultKeepStorage": "20GB",
+      "enabled": true
+    }
+  },
+  "dns": ["1.1.1.1", "8.8.8.8"],
+  "experimental": false,
+  "registry-mirrors": [
+    "https://dockerproxy.com",
+    "https://mirror.ccs.tencentyun.com",
+    "https://hub-mirror.c.163.com"
+  ]
+}
 ```
