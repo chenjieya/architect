@@ -9,7 +9,7 @@
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251129143144423.png)
 
 
-由上图的方式，我们可以看到，在Controller层的前后，都可以**“切一刀”**，用来统一处理公共逻辑，这样，就不会侵入Controller、Service等业务代码。
+由上图的方式，我们可以看到，在Controller层的前后，都可以 **“切一刀”**，用来统一处理公共逻辑，这样，就不会侵入Controller、Service等业务代码。
 
 这样的方式，我们就叫做**AOP（Aspect-Oriented Programming，面向切面编程）**，它是一种编程范式，它通过 **分离关注点** 来增强代码的模块化。AOP 允许开发者在不改变原有代码的前提下，在程序的特定位置添加行为，通常用于实现**横切关注点**（cross-cutting concerns），如日志记录、性能监控、安全检查、事务管理等
 
