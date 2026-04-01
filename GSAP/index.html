@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GSAP</title>
+    <style>
+      .red {
+        width: 100px;
+        height: 100px;
+        background-color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <button type="button" id="btn">开始动画</button>
+      <div class="red"></div>
+    </div>
+    <script type="module">
+      import { gsap } from "gsap";
+      btn.onclick = function () {
+        gsap.to(".red", {
+          x: 500,
+          repeat: 1,
+          yoyo: true
+        });
+      };
+    </script>
+  </body>
+</html>
