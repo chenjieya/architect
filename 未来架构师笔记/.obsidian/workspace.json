@@ -8,35 +8,20 @@
         "type": "tabs",
         "children": [
           {
-            "id": "8a2a42577d50e924",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "NestJs(finish)/【进阶】Metadata和Reflector.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "【进阶】Metadata和Reflector"
-            }
-          },
-          {
             "id": "5fae943d3f5618d9",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "TypeScript/【装饰器】reflect-metadata.md",
+                "file": "Python/Lambda表达式.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "【装饰器】reflect-metadata"
+              "title": "Lambda表达式"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -68,7 +53,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "tsconfig-paths",
+                "query": "",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -177,13 +162,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "TypeScript/【装饰器】reflect-metadata.md",
+                "file": "Python/Lambda表达式.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "【装饰器】reflect-metadata 的大纲"
+              "title": "Lambda表达式 的大纲"
             }
           },
           {
@@ -219,44 +204,44 @@
       "markdown-importer:打开 Markdown 格式转换器": false
     }
   },
-  "active": "5fae943d3f5618d9",
+  "active": "b126c51181683d12",
   "lastOpenFiles": [
-    "TypeScript/【装饰器】方法装饰器.md",
-    "TypeScript/【装饰器】访问器属性装饰器.md",
-    "TypeScript/【装饰器】理解装饰器.md",
-    "TypeScript/【装饰器】属性装饰器.md",
-    "TypeScript/【装饰器】元数据相关的库.md",
-    "TypeScript/【装饰器】装饰器的本质.md",
-    "NestJs(finish)/【进阶】Metadata和Reflector.md",
-    "NestJs(finish)/【进阶】自定义装饰器.md",
     "NestJs(finish)/【基础】模块的概念.md",
-    "NestJs(finish)/【基础】AOP在Nest中的应用.md",
-    "NestJs(finish)/【基础】AOP.md",
-    "NestJs(finish)/【基础】ExecutionContext：切换不同上下文.md",
-    "NestJs(finish)/【基础】Nest中的装饰器.md",
+    "Python/Python作用域.md",
+    "Python/Lambda表达式.md",
+    "Python/Python容器类型.md",
+    "Python/Python函数.md",
+    "Python/Python环境搭建.md",
+    "Python/Python基本语法.md",
+    "Linux/【SSH】Linux SSH 服务管理与配置详解.md",
+    "Python",
+    "面试总结/浏览器/浏览器缓存.md",
+    "Vite深度剖析(finish)/【Vite】性能优化：从代码优化到网络优化.md",
+    "GIT(finish)/git从入门到精通.md",
+    "浏览器插件/浏览器插件架构概览.md",
+    "浏览器插件/快速开始.md",
+    "浏览器插件/打包发布.md",
+    "浏览器插件/数据存储.md",
+    "浏览器插件/权限模式.md",
+    "浏览器插件/匹配模式.md",
+    "浏览器插件/消息传递.md",
+    "浏览器插件/Service Worker.md",
+    "浏览器插件/浏览器插件简介.md",
+    "前端最强动画库GSAP/GSAP基础入门.md",
+    "浏览器插件",
+    "前端最强动画库GSAP/GSAP插件使用.md",
+    "前端最强动画库GSAP",
     "TypeScript/【高级】工程化.md",
-    "实战项目/chat-room/chat-room.md",
-    "前端工具链(finish)/【Eslint】集成Prettier.md",
-    "前端工具链(finish)/【Eslint】Linter介绍.md",
+    "GIT/assets/9.dio",
+    "GIT/assets/8.dio",
+    "GIT/assets/7.dio",
+    "GIT/assets/6.dio",
+    "GIT/assets/5.dio",
+    "GIT/assets/4.dio",
+    "GIT/assets/3.dio",
     "Rollup(finish)/Rollup插件.md",
-    "Rollup(finish)/Rollup插件开发.md",
-    "前端工具链(finish)/【Eslint】CLI命令行工具.md",
-    "Rollup(finish)/初始Rollup.md",
-    "Rollup(finish)/Rollup基本配置（默认特性）.md",
-    "Rollup(finish)",
-    "Rollup(finish)_temp/初始Rollup.md",
-    "Rollup(finish)_temp/Rollup插件开发.md",
-    "Rollup(finish)_temp/Rollup插件.md",
-    "Rollup(finish)_temp/Rollup基本配置（默认特性）.md",
-    "Rollup(finish)_temp",
-    "Docker(finish)/docker.pdf",
-    "实战项目/chat-room",
-    "实战项目",
-    "111",
-    "未命名文件夹",
-    "1111",
-    "面试总结/就业指导",
-    "面试总结/Vue3",
+    "Docker(finish)/dock-componse.yml.md",
+    "Nginx(finish)/docker_nginx.md",
     "未命名.canvas",
     "笔记/image/image_9ViibmeAvU.png",
     "笔记/image/img002.e1ac8197.png",
