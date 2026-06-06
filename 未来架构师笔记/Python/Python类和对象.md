@@ -315,6 +315,31 @@ D()
 
 **注意：** 多继承虽然强大，但过度使用会使代码难以维护。通常优先考虑组合（Composition）代替多继承。
 
+#### 6.2.3 MRO
+
+```python
+class A:
+    pass
+
+
+class B(A):
+    pass
+
+
+class C(A):
+    pass
+
+
+class D(B, C):
+    pass
+
+
+print(D.__mro__)  # (D, B, C, A)
+print(D.mro())  # (D, B, C, A)  和 __mro__一样
+print(D.__bases__)  # (B, C)
+print(D.__base__)  # B，取__bases__第一个
+```
+
 ---
 
 ## 7. 访问控制
@@ -349,6 +374,24 @@ print(account._BankAccount__password)  # 123456（强行访问）
 ```
 
 **注意：** Python 的访问控制基于约定，不是强制。
+
+```python
+# 以下规则适用于所有成员
+
+
+class A:
+    _a = 1  # 约定私有成员，外部仍然可以访问，大部分情况用它
+    __a = 2  # 严格私有成员，外部无法直接访问__a
+    __a__ = 3  # 有特殊作用的成员，往往是系统内置的
+
+    @classmethod
+    def test(cls):
+        print(cls._a, cls.__a, cls.__a__)  # 内部可以访问所有成员
+
+
+A.test()  # 1 2 3
+print(A._a, A.__a, A.__a__)  # __a访问不到，其他可以
+```
 
 ## 8. 常见操作
 
@@ -669,20 +712,20 @@ print(Dog.count)
 
 **需要实现的方法：**
 
-| 方法                       | 说明                                        |
-| ------------------------ | ----------------------------------------- |
+| 方法                     | 说明                                                                        |
+| ------------------------ | --------------------------------------------------------------------------- |
 | `__init__(data=None)`    | 初始化空链表；`data` 可以是列表、元组或集合，其中的值会被初始化为链表的节点 |
-| `traverse(callback)`     | 遍历链表，对每个节点值调用 `callback(index, value)`    |
-| `__str__()`              | 返回链表的字符串表示，如 `"1 -> 2 -> 3"`              |
-| `to_list()`              | 将链表转换为 Python 列表并返回                       |
-| `append(value)`          | 在链表尾部添加一个新节点                              |
-| `prepend(value)`         | 在链表头部添加一个新节点                              |
-| `insert(index, value)`   | 在指定索引位置插入新节点，索引从 0 开始                     |
-| `delete_by_value(value)` | 删除第一个值等于 `value` 的节点，返回是否删除成功             |
-| `delete_by_index(index)` | 删除指定索引位置的节点，返回被删除的值，索引越界时返回 `None`        |
-| `find(value)`            | 查找值等于 `value` 的节点，返回其索引，不存在返回 -1          |
-| `get(index)`             | 获取指定索引位置的值，索引越界时返回 `None`                 |
-| `get_length()`           | 返回链表长度                                    |
-| `is_empty()`             | 判断链表是否为空                                  |
+| `traverse(callback)`     | 遍历链表，对每个节点值调用 `callback(index, value)`                         |
+| `__str__()`              | 返回链表的字符串表示，如 `"1 -> 2 -> 3"`                                    |
+| `to_list()`              | 将链表转换为 Python 列表并返回                                              |
+| `append(value)`          | 在链表尾部添加一个新节点                                                    |
+| `prepend(value)`         | 在链表头部添加一个新节点                                                    |
+| `insert(index, value)`   | 在指定索引位置插入新节点，索引从 0 开始                                     |
+| `delete_by_value(value)` | 删除第一个值等于 `value` 的节点，返回是否删除成功                           |
+| `delete_by_index(index)` | 删除指定索引位置的节点，返回被删除的值，索引越界时返回 `None`               |
+| `find(value)`            | 查找值等于 `value` 的节点，返回其索引，不存在返回 -1                        |
+| `get(index)`             | 获取指定索引位置的值，索引越界时返回 `None`                                 |
+| `get_length()`           | 返回链表长度                                                                |
+| `is_empty()`             | 判断链表是否为空                                                            |
 
 **提示：** 你可能需要先定义一个 `Node` 类来表示链表节点。
