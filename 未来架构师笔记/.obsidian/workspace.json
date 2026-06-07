@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Python/对象的创建过程.md",
+                "file": "Java/基础/答案/01-开发环境与第一个程序 — 参考答案.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "对象的创建过程"
+              "title": "01-开发环境与第一个程序 — 参考答案"
             }
           }
         ]
@@ -162,13 +162,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Python/对象的创建过程.md",
+                "file": "Java/基础/答案/01-开发环境与第一个程序 — 参考答案.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "对象的创建过程 的大纲"
+              "title": "01-开发环境与第一个程序 — 参考答案 的大纲"
             }
           },
           {
@@ -206,8 +206,20 @@
   },
   "active": "5fae943d3f5618d9",
   "lastOpenFiles": [
-    "Python/对象的类型.md",
+    "Java/基础/作业/03-开发环境与第一个程序 — L3 场景实战.md",
+    "Java/基础/答案/01-开发环境与第一个程序 — 参考答案.md",
+    "Java/基础/答案",
+    "Java/基础/作业/02-开发环境与第一个程序 — L2 原理应用.md",
+    "Java/基础/作业/01-开发环境与第一个程序 — L1 基础语法.md",
+    "Java/基础/04-常见环境问题排查与修复.md",
+    "Java/基础/作业",
+    "Java/基础/03-Java 程序入口与编译执行过程.md",
+    "Java/基础/01-JDK 版本选择与安装.md",
+    "Java/基础",
+    "Java/基础/02-IDEA 项目创建与运行配置.md",
     "Python/对象的创建过程.md",
+    "Java",
+    "Python/对象的类型.md",
     "Python/Python类和对象.md",
     "Python/Python容器类型.md",
     "Python/Python基本语法.md",
@@ -226,22 +238,10 @@
     "Python/Python作用域.md",
     "Python",
     "NestJs(finish)/【基础】模块的概念.md",
-    "Linux/【SSH】Linux SSH 服务管理与配置详解.md",
-    "面试总结/浏览器/浏览器缓存.md",
-    "Vite深度剖析(finish)/【Vite】性能优化：从代码优化到网络优化.md",
-    "GIT(finish)/git从入门到精通.md",
-    "浏览器插件/消息传递.md",
-    "前端最强动画库GSAP/GSAP基础入门.md",
-    "前端最强动画库GSAP/GSAP插件使用.md",
     "前端最强动画库GSAP",
-    "TypeScript/【高级】工程化.md",
     "GIT/assets/9.dio",
     "GIT/assets/8.dio",
     "GIT/assets/7.dio",
-    "GIT/assets/6.dio",
-    "GIT/assets/5.dio",
-    "GIT/assets/4.dio",
-    "GIT/assets/3.dio",
     "未命名.canvas",
     "笔记/image/image_9ViibmeAvU.png",
     "笔记/image/img002.e1ac8197.png",
