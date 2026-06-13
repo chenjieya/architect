@@ -41,12 +41,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Python/Python容器类型.md",
+                "file": "Python/装饰器.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Python容器类型"
+              "title": "装饰器"
             }
           }
         ],
@@ -191,13 +191,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Python/Python容器类型.md",
+                "file": "Python/装饰器.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Python容器类型 的大纲"
+              "title": "装饰器 的大纲"
             }
           },
           {
@@ -233,11 +233,12 @@
       "markdown-importer:打开 Markdown 格式转换器": false
     }
   },
-  "active": "f2c826d7799a2a47",
+  "active": "b126c51181683d12",
   "lastOpenFiles": [
+    "Python/Python容器类型.md",
+    "Python/装饰器.md",
     "Python/元类.md",
     "Python/对象的创建过程.md",
-    "Python/Python容器类型.md",
     "Python/可调用对象.md",
     "Python/Python类和对象.md",
     "Python/对象的类型.md",
@@ -264,7 +265,6 @@
     "Java/基础/05-集合框架与常用类库/01-List、Set、Map结构选型.md",
     "Java/基础/04-抽象类与异常处理/作业/06-异常处理与健壮性 — L3 场景实战.md",
     "Java/基础/05-集合框架与常用类库",
-    "Java/基础/04-抽象类与异常处理/作业/05-异常处理与健壮性 — L2 原理应用.md",
     "Java/基础/04-抽象类与异常处理/作业",
     "Java/基础/04-抽象类与异常处理/答案",
     "Java/基础/04-抽象类与异常处理",
