@@ -13,3 +13,16 @@ data1 = Database()
 data2 = Database()
 
 print(data1 is data2)
+
+
+print(type(type))
+
+print(int.mro())
+
+
+class A:
+    pass
+
+
+a = A()
+print(callable(A))
