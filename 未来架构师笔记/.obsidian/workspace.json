@@ -41,12 +41,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Python/装饰器.md",
+                "file": "Python/魔术方法.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "装饰器"
+              "title": "魔术方法"
             }
           }
         ],
@@ -191,13 +191,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Python/装饰器.md",
+                "file": "Python/魔术方法.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "装饰器 的大纲"
+              "title": "魔术方法 的大纲"
             }
           },
           {
@@ -233,10 +233,11 @@
       "markdown-importer:打开 Markdown 格式转换器": false
     }
   },
-  "active": "b126c51181683d12",
+  "active": "f2c826d7799a2a47",
   "lastOpenFiles": [
-    "Python/Python容器类型.md",
     "Python/装饰器.md",
+    "Python/魔术方法.md",
+    "Python/Python容器类型.md",
     "Python/元类.md",
     "Python/对象的创建过程.md",
     "Python/可调用对象.md",
@@ -263,7 +264,6 @@
     "Java/基础/05-集合框架与常用类库/03-HashMap原理与冲突处理.md",
     "Java/基础/05-集合框架与常用类库/02-ArrayList与LinkedList对比.md",
     "Java/基础/05-集合框架与常用类库/01-List、Set、Map结构选型.md",
-    "Java/基础/04-抽象类与异常处理/作业/06-异常处理与健壮性 — L3 场景实战.md",
     "Java/基础/05-集合框架与常用类库",
     "Java/基础/04-抽象类与异常处理/作业",
     "Java/基础/04-抽象类与异常处理/答案",
