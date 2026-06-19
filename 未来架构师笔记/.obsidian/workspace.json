@@ -41,12 +41,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Python/描述符.md",
+                "file": "Python/异常处理.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "描述符"
+              "title": "异常处理"
             }
           }
         ],
@@ -191,13 +191,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Python/描述符.md",
+                "file": "Python/异常处理.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "描述符 的大纲"
+              "title": "异常处理 的大纲"
             }
           },
           {
@@ -235,8 +235,9 @@
   },
   "active": "f2c826d7799a2a47",
   "lastOpenFiles": [
-    "Python/魔术方法.md",
     "Python/描述符.md",
+    "Python/异常处理.md",
+    "Python/魔术方法.md",
     "Python/装饰器.md",
     "Python/Python容器类型.md",
     "Python/元类.md",
@@ -263,7 +264,6 @@
     "Java/基础/05-集合框架与常用类库/答案",
     "Java/基础/05-集合框架与常用类库/04-泛型类、泛型方法与通配符.md",
     "Java/基础/05-集合框架与常用类库/03-HashMap原理与冲突处理.md",
-    "Java/基础/05-集合框架与常用类库/02-ArrayList与LinkedList对比.md",
     "Java/基础/05-集合框架与常用类库",
     "Java/基础/04-抽象类与异常处理/作业",
     "Java/基础/04-抽象类与异常处理/答案",
