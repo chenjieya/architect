@@ -24,6 +24,8 @@ async_request("host1").add_done_callback(lambda r1:
 
 `Python` 中，使用 `async def` 定义一个**协程函数**。调用协程函数会得到一个**协程对象**。
 
+await后面的协程函数，处于完成状态，会将他们加入到ready队列**await future → 协程暂停 → future完成后 → call_soon(resume_callback) → ready队列**
+
 ```python
 from async_delay import async_delay
 from async_request import async_request
