@@ -68,3 +68,6 @@ lerna-debug.log*
 
 # obdisian
 prettier-dev
+
+.env
+__pycache__
