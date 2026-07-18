@@ -1,12 +1,12 @@
 # apps/web-service/apps/main.py
 
 from fastapi import FastAPI
-from apps.core.config import base_settings
+from apps.core.config import base_config, web_config
 
-is_production = base_settings.environment == "production"
+is_production = base_config.environment == "production"
 
 app = FastAPI(
-    title=base_settings.title,
+    title=web_config.title,
     docs_url=None if is_production else "/docs",
     redoc_url=None if is_production else "/redoc",
     openapi_url=None if is_production else "/openapi.json",
