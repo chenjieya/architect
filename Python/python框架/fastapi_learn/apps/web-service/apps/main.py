@@ -12,8 +12,11 @@ app = FastAPI(
     openapi_url=None if is_production else "/openapi.json",
 )
 
-from apps.api.item import router as item_router
-from apps.api.welcome import router as welcome_router
+# 注册路由
+from apps.api.products import router as product_router
+from apps.api.categories import router as category_router
+from apps.api.skus import router as sku_router
 
-app.include_router(item_router)
-app.include_router(welcome_router)
+app.include_router(product_router)
+app.include_router(category_router)
+app.include_router(sku_router)
