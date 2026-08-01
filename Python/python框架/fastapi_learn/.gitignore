@@ -1,0 +1,7 @@
+# temp
+/temp
+/tmp
+
+# test
+.coverage
+htmlcov/
