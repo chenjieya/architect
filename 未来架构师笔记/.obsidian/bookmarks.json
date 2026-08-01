@@ -19,19 +19,19 @@
     {
       "type": "file",
       "ctime": 1765773315306,
-      "path": "Nginx(finish)/docker_nginx.md",
+      "path": "Nginx/docker_nginx.md",
       "title": "[docker]nginx容器"
     },
     {
       "type": "file",
       "ctime": 1765773410419,
-      "path": "Docker(finish)/dock-componse.yml.md",
+      "path": "Docker/dock-componse.yml.md",
       "title": "[docker]dock-componse.yml"
     },
     {
       "type": "file",
       "ctime": 1765773345521,
-      "path": "Rollup(finish)/Rollup插件.md",
+      "path": "Rollup/Rollup插件.md",
       "title": "[Rollup]插件"
     },
     {
@@ -49,19 +49,19 @@
     {
       "type": "file",
       "ctime": 1766213943847,
-      "path": "NestJs(finish)/【mino】MinIO mc 客户端完整使用指南.md",
+      "path": "NestJs/【mino】MinIO mc 客户端完整使用指南.md",
       "title": "[Minio]mc相关指令"
     },
     {
       "type": "file",
       "ctime": 1767492612012,
-      "path": "企业包管理方案(finish)/【Npm】npm进阶指令.md",
+      "path": "企业包管理方案/【Npm】npm进阶指令.md",
       "title": "[Npm]进阶指令"
     },
     {
       "type": "file",
       "ctime": 1767497660193,
-      "path": "企业包管理方案(finish)/【Npm】包描述文件.md",
+      "path": "企业包管理方案/【Npm】包描述文件.md",
       "title": "[Npm]package.json"
     },
     {
