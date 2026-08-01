@@ -15,10 +15,14 @@ class _CommonConfig(BaseSettings):
 class _BaseConfig(_CommonConfig):
     environment: str = "production"
 
+    model_config = {"env_prefix": "WEB_"}
+
 
 # web相关配置
 class _WebConfig(_CommonConfig):
     title: str = "Python Service API"
+    cors_origins: str = ""  # 实际读取 WEB_CORS_ORIGINS，多个来源用逗号分隔
+    cors_expose_headers: str = ""  # 实际读取 WEB_CORS_EXPOSE_HEADERS
 
     model_config = {
         "env_prefix": "WEB_",  # 配置会和父类的model_config一起合并（按道理讲是会按照子类的配置进行，但是框架自定义了元类，做了一些操作让他们进行合并）
