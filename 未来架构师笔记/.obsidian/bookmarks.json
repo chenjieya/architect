@@ -68,6 +68,28 @@
       "type": "file",
       "ctime": 1765773362395,
       "path": "实战思路.md"
+    },
+    {
+      "type": "file",
+      "ctime": 1785678340202,
+      "path": "AGENTS.md"
+    },
+    {
+      "type": "file",
+      "ctime": 1785678347692,
+      "path": "index.md"
+    },
+    {
+      "type": "group",
+      "ctime": 1785678776135,
+      "items": [
+        {
+          "type": "file",
+          "ctime": 1785678364827,
+          "path": "log/2026-08.md"
+        }
+      ],
+      "title": "logs"
     }
   ]
 }

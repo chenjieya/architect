@@ -4,21 +4,17 @@
     "type": "split",
     "children": [
       {
-        "id": "1a00aa4cfb2d766f",
+        "id": "af465df6508a7b79",
         "type": "tabs",
         "children": [
           {
-            "id": "48062b40d0d7a6d3",
+            "id": "a3a82b8efd3fc7be",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "AGENTS.md",
-                "mode": "source",
-                "source": false
-              },
+              "type": "empty",
+              "state": {},
               "icon": "lucide-file",
-              "title": "AGENTS"
+              "title": "新标签页"
             }
           }
         ]
@@ -41,7 +37,9 @@
               "type": "file-explorer",
               "state": {
                 "sortOrder": "alphabetical",
-                "autoReveal": false
+                "autoReveal": false,
+                "showSearch": false,
+                "searchQuery": ""
               },
               "icon": "lucide-folder-closed",
               "title": "文件列表"
@@ -75,7 +73,10 @@
             "type": "leaf",
             "state": {
               "type": "bookmarks",
-              "state": {},
+              "state": {
+                "showSearch": false,
+                "searchQuery": ""
+              },
               "icon": "lucide-bookmark",
               "title": "书签"
             }
@@ -100,17 +101,17 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "docker.md",
+                "file": "wiki/前端服务监控/错误监控.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
-                "showSearch": true,
+                "showSearch": false,
                 "searchQuery": "",
                 "backlinkCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "docker 的反向链接列表"
+              "title": "反向链接"
             }
           },
           {
@@ -162,13 +163,12 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "AGENTS.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "AGENTS 的大纲"
+              "title": "大纲"
             }
           },
           {
@@ -206,6 +206,18 @@
   },
   "active": "b126c51181683d12",
   "lastOpenFiles": [
+    "wiki/前端服务监控/错误监控.md",
+    "wiki/前端服务监控/数据上报.md",
+    "index.md",
+    "2026-08-02.md",
+    "未命名.canvas",
+    "log/2026-08.md",
+    "AGENTS.md",
+    "wiki/Linux/【权限】用户和组以及权限.md",
+    "wiki/面试总结/JavaScript/_JavaScript_ 面试题汇总.md",
+    "wiki/Linux/【编辑器】Vim 编辑器完全指南.md",
+    "wiki/Python/框架/对象存储直传.md",
+    "CLAUDE.md",
     "log/log.md",
     "log.md",
     "log",
@@ -217,7 +229,6 @@
     "wiki/Vite深度剖析/【Vite】 CSS 工程化处理：从预处理器到原子化框架.md",
     "wiki/Vite深度剖析/【代码分割】Code Splitting.md",
     "raw/operations-container/1-容器安装和管理/1.1 容器安装和管理.md",
-    "AGENTS.md",
     "Linux/服务管理/【服务】防火墙 firewalld 区域管理.md",
     "raw/operations-shell/1.2 shell-2-gai.md",
     "raw/operations-shell/README.md",
@@ -225,23 +236,13 @@
     "raw/operations-shell/2.2 shell-参数和信号.md",
     "raw/operations-shell/2.1 shell-计算和比较.md",
     "raw/operations-shell/1.2 shell-2.md",
-    "raw/operations-shell/1.1 shell-1.md",
     "raw/operations-shell",
-    "raw/operations-services/4. linux运维-ftp和samba/4.2 samba.md",
-    "raw/operations-services/4. linux运维-ftp和samba/4.1 ftp.md",
     "raw/operations-services/2. linux运维-nginx服务管理/lnmp1.8.tar.gz",
     "raw/operations-services/2. linux运维-nginx服务管理/weblog.sh",
     "raw/operations-services/2. linux运维-nginx服务管理/nginxlog.sh",
     "raw/operations-services/2. linux运维-nginx服务管理/nginx",
     "raw/operations-services/2. linux运维-nginx服务管理/install_lamp.sh",
     "raw/operations-services/2. linux运维-nginx服务管理/http-ssl-rhel8.0.doc",
-    "raw/operations-services/2. linux运维-nginx服务管理/2.4、nginx服务管理四负载平衡.md",
-    "raw/operations-services/3. linux运维-防火墙/3. 防火墙.md",
-    "raw/operations-services/2. linux运维-nginx服务管理/2.3、nginx服务管理三反向代理.md",
-    "raw/operations-services/2. linux运维-nginx服务管理/2.2、nginx服务管理二之日志和虚拟主机.md",
-    "raw/operations-services/2. linux运维-nginx服务管理/2.1、nginx服务管理一之安装和基本配置.md",
-    "raw/operations-services/1. linux运维-apache服务管理/1.2、apache服务管理二.md",
-    "raw/operations-services/1. linux运维-apache服务管理/1.1、apache服务管理一.md",
     "raw/operations-linux/03. Linux_vim使用介绍/Linux目录路径树状图.png",
     "Linux/_images/Linux目录路径树状图.png",
     "_代码/Python/python框架/code/demo/ai-demo/src/assets/vite.svg",
@@ -253,7 +254,6 @@
     "_代码/Python/python框架/code/demo/upload-demo/public/favicon.svg",
     "_代码/Python/python框架/code/demo/login-demo/public/favicon.svg",
     "Java/基础/未命名.canvas",
-    "未命名.canvas",
     "Untitled.canvas"
   ]
 }
