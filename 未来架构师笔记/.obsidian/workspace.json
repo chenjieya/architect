@@ -11,10 +11,14 @@
             "id": "48062b40d0d7a6d3",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "AGENTS.md",
+                "mode": "source",
+                "source": false
+              },
               "icon": "lucide-file",
-              "title": "新标签页"
+              "title": "AGENTS"
             }
           }
         ]
@@ -158,12 +162,13 @@
             "state": {
               "type": "outline",
               "state": {
+                "file": "AGENTS.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "大纲"
+              "title": "AGENTS 的大纲"
             }
           },
           {
@@ -199,8 +204,12 @@
       "markdown-importer:打开 Markdown 格式转换器": false
     }
   },
-  "active": "48062b40d0d7a6d3",
+  "active": "b126c51181683d12",
   "lastOpenFiles": [
+    "log/log.md",
+    "log.md",
+    "log",
+    "wiki/log.md",
     "tools/format.mjs",
     "tools",
     "wiki/index.md",
@@ -210,7 +219,6 @@
     "raw/operations-container/1-容器安装和管理/1.1 容器安装和管理.md",
     "AGENTS.md",
     "Linux/服务管理/【服务】防火墙 firewalld 区域管理.md",
-    "wiki/log.md",
     "raw/operations-shell/1.2 shell-2-gai.md",
     "raw/operations-shell/README.md",
     "raw/operations-shell/3 awk和sed.md",
@@ -227,8 +235,6 @@
     "raw/operations-services/2. linux运维-nginx服务管理/nginx",
     "raw/operations-services/2. linux运维-nginx服务管理/install_lamp.sh",
     "raw/operations-services/2. linux运维-nginx服务管理/http-ssl-rhel8.0.doc",
-    "raw/operations-services/2. linux运维-nginx服务管理/4-nginx的https设置.docx",
-    "raw/operations-services/2. linux运维-nginx服务管理/3.1-nginx的反向代理之负载平衡.docx",
     "raw/operations-services/2. linux运维-nginx服务管理/2.4、nginx服务管理四负载平衡.md",
     "raw/operations-services/3. linux运维-防火墙/3. 防火墙.md",
     "raw/operations-services/2. linux运维-nginx服务管理/2.3、nginx服务管理三反向代理.md",
@@ -236,7 +242,6 @@
     "raw/operations-services/2. linux运维-nginx服务管理/2.1、nginx服务管理一之安装和基本配置.md",
     "raw/operations-services/1. linux运维-apache服务管理/1.2、apache服务管理二.md",
     "raw/operations-services/1. linux运维-apache服务管理/1.1、apache服务管理一.md",
-    "raw/operations-services/README.md",
     "raw/operations-linux/03. Linux_vim使用介绍/Linux目录路径树状图.png",
     "Linux/_images/Linux目录路径树状图.png",
     "_代码/Python/python框架/code/demo/ai-demo/src/assets/vite.svg",
