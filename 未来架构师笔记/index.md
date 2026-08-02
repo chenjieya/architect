@@ -631,3 +631,9 @@ updated: 2026-08-02
 > ```dataview
 > TABLE updated_by, updated FROM "wiki" WHERE updated_by = "ai" SORT updated DESC
 > ```
+>
+> 人机协作（mixed）笔记：
+>
+> ```dataview
+> TABLE updated FROM "wiki" WHERE author = "mixed" SORT updated DESC
+> ```

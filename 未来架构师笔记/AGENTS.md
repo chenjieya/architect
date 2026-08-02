@@ -119,7 +119,8 @@ updated: 2026-08-02  # 最近修改日期
 
 | 我想知道 | 怎么看 |
 |---|---|
-| 这篇是谁写的？ | 看 frontmatter `author` |
+| 这篇是谁写的？ | 看 frontmatter `author`（human / mixed / ai） |
 | AI 能不能改这篇？ | 看 frontmatter `ai_editable` |
 | AI 最近改过哪些？ | 用 Dataview：`WHERE updated_by = "ai"` |
+| 哪些是人机协作？ | 用 Dataview：`WHERE author = "mixed"` |
 | 上次干了什么？ | 看 `log/` 当月文件末尾 |
