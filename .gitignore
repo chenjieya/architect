@@ -70,4 +70,11 @@ lerna-debug.log*
 prettier-dev
 
 .env
-__pycache__
+__pycache__NestJs/nest-permission/.env
+NestJs/nest-project/.env
+NestJs/websocket/socket-io-chat-room/.env
+NestJs/websocket/ten_thousand_art_languages_web/.env
+Python/python框架/code/k8s/templates/secret.yaml
+Vite/vite-demo-react/.env
+Vite/vite-demo/.env
+Vite/vite-vue-performance/.env
