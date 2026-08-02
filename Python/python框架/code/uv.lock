@@ -8,8 +8,8 @@ resolution-markers = [
 
 [manifest]
 members = [
-    "duyi-service",
-    "duyi-utils",
+    "app-service",
+    "app-utils",
     "web-service",
 ]
 
@@ -77,6 +77,54 @@ dependencies = [
 sdist = { url = "https://pypi.tuna.tsinghua.edu.cn/packages/1c/b5/001890774a9552aff22502b8da382593109ce0c95314abaebbb116567545/anyio-4.14.0.tar.gz", hash = "sha256:b47c1f9ccf73e67021df785332508f99379c68fa7d0684e8e3492cb1d4b23f89", size = 253586, upload-time = "2026-06-15T22:00:49.021Z" }
 wheels = [
     { url = "https://pypi.tuna.tsinghua.edu.cn/packages/ba/16/9826f089383c593cdfc4a6e5aca94d9e91ae1692c57af82c3b2aa5e810f7/anyio-4.14.0-py3-none-any.whl", hash = "sha256:dd9b7a2a9799ed6552fde617b2c5df02b7fdd7d88392fc48101e51bae46164d9", size = 123506, upload-time = "2026-06-15T22:00:47.595Z" },
+]
+
+[[package]]
+name = "app-service"
+version = "0.1.0"
+source = { virtual = "." }
+
+[package.dev-dependencies]
+dev = [
+    { name = "debugpy" },
+    { name = "httpx" },
+    { name = "mypy" },
+    { name = "pytest" },
+    { name = "pytest-asyncio" },
+    { name = "pytest-cov" },
+    { name = "python-dotenv" },
+]
+
+[package.metadata]
+
+[package.metadata.requires-dev]
+dev = [
+    { name = "debugpy", specifier = "==1.8.21" },
+    { name = "httpx", specifier = "==0.28.1" },
+    { name = "mypy", specifier = "==2.1.0" },
+    { name = "pytest", specifier = "==9.1.1" },
+    { name = "pytest-asyncio", specifier = "==1.4.0" },
+    { name = "pytest-cov", specifier = "==7.0.0" },
+    { name = "python-dotenv", specifier = "==1.2.2" },
+]
+
+[[package]]
+name = "app-utils"
+version = "0.1.0"
+source = { editable = "packages/app-utils" }
+dependencies = [
+    { name = "bcrypt" },
+    { name = "openai" },
+    { name = "oss2" },
+    { name = "pyjwt" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "bcrypt", specifier = "==5.0.0" },
+    { name = "openai", specifier = "==2.44.0" },
+    { name = "oss2", specifier = "==2.19.0" },
+    { name = "pyjwt", specifier = "==2.13.0" },
 ]
 
 [[package]]
@@ -431,54 +479,6 @@ source = { registry = "https://pypi.tuna.tsinghua.edu.cn/simple" }
 sdist = { url = "https://pypi.tuna.tsinghua.edu.cn/packages/8c/8b/57666417c0f90f08bcafa776861060426765fdb422eb10212086fb811d26/dnspython-2.8.0.tar.gz", hash = "sha256:181d3c6996452cb1189c4046c61599b84a5a86e099562ffde77d26984ff26d0f", size = 368251, upload-time = "2025-09-07T18:58:00.022Z" }
 wheels = [
     { url = "https://pypi.tuna.tsinghua.edu.cn/packages/ba/5a/18ad964b0086c6e62e2e7500f7edc89e3faa45033c71c1893d34eed2b2de/dnspython-2.8.0-py3-none-any.whl", hash = "sha256:01d9bbc4a2d76bf0db7c1f729812ded6d912bd318d3b1cf81d30c0f845dbf3af", size = 331094, upload-time = "2025-09-07T18:57:58.071Z" },
-]
-
-[[package]]
-name = "duyi-service"
-version = "0.1.0"
-source = { virtual = "." }
-
-[package.dev-dependencies]
-dev = [
-    { name = "debugpy" },
-    { name = "httpx" },
-    { name = "mypy" },
-    { name = "pytest" },
-    { name = "pytest-asyncio" },
-    { name = "pytest-cov" },
-    { name = "python-dotenv" },
-]
-
-[package.metadata]
-
-[package.metadata.requires-dev]
-dev = [
-    { name = "debugpy", specifier = "==1.8.21" },
-    { name = "httpx", specifier = "==0.28.1" },
-    { name = "mypy", specifier = "==2.1.0" },
-    { name = "pytest", specifier = "==9.1.1" },
-    { name = "pytest-asyncio", specifier = "==1.4.0" },
-    { name = "pytest-cov", specifier = "==7.0.0" },
-    { name = "python-dotenv", specifier = "==1.2.2" },
-]
-
-[[package]]
-name = "duyi-utils"
-version = "0.1.0"
-source = { editable = "packages/duyi-utils" }
-dependencies = [
-    { name = "bcrypt" },
-    { name = "openai" },
-    { name = "oss2" },
-    { name = "pyjwt" },
-]
-
-[package.metadata]
-requires-dist = [
-    { name = "bcrypt", specifier = "==5.0.0" },
-    { name = "openai", specifier = "==2.44.0" },
-    { name = "oss2", specifier = "==2.19.0" },
-    { name = "pyjwt", specifier = "==2.13.0" },
 ]
 
 [[package]]
@@ -1550,9 +1550,9 @@ version = "0.1.0"
 source = { editable = "apps/web-service" }
 dependencies = [
     { name = "alembic" },
+    { name = "app-utils" },
     { name = "asyncpg" },
     { name = "bcrypt" },
-    { name = "duyi-utils" },
     { name = "fastapi", extra = ["standard"] },
     { name = "jinja2" },
     { name = "loguru" },
@@ -1565,9 +1565,9 @@ dependencies = [
 [package.metadata]
 requires-dist = [
     { name = "alembic", specifier = "==1.18.4" },
+    { name = "app-utils", editable = "packages/app-utils" },
     { name = "asyncpg", specifier = "==0.31.0" },
     { name = "bcrypt", specifier = "==5.0.0" },
-    { name = "duyi-utils", editable = "packages/duyi-utils" },
     { name = "fastapi", extras = ["standard"], specifier = "==0.136.3" },
     { name = "jinja2", specifier = "==3.1.6" },
     { name = "loguru", specifier = "==0.7.3" },

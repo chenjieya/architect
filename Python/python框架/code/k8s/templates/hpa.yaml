@@ -1,14 +1,14 @@
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
-  name: duyi-service-hpa
+  name: app-service-hpa
   labels:
-    app: duyi-service
+    app: app-service
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: duyi-service
+    name: app-service
   minReplicas: 3
   maxReplicas: 10
   metrics:

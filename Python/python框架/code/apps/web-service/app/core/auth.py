@@ -10,7 +10,7 @@ from app.core.config import web_settings
 from app.core.database import get_db
 from app.exception.auth import AuthException
 from app.model.user import User
-from duyi_utils.auth.jwt_util import decode_token
+from app_utils.auth.jwt_util import decode_token
 
 security_scheme = HTTPBearer()
 

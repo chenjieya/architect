@@ -9,7 +9,7 @@ ENV UV_INDEX_URL=https://pypi.tuna.tsinghua.edu.cn/simple
 ENV UV_COMPILE_BYTECODE=1 UV_LINK_MODE=copy
 
 COPY pyproject.toml uv.lock ./
-COPY packages/duyi-utils ./packages/duyi-utils
+COPY packages/app-utils ./packages/app-utils
 COPY apps/web-service ./apps/web-service
 
 RUN --mount=type=cache,target=/root/.cache/uv \

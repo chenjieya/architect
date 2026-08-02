@@ -61,7 +61,7 @@ eventSource.addEventListener('update', (e) => {
 })
 ```
 
-**课堂练习**
+**实践**
 
 SSE 服务器推送信息示例
 

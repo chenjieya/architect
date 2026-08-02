@@ -1,17 +1,17 @@
 <template>
-  <div class="duyi-card" :style="width ? { width: width + 'px' } : {}">
+  <div class="app-card" :style="width ? { width: width + 'px' } : {}">
     <!-- 里面分为三个部分 -->
     <!-- 1.图片 -->
-    <div class="duyi-card-img" :style="imgHeight ? { height: imgHeight + 'px' } : {}">
+    <div class="app-card-img" :style="imgHeight ? { height: imgHeight + 'px' } : {}">
       <img :src="imgSrc" alt="img" />
     </div>
     <!-- 2.描述 -->
-    <div v-if="summary" class="duyi-card-summary">{{ summary }}</div>
-    <div v-else class="duyi-card-summary">
+    <div v-if="summary" class="app-card-summary">{{ summary }}</div>
+    <div v-else class="app-card-summary">
       <slot></slot>
     </div>
     <!-- 3.底部 -->
-    <div class="duyi-card-footer">
+    <div class="app-card-footer">
       <slot name="footer"></slot>
     </div>
   </div>
@@ -40,12 +40,12 @@ defineProps({
 </script>
 <script lang="ts">
 export default {
-  name: 'DuyiCard',
+  name: 'AppCard',
 }
 </script>
 
 <style lang="scss" scoped>
-.duyi-card {
+.app-card {
   width: 270px;
   border-radius: 8px;
   background: #fff;

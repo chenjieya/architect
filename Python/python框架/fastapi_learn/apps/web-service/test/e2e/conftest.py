@@ -7,7 +7,7 @@ from contextlib import contextmanager
 
 # ─── 必须在任何 app 导入之前设置环境变量 ───
 
-os.environ.setdefault("DB_NAME", "duyi_test_db")
+os.environ.setdefault("DB_NAME", "app_test_db")
 from apps.core.config import db_config
 
 import pytest

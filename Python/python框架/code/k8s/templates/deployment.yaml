@@ -1,9 +1,9 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: duyi-service
+  name: app-service
   labels:
-    app: duyi-service
+    app: app-service
 spec:
   replicas: 3
   revisionHistoryLimit: 3
@@ -14,11 +14,11 @@ spec:
       maxSurge: 1
   selector:
     matchLabels:
-      app: duyi-service
+      app: app-service
   template:
     metadata:
       labels:
-        app: duyi-service
+        app: app-service
     spec:
       imagePullSecrets:
         {{- toYaml .Values.imagePullSecrets | nindent 8 }}
@@ -28,9 +28,9 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           envFrom:
             - configMapRef:
-                name: duyi-service-config
+                name: app-service-config
             - secretRef:
-                name: duyi-service-secret
+                name: app-service-secret
           command:
             ['alembic', '-c', 'apps/web-service/alembic.ini', 'upgrade', 'head']
           resources:
@@ -41,7 +41,7 @@ spec:
               cpu: 2000m
               memory: 4Gi
       containers:
-        - name: duyi-service
+        - name: app-service
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
@@ -49,9 +49,9 @@ spec:
               protocol: TCP
           envFrom:
             - configMapRef:
-                name: duyi-service-config
+                name: app-service-config
             - secretRef:
-                name: duyi-service-secret
+                name: app-service-secret
           livenessProbe:
             httpGet:
               path: /health

@@ -22,7 +22,7 @@ program.parse(process.argv)
 可以在终端运行命令：
 
 ```shell
-$ duyi-cli -V
+$ app-cli -V
 ```
 
 默认是大写的`-V`，当然我们也能设置
@@ -35,14 +35,14 @@ program.version('1.0.0', '-v, --version')
 
 ```javascript
 program
-  .name('duyi-cli')
+  .name('app-cli')
   .description('自定义脚手架')
   .usage('<command> [options]')
   .on('--help', () => {
     console.log(
       '\r\n' +
         chalk.greenBright.bold(
-          figlet.textSync('duyi-cli', {
+          figlet.textSync('app-cli', {
             font: 'Standard',
             horizontalLayout: 'default',
             verticalLayout: 'default',
@@ -52,7 +52,7 @@ program
         ),
     )
     console.log(
-      `\r\nRun ${chalk.cyan(`duyi-cli <command> --help`)} for detailed usage of given command\r\n`,
+      `\r\nRun ${chalk.cyan(`app-cli <command> --help`)} for detailed usage of given command\r\n`,
     )
   })
 ```

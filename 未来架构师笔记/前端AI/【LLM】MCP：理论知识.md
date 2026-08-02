@@ -4,7 +4,7 @@
 
 应用程序执行完毕后，系统分配给进程的资源就会被回收。
 
-**课堂演示**
+**演示**
 
 进程之间是可以通信的。那这里有一个最基本的要求：进程不能结束。如何让进程不结束？
 
@@ -50,7 +50,7 @@ stdio: **st**an**d**ard **i**nput and **o**utput 标准输入输出
 
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20260202172550898.png)
 
-**课堂练习**
+**实践**
 
 终端和 node 进程通信
 
@@ -282,7 +282,7 @@ response
 
 工具返回的类型有 [多种](https://modelcontextprotocol.io/specification/2025-06-18/server/tools#tool-result)
 
-**课堂练习**
+**实践**
 
 实现遵循 MCP 协议的服务器
 
@@ -306,7 +306,7 @@ npx @modelcontextprotocol/inspector
 npm install @modelcontextprotocol/sdk
 ```
 
-**课堂练习**
+**实践**
 
 使用官方SDK实现 MCP 服务器
 

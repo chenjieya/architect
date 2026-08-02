@@ -102,7 +102,7 @@ hello()
 - *prettier-plugin-java*：这个插件为 *Java* 语言提供了格式化支持。安装这个插件后，你可以使用 *Prettier* 格式化 *Java* 文件。
 - *prettier-plugin-php*：这个插件为 *PHP* 语言提供了格式化支持。安装这个插件后，你可以使用 *Prettier* 格式化 *PHP* 文件。
 
-另外，*Prettier* 的官方文档里一直在强调自己是一个 *Opinionated* 的工具，这里想展开跟大家聊聊 *Opinionated*。
+另外，*Prettier* 的官方文档里一直在强调自己是一个 *Opinionated* 的工具，这里想展开聊聊 *Opinionated*。
 
 其实不仅 *Prettier*，我们日常使用的一些库和框架都会标明自己是 *opinionated* 还是 *unopinionated*：
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251228135024735.png)
@@ -166,7 +166,7 @@ const obj = {
 - printWidth：一行的最长长度
 - trailingComma：对象或者数组字面量中的最后一个元素是否添加逗号
 
-关于更多的规则，在下一节课会进行介绍。
+关于更多的规则，在下一部分会进行介绍。
 
 我们也可以通过安装 vscode 插件的方式来使用 prettier。使用脚本命令和使用 vscode 插件两者之间的差别如下：
 

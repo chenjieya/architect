@@ -7,7 +7,7 @@ K8s的全称是 **Kubernetes**。它是一个**用于自动部署、扩缩和�
 1. 搜「ACS」，进入 容器计算服务 ACS 控制台
 2. 开通服务：根据提示一步一步操作，全部默认
 3. 创建集群：
-   - 集群名称：duyi-cluster
+   - 集群名称：app-cluster
    - 地域：vpc所在地域
    - 专有网络：使用已有，选两个交换机（带有pod名称的）
    - SNAT暂不勾选
@@ -50,7 +50,7 @@ K8s的全称是 **Kubernetes**。它是一个**用于自动部署、扩缩和�
    export DB_PASSWORD='<数据库密码>'
    export JWT_SECRET_KEY='<jwt密钥>'
 
-   helm upgrade --install duyi-service ./k8s \
+   helm upgrade --install app-service ./k8s \
      --set secret.dbPassword="$DB_PASSWORD" \
      --set secret.jwtSecretKey="$JWT_SECRET_KEY" \
    ```
@@ -79,7 +79,7 @@ K8s的全称是 **Kubernetes**。它是一个**用于自动部署、扩缩和�
        15. 网络 / 路由
        16. 创建Ingress
        17. 名称自行填写
-       18. 服务选择duyi-service
+       18. 服务选择app-service
        19. 端口8080
     20. 监听：回到ALB
        21. 80端口：已自动创建好了，编辑规则转发规则，重定向到443

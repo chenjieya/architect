@@ -10,7 +10,7 @@ from app.model.ai_conversation import AiConversation
 from app.model.product import Product
 from app.model.setting import Setting
 from app.service.base import BaseService
-from duyi_utils.ai.chat import AIChat, AIChatConfig, AIMessage, MessageRole
+from app_utils.ai.chat import AIChat, AIChatConfig, AIMessage, MessageRole
 
 MESSAGE_ROLE_SYSTEM = "system"
 MESSAGE_ROLE_USER = "user"

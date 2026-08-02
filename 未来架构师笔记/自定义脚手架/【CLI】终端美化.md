@@ -87,7 +87,7 @@ import chalk from 'chalk'
 console.log(
   '\r\n' +
     chalk.greenBright.bold(
-      figlet.textSync('duyi-cli', {
+      figlet.textSync('app-cli', {
         font: 'Standard',
         horizontalLayout: 'default',
         verticalLayout: 'default',
@@ -97,6 +97,6 @@ console.log(
     ),
 )
 console.log(
-  `\r\nRun ${chalk.cyan(`duyi-cli <command> --help`)} for detailed usage of given command\r\n`,
+  `\r\nRun ${chalk.cyan(`app-cli <command> --help`)} for detailed usage of given command\r\n`,
 )
 ```

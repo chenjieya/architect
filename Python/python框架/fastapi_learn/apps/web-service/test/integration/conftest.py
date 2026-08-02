@@ -3,7 +3,7 @@ import os
 from contextlib import contextmanager
 from pathlib import Path
 
-os.environ["DB_NAME"] = "duyi_integration_test_db"
+os.environ["DB_NAME"] = "app_integration_test_db"
 
 from apps.core.config import db_config
 

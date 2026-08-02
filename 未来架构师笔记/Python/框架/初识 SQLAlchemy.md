@@ -6,7 +6,7 @@
 
 ```shell
 docker run -d \
-  --name duyi_pg_db \
+  --name app_pg_db \
   -e POSTGRES_USER=admin \
   -e POSTGRES_PASSWORD=123123 \
   -p 5432:5432 \
@@ -14,17 +14,17 @@ docker run -d \
   postgres:16
 ```
 
-创建数据库`duyi_db`
+创建数据库`app_db`
 
 ```shell
 # 进入容器创建数据库
-docker exec -it duyi_pg_db psql -U admin -c "CREATE DATABASE duyi_db;"
+docker exec -it app_pg_db psql -U admin -c "CREATE DATABASE app_db;"
 ```
 
 验证数据库是否创建成功：
 
 ```shell
-docker exec -it duyi_pg_db psql -U admin -l
+docker exec -it app_pg_db psql -U admin -l
 ```
 
 ## 2. 安装 SQLAlchemy
@@ -42,7 +42,7 @@ from sqlalchemy import text
 from sqlalchemy.ext.asyncio import create_async_engine
 
 # 异步连接字符串格式：postgresql+asyncpg://用户名:密码@主机:端口/数据库名
-DATABASE_URL = "postgresql+asyncpg://admin:123123@localhost:5432/duyi_db"
+DATABASE_URL = "postgresql+asyncpg://admin:123123@localhost:5432/app_db"
 
 
 async def test_connection():
@@ -91,12 +91,12 @@ if __name__ == "__main__":
 
 ```yaml
 # web服务配置
-WEB_APP_NAME=渡一web服务 # 站点名称，影响API文档标题
+WEB_APP_NAME=app-web-service # 站点名称，影响API文档标题
 
 # 数据库配置
 DB_HOST=localhost # 数据库主机
 DB_PORT=5432 # 数据库端口
-DB_NAME=duyi_db # 数据库名称
+DB_NAME=app_db # 数据库名称
 DB_USER=admin # 连接账号
 DB_PASSWORD=123123 # 连接密码
 ```

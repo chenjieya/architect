@@ -1,4 +1,4 @@
-# duyi-service 工程说明
+# app-service 工程说明
 
 ## 技术架构
 
@@ -24,7 +24,7 @@
 | `migrations/` | Alembic 迁移脚本（`env.py`、`versions/`） |
 | `test/` | 测试目录，分三层：`unit/`（单元测试）、`integration/`（集成测试）、`e2e/`（端到端测试） |
 
-### packages/duyi-utils — 共享工具库
+### packages/app-utils — 共享工具库
 
 Web Service 依赖的通用工具包，提供认证、上传、文件处理等复用模块。
 
@@ -32,9 +32,9 @@ Web Service 依赖的通用工具包，提供认证、上传、文件处理等�
 
 | 目录 | 说明 |
 |---|---|
-| `src/duyi_utils/auth/` | 认证工具：`jwt_util.py`（JWT 生成/解析）、`password.py`（密码哈希/校验） |
-| `src/duyi_utils/upload/` | 上传工具：`aliyun.py`（阿里云 OSS 上传）、`dir_strategy.py`（目录命名策略） |
-| `src/duyi_utils/shared/` | 通用工具：`file_util.py`（文件操作）、`mime.py`（MIME 类型判断） |
+| `src/app_utils/auth/` | 认证工具：`jwt_util.py`（JWT 生成/解析）、`password.py`（密码哈希/校验） |
+| `src/app_utils/upload/` | 上传工具：`aliyun.py`（阿里云 OSS 上传）、`dir_strategy.py`（目录命名策略） |
+| `src/app_utils/shared/` | 通用工具：`file_util.py`（文件操作）、`mime.py`（MIME 类型判断） |
 | `test/unit/` | 单元测试 |
 | `test/integration/` | 集成测试 |
 

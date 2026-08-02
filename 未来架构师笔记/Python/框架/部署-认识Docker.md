@@ -118,24 +118,24 @@ docker run -d \
 2. 构建镜像
 
    ```shell
-   docker build -t duyi-service:latest .
+   docker build -t app-service:latest .
    ```
 
-3. 准备好生产数据库：`duyi_prod_db`
+3. 准备好生产数据库：`app_prod_db`
 4. 启动镜像
 
    ```shell
    docker run -d \
-     --name duyi-service \
+     --name app-service \
      -p 80:8080 \
      -e COMMON_ENVIRONMENT=production \
-     -e WEB_APP_NAME=渡一API接口 \
-     -e WEB_CORS_ORIGINS=www.duyi.com \
+     -e WEB_APP_NAME=app-api \
+     -e WEB_CORS_ORIGINS=www.example.com \
    	-e WEB_CORS_EXPOSE_HEADERS=X-Process-Time \
    	-e WEB_JWT_SECRET_KEY=8f231a2b3c4d5e6f444b9c0d1e2f3a4b \
    	-e DB_HOST=192.168.1.6 \
      -e DB_PORT=5432 \
-     -e DB_NAME=duyi_prod_db \
+     -e DB_NAME=app_prod_db \
      -e DB_USER=admin \
      -e DB_PASSWORD=123123 \
      -e LOG_LEVEL=INFO \
@@ -143,7 +143,7 @@ docker run -d \
      --restart unless-stopped \
      --memory=512m \
      --cpus=1 \
-     duyi-service:latest
+     app-service:latest
    ```
 
 ## 4. 容器简易部署流程

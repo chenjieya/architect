@@ -11,8 +11,8 @@ from app.model.user import User
 from app.schema.user import UserLogin, UserRegister, TokenResponse, UserResponse
 from app.service.base import BaseService
 from app.core.logger import BusinessLog, service_logger
-from duyi_utils.auth.jwt_util import create_token
-from duyi_utils.auth.password import hash_password, verify_password
+from app_utils.auth.jwt_util import create_token
+from app_utils.auth.password import hash_password, verify_password
 
 
 class UserService(BaseService):

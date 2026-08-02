@@ -1,15 +1,15 @@
 ## 1. Python Web服务框架对比
 
-| 对比维度        | 🏢 Django                                                     | 🧰 Flask                                                | 🚀 FastAPI                                           |
-| ----------- | ------------------------------------------------------------- | ------------------------------------------------------- | ---------------------------------------------------- |
-| **官网链接**    | [Django](https://www.djangoproject.com/)                      | [Flask](https://flask.palletsprojects.com/en/stable/)   | [FastAPI](https://fastapi.tiangolo.com/)             |
-| **诞生年份**    | 2005年                                                         | 2010年                                                   | 2018年                                                |
-| **核心哲学**    | **开箱即用 (Batteries-included)** 内置ORM、后台管理、用户认证等几乎所有常用功能        | **微内核，可扩展 (Microframework)** 只提供最基础的核心功能，其他如数据库、表单等按需选择 | **高性能，现代化 (High-performance)** 利用类型注解和异步特性，专为API设计而生 |
-| **性能 (速度)** | **较慢** (约 5k req/s 对于Hello World)                             | **中等** (约 9k req/s 对于Hello World)                       | **极快** (约 30k req/s 对于Hello World)                   |
-| **学习曲线**    | **较陡**。功能多，概念多，需要学习的体量较大                                      | **平缓**。设计简洁，核心API直观，非常适合初学者入门                           | **中等**。性能优势明显，但需要理解类型注解和异步编程                         |
-| **最适合的场景**  | • 大型、复杂的Web应用（如电商平台、CMS） <br>• 需要自带后台管理系统的项目 • 希望有统一解决方案的团队项目 | • 小型应用和快速原型开发 <br>• 简单的RESTful API <br>• 对组件有高度定制化需求的项目 | • 高性能的API服务 <br>• 微服务架构 <br>• 需要将AI/机器学习模型封装成API服务   |
-| **知名用户**    | Instagram, Pinterest, Disqus                                  | Airbnb, Netflix, Reddit (部分功能)                          | Uber, Netflix, Microsoft (部分内部项目)                    |
-|             |                                                               |                                                         |                                                      |
+| 对比维度         | 🏢 Django                                                                                                | 🧰 Flask                                                                                 | 🚀 FastAPI                                                                    |
+| ---------------- | -------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| **官网链接**     | [Django](https://www.djangoproject.com/)                                                                 | [Flask](https://flask.palletsprojects.com/en/stable/)                                    | [FastAPI](https://fastapi.tiangolo.com/)                                      |
+| **诞生年份**     | 2005年                                                                                                   | 2010年                                                                                   | 2018年                                                                        |
+| **核心哲学**     | **开箱即用 (Batteries-included)** 内置ORM、后台管理、用户认证等几乎所有常用功能                          | **微内核，可扩展 (Microframework)** 只提供最基础的核心功能，其他如数据库、表单等按需选择 | **高性能，现代化 (High-performance)** 利用类型注解和异步特性，专为API设计而生 |
+| **性能 (速度)**  | **较慢** (约 5k req/s 对于Hello World)                                                                   | **中等** (约 9k req/s 对于Hello World)                                                   | **极快** (约 30k req/s 对于Hello World)                                       |
+| **学习曲线**     | **较陡**。功能多，概念多，需要学习的体量较大                                                             | **平缓**。设计简洁，核心API直观，非常适合初学者入门                                      | **中等**。性能优势明显，但需要理解类型注解和异步编程                          |
+| **最适合的场景** | • 大型、复杂的Web应用（如电商平台、CMS） <br>• 需要自带后台管理系统的项目 • 希望有统一解决方案的团队项目 | • 小型应用和快速原型开发 <br>• 简单的RESTful API <br>• 对组件有高度定制化需求的项目      | • 高性能的API服务 <br>• 微服务架构 <br>• 需要将AI/机器学习模型封装成API服务   |
+| **知名用户**     | Instagram, Pinterest, Disqus                                                                             | Airbnb, Netflix, Reddit (部分功能)                                                       | Uber, Netflix, Microsoft (部分内部项目)                                       |
+|                  |                                                                                                          |                                                                                          |                                                                               |
 
 ## 2. 第一个FastAPI应用
 
@@ -108,7 +108,7 @@ make dev
 
 `WSGI / ASGI`是一套`Python`的社区规范，主要为**Web服务器**和**Web应用程序**提供统一的交互标准
 
-![image-20260605143504189](https://resource.duyiedu.com/yuanjin/202606051435295.png)
+![image-20260605143504189](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/obsidian/1785666208258_202606051435295.png)
 
 其中，`WSGI`是一个早期标准，用于**多线程**处理请求任务，`ASGI`是一个现代标准，用于**异步**处理请求任务。
 
@@ -324,13 +324,5 @@ class Item(BaseModel):
 
 ## 4. 作业
 
-1. 跟随课堂完成示例程序
-2. 复述：
-   3. 什么是WSGI和ASGI？
-   4. ASGI服务器和ASGI应用是如何协作的？
-   5. Uvicorn是什么？
-   6. Starlette是什么？
-   7. OpenAPI是什么？
-   8. Swagger UI是什么？
-   9. Redoc是什么？
-   10. Pydantic是什么？
+1. 动手完成示例程序
+2. 复述：3. 什么是WSGI和ASGI？4. ASGI服务器和ASGI应用是如何协作的？5. Uvicorn是什么？6. Starlette是什么？7. OpenAPI是什么？8. Swagger UI是什么？9. Redoc是什么？10. Pydantic是什么？

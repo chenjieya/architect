@@ -1,26 +1,26 @@
 <template>
   <transition name="dialog-fade">
-    <div class="duyi-dialog_wrapper" v-show="visible">
-      <div class="duyi-dialog" :style="{ width: width, marginTop: top }">
+    <div class="app-dialog_wrapper" v-show="visible">
+      <div class="app-dialog" :style="{ width: width, marginTop: top }">
         <!-- 头部 -->
-        <div class="duyi-dialog_header">
+        <div class="app-dialog_header">
           <slot name="title">
             <!-- 将span放到slot内，这样不仅可以定义title文本，还可以定义样式等 -->
-            <span class="duyi-dialog_title">
+            <span class="app-dialog_title">
               {{ title }}
             </span>
           </slot>
           <!-- 关闭按钮 -->
-          <button class="duyi-dialog_headerbtn" @click="handleClose">
-            <i class="duyi-icon-close"></i>
+          <button class="app-dialog_headerbtn" @click="handleClose">
+            <i class="app-icon-close"></i>
           </button>
         </div>
         <!-- 中间区域：默认插槽 -->
-        <div class="duyi-dialog_body">
+        <div class="app-dialog_body">
           <slot></slot>
         </div>
         <!-- 底部 -->
-        <div class="duyi-dialog_footer">
+        <div class="app-dialog_footer">
           <!-- 如果footer不传递内容，则不显示footer -->
           <slot name="footer" v-if="$slots.footer"></slot>
         </div>
@@ -55,12 +55,12 @@ function handleClose() {
 </script>
 <script lang="ts">
 export default {
-  name: 'DuyiDialog',
+  name: 'AppDialog',
 }
 </script>
 
 <style lang="scss" scoped>
-.duyi-dialog_wrapper {
+.app-dialog_wrapper {
   position: fixed;
   top: 0;
   right: 0;
@@ -71,7 +71,7 @@ export default {
   z-index: 2001;
   background-color: rgba(0, 0, 0, 0.5);
 
-  .duyi-dialog {
+  .app-dialog {
     position: relative;
     margin: 15vh auto 50px;
     background: #fff;
@@ -83,13 +83,13 @@ export default {
     &_header {
       padding: 20px 20px 10px;
 
-      .duyi-dialog_title {
+      .app-dialog_title {
         line-height: 24px;
         font-size: 18px;
         color: #303133;
       }
 
-      .duyi-dialog_headerbtn {
+      .app-dialog_headerbtn {
         position: absolute;
         top: 20px;
         right: 20px;
@@ -100,7 +100,7 @@ export default {
         cursor: pointer;
         font-size: 16px;
 
-        .duyi-icon-close {
+        .app-icon-close {
           color: 909399;
         }
       }
@@ -118,7 +118,7 @@ export default {
       text-align: right;
       box-sizing: border-box;
 
-      :deep(.duyi-button:first-child) {
+      :deep(.app-button:first-child) {
         margin-right: 20px;
       }
     }

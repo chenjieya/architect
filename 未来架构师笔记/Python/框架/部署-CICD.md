@@ -8,28 +8,28 @@ CI/CD 的全称是 **持续集成**（**Continuous Integration**）和 **持�
 
 ### 1.1 CI
 
-1. ACR创建新的镜像仓库：duyi-service-ci
+1. ACR创建新的镜像仓库：app-service-ci
 2. 推送镜像到仓库：
 
    ```shell
    # 到下载的镜像所在目录
-   docker load -i duyi-service-ci.tar
+   docker load -i app-service-ci.tar
    # 修改成你的tag
-   docker tag duyi-service-ci:latest 复制仓库公网地址:latest
+   docker tag app-service-ci:latest 复制仓库公网地址:latest
    # 推送
    docker push 复制仓库公网地址:latest
    ```
 
 ### 1.2 CD
 
-1. ACR创建新的镜像仓库：duyi-service-cd
+1. ACR创建新的镜像仓库：app-service-cd
 2. 推送镜像到仓库
 
    ```shell
    # 到下载的镜像所在目录
-   docker load -i duyi-service-ci.tar
+   docker load -i app-service-ci.tar
    # 修改成你的tag
-   docker tag duyi-service-ci:latest 复制仓库公网地址:latest
+   docker tag app-service-ci:latest 复制仓库公网地址:latest
    # 推送
    docker push 复制仓库公网地址:latest
    ```
@@ -74,7 +74,7 @@ git remote add origin <仓库SSH地址>
 
 ### 2.2 创建CD流水线
 
-听课堂上讲吧
+可以实际操作验证
 
 环境变量：`${CI_COMMIT_REF_NAME}`
 
@@ -108,7 +108,7 @@ kubectl apply -f - --kubeconfig /tmp/kubeconfig --namespace default
 
 # Helm 部署
 TAG=${CI_COMMIT_REF_NAME}
-helm upgrade --install duyi-service ./k8s \
+helm upgrade --install app-service ./k8s \
   --set image.tag=$TAG \
   --set secret.dbPassword="$DB_PASSWORD" \
   --set secret.jwtSecretKey="$JWT_SECRET_KEY" \

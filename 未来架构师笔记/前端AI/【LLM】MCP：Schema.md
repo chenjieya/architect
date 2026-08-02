@@ -182,7 +182,7 @@ server.setRequestHandler(SomeRequestSchema, async (request) => {
 })
 ```
 
-**课堂练习**
+**实践**
 
 通过 setRequestHandler 注册工具。
 

@@ -4,13 +4,13 @@ import Button from '@/components/Button.vue'
 describe('测试Button组件', () => {
   test('渲染默认类型按钮', () => {
     const wrapper = mount(Button)
-    expect(wrapper.classes()).toContain('duyi-button')
-    expect(wrapper.classes()).toContain('duyi-button-default')
+    expect(wrapper.classes()).toContain('app-button')
+    expect(wrapper.classes()).toContain('app-button-default')
   })
   test('按钮渲染类型', () => {
     const wrapper = mount(Button, { props: { type: 'primary' } })
-    expect(wrapper.classes()).toContain('duyi-button')
-    expect(wrapper.classes()).toContain('duyi-button-primary')
+    expect(wrapper.classes()).toContain('app-button')
+    expect(wrapper.classes()).toContain('app-button-primary')
   })
 
   test('渲染朴素按钮', () => {
@@ -36,7 +36,7 @@ describe('测试Button组件', () => {
 
   test('渲染带图标按钮', () => {
     const wrapper = mount(Button, { props: { icon: 'home' } })
-    expect(wrapper.find('i').classes()).toContain('duyi-icon-home')
+    expect(wrapper.find('i').classes()).toContain('app-icon-home')
   })
 
   test('插槽内容按钮', () => {

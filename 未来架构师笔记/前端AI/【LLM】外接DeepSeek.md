@@ -164,7 +164,7 @@ curl https://api.deepseek.com/chat/completions \
 
 所以，大模型支持上下文的原理非常的简单，就是将之前的聊天记录一并给它。
 
-**课堂练习**
+**实践**
 
 重构当前 AI 聊天机器人
 

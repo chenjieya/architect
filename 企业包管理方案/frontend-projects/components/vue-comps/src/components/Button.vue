@@ -1,8 +1,8 @@
 <template>
   <button
-    class="duyi-button"
+    class="app-button"
     :class="[
-      `duyi-button-${type}`,
+      `app-button-${type}`,
       {
         'is-plain': plain,
         'is-round': round,
@@ -13,7 +13,7 @@
     :disabled="disabled"
     @click="handleClick"
   >
-    <i v-if="icon" :class="`duyi-icon-${icon}`"></i>
+    <i v-if="icon" :class="`app-icon-${icon}`"></i>
     <span v-if="$slots.default">
       <slot></slot>
     </span>
@@ -57,12 +57,12 @@ function handleClick(e: Event) {
 </script>
 <script lang="ts">
 export default {
-  name: 'DuyiButton',
+  name: 'AppButton',
 }
 </script>
 
 <style lang="scss" scoped>
-.duyi-button {
+.app-button {
   display: inline-block;
   line-height: 1;
   white-space: nowrap;
@@ -95,7 +95,7 @@ export default {
   }
 }
 
-.duyi-button-primary {
+.app-button-primary {
   color: #fff;
   background-color: #409eff;
   border-color: #409eff;
@@ -108,7 +108,7 @@ export default {
   }
 }
 
-.duyi-button-success {
+.app-button-success {
   color: #fff;
   background-color: #67c23a;
   border-color: #67c23a;
@@ -121,7 +121,7 @@ export default {
   }
 }
 
-.duyi-button-info {
+.app-button-info {
   color: #fff;
   background-color: #909399;
   border-color: #909399;
@@ -134,7 +134,7 @@ export default {
   }
 }
 
-.duyi-button-warning {
+.app-button-warning {
   color: #fff;
   background-color: #e6a23c;
   border-color: #e6a23c;
@@ -147,7 +147,7 @@ export default {
   }
 }
 
-.duyi-button-danger {
+.app-button-danger {
   color: #fff;
   background-color: #f56c6c;
   border-color: #f56c6c;
@@ -160,7 +160,7 @@ export default {
   }
 }
 
-.duyi-button.is-plain {
+.app-button.is-plain {
   &:hover,
   &:focus {
     background: #fff;
@@ -169,7 +169,7 @@ export default {
   }
 }
 
-.duyi-button-primary.is-plain {
+.app-button-primary.is-plain {
   color: #409eff;
   background: #ecf5ff;
 
@@ -181,7 +181,7 @@ export default {
   }
 }
 
-.duyi-button-success.is-plain {
+.app-button-success.is-plain {
   color: #67c23a;
   background: #c2e7b0;
 
@@ -193,7 +193,7 @@ export default {
   }
 }
 
-.duyi-button-info.is-plain {
+.app-button-info.is-plain {
   color: #909399;
   background: #d3d4d6;
 
@@ -205,7 +205,7 @@ export default {
   }
 }
 
-.duyi-button-warning.is-plain {
+.app-button-warning.is-plain {
   color: #e6a23c;
   background: #f5dab1;
 
@@ -217,7 +217,7 @@ export default {
   }
 }
 
-.duyi-button-danger.is-plain {
+.app-button-danger.is-plain {
   color: #f56c6c;
   background: #fbc4c4;
 
@@ -229,19 +229,19 @@ export default {
   }
 }
 
-.duyi-button.is-round {
+.app-button.is-round {
   border-radius: 20px;
   padding: 12px 23px;
 }
 
-.duyi-button.is-circle {
+.app-button.is-circle {
   border-radius: 50%;
   padding: 12px;
 }
 
-.duyi-button.is-disabled,
-.duyi-button.is-disabled:focus,
-.duyi-button.is-disabled:hover {
+.app-button.is-disabled,
+.app-button.is-disabled:focus,
+.app-button.is-disabled:hover {
   color: #c0c4cc;
   cursor: not-allowed;
   background-image: none;
@@ -249,9 +249,9 @@ export default {
   border-color: #ebeef5;
 }
 
-.duyi-button.is-disabled,
-.duyi-button.is-disabled:focus,
-.duyi-button.is-disabled:hover {
+.app-button.is-disabled,
+.app-button.is-disabled:focus,
+.app-button.is-disabled:hover {
   color: #c0c4cc;
   cursor: not-allowed;
   background-image: none;
@@ -259,52 +259,52 @@ export default {
   border-color: #ebeef5;
 }
 
-.duyi-button--primary.is-disabled,
-.duyi-button--primary.is-disabled:active,
-.duyi-button--primary.is-disabled:focus,
-.duyi-button--primary.is-disabled:hover {
+.app-button--primary.is-disabled,
+.app-button--primary.is-disabled:active,
+.app-button--primary.is-disabled:focus,
+.app-button--primary.is-disabled:hover {
   color: #fff;
   background-color: #a0cfff;
   border-color: #a0cfff;
 }
 
-.duyi-button--success.is-disabled,
-.duyi-button--success.is-disabled:active,
-.duyi-button--success.is-disabled:focus,
-.duyi-button--success.is-disabled:hover {
+.app-button--success.is-disabled,
+.app-button--success.is-disabled:active,
+.app-button--success.is-disabled:focus,
+.app-button--success.is-disabled:hover {
   color: #fff;
   background-color: #b3e19d;
   border-color: #b3e19d;
 }
 
-.duyi-button--info.is-disabled,
-.duyi-button--info.is-disabled:active,
-.duyi-button--info.is-disabled:focus,
-.duyi-button--info.is-disabled:hover {
+.app-button--info.is-disabled,
+.app-button--info.is-disabled:active,
+.app-button--info.is-disabled:focus,
+.app-button--info.is-disabled:hover {
   color: #fff;
   background-color: #c8c9cc;
   border-color: #c8c9cc;
 }
 
-.duyi-button--warning.is-disabled,
-.duyi-button--warning.is-disabled:active,
-.duyi-button--warning.is-disabled:focus,
-.duyi-button--warning.is-disabled:hover {
+.app-button--warning.is-disabled,
+.app-button--warning.is-disabled:active,
+.app-button--warning.is-disabled:focus,
+.app-button--warning.is-disabled:hover {
   color: #fff;
   background-color: #f3d19e;
   border-color: #f3d19e;
 }
 
-.duyi-button--danger.is-disabled,
-.duyi-button--danger.is-disabled:active,
-.duyi-button--danger.is-disabled:focus,
-.duyi-button--danger.is-disabled:hover {
+.app-button--danger.is-disabled,
+.app-button--danger.is-disabled:active,
+.app-button--danger.is-disabled:focus,
+.app-button--danger.is-disabled:hover {
   color: #fff;
   background-color: #fab6b6;
   border-color: #fab6b6;
 }
 
-.duyi-button [class*='duyi-icon-'] + span {
+.app-button [class*='app-icon-'] + span {
   margin-left: 5px;
 }
 </style>

@@ -3,9 +3,9 @@ from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import selectinload
 
-from duyi_utils.shared.file_util import get_suffix
-from duyi_utils.shared.mime import IMAGE_MIME, get_mime_type
-from duyi_utils.upload.aliyun import AliyunOSSConfig, AliyunOSSUploader
+from app_utils.shared.file_util import get_suffix
+from app_utils.shared.mime import IMAGE_MIME, get_mime_type
+from app_utils.upload.aliyun import AliyunOSSConfig, AliyunOSSUploader
 
 from app.exception.upload import UploadException
 from app.model.setting import Setting

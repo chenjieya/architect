@@ -43,14 +43,14 @@ driver：指定驱动
 
 typePaths：指定schema位置，也就是后缀为`.graphql`的文件
 
-playground: false，plugins: [ApolloServerPluginLandingPageLocalDefault()]这两个完全是为了能够有上节课一样的playground模版，用起来简单方便
+playground: false，plugins: [ApolloServerPluginLandingPageLocalDefault()]这两个完全是为了能够有和前面一样的playground模版，用起来简单方便
 
 为了能在VSCode中，实现相关语法高亮，我们可以下载插件
 
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251221162648966.png)
 
 
-我们可以在src下创建schema文件，命名为**schema.graphql**，然后直接把上节课的类型定义直接复制粘贴进去
+我们可以在src下创建schema文件，命名为**schema.graphql**，然后直接把前面的类型定义直接复制粘贴进去
 
 ```typescript
 type Employee {
@@ -111,7 +111,7 @@ export class AppModule {}
 
 
 
-和上节课一样，实现`Query`、`Mutation`对应的逻辑，现在我们可以通过相应的装饰器来实现
+和前面一样，实现`Query`、`Mutation`对应的逻辑，现在我们可以通过相应的装饰器来实现
 
 ```typescript
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';

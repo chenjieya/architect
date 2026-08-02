@@ -21,7 +21,7 @@ describe('Card.vue', () => {
         imgSrc,
       },
     })
-    expect(wrapper.find('.duyi-card-img img').attributes('src')).toBe(imgSrc)
+    expect(wrapper.find('.app-card-img img').attributes('src')).toBe(imgSrc)
   })
 
   it('测试卡片图片高度', () => {
@@ -31,7 +31,7 @@ describe('Card.vue', () => {
         imgSrc: 'https://example.com/example-image.jpg',
       },
     })
-    expect(wrapper.find('.duyi-card-img').attributes('style')).toContain('height: 200px;')
+    expect(wrapper.find('.app-card-img').attributes('style')).toContain('height: 200px;')
   })
 
   it('测试卡片概要', () => {
@@ -42,7 +42,7 @@ describe('Card.vue', () => {
         imgSrc: 'https://example.com/example-image.jpg',
       },
     })
-    expect(wrapper.find('.duyi-card-summary').text()).toBe(summary)
+    expect(wrapper.find('.app-card-summary').text()).toBe(summary)
   })
 
   it('测试插槽', () => {
@@ -55,7 +55,7 @@ describe('Card.vue', () => {
         default: defaultSlotContent,
       },
     })
-    expect(wrapper.find('.duyi-card-summary').text()).toBe(defaultSlotContent)
+    expect(wrapper.find('.app-card-summary').text()).toBe(defaultSlotContent)
   })
 
   it('测试footer插槽', () => {
@@ -68,6 +68,6 @@ describe('Card.vue', () => {
         footer: footerSlotContent,
       },
     })
-    expect(wrapper.find('.duyi-card-footer').text()).toBe(footerSlotContent)
+    expect(wrapper.find('.app-card-footer').text()).toBe(footerSlotContent)
   })
 })

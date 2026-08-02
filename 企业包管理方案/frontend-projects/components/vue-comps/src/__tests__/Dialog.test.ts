@@ -12,8 +12,8 @@ describe('测试Dialog组件', () => {
       },
     })
 
-    expect(wrapper.find('.duyi-dialog_title').text()).toBe(titleSlotContent)
-    expect(wrapper.find('.duyi-dialog_footer').text()).toBe(footerSlotContent)
+    expect(wrapper.find('.app-dialog_title').text()).toBe(titleSlotContent)
+    expect(wrapper.find('.app-dialog_footer').text()).toBe(footerSlotContent)
   })
 
   it('测试宽度', () => {
@@ -23,7 +23,7 @@ describe('测试Dialog组件', () => {
         width,
       },
     })
-    expect(wrapper.find('.duyi-dialog').attributes('style')).toContain(`width: ${width}`)
+    expect(wrapper.find('.app-dialog').attributes('style')).toContain(`width: ${width}`)
   })
 
   it('测试顶部边距', () => {
@@ -33,7 +33,7 @@ describe('测试Dialog组件', () => {
         top,
       },
     })
-    expect(wrapper.find('.duyi-dialog').attributes('style')).toContain(`margin-top: ${top}`)
+    expect(wrapper.find('.app-dialog').attributes('style')).toContain(`margin-top: ${top}`)
   })
 
   it('触发close事件', async () => {
@@ -41,7 +41,7 @@ describe('测试Dialog组件', () => {
       props: { visible: true },
     })
 
-    const closeButton = wrapper.find('.duyi-dialog_headerbtn')
+    const closeButton = wrapper.find('.app-dialog_headerbtn')
     await closeButton.trigger('click')
 
     expect(wrapper.emitted('close')).toBeTruthy()

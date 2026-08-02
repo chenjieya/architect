@@ -19,7 +19,7 @@ from app.service.ai_service import (
     MESSAGE_ROLE_SYSTEM,
     MESSAGE_ROLE_USER,
 )
-from duyi_utils.auth.password import hash_password  # type: ignore[import-untyped]
+from app_utils.auth.password import hash_password  # type: ignore[import-untyped]
 
 
 def _default_password_hash() -> str:

@@ -61,7 +61,7 @@ chokidar.watch(['src/**/*.js', 'assets/**/*'], {
 watcher.close().then(() => console.log('已停止监听'))
 ```
 
-**课堂练习**
+**实践**
 
 实现客户端订阅服务器资源，服务器端资源发生变化的时候，会通知客户端。
 
