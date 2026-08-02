@@ -4,6 +4,7 @@ ai_editable: true
 updated_by: ai
 updated: 2026-08-02
 ---
+
 ## 1. Zabbix 是什么
 
 Zabbix 是企业级开源监控平台，采用 **Server/Agent** 架构：Zabbix Server 汇总数据，Agent 安装在被监控主机上采集数据。本文以 Zabbix 6.0 + CentOS 8 + MySQL 为例。

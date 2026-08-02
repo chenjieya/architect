@@ -4,6 +4,7 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
+
 ## 1. Function Calling
 
 [deepseek 开发平台](https://platform.deepseek.com/) 申请一个 api key
@@ -143,7 +144,7 @@ curl https://api.deepseek.com/chat/completions \
 你之前没有发送过任何内容哦～可能是消息没发送成功？你可以重新告诉我你的问题或需求，我会尽力帮你解答！ 😊
 ```
 
-🙋那有没有办法让模型支持上下文呢？
+🙋 那有没有办法让模型支持上下文呢？
 
 其实非常简单，只需要将之前的会话，加入到 messges 数组里面就行了，如下：
 

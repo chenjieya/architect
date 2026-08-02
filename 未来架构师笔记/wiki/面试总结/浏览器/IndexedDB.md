@@ -4,6 +4,7 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
+
 本文主要包含以下内容：
 
 - _IndexedDB_ 简介
@@ -141,39 +142,39 @@ _db.js_
  */
 function openDB(dbName, version = 1) {
   return new Promise((resolve, reject) => {
-    var db // 存储创建的数据库
+    var db; // 存储创建的数据库
     // 打开数据库，若没有则会创建
-    const request = indexedDB.open(dbName, version)
+    const request = indexedDB.open(dbName, version);
 
     // 数据库打开成功回调
     request.onsuccess = function (event) {
-      db = event.target.result // 存储数据库对象
-      console.log('数据库打开成功')
-      resolve(db)
-    }
+      db = event.target.result; // 存储数据库对象
+      console.log("数据库打开成功");
+      resolve(db);
+    };
 
     // 数据库打开失败的回调
     request.onerror = function (event) {
-      console.log('数据库打开报错')
-    }
+      console.log("数据库打开报错");
+    };
 
     // 数据库有更新时候的回调
     request.onupgradeneeded = function (event) {
       // 数据库创建或升级的时候会触发
-      console.log('onupgradeneeded')
-      db = event.target.result // 存储数据库对象
-      var objectStore
+      console.log("onupgradeneeded");
+      db = event.target.result; // 存储数据库对象
+      var objectStore;
       // 创建存储库
-      objectStore = db.createObjectStore('stu', {
-        keyPath: 'stuId', // 这是主键
+      objectStore = db.createObjectStore("stu", {
+        keyPath: "stuId", // 这是主键
         autoIncrement: true, // 实现自增
-      })
+      });
       // 创建索引，在后面查询数据的时候可以根据索引查
-      objectStore.createIndex('stuId', 'stuId', { unique: true })
-      objectStore.createIndex('stuName', 'stuName', { unique: false })
-      objectStore.createIndex('stuAge', 'stuAge', { unique: false })
-    }
-  })
+      objectStore.createIndex("stuId", "stuId", { unique: true });
+      objectStore.createIndex("stuName", "stuName", { unique: false });
+      objectStore.createIndex("stuAge", "stuAge", { unique: false });
+    };
+  });
 }
 ```
 
@@ -191,7 +192,7 @@ _index.html_
 <body>
   <script src="./db.js"></script>
   <script>
-    openDB('stuDB', 1)
+    openDB("stuDB", 1);
   </script>
 </body>
 ```
@@ -208,8 +209,8 @@ _index.html_
  * @param {object} db 数据库实例
  */
 function closeDB(db) {
-  db.close()
-  console.log('数据库已关闭')
+  db.close();
+  console.log("数据库已关闭");
 }
 ```
 
@@ -221,14 +222,14 @@ function closeDB(db) {
  * @param {object} dbName 数据库名称
  */
 function deleteDBAll(dbName) {
-  console.log(dbName)
-  let deleteRequest = window.indexedDB.deleteDatabase(dbName)
+  console.log(dbName);
+  let deleteRequest = window.indexedDB.deleteDatabase(dbName);
   deleteRequest.onerror = function (event) {
-    console.log('删除失败')
-  }
+    console.log("删除失败");
+  };
   deleteRequest.onsuccess = function (event) {
-    console.log('删除成功')
-  }
+    console.log("删除成功");
+  };
 }
 ```
 
@@ -245,17 +246,17 @@ function deleteDBAll(dbName) {
  */
 function addData(db, storeName, data) {
   var request = db
-    .transaction([storeName], 'readwrite') // 事务对象 指定表格名称和操作模式（"只读"或"读写"）
+    .transaction([storeName], "readwrite") // 事务对象 指定表格名称和操作模式（"只读"或"读写"）
     .objectStore(storeName) // 仓库对象
-    .add(data)
+    .add(data);
 
   request.onsuccess = function (event) {
-    console.log('数据写入成功')
-  }
+    console.log("数据写入成功");
+  };
 
   request.onerror = function (event) {
-    console.log('数据写入失败')
-  }
+    console.log("数据写入失败");
+  };
 }
 ```
 
@@ -271,11 +272,11 @@ _IndexedDB_ 插入数据需要通过事务来进行操作，插入的方法也�
 <body>
   <script src="./db.js"></script>
   <script>
-    openDB('stuDB', 1).then((db) => {
-      addData(db, 'stu', { stuId: 1, stuName: '谢杰', stuAge: 18 })
-      addData(db, 'stu', { stuId: 2, stuName: '雅静', stuAge: 20 })
-      addData(db, 'stu', { stuId: 3, stuName: '谢希之', stuAge: 4 })
-    })
+    openDB("stuDB", 1).then((db) => {
+      addData(db, "stu", { stuId: 1, stuName: "谢杰", stuAge: 18 });
+      addData(db, "stu", { stuId: 2, stuName: "雅静", stuAge: 20 });
+      addData(db, "stu", { stuId: 3, stuName: "谢希之", stuAge: 4 });
+    });
   </script>
 </body>
 ```
@@ -301,19 +302,19 @@ _IndexedDB_ 插入数据需要通过事务来进行操作，插入的方法也�
  */
 function getDataByKey(db, storeName, key) {
   return new Promise((resolve, reject) => {
-    var transaction = db.transaction([storeName]) // 事务
-    var objectStore = transaction.objectStore(storeName) // 仓库对象
-    var request = objectStore.get(key) // 通过主键获取数据
+    var transaction = db.transaction([storeName]); // 事务
+    var objectStore = transaction.objectStore(storeName); // 仓库对象
+    var request = objectStore.get(key); // 通过主键获取数据
 
     request.onerror = function (event) {
-      console.log('事务失败')
-    }
+      console.log("事务失败");
+    };
 
     request.onsuccess = function (event) {
-      console.log('主键查询结果: ', request.result)
-      resolve(request.result)
-    }
-  })
+      console.log("主键查询结果: ", request.result);
+      resolve(request.result);
+    };
+  });
 }
 ```
 
@@ -325,16 +326,16 @@ _index.html_
 <body>
   <script src="./db.js"></script>
   <script>
-    openDB('stuDB', 1)
+    openDB("stuDB", 1)
       .then((db) => {
-        addData(db, 'stu', { stuId: 1, stuName: '谢杰', stuAge: 18 })
-        addData(db, 'stu', { stuId: 2, stuName: '雅静', stuAge: 20 })
-        addData(db, 'stu', { stuId: 3, stuName: '谢希之', stuAge: 4 })
-        return getDataByKey(db, 'stu', 2)
+        addData(db, "stu", { stuId: 1, stuName: "谢杰", stuAge: 18 });
+        addData(db, "stu", { stuId: 2, stuName: "雅静", stuAge: 20 });
+        addData(db, "stu", { stuId: 3, stuName: "谢希之", stuAge: 4 });
+        return getDataByKey(db, "stu", 2);
       })
       .then((stuInfo) => {
-        console.log(stuInfo) // {stuId: 2, stuName: '雅静', stuAge: 20}
-      })
+        console.log(stuInfo); // {stuId: 2, stuName: '雅静', stuAge: 20}
+      });
   </script>
 </body>
 ```
@@ -364,16 +365,16 @@ function getDataByKey(db, storeName, key) {
 在 _index.html_ 中调用方法时就需要再传递第三个参数作为 _key_ 了。
 
 ```js
-openDB('stuDB', 1)
+openDB("stuDB", 1)
   .then((db) => {
-    addData(db, 'stu', { stuId: 1, stuName: '谢杰', stuAge: 18 })
-    addData(db, 'stu', { stuId: 2, stuName: '雅静', stuAge: 20 })
-    addData(db, 'stu', { stuId: 3, stuName: '谢希之', stuAge: 4 })
-    return getDataByKey(db, 'stu')
+    addData(db, "stu", { stuId: 1, stuName: "谢杰", stuAge: 18 });
+    addData(db, "stu", { stuId: 2, stuName: "雅静", stuAge: 20 });
+    addData(db, "stu", { stuId: 3, stuName: "谢希之", stuAge: 4 });
+    return getDataByKey(db, "stu");
   })
   .then((stuInfo) => {
-    console.log(stuInfo) // 会查询到该表的所有数据
-  })
+    console.log(stuInfo); // 会查询到该表的所有数据
+  });
 ```
 
 还可以通过指针来进行查询，例如：
@@ -386,23 +387,23 @@ openDB('stuDB', 1)
  */
 function cursorGetData(db, storeName) {
   return new Promise((resolve, reject) => {
-    let list = []
+    let list = [];
     var store = db
-      .transaction(storeName, 'readwrite') // 事务
-      .objectStore(storeName) // 仓库对象
-    var request = store.openCursor() // 指针对象
+      .transaction(storeName, "readwrite") // 事务
+      .objectStore(storeName); // 仓库对象
+    var request = store.openCursor(); // 指针对象
     // 游标开启成功，逐行读数据
     request.onsuccess = function (e) {
-      var cursor = e.target.result
+      var cursor = e.target.result;
       if (cursor) {
         // 必须要检查
-        list.push(cursor.value)
-        cursor.continue() // 遍历了存储对象中的所有内容
+        list.push(cursor.value);
+        cursor.continue(); // 遍历了存储对象中的所有内容
       } else {
-        resolve(list)
+        resolve(list);
       }
-    }
-  })
+    };
+  });
 }
 ```
 
@@ -413,16 +414,16 @@ function cursorGetData(db, storeName) {
 _indx.html_
 
 ```js
-openDB('stuDB', 1)
+openDB("stuDB", 1)
   .then((db) => {
-    addData(db, 'stu', { stuId: 1, stuName: '谢杰', stuAge: 18 })
-    addData(db, 'stu', { stuId: 2, stuName: '雅静', stuAge: 20 })
-    addData(db, 'stu', { stuId: 3, stuName: '谢希之', stuAge: 4 })
-    return cursorGetData(db, 'stu')
+    addData(db, "stu", { stuId: 1, stuName: "谢杰", stuAge: 18 });
+    addData(db, "stu", { stuId: 2, stuName: "雅静", stuAge: 20 });
+    addData(db, "stu", { stuId: 3, stuName: "谢希之", stuAge: 4 });
+    return cursorGetData(db, "stu");
   })
   .then((stuInfo) => {
-    console.log(stuInfo)
-  })
+    console.log(stuInfo);
+  });
 ```
 
 目前为止，我们的精准查询只能通过主键来进行查询。但是更多的场景是我们压根儿就不知道某一条数据的主键。例如我们要查询学生姓名为“张三”的学生数据，对于我们来讲，我们知道的信息只有学生姓名“张三”。
@@ -441,16 +442,16 @@ _db.js_
  */
 function getDataByIndex(db, storeName, indexName, indexValue) {
   return new Promise((resolve, reject) => {
-    var store = db.transaction(storeName, 'readwrite').objectStore(storeName)
-    var request = store.index(indexName).get(indexValue)
+    var store = db.transaction(storeName, "readwrite").objectStore(storeName);
+    var request = store.index(indexName).get(indexValue);
     request.onerror = function () {
-      console.log('事务失败')
-    }
+      console.log("事务失败");
+    };
     request.onsuccess = function (e) {
-      var result = e.target.result
-      resolve(result)
-    }
-  })
+      var result = e.target.result;
+      resolve(result);
+    };
+  });
 }
 ```
 
@@ -459,14 +460,14 @@ function getDataByIndex(db, storeName, indexName, indexValue) {
 _index.html_
 
 ```js
-openDB('stuDB', 1)
+openDB("stuDB", 1)
   .then((db) => {
-    addData(db, 'stu', { stuId: 4, stuName: '牛牛', stuAge: 4 })
-    return getDataByIndex(db, 'stu', 'stuAge', 4)
+    addData(db, "stu", { stuId: 4, stuName: "牛牛", stuAge: 4 });
+    return getDataByIndex(db, "stu", "stuAge", 4);
   })
   .then((stuInfo) => {
-    console.log(stuInfo) // {stuId: 3, stuName: '谢希之', stuAge: 4}
-  })
+    console.log(stuInfo); // {stuId: 3, stuName: '谢希之', stuAge: 4}
+  });
 ```
 
 在 _index.html_ 中我们新增了一条数据，年龄也为 _4_，当前的数据库表信息如下：
@@ -489,23 +490,23 @@ _db.js_
  */
 function cursorGetDataByIndex(db, storeName, indexName, indexValue) {
   return new Promise((resolve, reject) => {
-    let list = []
-    var store = db.transaction(storeName, 'readwrite').objectStore(storeName) // 仓库对象
+    let list = [];
+    var store = db.transaction(storeName, "readwrite").objectStore(storeName); // 仓库对象
     var request = store
       .index(indexName) // 索引对象
-      .openCursor(IDBKeyRange.only(indexValue)) // 指针对象
+      .openCursor(IDBKeyRange.only(indexValue)); // 指针对象
     request.onsuccess = function (e) {
-      var cursor = e.target.result
+      var cursor = e.target.result;
       if (cursor) {
         // 必须要检查
-        list.push(cursor.value)
-        cursor.continue() // 遍历了存储对象中的所有内容
+        list.push(cursor.value);
+        cursor.continue(); // 遍历了存储对象中的所有内容
       } else {
-        resolve(list)
+        resolve(list);
       }
-    }
-    request.onerror = function (e) {}
-  })
+    };
+    request.onerror = function (e) {};
+  });
 }
 ```
 
@@ -529,31 +530,31 @@ _IDBKeyRange_ 可以只包含一个值，也可以指定上限和下限。它有
 
 ```js
 // All keys ≤ x
-var r1 = IDBKeyRange.upperBound(x)
+var r1 = IDBKeyRange.upperBound(x);
 
 // All keys < x
-var r2 = IDBKeyRange.upperBound(x, true)
+var r2 = IDBKeyRange.upperBound(x, true);
 
 // All keys ≥ y
-var r3 = IDBKeyRange.lowerBound(y)
+var r3 = IDBKeyRange.lowerBound(y);
 
 // All keys > y
-var r4 = IDBKeyRange.lowerBound(y, true)
+var r4 = IDBKeyRange.lowerBound(y, true);
 
 // All keys ≥ x && ≤ y
-var r5 = IDBKeyRange.bound(x, y)
+var r5 = IDBKeyRange.bound(x, y);
 
 // All keys > x &&< y
-var r6 = IDBKeyRange.bound(x, y, true, true)
+var r6 = IDBKeyRange.bound(x, y, true, true);
 
 // All keys > x && ≤ y
-var r7 = IDBKeyRange.bound(x, y, true, false)
+var r7 = IDBKeyRange.bound(x, y, true, false);
 
 // All keys ≥ x &&< y
-var r8 = IDBKeyRange.bound(x, y, false, true)
+var r8 = IDBKeyRange.bound(x, y, false, true);
 
 // The key = z
-var r9 = IDBKeyRange.only(z)
+var r9 = IDBKeyRange.only(z);
 ```
 
 例如我们来查询年龄大于 _4_ 岁的学生，其代码片段如下：
@@ -591,40 +592,40 @@ function cursorGetDataByIndexAndPage(
   indexName,
   indexValue,
   page,
-  pageSize,
+  pageSize
 ) {
   return new Promise((resolve, reject) => {
-    var list = []
-    var counter = 0 // 计数器
-    var advanced = true // 是否跳过多少条查询
-    var store = db.transaction(storeName, 'readwrite').objectStore(storeName) // 仓库对象
+    var list = [];
+    var counter = 0; // 计数器
+    var advanced = true; // 是否跳过多少条查询
+    var store = db.transaction(storeName, "readwrite").objectStore(storeName); // 仓库对象
     var request = store
       // .index(indexName) // 索引对象
       // .openCursor(IDBKeyRange.only(indexValue)); // 按照指定值分页查询（配合索引）
-      .openCursor() // 指针对象
+      .openCursor(); // 指针对象
     request.onsuccess = function (e) {
-      var cursor = e.target.result
+      var cursor = e.target.result;
       if (page > 1 && advanced) {
-        advanced = false
-        cursor.advance((page - 1) * pageSize) // 跳过多少条
-        return
+        advanced = false;
+        cursor.advance((page - 1) * pageSize); // 跳过多少条
+        return;
       }
       if (cursor) {
         // 必须要检查
-        list.push(cursor.value)
-        counter++
+        list.push(cursor.value);
+        counter++;
         if (counter < pageSize) {
-          cursor.continue() // 遍历了存储对象中的所有内容
+          cursor.continue(); // 遍历了存储对象中的所有内容
         } else {
-          cursor = null
-          resolve(list)
+          cursor = null;
+          resolve(list);
         }
       } else {
-        resolve(list)
+        resolve(list);
       }
-    }
-    request.onerror = function (e) {}
-  })
+    };
+    request.onerror = function (e) {};
+  });
 }
 ```
 
@@ -638,27 +639,27 @@ function cursorGetDataByIndexAndPage(
 <body>
   <script src="./db.js"></script>
   <script>
-    openDB('stuDB', 1)
+    openDB("stuDB", 1)
       .then((db) => {
-        addData(db, 'stu', { stuId: 5, stuName: '张三', stuAge: 23 })
-        addData(db, 'stu', { stuId: 6, stuName: '李四', stuAge: 24 })
-        addData(db, 'stu', { stuId: 7, stuName: '王武', stuAge: 32 })
-        addData(db, 'stu', { stuId: 8, stuName: '刘德华', stuAge: 34 })
-        addData(db, 'stu', { stuId: 9, stuName: '张学友', stuAge: 28 })
-        addData(db, 'stu', { stuId: 10, stuName: '郭富城', stuAge: 27 })
-        addData(db, 'stu', { stuId: 11, stuName: '黎明', stuAge: 17 })
-        addData(db, 'stu', { stuId: 12, stuName: '邓超', stuAge: 19 })
-        addData(db, 'stu', { stuId: 13, stuName: '刘翔', stuAge: 15 })
-        addData(db, 'stu', { stuId: 14, stuName: '洋洋', stuAge: 12 })
-        addData(db, 'stu', { stuId: 15, stuName: '林佳音', stuAge: 14 })
-        addData(db, 'stu', { stuId: 16, stuName: '袁进', stuAge: 34 })
-        addData(db, 'stu', { stuId: 17, stuName: '老闫', stuAge: 36 })
-        addData(db, 'stu', { stuId: 18, stuName: '沈爷', stuAge: 34 })
-        return cursorGetDataByIndexAndPage(db, 'stu', '', '', 3, 5)
+        addData(db, "stu", { stuId: 5, stuName: "张三", stuAge: 23 });
+        addData(db, "stu", { stuId: 6, stuName: "李四", stuAge: 24 });
+        addData(db, "stu", { stuId: 7, stuName: "王武", stuAge: 32 });
+        addData(db, "stu", { stuId: 8, stuName: "刘德华", stuAge: 34 });
+        addData(db, "stu", { stuId: 9, stuName: "张学友", stuAge: 28 });
+        addData(db, "stu", { stuId: 10, stuName: "郭富城", stuAge: 27 });
+        addData(db, "stu", { stuId: 11, stuName: "黎明", stuAge: 17 });
+        addData(db, "stu", { stuId: 12, stuName: "邓超", stuAge: 19 });
+        addData(db, "stu", { stuId: 13, stuName: "刘翔", stuAge: 15 });
+        addData(db, "stu", { stuId: 14, stuName: "洋洋", stuAge: 12 });
+        addData(db, "stu", { stuId: 15, stuName: "林佳音", stuAge: 14 });
+        addData(db, "stu", { stuId: 16, stuName: "袁进", stuAge: 34 });
+        addData(db, "stu", { stuId: 17, stuName: "老闫", stuAge: 36 });
+        addData(db, "stu", { stuId: 18, stuName: "沈爷", stuAge: 34 });
+        return cursorGetDataByIndexAndPage(db, "stu", "", "", 3, 5);
       })
       .then((stuInfo) => {
-        console.log(stuInfo) // {stuId: 3, stuName: '谢希之', stuAge: 4}
-      })
+        console.log(stuInfo); // {stuId: 3, stuName: '谢希之', stuAge: 4}
+      });
   </script>
 </body>
 ```
@@ -689,24 +690,24 @@ _db.js_
 function updateDB(db, storeName, data) {
   return new Promise((resolve, reject) => {
     var request = db
-      .transaction([storeName], 'readwrite') // 事务对象
+      .transaction([storeName], "readwrite") // 事务对象
       .objectStore(storeName) // 仓库对象
-      .put(data)
+      .put(data);
 
     request.onsuccess = function () {
       resolve({
         status: true,
-        message: '更新数据成功',
-      })
-    }
+        message: "更新数据成功",
+      });
+    };
 
     request.onerror = function () {
       reject({
         status: false,
-        message: '更新数据失败',
-      })
-    }
-  })
+        message: "更新数据失败",
+      });
+    };
+  });
 }
 ```
 
@@ -717,13 +718,13 @@ function updateDB(db, storeName, data) {
 _index.html_
 
 ```js
-openDB('stuDB', 1)
+openDB("stuDB", 1)
   .then((db) => {
-    return updateDB(db, 'stu', { stuId: 1, stuName: '谢杰2', stuAge: 19 })
+    return updateDB(db, "stu", { stuId: 1, stuName: "谢杰2", stuAge: 19 });
   })
   .then(({ message }) => {
-    console.log(message)
-  })
+    console.log(message);
+  });
 ```
 
 效果如下：
@@ -746,37 +747,37 @@ _db.js_
 function deleteDB(db, storeName, id) {
   return new Promise((resolve, reject) => {
     var request = db
-      .transaction([storeName], 'readwrite')
+      .transaction([storeName], "readwrite")
       .objectStore(storeName)
-      .delete(id)
+      .delete(id);
 
     request.onsuccess = function () {
       resolve({
         status: true,
-        message: '删除数据成功',
-      })
-    }
+        message: "删除数据成功",
+      });
+    };
 
     request.onerror = function () {
       reject({
         status: true,
-        message: '删除数据失败',
-      })
-    }
-  })
+        message: "删除数据失败",
+      });
+    };
+  });
 }
 ```
 
 _index.html_
 
 ```js
-openDB('stuDB', 1)
+openDB("stuDB", 1)
   .then((db) => {
-    return deleteDB(db, 'stu', 1)
+    return deleteDB(db, "stu", 1);
   })
   .then(({ message }) => {
-    console.log(message)
-  })
+    console.log(message);
+  });
 ```
 
 执行上面的代码后 _stuId_ 为 _1_ 的学生被删除掉。
@@ -795,46 +796,46 @@ _db.js_
  */
 function cursorDelete(db, storeName, indexName, indexValue) {
   return new Promise((resolve, reject) => {
-    var store = db.transaction(storeName, 'readwrite').objectStore(storeName)
+    var store = db.transaction(storeName, "readwrite").objectStore(storeName);
     var request = store
       .index(indexName) // 索引对象
-      .openCursor(IDBKeyRange.only(indexValue)) // 指针对象
+      .openCursor(IDBKeyRange.only(indexValue)); // 指针对象
     request.onsuccess = function (e) {
-      var cursor = e.target.result
-      var deleteRequest
+      var cursor = e.target.result;
+      var deleteRequest;
       if (cursor) {
-        deleteRequest = cursor.delete() // 请求删除当前项
+        deleteRequest = cursor.delete(); // 请求删除当前项
         deleteRequest.onsuccess = function () {
-          console.log('游标删除该记录成功')
+          console.log("游标删除该记录成功");
           resolve({
             status: true,
-            message: '游标删除该记录成功',
-          })
-        }
+            message: "游标删除该记录成功",
+          });
+        };
         deleteRequest.onerror = function () {
           reject({
             status: false,
-            message: '游标删除该记录失败',
-          })
-        }
-        cursor.continue()
+            message: "游标删除该记录失败",
+          });
+        };
+        cursor.continue();
       }
-    }
-    request.onerror = function (e) {}
-  })
+    };
+    request.onerror = function (e) {};
+  });
 }
 ```
 
 _index.html_
 
 ```js
-openDB('stuDB', 1)
+openDB("stuDB", 1)
   .then((db) => {
-    return cursorDelete(db, 'stu', 'stuName', '雅静')
+    return cursorDelete(db, "stu", "stuName", "雅静");
   })
   .then(({ message }) => {
-    console.log(message)
-  })
+    console.log(message);
+  });
 ```
 
 在上面的示例中，我们就删除了所有 _stuName_ 值为 “雅静” 的同学。

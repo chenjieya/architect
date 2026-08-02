@@ -4,9 +4,10 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
+
 在异步场景中，有很多任务开始后，只能在**将来**的某个时间点才能完成
 
-为了表达这一逻辑，Python封装了`Future`类
+为了表达这一逻辑，Python 封装了`Future`类
 
 `Future`类表达了一个在将来会完成的异步任务
 

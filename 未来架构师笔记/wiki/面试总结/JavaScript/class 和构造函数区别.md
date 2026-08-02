@@ -4,6 +4,7 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
+
 ## 1. 经典真题
 
 - 根据下面 _ES6_ 构造函数的书写方式，要求写出 _ES5_ 的
@@ -11,17 +12,17 @@ updated: 2026-08-02
 ```js
 class Example {
   constructor(name) {
-    this.name = name
+    this.name = name;
   }
   init() {
     const fun = () => {
-      console.log(this.name)
-    }
-    fun()
+      console.log(this.name);
+    };
+    fun();
   }
 }
-const e = new Example('Hello')
-e.init()
+const e = new Example("Hello");
+e.init();
 ```
 
 ## 2. 回顾 class 的写法
@@ -36,16 +37,16 @@ e.init()
 class Computer {
   // 构造器
   constructor(name, price) {
-    this.name = name
-    this.price = price
+    this.name = name;
+    this.price = price;
   }
   // 原型方法
   showSth() {
-    console.log(`这是一台${this.name}电脑`)
+    console.log(`这是一台${this.name}电脑`);
   }
   // 静态方法
   static comStruct() {
-    console.log('电脑由显示器，主机，键鼠组成')
+    console.log("电脑由显示器，主机，键鼠组成");
   }
 }
 ```
@@ -55,11 +56,11 @@ class Computer {
 我们可以简单的实例化一个对象出来，例如：
 
 ```js
-var apple = new Computer('苹果', 15000)
-console.log(apple.name) // 苹果
-console.log(apple.price) // 15000
-apple.showSth() // 这是一台苹果电脑
-Computer.comStruct() // 电脑由显示器，主机，键鼠组成
+var apple = new Computer("苹果", 15000);
+console.log(apple.name); // 苹果
+console.log(apple.price); // 15000
+apple.showSth(); // 这是一台苹果电脑
+Computer.comStruct(); // 电脑由显示器，主机，键鼠组成
 ```
 
 在上面的代码中，我们从 _Computer_ 类中实例化出来了一个 _apple_ 的实例对象，然后简单访问了该对象的属性和方法。
@@ -72,21 +73,21 @@ Computer.comStruct() // 电脑由显示器，主机，键鼠组成
 
 ```js
 function Computer(name, price) {
-  this.name = name
-  this.price = price
+  this.name = name;
+  this.price = price;
 }
 Computer.prototype.showSth = function () {
-  console.log(`这是一台${this.name}电脑`)
-}
+  console.log(`这是一台${this.name}电脑`);
+};
 Computer.comStruct = function () {
-  console.log('电脑由显示器，主机，键鼠组成')
-}
+  console.log("电脑由显示器，主机，键鼠组成");
+};
 
-var apple = new Computer('苹果', 15000)
-console.log(apple.name) // 苹果
-console.log(apple.price) // 15000
-apple.showSth() // 这是一台苹果电脑
-Computer.comStruct() // 电脑由显示器，主机，键鼠组成
+var apple = new Computer("苹果", 15000);
+console.log(apple.name); // 苹果
+console.log(apple.price); // 15000
+apple.showSth(); // 这是一台苹果电脑
+Computer.comStruct(); // 电脑由显示器，主机，键鼠组成
 ```
 
 上面的代码就是我们经常在 _ES5_ 中所书写的代码，通过构造函数来模拟类，实例方法挂在原型上面，静态方法就挂在构造函数上。
@@ -103,36 +104,36 @@ Computer.comStruct() // 电脑由显示器，主机，键鼠组成
 class Computer1 {
   // 构造器
   constructor(name, price) {
-    this.name = name
-    this.price = price
+    this.name = name;
+    this.price = price;
   }
   // 原型方法
   showSth() {
-    console.log(`这是一台${this.name}电脑`)
+    console.log(`这是一台${this.name}电脑`);
   }
   // 静态方法
   static comStruct() {
-    console.log('电脑由显示器，主机，键鼠组成')
+    console.log("电脑由显示器，主机，键鼠组成");
   }
 }
 
 function Computer2(name, price) {
-  this.name = name
-  this.price = price
+  this.name = name;
+  this.price = price;
 }
 Computer2.prototype.showSth = function () {
-  console.log(`这是一台${this.name}电脑`)
-}
+  console.log(`这是一台${this.name}电脑`);
+};
 Computer2.comStruct = function () {
-  console.log('电脑由显示器，主机，键鼠组成')
-}
+  console.log("电脑由显示器，主机，键鼠组成");
+};
 ```
 
 我们知道，构造函数也是函数，既然是函数，那么就可以通过函数调用的形式来调用该函数，例如：
 
 ```js
-var i = Computer2()
-console.log(i) // undefined
+var i = Computer2();
+console.log(i); // undefined
 ```
 
 运行上面的代码，代码不会报错，因为没有使用 _new_ 的方式来调用，所以不会生成一个对象，返回值就为 _undefined_。
@@ -140,7 +141,7 @@ console.log(i) // undefined
 但是如果我们这样来调用 _ES6_ 书写的类，会直接报错：
 
 ```js
-Computer1()
+Computer1();
 // TypeError: Class constructor Computer1 cannot be invoked without 'new'
 ```
 
@@ -149,14 +150,14 @@ Computer1()
 接下来，我们来针对两种写法，各自实例化一个对象，代码如下：
 
 ```js
-var apple = new Computer2('苹果', 15000)
+var apple = new Computer2("苹果", 15000);
 for (var i in apple) {
-  console.log(i)
+  console.log(i);
 }
-console.log('-------')
-var huawei = new Computer1('华为', 12000)
+console.log("-------");
+var huawei = new Computer1("华为", 12000);
 for (var i in huawei) {
-  console.log(i)
+  console.log(i);
 }
 ```
 
@@ -208,20 +209,20 @@ Computer2.prototype.showSth = function(j,j){
 
 ```js
 function Computer2(name, price) {
-  this.name = name
-  this.price = price
+  this.name = name;
+  this.price = price;
 }
 Computer2.prototype.showSth = function () {
-  i = 10
-  console.log(`这是一台${this.name}电脑`)
-}
+  i = 10;
+  console.log(`这是一台${this.name}电脑`);
+};
 Computer2.comStruct = function () {
-  console.log('电脑由显示器，主机，键鼠组成')
-}
+  console.log("电脑由显示器，主机，键鼠组成");
+};
 
-var apple = new Computer2('苹果', 15000)
-var i = new apple.showSth() // 这是一台undefined电脑
-console.log(i) // {}
+var apple = new Computer2("苹果", 15000);
+var i = new apple.showSth(); // 这是一台undefined电脑
+console.log(i); // {}
 ```
 
 在上面的代码中，我们首先实例化了一个 _apple_ 对象，在该对象的原型上面拥有一个 _showSth_ 的实例方法，然后我们对其进行了 _new_ 操作，可以看到返回了一个对象。
@@ -232,21 +233,21 @@ console.log(i) // {}
 class Computer1 {
   // 构造器
   constructor(name, price) {
-    this.name = name
-    this.price = price
+    this.name = name;
+    this.price = price;
   }
   // 原型方法
   showSth() {
-    console.log(`这是一台${this.name}电脑`)
+    console.log(`这是一台${this.name}电脑`);
   }
   // 静态方法
   static comStruct() {
-    console.log('电脑由显示器，主机，键鼠组成')
+    console.log("电脑由显示器，主机，键鼠组成");
   }
 }
-var huawei = new Computer1('华为', 12000)
-var i = new huawei.showSth() // TypeError: huawei.showSth is not a constructor
-console.log(i)
+var huawei = new Computer1("华为", 12000);
+var i = new huawei.showSth(); // TypeError: huawei.showSth is not a constructor
+console.log(i);
 ```
 
 在上面的代码中，我们企图对 _Computer1_ 实例对象 _huawei_ 的原型方法 _showSth_ 进行 _new_ 操作，可以看到，这里报出了 _TypeError_。
@@ -261,16 +262,16 @@ console.log(i)
 class Computer {
   // 构造器
   constructor(name, price) {
-    this.name = name
-    this.price = price
+    this.name = name;
+    this.price = price;
   }
   // 原型方法
   showSth() {
-    console.log(`这是一台${this.name}电脑`)
+    console.log(`这是一台${this.name}电脑`);
   }
   // 静态方法
   static comStruct() {
-    console.log('电脑由显示器，主机，键鼠组成')
+    console.log("电脑由显示器，主机，键鼠组成");
   }
 }
 ```
@@ -278,67 +279,67 @@ class Computer {
 转义后的代码如下：
 
 ```js
-'use strict'
+"use strict";
 function _classCallCheck(instance, Constructor) {
   if (!(instance instanceof Constructor)) {
-    throw new TypeError('Cannot call a class as a function')
+    throw new TypeError("Cannot call a class as a function");
   }
 }
 
 function _defineProperties(target, props) {
   for (var i = 0; i < props.length; i++) {
-    var descriptor = props[i]
-    descriptor.enumerable = descriptor.enumerable || false
-    descriptor.configurable = true
-    if ('value' in descriptor) descriptor.writable = true
-    Object.defineProperty(target, descriptor.key, descriptor)
+    var descriptor = props[i];
+    descriptor.enumerable = descriptor.enumerable || false;
+    descriptor.configurable = true;
+    if ("value" in descriptor) descriptor.writable = true;
+    Object.defineProperty(target, descriptor.key, descriptor);
   }
 }
 
 function _createClass(Constructor, protoProps, staticProps) {
-  if (protoProps) _defineProperties(Constructor.prototype, protoProps)
-  if (staticProps) _defineProperties(Constructor, staticProps)
-  return Constructor
+  if (protoProps) _defineProperties(Constructor.prototype, protoProps);
+  if (staticProps) _defineProperties(Constructor, staticProps);
+  return Constructor;
 }
 
 var Computer = /*#__PURE__*/ (function () {
   // 构造器
   function Computer(name, price) {
-    _classCallCheck(this, Computer)
+    _classCallCheck(this, Computer);
 
-    this.name = name
-    this.price = price
+    this.name = name;
+    this.price = price;
   } // 原型方法
 
   _createClass(
     Computer,
     [
       {
-        key: 'showSth',
+        key: "showSth",
         value: function showSth() {
           console.log(
-            '\u8FD9\u662F\u4E00\u53F0'.concat(this.name, '\u7535\u8111'),
-          )
+            "\u8FD9\u662F\u4E00\u53F0".concat(this.name, "\u7535\u8111")
+          );
         }, // 静态方法
       },
     ],
     [
       {
-        key: 'comStruct',
+        key: "comStruct",
         value: function comStruct() {
-          console.log('电脑由显示器，主机，键鼠组成')
+          console.log("电脑由显示器，主机，键鼠组成");
         },
       },
-    ],
-  )
+    ]
+  );
 
-  return Computer
-})()
-var apple = new Computer('苹果', 15000)
-console.log(apple.name) // 苹果
-console.log(apple.price) // 15000
-apple.showSth() // 这是一台苹果电脑
-Computer.comStruct() // 电脑由显示器，主机，键鼠组成
+  return Computer;
+})();
+var apple = new Computer("苹果", 15000);
+console.log(apple.name); // 苹果
+console.log(apple.price); // 15000
+apple.showSth(); // 这是一台苹果电脑
+Computer.comStruct(); // 电脑由显示器，主机，键鼠组成
 ```
 
 可以看到，果然没有我们想象的那么简单，接下来我们就来一点一点剖析转义的结果。
@@ -361,7 +362,7 @@ var Computer = /*#__PURE__*/function () { ... }();
 ```js
 function _classCallCheck(instance, Constructor) {
   if (!(instance instanceof Constructor)) {
-    throw new TypeError('Cannot call a class as a function')
+    throw new TypeError("Cannot call a class as a function");
   }
 }
 ```
@@ -372,14 +373,14 @@ function _classCallCheck(instance, Constructor) {
 
 ```js
 function _defineProperties(target, props) {
-  console.log('target:::', target)
-  console.log('props:::', props)
+  console.log("target:::", target);
+  console.log("props:::", props);
   for (var i = 0; i < props.length; i++) {
-    var descriptor = props[i]
-    descriptor.enumerable = descriptor.enumerable || false
-    descriptor.configurable = true
-    if ('value' in descriptor) descriptor.writable = true
-    Object.defineProperty(target, descriptor.key, descriptor)
+    var descriptor = props[i];
+    descriptor.enumerable = descriptor.enumerable || false;
+    descriptor.configurable = true;
+    if ("value" in descriptor) descriptor.writable = true;
+    Object.defineProperty(target, descriptor.key, descriptor);
   }
 }
 ```
@@ -399,12 +400,12 @@ props::: [ { key: 'comStruct', value: [Function: comStruct] } ]
 
 ```js
 function _createClass(Constructor, protoProps, staticProps) {
-  console.log('Constructor::', Constructor)
-  console.log('protoProps::', protoProps)
-  console.log('staticProps::', staticProps)
-  if (protoProps) _defineProperties(Constructor.prototype, protoProps)
-  if (staticProps) _defineProperties(Constructor, staticProps)
-  return Constructor
+  console.log("Constructor::", Constructor);
+  console.log("protoProps::", protoProps);
+  console.log("staticProps::", staticProps);
+  if (protoProps) _defineProperties(Constructor.prototype, protoProps);
+  if (staticProps) _defineProperties(Constructor, staticProps);
+  return Constructor;
 }
 ```
 
@@ -425,10 +426,10 @@ var Computer = /*#__PURE__*/ (function () {
   // 构造器
   function Computer(name, price) {
     // 进行调用确认
-    _classCallCheck(this, Computer)
+    _classCallCheck(this, Computer);
     // 添加实例属性
-    this.name = name
-    this.price = price
+    this.name = name;
+    this.price = price;
   } // 原型方法
 
   // 将实例方法和静态方法添加到构造函数上面
@@ -436,26 +437,26 @@ var Computer = /*#__PURE__*/ (function () {
     Computer,
     [
       {
-        key: 'showSth',
+        key: "showSth",
         value: function showSth() {
           console.log(
-            '\u8FD9\u662F\u4E00\u53F0'.concat(this.name, '\u7535\u8111'),
-          )
+            "\u8FD9\u662F\u4E00\u53F0".concat(this.name, "\u7535\u8111")
+          );
         }, // 静态方法
       },
     ],
     [
       {
-        key: 'comStruct',
+        key: "comStruct",
         value: function comStruct() {
-          console.log('电脑由显示器，主机，键鼠组成')
+          console.log("电脑由显示器，主机，键鼠组成");
         },
       },
-    ],
-  )
+    ]
+  );
 
-  return Computer
-})()
+  return Computer;
+})();
 ```
 
 明白了 _\_createClass_ 方法的作用后，该方法的代码也就非常的清晰了。
@@ -467,73 +468,73 @@ var Computer = /*#__PURE__*/ (function () {
 ```js
 class Example {
   constructor(name) {
-    this.name = name
+    this.name = name;
   }
   init() {
     const fun = () => {
-      console.log(this.name)
-    }
-    fun()
+      console.log(this.name);
+    };
+    fun();
   }
 }
-const e = new Example('Hello')
-e.init()
+const e = new Example("Hello");
+e.init();
 ```
 
 > 参考答案：
 >
 > ```js
-> 'use strict'
+> "use strict";
 >
 > function _classCallCheck(instance, Constructor) {
 >   if (!(instance instanceof Constructor)) {
->     throw new TypeError('Cannot call a class as a function')
+>     throw new TypeError("Cannot call a class as a function");
 >   }
 > }
 >
 > function _defineProperties(target, props) {
 >   for (var i = 0; i < props.length; i++) {
->     var descriptor = props[i]
->     descriptor.enumerable = descriptor.enumerable || false
->     descriptor.configurable = true
->     if ('value' in descriptor) descriptor.writable = true
->     Object.defineProperty(target, descriptor.key, descriptor)
+>     var descriptor = props[i];
+>     descriptor.enumerable = descriptor.enumerable || false;
+>     descriptor.configurable = true;
+>     if ("value" in descriptor) descriptor.writable = true;
+>     Object.defineProperty(target, descriptor.key, descriptor);
 >   }
 > }
 >
 > function _createClass(Constructor, protoProps, staticProps) {
->   if (protoProps) _defineProperties(Constructor.prototype, protoProps)
->   if (staticProps) _defineProperties(Constructor, staticProps)
->   return Constructor
+>   if (protoProps) _defineProperties(Constructor.prototype, protoProps);
+>   if (staticProps) _defineProperties(Constructor, staticProps);
+>   return Constructor;
 > }
 >
 > var Example = /*#__PURE__*/ (function () {
 >   function Example(name) {
->     _classCallCheck(this, Example)
+>     _classCallCheck(this, Example);
 >
->     this.name = name
+>     this.name = name;
 >   }
 >
 >   _createClass(Example, [
 >     {
->       key: 'init',
+>       key: "init",
 >       value: function init() {
->         var _this = this
+>         var _this = this;
 >
 >         var fun = function fun() {
->           console.log(_this.name)
->         }
+>           console.log(_this.name);
+>         };
 >
->         fun()
+>         fun();
 >       },
 >     },
->   ])
+>   ]);
 >
->   return Example
-> })()
+>   return Example;
+> })();
 >
-> var e = new Example('Hello')
-> e.init()
+> var e = new Example("Hello");
+> e.init();
 > ```
 >
 > 这里可以解释出 _\_classCallCheck、\_defineProperties、\_createClass_ 这几个方法各自的作用是什么。

@@ -4,12 +4,13 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
+
 本项目采用 Monorepo 架构进行管理，前端基于 Vue3 开发，后端使用 NestJS 实现。主要功能包括：
 
 - [ ] 扫码登录
 - [ ] 聊天室基础聊天（支持文字、文件与图片）
 - [ ] 聊天室高级通讯（语音通话、视频通话、屏幕共享）
-- [ ] AI集成
+- [ ] AI 集成
 
 ```js
 monorepo
@@ -65,7 +66,7 @@ ts-node
 @types/node
 ```
 
-packages包下面的共享文件：
+packages 包下面的共享文件：
 
 ```shell
 esbuild
@@ -98,11 +99,11 @@ cd xxxx
 pnpm init
 ```
 
-检查ts继承是否生效：
+检查 ts 继承是否生效：
 
 `pnpm exec tsc --showConfig`
 
-## 2. 配置ts的时候，导致nest项目中ts查找不到模块
+## 2. 配置 ts 的时候，导致 nest 项目中 ts 查找不到模块
 
 ## 3. git hooks
 
@@ -112,6 +113,6 @@ pnpm init
 
 ## 6. 网络请求的打包发布
 
-## 7. NestJS认识中间件，守卫，拦截器，管道。
+## 7. NestJS 认识中间件，守卫，拦截器，管道。
 
-## 8. NestJS网络请求返回统一的格式
+## 8. NestJS 网络请求返回统一的格式

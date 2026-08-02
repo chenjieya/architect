@@ -4,6 +4,7 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
+
 RAG 的概念和思想最早是在 2020 年由 Meta 公司的技术团队在文章 [“Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks”](https://proceedings.neurips.cc/paper/2020/file/6b493230205f780e1bc26945df7481e5-Paper.pdf) 中正式提出的，用于给当时已经开始出现的大型预训练语言模型提供来自外部的 **非参数化** 的信息与记忆，从而改善语言生成的效果。
 
 > [!tip]

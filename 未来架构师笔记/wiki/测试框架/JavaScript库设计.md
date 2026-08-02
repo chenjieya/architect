@@ -4,6 +4,7 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
+
 ## 1. 函数的设计
 
 函数包含三要素：
@@ -16,10 +17,9 @@ updated: 2026-08-02
 
 函数通常表示做一件事情，因此函数名一般为一个动词或者表示动作的短语，我们希望通过函数名就能够传达这个函数是做什么的。哪怕整个函数单词用得多一些，整个函数名长一些也无所谓，只要能够传达当前函数的作用。
 
-例如 react 源码中的一些函数：*workLoopConcurrent、checkScheduledUpdateOrContext、bailoutOnAlreadyFinishedWork*
+例如 react 源码中的一些函数：_workLoopConcurrent、checkScheduledUpdateOrContext、bailoutOnAlreadyFinishedWork_
 
 另外就是函数名要力求准确，这里的准确还包含单词的拼写不要出错，因为作为一个开源库，代码一旦开源出去，就很难收回了，换句话说，一旦有这种拼写的错误，那么大概率后面就会一直延用这种错误的拼写。例如 HTTP 协议里面就有一个拼写的错误，请求头里面有一个 referer 字段实际上是错误的，正确的拼写为 referrer
-
 
 ### 1.2 **函数参数**
 
@@ -30,16 +30,14 @@ updated: 2026-08-02
 例如：
 
 ```js
-getParams('?a=1&b=2', 'a'); // 输出1
+getParams("?a=1&b=2", "a"); // 输出1
 
 // 我们先不管函数具体的实现，下面有两种参数设计
-getParams(url, key, sep='&', eq='=')
-getParams(url, key, opt = { sep: "&", eq: "=" })
+getParams(url, key, (sep = "&"), (eq = "="));
+getParams(url, key, (opt = { sep: "&", eq: "=" }));
 ```
 
 在上面的示例中，第二种函数参数的设计要明显优于第一种，通过对象化的思路，减少后参数的数量，降低了用户的心智负担，其实还有一个好处，就是采用对象化的设计，未来在进行扩展的时候也更加容易一些。
-
-
 
 ### 1.3 **返回值**
 
@@ -50,10 +48,10 @@ getParams(url, key, opt = { sep: "&", eq: "=" })
 举个例子：
 
 ```js
-function getParams(url){
-    if(url){
-        // xxx
-    }
+function getParams(url) {
+  if (url) {
+    // xxx
+  }
 }
 // 这里有个默认的返回值为 undefined
 ```
@@ -67,23 +65,22 @@ getParams(url).toString(16);
 但是上面的函数设计就会存在隐患，因此更好的方法就是像上面所说，保持返回值的类型一致。
 
 ```js
-function getParams(url){
-    if(url){
-        // xxx
-    }
-    
-    return "";
+function getParams(url) {
+  if (url) {
+    // xxx
+  }
+
+  return "";
 }
 ```
-
 
 ## 2. 提升健壮性
 
 我们的开源库会被很多人使用，并且环境是未知的，即便我们在文档中规定了必须要传递什么类型的参数，但是使用者也有可能违反约定，甚至还有一些情况，数据来源于服务器、数据来源于各种逻辑计算之后的结果，传入到了我们的函数，所以这个时候我们就需要对我们的参数进行一个防御。
 
 ```js
-function trimStart(str){
-    return str.replace(/^\s+/, '');
+function trimStart(str) {
+  return str.replace(/^\s+/, "");
 }
 
 trimStart(111);
@@ -92,8 +89,8 @@ trimStart(111);
 在上面的代码中，如果意外传入了非字符串类型的参数，那么就会出现异常，这个时候我们就可以采取一些防御性的措施：
 
 ```js
-function trimStart(str){
-    return String(str).replace(/^\s+/, '');
+function trimStart(str) {
+  return String(str).replace(/^\s+/, "");
 }
 
 trimStart(111);
@@ -102,16 +99,14 @@ trimStart(111);
 在进行参数防御的时候，参数分为两种，一种是必传参数，另外一种是可选参数，针对不同的参数类型，有如下的校验和转换规则：
 
 - 如果参数是要传递给系统函数，则可以把校验这一步下沉给系统函数来处理
-- 对于 *object、array、function* 类型的参数，要做强制校验，如果校验失败，对于必传参数来讲就执行异常流程，对于可选参数来讲就设置默认值
+- 对于 _object、array、function_ 类型的参数，要做强制校验，如果校验失败，对于必传参数来讲就执行异常流程，对于可选参数来讲就设置默认值
 - 对于 number、string、boolean 类型的参数，要做自动转换
-  - 数字使用 *Number* 函数进行转换
-  - 整数使用 *Math.round* 函数进行转换
-  - 字符串使用 *String* 函数进行转换
+  - 数字使用 _Number_ 函数进行转换
+  - 整数使用 _Math.round_ 函数进行转换
+  - 字符串使用 _String_ 函数进行转换
   - 布尔值使用 !! 进行转换
-- 对于 *number* 类型参数，如果转换出来是 *NaN*，那么对于必传参数来讲执行异步流程，对于可选参数来讲就设置默认值
+- 对于 _number_ 类型参数，如果转换出来是 _NaN_，那么对于必传参数来讲执行异步流程，对于可选参数来讲就设置默认值
 - 对于复合类型的内部数据，也要执行上述流程
-
-
 
 ## 3. 异常捕获
 
@@ -120,16 +115,14 @@ trimStart(111);
 JSON.parse 方法可以将字符串转为 JS 对象，但是传入这个方法的字符串如果不符合 JSON 的语法， 那么最终转换的时候就会报错。那么如果你设计的函数内部用到了这个方法，那么就会有出错的可能性，因此我们需要考虑到这种情况
 
 ```js
-function safeParse(str, backupData){
-    try {
-        return JSON.parse(str);
-    } catch (e) {
-        return backupData;
-    }
+function safeParse(str, backupData) {
+  try {
+    return JSON.parse(str);
+  } catch (e) {
+    return backupData;
+  }
 }
 ```
-
-
 
 ## 4. 安全防护
 
@@ -146,7 +139,7 @@ function safeParse(str, backupData){
 ```js
 export let count = 1;
 export function guid() {
-    return count++;
+  return count++;
 }
 ```
 
@@ -156,14 +149,14 @@ export function guid() {
 
 ```js
 class Guid {
-    count = 1;
-    guid() {
-        return this.count++;
-    }
+  count = 1;
+  guid() {
+    return this.count++;
+  }
 }
 
 const g = new Guid();
-g.count = 'xxx'; // 直接修改了内部 count，导致代码报错
+g.count = "xxx"; // 直接修改了内部 count，导致代码报错
 ```
 
 这里应该考虑将这个属性设置为私有属性。
@@ -172,7 +165,7 @@ g.count = 'xxx'; // 直接修改了内部 count，导致代码报错
 
 ```js
 class Guid {
-    _count = 1;
+  _count = 1;
 }
 ```
 
@@ -180,12 +173,12 @@ class Guid {
 
 ```js
 class Guid {
-    constructor(){
-        let count = 1;
-        this.guid = () => {
-            return count++;
-        }
-    }
+  constructor() {
+    let count = 1;
+    this.guid = () => {
+      return count++;
+    };
+  }
 }
 ```
 
@@ -193,12 +186,12 @@ class Guid {
 
 ```js
 class Guid {
-    #count = 1;
-    constructor(){
-        this.guid = () => {
-            return this.#count++;
-        }
-    }
+  #count = 1;
+  constructor() {
+    this.guid = () => {
+      return this.#count++;
+    };
+  }
 }
 ```
 
@@ -209,11 +202,11 @@ class Guid {
 举个例子，fill 函数可以实现用指定的值来填充数组：
 
 ```js
-function fill(arr, value){
-    for(let i = 0; i < arr.length; i++){
-        arr[i] = value;
-    }
-    return arr;
+function fill(arr, value) {
+  for (let i = 0; i < arr.length; i++) {
+    arr[i] = value;
+  }
+  return arr;
 }
 ```
 
@@ -222,12 +215,12 @@ function fill(arr, value){
 更理想的方式，对传入的参数进行一个复制，例如：
 
 ```js
-function fill(arr, value){
-    const newArr = clone(arr); // 假设这里的 clone 是一个深度克隆方法
-    for(let i = 0; i < newArr.length; i++){
-        newArr[i] = value;
-    }
-    return newArr;
+function fill(arr, value) {
+  const newArr = clone(arr); // 假设这里的 clone 是一个深度克隆方法
+  for (let i = 0; i < newArr.length; i++) {
+    newArr[i] = value;
+  }
+  return newArr;
 }
 ```
 
@@ -236,44 +229,42 @@ function fill(arr, value){
 暴露出去的接口可能会被使用者有意或者无意的进行修改，导致开源库在开发阶段都是运行良好的，但是在某些情况下就出错了。
 
 ```js
-import $ from 'jquery';
+import $ from "jquery";
 $.version = undefined; // 外部代码修改 $ 对象的属性
-$.version.split('.'); // 正常代码因为上面的那一行代码导致报错
+$.version.split("."); // 正常代码因为上面的那一行代码导致报错
 ```
 
 这种时候，我们就可以对对象进行一个冻结，常见的冻结方法：
 
 | 方法                       | 修改原型指向 | 添加属性 | 修改属性配置 | 删除属性 | 修改属性 |
 | :------------------------- | :----------- | :------- | :----------- | :------- | :------- |
-| *Object.preventExtensions* | 否           | 否       | 是           | 是       | 是       |
-| *Object.seal*              | 否           | 否       | 否           | 否       | 是       |
-| *Object.freeze*            | 否           | 否       | 否           | 否       | 否       |
+| _Object.preventExtensions_ | 否           | 否       | 是           | 是       | 是       |
+| _Object.seal_              | 否           | 否       | 否           | 否       | 是       |
+| _Object.freeze_            | 否           | 否       | 否           | 否       | 否       |
 
 因此我们这边就可以采用这些方法来对对象进行一个冻结：
 
 ```js
-import $ from 'jquery';
+import $ from "jquery";
 Object.freeze($);
 $.version = undefined;
 ```
 
 在上面的代码中，我们针对 $ 进行了冻结，冻结的对象属性是无法修改的。如果尝试修改，那么在严格模式下会报错，在非严格模式下会静默失败。
 
-
-
 ## 5. 避免原型入侵
 
 JavaScript 是基于原型来实现的面向对象，因此我们在设计方法的时候要避免在标准库的对象原型上面（Array.prototype、Object.prototype...）添加方法，因为一旦你这么做，就会影响所有的对象。
 
 ```js
-Object.prototype.tree = function(){
-    console.log(Object.keys(this));
-}
+Object.prototype.tree = function () {
+  console.log(Object.keys(this));
+};
 
 const obj = {
-    a : 1,
-    b : 2
-}
+  a: 1,
+  b: 2,
+};
 
 obj.tree(); // ['a', 'b']
 ```
@@ -288,12 +279,12 @@ obj.tree(); // ['a', 'b']
 
 ```js
 class myNum extends Number {
-    constructor(...args) {
-        super(...args);
-    }
-    isEven() {
-        return this % 2 === 0
-    }
+  constructor(...args) {
+    super(...args);
+  }
+  isEven() {
+    return this % 2 === 0;
+  }
 }
 const i = new myNum(42);
 // 无论是新类添加的方法还是 Number 类里面的方法都可以使用
@@ -303,20 +294,16 @@ console.log(i.toFixed(2)); // 42.00
 
 以前前端在原型入侵上面是有先例的（bad case），前端库 Mootools 和 prototype.js 这两个库都对标准库对象的原型进行了扩展。这两个库当时都给数组扩展了一个名为 flatten 的方法（拍平多维数组），但是这两个库在方法的实现上面是不一致的，这就带来了冲突，冲突的结果就是如果你同时引入这两个库，就必然有一个库的代码会失效。
 
-
-
 而且这种做法还影响到了 ES 规范，我们知道 ES6 目前提供了一个叫做 Array.prototype.flat 的方法（数组拍平），关于这个方法当时 ECMA 委员会实际上是想要叫做 flatten，但是由于和 Mootools 和 prototype.js 这两库的 flatten 方法重名了，又由于这两个库的使用者众多，因此最终被迫改了名字叫做 flat。
-
-
 
 ## 6. 总结
 
-本小节我们主要介绍了在设计 *JavaScript* 库时的一些注意点，我们从下面的 *5* 个点进行了介绍：
+本小节我们主要介绍了在设计 _JavaScript_ 库时的一些注意点，我们从下面的 _5_ 个点进行了介绍：
 
 - 函数的设计
   - 函数主要就是需要注意函数三要素：函数名、函数参数、返回值
   - 函数名要力求准确无误，最好能够通过函数名就知道该函数的作用
-  - 参数的个数尽量控制在 *1-3* 个以内，如果是复杂类型的参数，最好不要修改原来的参数
+  - 参数的个数尽量控制在 _1-3_ 个以内，如果是复杂类型的参数，最好不要修改原来的参数
   - 返回值尽量保持和传入的参数相同的类型
 - 提高健壮性
   - 需要对参数做一些防御性的措施，特别是在类型上面的判断
@@ -325,6 +312,6 @@ console.log(i.toFixed(2)); // 42.00
 - 安全防护
   - 不需要向外暴露的功能，就不要向外暴露
   - 一旦向外暴露了，就是对外的一种承诺，暴露的接口一般都是会持续维护并且永久向下兼容的
-  - 目前 *ES2022* 开始已经正式支持私有属性了
+  - 目前 _ES2022_ 开始已经正式支持私有属性了
 - 避免原型入侵
   - 避免“猴子补丁”的做法，“别耍流氓，不是你的对象别动手动脚”

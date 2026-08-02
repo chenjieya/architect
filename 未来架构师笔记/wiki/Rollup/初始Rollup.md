@@ -9,7 +9,7 @@ updated: 2026-08-02
 
 ## 1. 核心特点
 
-### 1.1 原生支持ES模块
+### 1.1 原生支持 ES 模块
 
 Rollup 是最早专注于 ES 模块的打包工具。相比 Webpack 需要大量配置，Rollup 的打包结果更“干净”。
 
@@ -26,8 +26,8 @@ export function b() {}
 export function c() {}
 
 // main.js
-import { a } from './utils.js'
-a()
+import { a } from "./utils.js";
+a();
 ```
 
 Rollup 打包时只会输出 `a()`，不会把 `b` 和 `c` 带进来。
@@ -45,40 +45,36 @@ Rollup 有一套简洁的插件系统（比如处理 Babel、TypeScript、JSON �
 - Vue 3、React、D3 等很多知名库都用 Rollup 来打包。
 - 生成的包小，兼容性好，可以同时输出 **ESM、CJS、UMD** 等多种格式。
 
-
 ## 2. 应用场景
 
 - **类库/工具包开发**  
-    如果你在开发 npm 包，Rollup 是最佳选择，可以同时输出 ESM、CJS、UMD 格式，满足不同消费场景。
-    
+   如果你在开发 npm 包，Rollup 是最佳选择，可以同时输出 ESM、CJS、UMD 格式，满足不同消费场景。
 - **现代前端框架内部打包**  
-    Vue、Svelte、React 等框架本身就是用 Rollup 构建的。
-    
+   Vue、Svelte、React 等框架本身就是用 Rollup 构建的。
 - **与 Vite 配合**  
-    Rollup 负责生产环境的打包优化，保证性能和产物质量。
+   Rollup 负责生产环境的打包优化，保证性能和产物质量。
 
 ## 3. 最小配置示例
 
 ```js
 // rollup.config.js
-import resolve from '@rollup/plugin-node-resolve'
-import commonjs from '@rollup/plugin-commonjs'
+import resolve from "@rollup/plugin-node-resolve";
+import commonjs from "@rollup/plugin-commonjs";
 
 export default {
-  input: 'src/index.js', // 入口文件
+  input: "src/index.js", // 入口文件
   output: [
     {
-      file: 'dist/bundle.cjs.js',
-      format: 'cjs' // CommonJS 格式
+      file: "dist/bundle.cjs.js",
+      format: "cjs", // CommonJS 格式
     },
     {
-      file: 'dist/bundle.esm.js',
-      format: 'es'  // ES Module 格式
-    }
+      file: "dist/bundle.esm.js",
+      format: "es", // ES Module 格式
+    },
   ],
-  plugins: [resolve(), commonjs()]
-}
-
+  plugins: [resolve(), commonjs()],
+};
 ```
 
 ## 4. 总结

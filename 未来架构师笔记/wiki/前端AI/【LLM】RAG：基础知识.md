@@ -4,6 +4,7 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
+
 ## 1. 基本介绍
 
 RAG，全称 Retrieval-Augmented Generation，中文：检索增强生成
@@ -36,7 +37,7 @@ RAG，全称 Retrieval-Augmented Generation，中文：检索增强生成
 1. 大模型回答：我不知道什么是香蕉手机
 2. 大模型胡编乱造一段回答（大模型幻觉）
 
-【RAG技术之前的解决方案】
+【RAG 技术之前的解决方案】
 
 将公司资料作为提示词的一部分，如下图：
 
@@ -64,7 +65,7 @@ RAG，全称 Retrieval-Augmented Generation，中文：检索增强生成
 
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20260204144422033.png)
 
-**切分成chunks**
+**切分成 chunks**
 
 对输入的文档进行分割，分割成一个一个知识块（Chunk），从而为后续嵌入做准备。
 
@@ -127,7 +128,7 @@ RAG，全称 Retrieval-Augmented Generation，中文：检索增强生成
 分为下面几个步骤：
 
 1. 将 Query（用户的问题） 转化为向量
-2. 在向量数据库中进行相似度检索（语义检索），相似度的检索，有几种方式3. **余弦相似度** 4. 欧氏距离 5. 点积
+2. 在向量数据库中进行相似度检索（语义检索），相似度的检索，有几种方式 3. **余弦相似度** 4. 欧氏距离 5. 点积
 
 3. 为生成阶段准备检索结果
 

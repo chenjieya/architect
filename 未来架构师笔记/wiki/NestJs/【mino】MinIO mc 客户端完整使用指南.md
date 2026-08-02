@@ -4,6 +4,7 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
+
 适用场景：使用最新 MinIO 社区版（UI 9001 仅浏览），需要用 `mc` 管理用户、密钥、Bucket、权限策略和对象。
 
 ## 1. 关键概念（先搞懂再动手）

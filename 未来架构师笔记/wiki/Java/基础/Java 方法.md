@@ -4,10 +4,11 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
+
 ## 1. 课程目标
 
-- 掌握Java方法的定义形式
-- 理解Java方法的控制手段，能够根据需要设计合理的方法
+- 掌握 Java 方法的定义形式
+- 理解 Java 方法的控制手段，能够根据需要设计合理的方法
 
 ## 2. 关于类和方法
 
@@ -111,7 +112,7 @@ System.out.println(list[0]); // 99（原数组被修改）
 
 ### 5.3 方法重载（Overload）： 实现多种调用方式
 
-Java **不支持 **类似Python的默认参数值，但通过**方法重载**可以在同一个类中定义多个同名方法，只要参数列表不同（类型、个数或顺序），即可实现类似“默认参数”或“多种调用方式”的效果。
+Java **不支持  **类似 Python 的默认参数值，但通过**方法重载**可以在同一个类中定义多个同名方法，只要参数列表不同（类型、个数或顺序），即可实现类似“默认参数”或“多种调用方式”的效果。
 
 ```java
 // 重载示例：打招呼方法
@@ -128,11 +129,11 @@ greet("Alice");          // Hello, Alice!（自动调用单参数版本，内部
 greet("Bob", "Hi");      // Hi, Bob!
 ```
 
-重载不仅用于模拟默认参数，还用于提供不同的参数组合，例如 `System.out.println()` 就有多个重载版本，支持打印各种类型。
+重载不仅用于模拟默认参数，还用于提供不同的参数组合，例如  `System.out.println()`  就有多个重载版本，支持打印各种类型。
 
 ### 5.4 可变参数（Varargs）
 
-使用 `类型... 参数名` 表示可接收**任意数量**的同类型参数，内部看作数组。
+使用  `类型... 参数名`  表示可接收**任意数量**的同类型参数，内部看作数组。
 
 ```java
 public static int sumAll(int... nums) {
@@ -168,7 +169,7 @@ public static void demo(String prefix, int... nums) {
 
 ### 6.1 使用 return
 
-方法声明返回值类型，必须用 `return` 返回相应类型的结果：
+方法声明返回值类型，必须用  `return`  返回相应类型的结果：
 
 ```java
 public static int square(int x) {
@@ -199,11 +200,11 @@ int[] result = minMax(arr);
 System.out.println("min=" + result[0] + ", max=" + result[1]); // min=1, max=5
 ```
 
-也可以返回 `List`、`Map` 或自定义类（如 `Person`），这是 Java 中常见的做法。
+也可以返回  `List`、`Map`  或自定义类（如  `Person`），这是 Java 中常见的做法。
 
 ### 6.3 没有返回值（void）
 
-如果方法不返回结果，声明 `void`，可以省略 `return` 或写 `return;`表示提前结束。
+如果方法不返回结果，声明  `void`，可以省略  `return`  或写  `return;`表示提前结束。
 
 ```java
 public static void sayHello() {
@@ -253,7 +254,7 @@ public class Calculator {
 
 ## 8. 文档注释（Javadoc）
 
-使用 `/** ... */` 编写方法说明，可生成 API 文档。
+使用  `/** ... */`  编写方法说明，可生成 API 文档。
 
 ```java
 /**
@@ -274,7 +275,7 @@ public static double calculateBMI(double weight, double height) {
 
 ### 9.1 作业一：方法重载与参数传递
 
-阅读以下代码，写出 `main` 方法的输出结果，并简要说明原因。
+阅读以下代码，写出  `main`  方法的输出结果，并简要说明原因。
 
 ```java
 public class Homework1 {
@@ -341,41 +342,41 @@ public class PassTest {
 }
 ```
 
-请写出输出，并说明两个 `swap` 方法效果不同的原因。
+请写出输出，并说明两个  `swap`  方法效果不同的原因。
 
 ---
 
 ### 9.3 作业三：可变参数与重载综合
 
-实现一个类 `Calculator`，包含：
+实现一个类  `Calculator`，包含：
 
 1. `sum(int a, int b)`：返回两数之和。
 2. `sum(int a, int b, int c)`：返回三数之和。
 3. `sum(int... nums)`：返回任意多个整数之和（使用可变参数）。
 
-在 `main` 中分别调用这三个方法，打印结果。
+在  `main`  中分别调用这三个方法，打印结果。
 
 ---
 
 ### 9.4 作业四：多返回值与静态方法
 
-编写一个类 `ArrayUtils`，包含以下静态方法：
+编写一个类  `ArrayUtils`，包含以下静态方法：
 
-1. `minMax(int[] arr)`：返回一个 `int[]`，包含最小值和最大值（两个元素）。
-2. `average(int[] arr)`：返回平均值（`double` 类型）。
+1. `minMax(int[] arr)`：返回一个  `int[]`，包含最小值和最大值（两个元素）。
+2. `average(int[] arr)`：返回平均值（`double`  类型）。
 3. `countOccurrences(int[] arr, int target)`：返回目标值在数组中出现的次数。
 
-在 `main` 中测试这些方法，并输出结果。
+在  `main`  中测试这些方法，并输出结果。
 
 ---
 
 ### 9.5 作业五：综合编程——学生成绩管理系统（使用方法封装）
 
-设计一个类 `StudentManager`，包含以下静态方法：
+设计一个类  `StudentManager`，包含以下静态方法：
 
-1. `addStudent(List<Map<String, Object>> list, String name, int score)`：向列表中添加一个学生（用 `Map` 表示），包含姓名和成绩。
-2. `findTopStudent(List<Map<String, Object>> list)`：返回成绩最高的学生（返回 `Map` 对象）。
-3. `filterByScore(List<Map<String, Object>> list, int threshold)`：返回成绩大于等于 `threshold` 的所有学生（返回新列表）。
+1. `addStudent(List<Map<String, Object>> list, String name, int score)`：向列表中添加一个学生（用  `Map`  表示），包含姓名和成绩。
+2. `findTopStudent(List<Map<String, Object>> list)`：返回成绩最高的学生（返回  `Map`  对象）。
+3. `filterByScore(List<Map<String, Object>> list, int threshold)`：返回成绩大于等于  `threshold`  的所有学生（返回新列表）。
 4. `averageScore(List<Map<String, Object>> list)`：返回所有学生的平均成绩（`double`）。
 
-在 `main` 中构建一个学生列表，调用上述方法，并打印结果。
+在  `main`  中构建一个学生列表，调用上述方法，并打印结果。

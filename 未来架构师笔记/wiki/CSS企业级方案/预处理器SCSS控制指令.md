@@ -33,8 +33,6 @@ div {
 }
 ```
 
-
-
 ## 2. @if 分支
 
 这个表示是分支。分支又分为三种：
@@ -42,8 +40,6 @@ div {
 - 单分支
 - 双分支
 - 多分支
-
-
 
 ### 2.1 单分支
 
@@ -73,8 +69,6 @@ div {
   margin: 10px;
 }
 ```
-
-
 
 ### 2.2 双分支
 
@@ -112,8 +106,6 @@ div {
 }
 ```
 
-
-
 ### 2.3 多分支
 
 使用 @else if 来写多分支
@@ -139,9 +131,7 @@ p {
 }
 ```
 
-
-
-## 3. @for循环
+## 3. @for 循环
 
 语法如下：
 
@@ -152,13 +142,13 @@ p {
 ```
 
 ```scss
-@for $i from 1 to 3{
+@for $i from 1 to 3 {
   .item-#{$i} {
     width: $i * 2em;
   }
 }
 
-@for $i from 1 through 3{
+@for $i from 1 through 3 {
   .item2-#{$i} {
     width: $i * 2em;
   }
@@ -187,9 +177,7 @@ p {
 }
 ```
 
-
-
-## 4. @while循环
+## 4. @while 循环
 
 语法如下：
 
@@ -205,7 +193,6 @@ $i: 6;
   }
   $i: $i - 2;
 }
-
 ```
 
 ```css
@@ -224,26 +211,24 @@ $i: 6;
 
 注意，一定要要在 while 里面书写改变变量的表达式，否则就会形成一个死循环。
 
-
-
-## 5. @each循环
+## 5. @each 循环
 
 这个优有点类似于 JS 里面的 for...of 循环，会把数组或者字典类型的每一项值挨着挨着取出来
 
 ```scss
-@each $var in $vars
+@each $var in $vars ;
 ```
 
-$var可以是任意的变量名，但是 $vars 只能是 list 或者 maps
+$var 可以是任意的变量名，但是 $vars 只能是 list 或者 maps
 
 下面是一个遍历列表（数组）
 
 ```scss
-$arr:puma, sea-slug, egret, salamander;
+$arr: puma, sea-slug, egret, salamander;
 
-@each $animal in $arr{
-  .#{$animal}-icon{
-    background-image: url("/images/#{$animal}.png")
+@each $animal in $arr {
+  .#{$animal}-icon {
+    background-image: url("/images/#{$animal}.png");
   }
 }
 ```
@@ -277,7 +262,7 @@ $dict: (
 );
 
 @each $header, $size in $dict {
-  #{$header}{
+  #{$header} {
     font-size: $size;
   }
 }
@@ -300,5 +285,3 @@ h4 {
   font-size: 1em;
 }
 ```
-
-

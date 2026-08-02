@@ -4,7 +4,8 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
-RAG经典架构：
+
+RAG 经典架构：
 
 ## 1. **数据索引**
 
@@ -48,52 +49,52 @@ function getEmbedding(text) {
  * @returns
  */
 function cosineSimilarity(vecA, vecB) {
-  const dot = vecA.reduce((sum, val, i) => sum + val * vecB[i], 0)
-  const normA = Math.sqrt(vecA.reduce((sum, val) => sum + val * val, 0))
-  const normB = Math.sqrt(vecB.reduce((sum, val) => sum + val * val, 0))
-  return dot / (normA * normB)
+  const dot = vecA.reduce((sum, val, i) => sum + val * vecB[i], 0);
+  const normA = Math.sqrt(vecA.reduce((sum, val) => sum + val * val, 0));
+  const normB = Math.sqrt(vecB.reduce((sum, val) => sum + val * val, 0));
+  return dot / (normA * normB);
 }
 ```
 
 根据阀值判断是否使用外挂知识库
 
 ```js
-let userMessage = question
+let userMessage = question;
 
 // 严格判断：要求所有文档的得分都大于阈值
 const allDocsRelevant =
   relevantDocs.length > 0 &&
-  relevantDocs.every((doc) => doc.score > RELEVANCE_THRESHOLD)
+  relevantDocs.every((doc) => doc.score > RELEVANCE_THRESHOLD);
 
 if (allDocsRelevant) {
-  console.log(`✅ 知识库相关 - 所有文档得分都超过阈值 ${RELEVANCE_THRESHOLD}`)
+  console.log(`✅ 知识库相关 - 所有文档得分都超过阈值 ${RELEVANCE_THRESHOLD}`);
   console.log(
     `   文档得分: [${relevantDocs
       .map((doc) => doc.score.toFixed(3))
-      .join(', ')}]`,
-  )
+      .join(", ")}]`
+  );
 
   // 将相关的知识库内容添加到用户问题中
   const relevantContent = relevantDocs
     .filter((doc) => doc.score > RELEVANCE_THRESHOLD)
     .map((doc) => doc.content)
-    .join('\n\n')
+    .join("\n\n");
 
   userMessage = `参考以下资料回答问题：
 
 ${relevantContent}
 
-问题：${question}`
+问题：${question}`;
 } else {
   const failedDocs = relevantDocs.filter(
-    (doc) => doc.score <= RELEVANCE_THRESHOLD,
-  )
-  console.log(`❌ 知识库不相关 - 有${failedDocs.length}个文档得分不足`)
+    (doc) => doc.score <= RELEVANCE_THRESHOLD
+  );
+  console.log(`❌ 知识库不相关 - 有${failedDocs.length}个文档得分不足`);
   console.log(
     `   文档得分: [${relevantDocs
       .map((doc) => doc.score.toFixed(3))
-      .join(', ')}]`,
-  )
-  console.log(`   阈值要求: ${RELEVANCE_THRESHOLD}`)
+      .join(", ")}]`
+  );
+  console.log(`   阈值要求: ${RELEVANCE_THRESHOLD}`);
 }
 ```

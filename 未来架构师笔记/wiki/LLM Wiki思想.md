@@ -4,6 +4,7 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
+
 ## 1. LLM Wiki
 
 A pattern for building personal knowledge bases using LLMs.

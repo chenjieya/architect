@@ -4,6 +4,7 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
+
 资源也是 MCP Server 向客户端应用提供信息的一种形式。
 
 例如：
@@ -202,7 +203,7 @@ MCP 支持 **一次 `resources/read` 返回多个资源内容**。
 npx @modelcontextprotocol/inspector
 ```
 
-在线base64图片预览：https://jaredwinick.github.io/base64-image-viewer/
+在线 base64 图片预览：https://jaredwinick.github.io/base64-image-viewer/
 
 ```
 data:image/png;base64,<base64编码>

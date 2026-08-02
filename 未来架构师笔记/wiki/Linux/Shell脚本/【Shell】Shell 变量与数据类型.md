@@ -4,6 +4,7 @@ ai_editable: true
 updated_by: ai
 updated: 2026-08-02
 ---
+
 ## 1. 变量概述
 
 bash shell 把任何存储在变量中的值，在**未声明数据类型**的情况下，都视为**字符串**。

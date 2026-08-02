@@ -4,6 +4,7 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
+
 在官网对应的 ：https://jestjs.io/docs/configuration 可以看到 Jest 中所有的配置项目。
 
 当我们要对 Jest 进行大量的配置的时候，肯定是需要配置文件的，那么首先我们需要生成一个配置文件：
@@ -15,7 +16,6 @@ npx jest --init
 生成配置文件如下图所示：
 
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251105154302213.png)
-
 
 下面介绍一些配置文件中常见的配置项。
 
@@ -57,7 +57,6 @@ module.exports = {
 
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251105154337380.png)
 
-
 testMatch：这个配置项可以指定 Jest 应该运行哪些测试文件。默认情况下， Jest 会查找 .test.js 或者 .spec.js 结尾的文件
 
 例如我们将该配置修改为如下：
@@ -73,7 +72,7 @@ moduleFileExtensions :指定 Jest 查找测试文件时应该搜索哪些文件�
 setupFilesAfterEnv：指定 Jest 在运行测试之前应该运行哪些文件。例如：
 
 ```js
-setupFilesAfterEnv: ['<rootDir>/src/setupTests.js']
+setupFilesAfterEnv: ["<rootDir>/src/setupTests.js"];
 ```
 
 在执行每个测试套件（文件）之前，都会先执行这个 setupTests 文件

@@ -4,7 +4,8 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
-## 1. Transformer内部结构
+
+## 1. Transformer 内部结构
 
 整个 NLP 的发展，中间还经历很多很多重要的阶段，例如：
 
@@ -45,9 +46,9 @@ updated: 2026-08-02
 
 在机器学习中，有一个专门的词用来描述这种使用早期预测来进行后续预测的模型，称之为 **自回归模型**。
 
-Transformer模型就是一个自回归模型。
+Transformer 模型就是一个自回归模型。
 
-### 1.2 LLM内部结构
+### 1.2 LLM 内部结构
 
 整体来讲分成四大块：
 
@@ -55,7 +56,7 @@ Transformer模型就是一个自回归模型。
 
 1. 分词器
 2. 嵌入层
-3. 堆叠的Transformer块
+3. 堆叠的 Transformer 块
 4. 语言建模头
 
 #### 1.2.1 分词器
@@ -101,9 +102,9 @@ Transformer模型就是一个自回归模型。
 
 每个词元 ID 都会被映射为一个固定维度的向量（例如 768 维或 4096 维），这些向量是模型可学习的参数，在训练过程中会被不断优化。
 
-#### 1.2.3 堆叠的Transformer层
+#### 1.2.3 堆叠的 Transformer 层
 
-Stacked Transformer Blocks，中文译作“堆叠的Transformer块”，这些 Transformer 块是 LLM 的**核心模块**，也是模型理解上下文、捕捉语言结构和语义关系的关键所在。
+Stacked Transformer Blocks，中文译作“堆叠的 Transformer 块”，这些 Transformer 块是 LLM 的**核心模块**，也是模型理解上下文、捕捉语言结构和语义关系的关键所在。
 
 每个 Transformer 块内部包含两个主要子模块：
 
@@ -122,7 +123,7 @@ Stacked Transformer Blocks，中文译作“堆叠的Transformer块”，这些 
 
 2. **前馈网络（Feed-Forward Network）**：对每个位置上的词元向量单独做非线性变换，提高模型表达能力。
 
-🙋为什么称之为堆叠呢？
+🙋 为什么称之为堆叠呢？
 
 因为 Transformer 块并非一层，而是有多层：
 
@@ -252,7 +253,7 @@ probs = softmax(logits)     # [0.01, 0.02, 0.00001, 0.85, ...]
 
 嵌入向量会形成一个二维数组，维度是 `[3, 768]`。
 
-**3. Transformer块处理**
+**3. Transformer 块处理**
 
 经过多层 Transformer 块处理之后，得到的仍然是一个维度为 `[3, 768]` 的向量数组.
 
@@ -369,7 +370,7 @@ logits = [0.9, -1.3, 2.1, ..., 5.7]   ← 长度为 50000
 默认 softmax 的计算方式如下：
 
 ```js
-probs = softmax(logits) // 将分数转为概率
+probs = softmax(logits); // 将分数转为概率
 ```
 
 加入温度 T 后，变为：
@@ -432,7 +433,7 @@ probs = softmax(logits / T)
 | **Top-p（nucleus）** | 在累计概率 > p 的词中随机选 | 更智能的采样策略          |
 | **Beam Search**      | 保留多个候选句分支并评分    | 更接近全局最优但计算更贵  |
 
-## 3. Transformer块
+## 3. Transformer 块
 
 整个大语言模型就是由一系列 Transformer 块组成的。每个块处理其输入，然后将处理结果传递给下一块。
 
@@ -545,11 +546,11 @@ The cat sat on the mat
 
 前馈神经网络的特别之处在于：它不会“看别人”，只处理**自己**。
 
-🙋怎么处理？
+🙋 怎么处理？
 
 它是**对每一个词元单独做的一次变换处理**。你可以理解为：自注意力层结束后，每个词元都从“他人”那里学到了不少内容；接下来轮到它自己好好消化一遍。
 
-🙋如何消化？
+🙋 如何消化？
 
 其实就是把词元当前的表示向量送入一个小型的神经网络中，通常会包含两层线性变换和一个非线性激活函数，流程如下：
 

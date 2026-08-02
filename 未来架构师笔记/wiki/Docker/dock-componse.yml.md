@@ -4,7 +4,8 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
-## 1. ruoyi框架得yml
+
+## 1. ruoyi 框架得 yml
 
 ```yml
 version : '3'
@@ -388,7 +389,7 @@ Compose和Docker兼容性：
             constraints: [node.role == manager]
 ```
 
-## 3. NestJs聊天室yml
+## 3. NestJs 聊天室 yml
 
 ```yaml
 version: "3.9"
@@ -497,7 +498,7 @@ networks:
     driver: bridge
 ```
 
-## 4. 2026最新镜像加速配置
+## 4. 2026 最新镜像加速配置
 
 ```json
 {

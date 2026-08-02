@@ -4,6 +4,7 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
+
 > Vite 对主流框架提供了开箱即用的支持。本文详细讲解如何集成 Vue 3 和 React 18。
 
 ---
@@ -45,12 +46,12 @@ npm install -D @vitejs/plugin-vue vue-tsc
 **代码演示：vite.config.js**
 
 ```javascript
-import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
+import { defineConfig } from "vite";
+import vue from "@vitejs/plugin-vue";
 
 export default defineConfig({
   plugins: [vue()],
-})
+});
 ```
 
 **插件功能：**
@@ -93,13 +94,13 @@ export default defineConfig({
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref } from "vue";
 
-const title = ref('Hello Vue 3')
+const title = ref("Hello Vue 3");
 
 const handleClick = () => {
-  title.value = 'Clicked!'
-}
+  title.value = "Clicked!";
+};
 </script>
 
 <style scoped>
@@ -156,12 +157,12 @@ npm install -D @vitejs/plugin-react @types/react @types/react-dom
 **代码演示：vite.config.js**
 
 ```javascript
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
 
 export default defineConfig({
   plugins: [react()],
-})
+});
 ```
 
 **插件功能：**
@@ -177,20 +178,20 @@ export default defineConfig({
 
 ```tsx
 // src/App.tsx
-import { useState } from 'react'
+import { useState } from "react";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
 
   return (
     <div>
       <h1>Hello React 18</h1>
       <button onClick={() => setCount(count + 1)}>Count: {count}</button>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
 ```
 
 ---
@@ -204,20 +205,20 @@ export default App
 ```tsx
 // ✅ 正确：默认导出组件（函数声明）
 export default function App() {
-  return <div>App</div>
+  return <div>App</div>;
 }
 
 // ✅ 正确：命名导出组件（函数声明）
 export function App() {
-  return <div>App</div>
+  return <div>App</div>;
 }
 
 // ✅ 正确：箭头函数（但需要直接导出）
-export const App = () => <div>App</div>
+export const App = () => <div>App</div>;
 
 // ❌ 错误：导出常量（可能导致 HMR 失效）
-const App = () => <div>App</div>
-export { App }
+const App = () => <div>App</div>;
+export { App };
 ```
 
 **为什么会导致 HMR 失效？**
@@ -247,20 +248,20 @@ module.exports = {
   root: true,
   env: { browser: true, es2020: true },
   extends: [
-    'eslint:recommended',
-    'plugin:@typescript-eslint/recommended',
-    'plugin:react-hooks/recommended',
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react-hooks/recommended",
   ],
-  ignorePatterns: ['dist', '.eslintrc.cjs'],
-  parser: '@typescript-eslint/parser',
-  plugins: ['react-refresh'],
+  ignorePatterns: ["dist", ".eslintrc.cjs"],
+  parser: "@typescript-eslint/parser",
+  plugins: ["react-refresh"],
   rules: {
-    'react-refresh/only-export-components': [
-      'warn',
+    "react-refresh/only-export-components": [
+      "warn",
       { allowConstantExport: true },
     ],
   },
-}
+};
 ```
 
 **代码演示：package.json**
@@ -349,14 +350,14 @@ Vite 的模板存放在 [create-vite](https://github.com/vitejs/vite/tree/main/p
 
 ```vue
 <script setup>
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed, onMounted } from "vue";
 
-const count = ref(0)
-const doubleCount = computed(() => count.value * 2)
+const count = ref(0);
+const doubleCount = computed(() => count.value * 2);
 
 onMounted(() => {
-  console.log('Component mounted')
-})
+  console.log("Component mounted");
+});
 </script>
 ```
 
@@ -374,16 +375,16 @@ onMounted(() => {
 **代码演示：React Hooks**
 
 ```tsx
-import { useState, useEffect } from 'react'
+import { useState, useEffect } from "react";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
 
   useEffect(() => {
-    console.log('Count changed:', count)
-  }, [count])
+    console.log("Count changed:", count);
+  }, [count]);
 
-  return <div>{count}</div>
+  return <div>{count}</div>;
 }
 ```
 
@@ -444,18 +445,18 @@ react-project/
 </template>
 
 <script setup>
-import { computed } from 'vue'
+import { computed } from "vue";
 
 const props = defineProps({
   variant: {
     type: String,
-    default: 'primary',
+    default: "primary",
   },
-})
+});
 
-const buttonClass = computed(() => `btn btn-${props.variant}`)
+const buttonClass = computed(() => `btn btn-${props.variant}`);
 
-defineEmits(['click'])
+defineEmits(["click"]);
 </script>
 ```
 
@@ -467,14 +468,14 @@ defineEmits(['click'])
 
 ```tsx
 // components/Button.tsx
-import { ButtonHTMLAttributes } from 'react'
+import { ButtonHTMLAttributes } from "react";
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: 'primary' | 'secondary'
+  variant?: "primary" | "secondary";
 }
 
 export function Button({
-  variant = 'primary',
+  variant = "primary",
   children,
   ...props
 }: ButtonProps) {
@@ -482,7 +483,7 @@ export function Button({
     <button className={`btn btn-${variant}`} {...props}>
       {children}
     </button>
-  )
+  );
 }
 ```
 
@@ -493,11 +494,13 @@ export function Button({
 **框架集成要点：**
 
 1. **Vue 3**：
+
    - 安装 `@vitejs/plugin-vue`
    - 配置插件
    - 支持单文件组件和热重载
 
 2. **React 18**：
+
    - 安装 `@vitejs/plugin-react`
    - 配置插件
    - 注意组件导出规范

@@ -4,6 +4,7 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
+
 新建个项目
 
 ```typescript
@@ -16,22 +17,22 @@ nest new nest-graphql -g -p pnpm
 pnpm add @nestjs/graphql@12 @nestjs/apollo@12 @apollo/server graphql
 ```
 
-`@nestjs/graphql`和`@nestjs/apollo`现在使用12的版本，因为和nest cli直接生成的`@nestjs/core`和`@nestjs/common`版本还不兼容
+`@nestjs/graphql`和`@nestjs/apollo`现在使用 12 的版本，因为和 nest cli 直接生成的`@nestjs/core`和`@nestjs/common`版本还不兼容
 
 首先，在 `app.module.ts`中引入 `GraphQLModule`：
 
 ```typescript
-import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { ApolloDriver } from '@nestjs/apollo';
-import { GraphQLModule } from '@nestjs/graphql';
-import { ApolloServerPluginLandingPageLocalDefault } from '@apollo/server/plugin/landingPage/default';
+import { Module } from "@nestjs/common";
+import { AppController } from "./app.controller";
+import { AppService } from "./app.service";
+import { ApolloDriver } from "@nestjs/apollo";
+import { GraphQLModule } from "@nestjs/graphql";
+import { ApolloServerPluginLandingPageLocalDefault } from "@apollo/server/plugin/landingPage/default";
 @Module({
   imports: [
     GraphQLModule.forRoot({
       driver: ApolloDriver,
-      typePaths: ['./**/*.graphql'],
+      typePaths: ["./**/*.graphql"],
       playground: false,
       plugins: [ApolloServerPluginLandingPageLocalDefault()],
     }),
@@ -40,23 +41,21 @@ import { ApolloServerPluginLandingPageLocalDefault } from '@apollo/server/plugin
   providers: [AppService],
 })
 export class AppModule {}
-
 ```
 
 其中：
 
 driver：指定驱动
 
-typePaths：指定schema位置，也就是后缀为`.graphql`的文件
+typePaths：指定 schema 位置，也就是后缀为`.graphql`的文件
 
-playground: false，plugins: [ApolloServerPluginLandingPageLocalDefault()]这两个完全是为了能够有和前面一样的playground模版，用起来简单方便
+playground: false，plugins: [ApolloServerPluginLandingPageLocalDefault()]这两个完全是为了能够有和前面一样的 playground 模版，用起来简单方便
 
-为了能在VSCode中，实现相关语法高亮，我们可以下载插件
+为了能在 VSCode 中，实现相关语法高亮，我们可以下载插件
 
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251221162648966.png)
 
-
-我们可以在src下创建schema文件，命名为**schema.graphql**，然后直接把前面的类型定义直接复制粘贴进去
+我们可以在 src 下创建 schema 文件，命名为**schema.graphql**，然后直接把前面的类型定义直接复制粘贴进去
 
 ```typescript
 type Employee {
@@ -97,8 +96,7 @@ type Mutation {
 
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251221162703525.png)
 
-
-我们直接通过命令创建Employee相关的resolver
+我们直接通过命令创建 Employee 相关的 resolver
 
 ```typescript
 nest g resolver employee --no-spec
@@ -115,81 +113,79 @@ nest g resolver employee --no-spec
 export class AppModule {}
 ```
 
-
-
 和前面一样，实现`Query`、`Mutation`对应的逻辑，现在我们可以通过相应的装饰器来实现
 
 ```typescript
-import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
+import { Args, Mutation, Query, Resolver } from "@nestjs/graphql";
 
 let employees = [
   {
-    id: '1',
+    id: "1",
     name: async () => {
-      await '取数据';
-      return 'jack';
+      await "取数据";
+      return "jack";
     },
-    sex: '男',
+    sex: "男",
     age: 18,
   },
   {
-    id: '2',
-    name: 'rose',
-    sex: '女',
+    id: "2",
+    name: "rose",
+    sex: "女",
     age: 20,
   },
   {
-    id: '3',
-    name: 'tom',
-    sex: '男',
+    id: "3",
+    name: "tom",
+    sex: "男",
     age: 31,
   },
 ];
 
 const departments = [
   {
-    id: '1',
-    name: '技术部',
+    id: "1",
+    name: "技术部",
     employees: employees,
   },
 ];
 
 @Resolver()
 export class EmployeeResolver {
-  @Query('employees')
+  @Query("employees")
   async getEmployees() {
     return employees;
   }
 
-  @Query('departments')
+  @Query("departments")
   async getDepartments() {
     return departments;
   }
 
-  @Mutation('addEmployee')
+  @Mutation("addEmployee")
   async addEmployee(
-    @Args('name') name: string,
-    @Args('age') age: number,
-    @Args('sex') sex: string,
+    @Args("name") name: string,
+    @Args("age") age: number,
+    @Args("sex") sex: string
   ) {
     employees.push({
-      id: Math.ceil(Math.random() * 100) + '',
+      id: Math.ceil(Math.random() * 100) + "",
       name,
       age,
       sex,
     });
     return {
       success: true,
-      id: Math.ceil(Math.random() * 100) + '',
+      id: Math.ceil(Math.random() * 100) + "",
     };
   }
 
-  @Mutation('updateEmployee')
+  @Mutation("updateEmployee")
   async updateEmployee(
-    @Args('id') id: string,
-    @Args('name') name: string,
-    @Args('age') age: number,
-    @Args('sex') sex: string,
+    @Args("id") id: string,
+    @Args("name") name: string,
+    @Args("age") age: number,
+    @Args("sex") sex: string
   ) {
     employees.forEach((item) => {
       if (item.id === id) {
@@ -204,8 +200,8 @@ export class EmployeeResolver {
     };
   }
 
-  @Mutation('deleteEmployee')
-  async deleteEmployee(@Args('id') id: string) {
+  @Mutation("deleteEmployee")
+  async deleteEmployee(@Args("id") id: string) {
     employees = employees.filter((item) => item.id !== id);
     return {
       success: true,
@@ -213,13 +209,11 @@ export class EmployeeResolver {
     };
   }
 }
-
 ```
 
 接下来，我们只需要启动程序`pnpm run start:dev`，通过对应的路由，就能访问
 
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251221162720509.png)
-
 
 我们直接在后端开启跨域支持
 
@@ -231,12 +225,11 @@ async function bootstrap() {
 }
 ```
 
-这样，我们开启之前的**前端项目**，只需要修改一下url地址，就可以直接访问到了。
+这样，我们开启之前的**前端项目**，只需要修改一下 url 地址，就可以直接访问到了。
 
 ```typescript
 const client = new ApolloClient({
-  uri: 'http://localhost:3000/graphql',
+  uri: "http://localhost:3000/graphql",
   cache: new InMemoryCache(),
 });
 ```
-

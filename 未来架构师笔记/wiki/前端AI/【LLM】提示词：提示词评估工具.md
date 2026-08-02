@@ -4,6 +4,7 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
+
 [Promptfoo](https://www.promptfoo.dev/) 是一个专为提示词工程而设计的开源测试与评估工具，它允许你：
 
 - 配置多个提示词
@@ -31,18 +32,18 @@ npx promptfoo init
 
 ```yaml
 # 对本次 prompt 评估做一个简单的描述，比如你要测试什么内容、比较哪些提示词或模型。
-description: 'My eval'
+description: "My eval"
 
 # 定义两个提示词模板，它们都包含变量 {{topic}}
 # promptfoo 会自动将每个变量替换为 tests 中定义的具体值
 prompts:
-  - 'Write a tweet about {{topic}}'
-  - 'Write a concise, funny tweet about {{topic}}'
+  - "Write a tweet about {{topic}}"
+  - "Write a concise, funny tweet about {{topic}}"
 
 # 指定调用的模型提供者，支持多个。
 providers:
-  - 'openai:gpt-4o-mini'
-  - 'openai:gpt-4o'
+  - "openai:gpt-4o-mini"
+  - "openai:gpt-4o"
 
 # 定义每一组测试输入（变量）
 tests:
@@ -76,7 +77,7 @@ tests:
 | `llm-rubric` | 通过 LLM 自动判分（更智能） |
 
 ```js
-1 / (output.length + 1)
+1 / (output.length + 1);
 ```
 
 `output.length` 表示模型输出内容的字符数。加 1 是为了避免除以 0。整个式子是：**输出越长，分数越低；输出越短，分数越高。**
@@ -94,7 +95,7 @@ tests:
 promptfoo eval
 ```
 
-**在线模型配置Key**
+**在线模型配置 Key**
 
 1. OpenAI（GPT-3.5 / GPT-4 / GPT-4o）
 
@@ -139,12 +140,12 @@ ANTHROPIC_API_KEY=sk-ant-xxx...
 ```yaml
 prompts:
   - id: basic-summary
-    label: '基础总结'
-    raw: '请用一句话总结下面这段话：{{input}}'
+    label: "基础总结"
+    raw: "请用一句话总结下面这段话：{{input}}"
 
   - id: formal-summary
-    label: '正式语气总结'
-    raw: '请用正式、简洁的语气总结以下内容：{{input}}'
+    label: "正式语气总结"
+    raw: "请用正式、简洁的语气总结以下内容：{{input}}"
 
 providers:
   - id: ollama:llama3
@@ -152,18 +153,18 @@ providers:
 
 tests:
   - vars:
-      input: '小明今天早上迟到了，因为他错过了地铁。'
+      input: "小明今天早上迟到了，因为他错过了地铁。"
   - vars:
-      input: '天气预报说今天有雨，所以我们取消了郊游计划。'
+      input: "天气预报说今天有雨，所以我们取消了郊游计划。"
   - vars:
-      input: '这家咖啡馆的氛围很好，适合工作和学习。'
+      input: "这家咖啡馆的氛围很好，适合工作和学习。"
 
 eval:
   automatic:
     - type: keyword-match
       criteria:
-        - '总结'
-        - '简洁'
+        - "总结"
+        - "简洁"
 ```
 
 这份配置文件大致分为四大部分：
@@ -180,12 +181,12 @@ eval:         # 自动评分方式
 ```yaml
 prompts:
   - id: basic-summary
-    label: '基础总结'
-    raw: '请用一句话总结下面这段话：{{input}}'
+    label: "基础总结"
+    raw: "请用一句话总结下面这段话：{{input}}"
 
   - id: formal-summary
-    label: '正式语气总结'
-    raw: '请用正式、简洁的语气总结以下内容：{{input}}'
+    label: "正式语气总结"
+    raw: "请用正式、简洁的语气总结以下内容：{{input}}"
 ```
 
 说明如下：
@@ -219,11 +220,11 @@ providers:
 ```yaml
 tests:
   - vars:
-      input: '小明今天早上迟到了，因为他错过了地铁。'
+      input: "小明今天早上迟到了，因为他错过了地铁。"
   - vars:
-      input: '天气预报说今天有雨，所以我们取消了郊游计划。'
+      input: "天气预报说今天有雨，所以我们取消了郊游计划。"
   - vars:
-      input: '这家咖啡馆的氛围很好，适合工作和学习。'
+      input: "这家咖啡馆的氛围很好，适合工作和学习。"
 ```
 
 说明如下：
@@ -242,8 +243,8 @@ eval:
   automatic:
     - type: keyword-match
       criteria:
-        - '总结'
-        - '简洁'
+        - "总结"
+        - "简洁"
 ```
 
 说明如下：
@@ -290,7 +291,7 @@ Promptfoo 会把你的提示输出 + 输入内容 + rubric 一起打包发给 GP
 eval:
   automatic:
     - type: llm-rubric
-      rubric: '...'
+      rubric: "..."
       provider: openai:gpt-4
 ```
 
@@ -303,7 +304,7 @@ eval:
 ```yaml
 prompts:
   - id: good-job-title
-    label: '好提示词：具体要求 + 输出格式'
+    label: "好提示词：具体要求 + 输出格式"
     raw: |
       请根据以下岗位信息，撰写一句吸引人的招聘广告标题：
       - 以年轻人喜欢的口吻
@@ -313,7 +314,7 @@ prompts:
       {{input}}
 
   - id: bad-job-title
-    label: '坏提示词：无要求，模糊指令'
+    label: "坏提示词：无要求，模糊指令"
     raw: |
       写一句话。
 
@@ -322,11 +323,11 @@ providers:
 
 tests:
   - vars:
-      input: '我们是一家AI初创公司，正在招聘前端开发，技术栈为Vue和TypeScript，提供远程办公和股票期权。'
+      input: "我们是一家AI初创公司，正在招聘前端开发，技术栈为Vue和TypeScript，提供远程办公和股票期权。"
   - vars:
-      input: '本公司招聘客服专员，工作环境轻松，带薪培训，有下午茶。'
+      input: "本公司招聘客服专员，工作环境轻松，带薪培训，有下午茶。"
   - vars:
-      input: '招聘Python数据工程师，参与大模型推理平台建设，年薪40万起。'
+      input: "招聘Python数据工程师，参与大模型推理平台建设，年薪40万起。"
 
 eval:
   automatic:

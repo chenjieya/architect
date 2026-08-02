@@ -4,6 +4,7 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
+
 ## 1. 邓哥的新问题
 
 邓嫂出门时，给邓哥交待了几个任务：
@@ -26,55 +27,55 @@ updated: 2026-08-02
 
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20260224134720839.png)
 
-每个任务可以看做是一个返回Promise的函数
+每个任务可以看做是一个返回 Promise 的函数
 
 ```js
 // 做饭
 function cook() {
   return new Promise((resolve, reject) => {
-    console.log('邓哥打开了电饭煲')
+    console.log("邓哥打开了电饭煲");
     setTimeout(() => {
       if (Math.random() < 0.5) {
-        resolve('饭已ok')
+        resolve("饭已ok");
       } else {
-        reject('做饭却忘了加水，米饭变成了爆米花')
+        reject("做饭却忘了加水，米饭变成了爆米花");
       }
-    }, 2000)
-  })
+    }, 2000);
+  });
 }
 
 // 洗衣服
 function wash() {
   return new Promise((resolve, reject) => {
-    console.log('邓哥打开了洗衣机')
+    console.log("邓哥打开了洗衣机");
     setTimeout(() => {
       if (Math.random() < 0.5) {
-        resolve('衣服已经洗好')
+        resolve("衣服已经洗好");
       } else {
-        reject('洗衣服时停水了，洗了个寂寞')
+        reject("洗衣服时停水了，洗了个寂寞");
       }
-    }, 2500)
-  })
+    }, 2500);
+  });
 }
 
 // 打扫卫生
 function sweep() {
   return new Promise((resolve, reject) => {
-    console.log('邓哥打开了扫地机器人')
+    console.log("邓哥打开了扫地机器人");
     setTimeout(() => {
       if (Math.random() < 0.5) {
-        resolve('地板扫的非常干净')
+        resolve("地板扫的非常干净");
       } else {
-        reject('扫地机器人被哈士奇一爪掀翻了')
+        reject("扫地机器人被哈士奇一爪掀翻了");
       }
-    }, 3000)
-  })
+    }, 3000);
+  });
 }
 ```
 
 如何利用这三个函数实现邓哥的要求呢？
 
-## 2. Promise的静态方法
+## 2. Promise 的静态方法
 
 | 方法名                       | 含义                                                             |
 | ---------------------------- | ---------------------------------------------------------------- |
@@ -92,8 +93,8 @@ function sweep() {
 Promise.allSettled([cook(), wash(), sweep()]).then((result) => {
   // 处理汇总结果
   const report = result
-    .map((r) => (r.status === 'fulfilled' ? r.value : r.reason))
-    .join(';')
-  console.log(report)
-})
+    .map((r) => (r.status === "fulfilled" ? r.value : r.reason))
+    .join(";");
+  console.log(report);
+});
 ```

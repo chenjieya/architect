@@ -4,6 +4,7 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
+
 > 参考答案：
 >
 > cookie、sessionStorage、localStorage 都是保存本地数据的方式

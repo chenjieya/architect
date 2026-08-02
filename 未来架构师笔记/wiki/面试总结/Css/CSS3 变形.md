@@ -4,6 +4,7 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
+
 ## 1. 经典真题
 
 - 请简述一下 _CSS3_ 中新增的变形如何使用？
@@ -674,7 +675,7 @@ div {
   height: 200px;
   margin: 150px;
   transition: all 1s;
-  background: url('./ok.png') no-repeat;
+  background: url("./ok.png") no-repeat;
   background-position: center;
   background-size: contain;
 }
@@ -846,7 +847,7 @@ translate3d(tx, ty, tz)
   width: 300px;
   height: 200px;
   transition: all 1s;
-  background: url('./ok.png') no-repeat;
+  background: url("./ok.png") no-repeat;
   background-position: center;
   background-size: contain;
 }

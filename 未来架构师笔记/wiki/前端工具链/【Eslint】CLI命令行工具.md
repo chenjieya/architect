@@ -4,6 +4,7 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
+
 关于 CLI 命令行工具，我们在第一节课的时候就用到过一个：
 
 ```js
@@ -51,7 +52,7 @@ eslint src/**/*.js
 
 ## 1. 基本配置
 
-#### 1.1 `--no-eslintrc`
+#### 1.1.1 `--no-eslintrc`
 
 告诉 ESLint 忽略所有的配置文件，当你使用这个 option 的时候，ESLint 只会使用内置的规则集来对匹配上的文件进行检查
 
@@ -59,7 +60,7 @@ eslint src/**/*.js
 eslint --no-eslintrc .
 ```
 
-#### 1.2 `-c`, `--config`
+#### 1.1.2 `-c`, `--config`
 
 允许我们指定配置文件的路径
 
@@ -69,7 +70,7 @@ eslint -c ~/my-eslint.json file.js
 
 > ~ 在类 Unix 系统里面表示用户根目录
 
-#### 1.3 `--env`
+#### 1.1.3 `--env`
 
 该配置项允许我们指定一些环境，当指定了具体的环境之后，那么就会预设一些该环境下才会有的全局变量。
 
@@ -80,7 +81,7 @@ eslint --env browser --env node file.js
 
 在上面的 CLI 命令中，指定了 browser 以及 node 环境，指定了这两个环境之后，就会预设一些 window、process 之类的全局变量
 
-#### 1.4 `--ext`
+#### 1.1.4 `--ext`
 
 允许我们指定 ESLint 要检查的文件的扩展名，默认情况下，ESLint 只检查 js 文件。
 
@@ -90,7 +91,7 @@ eslint . --ext .js --ext .ts # 检查 js 和 ts 文件
 eslint . --ext .js,.ts # 和上面一样，换了一种写法
 ```
 
-#### 1.5 `--global`
+#### 1.1.5 `--global`
 
 该配置项允许我们定义全局变量。例如我们的项目使用到了 jQuery，但是这个 ESLint 是不认识的，所以这里我们就可以使用 global 来定义这个全局变量
 
@@ -98,13 +99,13 @@ eslint . --ext .js,.ts # 和上面一样，换了一种写法
 eslint --global jQuery:true .
 ```
 
-#### 1.6 `--parser`
+#### 1.1.6 `--parser`
 
 这个选项允许你指定一个自定义的 _JavaScript_ 解析器。默认情况下，_ESLint_ 使用 _Espree_，但是你可以使用其他的解析器。例如，你可以使用 _Babel-ESLint_，如果你的项目中使用了 _Babel_ 和 _ESLint_，你可以使用它来解析你的 _JavaScript_ 代码。
 
 ## 2. 特殊规则和插件的配置
 
-#### 2.1 `--plugin`
+#### 2.1.1 `--plugin`
 
 该配置项是用来指定要使用插件。
 
@@ -112,7 +113,7 @@ eslint --global jQuery:true .
 eslint --plugin jquery file.js # 指定使用 jquery 这个插件
 ```
 
-#### 2.2 `--rule`
+#### 2.1.2 `--rule`
 
 该配置项就是指定检查的规则，一般来讲，检查规则是写到配置文件里面。但是针对某些场景下单独的一两条规则要改变，可以使用这种方式
 
@@ -122,11 +123,11 @@ eslint --rule 'quotes: [error, double]' .
 
 ## 3. 自动修复
 
-#### 3.1 `--fix`
+#### 3.1.1 `--fix`
 
 表示自动修复，但是需要主要，不是所有的问题 ESLint 都可以帮你修复。
 
-#### 3.2 `--fix-type`
+#### 3.1.2 `--fix-type`
 
 允许你指定修复问题的类型，对应的值有 problem、suggestion、layout、directive
 
@@ -143,7 +144,7 @@ eslint --fix --fix-type suggestion --fix-type problem .
 
 ## 4. 忽略文件
 
-#### 4.1 `--ignore-path`
+#### 4.1.1 `--ignore-path`
 
 很明显是指定忽略文件的路径。
 
@@ -153,7 +154,7 @@ eslint --fix --fix-type suggestion --fix-type problem .
 eslint --ignore-path tmp/.eslintignore file.js
 ```
 
-#### 4.2 `--no-ignore`
+#### 4.1.2 `--no-ignore`
 
 忽略所有的忽略指令。本来 .eslintignore 文件里面记录了 ESLint 在进行检查的时候要忽略那鞋文件，当你用了这个指令之后，相当于你的 .eslintignore 文件失效了，里面记录的那些文件都要被 ESLint 检查
 
@@ -161,7 +162,7 @@ eslint --ignore-path tmp/.eslintignore file.js
 eslint --no-ignore .
 ```
 
-#### 4.3 `--ignore-pattern`
+#### 4.1.3 `--ignore-pattern`
 
 简单来说，就是将原本你应该写在 .eslintignore 里面的文件或者目录，写在了命令行里面
 
@@ -171,7 +172,7 @@ eslint --ignore-pattern "/lib/" --ignore-pattern "/src/vendor/*" .
 
 ## 5. 输出
 
-#### 5.1 `-o`, `--output-file`
+#### 5.1.1 `-o`, `--output-file`
 
 允许将 ESLint 的检查报告输出到一个文件里面
 
@@ -181,7 +182,7 @@ eslint -o report.txt .
 
 在上面的配置中，ESLint 会将最终的检查结果报告输出到 report.txt 的文件中
 
-#### 5.2 `-f`, `--format`
+#### 5.1.2 `-f`, `--format`
 
 正常情况下，ESLint 的检查报告在控制台进行输出，那么这个指令可以配置输出的格式
 
@@ -191,15 +192,15 @@ eslint -o report.txt .
 
 ## 6. 缓存
 
-#### 6.1 `--cache`
+#### 6.1.1 `--cache`
 
-该配置项表示在进行ESLint检查的时候，生成一个缓存文件 .eslintcache，缓存文件默认在当前目录下面，有了缓存文件之后，下一次 ESLint 在做检查的时候速度会更快
+该配置项表示在进行 ESLint 检查的时候，生成一个缓存文件 .eslintcache，缓存文件默认在当前目录下面，有了缓存文件之后，下一次 ESLint 在做检查的时候速度会更快
 
 ```bash
 eslint --cache .
 ```
 
-#### 6.2 `--cache-location`
+#### 6.1.2 `--cache-location`
 
 我们可以指定缓存文件的位置
 
@@ -207,7 +208,7 @@ eslint --cache .
 eslint "src/**/*.js" --cache --cache-location "/Users/user/.eslintcache/"
 ```
 
-#### 6.3 `--cache-strategy`
+#### 6.1.3 `--cache-strategy`
 
 指定生成缓存时的缓存策略，对应的策略值有两个：
 

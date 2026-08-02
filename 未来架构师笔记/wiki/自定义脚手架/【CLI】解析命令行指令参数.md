@@ -4,6 +4,7 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
+
 ## 1. 解析命令行指令参数
 
 [commander](https://www.npmjs.com/package/commander)
@@ -17,12 +18,12 @@ npm i commander
 ### 1.2 引入
 
 ```javascript
-const { program } = require('commander')
+const { program } = require("commander");
 
-program.version('1.0.0')
+program.version("1.0.0");
 
 // 利用commander解析命令行输入，必须写在所有内容最后面
-program.parse(process.argv)
+program.parse(process.argv);
 ```
 
 可以在终端运行命令：
@@ -34,51 +35,53 @@ $ app-cli -V
 默认是大写的`-V`，当然我们也能设置
 
 ```javascript
-program.version('1.0.0', '-v, --version')
+program.version("1.0.0", "-v, --version");
 ```
 
 ### 1.3 [Custom event listeners](https://www.npmjs.com/package/commander#custom-event-listeners)
 
 ```javascript
 program
-  .name('app-cli')
-  .description('自定义脚手架')
-  .usage('<command> [options]')
-  .on('--help', () => {
+  .name("app-cli")
+  .description("自定义脚手架")
+  .usage("<command> [options]")
+  .on("--help", () => {
     console.log(
-      '\r\n' +
+      "\r\n" +
         chalk.greenBright.bold(
-          figlet.textSync('app-cli', {
-            font: 'Standard',
-            horizontalLayout: 'default',
-            verticalLayout: 'default',
+          figlet.textSync("app-cli", {
+            font: "Standard",
+            horizontalLayout: "default",
+            verticalLayout: "default",
             width: 80,
             whitespaceBreak: true,
-          }),
-        ),
-    )
+          })
+        )
+    );
     console.log(
-      `\r\nRun ${chalk.cyan(`app-cli <command> --help`)} for detailed usage of given command\r\n`,
-    )
-  })
+      `\r\nRun ${chalk.cyan(
+        `app-cli <command> --help`
+      )} for detailed usage of given command\r\n`
+    );
+  });
 ```
 
 ### 1.4 [Commands](https://www.npmjs.com/package/commander#commands)
 
 ```javascript
 program
-  .command('create <app-name>')
-  .description('创建新项目')
-  .option('-t, --template [template]', '输入模板名称创建项目')
-  .option('-f, --force', '强制覆盖本地同名项目')
-  .option('-i, --ignore', '忽略项目相关描述,快速创建项目')
+  .command("create <app-name>")
+  .description("创建新项目")
+  .option("-t, --template [template]", "输入模板名称创建项目")
+  .option("-f, --force", "强制覆盖本地同名项目")
+  .option("-i, --ignore", "忽略项目相关描述,快速创建项目")
   .action((name, option) => {
-    console.log(name)
-    console.log(option)
-  })
+    console.log(name);
+    console.log(option);
+  });
 ```
 
-我们可以创建一些模板便于查看，这些模板其实就是已经上传到github的模板工程
+我们可以创建一些模板便于查看，这些模板其实就是已经上传到 github 的模板工程
 
 **constants.js**
 
@@ -86,21 +89,21 @@ program
 // constants.js
 export const templates = [
   {
-    name: 'webpack-template',
-    value: 'yingside/webpack-template',
-    desc: '基于webpack5的vue3项目模板',
+    name: "webpack-template",
+    value: "yingside/webpack-template",
+    desc: "基于webpack5的vue3项目模板",
   },
   {
-    name: 'vue-cli-template',
-    value: 'yingside/vue-cli-template',
-    desc: '基于vue-cli4的vue3项目模板',
+    name: "vue-cli-template",
+    value: "yingside/vue-cli-template",
+    desc: "基于vue-cli4的vue3项目模板",
   },
   {
-    name: 'vite-template',
-    value: 'yingside/vite-template',
-    desc: '基于vite的vue3 + 前端工具链项目模板',
+    name: "vite-template",
+    value: "yingside/vite-template",
+    desc: "基于vite的vue3 + 前端工具链项目模板",
   },
-]
+];
 ```
 
 添加查看所有模板的`command`命令`list`

@@ -5,11 +5,11 @@ updated_by: human
 updated: 2026-08-02
 ---
 
-在某些特殊业务场景中，开发人员可能会选择手动记录日志，但是在处理请求、响应和捕获服务异常等等常见场景时，手动记录日志可能效率较低。为了减少冗余的日志代码并且统一日志格式，通常会采用全局日志记录的策略，比如通过AOP的方式来实现。
+在某些特殊业务场景中，开发人员可能会选择手动记录日志，但是在处理请求、响应和捕获服务异常等等常见场景时，手动记录日志可能效率较低。为了减少冗余的日志代码并且统一日志格式，通常会采用全局日志记录的策略，比如通过 AOP 的方式来实现。
 
 ## 1. 中间件日志统计
 
-在Nest中，中间件可以在路由处理程序之前或者之后执行函数。它们可以操作请求和响应对象，或者执行其他运行时确定的任务。一般情况下，中间件可以用于收集请求参数、请求体、请求方法、IP地址等等信息，这些信息对于后续的问题排查也是比较重要的。
+在 Nest 中，中间件可以在路由处理程序之前或者之后执行函数。它们可以操作请求和响应对象，或者执行其他运行时确定的任务。一般情况下，中间件可以用于收集请求参数、请求体、请求方法、IP 地址等等信息，这些信息对于后续的问题排查也是比较重要的。
 
 我们可以实现一个日志记录的中间件，为了统一，创建一个`common`的文件夹，我们不同的拦截操作文件都放在这里面，在这个文件夹下创建中间件，直接使用命令：
 
@@ -18,9 +18,9 @@ nest g mi logger --flat --no-spec
 ```
 
 ```typescript
-import { Inject, Injectable, NestMiddleware } from '@nestjs/common';
-import { NextFunction, Request, Response } from 'express';
-import { MyLogger } from 'src/logger/MyLogger';
+import { Inject, Injectable, NestMiddleware } from "@nestjs/common";
+import { NextFunction, Request, Response } from "express";
+import { MyLogger } from "src/logger/MyLogger";
 
 @Injectable()
 export class LoggerMiddleware implements NestMiddleware {
@@ -43,17 +43,17 @@ export class LoggerMiddleware implements NestMiddleware {
     next();
 
     if (statusCode >= 500) {
-      this.logger.error(logFormat, 'Request LoggerMiddleware');
+      this.logger.error(logFormat, "Request LoggerMiddleware");
     } else if (statusCode >= 400) {
-      this.logger.warn(logFormat, 'Request LoggerMiddleware');
+      this.logger.warn(logFormat, "Request LoggerMiddleware");
     } else {
-      this.logger.log(logFormat, 'Request LoggerMiddleware');
+      this.logger.log(logFormat, "Request LoggerMiddleware");
     }
   }
 }
 ```
 
-为了中间件应用于所有路由上，可以在AppModule上进行处理：
+为了中间件应用于所有路由上，可以在 AppModule 上进行处理：
 
 ```typescript
 @Module({
@@ -63,7 +63,7 @@ export class LoggerMiddleware implements NestMiddleware {
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
-    consumer.apply(LoggerMiddleware).forRoutes('*');
+    consumer.apply(LoggerMiddleware).forRoutes("*");
   }
 }
 ```
@@ -72,12 +72,11 @@ export class AppModule implements NestModule {
 
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251221162341628.png)
 
-
 ## 2. 拦截器日志统计
 
-同样，我们可以使用拦截器实现HTTP响应成功的日志功能。
+同样，我们可以使用拦截器实现 HTTP 响应成功的日志功能。
 
-同样在common文件夹下，使用命令直接创建拦截器
+同样在 common 文件夹下，使用命令直接创建拦截器
 
 ```shell
 nest g itc response --flat --no-spec
@@ -90,9 +89,9 @@ import {
   Inject,
   Injectable,
   NestInterceptor,
-} from '@nestjs/common';
-import { map, Observable } from 'rxjs';
-import { MyLogger } from 'src/logger/MyLogger';
+} from "@nestjs/common";
+import { map, Observable } from "rxjs";
+import { MyLogger } from "src/logger/MyLogger";
 
 @Injectable()
 export class ResponseInterceptor implements NestInterceptor {
@@ -111,15 +110,15 @@ export class ResponseInterceptor implements NestInterceptor {
         Response data: ${JSON.stringify(data)}
         ############################################################
         `;
-        this.logger.log(logFormat, 'Response LoggerInterceptor');
+        this.logger.log(logFormat, "Response LoggerInterceptor");
         return data;
-      }),
+      })
     );
   }
 }
 ```
 
-在AppModule中注册拦截器
+在 AppModule 中注册拦截器
 
 ```diff
 +import { ResponseInterceptor } from './common/response.interceptor';
@@ -145,18 +144,17 @@ export class AppModule implements NestModule {
 
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251221162358389.png)
 
-
 ## 3. 过滤器日志统计
 
-过滤器也常常用来进行统计日志，比如Http的异常信息收集，同样，我们在common文件夹下创建filter过滤器
+过滤器也常常用来进行统计日志，比如 Http 的异常信息收集，同样，我们在 common 文件夹下创建 filter 过滤器
 
 ```typescript
 nest g f http-exception --flat --no-spec
 ```
 
 ```typescript
-import { ArgumentsHost, Catch, ExceptionFilter, Inject } from '@nestjs/common';
-import { MyLogger } from 'src/logger/MyLogger';
+import { ArgumentsHost, Catch, ExceptionFilter, Inject } from "@nestjs/common";
+import { MyLogger } from "src/logger/MyLogger";
 
 @Catch()
 export class HttpExceptionFilter implements ExceptionFilter {
@@ -180,18 +178,18 @@ export class HttpExceptionFilter implements ExceptionFilter {
     }
     ############################################################
     `;
-    this.logger.error(logFormat, 'HttpExceptionFilter');
+    this.logger.error(logFormat, "HttpExceptionFilter");
     response.status(status).json({
       code: status,
       timestamp: new Date().toLocaleString(),
       error: exceptionResponse?.message || exception.message,
-      msg: `${status >= 500 ? 'Service Error' : 'Client Error'}`,
+      msg: `${status >= 500 ? "Service Error" : "Client Error"}`,
     });
   }
 }
 ```
 
-同样，在AppModule上应用
+同样，在 AppModule 上应用
 
 ```typescript
 @Module({
@@ -213,12 +211,12 @@ export class HttpExceptionFilter implements ExceptionFilter {
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
-    consumer.apply(LoggerMiddleware).forRoutes('*');
+    consumer.apply(LoggerMiddleware).forRoutes("*");
   }
 }
 ```
 
-稍微修改一下Controller
+稍微修改一下 Controller
 
 ```typescript
 @Get('hello')
@@ -233,7 +231,6 @@ getHello2(@Query() name: string): string {
 ```
 
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251221162419041.png)
-
 
 后台打印：
 

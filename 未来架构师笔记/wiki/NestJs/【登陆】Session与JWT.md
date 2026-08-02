@@ -4,7 +4,8 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
-## 1. Nest中实现Session与JWT
+
+## 1. Nest 中实现 Session 与 JWT
 
 创建项目：
 
@@ -18,24 +19,23 @@ nest n nest-session-jwt -g -p pnpm
 pnpm add express-session @types/express-session
 ```
 
-
 ### 1.1 Session
 
-启用session：
+启用 session：
 
 ```typescript
-import { NestFactory } from '@nestjs/core';
-import { AppModule } from './app.module';
-import session from 'express-session';
+import { NestFactory } from "@nestjs/core";
+import { AppModule } from "./app.module";
+import session from "express-session";
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.use(
     session({
-      secret: 'my-secret',
+      secret: "my-secret",
       resave: false,
       saveUninitialized: false,
-    }),
+    })
   );
   await app.listen(process.env.PORT ?? 3000);
 }
@@ -46,12 +46,12 @@ bootstrap();
 - resave：是否强制保存每个请求的 session，即使 session 没有修改过。设置为 `false` 可以减少不必要的 session 保存操作，提高性能。
 - saveUninitialized：是否保存未初始化的 session（即新建的 session 对象，但是没有设置任何数据）。通常设为 `false`，以防止存储不必要的 session。
 
-在controller中测试一下：
+在 controller 中测试一下：
 
 ```typescript
-import { Controller, Get, Req, Session } from '@nestjs/common';
-import { AppService } from './app.service';
-import { Request } from 'express';
+import { Controller, Get, Req, Session } from "@nestjs/common";
+import { AppService } from "./app.service";
+import { Request } from "express";
 
 @Controller()
 export class AppController {
@@ -62,14 +62,14 @@ export class AppController {
     return this.appService.getHello();
   }
 
-  @Get('session1')
+  @Get("session1")
   getSession(@Session() session: Record<string, any>) {
     console.log(session);
     session.views = session.views ? session.views + 1 : 1;
     return session.views;
   }
 
-  @Get('session2')
+  @Get("session2")
   getSession2(@Req() req: Request) {
     const session = req.session;
     console.log(session);
@@ -79,13 +79,13 @@ export class AppController {
 }
 ```
 
-上面用了两种方式获取Session，随便哪种都可以，只是下面的方式TS我处理的更加细节一些，如果这样的话，需要扩充session的类型声明，可以自己在src下创建types文件夹，创建相关的`.d.ts`文件，比如`express-session.d.ts`
+上面用了两种方式获取 Session，随便哪种都可以，只是下面的方式 TS 我处理的更加细节一些，如果这样的话，需要扩充 session 的类型声明，可以自己在 src 下创建 types 文件夹，创建相关的`.d.ts`文件，比如`express-session.d.ts`
 
 ```typescript
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { Session } from 'express-session';
+import { Session } from "express-session";
 
-declare module 'express-session' {
+declare module "express-session" {
   // 通过扩展 Session 类来修改 SessionData
   interface SessionData {
     user: {
@@ -99,28 +99,27 @@ declare module 'express-session' {
 
 引入`Session`类是因为`SessionData`本身其实是 `Session` 类中的一个接口，所以如果你要扩展 `SessionData`，你需要引用它所依赖的 `Session` 类，或者正确地声明 `SessionData`，才能确保 TypeScript 正确地推断出它的类型
 
-
 ### 1.2 JWT
 
-接下来是JWT，JWT需要引入`@nestjs/jwt`包
+接下来是 JWT，JWT 需要引入`@nestjs/jwt`包
 
 ```shell
 pnpm add @nestjs/jwt
 ```
 
-然后在App模块中引入JWT
+然后在 App 模块中引入 JWT
 
 ```typescript
-import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { JwtModule } from '@nestjs/jwt';
+import { Module } from "@nestjs/common";
+import { AppController } from "./app.controller";
+import { AppService } from "./app.service";
+import { JwtModule } from "@nestjs/jwt";
 
 @Module({
   imports: [
     JwtModule.register({
-      secret: 'secretKey',
-      signOptions: { expiresIn: '7d' },
+      secret: "secretKey",
+      signOptions: { expiresIn: "7d" },
     }),
   ],
   controllers: [AppController],
@@ -129,7 +128,7 @@ import { JwtModule } from '@nestjs/jwt';
 export class AppModule {}
 ```
 
-简单指定secret密钥和过期时间，然后在controller中注入`JwtService`
+简单指定 secret 密钥和过期时间，然后在 controller 中注入`JwtService`
 
 ```typescript
 import {
@@ -141,10 +140,10 @@ import {
   Res,
   Session,
   UnauthorizedException,
-} from '@nestjs/common';
-import { AppService } from './app.service';
-import { Request, Response } from 'express';
-import { JwtService } from '@nestjs/jwt';
+} from "@nestjs/common";
+import { AppService } from "./app.service";
+import { Request, Response } from "express";
+import { JwtService } from "@nestjs/jwt";
 
 @Controller()
 export class AppController {
@@ -153,26 +152,26 @@ export class AppController {
 
   constructor(private readonly appService: AppService) {}
 
-  @Get('jwt1')
+  @Get("jwt1")
   getJwt1(@Res({ passthrough: true }) res: Response) {
     const token = this.jwtService.sign({ count: 1 });
-    res.setHeader('Authorization', `Bearer ${token}`);
-    return 'hello jwt1';
+    res.setHeader("Authorization", `Bearer ${token}`);
+    return "hello jwt1";
   }
 
-  @Get('jwt2')
+  @Get("jwt2")
   getJwt2(
-    @Headers('authorization') authorization: string,
-    @Res({ passthrough: true }) res: Response,
+    @Headers("authorization") authorization: string,
+    @Res({ passthrough: true }) res: Response
   ) {
     console.log(authorization);
     if (authorization) {
       try {
-        const token = authorization.split(' ')[1];
+        const token = authorization.split(" ")[1];
         const payload = this.jwtService.verify(token);
 
         const newToken = this.jwtService.sign({ count: payload.count + 1 });
-        res.setHeader('Authorization', `Bearer ${newToken}`);
+        res.setHeader("Authorization", `Bearer ${newToken}`);
       } catch (e) {
         console.log(e);
         throw new UnauthorizedException();
@@ -181,10 +180,9 @@ export class AppController {
       throw new UnauthorizedException();
     }
 
-    return 'hello jwt2';
+    return "hello jwt2";
   }
 }
-
 ```
 
-> 在Authorization头信息前面加上Bearer，主要是**OAuth 2.0** 规范（[RFC 6750](https://datatracker.ietf.org/doc/html/rfc6750)）明确规定了 **使用 `Bearer` 作为令牌类型**
+> 在 Authorization 头信息前面加上 Bearer，主要是**OAuth 2.0** 规范（[RFC 6750](https://datatracker.ietf.org/doc/html/rfc6750)）明确规定了 **使用 `Bearer` 作为令牌类型**

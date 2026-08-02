@@ -4,11 +4,12 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
+
 ## 1. 数据库核心概念
 
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20260707211449145.png)
 
-## 2. 什么是SQL
+## 2. 什么是 SQL
 
 SQL（Structured Query Language，结构化查询语言）是操作关系型数据库的标准语言。无论使用 PostgreSQL、MySQL 还是 Oracle，SQL 的语法都高度通用。
 
@@ -19,7 +20,7 @@ SQL 主要做两件事：
 
 ---
 
-## 3. SQL的细分
+## 3. SQL 的细分
 
 | 分类    | 全称                         | 作用                               | 常见关键字                                 |
 | ------- | ---------------------------- | ---------------------------------- | ------------------------------------------ |
@@ -28,11 +29,11 @@ SQL 主要做两件事：
 | **DCL** | Data Control Language        | **数据控制**，管理用户和权限       | `GRANT`、`REVOKE`                          |
 | **TCL** | Transaction Control Language | **事务控制**，管理事务             | `BEGIN`、`COMMIT`、`ROLLBACK`、`SAVEPOINT` |
 
-> 要操作数据，先得有存放数据的结构。所以学习顺序是 **DDL → DML**，先建表，再操作数据。
+> 要操作数据，先得有存放数据的结构。所以学习顺序是  **DDL → DML**，先建表，再操作数据。
 
 ---
 
-## 4. DDL语言
+## 4. DDL 语言
 
 DDL 操作的是**结构**而非数据，包括：数据库的创建删除、表的创建修改删除等。
 
@@ -77,27 +78,27 @@ CREATE TABLE students (
 
 #### 4.2.1 常见数据类型
 
-| 类型               | 说明                                    | 示例                                |
-| ------------------ | --------------------------------------- | ----------------------------------- |
-| `INTEGER` / `INT`  | 整数（4字节）                           | `age INT`                           |
-| `BIGINT`           | 大整数（8字节）                         | `views BIGINT`                      |
-| `SMALLINT`         | 小整数（2字节）                         | `quantity SMALLINT`                 |
-| `SERIAL`           | 自增整数（相当于 `INTEGER` + 自动序列） | `id SERIAL`                         |
-| `BIGSERIAL`        | 自增大整数                              | `id BIGSERIAL`                      |
-| `NUMERIC(m, n)`    | 定点数，m总位数，n小数位，**精确存储**  | `price NUMERIC(10,2)`               |
-| `REAL`             | 浮点数（4字节），不精确                 | `rate REAL`                         |
-| `DOUBLE PRECISION` | 双精度浮点数（8字节）                   | `score DOUBLE PRECISION`            |
-| `VARCHAR(n)`       | 变长字符串，最大n字符                   | `name VARCHAR(50)`                  |
-| `CHAR(n)`          | 定长字符串，不足补空格                  | `code CHAR(3)`                      |
-| `TEXT`             | 不限长度字符串                          | `description TEXT`                  |
-| `BOOLEAN`          | 布尔值，true/false                      | `is_active BOOLEAN`                 |
-| `DATE`             | 日期（年月日）                          | `birth DATE`                        |
-| `TIMESTAMP`        | 日期+时间，不带时区                     | `created_at TIMESTAMP`              |
-| `TIMESTAMPTZ`      | 日期+时间，**带时区**                   | `updated_at TIMESTAMPTZ`            |
-| `TIME`             | 时间（时分秒）                          | `start_time TIME`                   |
-| `JSON`             | JSON 数据（文本存储）                   | `meta JSON`                         |
-| `JSONB`            | **二进制** JSON，支持索引和高效查询     | `data JSONB`                        |
-| `UUID`             | 通用唯一标识符                          | `id UUID DEFAULT gen_random_uuid()` |
+| 类型               | 说明                                     | 示例                                |
+| ------------------ | ---------------------------------------- | ----------------------------------- |
+| `INTEGER` / `INT`  | 整数（4 字节）                           | `age INT`                           |
+| `BIGINT`           | 大整数（8 字节）                         | `views BIGINT`                      |
+| `SMALLINT`         | 小整数（2 字节）                         | `quantity SMALLINT`                 |
+| `SERIAL`           | 自增整数（相当于  `INTEGER` + 自动序列） | `id SERIAL`                         |
+| `BIGSERIAL`        | 自增大整数                               | `id BIGSERIAL`                      |
+| `NUMERIC(m, n)`    | 定点数，m 总位数，n 小数位，**精确存储** | `price NUMERIC(10,2)`               |
+| `REAL`             | 浮点数（4 字节），不精确                 | `rate REAL`                         |
+| `DOUBLE PRECISION` | 双精度浮点数（8 字节）                   | `score DOUBLE PRECISION`            |
+| `VARCHAR(n)`       | 变长字符串，最大 n 字符                  | `name VARCHAR(50)`                  |
+| `CHAR(n)`          | 定长字符串，不足补空格                   | `code CHAR(3)`                      |
+| `TEXT`             | 不限长度字符串                           | `description TEXT`                  |
+| `BOOLEAN`          | 布尔值，true/false                       | `is_active BOOLEAN`                 |
+| `DATE`             | 日期（年月日）                           | `birth DATE`                        |
+| `TIMESTAMP`        | 日期+时间，不带时区                      | `created_at TIMESTAMP`              |
+| `TIMESTAMPTZ`      | 日期+时间，**带时区**                    | `updated_at TIMESTAMPTZ`            |
+| `TIME`             | 时间（时分秒）                           | `start_time TIME`                   |
+| `JSON`             | JSON 数据（文本存储）                    | `meta JSON`                         |
+| `JSONB`            | **二进制** JSON，支持索引和高效查询      | `data JSONB`                        |
+| `UUID`             | 通用唯一标识符                           | `id UUID DEFAULT gen_random_uuid()` |
 
 ---
 
@@ -170,7 +171,7 @@ ALTER TABLE students RENAME COLUMN score TO total_score;
 ALTER TABLE students RENAME TO pupils;
 ```
 
-> **思考：** 修改列的数据类型时，如果已有数据，数据库会尝试做隐式转换。转换失败会报错。
+> **思考：**  修改列的数据类型时，如果已有数据，数据库会尝试做隐式转换。转换失败会报错。
 
 ---
 
@@ -224,14 +225,14 @@ TRUNCATE TABLE students, orders;
 
 ## 6. 作业
 
-让AI帮你生成SQL语句，完成下面的功能
+让 AI 帮你生成 SQL 语句，完成下面的功能
 
 > 建议提示词：
 >
-> 接下来我需要做一些数据库的操作，数据库的类型是PostgreSQL，版本是16。请你根据我的要求生成相应的SQL语句，我会将你的语句复制下来，到数据库中去执行。如果你准备好了，就请回复准备好了。
+> 接下来我需要做一些数据库的操作，数据库的类型是 PostgreSQL，版本是 16。请你根据我的要求生成相应的 SQL 语句，我会将你的语句复制下来，到数据库中去执行。如果你准备好了，就请回复准备好了。
 
-1. 创建一个 `courses_db` 数据库
-2. 创建 `students` 表，包含姓名、年龄、性别
-3. 创建 `courses` 表，包含课程名称、课程描述、授课老师
-4. 请进入docker容器pg16，导出`courses_db`数据库为`SQL`，只需要干干净净的建表语句即可，我会直接复制语句到`pgadmin`中执行
+1. 创建一个  `courses_db`  数据库
+2. 创建  `students`  表，包含姓名、年龄、性别
+3. 创建  `courses`  表，包含课程名称、课程描述、授课老师
+4. 请进入 docker 容器 pg16，导出`courses_db`数据库为`SQL`，只需要干干净净的建表语句即可，我会直接复制语句到`pgadmin`中执行
 5. 【人工】请删除并重建干净的数据库，并使用导出的`SQL`恢复

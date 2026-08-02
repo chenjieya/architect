@@ -4,6 +4,7 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
+
 > 面试题：说一说 Vue3 响应式相较于 Vue2 是否有改变？如果有，那么说一下具体有哪些改变？
 
 **1. 变化一**
@@ -74,17 +75,17 @@ function createReactiveObject(
   isReadonly: boolean,
   baseHandlers: ProxyHandler<any>,
   collectionHandlers: ProxyHandler<any>,
-  proxyMap: WeakMap<Target, any>,
+  proxyMap: WeakMap<Target, any>
 ) {
   // ...
 
   // 创建 Proxy 代理对象
   const proxy = new Proxy(
     target,
-    targetType === TargetType.COLLECTION ? collectionHandlers : baseHandlers,
-  )
-  proxyMap.set(target, proxy)
-  return proxy
+    targetType === TargetType.COLLECTION ? collectionHandlers : baseHandlers
+  );
+  proxyMap.set(target, proxy);
+  return proxy;
 }
 
 export function reactive(target: object) {
@@ -95,8 +96,8 @@ export function reactive(target: object) {
     false,
     mutableHandlers,
     mutableCollectionHandlers,
-    reactiveMap,
-  )
+    reactiveMap
+  );
 }
 ```
 
@@ -105,6 +106,7 @@ export function reactive(target: object) {
 依赖收集上面的变化：
 
 - Vue2：Watcher + Dep
+
   - 每个响应式属性都有一个 Dep 实例，用于做依赖收集，内部包含了一个数组，存储依赖这个属性的所有 watcher
   - 当属性值发生变化，dep 就会通知所有的 watcher 去做更新操作
 
@@ -112,7 +114,7 @@ export function reactive(target: object) {
   - Vue3 的依赖收集粒度更细
   - WeakMap 键对应的是响应式对象，值是一个 Map，这个 Map 的键是该对象的属性，值是一个 Set，Set 里面存储了所有依赖于这个属性的 effect 函数
 
-总结起来，Vue3相比Vue2的依赖追踪粒度更细，Vue2依赖收集收集的是具体的Watcher（组件），Vue3依赖收集收集的是对应的副作用函数。
+总结起来，Vue3 相比 Vue2 的依赖追踪粒度更细，Vue2 依赖收集收集的是具体的 Watcher（组件），Vue3 依赖收集收集的是对应的副作用函数。
 
 > 面试题：说一说 Vue3 响应式相较于 Vue2 是否有改变？如果有，那么说一下具体有哪些改变？
 >

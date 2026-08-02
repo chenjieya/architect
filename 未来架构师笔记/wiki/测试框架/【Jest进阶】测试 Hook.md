@@ -4,7 +4,8 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
-在进行 React 开发的时候，还有一个非常重要的功能模块，那就是 *Hook*，自定义 Hook 作为一块公共逻辑的抽离，也会像组件一样被用到多个地方，因此对 Hook 的测试也是非常有必要的。
+
+在进行 React 开发的时候，还有一个非常重要的功能模块，那就是 _Hook_，自定义 Hook 作为一块公共逻辑的抽离，也会像组件一样被用到多个地方，因此对 Hook 的测试也是非常有必要的。
 
 Hook 没有办法像普通函数一样直接进行测试，因为在 React 中规中，Hook 必须要在组件里面使用，否则会报错。
 
@@ -108,7 +109,6 @@ function useCounter(initialValue = 0, options: Options = {}) {
 }
 
 export default useCounter;
-
 ```
 
 接下来我们要对这个自定义 Hook 进行一个测试，对应的测试代码如下：
@@ -195,7 +195,6 @@ test("可以设置最小值", () => {
   // Assert（断言）
   expect(result.current[0]).toEqual(-100);
 });
-
 ```
 
 首先我们使用到了 renderHook，这个方法的背后，会去渲染一个测试组件，在组件中可以使用自定义 hook，从 renderHook 的返回值中可以解构出自定义 Hook 中返回的状态值以及修改状态值的方法。
@@ -209,20 +208,20 @@ test("可以设置最小值", () => {
 经过测试之后，就可以证明我们这个自定义 Hook 是没有问题，自然在组件中进行使用的时候也不会有任何问题：
 
 ```tsx
-import './App.css';
+import "./App.css";
 import useCounter from "./hooks/useCounter";
 function App() {
-  const [current, {inc, dec, set, reset}] = useCounter(5, {
-    min : 0,
-    max : 10
+  const [current, { inc, dec, set, reset }] = useCounter(5, {
+    min: 0,
+    max: 10,
   });
   return (
     <div className="App">
       <div>{current}</div>
-      <button onClick={()=>dec(1)}>-</button>
-      <button onClick={()=>inc(1)}>+</button>
-      <button onClick={()=>set(100)}>set</button>
-      <button onClick={()=>reset()}>reset</button>
+      <button onClick={() => dec(1)}>-</button>
+      <button onClick={() => inc(1)}>+</button>
+      <button onClick={() => set(100)}>set</button>
+      <button onClick={() => reset()}>reset</button>
     </div>
   );
 }
@@ -230,30 +229,28 @@ function App() {
 export default App;
 ```
 
-## 2. 测试异步的 Hook 
+## 2. 测试异步的 Hook
 
 有些时候我们的 Hook 会包含一些异步的代码，例如我们对上面的计数器进行一个修改，增加异步的方法，如下：
 
 ```ts
 const asyncInc = (delta = 1) => {
-    setTimeout(()=>{
-        setValue((c) => c + delta);
-    }, 2000);
-  };
+  setTimeout(() => {
+    setValue((c) => c + delta);
+  }, 2000);
+};
 ```
 
 之后在进行测试的时候，就可以使用前面我们所学过的 fakeTime 来模拟时间流逝，代码如下：
 
 ```ts
-test("测试异步的增加",async ()=>{
-    jest.useFakeTimers();
-    const {result} = renderHook(()=>useCounter(0));
-    act(() => result.current[1].asyncInc(2));
-    expect(result.current[0]).toEqual(0);
-    await act(()=>jest.advanceTimersByTime(2000));
-    expect(result.current[0]).toEqual(2);
-    jest.useRealTimers();
+test("测试异步的增加", async () => {
+  jest.useFakeTimers();
+  const { result } = renderHook(() => useCounter(0));
+  act(() => result.current[1].asyncInc(2));
+  expect(result.current[0]).toEqual(0);
+  await act(() => jest.advanceTimersByTime(2000));
+  expect(result.current[0]).toEqual(2);
+  jest.useRealTimers();
 });
 ```
-
-

@@ -4,6 +4,7 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
+
 关于 babel 所提供的 CLI，你可以在 https://babeljs.io/docs/babel-cli 看到所有所支持的 CLI 命令。
 
 要使用 CLI 命令，首先第一步是安装：

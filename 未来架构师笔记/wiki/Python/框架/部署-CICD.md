@@ -4,17 +4,18 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
-CI/CD 的全称是 **持续集成**（**Continuous Integration**）和 **持续交付**（**Continuous Delivery**）。
 
-## 1. 创建CICD的镜像环境
+CI/CD 的全称是  **持续集成**（**Continuous Integration**）和  **持续交付**（**Continuous Delivery**）。
+
+## 1. 创建 CICD 的镜像环境
 
 下载镜像到本地
 
-通过网盘分享的文件：python框架 链接: [https://pan.baidu.com/s/1y_wrznlLD4AkmOwZANhT4A?pwd=t61z](https://pan.baidu.com/s/1y_wrznlLD4AkmOwZANhT4A?pwd=t61z) 提取码: t61z --来自百度网盘超级会员v7的分享
+通过网盘分享的文件：python 框架 链接: [https://pan.baidu.com/s/1y_wrznlLD4AkmOwZANhT4A?pwd=t61z](https://pan.baidu.com/s/1y_wrznlLD4AkmOwZANhT4A?pwd=t61z)  提取码: t61z --来自百度网盘超级会员 v7 的分享
 
 ### 1.1 CI
 
-1. ACR创建新的镜像仓库：app-service-ci
+1. ACR 创建新的镜像仓库：app-service-ci
 2. 推送镜像到仓库：
 
    ```shell
@@ -28,7 +29,7 @@ CI/CD 的全称是 **持续集成**（**Continuous Integration**）和 **持�
 
 ### 1.2 CD
 
-1. ACR创建新的镜像仓库：app-service-cd
+1. ACR 创建新的镜像仓库：app-service-cd
 2. 推送镜像到仓库
 
    ```shell
@@ -40,9 +41,9 @@ CI/CD 的全称是 **持续集成**（**Continuous Integration**）和 **持�
    docker push 复制仓库公网地址:latest
    ```
 
-### 1.3 python环境
+### 1.3 python 环境
 
-1. ACR创建新的镜像仓库：python
+1. ACR 创建新的镜像仓库：python
 2. 推送镜像
 
    ```shell
@@ -60,25 +61,23 @@ CI/CD 的全称是 **持续集成**（**Continuous Integration**）和 **持�
 git remote add origin <仓库SSH地址>
 ```
 
-### 2.1 创建CI流水线
+### 2.1 创建 CI 流水线
 
 1. 创建流水线
 2. 触发方式选择：代码提交
-3. 阶段1添加CI任务
-   4. 使用自定义的镜像源
-   5. 添加执行命令步骤
+3. 阶段 1 添加 CI 任务 4. 使用自定义的镜像源 5. 添加执行命令步骤
 
-      ```shell
-      uv sync --frozen --all-packages
-      # make test
-      # make test-e2e
-      # make test-smoke
-      make test-unit
-      ```
+   ```shell
+   uv sync --frozen --all-packages
+   # make test
+   # make test-e2e
+   # make test-smoke
+   make test-unit
+   ```
 
    6. 添加通知插件
 
-### 2.2 创建CD流水线
+### 2.2 创建 CD 流水线
 
 可以实际操作验证
 
@@ -86,17 +85,17 @@ git remote add origin <仓库SSH地址>
 
 需要准备的环境变量：
 
-- KUBECONFIG_BASE64：k8s config 的base64编码
+- KUBECONFIG_BASE64：k8s config 的 base64 编码
   ```shell
   cat ~/.kube/config | base64
   ```
 - ACR_USERNAME: 阿里云的账号
-- ACR_PASSWORD：ACR密码
-- DOCKER_SERVER：ACR的仓库专用网络地址
+- ACR_PASSWORD：ACR 密码
+- DOCKER_SERVER：ACR 的仓库专用网络地址
 - DB_PASSWORD: 数据库密码
-- JWT_SECRET_KEY：JWT密钥
+- JWT_SECRET_KEY：JWT 密钥
 
-CD执行的命令
+CD 执行的命令
 
 ```shell
 # 写入 kubeconfig

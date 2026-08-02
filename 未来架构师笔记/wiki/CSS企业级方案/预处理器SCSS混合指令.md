@@ -95,7 +95,7 @@ div {
   @include header-text;
 }
 
-p{
+p {
   @include compound;
 }
 ```
@@ -106,8 +106,6 @@ p {
   font-size: 20px;
 }
 ```
-
-
 
 混合指令是可以直接在最外层使用的，但是对混合指令本身有一些要求。要求混合指令的内部要有选择器。
 
@@ -121,11 +119,10 @@ p {
 }
 
 @mixin compound {
-  div{
+  div {
     @include background;
     @include header-text;
   }
-  
 }
 
 @include compound;
@@ -143,7 +140,7 @@ div {
 一般来讲，我们要在外部直接使用，我们一般会将其作为一个后代选择器。例如：
 
 ```scss
-.box{
+.box {
   @include compound;
 }
 ```
@@ -154,8 +151,6 @@ div {
   font-size: 20px;
 }
 ```
-
-
 
 ## 2. 混合指令的参数
 
@@ -204,7 +199,7 @@ div {
 在定义的时候，支持给形参添加默认值，例如：
 
 ```scss
-@mixin bg-color($color, $radius:20px) {
+@mixin bg-color($color, $radius: 20px) {
   width: 200px;
   height: 200px;
   margin: 10px;
@@ -257,27 +252,23 @@ div {
 }
 ```
 
-
-
 在定义混合指令的时候，如果不确定使用混合指令的地方会传入多少个参数，可以使用 ... 来声明（类似于 js 里面的不定参数），Sass 会把这些值当作一个列表来进行处理。
 
 ```scss
-@mixin box-shadow($shadow...){
+@mixin box-shadow($shadow...) {
   // ...
   box-shadow: $shadow;
 }
 
-.box1{
-  @include box-shadow(
-    0 1px 2px rgba(0,0,0,.5)
-  )
+.box1 {
+  @include box-shadow(0 1px 2px rgba(0, 0, 0, 0.5));
 }
 
-.box2{
+.box2 {
   @include box-shadow(
-    0 1px 2px rgba(0,0,0,.5),
-    0 2px 5px rgba(100,0,0,.5)
-  )
+    0 1px 2px rgba(0, 0, 0, 0.5),
+    0 2px 5px rgba(100, 0, 0, 0.5)
+  );
 }
 ```
 
@@ -302,12 +293,10 @@ div {
 
 $values: red, blue, pink;
 
-.box{
-  @include colors($values...)
+.box {
+  @include colors($values...);
 }
 ```
-
-
 
 ## 3. @content
 
@@ -316,9 +305,9 @@ $values: red, blue, pink;
 ```scss
 @mixin test {
   html {
-    @content
+    @content;
   }
-};
+}
 
 @include test {
   background-color: red;
@@ -328,7 +317,7 @@ $values: red, blue, pink;
 }
 
 @include test {
-  color : blue;
+  color: blue;
   .box {
     width: 200px;
     height: 200px;
@@ -365,19 +354,18 @@ html .box {
     border-color: darken($color, 10%);
   }
 
-  @content
-};
+  @content;
+}
 
-
-.button-primary{
-  @include button-theme(#007bff){
+.button-primary {
+  @include button-theme(#007bff) {
     width: 500px;
     height: 400px;
   }
 }
 
-.button-secondary{
-  @include button-theme(#6c757d){
+.button-secondary {
+  @include button-theme(#6c757d) {
     width: 300px;
     height: 200px;
   }
@@ -416,18 +404,18 @@ html .box {
 @mixin scope-test {
   $test-variable: "mixin";
 
-  .mixin{
-    content: $test-variable
+  .mixin {
+    content: $test-variable;
   }
 
-  @content
-};
+  @content;
+}
 
 .test {
   $test-variable: "test";
   @include scope-test {
     .content {
-      content : $test-variable
+      content: $test-variable;
     }
   }
 }
@@ -441,5 +429,3 @@ html .box {
   content: "test";
 }
 ```
-
-

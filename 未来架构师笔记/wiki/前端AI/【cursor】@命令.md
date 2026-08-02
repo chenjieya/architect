@@ -4,6 +4,7 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
+
 ## 1. @命令
 
 @ 命令是一个很有用的工具，核心就是为 AI 聊天添加更加具体的上下文信息。
@@ -24,7 +25,7 @@ updated: 2026-08-02
 
 ### 1.2 Code
 
-如果要 **引用代码片段**，最方便的方式是在编辑器中选择代码，然后按`Command + i` 添加到Chat 窗口。相比使用@Code命令，这种方式更直观，也更方便。
+如果要 **引用代码片段**，最方便的方式是在编辑器中选择代码，然后按`Command + i` 添加到 Chat 窗口。相比使用@Code 命令，这种方式更直观，也更方便。
 
 ![](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251009145955247.png)
 
@@ -32,7 +33,7 @@ updated: 2026-08-02
 
 获取官方文档或者第三方文档信息。
 
-例如，我们要写一个 Next.js 项目，需要参考 Next.js 的官方文档，我们可以将官方文档添加到 Cursor 中，然后通过@Docs命令访问。
+例如，我们要写一个 Next.js 项目，需要参考 Next.js 的官方文档，我们可以将官方文档添加到 Cursor 中，然后通过@Docs 命令访问。
 
 Cursor 会自动抓取和索引第三方文档，你还可以通过 `Cursor 设置` -> `Features` -> `@Docs` -> `Add new doc` 添加自定义文档。
 

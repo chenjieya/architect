@@ -4,6 +4,7 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
+
 本文主要包含以下内容：
 
 - _File API_ 介绍
@@ -64,12 +65,12 @@ _File_ 对象代表一个文件，用来读写文件信息。它继承了 _Blob_
 
 ```js
 // 获取 DOM 元素
-var file = document.getElementById('file')
+var file = document.getElementById("file");
 file.onchange = function (event) {
-  var files = event.target.files
-  console.log(files)
-  console.log(files[0] instanceof File)
-}
+  var files = event.target.files;
+  console.log(files);
+  console.log(files[0] instanceof File);
+};
 ```
 
 上面代码中，_files[0]_ 是用户选中的第一个文件，它是 _File_ 的实例。
@@ -101,9 +102,9 @@ _File( )_ 构造函数接受三个参数。
 下面是一个例子。
 
 ```js
-var file = new File(['foo'], 'foo.txt', {
-  type: 'text/plain',
-})
+var file = new File(["foo"], "foo.txt", {
+  type: "text/plain",
+});
 ```
 
 ### 2.2 实例属性和实例方法
@@ -119,13 +120,13 @@ _File_ 对象有以下实例属性。
 - _File.type_：文件的 _MIME_ 类型
 
 ```js
-var file = new File(['foo'], 'foo.txt', {
-  type: 'text/plain',
-})
-console.log(file.lastModified) // 1638340865992
-console.log(file.name) // foo.txt
-console.log(file.size) // 3
-console.log(file.type) // text/plain
+var file = new File(["foo"], "foo.txt", {
+  type: "text/plain",
+});
+console.log(file.lastModified); // 1638340865992
+console.log(file.name); // foo.txt
+console.log(file.size); // 3
+console.log(file.type); // text/plain
 ```
 
 在上面的代码中，我们创建了一个 _File_ 文件对象实例，并打印出了该文件对象的诸如 _lastModified、name、size、type_ 等属性信息。
@@ -149,12 +150,12 @@ _FileList_ 对象是一个类似数组的对象，代表一组选中的文件，
   <input type="file" name="" id="file" />
   <script>
     // 获取 DOM 元素
-    var file = document.getElementById('file')
+    var file = document.getElementById("file");
     file.onchange = function (event) {
-      var files = event.target.files
-      console.log(files)
-      console.log(files instanceof FileList)
-    }
+      var files = event.target.files;
+      console.log(files);
+      console.log(files instanceof FileList);
+    };
   </script>
 </body>
 ```
@@ -174,7 +175,7 @@ _FileReader_ 对象用于读取 _File_ 对象或 _Blob_ 对象所包含的文件
 浏览器原生提供一个 _FileReader_ 构造函数，用来生成 _FileReader_ 实例。
 
 ```js
-var reader = new FileReader()
+var reader = new FileReader();
 ```
 
 _FileReader_ 有以下的实例属性。
@@ -204,17 +205,17 @@ _FileReader_ 有以下的实例属性。
   <input type="file" name="" id="file" />
   <script>
     // 获取 DOM 元素
-    var file = document.getElementById('file')
+    var file = document.getElementById("file");
     file.onchange = function (event) {
-      var file = event.target.files[0] // 拿到第一个文件
-      var reader = new FileReader() // 创建一个 FileReader 实例对象
+      var file = event.target.files[0]; // 拿到第一个文件
+      var reader = new FileReader(); // 创建一个 FileReader 实例对象
       // 读取文件成功后触发 load 事件
       reader.onload = function (event) {
-        console.log(event.target.result)
-      }
+        console.log(event.target.result);
+      };
       // 读取文件
-      reader.readAsText(file)
-    }
+      reader.readAsText(file);
+    };
   </script>
 </body>
 ```
@@ -241,24 +242,24 @@ _FileReader_ 有以下实例方法。
 
 ```js
 // 获取 DOM 元素
-var file = document.getElementById('file')
+var file = document.getElementById("file");
 file.onchange = function () {
-  var preview = document.querySelector('img')
-  var file = document.querySelector('input[type=file]').files[0]
-  var reader = new FileReader()
+  var preview = document.querySelector("img");
+  var file = document.querySelector("input[type=file]").files[0];
+  var reader = new FileReader();
 
   reader.addEventListener(
-    'load',
+    "load",
     function () {
-      preview.src = reader.result
+      preview.src = reader.result;
     },
-    false,
-  )
+    false
+  );
 
   if (file) {
-    reader.readAsDataURL(file)
+    reader.readAsDataURL(file);
   }
-}
+};
 ```
 
 上面代码中，用户选中图片文件以后，脚本会自动读取文件内容，然后作为一个 _Data URL_ 赋值给 \<_img_> 元素的 _src_ 属性，从而把图片展示出来。
@@ -300,7 +301,7 @@ _CSS_
 }
 
 .cross::before {
-  content: '';
+  content: "";
   width: 30px;
   height: 2px;
   background-color: skyblue;
@@ -309,7 +310,7 @@ _CSS_
 }
 
 .cross::after {
-  content: '';
+  content: "";
   width: 30px;
   height: 2px;
   background-color: skyblue;
@@ -319,7 +320,7 @@ _CSS_
   transform: rotate(90deg);
 }
 
-input[type='file'] {
+input[type="file"] {
   display: none;
 }
 ```
@@ -327,24 +328,24 @@ input[type='file'] {
 _JS_
 
 ```js
-var file = document.querySelector('#file')
-var div = document.querySelector('.uploadImg')
-var cross = document.querySelector('.cross')
-console.log(div.firstChild)
+var file = document.querySelector("#file");
+var div = document.querySelector(".uploadImg");
+var cross = document.querySelector(".cross");
+console.log(div.firstChild);
 file.onchange = function () {
   // 创建 filereader 用来读取文件
-  var reader = new FileReader()
+  var reader = new FileReader();
   // 获取到文件内容
-  var content = file.files[0]
+  var content = file.files[0];
   if (content) {
-    reader.readAsDataURL(content)
+    reader.readAsDataURL(content);
   }
   reader.onload = function () {
     // 设置 div 背景图像从而实现预览效果
-    div.style.background = `url(${reader.result}) center/cover no-repeat`
-    cross.style.opacity = 0
-  }
-}
+    div.style.background = `url(${reader.result}) center/cover no-repeat`;
+    cross.style.opacity = 0;
+  };
+};
 ```
 
 ## 6. _File System Access API_

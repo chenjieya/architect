@@ -4,6 +4,7 @@ ai_editable: true
 updated_by: ai
 updated: 2026-08-02
 ---
+
 ## 1. ELK 是什么
 
 ELK = **E**lasticsearch（搜索存储） + **L**ogstash（日志采集处理） + **K**ibana（可视化），用于日志的集中采集、分析、检索和展示。
@@ -52,8 +53,8 @@ systemctl start elasticsearch.service
 编辑 `/etc/elasticsearch/elasticsearch.yml`，去掉以下行的注释：
 
 ```yaml
-bootstrap.memory_lock: true    # 锁住内存，防止 JVM swapping 降低效率
-http.port: 9200                # 对外端口
+bootstrap.memory_lock: true # 锁住内存，防止 JVM swapping 降低效率
+http.port: 9200 # 对外端口
 ```
 
 > 锁内存前提：`ulimit -l unlimited`，并保证机器有足够内存。
@@ -146,26 +147,26 @@ Logstash 管道由 Input → Filter → Output 组成。
 
 ### 7.1 Input（输入）
 
-| 输入方式 | 说明 |
-| --- | --- |
-| Filebeat | 轻量级采集器，采集本地文件、容器、远程主机日志 |
-| Beats | 支持 Docker、K8s 等来源 |
-| TCP/UDP Socket | 基于 TCP/UDP 的日志传输 |
-| Grok | 基于正则匹配日志字段 |
-| Kafka | 分布式消息队列，适合实时传输 |
-| Redis PubSub | 基于 Redis 发布订阅 |
+| 输入方式       | 说明                                           |
+| -------------- | ---------------------------------------------- |
+| Filebeat       | 轻量级采集器，采集本地文件、容器、远程主机日志 |
+| Beats          | 支持 Docker、K8s 等来源                        |
+| TCP/UDP Socket | 基于 TCP/UDP 的日志传输                        |
+| Grok           | 基于正则匹配日志字段                           |
+| Kafka          | 分布式消息队列，适合实时传输                   |
+| Redis PubSub   | 基于 Redis 发布订阅                            |
 
 ### 7.2 Filter（过滤解析）
 
-| 过滤插件 | 作用 |
-| --- | --- |
-| grok | 正则匹配字段（最常用） |
-| mutate | 修改字段值、增删字段 |
-| date | 解析日期格式 |
-| split | 按分隔符切割日志 |
-| json | 解析 JSON 日志 |
-| geoip | 地理位置解析 |
-| ruby | 调用 ruby 脚本做复杂处理 |
+| 过滤插件 | 作用                     |
+| -------- | ------------------------ |
+| grok     | 正则匹配字段（最常用）   |
+| mutate   | 修改字段值、增删字段     |
+| date     | 解析日期格式             |
+| split    | 按分隔符切割日志         |
+| json     | 解析 JSON 日志           |
+| geoip    | 地理位置解析             |
+| ruby     | 调用 ruby 脚本做复杂处理 |
 
 ### 7.3 Output（输出）
 

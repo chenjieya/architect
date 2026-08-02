@@ -4,6 +4,7 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
+
 在 Jest 中，生命周期方法大致分为两类：
 
 - 重复性的生命周期方法
@@ -20,40 +21,40 @@ updated: 2026-08-02
 所谓重复性的生命周期方法，就是指这些方法会被添加到每一个测试用例的前后。
 
 ```js
-const { sum, sub, mul, div } = require('./tools')
+const { sum, sub, mul, div } = require("./tools");
 
 // beforeEach 会在执行每一个测试用例之前被触发
 beforeEach(() => {
-  console.log('全局的beforeEach')
-})
+  console.log("全局的beforeEach");
+});
 
 afterEach(() => {
-  console.log('全局的afterEach')
-})
+  console.log("全局的afterEach");
+});
 
-test('测试加法函数', () => {
-  const result = sum(1, 3)
-  expect(result).toBe(4)
-  console.log('\x1b[31m%s\x1b[0m', '测试加法函数')
-})
+test("测试加法函数", () => {
+  const result = sum(1, 3);
+  expect(result).toBe(4);
+  console.log("\x1b[31m%s\x1b[0m", "测试加法函数");
+});
 
-test('测试减法函数', () => {
-  const result = sub(15, 10)
-  expect(result).toBe(5)
-  console.log('\x1b[31m%s\x1b[0m', '测试减法函数')
-})
+test("测试减法函数", () => {
+  const result = sub(15, 10);
+  expect(result).toBe(5);
+  console.log("\x1b[31m%s\x1b[0m", "测试减法函数");
+});
 
-test('测试乘法函数', () => {
-  const result = mul(2, 3)
-  expect(result).toBe(6)
-  console.log('\x1b[31m%s\x1b[0m', '测试乘法函数')
-})
+test("测试乘法函数", () => {
+  const result = mul(2, 3);
+  expect(result).toBe(6);
+  console.log("\x1b[31m%s\x1b[0m", "测试乘法函数");
+});
 
-test('测试除法函数', () => {
-  const result = div(50, 2)
-  expect(result).toBe(25)
-  console.log('\x1b[31m%s\x1b[0m', '测试除法函数')
-})
+test("测试除法函数", () => {
+  const result = div(50, 2);
+  expect(result).toBe(25);
+  console.log("\x1b[31m%s\x1b[0m", "测试除法函数");
+});
 ```
 
 上面的代码为每一个测试用例添加了生命周期方法，beforeEach 和 afterEach 会在每一个测试用例的前后执行。如下图所示：
@@ -74,13 +75,13 @@ test('测试除法函数', () => {
 // ...
 // beforeAll 是在整个测试套件的第一个测试用例执行之前执行
 beforeAll(() => {
-  console.log('全局的beforeAll')
-})
+  console.log("全局的beforeAll");
+});
 
 // afterAll 会在所有测试用例执行完成之后，然后再执行 afterAll
 afterAll(() => {
-  console.log('全局的afterAll')
-})
+  console.log("全局的afterAll");
+});
 // ...
 ```
 
@@ -96,26 +97,26 @@ afterAll(() => {
 ```js
 // ...
 // 第二组
-describe('第二组', () => {
+describe("第二组", () => {
   beforeEach(() => {
-    console.log('\x1b[34m%s\x1b[0m', '分组beforeEach')
-  })
+    console.log("\x1b[34m%s\x1b[0m", "分组beforeEach");
+  });
   afterEach(() => {
-    console.log('\x1b[34m%s\x1b[0m', '分组afterEach')
-  })
+    console.log("\x1b[34m%s\x1b[0m", "分组afterEach");
+  });
 
-  test('测试乘法函数', () => {
-    const result = mul(2, 3)
-    expect(result).toBe(6)
-    console.log('\x1b[31m%s\x1b[0m', '测试乘法函数')
-  })
+  test("测试乘法函数", () => {
+    const result = mul(2, 3);
+    expect(result).toBe(6);
+    console.log("\x1b[31m%s\x1b[0m", "测试乘法函数");
+  });
 
-  test('测试除法函数', () => {
-    const result = div(50, 2)
-    expect(result).toBe(25)
-    console.log('\x1b[31m%s\x1b[0m', '测试除法函数')
-  })
-})
+  test("测试除法函数", () => {
+    const result = div(50, 2);
+    expect(result).toBe(25);
+    console.log("\x1b[31m%s\x1b[0m", "测试除法函数");
+  });
+});
 // ...
 ```
 
@@ -128,33 +129,33 @@ describe('第二组', () => {
 
 ```js
 // 第二组
-describe('第二组', () => {
+describe("第二组", () => {
   beforeEach(() => {
-    console.log('\x1b[34m%s\x1b[0m', '分组beforeEach')
-  })
+    console.log("\x1b[34m%s\x1b[0m", "分组beforeEach");
+  });
   afterEach(() => {
-    console.log('\x1b[34m%s\x1b[0m', '分组afterEach')
-  })
+    console.log("\x1b[34m%s\x1b[0m", "分组afterEach");
+  });
 
   beforeAll(() => {
-    console.log('\x1b[32m%s\x1b[0m', '分组beforeAll')
-  })
+    console.log("\x1b[32m%s\x1b[0m", "分组beforeAll");
+  });
   afterAll(() => {
-    console.log('\x1b[32m%s\x1b[0m', '分组afterAll')
-  })
+    console.log("\x1b[32m%s\x1b[0m", "分组afterAll");
+  });
 
-  test('测试乘法函数', () => {
-    const result = mul(2, 3)
-    expect(result).toBe(6)
-    console.log('\x1b[31m%s\x1b[0m', '测试乘法函数')
-  })
+  test("测试乘法函数", () => {
+    const result = mul(2, 3);
+    expect(result).toBe(6);
+    console.log("\x1b[31m%s\x1b[0m", "测试乘法函数");
+  });
 
-  test('测试除法函数', () => {
-    const result = div(50, 2)
-    expect(result).toBe(25)
-    console.log('\x1b[31m%s\x1b[0m', '测试除法函数')
-  })
-})
+  test("测试除法函数", () => {
+    const result = div(50, 2);
+    expect(result).toBe(25);
+    console.log("\x1b[31m%s\x1b[0m", "测试除法函数");
+  });
+});
 ```
 
 beforeAll 是在要执行该分组的测试用例之前会执行，afterAll 是在该分组所有测试用例执行完毕后执行。
@@ -168,54 +169,54 @@ beforeAll 是在要执行该分组的测试用例之前会执行，afterAll 是�
 
 ```js
 // 第一组
-describe('第一组', () => {
-  console.log('开始进行第一组测试')
+describe("第一组", () => {
+  console.log("开始进行第一组测试");
 
-  test('测试加法函数', () => {
-    const result = sum(1, 3)
-    expect(result).toBe(4)
-    console.log('\x1b[31m%s\x1b[0m', '测试加法函数')
-  })
+  test("测试加法函数", () => {
+    const result = sum(1, 3);
+    expect(result).toBe(4);
+    console.log("\x1b[31m%s\x1b[0m", "测试加法函数");
+  });
 
-  test('测试减法函数', () => {
-    const result = sub(15, 10)
-    expect(result).toBe(5)
-    console.log('\x1b[31m%s\x1b[0m', '测试减法函数')
-  })
-})
+  test("测试减法函数", () => {
+    const result = sub(15, 10);
+    expect(result).toBe(5);
+    console.log("\x1b[31m%s\x1b[0m", "测试减法函数");
+  });
+});
 
 // 第二组
-describe('第二组', () => {
-  console.log('开始进行第二组测试')
+describe("第二组", () => {
+  console.log("开始进行第二组测试");
 
-  test('测试乘法函数', () => {
-    const result = mul(2, 3)
-    expect(result).toBe(6)
-    console.log('\x1b[31m%s\x1b[0m', '测试乘法函数')
-  })
+  test("测试乘法函数", () => {
+    const result = mul(2, 3);
+    expect(result).toBe(6);
+    console.log("\x1b[31m%s\x1b[0m", "测试乘法函数");
+  });
 
-  test('测试除法函数', () => {
-    const result = div(50, 2)
-    expect(result).toBe(25)
-    console.log('\x1b[31m%s\x1b[0m', '测试除法函数')
-  })
-})
+  test("测试除法函数", () => {
+    const result = div(50, 2);
+    expect(result).toBe(25);
+    console.log("\x1b[31m%s\x1b[0m", "测试除法函数");
+  });
+});
 ```
 
 那么会先打印 describe 里面的两句话，分别输出“开始进行第一组测试”、“开始进行第二组测试”，然后才是执行每一个分组内部的测试用例。因此我们如果想要在每一个分组执行之前添加一些代码，就应该使用生命周期函数，比如这里的情况就应该使用 beforeAll。
 
 ## 4. 补充：test.only
 
-test.only 是用来测试特定的测试用例，也就是说，如果一个测试套件里面假设有10个测试用例，第7个测试用例书写了 test.only，那么在运行整个测试套件的时候，就只会执行第 7 个测试用例。
+test.only 是用来测试特定的测试用例，也就是说，如果一个测试套件里面假设有 10 个测试用例，第 7 个测试用例书写了 test.only，那么在运行整个测试套件的时候，就只会执行第 7 个测试用例。
 
 test.only 一般用于在一个测试套件中，我们要确保某一个测试用例是否 OK 的时候，就可以使用 test.only。
 
 ```js
-test.only('测试乘法函数', () => {
-  const result = mul(2, 3)
-  expect(result).toBe(6)
-  console.log('\x1b[31m%s\x1b[0m', '测试乘法函数')
-})
+test.only("测试乘法函数", () => {
+  const result = mul(2, 3);
+  expect(result).toBe(6);
+  console.log("\x1b[31m%s\x1b[0m", "测试乘法函数");
+});
 ```
 
 注意在使用 test.only 的时候，对应的生命周期方法也会被执行。
@@ -224,13 +225,13 @@ test.only('测试乘法函数', () => {
 
 ```js
 const beforeEach: THook = (fn, timeout) =>
-  _addHook(fn, 'beforeEach', beforeEach, timeout);
+  _addHook(fn, "beforeEach", beforeEach, timeout);
 const beforeAll: THook = (fn, timeout) =>
-  _addHook(fn, 'beforeAll', beforeAll, timeout);
+  _addHook(fn, "beforeAll", beforeAll, timeout);
 const afterEach: THook = (fn, timeout) =>
-  _addHook(fn, 'afterEach', afterEach, timeout);
+  _addHook(fn, "afterEach", afterEach, timeout);
 const afterAll: THook = (fn, timeout) =>
-  _addHook(fn, 'afterAll', afterAll, timeout);
+  _addHook(fn, "afterAll", afterAll, timeout);
 ```
 
 ```js
@@ -238,18 +239,18 @@ const _addHook = (
   fn: Circus.HookFn,
   hookType: Circus.HookType,
   hookFn: THook,
-  timeout?: number,
+  timeout?: number
 ) => {
   const asyncError = new ErrorWithStack(undefined, hookFn);
 
-  if (typeof fn !== 'function') {
+  if (typeof fn !== "function") {
     asyncError.message =
-      'Invalid first argument. It must be a callback function.';
+      "Invalid first argument. It must be a callback function.";
 
     throw asyncError;
   }
 
-  dispatchSync({asyncError, fn, hookType, name: 'add_hook', timeout});
+  dispatchSync({ asyncError, fn, hookType, name: "add_hook", timeout });
 };
 ```
 

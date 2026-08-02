@@ -4,9 +4,10 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
+
 > 面试题：watch 和 computed 的区别是什么？说一说各自的使用场景？
 
-watch的使用
+watch 的使用
 
 ```js
 const count = ref('');
@@ -19,10 +20,10 @@ watch(()=>{
 })
 ```
 
-watch核心实现
+watch 核心实现
 
 ```js
-import { effect, cleanup } from './effect/effect.js'
+import { effect, cleanup } from "./effect/effect.js";
 
 // 遍历对象
 function traverse(value, seen = new Set()) {
@@ -37,30 +38,30 @@ function traverse(value, seen = new Set()) {
  */
 export function watch(source, cb, options = {}) {
   // 1. 参数归一化，统一成一个函数
-  let getter
-  if (typeof source === 'function') {
-    getter = source
+  let getter;
+  if (typeof source === "function") {
+    getter = source;
   } else {
-    getter = () => traverse(source)
+    getter = () => traverse(source);
   }
 
   // 2. 保存新值和旧值
-  let oldValue, newValue
+  let oldValue, newValue;
 
   const effectFn = effect(() => getter(), {
     lazy: true,
     scheduler: () => {
-      newValue = effectFn()
-      cb(newValue, oldValue)
-      oldValue = newValue
+      newValue = effectFn();
+      cb(newValue, oldValue);
+      oldValue = newValue;
     },
-  })
+  });
 
-  oldValue = effectFn()
+  oldValue = effectFn();
 
   return () => {
-    cleanup(effectFn)
-  }
+    cleanup(effectFn);
+  };
 }
 ```
 

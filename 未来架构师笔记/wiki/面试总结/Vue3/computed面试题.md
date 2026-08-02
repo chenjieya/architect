@@ -4,6 +4,7 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
+
 > 面试题：谈谈 computed 的机制，缓存了什么？为什么 computed 不支持异步？
 
 响应式系统：
@@ -11,43 +12,43 @@ updated: 2026-08-02
 - track：进行依赖收集，建立数据和函数的映射关系
 - trigger：触发更新，重新执行数据所映射的所有函数
 
-computed开发者使用：
+computed 开发者使用：
 
 ```js
 const state = reactive({
   a: 1,
   b: 2,
-})
+});
 
 const sum = computed(() => {
-  return state.a + state.b
-})
+  return state.a + state.b;
+});
 ```
 
 ```js
-const firstName = ref('John')
-const lastName = ref('Doe')
+const firstName = ref("John");
+const lastName = ref("Doe");
 
 const fullName = computed({
   get() {
-    return firstName.value + ' ' + lastName.value
+    return firstName.value + " " + lastName.value;
   },
   set(newValue) {
-    ;[firstName.value, lastName.value] = newValue.split(' ')
+    [firstName.value, lastName.value] = newValue.split(" ");
   },
-})
+});
 ```
 
-computed核心实现：
+computed 核心实现：
 
 1. 参数归一化，统一成对象的形式
 2. 返回一个存取器对象
 
 ```js
-import { effect } from './effect/effect.js'
-import track from './effect/track.js'
-import trigger from './effect/trigger.js'
-import { TriggerOpTypes, TrackOpTypes } from './utils.js'
+import { effect } from "./effect/effect.js";
+import track from "./effect/track.js";
+import trigger from "./effect/trigger.js";
+import { TriggerOpTypes, TrackOpTypes } from "./utils.js";
 
 // 参数归一化
 function normalizeParameter(getterOrOptions) {
@@ -60,38 +61,38 @@ function normalizeParameter(getterOrOptions) {
  */
 export function computed(getterOrOptions) {
   // 1. 参数归一化
-  const { getter, setter } = normalizeParameter(getterOrOptions)
+  const { getter, setter } = normalizeParameter(getterOrOptions);
 
   // value 用于存储计算结果， dirty 负责控制从缓存中获取值还是重新计算新的值，dirty为true就代表要重新计算
   let value,
-    dirty = true
+    dirty = true;
 
   // 让getter内部的响应式数据和getter建立映射关系
   // 回头getter内部的响应式数据发生变化后，重新执行getter
   const effectFn = effect(getter, {
     lazy: true,
     scheduler() {
-      dirty = true
-      trigger(obj, TriggerOpTypes.SET, 'value')
+      dirty = true;
+      trigger(obj, TriggerOpTypes.SET, "value");
     },
-  })
+  });
 
   // 2. 返回一个存取器对象
   const obj = {
     get value() {
       // 需要将 value 和渲染函数建立映射关系
-      track(obj, TrackOpTypes.GET, 'value')
+      track(obj, TrackOpTypes.GET, "value");
       if (dirty) {
-        value = effectFn()
-        dirty = false
+        value = effectFn();
+        dirty = false;
       }
-      return value
+      return value;
     },
     set value(newValue) {
-      setter(newValue)
+      setter(newValue);
     },
-  }
-  return obj
+  };
+  return obj;
 }
 ```
 

@@ -4,6 +4,7 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
+
 Schema 是 MCP 中**核心要素**之一，定义了各类 JSON‑RPC 请求与响应的 **结构、校验规则与类型安全**。
 
 ## 1. Zod
@@ -13,20 +14,20 @@ Zod 是一个现代的、TypeScript 优先的 **模式验证库（schema validat
 **快速上手**
 
 ```js
-import { z } from 'zod'
+import { z } from "zod";
 const userSchema = z.object({
   name: z.string(),
   age: z.number(),
-})
+});
 
-const input = { name: '张三', age: 30 }
+const input = { name: "张三", age: 30 };
 
-const result = userSchema.safeParse(input)
+const result = userSchema.safeParse(input);
 
 if (result.success) {
-  console.log('合法数据', result.data)
+  console.log("合法数据", result.data);
 } else {
-  console.error('校验失败', result.error.format())
+  console.error("校验失败", result.error.format());
 }
 ```
 
@@ -35,22 +36,22 @@ zod 对象上面的方法：
 - `.partial()`: 所有字段都变为可选
 
   ```js
-  const PartialUser = userSchema.partial()
+  const PartialUser = userSchema.partial();
   ```
 
 - `.pick()` 和 `.omit()`
 
   ```js
-  userSchema.pick({ name: true }) // 只保留 name 字段
-  userSchema.omit({ age: true }) // 移除 age 字段
+  userSchema.pick({ name: true }); // 只保留 name 字段
+  userSchema.omit({ age: true }); // 移除 age 字段
   ```
 
 - `.merge()`: 合并两个对象 schema
 
   ```js
-  const schemaA = z.object({ a: z.string() })
-  const schemaB = z.object({ b: z.number() })
-  const merged = schemaA.merge(schemaB) // { a: string, b: number }
+  const schemaA = z.object({ a: z.string() });
+  const schemaB = z.object({ b: z.number() });
+  const merged = schemaA.merge(schemaB); // { a: string, b: number }
   ```
 
 **常用 Zod 类型**
@@ -73,21 +74,21 @@ zod 对象上面的方法：
 1. 转换
 
    ```js
-   const TrimmedString = z.string().transform((str) => str.trim())
+   const TrimmedString = z.string().transform((str) => str.trim());
    ```
 
 2. 默认值
 
    ```js
-   const WithDefault = z.string().default('hello')
+   const WithDefault = z.string().default("hello");
    ```
 
 3. 自定义校验
 
    ```js
    const Password = z.string().refine((p) => p.length >= 8, {
-     message: '密码至少 8 位',
-   })
+     message: "密码至少 8 位",
+   });
    ```
 
 ## 2. Schema
@@ -113,34 +114,34 @@ Schema 由 TypeScript + Zod 定义，制作成 JSON Schema，用于**验证协�
 
 ```js
 const ReadResourceRequestSchema = z.object({
-  method: z.literal('resources/read'),
+  method: z.literal("resources/read"),
   params: z.object({
     uri: z
       .string()
-      .describe('资源的 URI，格式如 file://、http://、bananaphone://'),
+      .describe("资源的 URI，格式如 file://、http://、bananaphone://"),
   }),
-})
+});
 ```
 
 因此 MCP 提供的 Schema 可以调用 zod 对象上面的方法：
 
 ```js
-import { ReadResourceRequestSchema } from '@modelcontextprotocol/sdk/types.js'
+import { ReadResourceRequestSchema } from "@modelcontextprotocol/sdk/types.js";
 
 // 模拟请求参数
 const requestParams = {
-  method: 'resources/read',
+  method: "resources/read",
   params: {
-    uri: 'bananaphone://info',
+    uri: "bananaphone://info",
   },
-}
+};
 // 校验请求
-const result = ReadResourceRequestSchema.safeParse(requestParams)
+const result = ReadResourceRequestSchema.safeParse(requestParams);
 
 if (!result.success) {
-  console.error('参数格式不对:', result.error.format())
+  console.error("参数格式不对:", result.error.format());
 } else {
-  console.log('✅ 参数合法:', result.data)
+  console.log("✅ 参数合法:", result.data);
 }
 ```
 
@@ -179,13 +180,13 @@ SDK 内部为每种 method 提供一个对应的 Schema，`setRequestHandler()` 
 
 ```js
 server.setRequestHandler(SomeRequestSchema, async (request) => {
-  const params = request.params
+  const params = request.params;
 
   // 做点什么
   return {
     ...yourResponseObject,
-  }
-})
+  };
+});
 ```
 
 **实践**

@@ -4,11 +4,12 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
-## 1. Nest中的装饰器
 
-TS中的常见的装饰器类型有5种，包括类装饰器。方法装饰器、属性装饰器、参数装饰器和访问器装饰器。
+## 1. Nest 中的装饰器
 
-在Nest中实现了前4种装饰器：
+TS 中的常见的装饰器类型有 5 种，包括类装饰器。方法装饰器、属性装饰器、参数装饰器和访问器装饰器。
+
+在 Nest 中实现了前 4 种装饰器：
 
 - 类装饰器：@Controller、@Injectable、@Module、@UseInterceptors
 - 方法装饰器：@Get、@Post、@Patch、@Delete、@UseInterceptors
@@ -19,8 +20,8 @@ TS中的常见的装饰器类型有5种，包括类装饰器。方法装饰器�
 
 - @Controller()：用于装饰控制器类，使之能够管理应用中的路由程序，并通过设置路由路径前缀来模块化管理路由
 - @Injectable()：装饰后成为服务提供者(provider)，可以被其他对象进行依赖注入
-- @Module()：模块装饰器，用于在Nest中划分功能模块并限制依赖注入的范围
-- @UseInterceptors()：用于绑定拦截器，也可以作用在类方法上，AOP相关的装饰器都与之类似，比如@UseFilters()、@UsePipes()等等
+- @Module()：模块装饰器，用于在 Nest 中划分功能模块并限制依赖注入的范围
+- @UseInterceptors()：用于绑定拦截器，也可以作用在类方法上，AOP 相关的装饰器都与之类似，比如@UseFilters()、@UsePipes()等等
 - @Global()：声明全局模块
 - @Get、@Post、@Put、@Delete、@Patch、@Options、@Head：声明 get、post、put、delete、patch、options、head 的请求方式
 
@@ -28,24 +29,24 @@ TS中的常见的装饰器类型有5种，包括类装饰器。方法装饰器�
 
 - **url param**：可以把参数写在 url 中，比如：`http://127.0.0.1:3000/person/123`
 - **query**：通过 url 中`?`后面的用`&`分隔的字符串传递数据。比如：`http://127.0.0.1:3000/person?name=jack&age=19`
-- **form-urlencoded**：直接用form表单提交数据的方式，`content-type` 是 `application/x-www-form-urlencoded`，数据放在请求体中
+- **form-urlencoded**：直接用 form 表单提交数据的方式，`content-type` 是 `application/x-www-form-urlencoded`，数据放在请求体中
 - **json**：传输 json 数据，`content type` 为 `application/json`
 - **form-data**：传输文件的方式，需要指定`content type` 为 `multipart/form-data`，然后指定 `boundary` 分割线
 
-对于`url param`和`query`其实就是`GET`方式的请求，只是url处理不一样
+对于`url param`和`query`其实就是`GET`方式的请求，只是 url 处理不一样
 
 ```typescript
-@Controller('user')
+@Controller("user")
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
-  @Get('find')
-  query(@Query('name') name: string, @Query('age') age: number) {
+  @Get("find")
+  query(@Query("name") name: string, @Query("age") age: number) {
     return this.userService.query(name, age);
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
+  @Get(":id")
+  findOne(@Param("id") id: string) {
     return this.userService.findOne(+id);
   }
 }
@@ -59,18 +60,15 @@ export class UserController {
 
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251128160600606.png)
 
-
 **query**
 
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251128160614318.png)
-
 
 **form-urlencoded**
 
 首先来看请求的样式：
 
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251128160629805.png)
-
 
 用 Nest 接收的话，使用 @Body 装饰器，Nest 会解析请求体，然后注入到 `dto` 中
 
@@ -88,7 +86,7 @@ export class CreateUserDto {
 `user.controller.ts`
 
 ```typescript
-@Controller('user')
+@Controller("user")
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
@@ -99,14 +97,14 @@ export class UserController {
 }
 ```
 
-由于使用了三层架构，service中稍微做一下处理
+由于使用了三层架构，service 中稍微做一下处理
 
 ```typescript
 @Injectable()
 export class UserService {
   create(createUserDto: CreateUserDto) {
     return (
-      'This action adds a new user ---' + JSON.stringify(createUserDto) + '---'
+      "This action adds a new user ---" + JSON.stringify(createUserDto) + "---"
     );
   }
 }
@@ -114,12 +112,11 @@ export class UserService {
 
 **JSON**
 
-JSON方式无非就是前端传输的时候，选择的`content-typ` 为 `application/json`，内容会以 JSON 的方式传输。后端代码同样使用`@Body` 来接收，在Nest中的处理和`form-urlencoded`是一样的
+JSON 方式无非就是前端传输的时候，选择的`content-typ` 为 `application/json`，内容会以 JSON 的方式传输。后端代码同样使用`@Body` 来接收，在 Nest 中的处理和`form-urlencoded`是一样的
 
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251128160652284.png)
 
-
-**form-data**的方式由于还需要用到其他的一些内容，我们后面通过例子一并讲解，除了这些常用的参数装饰器之外，还有其他的参数装饰器，比如，如果我们想拿到IP地址，拿到请求头信息这些内容，就可以直接通过参数装饰器获取
+**form-data**的方式由于还需要用到其他的一些内容，我们后面通过例子一并讲解，除了这些常用的参数装饰器之外，还有其他的参数装饰器，比如，如果我们想拿到 IP 地址，拿到请求头信息这些内容，就可以直接通过参数装饰器获取
 
 ```typescript
 @Get('other')
@@ -135,7 +132,7 @@ other(
 }
 ```
 
-上面通过`@Ip()`、`@Headers()`装饰器就获取IP地址和头信息，通过`@Req()`直接获取request请求对象。在Nest中`@Req`和`@Request`是一致的
+上面通过`@Ip()`、`@Headers()`装饰器就获取 IP 地址和头信息，通过`@Req()`直接获取 request 请求对象。在 Nest 中`@Req`和`@Request`是一致的
 
 既然能获取请求对象，那么响应对象`Response`也能获取，可以通过注解`@Res`或者`@Response`，不过注意一点，如果手动加入了响应对象，那么就必须自己通过响应对象处理返回信息，比如，上面的方法如果我们手动加上了@Res，直接请求就会出现问题
 
@@ -156,8 +153,7 @@ other(
 
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251128160714056.png)
 
-
-这里handler就不会通过返回的字符串帮我们进行响应了，需要我们自己手动处理。
+这里 handler 就不会通过返回的字符串帮我们进行响应了，需要我们自己手动处理。
 
 ```typescript
 @Get('other')
@@ -179,4 +175,3 @@ other(
 > 这里的`Request`、`Response`对象，需要从`express`中导入，才能方便的使用相关方法
 >
 > **import { Request, Response } from 'express';**
-

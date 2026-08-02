@@ -4,7 +4,8 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
-[PostgreSQL官网](https://www.postgresql.org/)
+
+[PostgreSQL 官网](https://www.postgresql.org/)
 
 | 特性               | PostgreSQL                                                 | MySQL                           | Oracle                   | SQL Server                      |
 | ------------------ | ---------------------------------------------------------- | ------------------------------- | ------------------------ | ------------------------------- |
@@ -31,13 +32,13 @@ updated: 2026-08-02
 
 ### 1.1 安装 Docker Desktop
 
-访问 [https://www.docker.com/products/docker-desktop](https://www.docker.com/products/docker-desktop) 下载 Docker Desktop
+访问  [https://www.docker.com/products/docker-desktop](https://www.docker.com/products/docker-desktop)  下载 Docker Desktop
 
 ### 1.2 配置镜像加速器
 
 由于网络原因，国内用户拉取 Docker 镜像可能很慢，需要配置镜像加速器。
 
-**打开 Docker Desktop → Settings → Docker Engine**，在配置文件中添加 `registry-mirrors`：
+**打开 Docker Desktop → Settings → Docker Engine**，在配置文件中添加  `registry-mirrors`：
 
 ```json
 {
@@ -49,7 +50,7 @@ updated: 2026-08-02
 }
 ```
 
-点击 **Apply & Restart** 使配置生效。
+点击  **Apply & Restart**  使配置生效。
 
 ### 1.3 验证 Docker 安装
 
@@ -123,7 +124,7 @@ docker exec -it pg16 psql -U admin -d admin
 | `docker exec -it pg16`     | 在 pg16 容器中执行交互式命令       |
 | `psql -U admin -d demo_db` | 使用用户 admin 连接 demo_db 数据库 |
 
-连接成功后，在 `demo_db=#` 提示符下执行以下命令验证：
+连接成功后，在  `demo_db=#`  提示符下执行以下命令验证：
 
 ```sql
 -- 查看当前连接信息
@@ -165,7 +166,7 @@ docker run -d \
 | `-p 5050:80`                  | 宿主机 5050 端口映射到容器 80 端口 |
 | `--link pg16:pg16`            | 连接到 pg16 容器，网络互通         |
 
-接下来可以打开浏览器访问 [http://localhost:5050](http://localhost:5050/)
+接下来可以打开浏览器访问  [http://localhost:5050](http://localhost:5050/)
 
 ---
 

@@ -4,41 +4,42 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
-## 1. GSDevTools调试
+
+## 1. GSDevTools 调试
 
 ```javascript
-import { gsap } from 'gsap'
-import { GSDevTools } from 'gsap/GSDevTools'
+import { gsap } from "gsap";
+import { GSDevTools } from "gsap/GSDevTools";
 
-gsap.registerPlugin(GSDevTools)
+gsap.registerPlugin(GSDevTools);
 
-GSDevTools.create()
+GSDevTools.create();
 ```
 
-## 2. ScrollTrigger滚动
+## 2. ScrollTrigger 滚动
 
 ```javascript
-import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-gsap.registerPlugin(ScrollTrigger)
+gsap.registerPlugin(ScrollTrigger);
 
-gsap.to('.box', {
+gsap.to(".box", {
   x: 500,
   duration: 4,
   scrollTrigger: {
-    trigger: '.box',
-    start: 'top center',
-    toggleActions: 'restart pause resume reset',
+    trigger: ".box",
+    start: "top center",
+    toggleActions: "restart pause resume reset",
     scrub: true,
     scrub: 1,
     pin: true,
     markers: true,
   },
-})
+});
 ```
 
-## 3. Scroll平滑与位置
+## 3. Scroll 平滑与位置
 
 ```javascript
 import { gsap } from 'gsap'
@@ -60,17 +61,17 @@ smoother.effects('.box', {
 smoother.scrollTo('.box', true, 'top center')
 ```
 
-## 4. Flip结构转换
+## 4. Flip 结构转换
 
 ```javascript
-import { gsap } from 'gsap'
-import { Flip } from 'gsap/Flip'
+import { gsap } from "gsap";
+import { Flip } from "gsap/Flip";
 
-gsap.registerPlugin(Flip)
+gsap.registerPlugin(Flip);
 
-const state = Flip.getState([red, green])
+const state = Flip.getState([red, green]);
 
-red.before(green)
+red.before(green);
 
 Flip.from(state, {
   duration: 1,
@@ -78,37 +79,37 @@ Flip.from(state, {
   yoyo: true,
   scale: true,
   spin: true,
-})
+});
 ```
 
-## 5. Text文字转换
+## 5. Text 文字转换
 
 ```javascript
-import { gsap } from 'gsap'
-import { TextPlugin } from 'gsap/TextPlugin'
+import { gsap } from "gsap";
+import { TextPlugin } from "gsap/TextPlugin";
 
-gsap.registerPlugin(TextPlugin)
+gsap.registerPlugin(TextPlugin);
 
-gsap.to('.text', {
+gsap.to(".text", {
   duration: 2,
   text: {
-    value: 'thank you for waiting',
-    delimiter: ' ',
-    newClass: 'red',
-    oldClass: 'green',
+    value: "thank you for waiting",
+    delimiter: " ",
+    newClass: "red",
+    oldClass: "green",
     padSpace: true,
     rtl: true,
   },
-})
+});
 ```
 
 ```javascript
-import { gsap } from 'gsap'
-import { SplitText } from 'gsap/SplitText'
+import { gsap } from "gsap";
+import { SplitText } from "gsap/SplitText";
 
-gsap.registerPlugin(SplitText)
+gsap.registerPlugin(SplitText);
 
-const split = SplitText.create('.text', { type: 'words', mask: 'words' })
+const split = SplitText.create(".text", { type: "words", mask: "words" });
 
 gsap.from(split.words, {
   duration: 1,
@@ -116,63 +117,63 @@ gsap.from(split.words, {
   opacity: 0,
   stagger: 0.2,
   onComplete: () => split.revert(),
-})
+});
 ```
 
-## 6. Observer监听
+## 6. Observer 监听
 
 ```javascript
-import { gsap } from 'gsap'
-import { Observer } from 'gsap/Observer'
+import { gsap } from "gsap";
+import { Observer } from "gsap/Observer";
 
-gsap.registerPlugin(Observer)
+gsap.registerPlugin(Observer);
 
 Observer.create({
-  target: '.box',
-  type: 'wheel',
+  target: ".box",
+  type: "wheel",
   lockAxis: true,
   onChangeY() {
-    console.log('onChangeY')
+    console.log("onChangeY");
   },
   onChangeX() {
-    console.log('onChangeX')
+    console.log("onChangeX");
   },
   onDown() {
-    console.log('down')
+    console.log("down");
   },
   onUp() {
-    console.log('up')
+    console.log("up");
   },
-})
+});
 ```
 
-## 7. Drag拖放与惯性
+## 7. Drag 拖放与惯性
 
 ```javascript
-import { gsap } from 'gsap'
-import { Draggable } from 'gsap/Draggable'
-import { InertiaPlugin } from 'gsap/InertiaPlugin'
+import { gsap } from "gsap";
+import { Draggable } from "gsap/Draggable";
+import { InertiaPlugin } from "gsap/InertiaPlugin";
 
-gsap.registerPlugin(Draggable, InertiaPlugin)
+gsap.registerPlugin(Draggable, InertiaPlugin);
 
-Draggable.create('.red', {
-  type: 'x',
-})
+Draggable.create(".red", {
+  type: "x",
+});
 
-Draggable.create('.green', {
-  type: 'y',
-})
+Draggable.create(".green", {
+  type: "y",
+});
 
-Draggable.create('.blue', {
-  type: 'rotation',
+Draggable.create(".blue", {
+  type: "rotation",
   inertia: true, // 启动惯性
   snap: function (value) {
-    return Math.round(value / 90) * 90
+    return Math.round(value / 90) * 90;
   },
-})
+});
 ```
 
-## 8. SVG绘制与变形
+## 8. SVG 绘制与变形
 
 ```html
 <div>
@@ -194,17 +195,17 @@ Draggable.create('.blue', {
   </svg>
 </div>
 <script>
-  import { gsap } from 'gsap'
-  import { DrawSVGPlugin } from 'gsap/DrawSVGPlugin'
+  import { gsap } from "gsap";
+  import { DrawSVGPlugin } from "gsap/DrawSVGPlugin";
 
-  gsap.registerPlugin(DrawSVGPlugin)
+  gsap.registerPlugin(DrawSVGPlugin);
 
-  gsap.to('#path', {
-    drawSVG: '40% 70%',
+  gsap.to("#path", {
+    drawSVG: "40% 70%",
     duration: 2,
     repeat: -1,
     yoyo: true,
-  })
+  });
 </script>
 ```
 
@@ -228,31 +229,31 @@ Draggable.create('.blue', {
   </svg>
 </div>
 <script>
-  import { gsap } from 'gsap'
-  import { MorphSVGPlugin } from 'gsap/MorphSVGPlugin'
+  import { gsap } from "gsap";
+  import { MorphSVGPlugin } from "gsap/MorphSVGPlugin";
 
-  gsap.registerPlugin(MorphSVGPlugin)
+  gsap.registerPlugin(MorphSVGPlugin);
 
-  gsap.to('#circle', {
+  gsap.to("#circle", {
     duration: 1,
-    morphSVG: '#hippo',
+    morphSVG: "#hippo",
     repeat: 1,
     yoyo: true,
     repeatDelay: 0.2,
-  })
+  });
 </script>
 ```
 
-## 9. Motion路径
+## 9. Motion 路径
 
 ```javascript
-import { gsap } from 'gsap'
-import { MotionPathPlugin } from 'gsap/MotionPathPlugin'
-import { MotionPathHelper } from 'gsap/MotionPathHelper'
+import { gsap } from "gsap";
+import { MotionPathPlugin } from "gsap/MotionPathPlugin";
+import { MotionPathHelper } from "gsap/MotionPathHelper";
 
-gsap.registerPlugin(MotionPathPlugin, MotionPathHelper)
+gsap.registerPlugin(MotionPathPlugin, MotionPathHelper);
 
-gsap.to('.box', {
+gsap.to(".box", {
   duration: 4,
   motionPath: {
     path: [
@@ -263,7 +264,7 @@ gsap.to('.box', {
     curviness: 2, // 弯曲程度
     autoRotate: true,
   },
-})
+});
 
-MotionPathHelper.create('.box')
+MotionPathHelper.create(".box");
 ```

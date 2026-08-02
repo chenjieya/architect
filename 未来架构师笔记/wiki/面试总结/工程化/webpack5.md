@@ -4,6 +4,7 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
+
 ## 1. 清除输出目录
 
 `webpack5`清除输出目录开箱可用，无须安装`clean-webpack-plugin`，具体做法如下：
@@ -13,7 +14,7 @@ module.exports = {
   output: {
     clean: true,
   },
-}
+};
 ```
 
 ## 2. top-level-await
@@ -22,9 +23,9 @@ module.exports = {
 
 ```js
 // src/index.js
-const resp = await fetch('http://www.baidu.com')
-const jsonBody = await resp.json()
-export default jsonBody
+const resp = await fetch("http://www.baidu.com");
+const jsonBody = await resp.json();
+export default jsonBody;
 ```
 
 目前，`top-level-await`还未成为正式标准，因此，对于`webpack5`而言，该功能是作为`experiments`发布的，需要在`webpack.config.js`中配置开启
@@ -35,7 +36,7 @@ module.exports = {
   experiments: {
     topLevelAwait: true,
   },
-}
+};
 ```
 
 ## 3. 打包体积优化
@@ -51,16 +52,16 @@ module.exports = {
 默认情况下，`webpack5`是将模块的打包结果缓存到内存中，可以通过`cache`配置进行更改
 
 ```js
-const path = require('path')
+const path = require("path");
 
 module.exports = {
   cache: {
     // 缓存类型，支持：memory、filesystem
-    type: 'filesystem',
+    type: "filesystem",
     // 缓存目录，仅类型为 filesystem 有效
-    cacheDirectory: path.resolve(__dirname, 'node_modules/.cache/webpack'),
+    cacheDirectory: path.resolve(__dirname, "node_modules/.cache/webpack"),
   },
-}
+};
 ```
 
 > 关于`cache`的更多配置参考：https://webpack.docschina.org/configuration/other-options/#cache

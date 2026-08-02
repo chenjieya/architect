@@ -4,6 +4,7 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
+
 ## 1. 输入`input`
 
 下载完成之后，我们可以修改下载项目的`package.json`文件，添加一些自定义内容，首先至少要和用户进行输入交互
@@ -17,12 +18,12 @@ updated: 2026-08-02
  */
 export const inquirerInput = async (message) => {
   const answer = await inquirer.prompt({
-    name: 'input',
-    type: 'input',
+    name: "input",
+    type: "input",
     message,
-  })
-  return answer
-}
+  });
+  return answer;
+};
 
 /**
  * @param {Array} messages 询问提示语句数组
@@ -33,21 +34,21 @@ export const inquirerInputs = async (messages) => {
     messages.map((msg) => {
       return {
         name: msg.name,
-        type: 'input',
+        type: "input",
         message: msg.message,
-      }
-    }),
-  )
-  return answers
-}
+      };
+    })
+  );
+  return answers;
+};
 ```
 
 ```javascript
 // 是否忽略项目相关描述
 if (!option.ignore) {
   // 输入提问
-  const answers = await inquirerInputs(messages)
-  console.log(answers)
+  const answers = await inquirerInputs(messages);
+  console.log(answers);
 }
 ```
 
@@ -62,24 +63,24 @@ if (!option.ignore) {
  */
 export async function changePackageJson(name, info) {
   try {
-    const pkg = await fs.readJson(resolveApp(`${name}/package.json`))
+    const pkg = await fs.readJson(resolveApp(`${name}/package.json`));
 
     Object.keys(info).forEach((item) => {
-      if (item === 'name') {
+      if (item === "name") {
         // 如果未输入项目名，则使用默认创建的项目名，也就是文件夹的名字
-        pkg[item] = info[item] && info[item].trim() ? info[item] : name
-      } else if (item === 'keywords' && info[item] && info[item].trim()) {
-        pkg[item] = info[item].split(',')
+        pkg[item] = info[item] && info[item].trim() ? info[item] : name;
+      } else if (item === "keywords" && info[item] && info[item].trim()) {
+        pkg[item] = info[item].split(",");
       } else if (info[item] && info[item].trim()) {
-        pkg[item] = info[item]
+        pkg[item] = info[item];
       }
-    })
+    });
 
     // console.log(pkg)
 
-    await fs.writeJson(resolveApp(`${name}/package.json`), pkg, { spaces: 2 })
+    await fs.writeJson(resolveApp(`${name}/package.json`), pkg, { spaces: 2 });
   } catch (err) {
-    console.log(logSymbols.error, chalk.red(err))
+    console.log(logSymbols.error, chalk.red(err));
   }
 }
 ```
@@ -98,23 +99,23 @@ if (!option.ignore) {
 
 ## 3. `node_modules`安装
 
-下载完成之后，我们可以直接通过shell命令进入到下载好的项目中，进行`node_modules`安装
+下载完成之后，我们可以直接通过 shell 命令进入到下载好的项目中，进行`node_modules`安装
 
 ```javascript
 // utils.js
 
 export function npmInstall(dir) {
-  const spinner = ora('正在安装依赖......').start()
+  const spinner = ora("正在安装依赖......").start();
 
   if (
     shell.exec(`cd ${shell.pwd()}/${dir} && npm install --force -d`).code !== 0
   ) {
-    console.log(logSymbols.error, chalk.yellow('自动安装依赖失败，请手动安装'))
-    shell.exit(1)
+    console.log(logSymbols.error, chalk.yellow("自动安装依赖失败，请手动安装"));
+    shell.exit(1);
   }
-  spinner.succeed(chalk.green('~~~依赖安装成功~~~'))
-  spinner.succeed(chalk.green('~~~项目创建完成~~~'))
-  shell.exit(1)
+  spinner.succeed(chalk.green("~~~依赖安装成功~~~"));
+  spinner.succeed(chalk.green("~~~项目创建完成~~~"));
+  shell.exit(1);
 }
 ```
 

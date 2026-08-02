@@ -4,6 +4,7 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
+
 关于 babel 里面的 APIs 主要位于 @babel/core 这个依赖里面，你可以在官网左下角的 Tooling Packages 分类下找到这个依赖包。
 
 这里顺便介绍一下每一种依赖包的作用：
@@ -75,13 +76,13 @@ updated: 2026-08-02
 例如：
 
 ```js
-const babel = require('@babel/core')
+const babel = require("@babel/core");
 
 const options = {
-  filename: './src/myFile.js',
-}
-const config = babel.loadOptions(options)
-console.log(config)
+  filename: "./src/myFile.js",
+};
+const config = babel.loadOptions(options);
+console.log(config);
 ```
 
 在这个例子中，我们首先导入了 _@babel/core_，然后定义了一个选项对象。这个对象中，_filename_ 属性指定了我们正在处理的文件的路径。然后我们使用 _@babel/core_ 的 _loadOptions_ 方法来加载 _Babel_ 的配置。

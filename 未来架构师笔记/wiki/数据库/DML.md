@@ -4,6 +4,7 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
+
 DML（Data Manipulation Language，数据操纵语言）用于对表中的数据进行**增、删、改、查**。
 
 > 学习 DML 之前，请先确保已经完成 DDL 的学习，有了表和结构才能操作数据。
@@ -41,7 +42,7 @@ VALUES ('张三', 22, 95.5, 'zhangsan@example.com');
 
 #### 1.2.2 插入部分列
 
-省略的列会使用默认值（如果有 `DEFAULT`）或 `NULL`：
+省略的列会使用默认值（如果有  `DEFAULT`）或  `NULL`：
 
 ```sql
 INSERT INTO students (name, email)
@@ -83,7 +84,7 @@ SELECT name, age, score, email FROM backup_students WHERE age > 18;
 
 ### 1.5 RETURNING — 返回插入的数据
 
-PostgreSQL 特有的 `RETURNING` 子句，可以返回被插入行的数据：
+PostgreSQL 特有的  `RETURNING`  子句，可以返回被插入行的数据：
 
 ```sql
 INSERT INTO students (name, age, score, email)
@@ -103,7 +104,7 @@ RETURNING id, name;
 
 ### 1.6 ON CONFLICT — 冲突处理（UPSERT）
 
-PostgreSQL 的 `INSERT ... ON CONFLICT` 可以实现"存在则更新，不存在则插入"。
+PostgreSQL 的  `INSERT ... ON CONFLICT`  可以实现"存在则更新，不存在则插入"。
 
 ```sql
 INSERT INTO students (name, age, score, email)
@@ -112,7 +113,7 @@ ON CONFLICT (email)
 DO UPDATE SET age = EXCLUDED.age, score = EXCLUDED.score;
 ```
 
-> `EXCLUDED` 指代冲突时本次要插入的新值。
+> `EXCLUDED`  指代冲突时本次要插入的新值。
 
 不更新，忽略冲突：
 
@@ -132,7 +133,7 @@ ON CONFLICT (email) DO NOTHING;
 DELETE FROM 表名 WHERE 条件;
 ```
 
-> **⚠️ 一定不要忘记写 WHERE！** 不带 WHERE 会清空表。
+> **⚠️ 一定不要忘记写 WHERE！**  不带 WHERE 会清空表。
 
 ### 2.2 示例
 
@@ -182,7 +183,7 @@ RETURNING id, name, score;
 UPDATE 表名 SET 列1 = 值1, 列2 = 值2 WHERE 条件;
 ```
 
-> **⚠️ 一定不要忘记写 WHERE！** 不带 WHERE 会更新所有行。
+> **⚠️ 一定不要忘记写 WHERE！**  不带 WHERE 会更新所有行。
 
 ### 3.2 示例
 
@@ -232,7 +233,7 @@ SELECT 列1, 列2, ... FROM 表名;
 SELECT * FROM students;
 ```
 
-> `*` 表示所有列。开发中建议明确写出列名，避免查询不必要的字段。
+> `*`  表示所有列。开发中建议明确写出列名，避免查询不必要的字段。
 
 ### 4.3 查询指定列
 
@@ -242,7 +243,7 @@ SELECT name, age FROM students;
 
 ### 4.4 列别名
 
-使用 `AS` 给列起别名（`AS` 可省略）：
+使用  `AS`  给列起别名（`AS`  可省略）：
 
 ```sql
 SELECT name AS 姓名, score 成绩 FROM students;
@@ -275,7 +276,7 @@ SELECT * FROM students WHERE name LIKE '张%';
 SELECT * FROM students WHERE email IS NOT NULL;
 ```
 
-> `LIKE` 中 `%` 匹配任意多个字符，`_` 匹配单个字符。
+> `LIKE`  中  `%`  匹配任意多个字符，`_`  匹配单个字符。
 
 ---
 
@@ -352,11 +353,11 @@ SELECT age, COUNT(*) AS 人数 FROM students GROUP BY age;
 SELECT age, AVG(score) AS 平均分 FROM students GROUP BY age;
 ```
 
-> 使用 `GROUP BY` 时，`SELECT` 中出现的非聚合列必须出现在 `GROUP BY` 中。
+> 使用  `GROUP BY`  时，`SELECT`  中出现的非聚合列必须出现在  `GROUP BY`  中。
 
 ### 4.11 HAVING — 分组后过滤
 
-`WHERE` 在分组前过滤，`HAVING` 在分组后过滤：
+`WHERE`  在分组前过滤，`HAVING`  在分组后过滤：
 
 ```sql
 SELECT age, AVG(score) AS 平均分
@@ -436,7 +437,7 @@ JOIN courses c ON e.course_id = c.id;
 
 ### 4.13 子查询
 
-子查询是嵌套在另一个 SQL 中的查询，用 `()` 包裹。
+子查询是嵌套在另一个 SQL 中的查询，用  `()`  包裹。
 
 #### 4.13.1 标量子查询（返回单个值）
 
@@ -469,7 +470,7 @@ WHERE EXISTS (
 );
 ```
 
-> `EXISTS` 只关心子查询是否有返回结果，不关心具体值，通常写 `SELECT 1` 即可。
+> `EXISTS`  只关心子查询是否有返回结果，不关心具体值，通常写  `SELECT 1`  即可。
 
 ---
 
@@ -489,7 +490,7 @@ WHERE EXISTS (
 
 ## 6. 作业
 
-使用 `pgAdmin 4` 连接 PostgreSQL 16，完成以下练习：
+使用  `pgAdmin 4`  连接 PostgreSQL 16，完成以下练习：
 
 1. 使用`电商数据库设计.sql`建表（和前面示例相同的结构）
 2. 使用`电商数据库示例数据.sql`添加示例数据
@@ -515,10 +516,10 @@ WHERE EXISTS (
 22. 查询每个分类的商品总库存价值
 23. 查询商品及其所属分类名称
 24. 查询每个用户及其个人资料信息
-25. 查询订单明细，显示订单编号、商品名称、SKU 规格、数量、单价，并进行分页，每页10条，显示第3页
+25. 查询订单明细，显示订单编号、商品名称、SKU 规格、数量、单价，并进行分页，每页 10 条，显示第 3 页
 26. 查询每个用户的订单总消费金额，只显示总消费超过 10000 的用户
 27. 查询哪些商品从未被任何订单购买过
-28. 查询下单次数少于5次的用户
+28. 查询下单次数少于 5 次的用户
 29. 查询购买了"Dell XPS 15"的用户名单
 30. 查询价格高于所有 SKU 平均价格的 SKU
 31. 查询下单商品种类最多的前 5 个订单

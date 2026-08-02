@@ -4,6 +4,7 @@ ai_editable: true
 updated_by: ai
 updated: 2026-08-02
 ---
+
 ## 1. Ansible 是什么
 
 Ansible 是**基于 SSH** 的批量自动化运维工具，无需在被管机器上安装 agent。一个主控机（控制节点）通过 SSH 就能批量管理几百台机器，常用于批量部署、配置管理、CI/CD 发布。

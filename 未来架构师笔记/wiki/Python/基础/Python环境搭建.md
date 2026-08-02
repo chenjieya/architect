@@ -4,18 +4,19 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
-## 1. Python安装包
 
-Python安装包中包含以下核心组件：
+## 1. Python 安装包
+
+Python 安装包中包含以下核心组件：
 
 - 解释器：默认为`CPython`
 - 包管理器：`pip`
 - 标准库：`os、sys、urllib、pathlib、...`
 - 交互式终端：`REPL`
 
-### 1.1 Python发行版
+### 1.1 Python 发行版
 
-Python有很多的发行版，不同的发行版又有很多的版本
+Python 有很多的发行版，不同的发行版又有很多的版本
 
 - **官方 Python (CPython)**：C 语言原生实现，Python 标准参考版本，带 GIL，生态最全，日常开发默认首选
 
@@ -78,6 +79,7 @@ pyenv --version
 ![a911aa22f25bf22fc48a83885299fb4f~tplv-a9rns2rl98-pc_smart_face_crop-v1_512_384](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/obsidian/1779802847958_202605111101231.webp)
 
 2. 在**用户变量**（只影响当前用户）或**系统变量**（所有用户）里点「新建」：
+
    - 变量名：`PYTHON_BUILD_MIRROR_URL`
 
    - 变量值：填下面任意一个国内源
@@ -134,20 +136,20 @@ pyenv shell 3.14.1
 2. `VSCode`体系对`AI Coding`支持更友好
 3. 轻量高效、启动速度快，低配电脑也能流畅使用
 
-### 3.1 VSCode插件
+### 3.1 VSCode 插件
 
 安装好`VSCode`后，依次安装以下插件
 
 - **Python**
   语法高亮、代码提示、运行调试、虚拟环境识别，**最核心**。
 - **Code Runner**
-  右键一键运行Python代码，不用敲命令，新手超好用。
+  右键一键运行 Python 代码，不用敲命令，新手超好用。
 - **Black Formatter**
   自动格式化代码，统一代码风格，不用手动排版。
 - **Chinese (Simplified)**
-  VSCode界面汉化，零基础友好。
+  VSCode 界面汉化，零基础友好。
 
-### 3.2 VSCode配置
+### 3.2 VSCode 配置
 
 code runner 配置
 

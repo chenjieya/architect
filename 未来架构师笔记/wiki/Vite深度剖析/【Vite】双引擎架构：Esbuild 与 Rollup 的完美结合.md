@@ -4,6 +4,7 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
+
 > Vite 采用了独特的双引擎架构：开发环境使用 Esbuild，生产环境使用 Rollup。为什么这样设计？
 
 ---
@@ -63,10 +64,10 @@ export default {
   optimizeDeps: {
     // 使用 esbuild 打包依赖
     esbuildOptions: {
-      target: 'es2020',
+      target: "es2020",
     },
   },
-}
+};
 ```
 
 **工作流程：**
@@ -87,10 +88,10 @@ export default {
 
 ```javascript
 // 源代码
-import { debounce } from 'lodash-es'
+import { debounce } from "lodash-es";
 
 // 预构建后，路径被重写
-import { debounce } from '/node_modules/.vite/deps/lodash-es.js'
+import { debounce } from "/node_modules/.vite/deps/lodash-es.js";
 ```
 
 **关键词解释：**
@@ -106,30 +107,30 @@ import { debounce } from '/node_modules/.vite/deps/lodash-es.js'
 
 ```typescript
 // src/App.tsx
-import React from 'react'
+import React from "react";
 
 interface Props {
-  title: string
+  title: string;
 }
 
 const App: React.FC<Props> = ({ title }) => {
-  return <h1>{title}</h1>
-}
+  return <h1>{title}</h1>;
+};
 
-export default App
+export default App;
 ```
 
 **Esbuild 转换后：**
 
 ```javascript
 // 编译后的 JavaScript
-import React from 'react'
+import React from "react";
 
 const App = ({ title }) => {
-  return React.createElement('h1', null, title)
-}
+  return React.createElement("h1", null, title);
+};
 
-export default App
+export default App;
 ```
 
 **代码演示：Vite 配置**
@@ -139,13 +140,13 @@ export default App
 export default {
   esbuild: {
     // TypeScript 配置
-    target: 'es2020',
+    target: "es2020",
     // JSX 配置
-    jsx: 'transform', // 或 'preserve'
+    jsx: "transform", // 或 'preserve'
     // 移除 console 和 debugger
-    drop: ['console', 'debugger'],
+    drop: ["console", "debugger"],
   },
-}
+};
 ```
 
 **关键词解释：**
@@ -164,11 +165,11 @@ export default {
 export default {
   build: {
     // 使用 esbuild 压缩（默认）
-    minify: 'esbuild',
+    minify: "esbuild",
     // 或使用 terser
     // minify: 'terser'
   },
-}
+};
 ```
 
 **压缩效果对比：**
@@ -176,15 +177,15 @@ export default {
 ```javascript
 // 压缩前
 function calculateSum(a, b) {
-  const result = a + b
-  console.log('Sum:', result)
-  return result
+  const result = a + b;
+  console.log("Sum:", result);
+  return result;
 }
 
 // esbuild 压缩后
 function calculateSum(a, b) {
-  const result = a + b
-  return result
+  const result = a + b;
+  return result;
 }
 ```
 
@@ -236,18 +237,18 @@ export default {
     // 使用 Rollup 打包
     rollupOptions: {
       input: {
-        main: './index.html',
-        admin: './admin.html',
+        main: "./index.html",
+        admin: "./admin.html",
       },
       output: {
-        format: 'es',
-        entryFileNames: 'assets/[name]-[hash].js',
-        chunkFileNames: 'assets/[name]-[hash].js',
-        assetFileNames: 'assets/[name]-[hash].[ext]',
+        format: "es",
+        entryFileNames: "assets/[name]-[hash].js",
+        chunkFileNames: "assets/[name]-[hash].js",
+        assetFileNames: "assets/[name]-[hash].[ext]",
       },
     },
   },
-}
+};
 ```
 
 **工作流程：**
@@ -284,15 +285,15 @@ export default {
       output: {
         // CSS 文件命名
         assetFileNames: (assetInfo) => {
-          if (assetInfo.name.endsWith('.css')) {
-            return 'css/[name]-[hash].[ext]'
+          if (assetInfo.name.endsWith(".css")) {
+            return "css/[name]-[hash].[ext]";
           }
-          return 'assets/[name]-[hash].[ext]'
+          return "assets/[name]-[hash].[ext]";
         },
       },
     },
   },
-}
+};
 ```
 
 **分割效果：**
@@ -327,7 +328,7 @@ export default {
       polyfill: true, // 生成预加载指令
     },
   },
-}
+};
 ```
 
 **生成的 HTML：**
@@ -354,14 +355,14 @@ export default {
 // src/router.js
 const routes = [
   {
-    path: '/home',
-    component: () => import('./pages/Home.vue'), // 异步加载
+    path: "/home",
+    component: () => import("./pages/Home.vue"), // 异步加载
   },
   {
-    path: '/about',
-    component: () => import('./pages/About.vue'), // 异步加载
+    path: "/about",
+    component: () => import("./pages/About.vue"), // 异步加载
   },
-]
+];
 ```
 
 **Vite 优化：**
@@ -390,15 +391,15 @@ Vite 在开发环境模拟 Rollup 的行为，创建一个插件容器来调用 
 // 让 Rollup 插件可以在开发环境使用
 
 // vite.config.js
-import { defineConfig } from 'vite'
-import rollupPlugin from 'some-rollup-plugin'
+import { defineConfig } from "vite";
+import rollupPlugin from "some-rollup-plugin";
 
 export default defineConfig({
   plugins: [
     // Rollup 插件可以直接使用
     rollupPlugin(),
   ],
-})
+});
 ```
 
 **工作原理：**
@@ -453,10 +454,10 @@ export default defineConfig({
 export default {
   // Esbuild 配置
   esbuild: {
-    target: 'es2020',
-    jsx: 'transform',
+    target: "es2020",
+    jsx: "transform",
   },
-}
+};
 ```
 
 ---
@@ -485,11 +486,11 @@ export default {
     // Rollup 配置
     rollupOptions: {
       output: {
-        format: 'es',
+        format: "es",
       },
     },
   },
-}
+};
 ```
 
 ---
@@ -537,6 +538,7 @@ export default {
 **关键点：**
 
 1. **Esbuild**：开发环境的极速引擎
+
    - 依赖预构建
    - 单文件编译
    - 代码压缩

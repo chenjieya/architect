@@ -4,13 +4,14 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
-> ESLint官网：https://eslint.org/
+
+> ESLint 官网：https://eslint.org/
 >
-> ESLint民间中文网：https://eslint.bootcss.com/
+> ESLint 民间中文网：https://eslint.bootcss.com/
 
-## 1. ESLint的由来
+## 1. ESLint 的由来
 
-JavaScript是一个过于灵活的语言，因此在企业开发中，往往会遇到下面两个问题：
+JavaScript 是一个过于灵活的语言，因此在企业开发中，往往会遇到下面两个问题：
 
 - 如何让所有员工书写高质量的代码？
 
@@ -24,11 +25,11 @@ JavaScript是一个过于灵活的语言，因此在企业开发中，往往会�
 
 如果纯依靠人工进行检查，不仅费时费力，而且还容易出错。
 
-ESLint由此诞生，它是一个工具，**预先配置好各种规则**，通过这些规则来自动化的验证代码，甚至自动修复
+ESLint 由此诞生，它是一个工具，**预先配置好各种规则**，通过这些规则来自动化的验证代码，甚至自动修复
 
 <img src="https://picgo-1300696809.cos.ap-beijing.myqcloud.com/obsidian/1771984334447_20211103145845.png" alt="image-20211103145844948" style="zoom:50%;" />
 
-## 2. ESLint的基本使用
+## 2. ESLint 的基本使用
 
 ### 2.1 安装
 
@@ -47,11 +48,11 @@ npx eslint src/**
 
 ### 2.3 配置规则
 
-eslint会自动寻找根目录中的配置文件，它支持三种配置文件：
+eslint 会自动寻找根目录中的配置文件，它支持三种配置文件：
 
-- `.eslintrc` JSON格式
-- `.eslintrc.js` JS格式
-- `.eslintrc.yml` YAML格式
+- `.eslintrc` JSON 格式
+- `.eslintrc.js` JS 格式
+- `.eslintrc.yml` YAML 格式
 
 这里以`.eslintrc.js`为例：
 
@@ -84,19 +85,19 @@ module.exports = {
 - 1 或 'warn'：验证不通过提出警告
 - 2 或 'error'：验证不通过报错，退出程序
 
-### 2.4 在VSCode中及时发现问题
+### 2.4 在 VSCode 中及时发现问题
 
 每次都要输入命令发现问题非常麻烦
 
-可以安装VSCode插件**ESLint**，只要项目的node_modules中有eslint，它就会按照项目根目录下的规则自动检测
+可以安装 VSCode 插件**ESLint**，只要项目的 node_modules 中有 eslint，它就会按照项目根目录下的规则自动检测
 
 ### 2.5 使用继承
 
-ESLint的规则非常庞大，全部自定义过于麻烦
+ESLint 的规则非常庞大，全部自定义过于麻烦
 
 一般我们继承其他企业开源的方案来简化配置
 
-这方面做的比较好的是一家叫Airbnb的公司，他们在开发前端项目的时候自定义了一套开源规则，受到全世界的认可
+这方面做的比较好的是一家叫 Airbnb 的公司，他们在开发前端项目的时候自定义了一套开源规则，受到全世界的认可
 
 我们只需要安装它即可
 
@@ -115,7 +116,7 @@ module.exports = {
 
 ### 2.6 在框架中使用
 
-一般我们使用脚手架搭建工程，在搭建工程时通常都可以直接设置eslint
+一般我们使用脚手架搭建工程，在搭建工程时通常都可以直接设置 eslint
 
 ## 3. 企业开发的实际情况
 
@@ -123,7 +124,7 @@ module.exports = {
 
 我们要做什么？
 
-- 安装好VSCode的ESLint插件
-- 学会查看ESLint错误提示
+- 安装好 VSCode 的 ESLint 插件
+- 学会查看 ESLint 错误提示
 
 [^1]:

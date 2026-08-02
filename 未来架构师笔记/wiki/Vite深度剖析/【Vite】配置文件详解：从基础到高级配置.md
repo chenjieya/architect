@@ -4,6 +4,7 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
+
 > Vite 的配置文件是项目的心脏，本文详细解析所有配置项的含义和使用场景。
 
 ---
@@ -23,11 +24,11 @@ Vite 支持多种配置文件格式：
 
 ```javascript
 // vite.config.js
-import { defineConfig } from 'vite'
+import { defineConfig } from "vite";
 
 export default defineConfig({
   // 配置项
-})
+});
 ```
 
 **关键词解释：**
@@ -43,11 +44,11 @@ export default defineConfig({
 
 ```typescript
 // vite.config.ts
-import { defineConfig } from 'vite'
+import { defineConfig } from "vite";
 
 export default defineConfig({
   // 配置项
-})
+});
 ```
 
 **TypeScript 配置：tsconfig.json**
@@ -77,7 +78,7 @@ export default defineConfig({
 
 **详细配置说明：**
 
-#### isolatedModules: true
+#### 1.2.1 isolatedModules: true
 
 **作用：** 是否将每个文件作为独立的模块进行编译，主要用于兼容 esbuild。
 
@@ -101,7 +102,7 @@ enum Direction {
 }
 ```
 
-#### skipLibCheck: true
+#### 1.2.2 skipLibCheck: true
 
 **作用：** 跳过库类型检查。
 
@@ -109,7 +110,7 @@ enum Direction {
 
 有些第三方库不能很好的兼容 `isolatedModules`，可以使用这个属性来缓解类型检查错误。这样可以加快编译速度，只检查项目代码。
 
-#### moduleResolution: "bundler"
+#### 1.2.3 moduleResolution: "bundler"
 
 **作用：** 指定使用打包工具提供的模块解析策略。
 
@@ -136,7 +137,7 @@ enum Direction {
 // vite.config.mjs
 export default {
   // 配置
-}
+};
 ```
 
 **解决方案 2：package.json 配置**
@@ -167,20 +168,20 @@ export default {
   server: {
     port: window.innerWidth > 768 ? 3000 : 3001,
   },
-}
+};
 ```
 
 **代码演示：正确用法**
 
 ```javascript
 // ✅ 正确：使用 Node.js API
-import { defineConfig } from 'vite'
+import { defineConfig } from "vite";
 
 export default defineConfig({
   server: {
     port: process.env.PORT || 3000,
   },
-})
+});
 ```
 
 ---
@@ -193,7 +194,7 @@ export default defineConfig({
 
 ```javascript
 // Node.js 会自动解析
-import vue from 'vue' // 从 node_modules 查找
+import vue from "vue"; // 从 node_modules 查找
 ```
 
 **Vite 处理：**
@@ -203,11 +204,11 @@ import vue from 'vue' // 从 node_modules 查找
 export default {
   resolve: {
     alias: {
-      '@': '/src',
-      '@components': '/src/components',
+      "@": "/src",
+      "@components": "/src/components",
     },
   },
-}
+};
 ```
 
 ---
@@ -218,20 +219,20 @@ export default {
 
 ```javascript
 // vite.config.js
-import { defineConfig } from 'vite'
-import { resolve } from 'path'
-import { fileURLToPath, URL } from 'node:url'
+import { defineConfig } from "vite";
+import { resolve } from "path";
+import { fileURLToPath, URL } from "node:url";
 
 export default defineConfig({
   resolve: {
     alias: {
       // 使用 __dirname（CommonJS）
-      '@': resolve(__dirname, 'src'),
+      "@": resolve(__dirname, "src"),
       // 使用 import.meta.url（ESM）
-      '@': fileURLToPath(new URL('./src', import.meta.url)),
+      "@": fileURLToPath(new URL("./src", import.meta.url)),
     },
   },
-})
+});
 ```
 
 **关键词解释：**
@@ -270,12 +271,12 @@ export default defineConfig({
 ```typescript
 // vite/client 提供的类型
 interface ImportMetaEnv {
-  readonly VITE_API_URL: string
-  readonly VITE_APP_TITLE: string
+  readonly VITE_API_URL: string;
+  readonly VITE_APP_TITLE: string;
 }
 
 interface ImportMeta {
-  readonly env: ImportMetaEnv
+  readonly env: ImportMetaEnv;
 }
 ```
 
@@ -294,20 +295,20 @@ interface ImportMeta {
 // src/vite-env.d.ts
 /// <reference types="vite/client" />
 
-declare module '*.vue' {
-  import type { DefineComponent } from 'vue'
-  const component: DefineComponent<{}, {}, any>
-  export default component
+declare module "*.vue" {
+  import type { DefineComponent } from "vue";
+  const component: DefineComponent<{}, {}, any>;
+  export default component;
 }
 
-declare module '*.svg' {
-  const src: string
-  export default src
+declare module "*.svg" {
+  const src: string;
+  export default src;
 }
 
-declare module '*.png' {
-  const src: string
-  export default src
+declare module "*.png" {
+  const src: string;
+  export default src;
 }
 ```
 
@@ -321,14 +322,14 @@ declare module '*.png' {
 
 ```typescript
 // vite.config.ts
-import { defineConfig } from 'vite'
+import { defineConfig } from "vite";
 
 export default defineConfig({
   // 这里有完整的类型提示
   server: {
     port: 3000,
   },
-})
+});
 ```
 
 **优势：**
@@ -344,15 +345,15 @@ export default defineConfig({
 **代码演示：UserConfig 类型**
 
 ```typescript
-import type { UserConfig } from 'vite'
+import type { UserConfig } from "vite";
 
 const config: UserConfig = {
   server: {
     port: 3000,
   },
-}
+};
 
-export default config
+export default config;
 ```
 
 ---
@@ -364,29 +365,29 @@ export default config
 **代码演示：函数式配置**
 
 ```typescript
-import { defineConfig, type ConfigEnv } from 'vite'
+import { defineConfig, type ConfigEnv } from "vite";
 
 export default defineConfig(({ command, mode, ssrBuild }: ConfigEnv) => {
   // command: 'build' | 'serve'
   // mode: string
   // ssrBuild: boolean
 
-  if (command === 'serve') {
+  if (command === "serve") {
     // 开发环境配置
     return {
       server: {
         port: 3000,
       },
-    }
+    };
   } else {
     // 生产环境配置
     return {
       build: {
-        minify: 'terser',
+        minify: "terser",
       },
-    }
+    };
   }
-})
+});
 ```
 
 **关键词解释：**
@@ -406,7 +407,7 @@ export default defineConfig(({ command, mode, ssrBuild }: ConfigEnv) => {
 // 内部实现（简化版）
 async function loadConfigFromFile(
   configEnv: ConfigEnv,
-  configFile?: string,
+  configFile?: string
 ): Promise<UserConfig | null> {
   // 加载并执行配置文件
 }
@@ -426,7 +427,7 @@ export default {
   server: {
     port: process.env.PORT || 3000,
   },
-}
+};
 ```
 
 ---
@@ -509,11 +510,11 @@ loadEnv(mode: string, envDir: string, prefixes?: string | string[]): Record<stri
 **代码演示：在配置文件中使用 loadEnv**
 
 ```typescript
-import { defineConfig, loadEnv } from 'vite'
+import { defineConfig, loadEnv } from "vite";
 
 export default defineConfig(({ mode }) => {
   // 加载环境变量
-  const env = loadEnv(mode, process.cwd(), 'VITE_')
+  const env = loadEnv(mode, process.cwd(), "VITE_");
 
   return {
     define: {
@@ -522,15 +523,15 @@ export default defineConfig(({ mode }) => {
     server: {
       port: parseInt(env.VITE_PORT) || 3000,
     },
-  }
-})
+  };
+});
 ```
 
 **代码演示：加载多个前缀**
 
 ```typescript
 // 加载 VITE_ 和 CUSTOM_ 开头的变量
-const env = loadEnv(mode, process.cwd(), ['VITE_', 'CUSTOM_'])
+const env = loadEnv(mode, process.cwd(), ["VITE_", "CUSTOM_"]);
 ```
 
 **关键词解释：**
@@ -550,7 +551,7 @@ export default {
   // 开发服务器 --> development 模式
   // build 命令 --> production 模式
   // 覆盖默认模式 --mode (比如 --mode test)
-}
+};
 ```
 
 **代码演示：使用模式**
@@ -574,11 +575,11 @@ vite build --mode staging
 
 ```typescript
 // 客户端代码
-console.log(import.meta.env.MODE) // 'development' | 'production'
-console.log(import.meta.env.BASE_URL) // 部署基础路径
-console.log(import.meta.env.PROD) // 是否生产环境
-console.log(import.meta.env.DEV) // 是否开发环境
-console.log(import.meta.env.SSR) // 是否 SSR
+console.log(import.meta.env.MODE); // 'development' | 'production'
+console.log(import.meta.env.BASE_URL); // 部署基础路径
+console.log(import.meta.env.PROD); // 是否生产环境
+console.log(import.meta.env.DEV); // 是否开发环境
+console.log(import.meta.env.SSR); // 是否 SSR
 ```
 
 **默认暴露的变量：**
@@ -603,9 +604,9 @@ console.log(import.meta.env.SSR) // 是否 SSR
 ```javascript
 // vite.config.js
 export default {
-  envPrefix: 'CUSTOM_', // 自定义前缀
+  envPrefix: "CUSTOM_", // 自定义前缀
   // 只有 CUSTOM_ 开头的变量才会暴露
-}
+};
 ```
 
 ---
@@ -617,14 +618,14 @@ export default {
 ```typescript
 // src/vite-env.d.ts
 interface ImportMetaEnv {
-  readonly VITE_APP_TITLE: string
-  readonly VITE_PORT: number
-  readonly VITE_OPEN: boolean
-  readonly VITE_API_URL: string
+  readonly VITE_APP_TITLE: string;
+  readonly VITE_PORT: number;
+  readonly VITE_OPEN: boolean;
+  readonly VITE_API_URL: string;
 }
 
 interface ImportMeta {
-  readonly env: ImportMetaEnv
+  readonly env: ImportMetaEnv;
 }
 ```
 

@@ -4,6 +4,7 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
+
 Nest 支持创建多种类型的服务：
 
 包括 HTTP 服务、WebSocket 服务，还有基于 TCP 通信的微服务。
@@ -20,18 +21,17 @@ Nest 支持创建多种类型的服务：
 
 Nest 的解决方法是 ArgumentHost 这个类。
 
-
-## 1. filter过滤器中的上下文
+## 1. filter 过滤器中的上下文
 
 我们来看一下：
 
 创建一个 filter：
+
 ```
 nest g filter aaa --flat --no-spec
 ```
 
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251203110701374.png)
-
 
 Nest 会 catch 所有未捕获异常，如果是 Exception Filter 声明的异常，那就会调用 filter 来处理。
 
@@ -42,7 +42,7 @@ Nest 会 catch 所有未捕获异常，如果是 Exception Filter 声明的异�
 ```javascript
 export class AaaException {
     constructor(public aaa: string, public bbb: string) {
-        
+
     }
 }
 ```
@@ -51,26 +51,21 @@ export class AaaException {
 
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251203110747375.png)
 
-
 然后需要启用它：
 
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251203110811329.png)
 
-
 路由级别启用 AaaFilter，并且在 handler 里抛了一个 AaaException 类型的异常。
-
 
 访问 <http://localhost:3000> 就可以看到 filter 被调用了。
 
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251203110838305.png)
-
 
 filter 的第一个参数就是异常对象，那第二个参数呢？
 
 可以看到，它有这些方法：
 
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251203110851564.png)
-
 
 我们用调试的方式跑一下：
 
@@ -80,18 +75,13 @@ filter 的第一个参数就是异常对象，那第二个参数呢？
 
 ```json
 {
-    "type": "pwa-node",
-    "request": "launch",
-    "name": "debug nest",
-    "runtimeExecutable": "npm",
-    "args": [
-        "run",
-        "start:dev",
-    ],
-    "skipFiles": [
-        "<node_internals>/**"
-    ],
-    "console": "integratedTerminal",
+  "type": "pwa-node",
+  "request": "launch",
+  "name": "debug nest",
+  "runtimeExecutable": "npm",
+  "args": ["run", "start:dev"],
+  "skipFiles": ["<node_internals>/**"],
+  "console": "integratedTerminal"
 }
 ```
 
@@ -101,7 +91,6 @@ filter 的第一个参数就是异常对象，那第二个参数呢？
 
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251203110956815.png)
 
-
 host.getArgs 方法就是取出当前上下文的 reqeust、response、next 参数。
 
 因为当前上下文是 http 服务，如果是 WebSocket 服务，这里拿到的就是别的东西了。
@@ -109,7 +98,6 @@ host.getArgs 方法就是取出当前上下文的 reqeust、response、next 参�
 host.getArgByIndex 方法是根据下标取参数：
 
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251203111014757.png)
-
 
 当然，一般不会根据 index 来取，而且这样用：
 
@@ -119,7 +107,7 @@ host.getArgByIndex 方法是根据下标取参数：
 
 如果是 websocket、基于 tcp 的微服务等上下文，就分别调用 host.swtichToWs、host.switchToRpc 方法。
 
-这样，就可以在 filter 里处理多个上下文的逻辑，跨上下文复用 filter了。
+这样，就可以在 filter 里处理多个上下文的逻辑，跨上下文复用 filter 了。
 
 加个 if else 判断即可：
 
@@ -155,15 +143,14 @@ export class AaaFilter implements ExceptionFilter {
 
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251203111116026.png)
 
-
 所以说，**ArgumentHost 是用于切换 http、websocket、rpc 等上下文类型的，可以根据上下文类型取到对应的 argument，让 Exception Filter 等在不同的上下文中复用**。
 
-
-## 2. guard守卫和interceptor拦截器中的上下文
+## 2. guard 守卫和 interceptor 拦截器中的上下文
 
 那 guard 和 interceptor 里呢？
 
 我们创建个 guard 试一下：
+
 ```
 nest g guard aaa --no-spec --flat
 ```
@@ -172,18 +159,15 @@ nest g guard aaa --no-spec --flat
 
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251203111138960.png)
 
-
 有这些方法：
 
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251203111147924.png)
-
 
 是不是很眼熟？
 
 没错，ExecutionContext 是 ArgumentHost 的子类，扩展了 getClass、getHandler 方法。
 
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251203111156741.png)
-
 
 多加这两个方法是干啥的呢？
 
@@ -193,14 +177,11 @@ nest g guard aaa --no-spec --flat
 
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251203111208717.png)
 
-
 调用下 context.getClass 和 getHandler：
 
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251203111226822.png)
 
-
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251203111234424.png)
-
 
 会发现这俩分别是要调用的 controller 的 class 以及要调用的方法。
 
@@ -212,18 +193,15 @@ nest g guard aaa --no-spec --flat
 
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251203111244647.png)
 
-
 然后定义这样一个装饰器：
 
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251203111251882.png)
 
-
 它的作用是往修饰的目标上添加 roles 的 metadata。
 
-然后在 handler 上添加这个装饰器，参数为 admin，也就是给这个 handler 添加了一个 roles 为 admin 的metadata。
+然后在 handler 上添加这个装饰器，参数为 admin，也就是给这个 handler 添加了一个 roles 为 admin 的 metadata。
 
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251203111258703.png)
-
 
 这样在 Guard 里就可以根据这个 metadata 决定是否放行了：
 
@@ -259,18 +237,18 @@ export class AaaGuard implements CanActivate {
 
 判断如果没有 roles 的 metadata 就是需要权限，那就直接放行。
 
-如果有，就是需要权限，从 user 的 roles中判断下又没有当前 roles，有的话就放行。
+如果有，就是需要权限，从 user 的 roles 中判断下又没有当前 roles，有的话就放行。
 
 刷新页面，可以看到返回的是 403：
 
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251203111307466.png)
-
 
 这说明 Guard 生效了。
 
 这就是 Guard 里的 ExecutionContext 参数的用法。
 
 同样，在 interceptor 里也有这个：
+
 ```
 nest g interceptor aaa --no-spec --flat
 ```

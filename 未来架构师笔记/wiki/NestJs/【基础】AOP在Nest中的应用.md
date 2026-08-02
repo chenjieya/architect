@@ -4,43 +4,44 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
+
 ## 1. 中间件
+
 中间件是 Express 里的概念，Nest 的底层默认是 Express，它在请求流程中的位置大致如下：
 
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251201215125690.png)
 
-
-**中间件**可以在**路由处理程序之前**或者**之后插入**需要执行的任务，Nest做了进一步细分，主要分为**全局中间件**和**局部中间件**
+**中间件**可以在**路由处理程序之前**或者**之后插入**需要执行的任务，Nest 做了进一步细分，主要分为**全局中间件**和**局部中间件**
 
 我们可以通过命令**nest g mi [中间件名称]**直接来创建中间件，比如`nest g mi person`就会自动帮我们在`person`文件夹下创建`person.middleware.ts`文件
 
 **person.middleware.ts**
 
 ```typescript
-import { Injectable, NestMiddleware } from '@nestjs/common';
-import { Request, Response, NextFunction } from 'express';
+import { Injectable, NestMiddleware } from "@nestjs/common";
+import { Request, Response, NextFunction } from "express";
 
 @Injectable()
 export class PersonMiddleware implements NestMiddleware {
   use(req: Request, res: Response, next: NextFunction) {
-    console.log('before 中间件 ---' + req.url);
+    console.log("before 中间件 ---" + req.url);
     next();
-    console.log('after 中间件 ---' + res.statusCode);
+    console.log("after 中间件 ---" + res.statusCode);
   }
 }
 ```
 
-当然，默认生成的参数`req`，`res`类型都是`any`，next就是一个默认函数`() => void`我们可以加上`express`对应的相关类型。
+当然，默认生成的参数`req`，`res`类型都是`any`，next 就是一个默认函数`() => void`我们可以加上`express`对应的相关类型。
 
-我们可以在person模块中调用中间件
+我们可以在 person 模块中调用中间件
 
 **person.module.ts**
 
 ```typescript
-import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
-import { PersonService } from './person.service';
-import { PersonController } from './person.controller';
-import { PersonMiddleware } from './person.middleware';
+import { MiddlewareConsumer, Module, NestModule } from "@nestjs/common";
+import { PersonService } from "./person.service";
+import { PersonController } from "./person.controller";
+import { PersonMiddleware } from "./person.middleware";
 
 @Module({
   controllers: [PersonController],
@@ -61,10 +62,10 @@ import {
   Module,
   NestModule,
   RequestMethod,
-} from '@nestjs/common';
-import { PersonService } from './person.service';
-import { PersonController } from './person.controller';
-import { PersonMiddleware } from './person.middleware';
+} from "@nestjs/common";
+import { PersonService } from "./person.service";
+import { PersonController } from "./person.controller";
+import { PersonMiddleware } from "./person.middleware";
 
 @Module({
   controllers: [PersonController],
@@ -73,14 +74,14 @@ import { PersonMiddleware } from './person.middleware';
 export class PersonModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
     consumer.apply(PersonMiddleware).forRoutes({
-      path: '/person',
+      path: "/person",
       method: RequestMethod.GET,
     });
   }
 }
 ```
 
-当我们访问/person时，后端打印如下效果：
+当我们访问/person 时，后端打印如下效果：
 
 ```text
 before 中间件 ---/person
@@ -88,13 +89,13 @@ person controller
 after 中间件 ---200
 ```
 
-在Nest中，类中间件不仅可以处理HTTP请求和响应，更重要的是，它能够实现依赖注入。这意味着我们可以在中间件中注入特定的依赖项，并且调用这些依赖项内部的方法。比如:
+在 Nest 中，类中间件不仅可以处理 HTTP 请求和响应，更重要的是，它能够实现依赖注入。这意味着我们可以在中间件中注入特定的依赖项，并且调用这些依赖项内部的方法。比如:
 
 ```typescript
-import { Inject, Injectable, NestMiddleware } from '@nestjs/common';
-import { Request, Response, NextFunction } from 'express';
-import { UserService } from 'src/user/user.service';
-import { PersonService } from './person.service';
+import { Inject, Injectable, NestMiddleware } from "@nestjs/common";
+import { Request, Response, NextFunction } from "express";
+import { UserService } from "src/user/user.service";
+import { PersonService } from "./person.service";
 
 @Injectable()
 export class PersonMiddleware implements NestMiddleware {
@@ -102,10 +103,10 @@ export class PersonMiddleware implements NestMiddleware {
   private personService: PersonService;
 
   use(req: Request, res: Response, next: NextFunction) {
-    console.log('before 中间件 ---' + req.url);
-    console.log('调用注入的服务 ---' + this.personService.findAll());
+    console.log("before 中间件 ---" + req.url);
+    console.log("调用注入的服务 ---" + this.personService.findAll());
     next();
-    console.log('after 中间件 ---' + res.statusCode);
+    console.log("after 中间件 ---" + res.statusCode);
   }
 }
 ```
@@ -116,35 +117,35 @@ export class PersonMiddleware implements NestMiddleware {
 export function PersonMiddleware(
   req: Request,
   res: Response,
-  next: NextFunction,
+  next: NextFunction
 ) {
-  console.log('before 函数中间件 ---' + req.url);
+  console.log("before 函数中间件 ---" + req.url);
   next();
-  console.log('after 函数中间件 ---' + res.statusCode);
+  console.log("after 函数中间件 ---" + res.statusCode);
 }
 ```
 
-除了在局部引用，也能**直接在全局引用**，作为全局中间件使用，比如，我创建一个logger中间件，`nest g mi logger`
+除了在局部引用，也能**直接在全局引用**，作为全局中间件使用，比如，我创建一个 logger 中间件，`nest g mi logger`
 
 ```typescript
-import { Injectable, NestMiddleware } from '@nestjs/common';
-import { Request, Response, NextFunction } from 'express';
+import { Injectable, NestMiddleware } from "@nestjs/common";
+import { Request, Response, NextFunction } from "express";
 @Injectable()
 export class LoggerMiddleware implements NestMiddleware {
   use(req: Request, res: Response, next: NextFunction) {
-    console.log('before 全局中间件 ---' + req.url);
+    console.log("before 全局中间件 ---" + req.url);
     next();
-    console.log('after 全局中间件 ---' + res.statusCode);
+    console.log("after 全局中间件 ---" + res.statusCode);
   }
 }
 ```
 
-在main.ts中全局引入
+在 main.ts 中全局引入
 
 ```typescript
-import { NestFactory } from '@nestjs/core';
-import { AppModule } from './app.module';
-import { LoggerMiddleware } from './logger/logger.middleware';
+import { NestFactory } from "@nestjs/core";
+import { AppModule } from "./app.module";
+import { LoggerMiddleware } from "./logger/logger.middleware";
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -160,7 +161,6 @@ bootstrap();
 
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251201215149585.png)
 
-
 **守卫在调用路由程序之前返回`true`或者`false`来判断是否通行**，同样分为**全局守卫**和**局部守卫**
 
 同样，我们可以使用命令**nest g gu [守卫名称]**来创建守卫模块，比如：`nest g gu person`就会自动帮我们在`person`文件夹下创建`person.guard.ts`文件
@@ -170,15 +170,15 @@ bootstrap();
 **person.guard.ts**
 
 ```typescript
-import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common';
-import { Observable } from 'rxjs';
+import { CanActivate, ExecutionContext, Injectable } from "@nestjs/common";
+import { Observable } from "rxjs";
 
 @Injectable()
 export class PersonGuard implements CanActivate {
   canActivate(
-    context: ExecutionContext,
+    context: ExecutionContext
   ): boolean | Promise<boolean> | Observable<boolean> {
-    console.log('person guard');
+    console.log("person guard");
     return true;
   }
 }
@@ -223,7 +223,7 @@ bootstrap();
 
 这样每个路由都会应用这个 Guard。
 
-但是，**注意**，这种方式是通过自己**new的 Guard 实例，不在 IoC 容器里**。这会造成什么问题呢？由于没有在IoC容器中所以，当然无非获取从容器中注入的内容，比如像下面的代码：
+但是，**注意**，这种方式是通过自己**new 的 Guard 实例，不在 IoC 容器里**。这会造成什么问题呢？由于没有在 IoC 容器中所以，当然无非获取从容器中注入的内容，比如像下面的代码：
 
 ```typescript
 @Injectable()
@@ -232,15 +232,15 @@ export class PersonGuard implements CanActivate {
   private personService: PersonService;
 
   canActivate(
-    context: ExecutionContext,
+    context: ExecutionContext
   ): boolean | Promise<boolean> | Observable<boolean> {
-    console.log('person guard ---' + this.personService.findAll());
+    console.log("person guard ---" + this.personService.findAll());
     return true;
   }
 }
 ```
 
-在`PersonGuard`中引入了`PersonService`，但是这需要从IoC容器中进行注入，而我们的`PersonGuard`是自己new出来的，并没有被IoC容器所托管，因此，在这里是用不了PersonService对象的，会在后台直接报错，直接前台提示500错误。
+在`PersonGuard`中引入了`PersonService`，但是这需要从 IoC 容器中进行注入，而我们的`PersonGuard`是自己 new 出来的，并没有被 IoC 容器所托管，因此，在这里是用不了 PersonService 对象的，会在后台直接报错，直接前台提示 500 错误。
 
 ```typescript
 ERROR [ExceptionsHandler] Cannot read properties of undefined (reading 'findAll')
@@ -248,7 +248,7 @@ ERROR [ExceptionsHandler] Cannot read properties of undefined (reading 'findAll'
 {"statusCode":500,"message":"Internal server error"}
 ```
 
-所以，Nest还给我们提供了**另外一种全局注册方式**，在 AppModule 里声明，**当然记得把之前new的Guard实例注释掉**：
+所以，Nest 还给我们提供了**另外一种全局注册方式**，在 AppModule 里声明，**当然记得把之前 new 的 Guard 实例注释掉**：
 
 ```diff
 +import { APP_GUARD } from '@nestjs/core';
@@ -275,12 +275,11 @@ export class AppModule {}
 
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251201215208854.png)
 
-
 我们现在可以创建一个简单的拦截器，比如使用`nest g itc timeout`命令，直接帮我们创建一个`timeout`文件夹，并且创建`timeout.interceptor.ts`的拦截器文件。
 
 拦截器通过`@Injectable()`来声明，并且需要实现`NestInterceptor`接口的`intercept`方法，接收两个参数：`ExecutionContext`上下文对象和`CallHandler`处理程序
 
-`ExecutionContext`上下文对象能够访问当前请求的详细信息，包括路由、HTTP方法、请求体以及响应体数据，以下几个场景会用到它：
+`ExecutionContext`上下文对象能够访问当前请求的详细信息，包括路由、HTTP 方法、请求体以及响应体数据，以下几个场景会用到它：
 
 1、记录请求和响应日志，用于追踪、监控和调试
 
@@ -298,14 +297,14 @@ import {
   ExecutionContext,
   Injectable,
   NestInterceptor,
-} from '@nestjs/common';
-import { Observable } from 'rxjs';
+} from "@nestjs/common";
+import { Observable } from "rxjs";
 
 @Injectable()
 export class TimeoutInterceptor implements NestInterceptor {
   intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
-    console.log('进入拦截器');
-    return next.handle()
+    console.log("进入拦截器");
+    return next.handle();
   }
 }
 ```
@@ -372,7 +371,7 @@ export class AppModule {}
 
 `intercept`方法返回`Observable`对象，而`Observable`对象位于`RxJS`库中
 
-**[RxJS](https://rxjs.dev/)**是一个用于处理异步数据流的JavaScript·库。你可以把它理解为一个管道，它可以帮你更方便的处理各种事件和数据流，当然我们没必要增加心智负担，可以更直白的认为它就是和前端的`Lodash`工具库差不多的一个库。
+**[RxJS](https://rxjs.dev/)**是一个用于处理异步数据流的 JavaScript·库。你可以把它理解为一个管道，它可以帮你更方便的处理各种事件和数据流，当然我们没必要增加心智负担，可以更直白的认为它就是和前端的`Lodash`工具库差不多的一个库。
 
 `Controller` 之前之后的处理逻辑**可能是异步的**，所以可以使用 `RxJS` 的各种 `operator`
 
@@ -390,23 +389,27 @@ RxJS 的核心思想是通过创建和订阅 `Observable`，使得你能够以�
 4. **终止流**: 你可以通过 `complete()` 来表示数据流的结束，或者通过 `error()` 来表示发生了错误。流结束后就不再发出新的数据了。
 
 ```typescript
-import { Observable } from 'rxjs';
+import { Observable } from "rxjs";
 
 // 创建一个简单的 Observable
-const observable = new Observable(subscriber => {
-  subscriber.next('Hello');
-  subscriber.next('World');
+const observable = new Observable((subscriber) => {
+  subscriber.next("Hello");
+  subscriber.next("World");
   subscriber.complete(); // 表示流结束
 });
 
 // 订阅 Observable
 observable.subscribe({
-  next(value) { console.log(value); },  // 处理数据
-  complete() { console.log('Complete!'); } // 处理完成
+  next(value) {
+    console.log(value);
+  }, // 处理数据
+  complete() {
+    console.log("Complete!");
+  }, // 处理完成
 });
 ```
 
-当然也可以使用RxJS提供的操作符来创建`Observable`
+当然也可以使用 RxJS 提供的操作符来创建`Observable`
 
 ```typescript
 const observable = of(1, 2, 3, 4, 5);
@@ -416,7 +419,7 @@ observable.subscribe({
     console.log(value);
   }, // 处理每个值
   complete() {
-    console.log('Complete!');
+    console.log("Complete!");
   }, // 流结束
 });
 ```
@@ -426,37 +429,51 @@ observable.subscribe({
 同样，也能把异步事件源转换为`Observable`
 
 ```typescript
-import { from } from 'rxjs';
+import { from } from "rxjs";
 
-const promise = new Promise((resolve) => setTimeout(() => resolve('Hello World'), 1000));
+const promise = new Promise((resolve) =>
+  setTimeout(() => resolve("Hello World"), 1000)
+);
 
-const observable = from(promise);  // 将 Promise 转化为 Observable
+const observable = from(promise); // 将 Promise 转化为 Observable
 
 observable.subscribe({
-  next(value) { console.log(value); },
-  complete() { console.log('Complete!'); }
+  next(value) {
+    console.log(value);
+  },
+  complete() {
+    console.log("Complete!");
+  },
 });
 ```
 
-如果有多个promise还能使用RxJs提供的各种操作符来处理
+如果有多个 promise 还能使用 RxJs 提供的各种操作符来处理
 
 ```typescript
-import { from } from 'rxjs';
-import { concatMap } from 'rxjs/operators';
+import { from } from "rxjs";
+import { concatMap } from "rxjs/operators";
 
-const promise1 = new Promise((resolve) => setTimeout(() => resolve('Hello'), 500));
-const promise2 = new Promise((resolve) => setTimeout(() => resolve('World'), 1000));
-const promise3 = new Promise((resolve) => setTimeout(() => resolve('!'), 1500));
+const promise1 = new Promise((resolve) =>
+  setTimeout(() => resolve("Hello"), 500)
+);
+const promise2 = new Promise((resolve) =>
+  setTimeout(() => resolve("World"), 1000)
+);
+const promise3 = new Promise((resolve) => setTimeout(() => resolve("!"), 1500));
 
 const promises = [promise1, promise2, promise3];
 
 from(promises) // 创建一个 Observable，依次发出每个 Promise
   .pipe(
-    concatMap(promise => from(promise)) // 串行执行 Promise
+    concatMap((promise) => from(promise)) // 串行执行 Promise
   )
   .subscribe({
-    next(value) { console.log(value); },
-    complete() { console.log('Complete!'); }
+    next(value) {
+      console.log(value);
+    },
+    complete() {
+      console.log("Complete!");
+    },
   });
 ```
 
@@ -465,15 +482,19 @@ from(promises) // 创建一个 Observable，依次发出每个 Promise
 ```typescript
 forkJoin([promise1, promise2, promise3]) // 并发执行所有 Promise
   .subscribe({
-    next(values) { console.log(values); }, // values 是每个 Promise 的结果的数组
-    complete() { console.log('Complete!'); }
+    next(values) {
+      console.log(values);
+    }, // values 是每个 Promise 的结果的数组
+    complete() {
+      console.log("Complete!");
+    },
   });
 ```
 
 除此之外，还提供了其他非常多的**[操作符](https://rxjs.dev/guide/operators#categories-of-operators)**，我们可以来试试效果
 
 ```typescript
-import { of, filter, map, tap } from 'rxjs';
+import { of, filter, map, tap } from "rxjs";
 
 of(1, 2, 3, 4, 5)
   .pipe(map((x) => x * x))
@@ -481,7 +502,7 @@ of(1, 2, 3, 4, 5)
   .subscribe((v) => console.log(`打印: ${v}`));
 ```
 
-创建另外一个interceptor来试试，比如`nest g itc auth`
+创建另外一个 interceptor 来试试，比如`nest g itc auth`
 
 ```typescript
 import {
@@ -489,32 +510,32 @@ import {
   ExecutionContext,
   Injectable,
   NestInterceptor,
-} from '@nestjs/common';
-import { catchError, filter, map, Observable, tap, toArray } from 'rxjs';
+} from "@nestjs/common";
+import { catchError, filter, map, Observable, tap, toArray } from "rxjs";
 
 @Injectable()
 export class AuthInterceptor implements NestInterceptor {
   intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
     // 请求处理之前打印日志
-    console.log('before interceptor');
+    console.log("before interceptor");
     return next.handle().pipe(
       // 将用户名转换为大写
       map((data) => data.toUpperCase()),
 
       // 过滤出数据中包含A的数据
-      filter((data) => data.includes('a')),
+      filter((data) => data.includes("a")),
 
       // 打印处理后的数据
-      tap((data) => console.log('after interceptor', data)),
+      tap((data) => console.log("after interceptor", data)),
 
       // 转换为数组
       toArray(),
 
       // 使用catchError处理错误
       catchError((err) => {
-        console.log('error interceptor', err);
+        console.log("error interceptor", err);
         throw new Error(err);
-      }),
+      })
     );
   }
 }
@@ -537,12 +558,11 @@ Pipe 就是管道的意思，主要的作用就是解析和验证请求数据。
 
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251201215229596.png)
 
-
-在后端开发中，数据库表的字段类型在创建式就已经被明确定义了，任何不符合预期类型的数据保存操作都会导致错误。为了确保传入的数据满足预期的格式和规范，Nest会在客户端发起请求的时候，将请求数据传递给管道进行预处理。这些预处理操作包括数据验证、转换或者过滤等等，以确保数据的准确性。处理之后的数据会被传递给路由处理程序。
+在后端开发中，数据库表的字段类型在创建式就已经被明确定义了，任何不符合预期类型的数据保存操作都会导致错误。为了确保传入的数据满足预期的格式和规范，Nest 会在客户端发起请求的时候，将请求数据传递给管道进行预处理。这些预处理操作包括数据验证、转换或者过滤等等，以确保数据的准确性。处理之后的数据会被传递给路由处理程序。
 
 通常情况下，我们会将管道绑定在方法参数上，这样管道就会与特定的路由方法关联起来了，这种方式称为**参数级别管道**。当然，**管道也能绑定在全局作用域**，使其适用于每个控制器和路由方法。
 
-用 nest cli 命令创建一个pipe，`nest g pipe validate --no-spec --flat`
+用 nest cli 命令创建一个 pipe，`nest g pipe validate --no-spec --flat`
 
 Pipe 需要要实现 `PipeTransform` 接口，并实现 `transform` 方法
 
@@ -552,7 +572,7 @@ import {
   BadRequestException,
   Injectable,
   PipeTransform,
-} from '@nestjs/common';
+} from "@nestjs/common";
 
 @Injectable()
 export class ValidatePipe implements PipeTransform {
@@ -561,12 +581,12 @@ export class ValidatePipe implements PipeTransform {
       throw new BadRequestException(`参数${metadata.data}错误`);
     }
 
-    return typeof value === 'number' ? value : parseInt(value);
+    return typeof value === "number" ? value : parseInt(value);
   }
 }
 ```
 
-在controller中
+在 controller 中
 
 ```typescript
 @Delete(':id')
@@ -576,7 +596,7 @@ remove(@Param('id', ValidatePipe) id: string) {
 }
 ```
 
-我们可以使用apifox或者postman测试一下，如果传递错误的参数，也就是id不是数字或者不能转换为数字，直接报出下面的错误：
+我们可以使用 apifox 或者 postman 测试一下，如果传递错误的参数，也就是 id 不是数字或者不能转换为数字，直接报出下面的错误：
 
 ```typescript
 {
@@ -586,7 +606,7 @@ remove(@Param('id', ValidatePipe) id: string) {
 }
 ```
 
-当然，像这种比较简单的管道验证，nestjs已经帮我们内置了[9种开箱即用的管道验证器](https://docs.nestjs.com/pipes#built-in-pipes)：
+当然，像这种比较简单的管道验证，nestjs 已经帮我们内置了[9 种开箱即用的管道验证器](https://docs.nestjs.com/pipes#built-in-pipes)：
 
 - `ValidationPipe`
 - `ParseIntPipe`
@@ -599,7 +619,7 @@ remove(@Param('id', ValidatePipe) id: string) {
 - `ParseFilePipe`
 - `ParseDatePipe`
 
-这些自定义管道，都是在`@nestjs/common`包中，比如上面我们自定义的Pipe完全就可以使用ParseIntPipe替换
+这些自定义管道，都是在`@nestjs/common`包中，比如上面我们自定义的 Pipe 完全就可以使用 ParseIntPipe 替换
 
 ```typescript
   @Delete(':id')
@@ -621,7 +641,7 @@ remove(@Param('id', ValidatePipe) id: string) {
 
 当然，这种自带的管道验证，错误响应式默认定义的，我们当然也能自定义，验证器允许传递下面两个参数
 
-1、errorHttpStatusCode：验证器失败时抛出的HTTP状态码，默认为400(错误请求)
+1、errorHttpStatusCode：验证器失败时抛出的 HTTP 状态码，默认为 400(错误请求)
 
 2、exceptionFactory：工厂函数，用于接收错误信息并返回相应的错误对象
 
@@ -656,54 +676,54 @@ remove(@Param('id', ValidatePipe) id: string) {
 
 ```typescript
 export declare enum HttpStatus {
-    CONTINUE = 100,
-    SWITCHING_PROTOCOLS = 101,
-    PROCESSING = 102,
-    EARLYHINTS = 103,
-    OK = 200,
-    CREATED = 201,
-    ACCEPTED = 202,
-    NON_AUTHORITATIVE_INFORMATION = 203,
-    NO_CONTENT = 204,
-    RESET_CONTENT = 205,
-    PARTIAL_CONTENT = 206,
-    AMBIGUOUS = 300,
-    MOVED_PERMANENTLY = 301,
-    FOUND = 302,
-    SEE_OTHER = 303,
-    NOT_MODIFIED = 304,
-    TEMPORARY_REDIRECT = 307,
-    PERMANENT_REDIRECT = 308,
-    BAD_REQUEST = 400,
-    UNAUTHORIZED = 401,
-    PAYMENT_REQUIRED = 402,
-    FORBIDDEN = 403,
-    NOT_FOUND = 404,
-    METHOD_NOT_ALLOWED = 405,
-    NOT_ACCEPTABLE = 406,
-    PROXY_AUTHENTICATION_REQUIRED = 407,
-    REQUEST_TIMEOUT = 408,
-    CONFLICT = 409,
-    GONE = 410,
-    LENGTH_REQUIRED = 411,
-    PRECONDITION_FAILED = 412,
-    PAYLOAD_TOO_LARGE = 413,
-    URI_TOO_LONG = 414,
-    UNSUPPORTED_MEDIA_TYPE = 415,
-    REQUESTED_RANGE_NOT_SATISFIABLE = 416,
-    EXPECTATION_FAILED = 417,
-    I_AM_A_TEAPOT = 418,
-    MISDIRECTED = 421,
-    UNPROCESSABLE_ENTITY = 422,
-    FAILED_DEPENDENCY = 424,
-    PRECONDITION_REQUIRED = 428,
-    TOO_MANY_REQUESTS = 429,
-    INTERNAL_SERVER_ERROR = 500,
-    NOT_IMPLEMENTED = 501,
-    BAD_GATEWAY = 502,
-    SERVICE_UNAVAILABLE = 503,
-    GATEWAY_TIMEOUT = 504,
-    HTTP_VERSION_NOT_SUPPORTED = 505
+  CONTINUE = 100,
+  SWITCHING_PROTOCOLS = 101,
+  PROCESSING = 102,
+  EARLYHINTS = 103,
+  OK = 200,
+  CREATED = 201,
+  ACCEPTED = 202,
+  NON_AUTHORITATIVE_INFORMATION = 203,
+  NO_CONTENT = 204,
+  RESET_CONTENT = 205,
+  PARTIAL_CONTENT = 206,
+  AMBIGUOUS = 300,
+  MOVED_PERMANENTLY = 301,
+  FOUND = 302,
+  SEE_OTHER = 303,
+  NOT_MODIFIED = 304,
+  TEMPORARY_REDIRECT = 307,
+  PERMANENT_REDIRECT = 308,
+  BAD_REQUEST = 400,
+  UNAUTHORIZED = 401,
+  PAYMENT_REQUIRED = 402,
+  FORBIDDEN = 403,
+  NOT_FOUND = 404,
+  METHOD_NOT_ALLOWED = 405,
+  NOT_ACCEPTABLE = 406,
+  PROXY_AUTHENTICATION_REQUIRED = 407,
+  REQUEST_TIMEOUT = 408,
+  CONFLICT = 409,
+  GONE = 410,
+  LENGTH_REQUIRED = 411,
+  PRECONDITION_FAILED = 412,
+  PAYLOAD_TOO_LARGE = 413,
+  URI_TOO_LONG = 414,
+  UNSUPPORTED_MEDIA_TYPE = 415,
+  REQUESTED_RANGE_NOT_SATISFIABLE = 416,
+  EXPECTATION_FAILED = 417,
+  I_AM_A_TEAPOT = 418,
+  MISDIRECTED = 421,
+  UNPROCESSABLE_ENTITY = 422,
+  FAILED_DEPENDENCY = 424,
+  PRECONDITION_REQUIRED = 428,
+  TOO_MANY_REQUESTS = 429,
+  INTERNAL_SERVER_ERROR = 500,
+  NOT_IMPLEMENTED = 501,
+  BAD_GATEWAY = 502,
+  SERVICE_UNAVAILABLE = 503,
+  GATEWAY_TIMEOUT = 504,
+  HTTP_VERSION_NOT_SUPPORTED = 505,
 }
 ```
 
@@ -736,7 +756,7 @@ remove(
 }
 ```
 
-当然上面只是对某个参数生效，Pipe也能对整个 Controller 都生效
+当然上面只是对某个参数生效，Pipe 也能对整个 Controller 都生效
 
 ```typescript
 @Controller('person')
@@ -788,8 +808,7 @@ export class AppModule {}
 
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251201215300792.png)
 
-
-nest中最常见的是HTTP异常过滤器，通常用于在后端服务发生异常时向客户端报告异常的类型，目前[内置的HTTP异常](https://docs.nestjs.com/exception-filters#built-in-http-exceptions)包括下面几种，它们全部也都包含在`@nestjs/common`包中：
+nest 中最常见的是 HTTP 异常过滤器，通常用于在后端服务发生异常时向客户端报告异常的类型，目前[内置的 HTTP 异常](https://docs.nestjs.com/exception-filters#built-in-http-exceptions)包括下面几种，它们全部也都包含在`@nestjs/common`包中：
 
 - `BadRequestException`
 - `UnauthorizedException`
@@ -812,15 +831,15 @@ nest中最常见的是HTTP异常过滤器，通常用于在后端服务发生异
 - `GatewayTimeoutException`
 - `PreconditionFailedException`
 
-其实我们在 自定义pipe 里抛的错误，能够返回 400 的响应，就是 Exception Filter 处理的。
+其实我们在 自定义 pipe 里抛的错误，能够返回 400 的响应，就是 Exception Filter 处理的。
 
-当然，我们也能自定义Filter，比如使用下面的命令
+当然，我们也能自定义 Filter，比如使用下面的命令
 
 ```typescript
 nest g filter myException --no-spec --flat
 ```
 
-稍微修改一下生成的filter代码
+稍微修改一下生成的 filter 代码
 
 ```typescript
 import {
@@ -828,8 +847,8 @@ import {
   Catch,
   ExceptionFilter,
   HttpException,
-} from '@nestjs/common';
-import { Response, Request } from 'express';
+} from "@nestjs/common";
+import { Response, Request } from "express";
 
 @Catch(HttpException)
 export class MyExceptionFilter implements ExceptionFilter {
@@ -847,9 +866,9 @@ export class MyExceptionFilter implements ExceptionFilter {
 
     let resMessage: string | Record<string, any> = exception.getResponse();
 
-    console.log('---MyExceptionFilter---');
+    console.log("---MyExceptionFilter---");
 
-    if (typeof resMessage === 'object') {
+    if (typeof resMessage === "object") {
       resMessage = resMessage.message;
     }
 
@@ -858,7 +877,7 @@ export class MyExceptionFilter implements ExceptionFilter {
       statusCode: status,
       message: resMessage || message,
       path: request.url,
-      success: false
+      success: false,
     });
   }
 }
@@ -868,7 +887,7 @@ export class MyExceptionFilter implements ExceptionFilter {
 
 `ArgumentsHost`能够获取不同平台的传输协议上下文，用于访问`request`和`response`对象
 
-`@Catch()`装饰器用于声明要拦截的异常类型，上面的例子使用的是HTTPException
+`@Catch()`装饰器用于声明要拦截的异常类型，上面的例子使用的是 HTTPException
 
 异常过滤器同样可以应用于方法，整个控制器和全局。
 
@@ -894,7 +913,7 @@ remove(@Param('id', ParseIntPipe) id: string) {
 }
 ```
 
-作用于整个controller上
+作用于整个 controller 上
 
 ```typescript
 @Controller('person')
@@ -935,11 +954,11 @@ bootstrap();
 export class AppModule {}
 ```
 
-## 6. Nest与Express的关系
+## 6. Nest 与 Express 的关系
 
 前面我们用的`Nest`的 `request`、`response` 对象都特地强调了是引入`express`的
 
-实际上，对于http请求响应的处理，Nest可以轻松的切换 express、fastify库，在源代码内部使用了**适配器模式**
+实际上，对于 http 请求响应的处理，Nest 可以轻松的切换 express、fastify 库，在源代码内部使用了**适配器模式**
 
 我用简单的例子解释一下适配器模式，大家就知道了。
 
@@ -1016,17 +1035,16 @@ function makeItQuack(animal: Quackable) {
 // 使用鸭子（通过适配器）
 const duck = new Duck();
 const duckAdapter = new AnimalAdapter(duck, "quack");
-makeItQuack(duckAdapter);  // 输出: 鸭子：嘎嘎嘎
+makeItQuack(duckAdapter); // 输出: 鸭子：嘎嘎嘎
 
 // 使用鸡（通过适配器）
 const chicken = new Chicken();
 const chickenAdapter = new AnimalAdapter(chicken, "cluck");
-makeItQuack(chickenAdapter);  // 输出: 鸡：咯咯咯
+makeItQuack(chickenAdapter); // 输出: 鸡：咯咯咯
 ```
 
-所以，Nest对于请求响应的底层处理，就是通过这种适配器模式，可以非常方便的进行替换，到底是使用`express`，还是`fastify`，进本的情况如下图：
+所以，Nest 对于请求响应的底层处理，就是通过这种适配器模式，可以非常方便的进行替换，到底是使用`express`，还是`fastify`，进本的情况如下图：
 
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251201215323091.png)
 
-
-当然，默认Nest使用的`express`，如果你要使用`fastify`，导入`fastify`相应的包即可
+当然，默认 Nest 使用的`express`，如果你要使用`fastify`，导入`fastify`相应的包即可

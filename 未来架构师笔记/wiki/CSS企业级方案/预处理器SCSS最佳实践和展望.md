@@ -55,11 +55,11 @@ sass/
 ```
 
 ```css
-.a{
-  ....
+.a {
+  ....;
 }
-.a .b{
-  ....
+.a .b {
+  ....;
 }
 ```
 
@@ -85,7 +85,7 @@ sass/
 
 ```css
 .a .b .c .d .e {
-  .....
+  .....;
 }
 ```
 
@@ -96,11 +96,7 @@ sass/
 - Sass guidelines：https://sass-guidelin.es/
 - Airbnb CSS：https://github.com/airbnb/css
 
-
-
-
-
-## 2. Sass未来发展
+## 2. Sass 未来发展
 
 我们如果想要获取到 Sass 的最新动向，通常可以去 Sass 的社区看一下。
 
@@ -111,20 +107,16 @@ sass/
 - reddit：https://www.reddit.com/r/Sass/
 - twitter：官方的 twitter 也是我们了解技术最新动向的一个渠道 https://twitter.com/SassCSS
 
-
-
 目前市面上又很多 CSS 库都是基于 Sass 来进行构建了，例如：
 
-1. *Compass* - 老牌 *Sass* 框架，提供大量 *Sass mixins* 和函数,方便开发。
-2. *Bourbon* - 轻量级的 *Sass mixin* 库，提供常用的 *mixins*，简化 *CSS* 开发。
-3. *Neat* - 构建具有响应式网格布局的网站，基于 *Sass* 和 *Bourbon*，容易上手。
-4. *Materialize* - 实现 *Material Design* 风格，基于 *Sass* 构建，提供丰富组件和元素。
-5. *Bulma* - 现代 *CSS* 框架，提供弹性网格和常见组件，可与 *Sass* 一起使用。
-6. *Foundation* - 老牌前端框架，基于 *Sass*，提供全面的组件和工具，适合构建复杂项目。
-7. *Semantic UI* - 设计美观的 *UI* 套件，基于 *Sass* 构建，提供丰富样式和交互。
-8. *Spectre.css* - 轻量级、响应式和现代的 *CSS* 框架，可以与 *Sass* 结合使用。
-
-
+1. _Compass_ - 老牌 _Sass_ 框架，提供大量 _Sass mixins_ 和函数,方便开发。
+2. _Bourbon_ - 轻量级的 _Sass mixin_ 库，提供常用的 _mixins_，简化 _CSS_ 开发。
+3. _Neat_ - 构建具有响应式网格布局的网站，基于 _Sass_ 和 _Bourbon_，容易上手。
+4. _Materialize_ - 实现 _Material Design_ 风格，基于 _Sass_ 构建，提供丰富组件和元素。
+5. _Bulma_ - 现代 _CSS_ 框架，提供弹性网格和常见组件，可与 _Sass_ 一起使用。
+6. _Foundation_ - 老牌前端框架，基于 _Sass_，提供全面的组件和工具，适合构建复杂项目。
+7. _Semantic UI_ - 设计美观的 _UI_ 套件，基于 _Sass_ 构建，提供丰富样式和交互。
+8. _Spectre.css_ - 轻量级、响应式和现代的 _CSS_ 框架，可以与 _Sass_ 结合使用。
 
 因此，基本上目前 Sass 已经成为了前端开发人员首选的 CSS 预处理器。因为 Sass 相比其他两个 CSS 预处理器，功能是最强大的，特性是最多的，社区也是最活跃的。
 

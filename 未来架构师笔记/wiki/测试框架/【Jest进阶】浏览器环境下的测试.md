@@ -13,14 +13,14 @@ updated: 2026-08-02
 
 ```html
 <body>
-    <p>请输入你要存储的值</p>
-    <div>
-        <input type="text" name="content" id="content">
-        <button id="saveBtn">存储</button>
-        <button id="getBtn">获取</button>
-    </div>
-    <div style="margin-top:10px">存储的值为：<span id="username"></span></div>
-    <script src="./js/index.js" type="module"></script>
+  <p>请输入你要存储的值</p>
+  <div>
+    <input type="text" name="content" id="content" />
+    <button id="saveBtn">存储</button>
+    <button id="getBtn">获取</button>
+  </div>
+  <div style="margin-top:10px">存储的值为：<span id="username"></span></div>
+  <script src="./js/index.js" type="module"></script>
 </body>
 ```
 
@@ -48,7 +48,6 @@ getBtn.addEventListener("click", function () {
     username.innerHTML = "";
   }
 });
-
 ```
 
 ```ts
@@ -78,7 +77,6 @@ export default {
   get,
   set,
 };
-
 ```
 
 上面的代码，有那么几个注意点：
@@ -89,8 +87,6 @@ export default {
 接下来我们就要对我们的代码进行一个测试。
 
 首先我们通过 npx jest --init 生成一个 jest 的配置文件，注意在选择配置项目的时候，环境要选择 jsdom，因为我们的代码是在浏览器环境运行的，会涉及到一部分只有在浏览器环境才有的 api
-
-
 
 接下来我们来针对 storage 里面提供的工具函数进行测试。
 
@@ -112,7 +108,6 @@ describe("测试storage存储", () => {
     expect(storage.get("my-app-newKey")).toBe("World");
   });
 });
-
 ```
 
 需要注意，在上面我们生成 jest 配置文件的时候，环境选择了 jsdom，如果还是按照以前选择 node 环境的话，这里会出现一个问题：
@@ -123,9 +118,7 @@ ReferenceError: localStorage is not defined
 
 之所以出现这个问题，是因为在 nodejs 环境中并不存在 localstorage，localstorage 是浏览器环境下特有的 api。
 
-除此之外，从 jest28 版本开始你还需要安装一个依赖：jest-environment-jsdom，由这个依赖来提供特有的像 localstorage、window全局对象之类的 api。核心作用就是在 nodejs中模拟出浏览器的环境。
-
-
+除此之外，从 jest28 版本开始你还需要安装一个依赖：jest-environment-jsdom，由这个依赖来提供特有的像 localstorage、window 全局对象之类的 api。核心作用就是在 nodejs 中模拟出浏览器的环境。
 
 ## 2. 示例二
 
@@ -189,12 +182,11 @@ describe("测试getSearchObj", () => {
     });
   });
 });
-
 ```
 
 接下来我们会发现这个测试用例跑不通，会报：Error: Not implemented: navigation (except hash changes) 这样的一个错误
 
-之所以会报这个错，是因为虽然我们使用了 jest-environment-jsdom去模拟浏览器环境的 API 接口，但是有一部分 API 是缺失的。比如上面例子的 location，在 jest-environment-jsdom 中就没有提供。
+之所以会报这个错，是因为虽然我们使用了 jest-environment-jsdom 去模拟浏览器环境的 API 接口，但是有一部分 API 是缺失的。比如上面例子的 location，在 jest-environment-jsdom 中就没有提供。
 
 所以这个时候我们需要一些额外的库，例如在当前的例子里面，我们就可以安装 jest-location-mock。
 
@@ -202,7 +194,7 @@ describe("测试getSearchObj", () => {
 
 ```js
 import tools from "../ts/tools";
-import "jest-location-mock"
+import "jest-location-mock";
 const { getSearchObj } = tools;
 
 describe("测试getSearchObj", () => {
@@ -219,7 +211,7 @@ describe("测试getSearchObj", () => {
   });
 
   // 测试参数为空的时候
-  test("测试参数为空的时候",()=>{
+  test("测试参数为空的时候", () => {
     window.location.assign("https://www.baidu.com");
     const result = getSearchObj();
     expect(result).toEqual({});
@@ -227,8 +219,6 @@ describe("测试getSearchObj", () => {
   });
 });
 ```
-
-
 
 ## 3. 示例三
 
@@ -272,7 +262,6 @@ describe("测试fetchData", () => {
     });
   });
 });
-
 ```
 
 但是在跑测试用例的时候，我们发现报错了，报错信息为：ReferenceError: fetch is not defined
@@ -289,15 +278,14 @@ import "jest-fetch-mock";
 
 添加了上面的语句后，整个测试用例就能够跑通了。
 
-
 ## 4. 总结
 
-当我们所书写的代码是要在浏览器环境下面运行时，代码里面可能会涉及到很多浏览器相关的 *Api*，此时需要安装 *jest-environment-jsdom*，该库在 *Node.js* 中通过提供与浏览器相同的 *DOM* 和 *API* 接口来模拟浏览器环境。
+当我们所书写的代码是要在浏览器环境下面运行时，代码里面可能会涉及到很多浏览器相关的 _Api_，此时需要安装 _jest-environment-jsdom_，该库在 _Node.js_ 中通过提供与浏览器相同的 _DOM_ 和 _API_ 接口来模拟浏览器环境。
 
-安装好之后，还需要将 *jest* 配置文件中的 *testEnvironment* 修改为 *jsdom*。
+安装好之后，还需要将 _jest_ 配置文件中的 _testEnvironment_ 修改为 _jsdom_。
 
-另外，虽然 *jest-environment-jsdom* 提供了一些全局对象和 *API*，如 *window、document、XMLHttpRequest* 等，但是 *jest-environment-jsdom* 并没有提供对 *fetch* 和 *location* 等 *API* 的模拟。这就需要我们手动安装 *jest-fetch-mock* 和 *jest-location-mock* 等库，来模拟这些浏览器 *API* 的行为。
+另外，虽然 _jest-environment-jsdom_ 提供了一些全局对象和 _API_，如 _window、document、XMLHttpRequest_ 等，但是 _jest-environment-jsdom_ 并没有提供对 _fetch_ 和 _location_ 等 _API_ 的模拟。这就需要我们手动安装 _jest-fetch-mock_ 和 _jest-location-mock_ 等库，来模拟这些浏览器 _API_ 的行为。
 
-具体来说，*jest-fetch-mock* 是用于模拟 *fetch* 函数的行为，它可以让我们在测试用例中模拟 *fetch* 请求，并返回指定的响应数据。而 *jest-location-mock* 则是用于模拟浏览器的 *location* 对象，它可以让我们在测试用例中设置和检查浏览器的 URL。
+具体来说，_jest-fetch-mock_ 是用于模拟 _fetch_ 函数的行为，它可以让我们在测试用例中模拟 _fetch_ 请求，并返回指定的响应数据。而 _jest-location-mock_ 则是用于模拟浏览器的 _location_ 对象，它可以让我们在测试用例中设置和检查浏览器的 URL。
 
-因此，当我们使用 *jest-environment-jsdom* 来模拟浏览器环境时，需要手动安装这些库来模拟 *fetch*和 *location* 等浏览器 *API* 的行为，以确保我们可以编写全面而准确的基于浏览器环境的测试用例。
+因此，当我们使用 _jest-environment-jsdom_ 来模拟浏览器环境时，需要手动安装这些库来模拟 *fetch*和 _location_ 等浏览器 _API_ 的行为，以确保我们可以编写全面而准确的基于浏览器环境的测试用例。

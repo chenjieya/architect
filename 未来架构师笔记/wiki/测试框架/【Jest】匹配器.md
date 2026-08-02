@@ -4,6 +4,7 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
+
 在 Jest 中，提供了丰富的匹配器（Matchers）
 
 回顾上一节课写过的测试用例：
@@ -17,7 +18,6 @@ test("测试加法", () => {
 ```
 
 首先我们调用的是 expect 方法，这个方法被称之为断言方法，调用该方法之后会得到一个名为 expectation 的对象，在这个对象上面就可以使用“修饰符”以及“匹配器”。
-
 
 目前 Jest 里面支持的修饰符有 3 个：
 
@@ -36,8 +36,6 @@ test("测试加法", () => {
 
 后面两个 resolves 和 rejects 这个一看就是和 Promise 相关的，这个我们在后面介绍测试异步函数的时候再来看。
 
-
-
 本文重点来看一下匹配器，Jest 里面内置了非常多的匹配器：
 
 - 常用匹配器
@@ -48,29 +46,26 @@ test("测试加法", () => {
 - 异常相关匹配器
 - 非对称匹配器
 
-
 ## 1. 常用匹配器
 
 常用的匹配器这里介绍两个，一个是 toBe，还有一个是 toEqual，toEqual 可以针对对象进行一个深度比较
 
 ```js
-test("深度比较对象",()=>{
-  const stu = {name : "张三", score : {html : 100, css : 90}};
-  expect(stu).not.toBe({name : "张三", score : {html : 100, css : 90}});
+test("深度比较对象", () => {
+  const stu = { name: "张三", score: { html: 100, css: 90 } };
+  expect(stu).not.toBe({ name: "张三", score: { html: 100, css: 90 } });
   // 使用 toEqual 来进行深度比较
   // toEqual 会递归比较对象的所有属性
-  expect(stu).toEqual({name : "张三", score : {html : 100, css : 90}});
-})
+  expect(stu).toEqual({ name: "张三", score: { html: 100, css: 90 } });
+});
 ```
-
-
 
 ## 2. 布尔值相关匹配器
 
 一般来讲运行结果得到的是一个布尔值，使用布尔值相关匹配器的时候一般是无需传参的。
 
 ```js
-test("布尔值相关匹配器",()=>{
+test("布尔值相关匹配器", () => {
   const n = null;
   expect(n).toBeFalsy();
   expect(n).not.toBeTruthy();
@@ -78,13 +73,13 @@ test("布尔值相关匹配器",()=>{
   const a = 0;
   expect(a).toBeFalsy();
   expect(a).not.toBeTruthy();
-})
+});
 ```
 
 像布尔值相关的这种无参的匹配器，在 Jest 中还有好几个，我们快速过一遍，如下：
 
 ```js
-test("无参匹配器",()=>{
+test("无参匹配器", () => {
   const n = null;
   expect(n).toBeNull();
   expect(n).toBeDefined();
@@ -93,9 +88,8 @@ test("无参匹配器",()=>{
   expect(a).not.toBeNull();
   expect(a).toBeDefined();
   expect(a).not.toBeUndefined();
-})
+});
 ```
-
 
 ## 3. 数值相关匹配器
 
@@ -124,18 +118,16 @@ test("数值相关匹配器", () => {
 
 上面的匹配器中，主要需要注意浮点数往往需要使用 toBeCloseTo 这个匹配器来进行比较，这个匹配器还可以设置位数。
 
-
 ## 4. 字符串相关的匹配器
 
 toMatch 可以检查字符串是否和某一个正则表达式能够匹配上
 
 ```js
-test("字符串相关匹配器",()=>{
+test("字符串相关匹配器", () => {
   expect("this is a test").toMatch(/test/);
   expect("this is a test").not.toMatch(/abc/);
-})
+});
 ```
-
 
 ## 5. 数组相关匹配器
 
@@ -161,33 +153,31 @@ test("数组相关匹配器", () => {
 });
 ```
 
-
 ## 6. 异常匹配器
 
 有些时候我们需要测试某个函数调用之后是否会抛出异常，那么此时我们可以使用 toThrow 这个匹配器：
 
 ```js
-function compileCode(){
+function compileCode() {
   throw new Error("aaa you are using the wrong JDK bbb");
 }
 
-test("异常相关的匹配器",()=>{
-  expect(()=>compileCode()).toThrow();
+test("异常相关的匹配器", () => {
+  expect(() => compileCode()).toThrow();
   // toThrow 里面可以传递不同的参数
-  expect(()=>compileCode()).toThrow(Error);
-  expect(()=>compileCode()).toThrow("you are using the wrong JDK");
-  expect(()=>compileCode()).toThrow(/JDK/);
-})
+  expect(() => compileCode()).toThrow(Error);
+  expect(() => compileCode()).toThrow("you are using the wrong JDK");
+  expect(() => compileCode()).toThrow(/JDK/);
+});
 ```
-
 
 ## 7. 非对称匹配器
 
 回顾上面讲的匹配器，基本上都是对称匹配器，比如：
 
 ```js
-const stu = {name : "张三", score : {html : 100, css : 90}};
-expect(stu).not.toBe({name : "张三", score : {html : 100, css : 90}});
+const stu = { name: "张三", score: { html: 100, css: 90 } };
+expect(stu).not.toBe({ name: "张三", score: { html: 100, css: 90 } });
 ```
 
 上面的 toBe 匹配器就是一个对称的匹配器，在 Jest 中还存在一些非对称的匹配器。
@@ -202,15 +192,14 @@ test("上面的数组不包含某一项", () => {
 例如我们再看一个示例：
 
 ```js
-const obj = {name : "张三"};
-test("对象不包含上面的键值对",()=>{
-  expect({age : 18}).toEqual(expect.not.objectContaining(obj));
-  expect({name: "李四",age : 18}).toEqual(expect.not.objectContaining(obj));
-})
+const obj = { name: "张三" };
+test("对象不包含上面的键值对", () => {
+  expect({ age: 18 }).toEqual(expect.not.objectContaining(obj));
+  expect({ name: "李四", age: 18 }).toEqual(expect.not.objectContaining(obj));
+});
 ```
 
 这种非对称匹配器，toEqual 匹配器里面是一段类似于描述的信息。
-
 
 ## 8. 部分源码
 
@@ -218,43 +207,45 @@ test("对象不包含上面的键值对",()=>{
 
 ```js
 const matchers = {
-  toBe(){/* ... */},
-  toBeCloseTo(){/* .. */},
+  toBe() {
+    /* ... */
+  },
+  toBeCloseTo() {
+    /* .. */
+  },
   // ...
-}
+};
 ```
 
 在 expect 方法里面，实际上调用该方法后会返回一个匹配器对象 expectation，格式如下：
 
 ```js
 const expectation = {
-  not : {},
-  rejects : {not : {}},
-  resolves : {not : {}}
-}
+  not: {},
+  rejects: { not: {} },
+  resolves: { not: {} },
+};
 ```
 
 之后会为 expectation 这个对象添加上所有的匹配器方法，代码如下：
 
 ```js
-const expect = ()=>{
+const expect = () => {
   // 获取到所有的 matchers
   // 该对象是要向外部返回的
   const expectation = {
-    not : {},
-    rejects : {not : {}},
-    resolves : {not : {}}
-	}
+    not: {},
+    rejects: { not: {} },
+    resolves: { not: {} },
+  };
   // 将 matchers 对象上面的所有的匹配器添加到 expectation 对象上面
-  Object.keys(matchers).forEach(name=>{
+  Object.keys(matchers).forEach((name) => {
     expectation[name] = matchers[name];
     // ...
-  })
+  });
   return expectation;
-}
+};
 ```
-
-
 
 ## 9. 总结
 

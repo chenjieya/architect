@@ -4,20 +4,21 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
-## 1. Python Web服务框架对比
 
-| 对比维度         | 🏢 Django                                                                                                | 🧰 Flask                                                                                 | 🚀 FastAPI                                                                    |
-| ---------------- | -------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
-| **官网链接**     | [Django](https://www.djangoproject.com/)                                                                 | [Flask](https://flask.palletsprojects.com/en/stable/)                                    | [FastAPI](https://fastapi.tiangolo.com/)                                      |
-| **诞生年份**     | 2005年                                                                                                   | 2010年                                                                                   | 2018年                                                                        |
-| **核心哲学**     | **开箱即用 (Batteries-included)** 内置ORM、后台管理、用户认证等几乎所有常用功能                          | **微内核，可扩展 (Microframework)** 只提供最基础的核心功能，其他如数据库、表单等按需选择 | **高性能，现代化 (High-performance)** 利用类型注解和异步特性，专为API设计而生 |
-| **性能 (速度)**  | **较慢** (约 5k req/s 对于Hello World)                                                                   | **中等** (约 9k req/s 对于Hello World)                                                   | **极快** (约 30k req/s 对于Hello World)                                       |
-| **学习曲线**     | **较陡**。功能多，概念多，需要学习的体量较大                                                             | **平缓**。设计简洁，核心API直观，非常适合初学者入门                                      | **中等**。性能优势明显，但需要理解类型注解和异步编程                          |
-| **最适合的场景** | • 大型、复杂的Web应用（如电商平台、CMS） <br>• 需要自带后台管理系统的项目 • 希望有统一解决方案的团队项目 | • 小型应用和快速原型开发 <br>• 简单的RESTful API <br>• 对组件有高度定制化需求的项目      | • 高性能的API服务 <br>• 微服务架构 <br>• 需要将AI/机器学习模型封装成API服务   |
-| **知名用户**     | Instagram, Pinterest, Disqus                                                                             | Airbnb, Netflix, Reddit (部分功能)                                                       | Uber, Netflix, Microsoft (部分内部项目)                                       |
-|                  |                                                                                                          |                                                                                          |                                                                               |
+## 1. Python Web 服务框架对比
 
-## 2. 第一个FastAPI应用
+| 对比维度         | 🏢 Django                                                                                                  | 🧰 Flask                                                                                  | 🚀 FastAPI                                                                       |
+| ---------------- | ---------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| **官网链接**     | [Django](https://www.djangoproject.com/)                                                                   | [Flask](https://flask.palletsprojects.com/en/stable/)                                     | [FastAPI](https://fastapi.tiangolo.com/)                                         |
+| **诞生年份**     | 2005 年                                                                                                    | 2010 年                                                                                   | 2018 年                                                                          |
+| **核心哲学**     | **开箱即用 (Batteries-included)**  内置 ORM、后台管理、用户认证等几乎所有常用功能                          | **微内核，可扩展 (Microframework)**  只提供最基础的核心功能，其他如数据库、表单等按需选择 | **高性能，现代化 (High-performance)**  利用类型注解和异步特性，专为 API 设计而生 |
+| **性能 (速度)**  | **较慢** (约 5k req/s 对于 Hello World)                                                                    | **中等** (约 9k req/s 对于 Hello World)                                                   | **极快** (约 30k req/s 对于 Hello World)                                         |
+| **学习曲线**     | **较陡**。功能多，概念多，需要学习的体量较大                                                               | **平缓**。设计简洁，核心 API 直观，非常适合初学者入门                                     | **中等**。性能优势明显，但需要理解类型注解和异步编程                             |
+| **最适合的场景** | • 大型、复杂的 Web 应用（如电商平台、CMS） <br>• 需要自带后台管理系统的项目 • 希望有统一解决方案的团队项目 | • 小型应用和快速原型开发 <br>• 简单的 RESTful API <br>• 对组件有高度定制化需求的项目      | • 高性能的 API 服务 <br>• 微服务架构 <br>• 需要将 AI/机器学习模型封装成 API 服务 |
+| **知名用户**     | Instagram, Pinterest, Disqus                                                                               | Airbnb, Netflix, Reddit (部分功能)                                                        | Uber, Netflix, Microsoft (部分内部项目)                                          |
+|                  |                                                                                                            |                                                                                           |                                                                                  |
+
+## 2. 第一个 FastAPI 应用
 
 ### 2.1 安装
 
@@ -112,7 +113,7 @@ make dev
 
 ### 3.1 `WSGI` vs `ASGI`
 
-`WSGI / ASGI`是一套`Python`的社区规范，主要为**Web服务器**和**Web应用程序**提供统一的交互标准
+`WSGI / ASGI`是一套`Python`的社区规范，主要为**Web 服务器**和**Web 应用程序**提供统一的交互标准
 
 ![image-20260605143504189](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/obsidian/1785666208258_202606051435295.png)
 
@@ -124,7 +125,7 @@ make dev
 2. `ASGI`应用程序在做什么？
 3. 服务器和应用程序如何对接？
 
-#### 3.1.1 ASGI服务器
+#### 3.1.1 ASGI 服务器
 
 主要负责：
 
@@ -135,7 +136,7 @@ make dev
   - 将响应字节流写回 socket
 - 报文解析
   - 解析 HTTP/1.1、HTTP/2、WebSocket 协议
-  - 将原始字节（如 `b'GET /users/123 HTTP/1.1\r\n...'`）转换成结构化数据（如 method、path、headers）
+  - 将原始字节（如  `b'GET /users/123 HTTP/1.1\r\n...'`）转换成结构化数据（如 method、path、headers）
   - 处理分块传输、Keep-Alive、管道化等协议细节
 - 实现和启动事件循环
 - 管理进程和线程
@@ -152,7 +153,7 @@ make dev
 | **Gunicorn**   | 传统 WSGI 服务器，通过 worker 支持 ASGI  | HTTP/1                             | 需要多进程 + ASGI 的混合部署   |
 | **NGINX Unit** | 通用应用服务器，原生支持 ASGI            | HTTP/1、HTTP/2                     | 统一管理多语言应用的场景       |
 
-#### 3.1.2 ASGI应用程序
+#### 3.1.2 ASGI 应用程序
 
 主要负责：业务逻辑
 
@@ -190,22 +191,22 @@ app(scope, receive, send) -> CoroutineType:
 
 #### 3.1.4 完整流程
 
-1. ASGI服务器监听端口
-2. 请求到达ASGI服务器3. 处理字节流4. 构建scope字典5. 定义send函数6. 定义receive函数7. 调用`app`
-3. 请求进入ASGI应用程序（期间调用`receive`和`send`）9. ASGI框架调用预定义的程序（路由）10. 处理业务逻辑
-4. 控制权交给ASGI服务器
+1. ASGI 服务器监听端口
+2. 请求到达 ASGI 服务器 3. 处理字节流 4. 构建 scope 字典 5. 定义 send 函数 6. 定义 receive 函数 7. 调用`app`
+3. 请求进入 ASGI 应用程序（期间调用`receive`和`send`）9. ASGI 框架调用预定义的程序（路由）10. 处理业务逻辑
+4. 控制权交给 ASGI 服务器
 5. 组装完整响应报文
 6. 发送响应给客户端
 
 ### 3.2 `Swagger UI` vs `Redoc`
 
-OpenAPI规范指的是用一个标准的JSON格式来描述API接口
+OpenAPI 规范指的是用一个标准的 JSON 格式来描述 API 接口
 
 试试这个地址：[http://localhost:8080/openapi.json](http://localhost:8080/openapi.json)
 
-> `openapi.json` 遵循的标准是 **OpenAPI 规范 (OpenAPI Specification, OAS)**。
+> `openapi.json`  遵循的标准是  **OpenAPI 规范 (OpenAPI Specification, OAS)**。
 >
-> 这个规范最初由 **Swagger** 工具集的创建者 **Tony Tam** 于 2010 年发起，当时被称为 **Swagger 规范**。为了让其成为行业通用标准，Swagger 规范的核心被捐赠给了 **Linux 基金会**，并于 2015 年成立了 **OpenAPI 倡议 (OpenAPI Initiative, OAI)** 来专门负责它的演进和管理。从 3.0 版本开始，这个规范正式更名为 **OpenAPI 规范**。
+> 这个规范最初由  **Swagger**  工具集的创建者  **Tony Tam**  于 2010 年发起，当时被称为  **Swagger 规范**。为了让其成为行业通用标准，Swagger 规范的核心被捐赠给了  **Linux 基金会**，并于 2015 年成立了  **OpenAPI 倡议 (OpenAPI Initiative, OAI)**  来专门负责它的演进和管理。从 3.0 版本开始，这个规范正式更名为  **OpenAPI 规范**。
 
 当首次启动时，`FastAPI`会自动生成`openapi.json`，并将其暴露到`/openapi.json`路由中
 
@@ -255,7 +256,7 @@ app = FastAPI(
 
 官方网站：[https://pydantic.dev/](https://pydantic.dev/)
 
-`Pydantic` 是一个全能的**数据建模与处理框架**，它的核心功能是实现数据校验和转换，从而确保数据的高可用
+`Pydantic`  是一个全能的**数据建模与处理框架**，它的核心功能是实现数据校验和转换，从而确保数据的高可用
 
 ```python
 from datetime import datetime
@@ -331,4 +332,4 @@ class Item(BaseModel):
 ## 4. 作业
 
 1. 动手完成示例程序
-2. 复述：3. 什么是WSGI和ASGI？4. ASGI服务器和ASGI应用是如何协作的？5. Uvicorn是什么？6. Starlette是什么？7. OpenAPI是什么？8. Swagger UI是什么？9. Redoc是什么？10. Pydantic是什么？
+2. 复述：3. 什么是 WSGI 和 ASGI？4. ASGI 服务器和 ASGI 应用是如何协作的？5. Uvicorn 是什么？6. Starlette 是什么？7. OpenAPI 是什么？8. Swagger UI 是什么？9. Redoc 是什么？10. Pydantic 是什么？

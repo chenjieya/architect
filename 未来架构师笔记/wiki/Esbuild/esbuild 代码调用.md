@@ -21,7 +21,7 @@ Esbuild 对外暴露了一系列的 API，主要包括两类: `Build API`和`Tra
 import esbuild from "esbuild";
 esbuild.build({
   // 入口文件列表，为一个数组
-  entryPoints: ['src/app.tsx'],
+  entryPoints: ["src/app.tsx"],
   // 是否需要打包，一般设为 true
   bundle: true,
   // 是否进行代码压缩
@@ -29,14 +29,14 @@ esbuild.build({
   // 是否生成 SourceMap 文件
   sourcemap: true,
   // 指定语言版本和目标环境
-  target: ['es2020', 'chrome58', 'firefox57', 'safari11'],
+  target: ["es2020", "chrome58", "firefox57", "safari11"],
   // 指定输出文件
-  outfile: './public/dist/app.js',
+  outfile: "./public/dist/app.js",
   // 指定loader
   loader: {
     ".svg": "dataurl",
-  }
-})
+  },
+});
 ```
 
 `buildSync`和`build`唯一的不一样就是这个方法是同步的，个人并不推荐使用`buildSync`这种同步的 API，它们会导致两方面不良后果。一方面容易使 Esbuild 在当前线程阻塞，丧失`并发任务处理`的优势。另一方面，Esbuild 所有插件中都不能使用任何异步操作，这给`插件开发`增加了限制。
@@ -60,34 +60,38 @@ ReactDOM
   .render(<App />)
 ```
 
-为了看到效果，多写了2个组件
+为了看到效果，多写了 2 个组件
 
 ```javascript
 // components/Comp1.tsx
-import React from 'react';
-export default () => { 
-  return (<>
-    <h1>Comp1</h1>
-    <ul>
-      <li>vite</li>
-      <li>esbuild</li>
-      <li>rollup</li>
-    </ul>
-  </>)
-}
+import React from "react";
+export default () => {
+  return (
+    <>
+      <h1>Comp1</h1>
+      <ul>
+        <li>vite</li>
+        <li>esbuild</li>
+        <li>rollup</li>
+      </ul>
+    </>
+  );
+};
 ```
 
 ```javascript
 // components/Comp2.tsx
-import React from 'react';
-import logo from "../assets/react.svg"
+import React from "react";
+import logo from "../assets/react.svg";
 
-export default () => { 
-  return (<>
-    <h1>Comp2</h1>
-    <img src={logo} />
-  </>)
-}
+export default () => {
+  return (
+    <>
+      <h1>Comp2</h1>
+      <img src={logo} />
+    </>
+  );
+};
 ```
 
 然后我们就可以利用`node`去运行`esbuild.config.mjs`文件，然后对文件进行打包处理了
@@ -96,7 +100,7 @@ export default () => {
 node esbuild.config.mjs
 ```
 
-打包好之后的文件，我们可以用index.html去调用对应的js文件即可
+打包好之后的文件，我们可以用 index.html 去调用对应的 js 文件即可
 
 ```javascript
 <!DOCTYPE html>
@@ -121,7 +125,7 @@ node esbuild.config.mjs
 // -c-1 清空http-server缓存
 ```
 
-### 1.2 引入css
+### 1.2 引入 css
 
 ```javascript
 // src/style.css
@@ -137,24 +141,26 @@ body{
 
 ```javascript
 // app.tsx
-import "./style.css"
+import "./style.css";
 
-const App = () => (<div>
-  <h1 className="title">Hello World!!</h1>
-  <Comp1 />
-  <Comp2 />
-</div>);
+const App = () => (
+  <div>
+    <h1 className="title">Hello World!!</h1>
+    <Comp1 />
+    <Comp2 />
+  </div>
+);
 ```
 
-最后打包出来的css文件名和app组件同名，所以最好css的名字不要和组件同名。
+最后打包出来的 css 文件名和 app 组件同名，所以最好 css 的名字不要和组件同名。
 
-和打包之后的js一样，并不会自动放到index.html上，需要我们自己放上去
+和打包之后的 js 一样，并不会自动放到 index.html 上，需要我们自己放上去
 
 ```javascript
 <link rel="stylesheet" href="dist/app.css">
 ```
 
-如果是在其他组件内引入的css，一样会打包到app.css中，比如在`Comp1.tsx`中引入css
+如果是在其他组件内引入的 css，一样会打包到 app.css 中，比如在`Comp1.tsx`中引入 css
 
 ```javascript
 // components/comp.css
@@ -169,7 +175,7 @@ li{
 import React from 'react';
 import "./comp.css"
 
-export default () => { 
+export default () => {
   return (<>
     <h1>Comp1</h1>
     <ul>
@@ -181,7 +187,7 @@ export default () => {
 }
 ```
 
-我们也可以引入CSS modules预处理器，以便组件的css样式与全局css样式冲突
+我们也可以引入 CSS modules 预处理器，以便组件的 css 样式与全局 css 样式冲突
 
 ```javascript
 // components/comps.module.css
@@ -194,7 +200,7 @@ import React from 'react';
 import logo from "../assets/react.svg"
 import comps from "./comps.module.css";
 
-export default () => { 
+export default () => {
   return (<>
     <h1 className={comps.title}>Comp2</h1>
     <img src={logo} />
@@ -210,11 +216,11 @@ loader: {
 },
 ```
 
-### 1.3 引入Html
+### 1.3 引入 Html
 
-之前都是直接将html写死在打包好的文件夹中，其实也可以直接打包已有的html文件
+之前都是直接将 html 写死在打包好的文件夹中，其实也可以直接打包已有的 html 文件
 
-在src目录下创建index.html文件
+在 src 目录下创建 index.html 文件
 
 ```javascript
 <!DOCTYPE html>
@@ -233,10 +239,10 @@ loader: {
 ```
 
 ```javascript
-import esbuild from 'esbuild';
+import esbuild from "esbuild";
 esbuild.build({
   // 入口文件列表，为一个数组
-  entryPoints: ['src/app.tsx','src/index.html'],
+  entryPoints: ["src/app.tsx", "src/index.html"],
   // 是否需要打包，一般设为 true
   bundle: true,
   // 是否进行代码压缩
@@ -244,25 +250,23 @@ esbuild.build({
   // 是否生成 SourceMap 文件
   sourcemap: true,
   // 指定语言版本和目标环境
-  target: ['es2020', 'chrome58', 'firefox57', 'safari11'],
+  target: ["es2020", "chrome58", "firefox57", "safari11"],
   // 是否生成打包的元信息文件
   metafile: true,
   // 指定输出文件
-  outdir: './public/dist/',
+  outdir: "./public/dist/",
   // 指定loader
   loader: {
     ".html": "copy",
     ".svg": "dataurl",
     ".module.css": "local-css",
-  }
-})
+  },
+});
 ```
-
-
 
 ### 1.4 [插件](https://esbuild.github.io/plugins/#finding-plugins)
 
-Esbuild 的时候难免会遇到一些需要加上自定义插件的场景，并且 Vite 依赖预编译的实现中大量应用了 Esbuild 插件的逻辑，你可以到[现有 esbuild 插件列表](https://github.com/esbuild/community-plugins)中去查找已有的esbuild插件，比如，之前对于图片和css的处理。[内联图像插件](https://github.com/natrim/esbuild-plugin-inline-image)，[css插件](https://github.com/Inqnuam/esbuild-plugin-class-modules)
+Esbuild 的时候难免会遇到一些需要加上自定义插件的场景，并且 Vite 依赖预编译的实现中大量应用了 Esbuild 插件的逻辑，你可以到[现有 esbuild 插件列表](https://github.com/esbuild/community-plugins)中去查找已有的 esbuild 插件，比如，之前对于图片和 css 的处理。[内联图像插件](https://github.com/natrim/esbuild-plugin-inline-image)，[css 插件](https://github.com/Inqnuam/esbuild-plugin-class-modules)
 
 ```javascript
 // 导入
@@ -291,10 +295,10 @@ esbuild.build({
 ```javascript
 import esbuild from "esbuild";
 import inlineImage from "esbuild-plugin-inline-image";
-(async () => { 
+(async () => {
   const result = await esbuild.build({
     // 入口文件列表，为一个数组
-    entryPoints: ['src/app.tsx'],
+    entryPoints: ["src/app.tsx"],
     // 是否需要打包，一般设为 true
     bundle: true,
     // 是否进行代码压缩
@@ -302,41 +306,37 @@ import inlineImage from "esbuild-plugin-inline-image";
     // 是否生成 SourceMap 文件
     sourcemap: true,
     // 指定语言版本和目标环境
-    target: ['es2020', 'chrome58', 'firefox57', 'safari11'],
+    target: ["es2020", "chrome58", "firefox57", "safari11"],
     // 是否生成打包的元信息文件
     metafile: true,
     // 指定输出文件
-    outfile: './public/dist/app.js',
+    outfile: "./public/dist/app.js",
     // 指定loader
     // loader: {
     //   ".svg": "dataurl",
     // },
-    plugins: [
-      inlineImage()
-    ]
-  })
+    plugins: [inlineImage()],
+  });
 
   console.log(result);
 
   // 打印详细的元信息
   const text = await esbuild.analyzeMetafile(result.metafile, {
-    verbose: true, 
+    verbose: true,
   });
 
   console.log(text);
 })();
 ```
 
-
-
 ### 1.6 context
 
 在项目打包方面，除了`build`和`buildSync`，Esbuild 还提供了另外一个比较强大的 API——`context`
 
-`context`为我们提供了三种可以增量构建的API，注意`context`和下面的API**都是异步的**
+`context`为我们提供了三种可以增量构建的 API，注意`context`和下面的 API**都是异步的**
 
 - [**Watch mode**](https://esbuild.github.io/api/#watch) 简单来说就是监听模式，当我们修改源文件的时候，会自动帮我们重建
-- [**Serve mode**](https://esbuild.github.io/api/#serve) 启动本地开发服务器，提供最新构建的结果。注意，Serve mode会自动帮我们构建打包源文件，但是并不支持热重载
+- [**Serve mode**](https://esbuild.github.io/api/#serve) 启动本地开发服务器，提供最新构建的结果。注意，Serve mode 会自动帮我们构建打包源文件，但是并不支持热重载
 - [**Rebuild mode**](https://esbuild.github.io/api/#rebuild) 允许手动调用构建。当将 esbuild 与其他工具集成时这非常有用。
 
 ```javascript
@@ -347,7 +347,7 @@ import classModules from "esbuild-plugin-class-modules";
 (async () => {
   const ctx = await esbuild.context({
     // 入口文件列表，为一个数组
-    entryPoints: ["src/app.tsx","src/index.html"],
+    entryPoints: ["src/app.tsx", "src/index.html"],
     // 是否需要打包，一般设为 true
     bundle: true,
     // 是否进行代码压缩
@@ -362,7 +362,7 @@ import classModules from "esbuild-plugin-class-modules";
     loader: {
       ".html": "copy",
     },
-    plugins: [inlineImage(),classModules()],
+    plugins: [inlineImage(), classModules()],
   });
 
   // await ctx.watch();
@@ -383,14 +383,13 @@ import classModules from "esbuild-plugin-class-modules";
 
 实时重新加载是一种开发方法，您可以在浏览器与代码编辑器同时打开并可见。当您编辑并保存源代码时，浏览器会自动重新加载，并且重新加载的应用程序版本包含您的更改。这意味着您可以更快地迭代，因为您不必在每次更改后手动切换到浏览器、重新加载，然后切换回代码编辑器。
 
-不过，esbuild并没有给我们提供实时重新加载的API，但是可以通过组合[监视模式Watch mode](https://esbuild.github.io/api/#watch)（和[服务模式Serve mode](https://esbuild.github.io/api/#serve)加上少量客户端 JavaScript 来构建实时重新加载仅在开发期间添加到应用程序的代码。
+不过，esbuild 并没有给我们提供实时重新加载的 API，但是可以通过组合[监视模式 Watch mode](https://esbuild.github.io/api/#watch)（和[服务模式 Serve mode](https://esbuild.github.io/api/#serve)加上少量客户端 JavaScript 来构建实时重新加载仅在开发期间添加到应用程序的代码。
 
-配置代码还是之前的不变，只是`watch()`和`serve()`函数同时打开，然后只需要在客户端html中加入下面的js代码即可
+配置代码还是之前的不变，只是`watch()`和`serve()`函数同时打开，然后只需要在客户端 html 中加入下面的 js 代码即可
 
 ```javascript
 <script type="module">
-	new EventSource('/esbuild').addEventListener('change', () => location.reload())
+  new EventSource('/esbuild').addEventListener('change', () =>
+  location.reload())
 </script>
 ```
-
-

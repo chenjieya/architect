@@ -4,6 +4,7 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
+
 ## 1. 预设的基本使用
 
 首先第一步仍然是先要安装对应的预设
@@ -146,4 +147,4 @@ corejs 支持的配置项有 2、3 还有 false：
 }
 ```
 
-假设 preset-env 里面有 pluginA、pluginB、pluginC，假设我现在指定了浏览器范围，所指定的这些浏览器范围已经实现了特性 A 和 特性B，那么这里就只会用到 pluginC。那么 include 配置项就可以强行指定要包含的插件
+假设 preset-env 里面有 pluginA、pluginB、pluginC，假设我现在指定了浏览器范围，所指定的这些浏览器范围已经实现了特性 A 和 特性 B，那么这里就只会用到 pluginC。那么 include 配置项就可以强行指定要包含的插件

@@ -4,7 +4,8 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
-## 1. 通过node拉取git repository
+
+## 1. 通过 node 拉取 git repository
 
 [download-git-repo](https://www.npmjs.com/package/download-git-repo)
 
@@ -17,7 +18,7 @@ npm i download-git-repo
 ### 1.2 API
 
 ```javascript
-download(repository, destination, options, callback)
+download(repository, destination, options, callback);
 ```
 
 下载一个 **git** `repository` 到 `destination` 文件夹，配置参数 `options`, 和 `callback回调`.
@@ -25,32 +26,32 @@ download(repository, destination, options, callback)
 ### 1.3 基本使用
 
 ```javascript
-import download from 'download-git-repo'
-download('yingside/webpack-template', 'test', function (err) {
-  console.log(err ? 'Error' : 'Success')
-})
+import download from "download-git-repo";
+download("yingside/webpack-template", "test", function (err) {
+  console.log(err ? "Error" : "Success");
+});
 ```
 
-git拉取肯定是需要花费时间的，因此，我们可以通过Promise做一下简单封装
+git 拉取肯定是需要花费时间的，因此，我们可以通过 Promise 做一下简单封装
 
 ```javascript
-import download from 'download-git-repo'
+import download from "download-git-repo";
 const clone = (remote, name, option = false) => {
-  console.log('正在拉取项目......')
+  console.log("正在拉取项目......");
   return new Promise((resolve, reject) => {
     download(remote, name, option, (err) => {
       if (err) {
-        console.error(err)
-        reject(err)
-        return
+        console.error(err);
+        reject(err);
+        return;
       }
-      console.log('拉取成功')
-      resolve()
-    })
-  })
-}
+      console.log("拉取成功");
+      resolve();
+    });
+  });
+};
 
-await clone('yingside/webpack-template', 'test')
+await clone("yingside/webpack-template", "test");
 ```
 
 ## 2. 美化
@@ -61,48 +62,50 @@ await clone('yingside/webpack-template', 'test')
 
 [figlet](https://www.npmjs.com/package/figlet)：终端标题美化
 
-之前的代码感觉卡在那边，如果下载时间过久，不知道是不是在继续执行，我们可以添加简单的Loading动画效果和字体颜色，让终端界面生动起来
+之前的代码感觉卡在那边，如果下载时间过久，不知道是不是在继续执行，我们可以添加简单的 Loading 动画效果和字体颜色，让终端界面生动起来
 
 ```javascript
-import download from 'download-git-repo'
-import ora from 'ora'
-import chalk from 'chalk'
+import download from "download-git-repo";
+import ora from "ora";
+import chalk from "chalk";
 
 const clone = (remote, name, option = false) => {
-  const spinner = ora('正在拉取项目......').start()
+  const spinner = ora("正在拉取项目......").start();
   return new Promise((resolve, reject) => {
     download(remote, name, option, (err) => {
       if (err) {
-        spinner.fail(chalk.red(err))
-        reject(err)
-        return
+        spinner.fail(chalk.red(err));
+        reject(err);
+        return;
       }
-      spinner.succeed(chalk.green('拉取成功'))
-      resolve()
-    })
-  })
-}
+      spinner.succeed(chalk.green("拉取成功"));
+      resolve();
+    });
+  });
+};
 ```
 
-也可以把之前在index.js中的打印语句换成美化标题
+也可以把之前在 index.js 中的打印语句换成美化标题
 
 ```javascript
-import figlet from 'figlet'
-import chalk from 'chalk'
+import figlet from "figlet";
+import chalk from "chalk";
 
 console.log(
-  '\r\n' +
+  "\r\n" +
     chalk.greenBright.bold(
-      figlet.textSync('app-cli', {
-        font: 'Standard',
-        horizontalLayout: 'default',
-        verticalLayout: 'default',
+      figlet.textSync("app-cli", {
+        font: "Standard",
+        horizontalLayout: "default",
+        verticalLayout: "default",
         width: 80,
         whitespaceBreak: true,
-      }),
-    ),
-)
+      })
+    )
+);
 console.log(
-  `\r\nRun ${chalk.cyan(`app-cli <command> --help`)} for detailed usage of given command\r\n`,
-)
+  `\r\nRun ${chalk.cyan(
+    `app-cli <command> --help`
+  )} for detailed usage of given command\r\n`
+);
 ```

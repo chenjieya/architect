@@ -4,6 +4,7 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
+
 ## 1. 什么是 Monorepo
 
 **Monorepo**（单一仓库）是将多个相关的项目/包放在同一个代码仓库中管理的策略。
@@ -31,7 +32,7 @@ my-monorepo/
 
 ## 2. 搭建 Workspace
 
-> uv workspace文档：[https://docs.astral.sh/uv/concepts/projects/workspaces/#using-workspaces](https://docs.astral.sh/uv/concepts/projects/workspaces/#using-workspaces)
+> uv workspace 文档：[https://docs.astral.sh/uv/concepts/projects/workspaces/#using-workspaces](https://docs.astral.sh/uv/concepts/projects/workspaces/#using-workspaces)
 
 ### 2.1 第一步：初始化根项目
 
@@ -40,7 +41,7 @@ mkdir my-monorepo && cd my-monorepo
 uv init
 ```
 
-根级 `pyproject.toml`：
+根级  `pyproject.toml`：
 
 ```toml
 # 添加 members
@@ -51,14 +52,14 @@ members = [
 ]
 ```
 
-`members` 支持 glob 模式：
+`members`  支持 glob 模式：
 
-| 模式          | 匹配范围                             |
-| ------------- | ------------------------------------ |
-| `packages/*`  | `packages/` 下的直接子目录           |
-| `packages/**` | `packages/` 下的所有子目录（含嵌套） |
-| `libs/*`      | `libs/` 下的直接子目录               |
-| `apps/*`      | `apps/` 下的直接子目录               |
+| 模式          | 匹配范围                              |
+| ------------- | ------------------------------------- |
+| `packages/*`  | `packages/`  下的直接子目录           |
+| `packages/**` | `packages/`  下的所有子目录（含嵌套） |
+| `libs/*`      | `libs/`  下的直接子目录               |
+| `apps/*`      | `apps/`  下的直接子目录               |
 
 可以同时配置多个目录：
 
@@ -99,9 +100,9 @@ dependencies = [
 agents = { workspace = true }
 ```
 
-> **`[tool.uv.sources]`** 是 UV workspace 的**核心机制**。它告诉 UV：`utils` 依赖不从 PyPI 下载，而是从工作区内的同名成员包中链接。
+> **`[tool.uv.sources]`**  是 UV workspace 的**核心机制**。它告诉 UV：`utils`  依赖不从 PyPI 下载，而是从工作区内的同名成员包中链接。
 >
-> 如果某个包在 PyPI 和 workspace 中同名，workspace 优先。需要强制走 PyPI 时可以写成 `utils = { workspace = false }`。
+> 如果某个包在 PyPI 和 workspace 中同名，workspace 优先。需要强制走 PyPI 时可以写成  `utils = { workspace = false }`。
 
 ### 2.4 [可选]第四步：同步安装
 
@@ -111,10 +112,10 @@ uv sync --all-packages
 
 执行后：
 
-1. UV 读取所有成员包的 `pyproject.toml`
+1. UV 读取所有成员包的  `pyproject.toml`
 2. 解析完整的依赖树（包括成员间的依赖）
-3. 在根目录生成统一的 `uv.lock`
-4. 在根目录创建 `.venv`，安装所有依赖
+3. 在根目录生成统一的  `uv.lock`
+4. 在根目录创建  `.venv`，安装所有依赖
 
 ### 2.5 第五步：运行
 
@@ -122,7 +123,7 @@ uv sync --all-packages
 uv run --package web-service python app/web-service/main.py
 ```
 
-### 2.6 [可选]使用Makefile
+### 2.6 [可选]使用 Makefile
 
 ```makefile
 .PHONY: run-web
@@ -172,7 +173,7 @@ web-app v0.1.0
 └── utils v0.1.0 (workspace)
 ```
 
-workspace 中的包会标记为 `(workspace)`，一目了然。
+workspace 中的包会标记为  `(workspace)`，一目了然。
 
 ## 3. 包间依赖的三种模式
 
@@ -184,7 +185,7 @@ utils = { workspace = true }
 ```
 
 - 本地直接引用源码，修改即时生效
-- 无需 `pip install -e .` 或 `uv add` 重新安装
+- 无需  `pip install -e .`  或  `uv add`  重新安装
 - 适合日常开发
 
 ### 3.2 路径引用

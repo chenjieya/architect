@@ -4,6 +4,7 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
+
 > Service Worker 是 Chrome 插件的“后台大脑”，负责处理后台任务、监听事件和协调通信，在 MV3 中替代了旧的 background page
 
 在 Chrome 浏览器插件（扩展）开发中，**Service Worker** 是扩展的后台脚本，通常在扩展的 `manifest.json` 中以 `"background"` 字段指定，用于在没有页面打开的情况下持续运行一些逻辑。
@@ -35,4 +36,4 @@ Service Worker 会响应各种事件，例如：
 
 ### 1.4 **增强安全性**
 
-Service Worker使得后台脚本是无 DOM 的独立线程，更安全、性能更好，不容易被注入脚本攻击。
+Service Worker 使得后台脚本是无 DOM 的独立线程，更安全、性能更好，不容易被注入脚本攻击。

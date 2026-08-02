@@ -5,35 +5,34 @@ updated_by: human
 updated: 2026-08-02
 ---
 
-对于前端来说，后端主要是提供http接口来传输数据，而这种数据传输的方式主要有五种：
+对于前端来说，后端主要是提供 http 接口来传输数据，而这种数据传输的方式主要有五种：
+
 - url param
 - query
 - form-urlencoded
 - form-data
 - json
 
-
 ## 1. url param
 
-我们可以把参数写到url中，比如：
+我们可以把参数写到 url 中，比如：
 
 `http://alvis.org.cn/person/111`
 
-这里的`111`就是路径中的参数（url param），服务端框架或者单页面应用的路由都支持从url中取出参数。
-
+这里的`111`就是路径中的参数（url param），服务端框架或者单页面应用的路由都支持从 url 中取出参数。
 
 ## 2. query
 
-通过url中 ？后面的 & 分割的自负串传递数据。比如：
+通过 url 中 ？后面的 & 分割的自负串传递数据。比如：
 
 `http://alvis.org.cn/person?name=alvis&age=18`
 
 这里的 name 和 age 就是 query 传递的数据。
 
-其中非英文的字符和一些特殊字符要经过编码，可以使用`encodeURIComponent`的api来编码：
+其中非英文的字符和一些特殊字符要经过编码，可以使用`encodeURIComponent`的 api 来编码：
 
 ```js
-const query = "?name=" + encodeURIComponent('光') + "&age=18"
+const query = "?name=" + encodeURIComponent("光") + "&age=18";
 
 // ?name=%E5%85%89&age=18
 ```
@@ -53,10 +52,9 @@ queryString.stringify(
 // ?name=%E5%85%89&age=18
 ```
 
-
 ## 3. form-urlencoded
 
-直接用 form 表单提交数据就是这种，它和 query 字符串的方式的区别只是放在了 body 里，然后指定下 content-type 是 `application/x-www-form-urlencoded`。
+直接用 form 表单提交数据就是这种，它和 query 字符串的方式的区别只是放在了 body 里，然后指定下 content-type 是  `application/x-www-form-urlencoded`。
 
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251127134448558.png)
 
@@ -66,15 +64,13 @@ queryString.stringify(
 
 通过 & 分隔的 form-urlencoded 的方式需要对内容做 url encode，如果传递大量的数据，比如上传文件的时候就不是很合适了，因为文件 encode 一遍的话太慢了，这时候就可以用 form-data。
 
-
 ## 4. form-data
 
 form data 不再是通过 & 分隔数据，而是用 --------- + 一串数字做为 boundary 分隔符。因为不是 url 的方式了，自然也不用再做 url encode。
 
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251127134616089.png)
 
-
-form-data 需要指定 content-type 为 `multipart/form-data`，然后指定 boundary 也就是分割线。
+form-data 需要指定 content-type 为  `multipart/form-data`，然后指定 boundary 也就是分割线。
 
 body 里面就是用 boundary 分隔符分割的内容。
 
@@ -82,40 +78,40 @@ body 里面就是用 boundary 分隔符分割的内容。
 
 但是毕竟多了一些只是用来分隔的 boundary，所以请求体会增大。
 
-
 ## 5. json
 
 form-urlencoded 需要对内容做 url encode，而 form data 则需要加很长的 boundary，两种方式都有一些缺点。如果只是传输 json 数据的话，不需要用这两种。
 
-可以直接指定content type 为 application/json 就行：
+可以直接指定 content type 为 application/json 就行：
 
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251127134718585.png)
 
-
 我们平时传输 json 数据基本用的是这种。
 
-
-## 6. nest指定静态文件资源访问
+## 6. nest 指定静态文件资源访问
 
 main.ts 是负责启动 Nest 的 ioc 容器的，调用下 useStaticAssets 来支持静态资源的请求：
 
 ```typescript
-import { NestExpressApplication } from '@nestjs/platform-express';
+import { NestExpressApplication } from "@nestjs/platform-express";
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
-  app.useStaticAssets('public', { prefix: '/static'});
+  app.useStaticAssets("public", { prefix: "/static" });
   await app.listen(3000);
 }
 bootstrap();
 ```
 
-> 注意要给 create 方法传入 NestExpressApplication 的泛型参数才有 useStaticAssets这些方法
+> 注意要给 create 方法传入 NestExpressApplication 的泛型参数才有 useStaticAssets 这些方法
 
 我们指定 prefix 为 static，然后在静态文件目录 public 下添加一个 html：
+
 ```html
 <html>
-<body>hello</body>
+  <body>
+    hello
+  </body>
 </html>
 ```
 
@@ -125,16 +121,15 @@ bootstrap();
 
 api 接口和静态资源的访问都支持了，接下来就分别实现下 5 种前后端 http 数据传输的方式吧。
 
-
 ## 7. url param - @Param
 
 url param 是 url 中的参数，Nest 里通过 `:参数名` 的方式来声明（比如下面的 :id），然后通过 @Param(参数名) 的装饰器取出来注入到 controller：
 
 ```ts
-@Controller('api/person')
+@Controller("api/person")
 export class PersonController {
-  @Get(':id')
-  urlParam(@Param('id') id: string) {
+  @Get(":id")
+  urlParam(@Param("id") id: string) {
     return `received: id=${id}`;
   }
 }
@@ -147,18 +142,19 @@ export class PersonController {
 ```html
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <script src="https://unpkg.com/axios@0.24.0/dist/axios.min.js"></script>
-</head>
-<body>
+  </head>
+  <body>
     <script>
-        async function urlParam() {
-            const res = await axios.get('/api/person/1');
-            console.log(res);            
-        }
-        urlParam();
-   </script>
-</body>
+      async function urlParam() {
+        const res = await axios.get("/api/person/1");
+        console.log(res);
+      }
+      urlParam();
+    </script>
+  </body>
+</html>
 ```
 
 启动服务，在浏览器访问下：
@@ -176,10 +172,10 @@ query 是 url 中 ? 后的字符串，需要做 url encode。
 在 Nest 里，通过 @Query 装饰器来取：
 
 ```ts
-@Controller('api/person')
+@Controller("api/person")
 export class PersonController {
-  @Get('find')
-  query(@Query('name') name: string, @Query('age') age: number) {
+  @Get("find")
+  query(@Query("name") name: string, @Query("age") age: number) {
     return `received: name=${name},age=${age}`;
   }
 }
@@ -187,9 +183,7 @@ export class PersonController {
 
 > 注意，这个 find 的路由要放到 :id 的路由前面，因为 Nest 是从上往下匹配的，如果放在后面，那就匹配到 :id 的路由了。
 
-
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251127140748802.png)
-
 
 参数通过 params 指定，axios 会做 url encode，不需要自己做。
 
@@ -213,47 +207,51 @@ form urlencoded 是通过 body 传输数据，其实是把 query 字符串放在
 
 ```ts
 export class CreatePersonDto {
-    name: string;
-    age: number;
+  name: string;
+  age: number;
 }
 ```
 
 ```ts
-import { CreatePersonDto } from './dto/create-person.dto';
+import { CreatePersonDto } from "./dto/create-person.dto";
 
-@Controller('api/person')
+@Controller("api/person")
 export class PersonController {
   @Post()
   body(@Body() createPersonDto: CreatePersonDto) {
-    return `received: ${JSON.stringify(createPersonDto)}`
+    return `received: ${JSON.stringify(createPersonDto)}`;
   }
 }
 ```
 
-前端代码使用 post 方式请求，指定 content type 为 `application/x-www-form-urlencoded`，用 qs 做下 url encode：
+前端代码使用 post 方式请求，指定 content type 为  `application/x-www-form-urlencoded`，用 qs 做下 url encode：
 
 ```html
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <script src="https://unpkg.com/axios@0.24.0/dist/axios.min.js"></script>
     <script src="https://unpkg.com/qs@6.10.2/dist/qs.js"></script>
-</head>
-<body>
+  </head>
+  <body>
     <script>
-        async function formUrlEncoded() {
-            const res = await axios.post('/api/person', Qs.stringify({
-                name: '光',
-                age: 20
-            }), {
-                headers: { 'content-type': 'application/x-www-form-urlencoded' }
-            });
-            console.log(res);  
-        }
+      async function formUrlEncoded() {
+        const res = await axios.post(
+          "/api/person",
+          Qs.stringify({
+            name: "光",
+            age: 20,
+          }),
+          {
+            headers: { "content-type": "application/x-www-form-urlencoded" },
+          }
+        );
+        console.log(res);
+      }
 
-        formUrlEncoded();
+      formUrlEncoded();
     </script>
-</body>
+  </body>
 </html>
 ```
 
@@ -264,46 +262,44 @@ export class PersonController {
 
 其实比起 form urlencoded，使用 json 来传输更常用一些：
 
-
 ## 10. json - @Body
 
-json 需要指定 content-type 为 `application/json`，内容会以 JSON 的方式传输：
+json 需要指定 content-type 为  `application/json`，内容会以 JSON 的方式传输：
 
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251127141533351.png)
-
 
 后端代码同样使用 @Body 来接收，不需要做啥变动。form urlencoded 和 json 都是从 body 取值，Nest 内部会根据 content-type 做区分，使用不同的解析方式。
 
 ```ts
-@Controller('api/person')
+@Controller("api/person")
 export class PersonController {
   @Post()
   body(@Body() createPersonDto: CreatePersonDto) {
-    return `received: ${JSON.stringify(createPersonDto)}`
+    return `received: ${JSON.stringify(createPersonDto)}`;
   }
 }
 ```
 
-前端代码使用 axios 发送 post 请求，默认传输 json 就会指定 content type 为 `application/json`，不需要手动指定：
+前端代码使用 axios 发送 post 请求，默认传输 json 就会指定 content type 为  `application/json`，不需要手动指定：
 
 ```html
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <script src="https://unpkg.com/axios@0.24.0/dist/axios.min.js"></script>
-</head>
-<body>
+  </head>
+  <body>
     <script>
-        async function json() {
-            const res = await axios.post('/api/person', {
-                name: '光',
-                age: 20
-            });
-            console.log(res);     
-        }
-        json();
+      async function json() {
+        const res = await axios.post("/api/person", {
+          name: "光",
+          age: 20,
+        });
+        console.log(res);
+      }
+      json();
     </script>
-</body>
+  </body>
 </html>
 ```
 
@@ -315,7 +311,6 @@ export class PersonController {
 
 json 和 form urlencoded 都不适合传递文件，想传输文件要用 form data：
 
-
 ## 11. form data - @UploadedFiles
 
 form data 是用 -------- 作为 boundary 分隔传输的内容的：
@@ -325,18 +320,23 @@ form data 是用 -------- 作为 boundary 分隔传输的内容的：
 Nest 解析 form data 使用 FilesInterceptor 的拦截器，用 @UseInterceptors 装饰器启用，然后通过 @UploadedFiles 来取。非文件的内容，同样是通过 @Body 来取。
 
 ```ts
-import { AnyFilesInterceptor } from '@nestjs/platform-express';
-import { CreatePersonDto } from './dto/create-person.dto';
+import { AnyFilesInterceptor } from "@nestjs/platform-express";
+import { CreatePersonDto } from "./dto/create-person.dto";
 
-@Controller('api/person')
+@Controller("api/person")
 export class PersonController {
-  @Post('file')
-  @UseInterceptors(AnyFilesInterceptor({
-      dest: 'uploads/'
-  }))
-  body2(@Body() createPersonDto: CreatePersonDto, @UploadedFiles() files: Array<Express.Multer.File>) {
+  @Post("file")
+  @UseInterceptors(
+    AnyFilesInterceptor({
+      dest: "uploads/",
+    })
+  )
+  body2(
+    @Body() createPersonDto: CreatePersonDto,
+    @UploadedFiles() files: Array<Express.Multer.File>
+  ) {
     console.log(files);
-    return `received: ${JSON.stringify(createPersonDto)}`
+    return `received: ${JSON.stringify(createPersonDto)}`;
   }
 }
 ```
@@ -347,35 +347,35 @@ export class PersonController {
 
 引入相关类型声明。
 
-前端代码使用 axios 发送 post 请求，指定 content type 为 `multipart/form-data`：
+前端代码使用 axios 发送 post 请求，指定 content type 为  `multipart/form-data`：
 
 ```html
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <script src="https://unpkg.com/axios@0.24.0/dist/axios.min.js"></script>
-</head>
-<body>
-    <input id="fileInput" type="file" multiple/>
+  </head>
+  <body>
+    <input id="fileInput" type="file" multiple />
     <script>
-        const fileInput = document.querySelector('#fileInput');
+      const fileInput = document.querySelector("#fileInput");
 
-        async function formData() {
-            const data = new FormData();
-            data.set('name','光');
-            data.set('age', 20);
-            data.set('file1', fileInput.files[0]);
-            data.set('file2', fileInput.files[1]);
+      async function formData() {
+        const data = new FormData();
+        data.set("name", "光");
+        data.set("age", 20);
+        data.set("file1", fileInput.files[0]);
+        data.set("file2", fileInput.files[1]);
 
-            const res = await axios.post('/api/person/file', data, {
-                headers: { 'content-type': 'multipart/form-data' }
-            });
-            console.log(res);     
-        }
+        const res = await axios.post("/api/person/file", data, {
+          headers: { "content-type": "multipart/form-data" },
+        });
+        console.log(res);
+      }
 
-        fileInput.onchange = formData;
+      fileInput.onchange = formData;
     </script>
-</body>
+  </body>
 </html>
 ```
 
@@ -385,16 +385,13 @@ file input 指定 multiple 可以选择多个文件。
 
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251127141903115.png)
 
-
 服务端接收到了 name 和 age：
 
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251127141918727.png)
 
-
 去服务器控制台看下：
 
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251127141936913.png)
-
 
 可以看到，服务器成功的接收到了我们上传的文件。
 
@@ -409,8 +406,8 @@ file input 指定 multiple 可以选择多个文件。
 
 后三种是 body 中的：
 
-- **form urlencoded**： 类似 query 字符串，只不过是放在 body 中。Nest 中使用 @Body 来取，axios 中需要指定 content type 为 `application/x-www-form-urlencoded`，并且对数据用 qs 或者 query-string 库做 url encode
+- **form urlencoded**： 类似 query 字符串，只不过是放在 body 中。Nest 中使用 @Body 来取，axios 中需要指定 content type 为  `application/x-www-form-urlencoded`，并且对数据用 qs 或者 query-string 库做 url encode
 - **json**： json 格式的数据。Nest 中使用 @Body 来取，axios 中不需要单独指定 content type，axios 内部会处理。
-- **form data**：通过 ----- 作为 boundary 分隔的数据。主要用于传输文件，Nest 中要使用 FilesInterceptor 来处理其中的 binary 字段，用 @UseInterceptors 来启用，其余字段用 @Body 来取。axios 中需要指定 content type 为 `multipart/form-data`，并且用 FormData 对象来封装传输的内容。
+- **form data**：通过 ----- 作为 boundary 分隔的数据。主要用于传输文件，Nest 中要使用 FilesInterceptor 来处理其中的 binary 字段，用 @UseInterceptors 来启用，其余字段用 @Body 来取。axios 中需要指定 content type 为  `multipart/form-data`，并且用 FormData 对象来封装传输的内容。
 
 这 5 种 http 的传输数据的方式覆盖了绝大多数开发场景，如果你想进阶全栈，理解这 5 种接口是首先要做到的。

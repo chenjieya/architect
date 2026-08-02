@@ -4,6 +4,7 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
+
 解释一下 [[【Npm】包描述文件]] 模块安装机制是什么？
 
 > 参考答案：

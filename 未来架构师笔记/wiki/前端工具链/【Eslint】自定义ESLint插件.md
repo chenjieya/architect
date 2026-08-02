@@ -4,9 +4,10 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
-ESLint插件主要是用来扩展ESLint本身没有的功能，这里包括扩展规则、扩展配置、扩展解析器。
 
-90%的ESLint插件都是以扩展规则为主，所以这些插件里面会包含大量的自定义规则。
+ESLint 插件主要是用来扩展 ESLint 本身没有的功能，这里包括扩展规则、扩展配置、扩展解析器。
+
+90%的 ESLint 插件都是以扩展规则为主，所以这些插件里面会包含大量的自定义规则。
 
 像这一类的插件，一般一条规则会对应一个 JS 文件，JS 文件里面需要导出一个对象：
 
@@ -16,9 +17,9 @@ module.exports = {
   meta: {},
   // 规则具体的实现
   create: function () {
-    return {}
+    return {};
   },
-}
+};
 ```
 
 ## 1. meta
@@ -99,10 +100,10 @@ create: function(context){
 // alert("xxx")
 module.exports = {
   meta: {
-    type: 'problem',
+    type: "problem",
     docs: {
-      description: 'disallow the use of alert',
-      category: 'Best Practices',
+      description: "disallow the use of alert",
+      category: "Best Practices",
     },
     fixable: null,
   },
@@ -111,27 +112,27 @@ module.exports = {
     return {
       // 这个方法会在遍历到一个函数调用时被调用
       CallExpression(node) {
-        if (node.callee.name === 'alert') {
+        if (node.callee.name === "alert") {
           // 说明当前是一个 alert 的函数调用
           context.report({
             node,
-            message: '不允许出现 alert 语句呀，兄弟',
-          })
+            message: "不允许出现 alert 语句呀，兄弟",
+          });
         }
       },
-    }
+    };
   },
-}
+};
 ```
 
 ```js
 // console.log("xxx")
 module.exports = {
   meta: {
-    type: 'problem',
+    type: "problem",
     docs: {
-      description: 'disallow the use of console.log',
-      category: 'Best Practices',
+      description: "disallow the use of console.log",
+      category: "Best Practices",
     },
     fixable: null,
   },
@@ -140,18 +141,18 @@ module.exports = {
       CallExpression(node) {
         if (
           node.callee.object &&
-          node.callee.object.name === 'console' &&
-          node.callee.property.name === 'log'
+          node.callee.object.name === "console" &&
+          node.callee.property.name === "log"
         ) {
           context.report({
             node,
-            message: '不允许出现 console.log 语句呀，兄弟',
-          })
+            message: "不允许出现 console.log 语句呀，兄弟",
+          });
         }
       },
-    }
+    };
   },
-}
+};
 ```
 
 每一条规则对应一个 JS 文件，该 JS 文件导出一个对象，该对象里面包含了基本的 meta 和 create 配置项。
@@ -175,10 +176,10 @@ module.exports = {
 module.exports = {
   rules: {
     // 规则名称 : 规则文件
-    'no-alert': require('./rules/no-alert'),
-    'no-console-log': require('./rules/no-console-log'),
+    "no-alert": require("./rules/no-alert"),
+    "no-console-log": require("./rules/no-console-log"),
   },
-}
+};
 ```
 
 至此，我们一个简单的示例插件就书写完毕了。
@@ -187,7 +188,7 @@ module.exports = {
 
 来到插件的根目录，执行 `npm link`，这样的话该项目就会创建一个软链接到全局包目录里面，回头其他项目就可以通过 link 的方式来链接这个包。
 
-之后我们创建一个测试项目，例如名字叫做 eslint-test-customplugin，使用 npm 进行初始化（因为 npm 和 pnpm 在 link的时候执行机制有一些区别，npm link 时的速度比 pnpm 快一些），然后安装 eslint
+之后我们创建一个测试项目，例如名字叫做 eslint-test-customplugin，使用 npm 进行初始化（因为 npm 和 pnpm 在 link 的时候执行机制有一些区别，npm link 时的速度比 pnpm 快一些），然后安装 eslint
 
 ```bash
 npm i eslint -D
@@ -196,8 +197,8 @@ npm i eslint -D
 然后在 src/index.js 中书写一些测试代码：
 
 ```js
-alert('Hello')
-console.log('World')
+alert("Hello");
+console.log("World");
 ```
 
 最后是链接对应的插件包，然后配置文件中配置该插件即可：

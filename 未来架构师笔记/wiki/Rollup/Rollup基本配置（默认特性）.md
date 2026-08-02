@@ -7,7 +7,7 @@ updated: 2026-08-02
 
 > 本文将带你了解 Rollup 自带的原生功能，即无需额外插件就能使用的基础特性。通过这些内容，我们可以认识最“纯粹”的 Rollup，弄清楚它在默认情况下具备哪些能力。
 
-## 1. 安装Rollup
+## 1. 安装 Rollup
 
 ### 1.1 安装命令
 
@@ -50,7 +50,6 @@ pnpm run build
 
 就可以完成打包。
 
-
 ## 2. “纯粹”的 Rollup
 
 ### 2.1 入口（Input）
@@ -61,8 +60,8 @@ pnpm run build
 ```js
 // rollup.config.js
 export default {
-  input: 'src/main.js' // 指定打包入口
-}
+  input: "src/main.js", // 指定打包入口
+};
 ```
 
 ### 2.2 出口（Output）
@@ -72,15 +71,16 @@ Rollup 的出口配置决定了最终打包产物的位置和格式。
 
 ```js
 export default {
-  input: 'src/main.js',
+  input: "src/main.js",
   output: {
-    file: 'dist/bundle.js', // 输出的文件路径
-    format: 'es'            // 输出格式
-  }
-}
+    file: "dist/bundle.js", // 输出的文件路径
+    format: "es", // 输出格式
+  },
+};
 ```
 
 **常见的输出格式**
+
 - **es**：ES Module（现代浏览器 / bundler 支持）
 - **cjs**：CommonJS（Node.js 环境使用）
 - **iife**：立即执行函数（适合直接在浏览器用 `<script>` 引入）
@@ -92,23 +92,23 @@ export default {
 
 ```js
 export default {
-  input: 'src/main.js',
+  input: "src/main.js",
   output: [
     {
-      file: 'dist/bundle.esm.js',
-      format: 'es'
+      file: "dist/bundle.esm.js",
+      format: "es",
     },
     {
-      file: 'dist/bundle.cjs.js',
-      format: 'cjs'
+      file: "dist/bundle.cjs.js",
+      format: "cjs",
     },
     {
-      file: 'dist/bundle.umd.js',
-      format: 'umd',
-      name: 'MyLibrary' // umd 必须指定全局变量名
-    }
-  ]
-}
+      file: "dist/bundle.umd.js",
+      format: "umd",
+      name: "MyLibrary", // umd 必须指定全局变量名
+    },
+  ],
+};
 ```
 
 ### 2.4 Watch 模式（开发调试）
@@ -145,22 +145,23 @@ src/
 ```
 
 可以这样配置：
+
 ```js
 export default {
   input: {
-    index: 'src/index.js',
-    core: 'src/core.js',
-    utils: 'src/utils.js'
+    index: "src/index.js",
+    core: "src/core.js",
+    utils: "src/utils.js",
   },
   output: {
-    dir: 'dist',
-    format: 'es'
-  }
-}
-
+    dir: "dist",
+    format: "es",
+  },
+};
 ```
 
 **产物**
+
 - 每个入口文件（index、core、utils）都会打成一个 bundle。
 - 如果公共依赖存在，不会重复打进两个 bundle，而是抽离成一个 **共享 chunk**。参考下面的[[#2.7.2 默认代码分割]]
 - Rollup 自动在 `index.js` 、 `core.js`和`utils.js` 入口文件中加上对 **共享 chunk** 的引用。
@@ -168,33 +169,31 @@ export default {
 ### 2.6 多个入口分别构建，输出不同的产物
 
 ```js
-
-import { defineConfig } from 'rollup'
+import { defineConfig } from "rollup";
 /**
  * @type {import('rollup').RollupOptions}
  */
 const buildIndexOptions = {
-  input: 'src/index.js',
+  input: "src/index.js",
   output: {
-    dir: 'dist/umd/',
-    format: 'umd',
-    name: 'bundle'
-  }
-}
+    dir: "dist/umd/",
+    format: "umd",
+    name: "bundle",
+  },
+};
 
 /**
  * @type {import('rollup').RollupOptions}
  */
 const buildMainOptions = {
-  input: 'src/core.js',
+  input: "src/core.js",
   output: {
-    dir: 'dist/esm/',
-    format: 'esm',
-  }
-}
+    dir: "dist/esm/",
+    format: "esm",
+  },
+};
 export default [buildIndexOptions, buildMainOptions];
 ```
-
 
 ### 2.7 动态导入与默认代码分割
 
@@ -204,36 +203,38 @@ export default [buildIndexOptions, buildMainOptions];
 
 ```js
 // 静态导入：编译阶段就确定
-import { add } from './math.js'
+import { add } from "./math.js";
 
 // 动态导入：运行时才加载
-button.addEventListener('click', async () => {
-  const { sub } = await import('./math.js')
-  console.log(sub(10, 5))
-})
+button.addEventListener("click", async () => {
+  const { sub } = await import("./math.js");
+  console.log(sub(10, 5));
+});
 ```
 
 **特点**
+
 - **静态导入**：打包时 Rollup 会直接把依赖合并进主 bundle。
 - **动态导入**：Rollup 会单独生成一个文件，在运行时按需加载。
-
 
 #### 2.7.2 默认代码分割
 
 在支持 **动态导入** 的情况下，Rollup 会自动启用 **代码分割**：
+
 - 把公用的依赖抽离出来。
 - 避免多个 bundle 重复打包相同模块。
 
 👉 举个例子：
 假设有两个入口文件：
+
 ```js
 // pageA.js
-import { utils } from './utils.js'
-console.log('Page A', utils())
+import { utils } from "./utils.js";
+console.log("Page A", utils());
 
 // pageB.js
-import { utils } from './utils.js'
-console.log('Page B', utils())
+import { utils } from "./utils.js";
+console.log("Page B", utils());
 ```
 
 如果我们用多入口配置：
@@ -241,14 +242,14 @@ console.log('Page B', utils())
 ```js
 export default {
   input: {
-    pageA: 'src/pageA.js',
-    pageB: 'src/pageB.js'
+    pageA: "src/pageA.js",
+    pageB: "src/pageB.js",
   },
   output: {
-    dir: 'dist',
-    format: 'es'
-  }
-}
+    dir: "dist",
+    format: "es",
+  },
+};
 ```
 
 Rollup 会生成：
@@ -261,10 +262,11 @@ dist/
 ```
 
 **好处**
+
 - **避免重复**：公共模块只打包一次。
 - **按需加载**：只加载需要的部分。
 
-#### 2.7.3 manualChunks自定义代码分割
+#### 2.7.3 manualChunks 自定义代码分割
 
 `manualChunks`用于自定义代码分割，将特定模块或依赖打包到独立的 chunk（**默认是不打包外部依赖的，如果手动配置打包外部依赖，需要删除[[#2.9.1 external]]**）：
 
@@ -284,7 +286,7 @@ output: {
 }
 ```
 
-- 可以把第三方库单独打包(前提是需要第三方插件@rollup/plugin-node-resolve，让rollup可以打包三方库)也可以自定义内部依赖分包
+- 可以把第三方库单独打包(前提是需要第三方插件@rollup/plugin-node-resolve，让 rollup 可以打包三方库)也可以自定义内部依赖分包
 - 提高浏览器缓存利用率
 
 ### 2.8 Tree-shaking
@@ -296,12 +298,16 @@ output: {
 
 ```js
 // utils.js
-export function used() { console.log('used') }
-export function unused() { console.log('unused') }
+export function used() {
+  console.log("used");
+}
+export function unused() {
+  console.log("unused");
+}
 
 // main.js
-import { used } from './utils.js'
-used()
+import { used } from "./utils.js";
+used();
 ```
 
 打包结果中，`unused` 会被自动去掉。
@@ -310,7 +316,7 @@ used()
 
 > 注意，**摇树优化的核心思想是在编译阶段通过静态分析确定代码的使用情况，而不是在运行时**。
 
-所以摇树优化一般是建立在**ES6 模块化语法**基础之上的，ESM的导入导出是静态的。
+所以摇树优化一般是建立在**ES6 模块化语法**基础之上的，ESM 的导入导出是静态的。
 
 CommonJS 模块的导入和导出是动态的，无法在编译阶段静态确定代码的使用情况。一般情况下，摇树优化工具无法在 CommonJS 模块中进行精确的摇树，因为无法静态分析模块间的导入和导出关系。
 
@@ -325,22 +331,25 @@ CommonJS 模块的导入和导出是动态的，无法在编译阶段静态确�
 由于是静态分析，所以我们在写代码的时候，需要注意自己的写法，简单来说，尽量的使用最小导入，比如你可以比较一下我们这里导入代码之后，打包的区别：
 
 1. 命名导出：
+
 ```js
 // utils.js
 export const foo = () => {};
 export const bar = () => {};
 ```
+
 导入时只取需要的函数：
+
 ```js
-import { foo } from './utils';
+import { foo } from "./utils";
 foo();
 ```
 
 - Rollup 可以完全 tree-shake `bar`，不会打包进最终 bundle。
 - ✅ **Tree-shaking 最友好**，推荐使用。
 
-
 2. 默认导出
+
 ```js
 // utils.js
 export default {
@@ -348,51 +357,54 @@ export default {
   bar: () => {},
 };
 ```
+
 导入时：
+
 ```js
-import utils from './utils';
+import utils from "./utils";
 utils.foo();
 ```
 
 - **问题**：
-    - Rollup 看到 `utils` 被整体使用，它就无法确定里面的 `bar` 是否会被使用。
-    - **结果**：整个对象会被打包，Tree-shaking 失效。
+  - Rollup 看到 `utils` 被整体使用，它就无法确定里面的 `bar` 是否会被使用。
+  - **结果**：整个对象会被打包，Tree-shaking 失效。
 - 💡 结论：默认导出一个包含多个属性的对象时，Tree-shaking 效果不好。
 
-
-#### 2.8.1 Tree-shaking实践建议
+#### 2.8.1 Tree-shaking 实践建议
 
 1. **尽量使用命名导出**，尤其是库函数或者工具函数。
 2. **避免默认导出对象包含多个方法**，会破坏 Tree-shaking。
 3. **不要在导出时做动态计算**：
+
 ```js
 // ❌
 export const func = someCondition ? foo : bar;
 ```
 
 4. **导入时只按需导入**：
+
 ```js
 // ❌ 整个导入
-import utils from './utils';
+import utils from "./utils";
 
 // ✅ 按需导入
-import { foo } from './utils';
+import { foo } from "./utils";
 ```
-
 
 ### 2.9 外部依赖与打包控制
 
 在 Rollup 打包中，有时我们并不希望所有依赖都被打包进最终产物(默认不会将外部依赖打包到产物里面)。尤其是大型库或 Node.js 内置模块，如果强制打包，不仅会增加体积，还可能引入不必要的重复代码。Rollup 提供了几种机制来灵活管理这些依赖：
+
 #### 2.9.1 external
 
-通过 `external` 配置，可以明确告诉 Rollup 哪些模块是外部依赖，不需要打包。 如果不配置，rollup会在控制台抛出警告：
+通过 `external` 配置，可以明确告诉 Rollup 哪些模块是外部依赖，不需要打包。 如果不配置，rollup 会在控制台抛出警告：
 
 ```js
 export default {
-  input: 'src/index.js',
-  output: { file: 'dist/bundle.js', format: 'cjs' },
-  external: ['react', 'vue'] // 这些不会打包进 bundle
-}
+  input: "src/index.js",
+  output: { file: "dist/bundle.js", format: "cjs" },
+  external: ["react", "vue"], // 这些不会打包进 bundle
+};
 ```
 
 - 减小打包体积
@@ -412,31 +424,34 @@ export default {
 
 ```js
 export default {
-  input: 'src/index.js',
+  input: "src/index.js",
   output: {
-    file: 'dist/my-lib.umd.js',
-    format: 'umd',
-    name: 'MyLib',
+    file: "dist/my-lib.umd.js",
+    format: "umd",
+    name: "MyLib",
     globals: {
-      react: 'React',  // 外部模块 react 对应全局变量 React
-      'react-dom': 'ReactDOM'
-    }
+      react: "React", // 外部模块 react 对应全局变量 React
+      "react-dom": "ReactDOM",
+    },
   },
-  external: ['react', 'react-dom']  // 告诉 Rollup 这些不打包
-}
+  external: ["react", "react-dom"], // 告诉 Rollup 这些不打包
+};
 ```
 
 **解析**：
+
 - `external` 表示哪些模块不打包
 - `globals` 映射外部模块到浏览器全局变量
 - 打包后，你的 UMD 文件就可以直接在浏览器中使用，不会把 React 和 ReactDOM 打包进来
 
-**Key&Value解析**
+**Key&Value 解析**
 **key**：必须是你在 `import` 或 `external` 中指定的 **模块名**。
+
 - 也就是你在代码里写的 `import React from 'react'` 里的 `'react'`。
 - 它不是随便起的名字，必须和模块名匹配，否则 Rollup 找不到对应关系。
 
 **value**：是这个外部模块在 **全局环境中** 暴露出来的变量名。
+
 - 例如你在浏览器通过 `<script src="https://unpkg.com/react/umd/react.development.js"></script>` 引入 React，它会在全局变量 `window.React` 上暴露。
 - 这时候 `globals` 的 value 就写 `'React'`。
 
@@ -449,26 +464,25 @@ export default {
 
 ```js
 export default {
-  input: 'src/index.js',
+  input: "src/index.js",
   output: {
-    file: 'dist/my-lib.esm.js',
-    format: 'esm',
-    name: 'MyLib',
+    file: "dist/my-lib.esm.js",
+    format: "esm",
+    name: "MyLib",
     globals: {
-      react: 'React',  // 外部模块 react 对应全局变量 React
-      'react-dom': 'ReactDOM'
-    }
+      react: "React", // 外部模块 react 对应全局变量 React
+      "react-dom": "ReactDOM",
+    },
   },
-  external: ['react', 'react-dom'],  // 告诉 Rollup 这些不打包
+  external: ["react", "react-dom"], // 告诉 Rollup 这些不打包
   paths: {
-    "react": "https://cdn.jsdelivr.net/npm/react@18.2.0/+esm",
+    react: "https://cdn.jsdelivr.net/npm/react@18.2.0/+esm",
     "react-dom": "https://cdn.jsdelivr.net/npm/react-dom@18.2.0/+esm",
-  }
-}
+  },
+};
 ```
 
 打包后，Rollup 会把 `import react from 'react'` 替换为从指定 URL 加载的模块，而不是本地打包。
-
 
 示例 2：模块路径重定向
 
@@ -483,6 +497,7 @@ paths: {
 - 适用于替换模块或做兼容处理
 
 **注意**：
+
 - `paths` 只对 **外部依赖（external）** 生效
 - 必须和 `external` 配合使用，否则 Rollup 会尝试打包模块，而不是替换路径
 

@@ -16,7 +16,6 @@ jest 对象上面的方法大致分为四类：
 - 模拟计时器
 - 其他方法
 
-
 通过 jest.fn 方法可以创建一个模拟函数（mock fucntion）
 
 ```js
@@ -25,16 +24,15 @@ jest.fn(implementation?)
 
 implementation 是一个可选参数，代表着模拟函数的实现，如果没有传入，那么创建的是一个空的模拟函数。
 
-
 来看一个快速入门示例：
 
 ```js
-test("基本演示",()=>{
-    // 创建一个模拟函数
-    const mock = jest.fn();
-    // 设置这个模拟函数的返回值为 42
-    mock.mockReturnValue(42);
-    expect(mock()).toBe(42);
+test("基本演示", () => {
+  // 创建一个模拟函数
+  const mock = jest.fn();
+  // 设置这个模拟函数的返回值为 42
+  mock.mockReturnValue(42);
+  expect(mock()).toBe(42);
 });
 ```
 
@@ -43,61 +41,61 @@ test("基本演示",()=>{
 在使用 jest.fn 创建模拟函数的时候，也可以传入一个函数来代表模拟函数的实现，一般通过传入的函数能够明确所生成的模拟函数接收几个参数，返回值是多少。
 
 ```js
-test("内置实现",()=>{
-    const mock = jest.fn(x => 100 + x);
-    expect(mock(1)).toBe(101);
-})
+test("内置实现", () => {
+  const mock = jest.fn((x) => 100 + x);
+  expect(mock(1)).toBe(101);
+});
 ```
 
 调用 jest.fn 方法后返回的是一个模拟函数，之所以可以在函数的基础上调用方法，是因为在 js 中函数也是一种对象，这里的模拟函数类似于如下的表达：
 
 ```js
-function a(){}
-a.b = function(){}
-a.c = function(){}
-a.d = function(){}
+function a() {}
+a.b = function () {};
+a.c = function () {};
+a.d = function () {};
 ```
 
 可以在官方文档 https://jestjs.io/docs/mock-function-api 看到模拟函数所对应的方法，举例如下：
 
 ```js
-test("基本演示",()=>{
-    // 创建一个模拟函数
-    const mock = jest.fn();
+test("基本演示", () => {
+  // 创建一个模拟函数
+  const mock = jest.fn();
 
-    mock.mockReturnValue(30) // 设置返回值为 30
-        .mockReturnValueOnce(10) // 第一次调用模拟函数对应的返回值
-        .mockReturnValueOnce(20) // 第二次调用模拟函数对应的返回值
-    
-    expect(mock()).toBe(10);
-    expect(mock()).toBe(20);
-    expect(mock()).toBe(30);
+  mock
+    .mockReturnValue(30) // 设置返回值为 30
+    .mockReturnValueOnce(10) // 第一次调用模拟函数对应的返回值
+    .mockReturnValueOnce(20); // 第二次调用模拟函数对应的返回值
 
-    // 设置这个模拟函数的返回值为 42
-    mock.mockReturnValue(42);
-    expect(mock()).toBe(42);
+  expect(mock()).toBe(10);
+  expect(mock()).toBe(20);
+  expect(mock()).toBe(30);
+
+  // 设置这个模拟函数的返回值为 42
+  mock.mockReturnValue(42);
+  expect(mock()).toBe(42);
 });
 ```
 
 通过模拟函数身上的这些方法，可以控制模拟函数的行为，例如上面我们通过 mockReturnValueOnce 控制函数不同次数的调用对应的返回值。
-
 
 接下来我们来看两个模拟函数具体的应用场景。
 
 首先第一个，假设我们书写了一个 forEach 函数，这个 forEach 就类似于数组里面的 forEach 方法，该函数会遍历数组里面的每一项，然后针对每一项执行对应的回调函数：
 
 ```js
-const arr = [1,2,3,4,5];
-arr.forEach((item)=>{
+const arr = [1, 2, 3, 4, 5];
+arr.forEach((item) => {
   // item....
-})
+});
 
-function forEach(arr, callback){
-  for(let index = 0;i< arr.length; index++){
+function forEach(arr, callback) {
+  for (let index = 0; i < arr.length; index++) {
     callback(arr[index]);
   }
 }
-forEach(arr, (item)=>{});
+forEach(arr, (item) => {});
 ```
 
 接下来我们想要测试这个 forEach 函数的实现是否有问题，那么这里涉及到了这个 forEach 依赖了 callback 这个函数，因此我们就可以通过模拟函数的方式来对其进行屏蔽
@@ -146,12 +144,10 @@ test("测试forEach是否正确", () => {
 });
 ```
 
-
-
 接下来我们来看第二例子，我们来模拟一个异步请求的场景。假设有如下的异步请求函数：
 
 ```js
-async function fetchData(){
+async function fetchData() {
   const res = await fetch("https://www.example.com/data");
   const data = await res.json();
   return data;
@@ -184,9 +180,3 @@ test("模拟网络请求出错", async () => {
   await expect(fetchDataMock()).resolves.toEqual({ id: 1, name: "xiejie" });
 });
 ```
-
-
-
-
-
-

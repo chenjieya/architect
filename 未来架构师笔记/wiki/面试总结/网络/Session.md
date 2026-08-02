@@ -4,6 +4,7 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
+
 ## 1. cookie 的缺陷
 
 cookie 是保存在客户端的，虽然为服务器减少了很多压力，但某些情况下，会出现麻烦。

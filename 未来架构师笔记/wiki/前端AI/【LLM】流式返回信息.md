@@ -4,6 +4,7 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
+
 ## 1. SSE
 
 **SSE（Server-Sent Events）** 是一种**浏览器原生支持的、单向的流式通信协议**：
@@ -33,12 +34,12 @@ updated: 2026-08-02
 比如你请求了大模型回答问题，它不会一下子返回整段文字，而是：
 
 ```js
-'你'
-'好'
-'，'
-'请问'
-'需要'
-'帮助吗？'
+"你";
+"好";
+"，";
+"请问";
+"需要";
+"帮助吗？";
 ```
 
 这些字符被拆成若干个“chunk”，逐个返回。
@@ -46,16 +47,16 @@ updated: 2026-08-02
 假设我们开启 stream 流式模式：
 
 ```js
-const response = await fetch('/api/generate', {
-  method: 'POST',
-  body: JSON.stringify({ prompt: '你是谁？', stream: true }),
-})
+const response = await fetch("/api/generate", {
+  method: "POST",
+  body: JSON.stringify({ prompt: "你是谁？", stream: true }),
+});
 ```
 
 `response.body` 就是 ReadableStream 可读流，可读流有一个 `getReader` 的方法，可以拿到一个 Reader 对象。
 
 ```js
-const reader = response.body.getReader()
+const reader = response.body.getReader();
 ```
 
 该 Reader 对象上面有一个 read 方法，可以读取每一个 chunk。
@@ -63,8 +64,8 @@ const reader = response.body.getReader()
 ```js
 while (true) {
   // 不断的去读每一个块，取出当前块所对应的数据
-  const { done, value } = await reader.read()
-  if (done) break // 进入该 if，说明没有数据了
+  const { done, value } = await reader.read();
+  if (done) break; // 进入该 if，说明没有数据了
 }
 ```
 
@@ -74,7 +75,7 @@ while (true) {
 但现在读取到的是**二进制数据**，我们需要去解码，因此我们创建一个 UTF-8 解码器，将从 `reader.read()` 拿到的 二进制 Uint8Array 解码为字符串。
 
 ```js
-const decoder = new TextDecoder('utf-8')
+const decoder = new TextDecoder("utf-8");
 ```
 
 `TextDecoder` 会自动处理中文、emoji 这类多字节字符。
@@ -82,13 +83,13 @@ const decoder = new TextDecoder('utf-8')
 解码代码如下：
 
 ```js
-const chunk = decoder.decode(value, { stream: true })
+const chunk = decoder.decode(value, { stream: true });
 ```
 
 例如其中一个 value 解码后结果是：
 
 ```js
-chunk = '{"response":"你好"}\n{"response":"，"}\n'
+chunk = '{"response":"你好"}\n{"response":"，"}\n';
 ```
 
 这里设置 `stream: true` 的作用是：**保留未完整字符**到下一次解码继续拼接。
@@ -100,7 +101,7 @@ chunk = '{"response":"你好"}\n{"response":"，"}\n'
 ```js
 Uint8Array.from([
   123, 34, 114, 101, 115, 112, 111, 110, 115, 101, 34, 58, 34, 228,
-])
+]);
 ```
 
 这是部分字符 `"你"` 的 utf-8，但还没完整；`stream: false` 会报错（因为字符不完整）；`stream: true` 会“记住”这个未完整字符，等下一次拼接回来。

@@ -4,13 +4,14 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
+
 ## 1. CommonJS
 
 关键词：
 
 - 社区标准
 - 使用函数实现
-- 仅node环境支持
+- 仅 node 环境支持
 - 动态依赖（需要代码运行后才能确定依赖）
 - 动态依赖是同步执行的
 
@@ -66,17 +67,17 @@ function require(path){
 
 ```js
 // module a.js
-export var a = 1
+export var a = 1;
 export function changeA() {
-  a = 2
+  a = 2;
 }
 
 // index.js
 // 导入位置的符号和导出的符号并非赋值，它们完全是一个东西
-import { a, changeA } from './a.js'
-console.log(a) // 1
-changeA()
-console.log(a) // 2
+import { a, changeA } from "./a.js";
+console.log(a); // 1
+changeA();
+console.log(a); // 2
 ```
 
 ## 3. 面试题
@@ -102,19 +103,19 @@ console.log(a) // 2
 3. 下面的模块导出了什么结果？
 
    ```js
-   exports.a = 'a'
-   module.exports.b = 'b'
-   this.c = 'c'
+   exports.a = "a";
+   module.exports.b = "b";
+   this.c = "c";
    module.exports = {
-     d: 'd',
-   }
+     d: "d",
+   };
    ```
 
    > 参考答案：
    >
    > ```js
    > {
-   >   d: 'd'
+   >   d: "d";
    > }
    > ```
 
@@ -122,20 +123,20 @@ console.log(a) // 2
 
    ```js
    // module counter
-   var count = 1
-   export { count }
+   var count = 1;
+   export { count };
    export function increase() {
-     count++
+     count++;
    }
 
    // module main
-   import { count, increase } from './counter'
-   import * as counter from './counter'
-   const { count: c } = counter
-   increase()
-   console.log(count)
-   console.log(counter.count)
-   console.log(c)
+   import { count, increase } from "./counter";
+   import * as counter from "./counter";
+   const { count: c } = counter;
+   increase();
+   console.log(count);
+   console.log(counter.count);
+   console.log(c);
    ```
 
    > 参考答案：

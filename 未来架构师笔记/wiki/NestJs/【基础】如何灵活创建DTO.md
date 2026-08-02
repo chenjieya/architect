@@ -4,7 +4,8 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
-## 总结
+
+## 1. 总结
 
 开发 CRUD 接口的时候，经常会发现 update 的 dto 和 create 的 dto 很类似，而我们要重复的写两次。
 

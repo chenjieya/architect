@@ -81,6 +81,7 @@ updated: 2026-08-02
 有点类似于 .gitignore，prettier 也支持 .prettierignore，用来排出一些文件或者目录，也就是说，出现在 .prettierignore 里面的文件或者目录不会被 prettier 进行处理。
 
 例如：
+
 ```js
 # 忽略所有的 .min.js 文件
 *.min.js

@@ -4,6 +4,7 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
+
 详细介绍：https://webpack.docschina.org/plugins/module-concatenation-plugin/
 
 ## 1. 面试题
@@ -14,7 +15,7 @@ updated: 2026-08-02
 >
 > scope hoisting 是 webpack 的内置优化，它是针对模块的优化，在生产环境打包时会自动开启。
 >
-> 在未开启scope hoisting时，webpack 会将每个模块的代码放置在一个独立的函数环境中，这样是为了保证模块的作用域互不干扰。
+> 在未开启 scope hoisting 时，webpack 会将每个模块的代码放置在一个独立的函数环境中，这样是为了保证模块的作用域互不干扰。
 >
 > 而 scope hoisting 的作用恰恰相反，是把多个模块的代码合并到一个函数环境中执行。在这一过程中，webpack 会按照顺序正确的合并模块代码，同时对涉及的标识符做适当处理以避免重名。
 >

@@ -4,6 +4,7 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
+
 > 代码分割是优化应用性能的重要手段。本文详细讲解 Vite 中的代码分割策略和最佳实践。
 
 ---
@@ -45,14 +46,14 @@ updated: 2026-08-02
 // router.js
 const routes = [
   {
-    path: '/home',
-    component: () => import('./pages/Home.vue'), // 按需加载
+    path: "/home",
+    component: () => import("./pages/Home.vue"), // 按需加载
   },
   {
-    path: '/about',
-    component: () => import('./pages/About.vue'), // 按需加载
+    path: "/about",
+    component: () => import("./pages/About.vue"), // 按需加载
   },
-]
+];
 ```
 
 **效果：**
@@ -112,9 +113,9 @@ const routes = [
 
 ```javascript
 // 多个模块
-import { a } from './module-a.js'
-import { b } from './module-b.js'
-import { c } from './module-c.js'
+import { a } from "./module-a.js";
+import { b } from "./module-b.js";
+import { c } from "./module-c.js";
 
 // 打包成一个 bundle
 // bundle.js 包含 a, b, c 的所有代码
@@ -150,9 +151,9 @@ import { c } from './module-c.js'
 
 ```javascript
 // vendor.js 包含：
-import vue from 'vue'
-import vueRouter from 'vue-router'
-import lodash from 'lodash-es'
+import vue from "vue";
+import vueRouter from "vue-router";
+import lodash from "lodash-es";
 ```
 
 ---
@@ -169,11 +170,11 @@ import lodash from 'lodash-es'
 
 ```javascript
 // main.js - Initial Chunk
-import { createApp } from 'vue'
-import App from './App.vue'
+import { createApp } from "vue";
+import App from "./App.vue";
 
 // page.js - Async Chunk
-const loadPage = () => import('./pages/Page.vue')
+const loadPage = () => import("./pages/Page.vue");
 ```
 
 **Vite 自动处理：**
@@ -217,7 +218,7 @@ export default {
   build: {
     cssCodeSplit: false, // 禁用 CSS 代码分割
   },
-}
+};
 ```
 
 **关键词解释：**
@@ -241,14 +242,14 @@ export default {
       output: {
         manualChunks: {
           // 将 vue 和 vue-router 打包到 vendor
-          vendor: ['vue', 'vue-router'],
+          vendor: ["vue", "vue-router"],
           // 将工具函数打包到 utils
-          utils: ['./src/utils/index.js'],
+          utils: ["./src/utils/index.js"],
         },
       },
     },
   },
-}
+};
 ```
 
 **对象形式说明：**
@@ -280,29 +281,29 @@ export default {
       output: {
         manualChunks(id) {
           // node_modules 中的依赖
-          if (id.includes('node_modules')) {
+          if (id.includes("node_modules")) {
             // 大型库单独打包
-            if (id.includes('vue') || id.includes('vue-router')) {
-              return 'vendor-vue'
+            if (id.includes("vue") || id.includes("vue-router")) {
+              return "vendor-vue";
             }
             // 其他依赖
-            return 'vendor'
+            return "vendor";
           }
 
           // 工具函数
-          if (id.includes('/utils/')) {
-            return 'utils'
+          if (id.includes("/utils/")) {
+            return "utils";
           }
 
           // 组件
-          if (id.includes('/components/')) {
-            return 'components'
+          if (id.includes("/components/")) {
+            return "components";
           }
         },
       },
     },
   },
-}
+};
 ```
 
 **函数形式说明：**
@@ -335,7 +336,7 @@ export default {
     // 方式2：使用 build.polyfillModulePreload（已废弃，使用上面的方式）
     // polyfillModulePreload: true,
   },
-}
+};
 ```
 
 **生成的 HTML：**
@@ -373,7 +374,7 @@ export default {
       polyfill: false, // 禁用预加载
     },
   },
-}
+};
 ```
 
 ---
@@ -395,14 +396,14 @@ export default {
 // 路由懒加载
 const routes = [
   {
-    path: '/home',
-    component: () => import('./pages/Home.vue'), // 异步 chunk
+    path: "/home",
+    component: () => import("./pages/Home.vue"), // 异步 chunk
   },
   {
-    path: '/about',
-    component: () => import('./pages/About.vue'), // 异步 chunk
+    path: "/about",
+    component: () => import("./pages/About.vue"), // 异步 chunk
   },
-]
+];
 ```
 
 **Vite 的优化机制：**
@@ -436,12 +437,12 @@ const routes = [
 
 ```javascript
 // a.js
-import { b } from './b.js'
-export const a = 'a'
+import { b } from "./b.js";
+export const a = "a";
 
 // b.js
-import { a } from './a.js'
-export const b = 'b'
+import { a } from "./a.js";
+export const b = "b";
 ```
 
 **问题：** 可能导致代码分割异常。
@@ -458,16 +459,16 @@ npm install -D vite-plugin-chunk-split
 
 ```javascript
 // vite.config.js
-import { chunkSplitPlugin } from 'vite-plugin-chunk-split'
+import { chunkSplitPlugin } from "vite-plugin-chunk-split";
 
 export default {
   plugins: [
     chunkSplitPlugin({
-      strategy: 'split-by-size',
+      strategy: "split-by-size",
       minChunkSize: 20000,
     }),
   ],
-}
+};
 ```
 
 **插件功能：**
@@ -503,13 +504,13 @@ export default {
   build: {
     rollupOptions: {
       output: {
-        chunkFileNames: 'chunks/[name]-[hash].js',
+        chunkFileNames: "chunks/[name]-[hash].js",
         // [name]: chunk 名称
         // [hash]: 内容哈希值
       },
     },
   },
-}
+};
 ```
 
 **输出：**
@@ -524,7 +525,7 @@ dist/
 **占位符说明：**
 
 - `[name]`：chunk 名称
-- `[hash]`：内容哈希值（8位）
+- `[hash]`：内容哈希值（8 位）
 - `[hash:8]`：指定哈希长度
 - `[ext]`：文件扩展名
 
@@ -542,11 +543,11 @@ export default {
   build: {
     rollupOptions: {
       output: {
-        entryFileNames: 'js/[name]-[hash].js',
+        entryFileNames: "js/[name]-[hash].js",
       },
     },
   },
-}
+};
 ```
 
 **输出：**
@@ -572,18 +573,18 @@ export default {
   build: {
     rollupOptions: {
       output: {
-        assetFileNames: 'assets/[name]-[hash].[ext]',
+        assetFileNames: "assets/[name]-[hash].[ext]",
         // 或使用函数
         assetFileNames: (assetInfo) => {
-          if (assetInfo.name.endsWith('.css')) {
-            return 'css/[name]-[hash].[ext]'
+          if (assetInfo.name.endsWith(".css")) {
+            return "css/[name]-[hash].[ext]";
           }
-          return 'assets/[name]-[hash].[ext]'
+          return "assets/[name]-[hash].[ext]";
         },
       },
     },
   },
-}
+};
 ```
 
 **输出：**
@@ -625,19 +626,19 @@ export default {
     rollupOptions: {
       output: {
         manualChunks(id) {
-          if (id.includes('node_modules')) {
+          if (id.includes("node_modules")) {
             // 大型库单独打包
-            if (id.includes('vue') || id.includes('vue-router')) {
-              return 'vendor-vue'
+            if (id.includes("vue") || id.includes("vue-router")) {
+              return "vendor-vue";
             }
             // 其他依赖
-            return 'vendor'
+            return "vendor";
           }
         },
       },
     },
   },
-}
+};
 ```
 
 ---

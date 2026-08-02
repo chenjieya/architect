@@ -4,6 +4,7 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
+
 在 babel 要使用一个插件，步骤实际上非常简单，就分为两步：
 
 - 安装插件

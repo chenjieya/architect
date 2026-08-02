@@ -4,6 +4,7 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
+
 ## 1. 经典真题
 
 - 对于 _WEB_ 标准以及 _W3C_ 的理解与认识问题
@@ -11,7 +12,7 @@ updated: 2026-08-02
 ## 2. 什么是 _W3C_
 
 - W3C 指万维网联盟（_World Wide Web Consortium_）
-- W3C 创建于*1994年10月*
+- W3C 创建于*1994 年 10 月*
 - W3C 由 _Tim Berners-Lee_ 创建
 - W3C 是一个*会员组织*
 - W3C 的工作是*对 web 进行标准化*

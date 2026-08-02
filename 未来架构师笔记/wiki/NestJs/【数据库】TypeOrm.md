@@ -4,7 +4,8 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
-## 1. 对于ORM的理解
+
+## 1. 对于 ORM 的理解
 
 面向对象编程和关系型数据库，都是目前最流行的技术，但是它们的模型是不一样的。
 
@@ -24,11 +25,11 @@ ORM 把数据库映射成对象
 
 ```sql
 SELECT id, first_name, last_name, phone, birth_date, sex
-FROM persons 
+FROM persons
 WHERE id = 10
 ```
 
-如果程序直接操作SQL，大致语法如下：
+如果程序直接操作 SQL，大致语法如下：
 
 ```typescript
 res = db.execSql(sql);
@@ -66,13 +67,13 @@ TypeORM 受到其他 ORM 的很大影响，例如 [Hibernate](http://hibernate.o
 
 ### 2.1 直接开始
 
-直接运行命令创建TypeORM项目
+直接运行命令创建 TypeORM 项目
 
 ```typescript
 npx typeorm init --name typeorm-test --database mysql2
 ```
 
-> 没有安装TypeORM包的话，使用npx命令时，系统会自动检测是否已经安装这个包。
+> 没有安装 TypeORM 包的话，使用 npx 命令时，系统会自动检测是否已经安装这个包。
 >
 > ```shell
 > npm http fetch GET 200 https://registry.npmjs.org/npm 729ms (cache updated)
@@ -84,7 +85,7 @@ npx typeorm init --name typeorm-test --database mysql2
 >
 > 选择“y”后，脚本将自动安装相关的依赖包
 >
-> 不过项目并不会自动帮你安装mysql的依赖包，所以项目创建好之后，还需在项目中安装mysql2的相关依赖
+> 不过项目并不会自动帮你安装 mysql 的依赖包，所以项目创建好之后，还需在项目中安装 mysql2 的相关依赖
 >
 > ```typescript
 > npm i mysql2 --save
@@ -92,7 +93,7 @@ npx typeorm init --name typeorm-test --database mysql2
 
 ### 2.2 创建模型及实体
 
-要处理数据库，首先当然要创建表，在TypeORM中，我们通过定义实体来告诉他如何创建一个数据表，比如，我们要创建一个用户表，就需要定义用户的实体模型
+要处理数据库，首先当然要创建表，在 TypeORM 中，我们通过定义实体来告诉他如何创建一个数据表，比如，我们要创建一个用户表，就需要定义用户的实体模型
 
 ```typescript
 import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
@@ -124,11 +125,11 @@ export class User {
 }
 ```
 
-我们仅仅定义一个User模型并不够，还需要使用装饰器`@Entity`将其定义为一个实体
+我们仅仅定义一个 User 模型并不够，还需要使用装饰器`@Entity`将其定义为一个实体
 
 用于装饰列的装饰器包括 `@Column`、`@PrimaryGeneratedColumn`和`@PrimaryColumn`。`@PrimaryColumn`用于定义普通主键列，而`@PrimaryGeneratedColumn`用于定义自增主键列。
 
-string类型默认映射为数据库中的`varchar(255)`，`number`类型默认映射为`int`整数类型。如果我们希望某个字段是文本(Text)类型或者(Double)类型，可以通过`@Column`装饰器指定
+string 类型默认映射为数据库中的`varchar(255)`，`number`类型默认映射为`int`整数类型。如果我们希望某个字段是文本(Text)类型或者(Double)类型，可以通过`@Column`装饰器指定
 
 ### 2.3 连接数据库
 
@@ -219,7 +220,7 @@ AppDataSource.initialize()
   .catch((error) => console.log(error));
 ```
 
-### 2.5 使用Repository操作CRUD
+### 2.5 使用 Repository 操作 CRUD
 
 除了使用实体管理器(EntityManager)来管理实体外，我们还可以使用存储库(Repository)来管理每个实体，我们直接通过代码来看看
 
@@ -227,38 +228,38 @@ AppDataSource.initialize()
 import { AppDataSource } from "./data-source";
 import { User } from "./entity/User";
 
-async function main() { 
+async function main() {
   await AppDataSource.initialize();
   const userRepository = AppDataSource.getRepository(User);
-  
-  const user1 = new User()
-  user1.name = "jack"
-  user1.nickname = "张三"
-  user1.phone = "13311111111"
-  user1.age = 25
-  user1.desc = "This is a desc1"
-  
+
+  const user1 = new User();
+  user1.name = "jack";
+  user1.nickname = "张三";
+  user1.phone = "13311111111";
+  user1.age = 25;
+  user1.desc = "This is a desc1";
+
   // 新增 user1
   await userRepository.save(user1);
   console.log("新增成功...", user1);
 
-  const user2 = new User()
-  user2.name = "rose"
-  user2.nickname = "李四"
-  user2.phone = "13322222222"
-  user2.age = 26
-  user2.desc = "This is a desc2"
+  const user2 = new User();
+  user2.name = "rose";
+  user2.nickname = "李四";
+  user2.phone = "13322222222";
+  user2.age = 26;
+  user2.desc = "This is a desc2";
   // 新增 user2
   await userRepository.save(user2);
   console.log("新增成功...", user2);
 
   // 查询
   const users = await userRepository.find();
-  console.log('查询所有用户信息:', users);
+  console.log("查询所有用户信息:", users);
 
   // 根据条件查询
   const user = await userRepository.findOneBy({ id: 2 });
-  console.log('查询id=2的用户信息:', user);
+  console.log("查询id=2的用户信息:", user);
 
   // 更新
   user.name = "tom";
@@ -275,22 +276,22 @@ async function main() {
 main();
 ```
 
-### 2.6 使用QueryBuilder操作CRUD
+### 2.6 使用 QueryBuilder 操作 CRUD
 
-**QueryBuilder**是TypeORM中最强大的功能之一，它提供了更加底层的数据库查询操作，灵活度高，支持组合更复杂的SQL查询语句，比如多条件查询、多表查询等等。
+**QueryBuilder**是 TypeORM 中最强大的功能之一，它提供了更加底层的数据库查询操作，灵活度高，支持组合更复杂的 SQL 查询语句，比如多条件查询、多表查询等等。
 
-创建**QueryBuilder**的方式有很多，可以通过**DataSource创建**，也可以通过**Repository创建**，还能通过**EntityManager创建**
+创建**QueryBuilder**的方式有很多，可以通过**DataSource 创建**，也可以通过**Repository 创建**，还能通过**EntityManager 创建**
 
 ```typescript
 // DataSource创建
-async function main() { 
+async function main() {
   await AppDataSource.initialize();
   const user = await AppDataSource.createQueryBuilder()
     .select("user")
     .from(User, "user")
     .where("user.id = :id", { id: 1 })
-    .getOne()
-  console.log('查询id=1的用户信息:', user);
+    .getOne();
+  console.log("查询id=1的用户信息:", user);
 }
 main();
 ```
@@ -301,7 +302,7 @@ const user = await AppDataSource.getRepository(User)
   .createQueryBuilder("user")
   .where("user.id = :id", { id: 1 })
   .getOne();
-console.log('查询id=1的用户信息:', user);
+console.log("查询id=1的用户信息:", user);
 ```
 
 ```typescript
@@ -310,7 +311,7 @@ const user = await AppDataSource.manager
   .createQueryBuilder(User, "user")
   .where("user.id = :id", { id: 1 })
   .getOne();
-console.log('查询id=1的用户信息:', user);
+console.log("查询id=1的用户信息:", user);
 ```
 
 使用哪种方式创建都可以。
@@ -318,7 +319,7 @@ console.log('查询id=1的用户信息:', user);
 比如我们现在要新增一条数据
 
 ```typescript
-async function main() { 
+async function main() {
   await AppDataSource.initialize();
   const user = new User();
   user.name = "lily";
@@ -328,18 +329,14 @@ async function main() {
   user.desc = "......";
 
   const queryBuilder = AppDataSource.createQueryBuilder();
-  const result = await queryBuilder
-    .insert()
-    .into(User)
-    .values(user)
-    .execute();
+  const result = await queryBuilder.insert().into(User).values(user).execute();
   console.log("插入数据:", result);
 }
 
 main();
 ```
 
-上面代码使用insert和into方法进行插入操作，语法上接近原始的SQL语句，**value方法中可以传入对象或者数组**，如果要插入多条记录，就可以选择传入数组。最后调用**execute**方法执行语句
+上面代码使用 insert 和 into 方法进行插入操作，语法上接近原始的 SQL 语句，**value 方法中可以传入对象或者数组**，如果要插入多条记录，就可以选择传入数组。最后调用**execute**方法执行语句
 
 如果要执行查询：
 
@@ -348,7 +345,7 @@ const saveUsers = await queryBuilder.select("u").from(User, "u").getMany();
 console.log("查询所有用户信息:", saveUsers);
 ```
 
-同样查询操作类似于**“select from”**的SQL语句，其实**u**是**User**实体的别名，**getMany**方法可以把多条记录查询出来。注意查询出来的记录和我们代码的实体对象一一对应。
+同样查询操作类似于**“select from”**的 SQL 语句，其实**u**是**User**实体的别名，**getMany**方法可以把多条记录查询出来。注意查询出来的记录和我们代码的实体对象一一对应。
 
 可能有时候我们数据库的字段和实体字段并不一致，如果仅仅就只想查询数据库中的字段，可以使用**getRawMany**，比如我们有这样的实体：
 
@@ -362,13 +359,13 @@ export class User {
 
   @Column({
     name: "u_name",
-    length: 100
+    length: 100,
   })
   name: string;
 
   @Column({
     name: "u_nickname",
-    length: 100
+    length: 100,
   })
   nickname: string;
 
@@ -400,8 +397,12 @@ console.log("查询所有用户信息:", saveUsers);
 如果我们想查询单条信息并修改
 
 ```typescript
-const userUpdate = await queryBuilder.select("u").from(User, "u").where("u.id = :id", { id: 1 }).getOne();
-console.log('查询id=1的用户信息:', userUpdate);
+const userUpdate = await queryBuilder
+  .select("u")
+  .from(User, "u")
+  .where("u.id = :id", { id: 1 })
+  .getOne();
+console.log("查询id=1的用户信息:", userUpdate);
 
 userUpdate.name = "lucy";
 userUpdate.nickname = "露西";
@@ -427,18 +428,24 @@ const resultDelete = await queryBuilder
 console.log("删除数据:", resultDelete);
 ```
 
-## 3. TypeORM处理多表关系
+## 3. TypeORM 处理多表关系
 
 ### 3.1 一对一关系
 
 以用户表和身份证表为例，用户表上面已经创建过了，接下来创建一个身份证实例
 
 ```typescript
-import { Entity, PrimaryGeneratedColumn, Column, OneToOne, JoinColumn } from "typeorm";
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  OneToOne,
+  JoinColumn,
+} from "typeorm";
 import { User } from "./User";
 
 @Entity()
-export class IdCard { 
+export class IdCard {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -460,12 +467,12 @@ export class IdCard {
   @OneToOne(() => User)
   @JoinColumn()
   user: User;
-} 
+}
 ```
 
-上面最关键的是，是 `@OneToOne`装饰器来建立与User实体之间的一对一关联关系。同时用 `@JoinColumn()`装饰器来定义user列，用来维护一个外键，TypeORM会自动帮我们生成外键id
+上面最关键的是，是 `@OneToOne`装饰器来建立与 User 实体之间的一对一关联关系。同时用 `@JoinColumn()`装饰器来定义 user 列，用来维护一个外键，TypeORM 会自动帮我们生成外键 id
 
-> **注意：**添加了实体，就需要将实体添加到DataSource配置选择entites中
+> **注意：**添加了实体，就需要将实体添加到 DataSource 配置选择 entites 中
 >
 > ```typescript
 > export const AppDataSource = new DataSource({
@@ -476,7 +483,7 @@ export class IdCard {
 >
 > 当然，如果你配置的是`./**/entity/*.ts`这样的通配符路径，则可以忽略
 
-接下来，我们在index.ts中分别为User和IdCard插入数据，关键点是**要确保他们关联起来**
+接下来，我们在 index.ts 中分别为 User 和 IdCard 插入数据，关键点是**要确保他们关联起来**
 
 ```typescript
 import { AppDataSource } from "./data-source";
@@ -514,18 +521,16 @@ async function main() {
   // 再保存身份证信息
   await idCardRepository.save(idCard);
   console.log("保存身份证信息成功...", idCard);
-
 }
 
 main();
 ```
 
-在数据库中，我们已经可以看到两张表的关联关系，比如查看id_card表的相关DDL信息，就能看到自动生成的建表信息
+在数据库中，我们已经可以看到两张表的关联关系，比如查看 id_card 表的相关 DDL 信息，就能看到自动生成的建表信息
 
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251210104059382.png)
 
-
-如果在数据库中，我们要查询两者信息，可以使用SQL语句
+如果在数据库中，我们要查询两者信息，可以使用 SQL 语句
 
 ```typescript
 select * from user join id_card on user.id = id_card.userid
@@ -533,10 +538,9 @@ select * from user join id_card on user.id = id_card.userid
 
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251210104109121.png)
 
+在代码中，我们可以使用 Repository 提供的**find**方法来查询。
 
-在代码中，我们可以使用Repository提供的**find**方法来查询。
-
-但是**两个实体的关系是单向的**，也就是我们只在**IdCard实体中持有User实体的外键列**，这就使得**IdCard有权访问User**，但是反过来**User其实并不知道IdCard的存在**。
+但是**两个实体的关系是单向的**，也就是我们只在**IdCard 实体中持有 User 实体的外键列**，这就使得**IdCard 有权访问 User**，但是反过来**User 其实并不知道 IdCard 的存在**。
 
 在这种情况下应该使用**idCardRepository**来查询，并且**设置关联（relations）**
 
@@ -559,11 +563,11 @@ main();
 
 #### 3.1.1 双向关联
 
-所以，为了让User实体能够访问到IdCard实体，我们需要修改实体类建立双向关联
+所以，为了让 User 实体能够访问到 IdCard 实体，我们需要修改实体类建立双向关联
 
 ```typescript
 @Entity()
-export class IdCard { 
+export class IdCard {
   //...... 省略
 
   @OneToOne(() => User, (user) => user.card)
@@ -600,7 +604,7 @@ async function main() {
     relations: { user: true },
   });
 
-  console.log('idCards---', idCards);
+  console.log("idCards---", idCards);
 
   // 获取user实体存储库
   const userRepository = AppDataSource.getRepository(User);
@@ -608,7 +612,7 @@ async function main() {
     relations: { card: true },
   });
 
-  console.log('users---', users);
+  console.log("users---", users);
 }
 
 main();
@@ -616,13 +620,13 @@ main();
 
 #### 3.1.2 级联处理
 
-前面我们保存User和IdCard其实是分别用了两个存储库去处理，但是这两个有关联的数据，我们完全可以进行级联更新或者删除。只需要在实体类中加上级联处理就行：
+前面我们保存 User 和 IdCard 其实是分别用了两个存储库去处理，但是这两个有关联的数据，我们完全可以进行级联更新或者删除。只需要在实体类中加上级联处理就行：
 
 ```typescript
 @Entity("user")
 export class User {
   // ......省略
-  
+
   @OneToOne(() => IdCard, (idCard) => idCard.user, {
     cascade: true,
   })
@@ -630,7 +634,7 @@ export class User {
 }
 ```
 
-还是之前的代码，但是现在我们只需要使用User库就能直接进行保存
+还是之前的代码，但是现在我们只需要使用 User 库就能直接进行保存
 
 ```typescript
 async function main() {
@@ -650,7 +654,7 @@ async function main() {
   idCard.address = "北京市朝阳区";
   idCard.birthday = new Date("2000-02-02");
   idCard.email = "lilei2000@163.com";
-  
+
   // 注意这里需要通过user来关联idCard
   user.card = idCard;
 
@@ -678,7 +682,7 @@ async function main() {
     where: { id: 1 },
   });
 
-  console.log('user:', loadUser);
+  console.log("user:", loadUser);
 
   loadUser.name = "lucy";
   loadUser.nickname = "露西";
@@ -688,11 +692,11 @@ async function main() {
   loadUser.card.cardNo = "999999999999999";
   loadUser.card.address = "成都市武侯区";
   loadUser.card.birthday = new Date("2000-03-03");
-  loadUser.card.email = "lucy2000@163.com"
+  loadUser.card.email = "lucy2000@163.com";
 
   const result = await userRepository.save(loadUser);
 
-  console.log(result)
+  console.log(result);
 }
 
 main();
@@ -707,7 +711,7 @@ import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm";
 import { Employee } from "./Employee";
 
 @Entity()
-export class Department { 
+export class Department {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -717,19 +721,25 @@ export class Department {
   @Column()
   desc: string;
 
-  @OneToMany(() => Employee, employee => employee.department, {
-    cascade: true
+  @OneToMany(() => Employee, (employee) => employee.department, {
+    cascade: true,
   })
   employees: Employee[];
 }
 ```
 
-使用`@OneToMany`装饰器来定义与员工表的关系，并设置级联(cascade)选项用来自动更新相关联的Employee记录。由于是多，所以employee肯定是一个数组。
+使用`@OneToMany`装饰器来定义与员工表的关系，并设置级联(cascade)选项用来自动更新相关联的 Employee 记录。由于是多，所以 employee 肯定是一个数组。
 
 不过`@OneToMany`并**不能单独使用**，它必须与`@ManyToOne`装饰器配对使用，以确保关系的双向性。
 
 ```typescript
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from "typeorm";
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  ManyToOne,
+  JoinColumn,
+} from "typeorm";
 import { Department } from "./Department";
 
 @Entity()
@@ -740,15 +750,15 @@ export class Employee {
   @Column({ length: 100 })
   name: string;
 
-  @ManyToOne(() => Department, department => department.employees)
-  @JoinColumn() 
+  @ManyToOne(() => Department, (department) => department.employees)
+  @JoinColumn()
   department: Department;
 }
 ```
 
 上面使用**`@JoinColumn`装饰器定义了外键列，在一对多/多对一关系中，外键列肯定会设置在"多"的一方**
 
-实体定义完成之后，在index.ts中插入数据：
+实体定义完成之后，在 index.ts 中插入数据：
 
 ```typescript
 async function main() {
@@ -789,15 +799,21 @@ export class Order {
   @Column({ length: 100 })
   name: string;
 
-  @ManyToMany(() => Product, product => product.orders, {
-    cascade: true
+  @ManyToMany(() => Product, (product) => product.orders, {
+    cascade: true,
   })
-  products:Product[]
+  products: Product[];
 }
 ```
 
 ```typescript
-import { Entity, PrimaryGeneratedColumn, Column, ManyToMany, JoinTable } from "typeorm";
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  ManyToMany,
+  JoinTable,
+} from "typeorm";
 import { Order } from "./Order";
 
 @Entity()
@@ -808,15 +824,15 @@ export class Product {
   @Column({ length: 100 })
   name: string;
 
-  @ManyToMany(() => Order, order => order.products)
+  @ManyToMany(() => Order, (order) => order.products)
   @JoinTable()
-  orders:Order[]
+  orders: Order[];
 }
 ```
 
-这里使用`@JoinTable()`来生成中间表，TypeORM会创建一个中间表来管理多对多关系。
+这里使用`@JoinTable()`来生成中间表，TypeORM 会创建一个中间表来管理多对多关系。
 
-在index.ts中添加数据来看看效果
+在 index.ts 中添加数据来看看效果
 
 ```typescript
 async function main() {
@@ -846,13 +862,11 @@ async function main() {
 main();
 ```
 
-上面的代码会自动帮我们生成一张中间表`product_orders_order`,而且生成了productId和orderId作为复合主键，并插入数据：
+上面的代码会自动帮我们生成一张中间表`product_orders_order`,而且生成了 productId 和 orderId 作为复合主键，并插入数据：
 
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251210104155577.png)
 
-
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251210104206215.png)
-
 
 除此之外，我们还可以自行定义中间表的名称和列名
 
@@ -865,62 +879,61 @@ export class Product {
   @Column({ length: 100 })
   name: string;
 
-  @ManyToMany(() => Order, order => order.products)
+  @ManyToMany(() => Order, (order) => order.products)
   @JoinTable({
-    name: 'order_products',
+    name: "order_products",
     joinColumn: {
-      name: 'order_id',
-      referencedColumnName: 'id',
+      name: "order_id",
+      referencedColumnName: "id",
     },
     inverseJoinColumn: {
-      name: 'product_id',
-      referencedColumnName: 'id',
+      name: "product_id",
+      referencedColumnName: "id",
     },
   })
-  orders:Order[]
+  orders: Order[];
 }
 ```
 
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251210104218402.png)
 
+## 4. 在 Nest 中使用 TypeORM
 
-## 4. 在Nest中使用TypeORM
+掌握了 TypeORM 的基本用法之后，在 Nest 中集成 TypeORM 就特别简单了。
 
-掌握了TypeORM的基本用法之后，在Nest中集成TypeORM就特别简单了。
-
-我们先重新创建一个nest工程
+我们先重新创建一个 nest 工程
 
 ```shell
 nest n nest-typeorm-mysql -p -pnpm
 ```
 
-为了方便，我们直接创建一个User模块
+为了方便，我们直接创建一个 User 模块
 
 ```shell
 nest g res user
 ```
 
-然后导入我们需要的TypeORM相关的包
+然后导入我们需要的 TypeORM 相关的包
 
 ```shell
 pnpm add typeorm mysql2 @nestjs/typeorm -s
 ```
 
-TypeORM提供了初始化数据库连接的方式，在`app.module.ts`文件中引入
+TypeORM 提供了初始化数据库连接的方式，在`app.module.ts`文件中引入
 
 ```typescript
 @Module({
   imports: [
     TypeOrmModule.forRoot({
-      type: 'mysql',
-      host: 'localhost',
-      username: 'root',
+      type: "mysql",
+      host: "localhost",
+      username: "root",
       port: 3306,
-      password: '123456',
-      database: 'nest_typeorm',
-      entities: [__dirname + '/**/*.entity{.ts,.js}'],
+      password: "123456",
+      database: "nest_typeorm",
+      entities: [__dirname + "/**/*.entity{.ts,.js}"],
       synchronize: true,
-      timezone: 'Z',
+      timezone: "Z",
     }),
     UserModule,
   ],
@@ -932,14 +945,14 @@ export class AppModule {}
 
 > **注意：**这里是为了方便，打开了`synchronize: true`，会自动加载或更新数据库结构匹配实体定义。但是在生产环境中，我们肯定要禁用同步，不然随便就改变了数据库结构这是非常不安全的。
 >
-> 由于docker中mysql数据库我们并没有处理时区问题，这样存储进去的时间类型，反馈给前端的时候就会出现东8区的时间差问题。
+> 由于 docker 中 mysql 数据库我们并没有处理时区问题，这样存储进去的时间类型，反馈给前端的时候就会出现东 8 区的时间差问题。
 
-上面的代码通过**forRoot**方法在根模块（AppModule）中注册了TypeORM模块。这样可以使得TypeORM服务在应用程序的各个模块中都可以共享使用。
+上面的代码通过**forRoot**方法在根模块（AppModule）中注册了 TypeORM 模块。这样可以使得 TypeORM 服务在应用程序的各个模块中都可以共享使用。
 
 完善一下`User`实体，新增一些字段
 
 ```typescript
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class User {
@@ -957,24 +970,23 @@ export class User {
 }
 ```
 
-使用命令`pnpm run start:dev`启动服务，就能帮我们创建User表（注意：数据库需要自己手动创建）
+使用命令`pnpm run start:dev`启动服务，就能帮我们创建 User 表（注意：数据库需要自己手动创建）
 
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251210104324557.png)
 
+### 4.1 EntityManager 操作实体
 
-### 4.1 EntityManager操作实体
-
-我们可以通过nest直接注入EntityManager来操作实体，这里唯一需要注意的一点是，TypeORM是天生的Repository，所以，我们可以直接在Service层中注入EntityManager
+我们可以通过 nest 直接注入 EntityManager 来操作实体，这里唯一需要注意的一点是，TypeORM 是天生的 Repository，所以，我们可以直接在 Service 层中注入 EntityManager
 
 **user.service.ts**
 
 ```typescript
-import { Injectable } from '@nestjs/common';
-import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
-import { InjectEntityManager } from '@nestjs/typeorm';
-import { EntityManager } from 'typeorm';
-import { User } from './entities/user.entity';
+import { Injectable } from "@nestjs/common";
+import { CreateUserDto } from "./dto/create-user.dto";
+import { UpdateUserDto } from "./dto/update-user.dto";
+import { InjectEntityManager } from "@nestjs/typeorm";
+import { EntityManager } from "typeorm";
+import { User } from "./entities/user.entity";
 
 @Injectable()
 export class UserService {
@@ -1016,12 +1028,12 @@ import {
   Patch,
   Param,
   Delete,
-} from '@nestjs/common';
-import { UserService } from './user.service';
-import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
+} from "@nestjs/common";
+import { UserService } from "./user.service";
+import { CreateUserDto } from "./dto/create-user.dto";
+import { UpdateUserDto } from "./dto/update-user.dto";
 
-@Controller('user')
+@Controller("user")
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
@@ -1035,24 +1047,24 @@ export class UserController {
     return this.userService.findAll();
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
+  @Get(":id")
+  findOne(@Param("id") id: string) {
     return this.userService.findOne(+id);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
+  @Patch(":id")
+  update(@Param("id") id: string, @Body() updateUserDto: UpdateUserDto) {
     return this.userService.update(+id, updateUserDto);
   }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
+  @Delete(":id")
+  remove(@Param("id") id: string) {
     return this.userService.remove(+id);
   }
 }
 ```
 
-### 4.2 Repository操作实体
+### 4.2 Repository 操作实体
 
 除了使用`EntityManager`操作实体之外，同样可以使用`Repository`操作实体，其实在功能和使用上和`EntityManager`几乎一致，唯一的区别是，**使用`Repository`不需要每次操作都传入实体对象**
 
@@ -1060,15 +1072,15 @@ export class UserController {
 
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251210104353075.png)
 
-我们注入Repository，替换一下就行：
+我们注入 Repository，替换一下就行：
 
 ```typescript
-import { Injectable } from '@nestjs/common';
-import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
-import { User } from './entities/user.entity';
+import { Injectable } from "@nestjs/common";
+import { CreateUserDto } from "./dto/create-user.dto";
+import { UpdateUserDto } from "./dto/update-user.dto";
+import { InjectRepository } from "@nestjs/typeorm";
+import { Repository } from "typeorm";
+import { User } from "./entities/user.entity";
 
 @Injectable()
 export class UserService {
@@ -1098,7 +1110,7 @@ export class UserService {
 }
 ```
 
-但是要**注意**的是：由于Nest的**依赖注入作用域限定在模块级别**，因此`userRepository`存储库还**需要在User模块中引入并注册存储库**，所以，在`user.module.ts`文件中，还需要添加如下的代码：
+但是要**注意**的是：由于 Nest 的**依赖注入作用域限定在模块级别**，因此`userRepository`存储库还**需要在 User 模块中引入并注册存储库**，所以，在`user.module.ts`文件中，还需要添加如下的代码：
 
 ```typescript
 @Module({
@@ -1109,9 +1121,9 @@ export class UserService {
 export class UserModule {}
 ```
 
-### 4.3 QueryBuilder操作实体
+### 4.3 QueryBuilder 操作实体
 
-当然，如果我们有比较复杂的SQL语句，还能使用QueryBuilder对实体进行操作。比如有下面的查询，需要根据姓名和性别进行查询，如果使用`Repository`我们可能会写成下面这个样子
+当然，如果我们有比较复杂的 SQL 语句，还能使用 QueryBuilder 对实体进行操作。比如有下面的查询，需要根据姓名和性别进行查询，如果使用`Repository`我们可能会写成下面这个样子
 
 ```typescript
 async create(createUserDto: CreateUserDto) {
@@ -1128,7 +1140,7 @@ async findAll(name: string, sex: string) {
 }
 ```
 
-为了查询方便，controller中稍微做一下修改：
+为了查询方便，controller 中稍微做一下修改：
 
 ```typescript
   @Post()
@@ -1146,13 +1158,11 @@ async findAll(name: string, sex: string) {
 
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251210104413849.png)
 
-
-经过上面的查询，实际上where中的连接条件是and
+经过上面的查询，实际上 where 中的连接条件是 and
 
 查询之后的结果如下：
 
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251210104425585.png)
-
 
 如果我们希望使用`or`进行连接，就可以使用`QueryBuilder`
 
@@ -1186,4 +1196,3 @@ async findAll(name: string, sex: string) {
 查询出来的结果：
 
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251210104436736.png)
-

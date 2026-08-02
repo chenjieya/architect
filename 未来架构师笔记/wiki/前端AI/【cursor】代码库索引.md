@@ -4,7 +4,8 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
-# 代码库索引
+
+## 1. 代码库索引
 
 将你当前的项目，创建一个嵌入向量（Embeddings），有了嵌入向量，可以帮助 AI 更加准确的去理解的项目。
 

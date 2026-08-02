@@ -4,6 +4,7 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
+
 ## 1. 经典真题
 
 - _let const var_ 的区别？什么是块级作用域？如何用？
@@ -33,9 +34,9 @@ _ES5_ 中的作用域有：全局作用域、函数作用域，_ES6_ 中新增�
 ```js
 //Global Scope
 {
-  var a = 10
+  var a = 10;
 }
-console.log(a) //10
+console.log(a); //10
 ```
 
 上面代码中，在 _Global Scope_（全局作用域）中，且在 _Block Scope_（块级作用域） { } 中，_a_ 输出结果为 _10_，由此可以看出 _var_ 声明的变量不存在 _Block Scope_ 的概念
@@ -44,15 +45,15 @@ console.log(a) //10
 
 ```js
 //Global Scope
-var a = 10
+var a = 10;
 function checkscope() {
   //Local Scope
-  var b = 20
-  console.log(a) //10
-  console.log(b) //20
+  var b = 20;
+  console.log(a); //10
+  console.log(b); //20
 }
-checkscope()
-console.log(b) //ReferenceError: b is not defined
+checkscope();
+console.log(b); //ReferenceError: b is not defined
 ```
 
 上面代码中，在 _Global Scope_ 中用 _var_ 声明了 _a_，在 _checkscope_ 函数中的 _Local Scope_（本地作用域、函数作用域）中打印出了 _10_，但是在 _Global Scope_ 中打印的变量 _b_ 报错了。
@@ -61,8 +62,8 @@ console.log(b) //ReferenceError: b is not defined
 
 ```js
 //Global Scope
-var a
-console.log(a) //undefined
+var a;
+console.log(a); //undefined
 ```
 
 上面代码中，在 _Global Scope_ 中用 _var_ 声明了 _a_，但没有初始化值，它的值默认为 _undefined_，这里是 _undefined_ 是 _undefined_ 类型，而不是字符串。
@@ -71,14 +72,14 @@ console.log(a) //undefined
 
 ```js
 //Global Scope
-console.log(a) //undefined
-var a = 10
+console.log(a); //undefined
+var a = 10;
 
-checkscope()
+checkscope();
 function checkscope() {
   //Local Scope
-  console.log(a) //undefined
-  var a
+  console.log(a); //undefined
+  var a;
 }
 ```
 
@@ -92,10 +93,10 @@ function checkscope() {
 
 ```js
 //Global Scope
-var a = 10
-console.log(a) //10
-console.log(window.a) //10
-console.log(this.a) //10
+var a = 10;
+console.log(a); //10
+console.log(window.a); //10
+console.log(this.a); //10
 ```
 
 上面代码中，打印出了 _3_ 个 _10_，访问 _a_ 和 _window.a_ 或是 _this.a_ 都是等价的。
@@ -106,16 +107,16 @@ console.log(this.a) //10
 
 ```js
 //Global Scope
-var a = 10
-var a = 20
-console.log(a) //20
+var a = 10;
+var a = 20;
+console.log(a); //20
 
-checkscope()
+checkscope();
 function checkscope() {
   //Local Scope
-  var b = 10
-  var b = 20
-  console.log(b) //20
+  var b = 10;
+  var b = 20;
+  console.log(b); //20
 }
 ```
 
@@ -128,9 +129,9 @@ function checkscope() {
 ```js
 {
   //Block Scope
-  let a = 10
+  let a = 10;
 }
-console.log(a) //ReferenceError: a is not defined
+console.log(a); //ReferenceError: a is not defined
 ```
 
 上面代码中，打印 _a_ 报错，说明存在 _Block Scope_ 的概念。
@@ -140,8 +141,8 @@ console.log(a) //ReferenceError: a is not defined
 ```js
 {
   //Block Scope
-  console.log(a) //ReferenceError: Cannot access 'a' before initialization
-  let a = 10
+  console.log(a); //ReferenceError: Cannot access 'a' before initialization
+  let a = 10;
 }
 ```
 
@@ -152,19 +153,19 @@ console.log(a) //ReferenceError: a is not defined
 ```js
 {
   //Block Scope
-  console.log(a) //ReferenceError: Cannot access 'a' before initialization
-  let a = 20
+  console.log(a); //ReferenceError: Cannot access 'a' before initialization
+  let a = 20;
 }
 
 if (true) {
   //TDZ开始
-  console.log(a) //ReferenceError: Cannot access 'a' before initialization
+  console.log(a); //ReferenceError: Cannot access 'a' before initialization
 
-  let a //TDZ结束
-  console.log(a) //undefined
+  let a; //TDZ结束
+  console.log(a); //undefined
 
-  a = 123
-  console.log(a) //123
+  a = 123;
+  console.log(a); //123
 }
 ```
 
@@ -174,7 +175,7 @@ if (true) {
 
 什么叫做暂时性死区域呢？
 
-_ES6_ 标准中对 _let/const_ 声明中的解释 [第13章](https://link.segmentfault.com/?enc=K6pZVwgVNQb0IBQ9LTOuJg%3D%3D.p07UoPCGl5RslJ9ZnW9Nr36NFqs2pU%2FnSfWZUPIH3S1TUXzWdj22pH0lUMFVGVUwJkDpSHrYe8uKlYek%2FK4HBDYkJhc%2Fe2xiWo5V6teR%2BXY%3D)，有如下一段文字：
+_ES6_ 标准中对 _let/const_ 声明中的解释 [第 13 章](https://link.segmentfault.com/?enc=K6pZVwgVNQb0IBQ9LTOuJg%3D%3D.p07UoPCGl5RslJ9ZnW9Nr36NFqs2pU%2FnSfWZUPIH3S1TUXzWdj22pH0lUMFVGVUwJkDpSHrYe8uKlYek%2FK4HBDYkJhc%2Fe2xiWo5V6teR%2BXY%3D)，有如下一段文字：
 
 > _The variables are created when their containing Lexical Environment is instantiated but may not be accessed inany way until the variable’s LexicalBinding is evaluated._
 
@@ -195,18 +196,18 @@ _ES6_ 标准中对 _let/const_ 声明中的解释 [第13章](https://link.segmen
 ```js
 {
   //Block Scope
-  let A
-  var A //SyntaxError: Identifier 'A' has already been declared
+  let A;
+  var A; //SyntaxError: Identifier 'A' has already been declared
 }
 {
   //Block Scope
-  var A
-  let A //SyntaxError: Identifier 'A' has already been declared
+  var A;
+  let A; //SyntaxError: Identifier 'A' has already been declared
 }
 {
   //Block Scope
-  let A
-  let A //SyntaxError: Identifier 'A' has already been declared
+  let A;
+  let A; //SyntaxError: Identifier 'A' has already been declared
 }
 ```
 
@@ -226,8 +227,8 @@ const a // SyntaxError: Missing initializer in const declaration }
 ```js
 //Block Scope
 {
-  const a = 10
-  a = 20 // TypeError: Assignment to constant variable
+  const a = 10;
+  a = 20; // TypeError: Assignment to constant variable
 }
 ```
 

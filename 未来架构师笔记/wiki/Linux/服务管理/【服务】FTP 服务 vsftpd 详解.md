@@ -4,6 +4,7 @@ ai_editable: true
 updated_by: ai
 updated: 2026-08-02
 ---
+
 ## 1. FTP 简介与软件选型
 
 FTP（文件传输协议）是最常用的网络协议之一，用于通过网络和远程服务器进行文件传输。
@@ -89,9 +90,9 @@ xferlog_std_format=YES|NO  # 建议改成 NO
 
 ## 5. 小结
 
-| 需求 | 配置 |
-| --- | --- |
-| 只允许本地用户登录 | `local_enable=YES` + `anonymous_enable=NO` |
-| 只允许指定用户登录（白名单） | `userlist_enable=YES` + `userlist_deny=NO` |
-| 改变共享目录 | `anon_root=路径` |
-| 查看传输日志 | 关闭 `xferlog_std_format`，看 `/var/log/vsftpd.log` |
+| 需求                         | 配置                                                |
+| ---------------------------- | --------------------------------------------------- |
+| 只允许本地用户登录           | `local_enable=YES` + `anonymous_enable=NO`          |
+| 只允许指定用户登录（白名单） | `userlist_enable=YES` + `userlist_deny=NO`          |
+| 改变共享目录                 | `anon_root=路径`                                    |
+| 查看传输日志                 | 关闭 `xferlog_std_format`，看 `/var/log/vsftpd.log` |

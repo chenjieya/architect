@@ -4,6 +4,7 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
+
 > 面试题：Vue 的 nextTick 是如何实现的？
 
 ```vue
@@ -15,97 +16,97 @@ updated: 2026-08-02
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref } from "vue";
 
-const count = ref(0)
+const count = ref(0);
 
 const increment = () => {
   for (let i = 1; i <= 1000; i++) {
-    count.value = i
+    count.value = i;
   }
-}
+};
 </script>
 ```
 
-思考🤔：点击按钮后，页面会渲染几次？
+思考 🤔：点击按钮后，页面会渲染几次？
 
 答案：只会渲染一次，同步代码中多次对响应式数据做了修改，多次修改会被**合并**为一次，之后根据最终的修改结果**异步**的去更新 DOM.
 
-思考🤔：倘若不合并，并且同步的去修改DOM，会有什么样的问题？
+思考 🤔：倘若不合并，并且同步的去修改 DOM，会有什么样的问题？
 
-答案：如果不进行合并，并且数据一变就同步更新DOM，会导致频繁的重绘和重排，这非常耗费性能。
+答案：如果不进行合并，并且数据一变就同步更新 DOM，会导致频繁的重绘和重排，这非常耗费性能。
 
-思考🤔：异步更新会带来问题
+思考 🤔：异步更新会带来问题
 
-答案：无法及时获取到更新后的DOM值
+答案：无法及时获取到更新后的 DOM 值
 
-原因：因为获取DOM数据是同步代码，DOM的更新是异步的，同步代码会先于异步代码执行。
+原因：因为获取 DOM 数据是同步代码，DOM 的更新是异步的，同步代码会先于异步代码执行。
 
-解决方案：将获取DOM数据的同步任务包装成一个微任务，浏览器在完成一次渲染后，就会立即执行微任务。
+解决方案：将获取 DOM 数据的同步任务包装成一个微任务，浏览器在完成一次渲染后，就会立即执行微任务。
 
 当前我们自己的解决方案：
 
 ```js
 const increment = () => {
-  count.value++
+  count.value++;
 
   Promise.resolve().then(() => {
-    console.log('最新的数据：', count.value)
-    console.log('通过DOM拿textContent数据：', counterRef.value.textContent)
+    console.log("最新的数据：", count.value);
+    console.log("通过DOM拿textContent数据：", counterRef.value.textContent);
     console.log(
-      '通过DOM拿textContent数据：',
-      document.getElementById('counter').textContent,
-    )
-    console.log('通过DOM拿innerHTML数据：', counterRef.value.innerHTML)
+      "通过DOM拿textContent数据：",
+      document.getElementById("counter").textContent
+    );
+    console.log("通过DOM拿innerHTML数据：", counterRef.value.innerHTML);
     console.log(
-      '通过DOM拿innerHTML数据：',
-      document.getElementById('counter').innerHTML,
-    )
-  })
-}
+      "通过DOM拿innerHTML数据：",
+      document.getElementById("counter").innerHTML
+    );
+  });
+};
 ```
 
 nextTick 帮我们做的就是上面的事情，将一个任务包装成一个微任务。
 
 ```js
 const increment = () => {
-  count.value++
+  count.value++;
 
   nextTick(() => {
-    console.log('最新的数据：', count.value)
-    console.log('通过DOM拿textContent数据：', counterRef.value.textContent)
+    console.log("最新的数据：", count.value);
+    console.log("通过DOM拿textContent数据：", counterRef.value.textContent);
     console.log(
-      '通过DOM拿textContent数据：',
-      document.getElementById('counter').textContent,
-    )
-    console.log('通过DOM拿innerHTML数据：', counterRef.value.innerHTML)
+      "通过DOM拿textContent数据：",
+      document.getElementById("counter").textContent
+    );
+    console.log("通过DOM拿innerHTML数据：", counterRef.value.innerHTML);
     console.log(
-      '通过DOM拿innerHTML数据：',
-      document.getElementById('counter').innerHTML,
-    )
-  })
-}
+      "通过DOM拿innerHTML数据：",
+      document.getElementById("counter").innerHTML
+    );
+  });
+};
 ```
 
 nextTick 返回的是一个 Promise
 
 ```js
 const increment = async () => {
-  count.value++
+  count.value++;
 
-  await nextTick()
-  console.log('最新的数据：', count.value)
-  console.log('通过DOM拿textContent数据：', counterRef.value.textContent)
+  await nextTick();
+  console.log("最新的数据：", count.value);
+  console.log("通过DOM拿textContent数据：", counterRef.value.textContent);
   console.log(
-    '通过DOM拿textContent数据：',
-    document.getElementById('counter').textContent,
-  )
-  console.log('通过DOM拿innerHTML数据：', counterRef.value.innerHTML)
+    "通过DOM拿textContent数据：",
+    document.getElementById("counter").textContent
+  );
+  console.log("通过DOM拿innerHTML数据：", counterRef.value.innerHTML);
   console.log(
-    '通过DOM拿innerHTML数据：',
-    document.getElementById('counter').innerHTML,
-  )
-}
+    "通过DOM拿innerHTML数据：",
+    document.getElementById("counter").innerHTML
+  );
+};
 ```
 
 $nextTick，首先这是一个方法，是 Vue 组件实例的方法，用于 OptionsAPI 风格的。
@@ -116,33 +117,33 @@ export default {
     return {
       count: 1,
       counterRef: null,
-    }
+    };
   },
   methods: {
     increment() {
-      this.count++
+      this.count++;
       this.$nextTick(() => {
         // 在下一个 DOM 更新循环后执行的回调函数
-        console.log('最新数据为:', this.count)
-        console.log('拿到的DOM:', document.getElementById('counter'))
-        console.log('拿到的DOM:', this.$refs.counterRef)
+        console.log("最新数据为:", this.count);
+        console.log("拿到的DOM:", document.getElementById("counter"));
+        console.log("拿到的DOM:", this.$refs.counterRef);
         console.log(
-          '通过DOM拿数据:',
-          document.getElementById('counter').textContent,
-        )
+          "通过DOM拿数据:",
+          document.getElementById("counter").textContent
+        );
         console.log(
-          '通过DOM拿数据:',
-          document.getElementById('counter').innerHTML,
-        )
-        console.log('通过DOM拿数据:', this.$refs.counterRef.textContent)
-        console.log('通过DOM拿数据:', this.$refs.counterRef.innerHTML)
-      })
+          "通过DOM拿数据:",
+          document.getElementById("counter").innerHTML
+        );
+        console.log("通过DOM拿数据:", this.$refs.counterRef.textContent);
+        console.log("通过DOM拿数据:", this.$refs.counterRef.innerHTML);
+      });
     },
   },
-}
+};
 ```
 
-[nextTick源码](https://github.com/vuejs/core/blob/main/packages/runtime-core/src/scheduler.ts)
+[nextTick 源码](https://github.com/vuejs/core/blob/main/packages/runtime-core/src/scheduler.ts)
 
 ```js
 // 创建一个已经解析的 Promise 对象，这个 Promise 会立即被解决，

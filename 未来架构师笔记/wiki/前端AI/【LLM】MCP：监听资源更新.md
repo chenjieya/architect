@@ -4,6 +4,7 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
+
 有两种形式：
 
 1. 资源列表变化
@@ -37,34 +38,34 @@ notifications/resources/list_changed
 基本用法：
 
 ```js
-import chokidar from 'chokidar'
+import chokidar from "chokidar";
 
 // 监听单个文件或目录
-const watcher = chokidar.watch('./some-folder-or-file', {
+const watcher = chokidar.watch("./some-folder-or-file", {
   ignoreInitial: true, // 不触发初始的 add/addDir 事件
-})
+});
 
 // 注册事件监听器
 watcher
-  .on('add', (path) => console.log(`📄 文件添加: ${path}`))
-  .on('change', (path) => console.log(`✏️ 文件修改: ${path}`))
-  .on('unlink', (path) => console.log(`❌ 文件删除: ${path}`))
-  .on('addDir', (path) => console.log(`📁 目录添加: ${path}`))
-  .on('unlinkDir', (path) => console.log(`🗑️ 目录删除: ${path}`))
+  .on("add", (path) => console.log(`📄 文件添加: ${path}`))
+  .on("change", (path) => console.log(`✏️ 文件修改: ${path}`))
+  .on("unlink", (path) => console.log(`❌ 文件删除: ${path}`))
+  .on("addDir", (path) => console.log(`📁 目录添加: ${path}`))
+  .on("unlinkDir", (path) => console.log(`🗑️ 目录删除: ${path}`));
 ```
 
 **监听多个文件**
 
 ```js
-chokidar.watch(['src/**/*.js', 'assets/**/*'], {
+chokidar.watch(["src/**/*.js", "assets/**/*"], {
   ignored: /(^|[\/\\])\../, // 忽略 . 开头的隐藏文件
-})
+});
 ```
 
 **停止监听**
 
 ```js
-watcher.close().then(() => console.log('已停止监听'))
+watcher.close().then(() => console.log("已停止监听"));
 ```
 
 **实践**

@@ -4,6 +4,7 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
+
 在企业开发中，搭建私有 npm 服务器对于代码安全性和开发效率至关重要。Verdaccio 是目前最流行的 npm 私有仓库解决方案之一。
 
 ## 1. 为什么需要私有 npm 服务器？
@@ -110,8 +111,8 @@ user:
     - write
     - publish
   packages:
-    - '@company/*'
-    - 'private-*'
+    - "@company/*"
+    - "private-*"
 ```
 
 ### 3.2 核心配置项
@@ -136,13 +137,13 @@ storage:
     exclude: ['**/.git/**', '**/node_modules/**']
 ```
 
-#### 3.2.2 web（Web界面配置）
+#### 3.2.2 web（Web 界面配置）
 
 ```yaml
 # Web界面配置
 web:
   # 页面标题
-  title: '公司私有 NPM 仓库'
+  title: "公司私有 NPM 仓库"
   # 启用/禁用Web界面
   enable: true
   # HTML语言
@@ -152,9 +153,9 @@ web:
   # 是否显示包下载统计
   showStats: true
   # 主题颜色
-  primary_color: '#4b4b4b'
+  primary_color: "#4b4b4b"
   # 登录页背景图
-  loginBackground: './login-background.jpg'
+  loginBackground: "./login-background.jpg"
 ```
 
 #### 3.2.3 auth（身份验证配置）
@@ -220,7 +221,7 @@ uplinks:
     url: http://other-registry.company.com/
     auth:
       type: bearer
-      token: 'your-token-here'
+      token: "your-token-here"
 ```
 
 #### 3.2.5 packages（包权限控制）
@@ -229,7 +230,7 @@ uplinks:
 # 包权限配置
 packages:
   # 1. 公司作用域包 - 严格权限
-  '@company/*':
+  "@company/*":
     # 访问权限
     access:
       - admin-team
@@ -245,22 +246,22 @@ packages:
     # 代理设置（不存在时从上游获取）
     proxy: npmjs
     # 存储配置
-    storage: 'private-storage'
+    storage: "private-storage"
 
   # 2. 部门作用域包
-  '@department/*':
+  "@department/*":
     access: $authenticated # 所有认证用户
     publish: $authenticated
     proxy: npmjs
 
   # 3. 公开包 - 宽松权限
-  'public-*':
+  "public-*":
     access: $all # 所有人（包括匿名）
     publish: $authenticated
     proxy: npmjs
 
   # 4. 默认规则（匹配所有其他包）
-  '**':
+  "**":
     access: $all
     publish: $authenticated
     unpublish: $authenticated
@@ -297,7 +298,7 @@ server:
   #   ca: ./ssl/ca.pem
 
   # 性能调优
-  max_body_size: '100mb' # 最大请求体大小
+  max_body_size: "100mb" # 最大请求体大小
   compress: true # 启用压缩
   rateLimit:
     windowMs: 60000 # 时间窗口（毫秒）
@@ -331,9 +332,9 @@ middlewares:
       - http://localhost:3000
       - https://company.com
     # 允许的HTTP方法
-    methods: ['GET', 'POST', 'PUT', 'DELETE']
+    methods: ["GET", "POST", "PUT", "DELETE"]
     # 允许的请求头
-    headers: ['Authorization', 'Content-Type']
+    headers: ["Authorization", "Content-Type"]
 ```
 
 #### 3.2.8 logs（日志配置）
@@ -353,8 +354,8 @@ logs:
     level: info
     # 日志轮转
     options:
-      maxSize: '10m'
-      maxFiles: '7d'
+      maxSize: "10m"
+      maxFiles: "7d"
 
   # 错误日志单独文件
   - type: file
@@ -372,7 +373,7 @@ storage: ./storage
 
 # Web界面
 web:
-  title: '公司私有 NPM 仓库'
+  title: "公司私有 NPM 仓库"
   enable: true
 
 # 认证
@@ -391,17 +392,17 @@ uplinks:
 
 # 包权限
 packages:
-  '@company/core/*':
+  "@company/core/*":
     access: $authenticated
     publish: admin-team
     proxy: npmjs
 
-  '@company/*':
+  "@company/*":
     access: $authenticated
     publish: $authenticated
     proxy: npmjs
 
-  '**':
+  "**":
     access: $all
     publish: $authenticated
     proxy: npmjs taobao
@@ -452,7 +453,7 @@ npm whoami --registry http://localhost:4873
 ```yaml
 # 在配置文件中定义用户组
 packages:
-  '@company/core/*':
+  "@company/core/*":
     access:
       - admin-group
       - developer-group
@@ -496,7 +497,7 @@ npm install -g nrm open@8.4.2
 
 如果仍然遇到问题，可以尝试：
 
-**方案1：使用新版 Node.js**
+**方案 1：使用新版 Node.js**
 
 ```bash
 # 升级到 Node.js 16+ 或 18+
@@ -504,7 +505,7 @@ nvm install 18
 nvm use 18
 ```
 
-**方案2：使用替代工具**
+**方案 2：使用替代工具**
 
 ```bash
 # 使用 npm 自带的 registry 管理

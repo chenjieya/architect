@@ -4,6 +4,7 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
+
 官网地址：[https://docs.sqlalchemy.org/en/20/index.html](https://docs.sqlalchemy.org/en/20/index.html)
 
 ## 1. 创建数据库
@@ -89,7 +90,7 @@ if __name__ == "__main__":
   - engine
     - 管理连接池
     - 处理不同数据库的差异
-- asyncpg：仅负责和PostgreSQL数据库通信
+- asyncpg：仅负责和 PostgreSQL 数据库通信
 
 ## 5. 优化代码结构
 

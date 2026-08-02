@@ -4,6 +4,7 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
+
 ## 1. 经典真题
 
 - 总结一下如何提升或者优化 _CSS_ 的渲染性能
@@ -70,10 +71,10 @@ p-class {
 
 ```css
 /* Bad  */
-p[id='jartto'] {
+p[id="jartto"] {
   color: red;
 }
-p[class='blog'] {
+p[class="blog"] {
   color: red;
 }
 /* Good  */

@@ -4,13 +4,14 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
-## 1. JWT登录注册后端实现
+
+## 1. JWT 登录注册后端实现
 
 无论如何，我们先创建一个简单的数据表结构来保存用户信息，当然首先还是先创建数据库，比如我们就叫做`login_test`
 
 ### 1.1 创建项目
 
-创建nest项目：
+创建 nest 项目：
 
 ```shell
 nest n nest_jwt -g -p pnpm
@@ -22,28 +23,28 @@ nest n nest_jwt -g -p pnpm
 pnpm add typeorm mysql2 @nestjs/typeorm @nestjs/jwt -S
 ```
 
-然后首先在AppModule中配置TypeORM
+然后首先在 AppModule 中配置 TypeORM
 
 ```typescript
-import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { TypeOrmModule } from '@nestjs/typeorm';
+import { Module } from "@nestjs/common";
+import { AppController } from "./app.controller";
+import { AppService } from "./app.service";
+import { TypeOrmModule } from "@nestjs/typeorm";
 
 @Module({
   imports: [
     TypeOrmModule.forRoot({
-      type: 'mysql',
-      host: 'localhost',
+      type: "mysql",
+      host: "localhost",
       port: 3306,
-      username: 'root',
-      password: '123456',
-      database: 'login_test',
+      username: "root",
+      password: "123456",
+      database: "login_test",
       synchronize: true,
       logging: true,
-      entities: [__dirname + '/**/*.entity{.ts,.js}'],
-      connectorPackage: 'mysql2',
-      timezone: 'Z',
+      entities: [__dirname + "/**/*.entity{.ts,.js}"],
+      connectorPackage: "mysql2",
+      timezone: "Z",
     }),
   ],
   controllers: [AppController],
@@ -52,13 +53,13 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 export class AppModule {}
 ```
 
-然后创建User模块
+然后创建 User 模块
 
 ```shell
 nest g res user --no-spec
 ```
 
-给User实体添加一些属性
+给 User 实体添加一些属性
 
 ```typescript
 import {
@@ -67,7 +68,7 @@ import {
   Entity,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
-} from 'typeorm';
+} from "typeorm";
 
 @Entity()
 export class User {
@@ -76,23 +77,23 @@ export class User {
 
   @Column({
     length: 50,
-    comment: '用户名',
+    comment: "用户名",
   })
   username: string;
 
   @Column({
     length: 50,
-    comment: '密码',
+    comment: "密码",
   })
   password: string;
 
   @CreateDateColumn({
-    comment: '创建时间',
+    comment: "创建时间",
   })
   createTime: Date;
 
   @UpdateDateColumn({
-    comment: '更新时间',
+    comment: "更新时间",
   })
   updateTime: Date;
 }
@@ -102,7 +103,7 @@ export class User {
 
 `@CreateDateColumn` 会在第一次保存的时候设置一个时间戳，之后一直不变。而 `@UpdateDateColumn` 则是每次更新都会修改这个时间戳。用来保存创建时间和更新时间很方便。
 
-在`UserModule` 引入 `TypeOrm.forFeature` 动态模块，传入 User 的 entity，防止我们后面使用Repository的时候忘记了
+在`UserModule` 引入 `TypeOrm.forFeature` 动态模块，传入 User 的 entity，防止我们后面使用 Repository 的时候忘记了
 
 ```typescript
 @Module({
@@ -113,7 +114,7 @@ export class User {
 export class UserModule {}
 ```
 
-所以，接下来当然是在UserService中先注入`Repository`
+所以，接下来当然是在 UserService 中先注入`Repository`
 
 而且其他的方法暂时不需要，直接删除，毕竟我们只是要登录和注册。
 
@@ -150,7 +151,7 @@ export class LoginUserDto {
 
 一方面他们本身代码的语义是不一样的，一个用于注册，一个用于登录。
 
-另外，在Controller层，用户登录或者注册我们其实都需要进行相关的数据检测。登录和注册我们检查的需求是不一样的。
+另外，在 Controller 层，用户登录或者注册我们其实都需要进行相关的数据检测。登录和注册我们检查的需求是不一样的。
 
 比如：注册的时候可能需要用户密码不能为空，还会限定长度和特殊字符，而登录的时候就不需要限定的这么详细了，只要限制不为空就行了。
 
@@ -164,25 +165,25 @@ export class LoginUserDto {
 pnpm add class-validator class-transformer
 ```
 
-在Controller中，同样创建`login`和`register`方法，参数使用`ValidationPipe`管道进行验证
+在 Controller 中，同样创建`login`和`register`方法，参数使用`ValidationPipe`管道进行验证
 
 ```typescript
-import { Body, Controller, Post, ValidationPipe } from '@nestjs/common';
-import { UserService } from './user.service';
-import { LoginUserDto } from './dto/login-user.dto';
-import { RegisterUserDto } from './dto/register-user.dto';
+import { Body, Controller, Post, ValidationPipe } from "@nestjs/common";
+import { UserService } from "./user.service";
+import { LoginUserDto } from "./dto/login-user.dto";
+import { RegisterUserDto } from "./dto/register-user.dto";
 
-@Controller('user')
+@Controller("user")
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
-  @Post('login')
+  @Post("login")
   login(@Body(ValidationPipe) user: LoginUserDto) {
     console.log(user);
     return this.userService.login(user);
   }
 
-  @Post('register')
+  @Post("register")
   register(@Body(ValidationPipe) user: RegisterUserDto) {
     console.log(user);
     return this.userService.register(user);
@@ -190,17 +191,17 @@ export class UserController {
 }
 ```
 
-两个DTO传输类，需要做到相关验证
+两个 DTO 传输类，需要做到相关验证
 
 ```typescript
-import { IsNotEmpty, IsString, Length, Matches } from 'class-validator';
+import { IsNotEmpty, IsString, Length, Matches } from "class-validator";
 
 export class RegisterUserDto {
   @IsString()
   @IsNotEmpty()
   @Length(6, 20)
   @Matches(/^[A-Za-z0-9_-]+$/, {
-    message: '用户名只能包含字母、数字、下划线和破折号',
+    message: "用户名只能包含字母、数字、下划线和破折号",
   })
   username: string;
 
@@ -209,14 +210,14 @@ export class RegisterUserDto {
   @Length(6, 20)
   @Matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d_%$]+$/, {
     message:
-      '密码只能包含字母、数字和特殊字符_、%、$, 并且至少包含大小写字母和数字',
+      "密码只能包含字母、数字和特殊字符_、%、$, 并且至少包含大小写字母和数字",
   })
   password: string;
 }
 ```
 
 ```typescript
-import { IsNotEmpty } from 'class-validator';
+import { IsNotEmpty } from "class-validator";
 
 export class LoginUserDto {
   @IsNotEmpty()
@@ -231,12 +232,11 @@ export class LoginUserDto {
 
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251211175413061.png)
 
-
 ### 1.3 注册逻辑
 
-接下来就是在UserService中实现用户的注册业务了，我们稍微做一下业务处理：如果用户名已经存在就不进行注册，如果不存在再新增这个用户。
+接下来就是在 UserService 中实现用户的注册业务了，我们稍微做一下业务处理：如果用户名已经存在就不进行注册，如果不存在再新增这个用户。
 
-密码我们简单使用md5加密一下，导入md5相关包
+密码我们简单使用 md5 加密一下，导入 md5 相关包
 
 ```typescript
 pnpm add md5 -S
@@ -244,13 +244,13 @@ pnpm add @types/md5 -D
 ```
 
 ```typescript
-import { HttpException, Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { User } from './entities/user.entity';
-import { Repository } from 'typeorm';
-import { LoginUserDto } from './dto/login-user.dto';
-import { RegisterUserDto } from './dto/register-user.dto';
-import * as md5 from 'md5';
+import { HttpException, Injectable } from "@nestjs/common";
+import { InjectRepository } from "@nestjs/typeorm";
+import { User } from "./entities/user.entity";
+import { Repository } from "typeorm";
+import { LoginUserDto } from "./dto/login-user.dto";
+import { RegisterUserDto } from "./dto/register-user.dto";
+import * as md5 from "md5";
 
 @Injectable()
 export class UserService {
@@ -266,7 +266,7 @@ export class UserService {
       username: user.username,
     });
     if (userEntity) {
-      throw new HttpException('用户名已经存在', 200);
+      throw new HttpException("用户名已经存在", 200);
     }
 
     const newUser = new User();
@@ -275,24 +275,22 @@ export class UserService {
 
     try {
       await this.userRepository.save(newUser);
-      return '注册成功';
+      return "注册成功";
     } catch (e) {
-      console.log(e, '注册失败');
-      return '注册失败';
+      console.log(e, "注册失败");
+      return "注册失败";
     }
   }
 }
 ```
 
-这样在ApiFox中测试：
+这样在 ApiFox 中测试：
 
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251211175429701.png)
-
 
 数据库中的数据:
 
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251211175441536.png)
-
 
 当用户名已经存在的情况下：
 
@@ -300,7 +298,7 @@ export class UserService {
 
 ### 1.4 登陆逻辑
 
-那接下来当然就是登录了，同样在UserService中进行业务处理
+那接下来当然就是登录了，同样在 UserService 中进行业务处理
 
 ```typescript
 @Injectable()
@@ -321,19 +319,19 @@ export class UserService {
     const loginUser = await this.findOneByUsername(user.username);
 
     if (!loginUser) {
-      throw new HttpException('用户名不存在', 400);
+      throw new HttpException("用户名不存在", 400);
     }
     if (loginUser.password !== md5(user.password)) {
-      throw new HttpException('密码不正确', 400);
+      throw new HttpException("密码不正确", 400);
     }
     return loginUser;
   }
-  
+
   // ......
 }
 ```
 
-controller中做出相应处理
+controller 中做出相应处理
 
 ```typescript
 @Post('login')
@@ -365,8 +363,8 @@ async login(@Body(ValidationPipe) user: LoginUserDto) {
     // ......
     JwtModule.register({
       global: true,
-      secret: 'MySecret',
-      signOptions: { expiresIn: '7d' },
+      secret: "MySecret",
+      signOptions: { expiresIn: "7d" },
     }),
     UserModule,
   ],
@@ -378,24 +376,24 @@ export class AppModule {}
 
 `global:true`声明为全局模块，这样就不用每个模块都引入它了，指定加密密钥，token 过期时间。
 
-接下来要做的事情，就是登录成功之后，把`user`信息放到`jwt`通过`header`返回，在Controller中进行处理，注意需要引入JwtSerevice，并且login方法需要经过修改
+接下来要做的事情，就是登录成功之后，把`user`信息放到`jwt`通过`header`返回，在 Controller 中进行处理，注意需要引入 JwtSerevice，并且 login 方法需要经过修改
 
 ```typescript
 // ......
-import { JwtService } from '@nestjs/jwt';
-import { Response } from 'express';
+import { JwtService } from "@nestjs/jwt";
+import { Response } from "express";
 
-@Controller('user')
+@Controller("user")
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
   @Inject(JwtService)
   private jwtService: JwtService;
 
-  @Post('login')
+  @Post("login")
   async login(
     @Body(ValidationPipe) user: LoginUserDto,
-    @Res({ passthrough: true }) res: Response,
+    @Res({ passthrough: true }) res: Response
   ) {
     const result = await this.userService.login(user);
     if (result) {
@@ -406,30 +404,29 @@ export class UserController {
         },
       });
 
-      res.header('authorization', token);
+      res.header("authorization", token);
 
       return {
-        message: '登录成功',
+        message: "登录成功",
         data: result,
         code: 200,
       };
     } else {
       return {
-        message: '登录失败',
+        message: "登录失败",
         code: 400,
         data: null,
       };
     }
   }
-  
+
   // ......
 }
 ```
 
-这样，再次登录就可以通过heade的authorization，返回Jwt
+这样，再次登录就可以通过 heade 的 authorization，返回 Jwt
 
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251211175513947.png)
-
 
 为了验证路由登录处理，我们可以简单模拟两个需要登录之后才能访问的路由
 
@@ -445,7 +442,7 @@ getUserList() {
 }
 ```
 
-如果我们不做限制，当然这两个路由可以直接访问到，现在我们要求必须登录之后才能访问，也就是用户请求头信息的Authorization属性中必须要带有正确的Jwt信息才能访问到这两个路由，我们可以使用守卫来处理这个问题
+如果我们不做限制，当然这两个路由可以直接访问到，现在我们要求必须登录之后才能访问，也就是用户请求头信息的 Authorization 属性中必须要带有正确的 Jwt 信息才能访问到这两个路由，我们可以使用守卫来处理这个问题
 
 所以，首先我们创建一个登录守卫：
 
@@ -462,10 +459,10 @@ import {
   Inject,
   Injectable,
   UnauthorizedException,
-} from '@nestjs/common';
-import { JwtService } from '@nestjs/jwt';
-import { Observable } from 'rxjs';
-import { Request } from 'express';
+} from "@nestjs/common";
+import { JwtService } from "@nestjs/jwt";
+import { Observable } from "rxjs";
+import { Request } from "express";
 
 @Injectable()
 export class LoginGuard implements CanActivate {
@@ -473,18 +470,18 @@ export class LoginGuard implements CanActivate {
   private jwtService: JwtService;
 
   canActivate(
-    context: ExecutionContext,
+    context: ExecutionContext
   ): boolean | Promise<boolean> | Observable<boolean> {
     // 通过ExecutionContext获取请求对象，注意这里的Request是express的Request
     const request: Request = context.switchToHttp().getRequest();
 
     // 从请求头中获取authorization字段
-    const authorization = request.header('authorization') || '';
+    const authorization = request.header("authorization") || "";
 
-    const bearer = authorization.split(' ');
+    const bearer = authorization.split(" ");
     // 如果没有bearer或者bearer不合法，抛出异常
     if (!bearer || bearer.length < 2) {
-      throw new UnauthorizedException('登录失效，请重新登录');
+      throw new UnauthorizedException("登录失效，请重新登录");
     }
 
     const token = bearer[1];
@@ -495,13 +492,13 @@ export class LoginGuard implements CanActivate {
       return true;
     } catch (e) {
       console.log(e);
-      throw new UnauthorizedException('登录失效，请重新登录');
+      throw new UnauthorizedException("登录失效，请重新登录");
     }
   }
 }
 ```
 
-在Controller中引用这个守卫
+在 Controller 中引用这个守卫
 
 ```diff
 @Get('info')
@@ -521,9 +518,6 @@ getUserList() {
 
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251211175529643.png)
 
-
-现在我们手动记录一下登录的Jwt，然后添加到访问的头信息中
+现在我们手动记录一下登录的 Jwt，然后添加到访问的头信息中
 
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251211175546188.png)
-
-

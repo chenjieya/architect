@@ -5,12 +5,11 @@ updated_by: human
 updated: 2026-08-02
 ---
 
-> linux系统查看网络ip命令 `ip addr`
+> linux 系统查看网络 ip 命令 `ip addr`
 
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/picgo-1300696809/obsidian202310240851045.png?imageSlim)
 
-
-**结论：** centos01和centos02是公用的一个路由器，docker0。 所有的容器在不指定网络情况下，都是docker0路由的，docker会给我们容器分配一个默认的可用IP。
+**结论：** centos01 和 centos02 是公用的一个路由器，docker0。 所有的容器在不指定网络情况下，都是 docker0 路由的，docker 会给我们容器分配一个默认的可用 IP。
 
 ```shell
 # 启动一个docker容器（centos01）
@@ -35,14 +34,14 @@ ifconfig  # 172.17.0.3
 ```
 
 > 更加生动的网络图
-![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/picgo-1300696809/obsidian202310240915569.png?imageSlim)
+> ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/picgo-1300696809/obsidian202310240915569.png?imageSlim)
 
 > [!info]
 > 只要容器删除，对应的网桥一对就没了
 
-##### 2. 容器互联 --link（不推荐使用了）
+## 1. 容器互联 --link（不推荐使用了）
 
-> 通过两个容器的名称相互ping通
+> 通过两个容器的名称相互 ping 通
 
 ```shell
 # 现在有两个容器正在启动： centos01  centos02
@@ -51,9 +50,9 @@ ifconfig  # 172.17.0.3
 docker exec -it centos01 ping centos02
 
 # 现在在开启一个容器，并和centos02容器建立互联
-docker run -it --name centos03 --link centos02 centos/net 
+docker run -it --name centos03 --link centos02 centos/net
 
-# 
+#
 docker exec -it centos03 ping centos03  # 通了
 
 # 但是反向 centos03 ping centos02 ping不通
@@ -61,10 +60,9 @@ docker exec -it centos03 ping centos03  # 通了
 ```
 
 > [!info] --link
-> --link就是在我们的hosts配置中增加了一个映射 ==172.17.0.3           centos02 容器id==
+> --link 就是在我们的 hosts 配置中增加了一个映射 ==172.17.0.3 centos02 容器 id==
 
-
-##### 3. 自定义网络
+## 2. 自定义网络
 
 ```shell
 # docker neteork --help 网路命令
@@ -73,7 +71,7 @@ docker network ls # 查看所有的网络
 ```
 
 > [!info] 网络模式
-> bridge: 桥接模式 在网络之间搭桥  0.2 和 0.3不能访问，但是通过0.1搭桥就行了
+> bridge: 桥接模式 在网络之间搭桥 0.2 和 0.3 不能访问，但是通过 0.1 搭桥就行了
 > none: 不配置网络
 > host: 和宿主机共享网络
 > container: 容器网络连通（用的少，局限大）
@@ -111,5 +109,3 @@ docker exec -it centos-net-01 ping centos01   # 成功了
 ```
 
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/picgo-1300696809/obsidian202310241028948.png?imageSlim)
-
-

@@ -5,13 +5,13 @@ updated_by: human
 updated: 2026-08-02
 ---
 
-作为开发人员，在开发环境中调试和定位问题相对容易。然而，在生成环境中，通常无法方便的附加调试器来追踪BUG。因此，日志记录的作用就显得非常重要了。
+作为开发人员，在开发环境中调试和定位问题相对容易。然而，在生成环境中，通常无法方便的附加调试器来追踪 BUG。因此，日志记录的作用就显得非常重要了。
 
 因此，建立一个全面有效的日志记录系统，对于任何应用程序的生产运行都是必不可少的。它不仅帮助我们监控应用程序的状态，还能在出现问题时提供关键的信息，帮助我们快速响应并恢复服务。
 
-## 1. 内置日志器Logger
+## 1. 内置日志器 Logger
 
-Nest中其实默认开启了日志记录（**Logger**），当我们运行`pnpm run start:dev`命令启动Nest应用的时候，都能看到启动过程中打印的信息，这其实就是Logger帮我们打印的。
+Nest 中其实默认开启了日志记录（**Logger**），当我们运行`pnpm run start:dev`命令启动 Nest 应用的时候，都能看到启动过程中打印的信息，这其实就是 Logger 帮我们打印的。
 
 我们先创建一个项目，直接启动就能看到相关的信息
 
@@ -20,7 +20,6 @@ nest n nest-logger -g -p pnpm
 ```
 
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251221162125211.png)
-
 
 从上图可以看到，日志信息包括时间戳、日志级别和上下文等等重要内容，根据这些信息，可以确认程序运行的状态。
 
@@ -32,12 +31,12 @@ nest n nest-logger -g -p pnpm
 
 其中**AppName**为应用程序名称，一般固定为`Nest`；**PID**为系统分配的进程编号；**TimeStamp**为输出的当前系统时间。
 
-Logger分为多种级别，包括`log`、`error`、`warn`、`debug`、`verbose`、`fatal`。我们可以指定任意组合启动记录，例如：只在出现错误或者警告的时候打印日志。
+Logger 分为多种级别，包括`log`、`error`、`warn`、`debug`、`verbose`、`fatal`。我们可以指定任意组合启动记录，例如：只在出现错误或者警告的时候打印日志。
 
 ```typescript
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
-    logger: ['error', 'warn'],
+    logger: ["error", "warn"],
   });
   await app.listen(process.env.PORT ?? 3000);
 }
@@ -46,7 +45,7 @@ bootstrap();
 
 **Context**上下文表示当前日志产生的阶段，比如应用程序启动阶段或者路由程序执行阶段。
 
-在一些情况下，我们可以使用Logger手动记录自定义事件或者消息，其实，就是将我们之前的`console.log`的打印，换成Logger对象就行，这样打印的信息更加全面，比如在AppService中开启Logger
+在一些情况下，我们可以使用 Logger 手动记录自定义事件或者消息，其实，就是将我们之前的`console.log`的打印，换成 Logger 对象就行，这样打印的信息更加全面，比如在 AppService 中开启 Logger
 
 ```typescript
 @Injectable()
@@ -54,49 +53,48 @@ export class AppService {
   private logger = new Logger(AppService.name);
 
   getHello(): string {
-    this.logger.error('getHello error!');
-    return 'Hello World!';
+    this.logger.error("getHello error!");
+    return "Hello World!";
   }
 }
 ```
 
-当Controller调用getHello的时候，就会帮我打印这个error信息
+当 Controller 调用 getHello 的时候，就会帮我打印这个 error 信息
 
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251221162140796.png)
 
+当然，可以很明显的看出，在 Service 上直接实例化了 Logger 对象，这当然不是太好的方式，更好的方式我们当然应该进行依赖注入。
 
-当然，可以很明显的看出，在Service上直接实例化了Logger对象，这当然不是太好的方式，更好的方式我们当然应该进行依赖注入。
-
-我们可以自己**创建一个Logger模块**
+我们可以自己**创建一个 Logger 模块**
 
 ```typescript
 nest g mo logger --no-spec
 ```
 
-然后，在该模块下创建自己的logger类`MyLogger`，这个类需要至少继承Nest给我们提供父类`ConsoleLogger`或者实现更加底层的接口`LoggerService`
+然后，在该模块下创建自己的 logger 类`MyLogger`，这个类需要至少继承 Nest 给我们提供父类`ConsoleLogger`或者实现更加底层的接口`LoggerService`
 
 ```typescript
-import { ConsoleLogger, Injectable } from '@nestjs/common';
+import { ConsoleLogger, Injectable } from "@nestjs/common";
 
 @Injectable()
 export class MyLogger extends ConsoleLogger {
   error(message: any, trace?: string, context?: string) {
-    message = message + ' - 当前环境: dev';
+    message = message + " - 当前环境: dev";
     super.error(message, trace, context);
   }
 
   log(message: any, context?: string) {
-    message = message + ' - 当前环境: dev';
+    message = message + " - 当前环境: dev";
     super.log(message, context);
   }
 }
 ```
 
-`MyLogger`类通过`@Injectable()`装饰之后，我们就可以实现注入，当然，现在由于我们是一个单独的模块，所以在`logger.module.ts`文件中，我们需要声明`providers`，而且我们肯定在外部需要用到MyLogger，所以记得需要`exports`
+`MyLogger`类通过`@Injectable()`装饰之后，我们就可以实现注入，当然，现在由于我们是一个单独的模块，所以在`logger.module.ts`文件中，我们需要声明`providers`，而且我们肯定在外部需要用到 MyLogger，所以记得需要`exports`
 
 ```typescript
-import { Module } from '@nestjs/common';
-import { MyLogger } from './MyLogger';
+import { Module } from "@nestjs/common";
+import { MyLogger } from "./MyLogger";
 
 @Module({
   providers: [MyLogger],
@@ -118,9 +116,9 @@ async function bootstrap() {
 bootstrap();
 ```
 
-`bufferLogs`表示先不打印日志，把它放到buffer缓冲区，直到用`useLogger`指定了Logger并且应用初始化完毕
+`bufferLogs`表示先不打印日志，把它放到 buffer 缓冲区，直到用`useLogger`指定了 Logger 并且应用初始化完毕
 
-由于之前通过命令创建的logger模块，所以自动的引入到了AppModule中，现在，我们就可以直接在AppService中进行注入了
+由于之前通过命令创建的 logger 模块，所以自动的引入到了 AppModule 中，现在，我们就可以直接在 AppService 中进行注入了
 
 ```typescript
 @Injectable()
@@ -129,8 +127,8 @@ export class AppService {
   private logger: MyLogger;
 
   getHello(): string {
-    this.logger.error('getHello error!');
-    return 'Hello World!';
+    this.logger.error("getHello error!");
+    return "Hello World!";
   }
 }
 ```
@@ -142,15 +140,15 @@ export class AppService {
 **1、日志行为不应该出现异常**。当我们使用日志记录系统行为时，首先需要保证日志行为不能出现异常，比如最常见的空指针异常等等，比如你像下面这样去写:
 
 ```typescript
-this.logger.log(`id=${getUser().id}`)
+this.logger.log(`id=${getUser().id}`);
 ```
 
-这句代码中，很有可能`getUser()`返回的结果为`null`，这就会导致**获取id操作抛出异常**，我们应该避免出现这种情况。
+这句代码中，很有可能`getUser()`返回的结果为`null`，这就会导致**获取 id 操作抛出异常**，我们应该避免出现这种情况。
 
 **2、日志行为不应该产生副作用**。日志应该是无状态的，日志行为不应该对业务逻辑差生任何副作用，否则系统行为可能会产生意外的结果，比如下面的伪代码：
 
 ```typescript
-this.logger.log(`用户保存成功：${userRepository.save(user)}`)
+this.logger.log(`用户保存成功：${userRepository.save(user)}`);
 ```
 
 应该避免在日志记录中执行异步操作，以及会对系统结果差生影响的操作。
@@ -164,9 +162,9 @@ this.logger.error(`用户${id}调用getUserInfo()方法失败，进行重试中.
 getUserInfo(id);
 ```
 
-## 3. 第三方日志器Winston
+## 3. 第三方日志器 Winston
 
-Nest内置的日志器可以在开发过程中记录系统行为，而在生成环境中通常使用专用的日志统计模块，比如**[Winston](https://github.com/winstonjs/winston)**。
+Nest 内置的日志器可以在开发过程中记录系统行为，而在生成环境中通常使用专用的日志统计模块，比如**[Winston](https://github.com/winstonjs/winston)**。
 
 它能够满足特定的日志记录要求，包括高级过滤、格式化，和几种日志记录。
 
@@ -185,16 +183,15 @@ pnpm add chalk@4 -S
 
 `dayjs`用于格式化日期
 
-`chalk`为控制台文本着色，**注意：** 使用4的版本
+`chalk`为控制台文本着色，**注意：** 使用 4 的版本
 
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251221162204492.png)
-
 
 **MyLogger.ts**
 
 ```typescript
-import { Injectable, LoggerService } from '@nestjs/common';
-import { createLogger, transports, Logger as WinstonLogger } from 'winston';
+import { Injectable, LoggerService } from "@nestjs/common";
+import { createLogger, transports, Logger as WinstonLogger } from "winston";
 
 @Injectable()
 export class MyLogger implements LoggerService {
@@ -202,12 +199,12 @@ export class MyLogger implements LoggerService {
 
   constructor() {
     this.logger = createLogger({
-      level: 'debug',
+      level: "debug",
       transports: [new transports.Console()],
     });
   }
   log(message: string, context: string) {
-    this.logger.log('info', message, { context });
+    this.logger.log("info", message, { context });
   }
   info(message: string, context: string) {
     this.logger.info(message, { context });
@@ -224,7 +221,7 @@ export class MyLogger implements LoggerService {
 }
 ```
 
-winston支持日志级别和npm的日志级别一致，优先级从 0 到 6（从高到低）：
+winston 支持日志级别和 npm 的日志级别一致，优先级从 0 到 6（从高到低）：
 
 ```typescript
 const levels = {
@@ -234,13 +231,13 @@ const levels = {
   http: 3,
   verbose: 4,
   debug: 5,
-  silly: 6
-}
+  silly: 6,
+};
 ```
 
-我们上面代码**指定为debug，意味着小于数字5的日志级别**都会被统计并记录
+我们上面代码**指定为 debug，意味着小于数字 5 的日志级别**都会被统计并记录
 
-然后我们还需要在main.ts中指定使用Winston日志器，并关闭内置日志器
+然后我们还需要在 main.ts 中指定使用 Winston 日志器，并关闭内置日志器
 
 ```typescript
 async function bootstrap() {
@@ -254,7 +251,7 @@ async function bootstrap() {
 bootstrap();
 ```
 
-现在我们在AppService中使用：
+现在我们在 AppService 中使用：
 
 ```typescript
 @Injectable()
@@ -263,10 +260,10 @@ export class AppService {
   private logger: MyLogger;
 
   getHello(): string {
-    this.logger.info('getHello info!', AppService.name);
-    this.logger.warn('getHello warn!', AppService.name);
-    this.logger.error('getHello error!', AppService.name);
-    return 'Hello World!';
+    this.logger.info("getHello info!", AppService.name);
+    this.logger.warn("getHello warn!", AppService.name);
+    this.logger.error("getHello error!", AppService.name);
+    return "Hello World!";
   }
 }
 ```
@@ -275,11 +272,9 @@ export class AppService {
 
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251221162228854.png)
 
-
-当访问getHello路由，打印如下：
+当访问 getHello 路由，打印如下：
 
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251221162242307.png)
-
 
 当然了，现在日志还很难看，也差了一些东西，我们可以自己进行处理：
 
@@ -288,20 +283,19 @@ export class AppService {
 - 根据日志级别进行分类统计，特别是区分错误日志，并按日实现滚动日志
 - 能够定期清理日志文件
 
-修改一下MyLogger.ts文件
+修改一下 MyLogger.ts 文件
 
 ```typescript
-import { Injectable, LoggerService } from '@nestjs/common';
-import 'winston-daily-rotate-file';
-import * as chalk from 'chalk';
-import * as dayjs from 'dayjs';
+import { Injectable, LoggerService } from "@nestjs/common";
+import "winston-daily-rotate-file";
+import * as chalk from "chalk";
+import * as dayjs from "dayjs";
 import {
   createLogger,
   format,
   transports,
   Logger as WinstonLogger,
-} from 'winston';
-
+} from "winston";
 
 @Injectable()
 export class MyLogger implements LoggerService {
@@ -309,7 +303,7 @@ export class MyLogger implements LoggerService {
 
   constructor() {
     this.logger = createLogger({
-      level: 'debug',
+      level: "debug",
       transports: [
         new transports.Console({
           format: format.combine(
@@ -317,69 +311,69 @@ export class MyLogger implements LoggerService {
             format.colorize(),
             // 日志格式
             format.printf(({ context, level, message, timestamp }) => {
-              const appStr = chalk.blue('[Nest] ');
+              const appStr = chalk.blue("[Nest] ");
               const contextStr = chalk.yellow(`[${context}]`);
 
               return `${appStr} ${timestamp} ${level} ${contextStr}: ${message}`;
-            }),
+            })
           ),
         }),
         // 保存到文件
         new transports.DailyRotateFile({
           // 日志文件夹
-          dirname: process.cwd() + '/src/logs',
+          dirname: process.cwd() + "/src/logs",
           // 日志文件名 %DATE% 会自动替换为当前日期
-          filename: 'app-%DATE%.info.log',
+          filename: "app-%DATE%.info.log",
           // 日期格式
-          datePattern: 'YYYY-MM-DD',
+          datePattern: "YYYY-MM-DD",
           // 压缩文档
           zippedArchive: true,
           // 文件最大大小，可以是Bytes、KB、MB、GB
-          maxSize: '20M',
+          maxSize: "20M",
           // 最大文件数 ‘7d’ 表示7天
-          maxFiles: '7d',
+          maxFiles: "7d",
           // 日志格式
           format: format.combine(
-            format.timestamp({ format: 'YYYY-MM-DD HH:mm:ss' }),
-            format.json(),
+            format.timestamp({ format: "YYYY-MM-DD HH:mm:ss" }),
+            format.json()
           ),
           // 日志等级,如果不设置，所有日志将会记录在同一文件中
-          level: 'info',
+          level: "info",
         }),
         new transports.DailyRotateFile({
-          dirname: process.cwd() + '/src/logs',
-          filename: 'app-%DATE%.error.log',
-          datePattern: 'YYYY-MM-DD',
+          dirname: process.cwd() + "/src/logs",
+          filename: "app-%DATE%.error.log",
+          datePattern: "YYYY-MM-DD",
           zippedArchive: true,
-          maxSize: '20M',
-          maxFiles: '14d',
+          maxSize: "20M",
+          maxFiles: "14d",
           format: format.combine(
-            format.timestamp({ format: 'YYYY-MM-DD HH:mm:ss' }),
-            format.json(),
+            format.timestamp({ format: "YYYY-MM-DD HH:mm:ss" }),
+            format.json()
           ),
-          level: 'error',
+          level: "error",
         }),
       ],
     });
   }
   log(message: string, context: string) {
-    const timestamp = dayjs(Date.now()).format('YYYY-MM-DD HH:mm:ss');
-    this.logger.log('info', message, { context, timestamp });
+    const timestamp = dayjs(Date.now()).format("YYYY-MM-DD HH:mm:ss");
+    this.logger.log("info", message, { context, timestamp });
   }
   info(message: string, context: string) {
-    const timestamp = dayjs(Date.now()).format('YYYY-MM-DD HH:mm:ss');
+    const timestamp = dayjs(Date.now()).format("YYYY-MM-DD HH:mm:ss");
     this.logger.info(message, { context, timestamp });
   }
   error(message: string, context: string) {
-    const timestamp = dayjs(Date.now()).format('YYYY-MM-DD HH:mm:ss');
+    const timestamp = dayjs(Date.now()).format("YYYY-MM-DD HH:mm:ss");
     this.logger.error(message, { context, timestamp });
   }
   warn(message: string, context: string) {
-    const timestamp = dayjs(Date.now()).format('YYYY-MM-DD HH:mm:ss');
+    const timestamp = dayjs(Date.now()).format("YYYY-MM-DD HH:mm:ss");
     this.logger.warn(message, { context, timestamp });
   }
   debug(message: string, context: string) {
-    const timestamp = dayjs(Date.now()).format('YYYY-MM-DD HH:mm:ss');
+    const timestamp = dayjs(Date.now()).format("YYYY-MM-DD HH:mm:ss");
     this.logger.debug(message, { context, timestamp });
   }
 }
@@ -393,4 +387,4 @@ export class MyLogger implements LoggerService {
 
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251221162310869.png)
 
-至此，我们已经完成日志本地持久化的功能。不过在实际业务中，我们也可以将日志文件上传到远程服务器，或者通过制定transports.Http的方式将日志持久化到数据库中，以便进行后续的业务数据分析、数据过滤和数据清洗等操作。
+至此，我们已经完成日志本地持久化的功能。不过在实际业务中，我们也可以将日志文件上传到远程服务器，或者通过制定 transports.Http 的方式将日志持久化到数据库中，以便进行后续的业务数据分析、数据过滤和数据清洗等操作。

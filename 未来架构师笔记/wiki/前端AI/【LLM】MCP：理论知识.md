@@ -4,6 +4,7 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
+
 ## 1. stdio
 
 进程：执行一个应用程序，就会启动一个进程，操作系统会为其分配内存空间、系统资源。
@@ -14,7 +15,7 @@ updated: 2026-08-02
 
 进程之间是可以通信的。那这里有一个最基本的要求：进程不能结束。如何让进程不结束？
 
-想想微信、QQ启动后为啥不结束？
+想想微信、QQ 启动后为啥不结束？
 
 因为要监听。
 
@@ -24,7 +25,7 @@ updated: 2026-08-02
 
 ```js
 // 监听输入
-process.stdin.on('data', () => {})
+process.stdin.on("data", () => {});
 ```
 
 除此之外，**一个进程还可以启动另一个进程**，这在操作系统中是非常常见和常用的行为，被称之为 **父子进程模型**。
@@ -35,7 +36,7 @@ process.stdin.on('data', () => {})
 node index.js
 ```
 
-控制台就是父进程，node程序就是子进程。
+控制台就是父进程，node 程序就是子进程。
 
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20260202172509565.png)
 
@@ -63,34 +64,34 @@ stdio: **st**an**d**ard **i**nput and **o**utput 标准输入输出
 再看下面的例子，增加一个 client.js
 
 ```js
-const { spawn } = require('child_process')
+const { spawn } = require("child_process");
 
 // 启动 server.js 子进程
-const serverProcess = spawn('node', ['server.js']) // node server.js
+const serverProcess = spawn("node", ["server.js"]); // node server.js
 
 // 监听服务端的响应
 // 数据从哪里来？哪个进程给我的
 // 数据会输出到哪儿？我给哪个进程
-serverProcess.stdout.on('data', (data) => {
-  process.stdin.write(data.toString()) // 🙋 往哪里输出？
-})
+serverProcess.stdout.on("data", (data) => {
+  process.stdin.write(data.toString()); // 🙋 往哪里输出？
+});
 
 // 发送几条测试消息
-const messages = ['生命有意义吗？', '宇宙有尽头吗？', '再见！']
+const messages = ["生命有意义吗？", "宇宙有尽头吗？", "再见！"];
 
 messages.forEach((msg, index) => {
   setTimeout(() => {
-    console.log(`-->${msg}`)
-    serverProcess.stdin.write(msg)
-  }, index * 1000) // 每秒发一条
-})
+    console.log(`-->${msg}`);
+    serverProcess.stdin.write(msg);
+  }, index * 1000); // 每秒发一条
+});
 ```
 
 如下图：
 
 ![image-20250715000332368](https://xiejie-typora.oss-cn-chengdu.aliyuncs.com/2025-07-14-160333.png)
 
-stdio通信高效、简洁，但仅适用于本地进程间通信
+stdio 通信高效、简洁，但仅适用于本地进程间通信
 
 ## 2. 通信格式
 
@@ -130,7 +131,7 @@ response
 
 ## 3. MCP Server
 
-MCP是一套 **标准协议**， 它规定了 **应用程序** 之间 **如何通信**
+MCP 是一套 **标准协议**， 它规定了 **应用程序** 之间 **如何通信**
 
 如何通信：
 
@@ -139,7 +140,7 @@ MCP是一套 **标准协议**， 它规定了 **应用程序** 之间 **如何�
   - http： 可远程
     - StreamHTTP
     - SSE
-- 通信格式： 基于JSON-RPC的进一步规范
+- 通信格式： 基于 JSON-RPC 的进一步规范
 
 ### 3.1 基本规范
 
@@ -292,7 +293,7 @@ response
 
 实现遵循 MCP 协议的服务器
 
-🤔 服务器是否能够和其它遵循MCP协议的应用程序通信？
+🤔 服务器是否能够和其它遵循 MCP 协议的应用程序通信？
 
 ### 3.2 调试工具
 
@@ -302,7 +303,7 @@ response
 npx @modelcontextprotocol/inspector
 ```
 
-## 4. 官方SDK
+## 4. 官方 SDK
 
 非业务代码，一般就会封装出来。
 
@@ -314,15 +315,15 @@ npm install @modelcontextprotocol/sdk
 
 **实践**
 
-使用官方SDK实现 MCP 服务器
+使用官方 SDK 实现 MCP 服务器
 
-## 5. 对接AI应用
+## 5. 对接 AI 应用
 
-什么是AI应用程序？
+什么是 AI 应用程序？
 
-所有能与大模型交互的应用都可以看作是AI应用程序
+所有能与大模型交互的应用都可以看作是 AI 应用程序
 
-常见的AI应用程序：
+常见的 AI 应用程序：
 
 - ChatGPT
 - DeepSeek Chat Page
@@ -334,10 +335,10 @@ npm install @modelcontextprotocol/sdk
 凡是支持 MCP 协议的 AI 应用，就可以充当客户端，连接 MCP 服务器。
 
 - Claude Desktop
-  支持MCP协议，可充当MCP客户端
+  支持 MCP 协议，可充当 MCP 客户端
   https://claude.ai/download
 - Cursor
-  支持MCP协议，可充当MCP客户端
+  支持 MCP 协议，可充当 MCP 客户端
   https://cursor.com/cn
 
 整个流程如下图：
@@ -366,16 +367,16 @@ npm install @modelcontextprotocol/sdk
 
 两个核心概念：
 
-- `MCP Host`: 往往指代AI应用本身，用于发现MCP Server以及其中的工具列表
-- `MCP Client`： 用于和MCP Server通信的客户端，往往在Host内部开启，通常情况下，每启动一个MCP Server，就会开启一个MCP Client
+- `MCP Host`: 往往指代 AI 应用本身，用于发现 MCP Server 以及其中的工具列表
+- `MCP Client`： 用于和 MCP Server 通信的客户端，往往在 Host 内部开启，通常情况下，每启动一个 MCP Server，就会开启一个 MCP Client
 
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20260202175424954.png)
 
 例如：
 
-1. 在Claude Desk 中打开一个新的聊天窗口
-2. Claude查看当前启用了哪些MCP Server
-3. Claude（host）为每个MCP Server创建一个Client
-4. 每个Client分别启动各自的MCP Server，并且进行了2次通信，一次是初始化，另外一次是tools/list。
-5. 当时机到达时（要调用工具的时候），每个Client负责调用各自的工具并把结果传递给Host
-6. Host根据结果处理后续逻辑
+1. 在 Claude Desk 中打开一个新的聊天窗口
+2. Claude 查看当前启用了哪些 MCP Server
+3. Claude（host）为每个 MCP Server 创建一个 Client
+4. 每个 Client 分别启动各自的 MCP Server，并且进行了 2 次通信，一次是初始化，另外一次是 tools/list。
+5. 当时机到达时（要调用工具的时候），每个 Client 负责调用各自的工具并把结果传递给 Host
+6. Host 根据结果处理后续逻辑

@@ -4,6 +4,7 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
+
 _Babel_ 是一个编译器，主要用于将最新的 _JavaScript_ 代码转化为向后兼容的代码，以便在老版本的浏览器或环境中运行。
 
 例如，你可能在开发时使用了 _ES6、ES7_ 或者更高级的 _JavaScript_ 特性，但是有些浏览器可能并不支持这些新特性，这时就可以用 _Babel_ 来将代码转化为 _ES5_ 或者更早版本的 _JavaScript_，以确保代码能在多数浏览器中正常运行。
@@ -32,7 +33,7 @@ if(!Array.prototype.includes){
 
 在前端开发中，_Babel_ 被广泛用于现代 _JavaScript_ 项目，它能确保你的代码能在各种环境中运行，而不需要你手动处理各种浏览器和 _JavaScript_ 版本的兼容性问题。
 
-## 1. Babel快速入门
+## 1. Babel 快速入门
 
 新建一个项目 babel-demo，使用 pnpm init 进行一个初始化，之后安装依赖：
 
@@ -47,8 +48,8 @@ pnpm add --save-dev @babel/core @babel/cli @babel/preset-env
 在 src/index.js 中书写我们的测试代码：
 
 ```js
-const greet = (name) => `Hello, ${name}!`
-console.log(greet('World'))
+const greet = (name) => `Hello, ${name}!`;
+console.log(greet("World"));
 ```
 
 接下来在项目的根目录下创建 .babelrc 配置文件，书写如下的配置：
@@ -75,12 +76,12 @@ console.log(greet('World'))
 编译结果如下：
 
 ```js
-'use strict'
+"use strict";
 
 var greet = function greet(name) {
-  return 'Hello, '.concat(name, '!')
-}
-console.log(greet('World'))
+  return "Hello, ".concat(name, "!");
+};
+console.log(greet("World"));
 ```
 
 之后我们修改配置文件，指定了浏览器范围：
@@ -108,10 +109,10 @@ console.log(greet('World'))
 这一次编译出来的结果如下：
 
 ```js
-'use strict'
+"use strict";
 
-const greet = (name) => 'Hello, '.concat(name, '!')
-console.log(greet('World'))
+const greet = (name) => "Hello, ".concat(name, "!");
+console.log(greet("World"));
 ```
 
 为什么两次不一样呢？原因很简单，第二次我们指定了浏览器版本范围，那么在指定的浏览器版本范围里面的这些浏览器，某一些特性已经支持了，所以就不需要再做转换了。

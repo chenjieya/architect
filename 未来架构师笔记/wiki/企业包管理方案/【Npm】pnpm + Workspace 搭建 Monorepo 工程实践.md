@@ -4,6 +4,7 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
+
 对于组件库这样的复杂项目，首先肯定将其拆分为多个子包的必要性。我们先举一个普通的模块划分思路。
 
 - **components 包**，作为组件库的主要代码，实现各个 UI 组件的核心逻辑。

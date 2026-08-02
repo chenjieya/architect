@@ -4,21 +4,22 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
-- *typescript*
-- *webpack*
-- *jest*
+
+- _typescript_
+- _webpack_
+- _jest_
 
 ## 1. 准备工作
 
-首先创建项目目录，通过 *npm init -y* 进行初始化。
+首先创建项目目录，通过 _npm init -y_ 进行初始化。
 
-整个项目我们打算使用 *typescript* 进行开发，因此需要安装 *typescript*
+整个项目我们打算使用 _typescript_ 进行开发，因此需要安装 _typescript_
 
 ```bash
 npm i typescript -D
 ```
 
-然后通过 *npx tsc --init* 创建 *ts* 的配置文件，简化其配置文件如下：
+然后通过 _npx tsc --init_ 创建 _ts_ 的配置文件，简化其配置文件如下：
 
 ```ts
 {
@@ -35,9 +36,9 @@ npm i typescript -D
 }
 ```
 
-接下来在项目根目录下创建 *src* 目录，该目录就是我们的源码目录。但是现在有一点比较麻烦的是，如果我们写了 *ts* 代码，每次都需要手动的通过 *tsc* 编译成 *js* 代码，然后在进行代码测试，整个过程是非常繁琐的。
+接下来在项目根目录下创建 _src_ 目录，该目录就是我们的源码目录。但是现在有一点比较麻烦的是，如果我们写了 _ts_ 代码，每次都需要手动的通过 _tsc_ 编译成 _js_ 代码，然后在进行代码测试，整个过程是非常繁琐的。
 
-此时我们就可以通过 *webpack* 来启动一个开发服务器，通过开发服务器访问到我们所书写的内容，并且通过开发服务器访问时能够自动的将我们的 *ts* 代码转为 *js* 代码。
+此时我们就可以通过 _webpack_ 来启动一个开发服务器，通过开发服务器访问到我们所书写的内容，并且通过开发服务器访问时能够自动的将我们的 _ts_ 代码转为 _js_ 代码。
 
 安装相应的依赖：
 
@@ -47,11 +48,11 @@ npm i webpack webpack-cli webpack-dev-server -D
 
 这一行代码使用 npm 安装了三个开发依赖包：webpack、webpack-cli 和 webpack-dev-server，使用了 -D 参数来指定这些依赖是开发依赖，而不是生产依赖。具体来说，这些依赖的作用如下：
 
-- *webpack*：是一个现代化的 *JavaScript* 应用程序的静态模块打包器。它通过分析模块之间的依赖关系，将多个模块打包成一个或多个 *bundle*，以便在浏览器中加载。*Webpack* 支持各种前端技术，包括 *JavaScript*、*CSS*、图片等，可以通过插件和 *loader* 进行扩展和定制。
-- *webpack-cli*：是 *Webpack* 的命令行工具，提供了一系列的命令和选项，用于执行 *Webpack* 的各种操作，例如打包、启动开发服务器、查看构建状态等。
-- *webpack-dev-server*：是 *Webpack* 的开发服务器，可以在本地启动一个服务器，用于开发调试和热重载。它支持自动刷新、热更新、代理转发等功能，可以提高开发效率和体验。
+- _webpack_：是一个现代化的 _JavaScript_ 应用程序的静态模块打包器。它通过分析模块之间的依赖关系，将多个模块打包成一个或多个 _bundle_，以便在浏览器中加载。_Webpack_ 支持各种前端技术，包括 _JavaScript_、_CSS_、图片等，可以通过插件和 _loader_ 进行扩展和定制。
+- _webpack-cli_：是 _Webpack_ 的命令行工具，提供了一系列的命令和选项，用于执行 _Webpack_ 的各种操作，例如打包、启动开发服务器、查看构建状态等。
+- _webpack-dev-server_：是 _Webpack_ 的开发服务器，可以在本地启动一个服务器，用于开发调试和热重载。它支持自动刷新、热更新、代理转发等功能，可以提高开发效率和体验。
 
-安装完毕后，在项目根目录下面创建 *webpack.config.ts* 配置文件，书写如下的配置：
+安装完毕后，在项目根目录下面创建 _webpack.config.ts_ 配置文件，书写如下的配置：
 
 ```ts
 import path from "path";
@@ -75,7 +76,7 @@ const config = {
       },
       {
         test: /\.css$/i,
-        use:[MiniCssExtractPlugin.loader,'css-loader']
+        use: [MiniCssExtractPlugin.loader, "css-loader"],
       },
     ],
   },
@@ -105,30 +106,30 @@ const config = {
 export default config;
 ```
 
-这个 *Webpack* 配置文件是一个基本的 *TypeScript* + *CSS* + *HTML* 项目的配置文件，主要用于将 *TypeScript* 代码编译成 *JavaScript* 代码、将 *CSS* 样式打包到单独的文件中、将 *HTML* 模板复制到输出目录，并启动一个开发服务器进行调试。
+这个 _Webpack_ 配置文件是一个基本的 _TypeScript_ + _CSS_ + _HTML_ 项目的配置文件，主要用于将 _TypeScript_ 代码编译成 _JavaScript_ 代码、将 _CSS_ 样式打包到单独的文件中、将 _HTML_ 模板复制到输出目录，并启动一个开发服务器进行调试。
 
 具体来说，这个配置文件的各个配置项的含义如下：
 
-- *mode*：设置打包模式，这里设置为 *development*，表示开发模式。
-- *entry*：设置入口文件，这里设置为 *./src/ts/index.ts*，表示 *TypeScript* 代码的入口文件。
-- *output*：设置输出文件，这里设置输出目录为 *./dist*，输出文件名为 *bundle.js*。
-- *module*：配置模块的加载规则，这里设置了两个规则：
-    - 对于以 *.tsx* 或 *.ts* 结尾的文件，使用 *ts-loader* 进行编译，并排除 *node_modules* 目录。
-    - 对于以 *.css* 结尾的文件，使用 *css-loader* 和 *mini-css-extract-plugin* 将 *CSS* 样式打包到单独的文件中。
-- *resolve*：配置 *Webpack* 在导入模块时如何解析文件路径，这里设置了文件扩展名为 *.tsx*、*.ts* 和 *.js*。
-- *plugins*：配置插件，这里使用了三个插件：
-    - *html-webpack-plugin*：根据 *./src/html/index.html* 模板生成 *./dist/index.html* 文件，并自动将打包后的 *JS* 文件和 *CSS* 文件引入到 *HTML* 文件中。
-    - *mini-css-extract-plugin*：将 *CSS* 样式从 *JS* 文件中提取出来，生成单独的 *CSS* 文件。
-    - *clean-webpack-plugin*：在每次打包之前清空输出目录。
-- *devServer*：配置 *Webpack* 开发服务器，这里设置了服务器的端口号为 *3000*，并启用了 *gzip* 压缩和自动打开浏览器功能。
+- _mode_：设置打包模式，这里设置为 _development_，表示开发模式。
+- _entry_：设置入口文件，这里设置为 _./src/ts/index.ts_，表示 _TypeScript_ 代码的入口文件。
+- _output_：设置输出文件，这里设置输出目录为 _./dist_，输出文件名为 _bundle.js_。
+- _module_：配置模块的加载规则，这里设置了两个规则：
+  - 对于以 _.tsx_ 或 _.ts_ 结尾的文件，使用 _ts-loader_ 进行编译，并排除 _node_modules_ 目录。
+  - 对于以 _.css_ 结尾的文件，使用 _css-loader_ 和 _mini-css-extract-plugin_ 将 _CSS_ 样式打包到单独的文件中。
+- _resolve_：配置 _Webpack_ 在导入模块时如何解析文件路径，这里设置了文件扩展名为 _.tsx_、_.ts_ 和 _.js_。
+- _plugins_：配置插件，这里使用了三个插件：
+  - _html-webpack-plugin_：根据 _./src/html/index.html_ 模板生成 _./dist/index.html_ 文件，并自动将打包后的 _JS_ 文件和 _CSS_ 文件引入到 _HTML_ 文件中。
+  - _mini-css-extract-plugin_：将 _CSS_ 样式从 _JS_ 文件中提取出来，生成单独的 _CSS_ 文件。
+  - _clean-webpack-plugin_：在每次打包之前清空输出目录。
+- _devServer_：配置 _Webpack_ 开发服务器，这里设置了服务器的端口号为 _3000_，并启用了 _gzip_ 压缩和自动打开浏览器功能。
 
-注意在上面的 *webpack* 配置文件中，用到了一些 *loader* 和插件，因此这里需要进行安装：
+注意在上面的 _webpack_ 配置文件中，用到了一些 _loader_ 和插件，因此这里需要进行安装：
 
 ```bash
 npm i ts-loader css-loader html-webpack-plugin mini-css-extract-plugin clean-webpack-plugin -D
 ```
 
-另外，由于我们的配置文件也是以 *ts* 结尾的，因此我们还需要安装 *ts-node* 依赖，以便可以直接运行 *TypeScript* 代码类型的配置文件，而无需事先将 *TypeScript* 代码编译成 *JavaScript* 代码。
+另外，由于我们的配置文件也是以 _ts_ 结尾的，因此我们还需要安装 _ts-node_ 依赖，以便可以直接运行 _TypeScript_ 代码类型的配置文件，而无需事先将 _TypeScript_ 代码编译成 _JavaScript_ 代码。
 
 ```bash
 npm i ts-node -D
@@ -139,22 +140,25 @@ npm i ts-node -D
 ```html
 <p id="op">这是一个测试</p>
 ```
+
 ```css
 #op {
-    color: red;
-    font-size: 32px;
-    font-weight: 600;
+  color: red;
+  font-size: 32px;
+  font-weight: 600;
 }
 ```
+
 ```ts
 // ts/index.ts
 import { test } from "./module";
-import "../css/index.css"
+import "../css/index.css";
 const op = document.querySelector("#op") as HTMLElement;
 op.addEventListener("click", function () {
   test();
 });
 ```
+
 ```ts
 // ts/module.ts
 export function test() {
@@ -162,7 +166,7 @@ export function test() {
 }
 ```
 
-在 *package.json* 中添加如下的命令：
+在 _package.json_ 中添加如下的命令：
 
 ```js
 "scripts": {
@@ -171,16 +175,15 @@ export function test() {
 },
 ```
 
-*npm run start* 后会自动打开浏览器，访问 *3000* 端口，并且看到如下的效果
+_npm run start_ 后会自动打开浏览器，访问 _3000_ 端口，并且看到如下的效果
 
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251105155419169.png)
 
+整理一下整个过程发生了什么，当我们执行 _npm run start_，_webpack-dev-server_ 会启动一个端口 _3000_ 的服务器，接下来 _webpack_ 会对 _src_ 目录下面的源码进行打包，这里的打包不仅仅是合并多个文件，还包括对浏览器不认识的文件进行处理，比如 _ts-loader_ 会对源码中的 _ts_ 代码进行处理。
 
-整理一下整个过程发生了什么，当我们执行 *npm run start*，*webpack-dev-server* 会启动一个端口 *3000* 的服务器，接下来 *webpack* 会对 *src* 目录下面的源码进行打包，这里的打包不仅仅是合并多个文件，还包括对浏览器不认识的文件进行处理，比如 *ts-loader* 会对源码中的 *ts* 代码进行处理。
+浏览器会去访问这个端口为 _3000_ 的服务器，拿到打包好后的资源，并在浏览器中渲染出来。
 
-浏览器会去访问这个端口为 *3000* 的服务器，拿到打包好后的资源，并在浏览器中渲染出来。
-
-当开发完成后，我们就可以对资源进行打包操作，在 *package.json* 中添加如下的命令：
+当开发完成后，我们就可以对资源进行打包操作，在 _package.json_ 中添加如下的命令：
 
 ```js
 "scripts": {
@@ -189,10 +192,9 @@ export function test() {
 },
 ```
 
-执行 *npm run build* 之后，项目就会被打包到 *dist* 目录下面。
+执行 _npm run build_ 之后，项目就会被打包到 _dist_ 目录下面。
 
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251105155427078.png)
-
 
 ## 2. 像素鸟项目测试
 
@@ -208,16 +210,16 @@ npm i jest ts-jest @types/jest jest-environment-jsdom -D
 
 各个依赖包的作用如下：
 
-- *jest*：*Jest* 是一个流行的 *JavaScript* 测试框架，用于编写单元测试和集成测试。它提供了一套简单而强大的 *API*，可以轻松编写测试用例，同时还能够提供代码覆盖率、快照测试、*Mock* 等功能。
-- *ts-jest*：*ts-jest* 是 *Jest* 的 *TypeScript* 处理器，用于将 *TypeScript* 代码转换为 *JavaScript* 代码并运行 *Jest* 测试。它提供了一系列的配置选项，可以根据不同的需求进行配置。使用 *ts-jest* 可以让 *TypeScript* 代码进行测试变得更加方便和高效。
-- *@types/jest*：*Jest* 的类型定义文件，用于在 *TypeScript* 代码中使用 *Jest API* 时进行类型检查。
-- *jest-environment-jsdom*：*Jest* 的默认测试环境是 *Node.js*，但是有些测试场景需要在浏览器环境下进行测试。*jest-environment-jsdom* 提供了一个基于 *JSDOM* 的测试环境，可以在 *Node.js* 中模拟浏览器环境，用于编写浏览器相关的测试用例。当然，如果你的测试场景不需要在浏览器环境下进行测试，也可以不安装该依赖。
+- _jest_：_Jest_ 是一个流行的 _JavaScript_ 测试框架，用于编写单元测试和集成测试。它提供了一套简单而强大的 _API_，可以轻松编写测试用例，同时还能够提供代码覆盖率、快照测试、_Mock_ 等功能。
+- _ts-jest_：_ts-jest_ 是 _Jest_ 的 _TypeScript_ 处理器，用于将 _TypeScript_ 代码转换为 _JavaScript_ 代码并运行 _Jest_ 测试。它提供了一系列的配置选项，可以根据不同的需求进行配置。使用 _ts-jest_ 可以让 _TypeScript_ 代码进行测试变得更加方便和高效。
+- _@types/jest_：_Jest_ 的类型定义文件，用于在 _TypeScript_ 代码中使用 _Jest API_ 时进行类型检查。
+- _jest-environment-jsdom_：_Jest_ 的默认测试环境是 _Node.js_，但是有些测试场景需要在浏览器环境下进行测试。_jest-environment-jsdom_ 提供了一个基于 _JSDOM_ 的测试环境，可以在 _Node.js_ 中模拟浏览器环境，用于编写浏览器相关的测试用例。当然，如果你的测试场景不需要在浏览器环境下进行测试，也可以不安装该依赖。
 
-然后通过 *npx jest --init* 创建配置文件，注意 *test environment* 选择 *jsdom*，配置文件中的 *preset* 配置为 *ts-jest*。
+然后通过 _npx jest --init_ 创建配置文件，注意 _test environment_ 选择 _jsdom_，配置文件中的 _preset_ 配置为 _ts-jest_。
 
-之后我们需要创建测试目录，一般来说，不建议将 *test* 目录放在 *src* 目录下面，因为测试代码和源代码的职责是不同的，它们有不同的维护周期、不同的目标和不同的使用者。将测试代码与源代码混在一起会增加源代码的复杂度，不利于代码的维护和阅读。此外，将测试代码放在 *src* 目录下可能会导致一些不必要的问题，例如编译时会将测试代码也编译进去，增加了编译时间和文件大小。
+之后我们需要创建测试目录，一般来说，不建议将 _test_ 目录放在 _src_ 目录下面，因为测试代码和源代码的职责是不同的，它们有不同的维护周期、不同的目标和不同的使用者。将测试代码与源代码混在一起会增加源代码的复杂度，不利于代码的维护和阅读。此外，将测试代码放在 _src_ 目录下可能会导致一些不必要的问题，例如编译时会将测试代码也编译进去，增加了编译时间和文件大小。
 
-通常情况下，测试代码应该放在一个单独的目录中，以便于与源代码进行分离。可以在项目的根目录下创建一个 *test* 或 \__tests__ 目录，并在该目录下组织测试文件的目录结构，以保持和源代码的相对位置关系。例如，如果源代码文件在 *src* 目录中，那么可以将测试代码文件放在 *test* 目录下，并保持相同的目录结构，如 *test/utils/format.test.ts* 对应于 *src/utils/format.ts*。
+通常情况下，测试代码应该放在一个单独的目录中，以便于与源代码进行分离。可以在项目的根目录下创建一个 _test_ 或 \_\_tests\_\_ 目录，并在该目录下组织测试文件的目录结构，以保持和源代码的相对位置关系。例如，如果源代码文件在 _src_ 目录中，那么可以将测试代码文件放在 _test_ 目录下，并保持相同的目录结构，如 _test/utils/format.test.ts_ 对应于 _src/utils/format.ts_。
 
 下面是一个目录示例：
 
@@ -243,11 +245,12 @@ my-project/
 ├── tsconfig.json
 └── jest.config.js
 ```
-在上述目录结构中，*src* 目录包含了项目的源代码，*test* 目录包含了项目的测试代码。测试代码文件的目录结构与源代码文件的目录结构相同，以保持相对位置关系。在该目录结构中，*test* 目录位于项目的根目录下，而不是在 *src* 目录中。
+
+在上述目录结构中，_src_ 目录包含了项目的源代码，_test_ 目录包含了项目的测试代码。测试代码文件的目录结构与源代码文件的目录结构相同，以保持相对位置关系。在该目录结构中，_test_ 目录位于项目的根目录下，而不是在 _src_ 目录中。
 
 这种目录结构可以有效地将测试代码与源代码分离开来，使得代码更加模块化和易于维护。同时，也方便了测试和开发的协作，使得团队成员可以更加专注于自己的工作，而不会被其他代码干扰。
 
-了解了这一点后，在项目根目录下创建 \__tests__ 目录，然后我们对一些重要的模块进行测试。
+了解了这一点后，在项目根目录下创建 \_\_tests\_\_ 目录，然后我们对一些重要的模块进行测试。
 
 ```ts
 // __tests__/getTimer.test.ts
@@ -307,21 +310,21 @@ describe("getTimer", () => {
 });
 ```
 
-在这段代码中，我们针对 *getTimer* 函数进行了测试。
+在这段代码中，我们针对 _getTimer_ 函数进行了测试。
 
-在 *describe* 函数中，我们创建了一个测试组，用来对 *getTimer* 函数进行测试。在该测试组中，我们定义了两个测试用例。
+在 _describe_ 函数中，我们创建了一个测试组，用来对 _getTimer_ 函数进行测试。在该测试组中，我们定义了两个测试用例。
 
-在第一个测试用例中，我们测试了 *getTimer* 函数的计时器能否正确地启动和停止，并且能否正确地执行回调函数。为了测试这个函数，我们首先调用了 *jest.useFakeTimers( )*，这个函数可以开启 *fake timers*，用来模拟时间流逝。然后，我们创建了一个计时器，并且定义了一个回调函数。接着，我们通过调用 *timer.start( )* 启动计时器，并模拟了时间流逝，以测试计时器是否按照预期执行。最后，我们调用 *timer.stop( )* 停止计时器，结束测试。
+在第一个测试用例中，我们测试了 _getTimer_ 函数的计时器能否正确地启动和停止，并且能否正确地执行回调函数。为了测试这个函数，我们首先调用了 _jest.useFakeTimers( )_，这个函数可以开启 _fake timers_，用来模拟时间流逝。然后，我们创建了一个计时器，并且定义了一个回调函数。接着，我们通过调用 _timer.start( )_ 启动计时器，并模拟了时间流逝，以测试计时器是否按照预期执行。最后，我们调用 _timer.stop( )_ 停止计时器，结束测试。
 
-在第二个测试用例中，我们测试了 *getTimer* 函数的回调函数能否正确地执行。和第一个测试用例类似，我们首先创建了一个计时器，并定义了一个回调函数。然后，我们启动了计时器，并模拟了时间流逝，以测试回调函数是否按照预期执行。最后，我们调用 *timer.stop( )* 停止计时器，结束测试。
+在第二个测试用例中，我们测试了 _getTimer_ 函数的回调函数能否正确地执行。和第一个测试用例类似，我们首先创建了一个计时器，并定义了一个回调函数。然后，我们启动了计时器，并模拟了时间流逝，以测试回调函数是否按照预期执行。最后，我们调用 _timer.stop( )_ 停止计时器，结束测试。
 
-在每个测试用例之前，我们调用了 *beforeEach* 函数，用来在每个测试用例执行前执行一些操作。在该函数中，我们先调用了 *jest.useFakeTimers( )* 开启 *fake timers*，然后创建了一个计时器，并将其赋值给 *timer* 变量。在每个测试用例执行完毕后，我们调用了 *afterEach* 函数，用来在每个测试用例执行后执行一些操作。在该函数中，我们调用了 *jest.clearAllTimers( )* 清除所有计时器，然后调用了 *jest.useRealTimers( )* 恢复真实的计时器。
+在每个测试用例之前，我们调用了 _beforeEach_ 函数，用来在每个测试用例执行前执行一些操作。在该函数中，我们先调用了 _jest.useFakeTimers( )_ 开启 _fake timers_，然后创建了一个计时器，并将其赋值给 _timer_ 变量。在每个测试用例执行完毕后，我们调用了 _afterEach_ 函数，用来在每个测试用例执行后执行一些操作。在该函数中，我们调用了 _jest.clearAllTimers( )_ 清除所有计时器，然后调用了 _jest.useRealTimers( )_ 恢复真实的计时器。
 
-在第一个测试用例中，我们使用了 *jest.spyOn(window, "setInterval")* 函数来替换真实的 *setInterval* 函数，这样我们就可以跟踪 *setInterval* 函数的调用次数了。我们使用了 *jest.advanceTimersByTime* 函数来模拟时间流逝，并且使用 *expect* 函数来断言 *setInterval* 函数的调用次数是否符合预期。
+在第一个测试用例中，我们使用了 _jest.spyOn(window, "setInterval")_ 函数来替换真实的 _setInterval_ 函数，这样我们就可以跟踪 _setInterval_ 函数的调用次数了。我们使用了 _jest.advanceTimersByTime_ 函数来模拟时间流逝，并且使用 _expect_ 函数来断言 _setInterval_ 函数的调用次数是否符合预期。
 
-在第二个测试用例中，我们只需要测试回调函数是否被正确地调用即可。同样，我们使用了 *jest.advanceTimersByTime* 来模拟时间流逝，并使用 *expect* 函数来断言回调函数的调用次数是否符合预期。
+在第二个测试用例中，我们只需要测试回调函数是否被正确地调用即可。同样，我们使用了 _jest.advanceTimersByTime_ 来模拟时间流逝，并使用 _expect_ 函数来断言回调函数的调用次数是否符合预期。
 
-除了这个工具函数，我们还可以对一些类进行测试，比如下面是针对 *Sky* 这个类进行测试：
+除了这个工具函数，我们还可以对一些类进行测试，比如下面是针对 _Sky_ 这个类进行测试：
 
 ```ts
 import Sky from "../src/ts/modules/Sky";
@@ -453,9 +456,9 @@ test("是否会重置为零", () => {
 });
 ```
 
-相似的 *Land* 等其他类这里不再做演示，我们可以再来看一个 *Bird* 类，在测试 *Bird* 类的时候，涉及到了引入 *Game* 类，因此这里就会涉及到屏蔽这个 *Game* 为我们测试 *Bird* 类所带来的影响，也就是需要模拟这个 *Game* 类。
+相似的 _Land_ 等其他类这里不再做演示，我们可以再来看一个 _Bird_ 类，在测试 _Bird_ 类的时候，涉及到了引入 _Game_ 类，因此这里就会涉及到屏蔽这个 _Game_ 为我们测试 _Bird_ 类所带来的影响，也就是需要模拟这个 _Game_ 类。
 
-*Bird* 类相关的测试用例代码如下：
+_Bird_ 类相关的测试用例代码如下：
 
 ```ts
 import Bird from "../src/ts/modules/Bird";
@@ -580,20 +583,20 @@ test("测试 dropTimer", () => {
 });
 ```
 
-上面的代码是一个针对游戏中的小鸟对象 *Bird* 的单元测试代码。*Bird* 是游戏的主要角色之一，代码中测试了 *Bird* 的 *show* 方法、*setTop* 方法、*jump* 方法以及 *Bird* 内部的两个计时器 *wingTimer* 和 *dropTimer*。
+上面的代码是一个针对游戏中的小鸟对象 _Bird_ 的单元测试代码。_Bird_ 是游戏的主要角色之一，代码中测试了 _Bird_ 的 _show_ 方法、_setTop_ 方法、_jump_ 方法以及 _Bird_ 内部的两个计时器 _wingTimer_ 和 _dropTimer_。
 
-在这段代码中，首先使用了 *Jest* 的 *mock* 方法来模拟 *Game* 类，以便在测试 *Bird* 类时，可以不用真正的创建 *Game* 对象。然后通过 *Jest* 的 *test* 函数来对 *Bird* 类的各个方法进行测试。测试过程中，通过准备测试数据，调用被测试方法，然后使用 *Jest* 提供的 *expect* 断言来验证被测试方法的行为是否符合预期。
+在这段代码中，首先使用了 _Jest_ 的 _mock_ 方法来模拟 _Game_ 类，以便在测试 _Bird_ 类时，可以不用真正的创建 _Game_ 对象。然后通过 _Jest_ 的 _test_ 函数来对 _Bird_ 类的各个方法进行测试。测试过程中，通过准备测试数据，调用被测试方法，然后使用 _Jest_ 提供的 _expect_ 断言来验证被测试方法的行为是否符合预期。
 
-具体来说，在测试 *show* 方法时，通过设置 *Bird* 对象的属性和模拟一个 *DOM* 元素，来测试 *Bird* 对象在调用 *show* 方法时是否正确更新了 *DOM* 元素的 *top* 和 *backgroundPosition* 属性。在测试 *setTop* 方法时，主要测试了 *Bird* 对象在设置 *top* 属性时，是否对设置的值进行了边界判断，防止小鸟飞出游戏屏幕。在测试 *jump* 方法时，测试了 *Bird* 对象在调用 *jump* 方法时，是否正确改变了 *speed* 属性。在测试 *wingTimer* 和 *dropTimer* 时，则主要测试了 *Bird* 对象内部的计时器功能是否正常，例如启动计时器、时间推进后计时器是否按照预期执行，并且是否正确调用了 *show* 方法。
+具体来说，在测试 _show_ 方法时，通过设置 _Bird_ 对象的属性和模拟一个 _DOM_ 元素，来测试 _Bird_ 对象在调用 _show_ 方法时是否正确更新了 _DOM_ 元素的 _top_ 和 _backgroundPosition_ 属性。在测试 _setTop_ 方法时，主要测试了 _Bird_ 对象在设置 _top_ 属性时，是否对设置的值进行了边界判断，防止小鸟飞出游戏屏幕。在测试 _jump_ 方法时，测试了 _Bird_ 对象在调用 _jump_ 方法时，是否正确改变了 _speed_ 属性。在测试 _wingTimer_ 和 _dropTimer_ 时，则主要测试了 _Bird_ 对象内部的计时器功能是否正常，例如启动计时器、时间推进后计时器是否按照预期执行，并且是否正确调用了 _show_ 方法。
 
-总的来说，这段代码通过单元测试的方式，保证了 *Bird* 类在游戏中的各个行为都符合预期，提高了游戏代码的质量和可靠性。
+总的来说，这段代码通过单元测试的方式，保证了 _Bird_ 类在游戏中的各个行为都符合预期，提高了游戏代码的质量和可靠性。
 
 ## 3. 总结
 
-本小节作为一个综合练习，我们将平时开发常用的 *ts、webpack、jest* 全部融入进去了，大家可以学习到一个项目从零开始搭建到最后项目测试的全部过程。
+本小节作为一个综合练习，我们将平时开发常用的 _ts、webpack、jest_ 全部融入进去了，大家可以学习到一个项目从零开始搭建到最后项目测试的全部过程。
 
 整个项目下来，大家能够收获如下的知识点：
 
-- 了解如何从零搭建一个基于 *webpack、ts* 的项目
+- 了解如何从零搭建一个基于 _webpack、ts_ 的项目
 - 如何针对项目书写单元测试用例
 - 针对项目中哪些单元需要做测试

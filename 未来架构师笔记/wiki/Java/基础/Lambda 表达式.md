@@ -4,6 +4,7 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
+
 ## 1. 课程目标
 
 - 理解 Lambda 表达式的概念和作用
@@ -18,7 +19,7 @@ updated: 2026-08-02
 
 Lambda 表达式是一种**匿名函数**，它没有名称，但有参数列表、函数体和返回值类型。
 
-Lambda 表达式是**函数式编程**思想在 Java 中的体现，它使得代码更加简洁、灵活，尤其在与 `Stream API` 结合使用时效果显著。
+Lambda 表达式是**函数式编程**思想在 Java 中的体现，它使得代码更加简洁、灵活，尤其在与  `Stream API`  结合使用时效果显著。
 
 ### 2.1 为什么需要 Lambda 表达式
 
@@ -53,7 +54,7 @@ Lambda 表达式可以理解为**可传递的代码块**，它将行为（逻辑
 
 **函数式接口**是指**只有一个抽象方法**的接口。
 
-Java中的接口是一组方法签名的集合，用关键字`interface`定义，示例如下：
+Java 中的接口是一组方法签名的集合，用关键字`interface`定义，示例如下：
 
 ```java
 // 定义一个接口
@@ -94,7 +95,7 @@ System.out.println(multiply.calculate(3, 5)); // 15
 
 > > [!NOTE]
 > >
-> > Java 8 在 `java.util.function` 包中提供了大量函数式接口，覆盖了各种使用场景。同时，也有针对基本类型的专用版本（如 `IntPredicate`、`LongConsumer` 等）。
+> > Java 8 在  `java.util.function`  包中提供了大量函数式接口，覆盖了各种使用场景。同时，也有针对基本类型的专用版本（如  `IntPredicate`、`LongConsumer`  等）。
 
 ---
 
@@ -121,13 +122,13 @@ Lambda 表达式由三部分组成：
 
 ### 4.2 语法简化规则
 
-| 场景               | 规则                      | 示例                                     |
-| ------------------ | ------------------------- | ---------------------------------------- |
-| 参数类型           | 可省略（类型推断）        | `(a, b) -> a + b`                        |
-| 单参数             | 可省略括号                | `s -> s.length()`                        |
-| 无参数             | 必须保留括号              | `() -> System.out.println("Hello")`      |
-| 方法体为单个表达式 | 可省略花括号和 `return`   | `(a, b) -> a + b`                        |
-| 方法体为多个语句   | 必须保留花括号和 `return` | `(a, b) -> { int s = a + b; return s; }` |
+| 场景               | 规则                       | 示例                                     |
+| ------------------ | -------------------------- | ---------------------------------------- |
+| 参数类型           | 可省略（类型推断）         | `(a, b) -> a + b`                        |
+| 单参数             | 可省略括号                 | `s -> s.length()`                        |
+| 无参数             | 必须保留括号               | `() -> System.out.println("Hello")`      |
+| 方法体为单个表达式 | 可省略花括号和  `return`   | `(a, b) -> a + b`                        |
+| 方法体为多个语句   | 必须保留花括号和  `return` | `(a, b) -> { int s = a + b; return s; }` |
 
 ### 4.3 Lambda 表达式本质
 
@@ -157,7 +158,7 @@ public static Comparator<String> getComparator() {
 
 ### 5.1 Predicate —— 断言接口
 
-用于判断某个条件是否成立，返回 `boolean`。
+用于判断某个条件是否成立，返回  `boolean`。
 
 ```java
 import java.util.function.Predicate;
@@ -245,12 +246,12 @@ System.out.println(greetingSupplier.get()); // Hello, World!
 
 ### 5.5 使用场景对比
 
-| 接口            | 参数 | 返回值          | 比喻               |
-| --------------- | ---- | --------------- | ------------------ |
-| `Predicate<T>`  | 1个  | boolean         | 条件判断（门卫）   |
-| `Consumer<T>`   | 1个  | void            | 执行操作（工人）   |
-| `Function<T,R>` | 1个  | 1个（不同类型） | 类型转换（转换器） |
-| `Supplier<T>`   | 无   | 1个             | 提供数据（工       |
+| 接口            | 参数 | 返回值           | 比喻               |
+| --------------- | ---- | ---------------- | ------------------ |
+| `Predicate<T>`  | 1 个 | boolean          | 条件判断（门卫）   |
+| `Consumer<T>`   | 1 个 | void             | 执行操作（工人）   |
+| `Function<T,R>` | 1 个 | 1 个（不同类型） | 类型转换（转换器） |
+| `Supplier<T>`   | 无   | 1 个             | 提供数据（工       |
 
 ## 6. 方法引用（Method Reference）
 
@@ -369,7 +370,7 @@ Function<Integer, ArrayList<String>> listFactory = ArrayList::new; // new ArrayL
 
 ### 9.1 作业一：Lambda 表达式与 Predicate 接口
 
-阅读以下代码，写出 `main` 方法的输出结果。
+阅读以下代码，写出  `main`  方法的输出结果。
 
 ```java
 import java.util.function.Predicate;
@@ -445,7 +446,7 @@ public class Homework2 {
 
 ### 9.3 作业三：方法引用与 Predicate 组合
 
-阅读以下代码，写出 `main` 方法的输出结果。
+阅读以下代码，写出  `main`  方法的输出结果。
 
 ```java
 import java.util.function.Predicate;
@@ -494,32 +495,32 @@ public class Homework3 {
 
 ### 9.4 作业四：Predicate 组合使用
 
-编写一个方法 `filterAndPrint`，接收一个 `List<Integer>` 和两个 `Predicate<Integer>`，使用以下逻辑处理：
+编写一个方法  `filterAndPrint`，接收一个  `List<Integer>`  和两个  `Predicate<Integer>`，使用以下逻辑处理：
 
 1. 使用第一个 Predicate 筛选元素（如过滤偶数）。
 2. 再使用第二个 Predicate 进行二次筛选（如过滤大于 5 的数）。
-3. 使用 `Consumer<Integer>` 打印最终结果。
+3. 使用  `Consumer<Integer>`  打印最终结果。
 
-在 `main` 中创建测试数据 `[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]`，调用 `filterAndPrint`：
+在  `main`  中创建测试数据  `[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]`，调用  `filterAndPrint`：
 
-- 第一次调用：筛选出**偶数且大于 5** 的数。
-- 第二次调用：筛选出**奇数且小于 5** 的数。
+- 第一次调用：筛选出**偶数且大于 5**  的数。
+- 第二次调用：筛选出**奇数且小于 5**  的数。
 
 ---
 
 ### 9.5 作业五：综合实践——学生成绩分析（使用 Lambda + 函数式接口）
 
-定义一个 `Student` 类，包含 `name`、`age`、`score`、`gender` 属性。
+定义一个  `Student`  类，包含  `name`、`age`、`score`、`gender`  属性。
 
-编写一个 `Analysis` 类，包含以下静态方法，使用 Lambda 和函数式接口完成：
+编写一个  `Analysis`  类，包含以下静态方法，使用 Lambda 和函数式接口完成：
 
 1. `filterStudent(List<Student> list, Predicate<Student> predicate)`：根据条件筛选学生，返回新列表。
 2. `processStudent(List<Student> list, Consumer<Student> consumer)`：对每个学生执行操作（如打印信息）。
 3. `calculateAverage(List<Student> list, Function<Student, Double> extractor)`：计算某个属性的平均值。
 
-在 `main` 中：
+在  `main`  中：
 
 - 创建至少 8 个学生。
-- 使用 `filterStudent` 筛选出成绩 ≥ 80 的学生。
-- 使用 `processStudent` 打印这些学生的姓名和成绩。
-- 使用 `calculateAverage` 计算所有学生的平均成绩。
+- 使用  `filterStudent`  筛选出成绩 ≥ 80 的学生。
+- 使用  `processStudent`  打印这些学生的姓名和成绩。
+- 使用  `calculateAverage`  计算所有学生的平均成绩。

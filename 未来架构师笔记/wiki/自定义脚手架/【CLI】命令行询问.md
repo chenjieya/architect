@@ -4,6 +4,7 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
+
 ## 1. 命令行交互
 
 ### 1.1 安装
@@ -21,7 +22,7 @@ npm i inquirer
 ```javascript
 // interactive.js
 
-import inquirer from 'inquirer'
+import inquirer from "inquirer";
 
 /**
  * @param {string} message 询问提示语句
@@ -29,12 +30,12 @@ import inquirer from 'inquirer'
  */
 export const inquirerConfirm = async (message) => {
   const answer = await inquirer.prompt({
-    name: 'confirm',
-    type: 'confirm',
+    name: "confirm",
+    type: "confirm",
     message,
-  })
-  return answer
-}
+  });
+  return answer;
+};
 ```
 
 ```javascript
@@ -57,33 +58,33 @@ if (fs.existsSync(name) && !option.force) {
 
 ### 1.3 删除文件夹
 
-在utils模块中创建删除文件夹的函数
+在 utils 模块中创建删除文件夹的函数
 
 ```javascript
 // utils.js
 
-import path from 'path'
-import fs from 'fs-extra'
-import ora from 'ora'
-import chalk from 'chalk'
-import logSymbols from './logSymbols.js'
+import path from "path";
+import fs from "fs-extra";
+import ora from "ora";
+import chalk from "chalk";
+import logSymbols from "./logSymbols.js";
 
-const appDirectory = fs.realpathSync(process.cwd())
-const resolveApp = (relativePath) => path.resolve(appDirectory, relativePath)
+const appDirectory = fs.realpathSync(process.cwd());
+const resolveApp = (relativePath) => path.resolve(appDirectory, relativePath);
 
 export async function removeDir(dir) {
   const spinner = ora({
     text: `正在删除文件夹${chalk.cyan(dir)}`,
-    color: 'yellow',
-  }).start()
+    color: "yellow",
+  }).start();
 
   try {
-    await fs.remove(resolveApp(dir))
-    spinner.succeed(chalk.greenBright(`删除文件夹${chalk.cyan(dir)}成功`))
+    await fs.remove(resolveApp(dir));
+    spinner.succeed(chalk.greenBright(`删除文件夹${chalk.cyan(dir)}成功`));
   } catch (err) {
-    spinner.fail(chalk.redBright(`删除文件夹${chalk.cyan(dir)}失败`))
-    console.log(err)
-    return
+    spinner.fail(chalk.redBright(`删除文件夹${chalk.cyan(dir)}失败`));
+    console.log(err);
+    return;
   }
 }
 ```
@@ -99,31 +100,31 @@ export async function removeDir(dir) {
 if (fs.existsSync(name) && !option.force) {
   console.log(
     logSymbols.warning,
-    `已经存在项目文件夹${chalk.yellowBright(name)}`,
-  )
+    `已经存在项目文件夹${chalk.yellowBright(name)}`
+  );
   //询问是否删除文件夹
   const answer = await inquirerConfirm(
-    `是否删除文件夹${chalk.yellowBright(name)}?`,
-  )
-  console.log(answer)
+    `是否删除文件夹${chalk.yellowBright(name)}?`
+  );
+  console.log(answer);
   if (answer.confirm) {
     //删除
-    await removeDir(name)
+    await removeDir(name);
   } else {
     console.log(
       logSymbols.error,
       chalk.redBright(
-        `对不起,项目创建失败,存在同名文件夹,${chalk.yellowBright(name)}`,
-      ),
-    )
-    return
+        `对不起,项目创建失败,存在同名文件夹,${chalk.yellowBright(name)}`
+      )
+    );
+    return;
   }
 } else if (fs.existsSync(name) && option.force) {
   console.log(
     logSymbols.warning,
-    `已经存在项目文件夹${chalk.yellowBright(name)},强制删除`,
-  )
+    `已经存在项目文件夹${chalk.yellowBright(name)},强制删除`
+  );
   //删除
-  await removeDir(name)
+  await removeDir(name);
 }
 ```

@@ -4,6 +4,7 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
+
 > [!NOTE]
 >
 > 小贴士
@@ -15,7 +16,7 @@ updated: 2026-08-02
 > CREATE SCHEMA public;
 > ```
 
-## 1. [补充]处理运行bug
+## 1. [补充]处理运行 bug
 
 `apps/web-service/pyproject.toml`
 
@@ -40,11 +41,11 @@ class _BaseSettingsWithEnv(BaseSettings):
     model_config = {"env_file": ".env", "extra": "ignore"}  # env文件的位置
 ```
 
-## 2. ORM映射
+## 2. ORM 映射
 
-**ORM（Object Relational Mapping）** 将数据库中的"表"映射为 Python 中的"类"，将"一行记录"映射为"对象实例"。
+**ORM（Object Relational Mapping）**  将数据库中的"表"映射为 Python 中的"类"，将"一行记录"映射为"对象实例"。
 
-先在 `model/` 下新建 `base.py`：
+先在  `model/`  下新建  `base.py`：
 
 ```python
 # model/base.py
@@ -72,7 +73,7 @@ class TimestampMixin:
 
 ```
 
-所有模型类继承这个 `Base`。
+所有模型类继承这个  `Base`。
 
 ### 2.1 Category 模型
 
@@ -101,7 +102,7 @@ class Category(Base, IDMixin):
 
 ```
 
-`relationship` 此时只是声明关系，不影响建表。建表只认 `mapped_column`。
+`relationship`  此时只是声明关系，不影响建表。建表只认  `mapped_column`。
 
 ### 2.2 Product 模型
 
@@ -165,7 +166,7 @@ class Sku(Base, IDMixin):
 
 ```
 
-### 2.4 product_category关系表
+### 2.4 product_category 关系表
 
 ```python
 # model/association/product_category.py
@@ -191,7 +192,7 @@ __all__ = ["product_category"]
 
 ## 3. 表结构同步
 
-在 `model/main.py` 中写建表逻辑：
+在  `model/main.py`  中写建表逻辑：
 
 ```python
 # model/main.py
@@ -240,4 +241,4 @@ if __name__ == "__main__":
 回答以下问题：
 
 1. 如何处理多对多关系？什么时候使用模型？什么时候使用表？
-2. ORM中，什么是dialect，它的作用是什么？它和连接有什么关系？
+2. ORM 中，什么是 dialect，它的作用是什么？它和连接有什么关系？

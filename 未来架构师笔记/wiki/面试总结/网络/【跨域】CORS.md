@@ -4,6 +4,7 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
+
 ## 1. 概述
 
 `CORS`是基于`http1.1`的一种跨域解决方案，它的全称是**C**ross-**O**rigin **R**esource **S**haring，跨域资源共享。
@@ -59,32 +60,32 @@ updated: 2026-08-02
 
 ```js
 // 简单请求
-fetch('http://crossdomain.com/api/news')
+fetch("http://crossdomain.com/api/news");
 
 // 请求方法不满足要求，不是简单请求
-fetch('http://crossdomain.com/api/news', {
-  method: 'PUT',
-})
+fetch("http://crossdomain.com/api/news", {
+  method: "PUT",
+});
 
 // 加入了额外的请求头，不是简单请求
-fetch('http://crossdomain.com/api/news', {
+fetch("http://crossdomain.com/api/news", {
   headers: {
     a: 1,
   },
-})
+});
 
 // 简单请求
-fetch('http://crossdomain.com/api/news', {
-  method: 'post',
-})
+fetch("http://crossdomain.com/api/news", {
+  method: "post",
+});
 
 // content-type不满足要求，不是简单请求
-fetch('http://crossdomain.com/api/news', {
-  method: 'post',
+fetch("http://crossdomain.com/api/news", {
+  method: "post",
   headers: {
-    'content-type': 'application/json',
+    "content-type": "application/json",
   },
-})
+});
 ```
 
 ### 2.2 简单请求的交互规范
@@ -97,7 +98,7 @@ fetch('http://crossdomain.com/api/news', {
 
 ```js
 // 简单请求
-fetch('http://crossdomain.com/api/news')
+fetch("http://crossdomain.com/api/news");
 ```
 
 请求发出后，请求头会是下面的格式：
@@ -161,16 +162,16 @@ Access-Control-Allow-Origin: http://my.com
 
 ```js
 // 需要预检的请求
-fetch('http://crossdomain.com/api/user', {
-  method: 'POST', // post 请求
+fetch("http://crossdomain.com/api/user", {
+  method: "POST", // post 请求
   headers: {
     // 设置请求头
     a: 1,
     b: 2,
-    'content-type': 'application/json',
+    "content-type": "application/json",
   },
-  body: JSON.stringify({ name: '袁小进', age: 18 }), // 设置请求体
-})
+  body: JSON.stringify({ name: "袁小进", age: 18 }), // 设置请求体
+});
 ```
 
 浏览器发现它不是一个简单请求，则会按照下面的流程与服务器交互
@@ -264,13 +265,13 @@ Access-Control-Allow-Origin: http://my.com
 
 ```js
 // xhr
-var xhr = new XMLHttpRequest()
-xhr.withCredentials = true
+var xhr = new XMLHttpRequest();
+xhr.withCredentials = true;
 
 // fetch api
 fetch(url, {
-  credentials: 'include',
-})
+  credentials: "include",
+});
 ```
 
 这样一来，该跨域的 ajax 请求就是一个*附带身份凭证的请求*

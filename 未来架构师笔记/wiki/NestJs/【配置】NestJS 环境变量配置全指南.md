@@ -10,10 +10,11 @@ updated: 2026-08-02
 ## 1. 为什么需要环境变量管理？
 
 想象一下这样的场景：
+
 - 开发环境使用本地数据库，生产环境使用云数据库
 - 测试环境的 API 密钥与生产环境不同
 - 不同部署区域需要不同的第三方服务配置
-- 敏感信息（如数据库密码、API密钥）不能硬编码在代码中
+- 敏感信息（如数据库密码、API 密钥）不能硬编码在代码中
 
 环境变量配置就是为了解决这些问题而生，它是**现代十二要素应用方法论**的核心原则之一。
 
@@ -31,14 +32,14 @@ npm install @nestjs/config
 
 ```typescript
 // app.module.ts
-import { Module } from '@nestjs/common';
-import { ConfigModule } from '@nestjs/config';
+import { Module } from "@nestjs/common";
+import { ConfigModule } from "@nestjs/config";
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true, // 全局可用
-      envFilePath: ['.env'], // 指定环境文件
+      envFilePath: [".env"], // 指定环境文件
     }),
   ],
 })
@@ -83,7 +84,7 @@ npm install --save-dev @types/joi
 
 ```typescript
 // app.module.ts
-import * as Joi from 'joi';
+import * as Joi from "joi";
 
 @Module({
   imports: [
@@ -95,17 +96,17 @@ import * as Joi from 'joi';
         DATABASE_USER: Joi.string().required(),
         DATABASE_PASSWORD: Joi.string().required(),
         DATABASE_NAME: Joi.string().required(),
-        
+
         // 应用配置
         APP_PORT: Joi.number().port().default(3000),
         APP_ENV: Joi.string()
-          .valid('development', 'production', 'test')
-          .default('development'),
-        
+          .valid("development", "production", "test")
+          .default("development"),
+
         // JWT配置
         JWT_SECRET: Joi.string().required(),
-        JWT_EXPIRES_IN: Joi.string().default('3600s'),
-        
+        JWT_EXPIRES_IN: Joi.string().default("3600s"),
+
         // 可选配置
         REDIS_URL: Joi.string().optional(),
       }),
@@ -159,14 +160,14 @@ export interface AllConfigType {
 
 ```typescript
 // config/config.service.ts
-import { Injectable } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
+import { Injectable } from "@nestjs/common";
+import { ConfigService } from "@nestjs/config";
 import {
   DatabaseConfig,
   JwtConfig,
   AppConfig,
   AllConfigType,
-} from './interfaces/config.interface';
+} from "./interfaces/config.interface";
 
 @Injectable()
 export class MyConfigService {
@@ -174,33 +175,33 @@ export class MyConfigService {
 
   get database(): DatabaseConfig {
     return {
-      host: this.configService.get<string>('DATABASE_HOST', 'localhost'),
-      port: this.configService.get<number>('DATABASE_PORT', 5432),
-      username: this.configService.get<string>('DATABASE_USER', 'postgres'),
-      password: this.configService.get<string>('DATABASE_PASSWORD', ''),
-      database: this.configService.get<string>('DATABASE_NAME', 'test'),
+      host: this.configService.get<string>("DATABASE_HOST", "localhost"),
+      port: this.configService.get<number>("DATABASE_PORT", 5432),
+      username: this.configService.get<string>("DATABASE_USER", "postgres"),
+      password: this.configService.get<string>("DATABASE_PASSWORD", ""),
+      database: this.configService.get<string>("DATABASE_NAME", "test"),
     };
   }
 
   get jwt(): JwtConfig {
     return {
-      secret: this.configService.get<string>('JWT_SECRET', 'default-secret'),
-      expiresIn: this.configService.get<string>('JWT_EXPIRES_IN', '3600s'),
+      secret: this.configService.get<string>("JWT_SECRET", "default-secret"),
+      expiresIn: this.configService.get<string>("JWT_EXPIRES_IN", "3600s"),
     };
   }
 
   get app(): AppConfig {
     return {
-      port: this.configService.get<number>('APP_PORT', 3000),
-      environment: this.configService.get<string>('APP_ENV', 'development'),
-      name: this.configService.get<string>('APP_NAME', 'NestJS App'),
+      port: this.configService.get<number>("APP_PORT", 3000),
+      environment: this.configService.get<string>("APP_ENV", "development"),
+      name: this.configService.get<string>("APP_NAME", "NestJS App"),
     };
   }
 
   get redis(): RedisConfig {
     return {
-      url: this.configService.get<string>('REDIS_URL'),
-      ttl: this.configService.get<number>('REDIS_TTL', 3600),
+      url: this.configService.get<string>("REDIS_URL"),
+      ttl: this.configService.get<number>("REDIS_TTL", 3600),
     };
   }
 }
@@ -225,39 +226,39 @@ project-root/
 
 ```typescript
 // config/configuration.ts
-import { registerAs } from '@nestjs/config';
+import { registerAs } from "@nestjs/config";
 
 // 数据库配置命名空间
-export const databaseConfig = registerAs('database', () => ({
-  host: process.env.DATABASE_HOST || 'localhost',
-  port: parseInt(process.env.DATABASE_PORT || '5432', 10),
-  username: process.env.DATABASE_USER || 'postgres',
-  password: process.env.DATABASE_PASSWORD || '',
-  database: process.env.DATABASE_NAME || 'test',
-  synchronize: process.env.NODE_ENV !== 'production', // 生产环境禁用同步
-  logging: process.env.NODE_ENV === 'development',
+export const databaseConfig = registerAs("database", () => ({
+  host: process.env.DATABASE_HOST || "localhost",
+  port: parseInt(process.env.DATABASE_PORT || "5432", 10),
+  username: process.env.DATABASE_USER || "postgres",
+  password: process.env.DATABASE_PASSWORD || "",
+  database: process.env.DATABASE_NAME || "test",
+  synchronize: process.env.NODE_ENV !== "production", // 生产环境禁用同步
+  logging: process.env.NODE_ENV === "development",
 }));
 
 // JWT配置命名空间
-export const jwtConfig = registerAs('jwt', () => ({
-  secret: process.env.JWT_SECRET || 'default-secret',
-  expiresIn: process.env.JWT_EXPIRES_IN || '3600s',
-  issuer: process.env.JWT_ISSUER || 'nestjs-app',
-  audience: process.env.JWT_AUDIENCE || 'nestjs-client',
+export const jwtConfig = registerAs("jwt", () => ({
+  secret: process.env.JWT_SECRET || "default-secret",
+  expiresIn: process.env.JWT_EXPIRES_IN || "3600s",
+  issuer: process.env.JWT_ISSUER || "nestjs-app",
+  audience: process.env.JWT_AUDIENCE || "nestjs-client",
 }));
 
 // 应用配置命名空间
-export const appConfig = registerAs('app', () => ({
-  port: parseInt(process.env.APP_PORT || '3000', 10),
-  environment: process.env.NODE_ENV || 'development',
-  name: process.env.APP_NAME || 'NestJS Application',
-  frontendUrl: process.env.FRONTEND_URL || 'http://localhost:3000',
-  apiPrefix: process.env.API_PREFIX || 'api',
-  version: process.env.APP_VERSION || '1.0.0',
+export const appConfig = registerAs("app", () => ({
+  port: parseInt(process.env.APP_PORT || "3000", 10),
+  environment: process.env.NODE_ENV || "development",
+  name: process.env.APP_NAME || "NestJS Application",
+  frontendUrl: process.env.FRONTEND_URL || "http://localhost:3000",
+  apiPrefix: process.env.API_PREFIX || "api",
+  version: process.env.APP_VERSION || "1.0.0",
 }));
 
 // 第三方服务配置
-export const thirdPartyConfig = registerAs('thirdParty', () => ({
+export const thirdPartyConfig = registerAs("thirdParty", () => ({
   stripe: {
     apiKey: process.env.STRIPE_API_KEY,
     webhookSecret: process.env.STRIPE_WEBHOOK_SECRET,
@@ -265,15 +266,15 @@ export const thirdPartyConfig = registerAs('thirdParty', () => ({
   aws: {
     accessKeyId: process.env.AWS_ACCESS_KEY_ID,
     secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-    region: process.env.AWS_REGION || 'us-east-1',
+    region: process.env.AWS_REGION || "us-east-1",
     s3Bucket: process.env.AWS_S3_BUCKET,
   },
   email: {
     host: process.env.EMAIL_HOST,
-    port: parseInt(process.env.EMAIL_PORT || '587', 10),
+    port: parseInt(process.env.EMAIL_PORT || "587", 10),
     user: process.env.EMAIL_USER,
     password: process.env.EMAIL_PASSWORD,
-    from: process.env.EMAIL_FROM || 'noreply@example.com',
+    from: process.env.EMAIL_FROM || "noreply@example.com",
   },
 }));
 ```
@@ -282,28 +283,28 @@ export const thirdPartyConfig = registerAs('thirdParty', () => ({
 
 ```typescript
 // config/config.module.ts
-import { Module } from '@nestjs/common';
-import { ConfigModule } from '@nestjs/config';
-import * as Joi from 'joi';
+import { Module } from "@nestjs/common";
+import { ConfigModule } from "@nestjs/config";
+import * as Joi from "joi";
 import {
   databaseConfig,
   jwtConfig,
   appConfig,
   thirdPartyConfig,
-} from './configuration';
+} from "./configuration";
 
 // 根据 NODE_ENV 加载不同的环境文件
 const envFilePath = (() => {
   const env = process.env.NODE_ENV;
-  if (!env) return '.env';
-  
+  if (!env) return ".env";
+
   switch (env.toLowerCase()) {
-    case 'production':
-      return ['.env.production', '.env'];
-    case 'test':
-      return ['.env.test', '.env'];
-    case 'development':
-      return ['.env.development', '.env'];
+    case "production":
+      return [".env.production", ".env"];
+    case "test":
+      return [".env.test", ".env"];
+    case "development":
+      return [".env.development", ".env"];
     default:
       return `.env.${env}`;
   }
@@ -317,23 +318,23 @@ const envFilePath = (() => {
       load: [databaseConfig, jwtConfig, appConfig, thirdPartyConfig],
       validationSchema: Joi.object({
         NODE_ENV: Joi.string()
-          .valid('development', 'production', 'test')
-          .default('development'),
-        
+          .valid("development", "production", "test")
+          .default("development"),
+
         // 数据库配置验证
         DATABASE_HOST: Joi.string().required(),
         DATABASE_PORT: Joi.number().port().default(5432),
         DATABASE_USER: Joi.string().required(),
         DATABASE_PASSWORD: Joi.string().required(),
         DATABASE_NAME: Joi.string().required(),
-        
+
         // 应用配置验证
         APP_PORT: Joi.number().port().default(3000),
-        APP_NAME: Joi.string().default('NestJS App'),
-        
+        APP_NAME: Joi.string().default("NestJS App"),
+
         // JWT配置验证
         JWT_SECRET: Joi.string().required(),
-        JWT_EXPIRES_IN: Joi.string().default('3600s'),
+        JWT_EXPIRES_IN: Joi.string().default("3600s"),
       }),
       cache: true, // 缓存配置，提高性能
     }),
@@ -349,28 +350,29 @@ export class MyConfigModule {}
 
 ```typescript
 // database/database.module.ts
-import { Module } from '@nestjs/common';
-import { ConfigModule, ConfigService } from '@nestjs/config';
-import { TypeOrmModule } from '@nestjs/typeorm';
+import { Module } from "@nestjs/common";
+import { ConfigModule, ConfigService } from "@nestjs/config";
+import { TypeOrmModule } from "@nestjs/typeorm";
 
 @Module({
   imports: [
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
       useFactory: (configService: ConfigService) => ({
-        type: 'postgres',
-        host: configService.get<string>('database.host'),
-        port: configService.get<number>('database.port'),
-        username: configService.get<string>('database.username'),
-        password: configService.get<string>('database.password'),
-        database: configService.get<string>('database.database'),
-        entities: [__dirname + '/../**/*.entity{.ts,.js}'],
-        synchronize: configService.get<boolean>('database.synchronize'),
-        logging: configService.get<boolean>('database.logging'),
-        migrations: [__dirname + '/migrations/*{.ts,.js}'],
-        migrationsRun: configService.get<string>('app.environment') === 'production',
+        type: "postgres",
+        host: configService.get<string>("database.host"),
+        port: configService.get<number>("database.port"),
+        username: configService.get<string>("database.username"),
+        password: configService.get<string>("database.password"),
+        database: configService.get<string>("database.database"),
+        entities: [__dirname + "/../**/*.entity{.ts,.js}"],
+        synchronize: configService.get<boolean>("database.synchronize"),
+        logging: configService.get<boolean>("database.logging"),
+        migrations: [__dirname + "/migrations/*{.ts,.js}"],
+        migrationsRun:
+          configService.get<string>("app.environment") === "production",
         cli: {
-          migrationsDir: 'src/database/migrations',
+          migrationsDir: "src/database/migrations",
         },
       }),
       inject: [ConfigService],
@@ -384,20 +386,20 @@ export class DatabaseModule {}
 
 ```typescript
 // auth/jwt.module.ts
-import { Module } from '@nestjs/common';
-import { JwtModule } from '@nestjs/jwt';
-import { ConfigModule, ConfigService } from '@nestjs/config';
+import { Module } from "@nestjs/common";
+import { JwtModule } from "@nestjs/jwt";
+import { ConfigModule, ConfigService } from "@nestjs/config";
 
 @Module({
   imports: [
     JwtModule.registerAsync({
       imports: [ConfigModule],
       useFactory: async (configService: ConfigService) => ({
-        secret: configService.get<string>('jwt.secret'),
+        secret: configService.get<string>("jwt.secret"),
         signOptions: {
-          expiresIn: configService.get<string>('jwt.expiresIn'),
-          issuer: configService.get<string>('jwt.issuer'),
-          audience: configService.get<string>('jwt.audience'),
+          expiresIn: configService.get<string>("jwt.expiresIn"),
+          issuer: configService.get<string>("jwt.issuer"),
+          audience: configService.get<string>("jwt.audience"),
         },
       }),
       inject: [ConfigService],
@@ -412,8 +414,8 @@ export class JwtConfigModule {}
 
 ```typescript
 // app.service.ts
-import { Injectable } from '@nestjs/common';
-import { MyConfigService } from './config/config.service';
+import { Injectable } from "@nestjs/common";
+import { MyConfigService } from "./config/config.service";
 
 @Injectable()
 export class AppService {
@@ -422,7 +424,7 @@ export class AppService {
   getAppInfo() {
     const appConfig = this.configService.app;
     const dbConfig = this.configService.database;
-    
+
     return {
       name: appConfig.name,
       version: appConfig.version,
@@ -434,7 +436,7 @@ export class AppService {
       },
       features: {
         hasRedis: !!this.configService.redis.url,
-        hasStripe: !!this.configService.get('thirdParty.stripe.apiKey'),
+        hasStripe: !!this.configService.get("thirdParty.stripe.apiKey"),
       },
     };
   }
@@ -447,53 +449,56 @@ export class AppService {
 
 ```typescript
 // config/encryption.util.ts
-import { createCipheriv, createDecipheriv, randomBytes, scrypt } from 'crypto';
-import { promisify } from 'util';
+import { createCipheriv, createDecipheriv, randomBytes, scrypt } from "crypto";
+import { promisify } from "util";
 
 export class ConfigEncryption {
-  private static readonly algorithm = 'aes-256-gcm';
+  private static readonly algorithm = "aes-256-gcm";
   private static readonly ivLength = 16;
   private static readonly saltLength = 64;
   private static readonly tagLength = 16;
-  
+
   static async encrypt(text: string, password: string): Promise<string> {
     const iv = randomBytes(this.ivLength);
     const salt = randomBytes(this.saltLength);
-    
-    const key = await promisify(scrypt)(password, salt, 32) as Buffer;
+
+    const key = (await promisify(scrypt)(password, salt, 32)) as Buffer;
     const cipher = createCipheriv(this.algorithm, key, iv);
-    
+
     const encrypted = Buffer.concat([
-      cipher.update(text, 'utf8'),
-      cipher.final()
+      cipher.update(text, "utf8"),
+      cipher.final(),
     ]);
-    
+
     const tag = cipher.getAuthTag();
-    
+
     // 返回格式: salt:iv:tag:encrypted
-    return Buffer.concat([salt, iv, tag, encrypted]).toString('base64');
+    return Buffer.concat([salt, iv, tag, encrypted]).toString("base64");
   }
-  
-  static async decrypt(encryptedText: string, password: string): Promise<string> {
-    const buffer = Buffer.from(encryptedText, 'base64');
-    
+
+  static async decrypt(
+    encryptedText: string,
+    password: string
+  ): Promise<string> {
+    const buffer = Buffer.from(encryptedText, "base64");
+
     let offset = 0;
     const salt = buffer.slice(offset, offset + this.saltLength);
     offset += this.saltLength;
-    
+
     const iv = buffer.slice(offset, offset + this.ivLength);
     offset += this.ivLength;
-    
+
     const tag = buffer.slice(offset, offset + this.tagLength);
     offset += this.tagLength;
-    
+
     const encrypted = buffer.slice(offset);
-    
-    const key = await promisify(scrypt)(password, salt, 32) as Buffer;
+
+    const key = (await promisify(scrypt)(password, salt, 32)) as Buffer;
     const decipher = createDecipheriv(this.algorithm, key, iv);
     decipher.setAuthTag(tag);
-    
-    return decipher.update(encrypted) + decipher.final('utf8');
+
+    return decipher.update(encrypted) + decipher.final("utf8");
   }
 }
 
@@ -504,19 +509,19 @@ export class ConfigEncryption {
 @Injectable()
 export class ConfigDecryptionService {
   private readonly encryptionKey: string;
-  
+
   constructor(private configService: ConfigService) {
-    this.encryptionKey = configService.get<string>('ENCRYPTION_KEY');
+    this.encryptionKey = configService.get<string>("ENCRYPTION_KEY");
   }
-  
+
   getDecrypted(key: string): string {
     const value = this.configService.get<string>(key);
-    
-    if (value?.startsWith('encrypted:')) {
-      const encrypted = value.replace('encrypted:', '');
+
+    if (value?.startsWith("encrypted:")) {
+      const encrypted = value.replace("encrypted:", "");
       return ConfigEncryption.decrypt(encrypted, this.encryptionKey);
     }
-    
+
     return value;
   }
 }
@@ -526,57 +531,57 @@ export class ConfigDecryptionService {
 
 ```typescript
 // config/dynamic-config.service.ts
-import { Injectable, OnModuleDestroy } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
-import { watch } from 'fs';
-import { join } from 'path';
+import { Injectable, OnModuleDestroy } from "@nestjs/common";
+import { ConfigService } from "@nestjs/config";
+import { watch } from "fs";
+import { join } from "path";
 
 @Injectable()
 export class DynamicConfigService implements OnModuleDestroy {
   private watcher: any;
   private configCallbacks = new Map<string, Array<(value: any) => void>>();
-  
+
   constructor(
     private configService: ConfigService,
-    private readonly envFilePath = '.env'
+    private readonly envFilePath = ".env"
   ) {
     this.setupFileWatcher();
   }
-  
+
   private setupFileWatcher() {
     const envFile = join(process.cwd(), this.envFilePath);
-    
+
     this.watcher = watch(envFile, (eventType, filename) => {
-      if (eventType === 'change') {
+      if (eventType === "change") {
         this.reloadConfig();
       }
     });
-    
+
     // 捕获进程退出信号
-    process.on('SIGTERM', () => this.cleanup());
-    process.on('SIGINT', () => this.cleanup());
+    process.on("SIGTERM", () => this.cleanup());
+    process.on("SIGINT", () => this.cleanup());
   }
-  
+
   private reloadConfig() {
     // 清理配置缓存
-    delete require.cache[require.resolve('dotenv').resolve('.env')];
-    
+    delete require.cache[require.resolve("dotenv").resolve(".env")];
+
     // 通知所有监听器
     this.configCallbacks.forEach((callbacks, key) => {
       const newValue = this.configService.get(key);
-      callbacks.forEach(callback => callback(newValue));
+      callbacks.forEach((callback) => callback(newValue));
     });
-    
-    console.log('配置已重新加载');
+
+    console.log("配置已重新加载");
   }
-  
+
   // 注册配置变更监听器
   watchConfig<T>(key: string, callback: (value: T) => void) {
     if (!this.configCallbacks.has(key)) {
       this.configCallbacks.set(key, []);
     }
     this.configCallbacks.get(key).push(callback);
-    
+
     // 返回取消监听的方法
     return () => {
       const callbacks = this.configCallbacks.get(key);
@@ -588,13 +593,13 @@ export class DynamicConfigService implements OnModuleDestroy {
       }
     };
   }
-  
+
   private cleanup() {
     if (this.watcher) {
       this.watcher.close();
     }
   }
-  
+
   onModuleDestroy() {
     this.cleanup();
   }
@@ -605,129 +610,129 @@ export class DynamicConfigService implements OnModuleDestroy {
 
 ```typescript
 // scripts/generate-env.ts
-import { writeFileSync, existsSync, mkdirSync } from 'fs';
-import { join } from 'path';
+import { writeFileSync, existsSync, mkdirSync } from "fs";
+import { join } from "path";
 
 interface EnvTemplate {
   [key: string]: {
     defaultValue: string;
     description: string;
     required: boolean;
-    type: 'string' | 'number' | 'boolean';
+    type: "string" | "number" | "boolean";
   };
 }
 
 const envTemplate: EnvTemplate = {
   // 应用配置
   NODE_ENV: {
-    defaultValue: 'development',
-    description: '运行环境 (development, production, test)',
+    defaultValue: "development",
+    description: "运行环境 (development, production, test)",
     required: true,
-    type: 'string',
+    type: "string",
   },
   APP_PORT: {
-    defaultValue: '3000',
-    description: '应用端口',
+    defaultValue: "3000",
+    description: "应用端口",
     required: true,
-    type: 'number',
+    type: "number",
   },
   APP_NAME: {
-    defaultValue: 'NestJS Application',
-    description: '应用名称',
+    defaultValue: "NestJS Application",
+    description: "应用名称",
     required: true,
-    type: 'string',
+    type: "string",
   },
-  
+
   // 数据库配置
   DATABASE_HOST: {
-    defaultValue: 'localhost',
-    description: '数据库主机',
+    defaultValue: "localhost",
+    description: "数据库主机",
     required: true,
-    type: 'string',
+    type: "string",
   },
   DATABASE_PORT: {
-    defaultValue: '5432',
-    description: '数据库端口',
+    defaultValue: "5432",
+    description: "数据库端口",
     required: true,
-    type: 'number',
+    type: "number",
   },
   DATABASE_USER: {
-    defaultValue: 'postgres',
-    description: '数据库用户名',
+    defaultValue: "postgres",
+    description: "数据库用户名",
     required: true,
-    type: 'string',
+    type: "string",
   },
   DATABASE_PASSWORD: {
-    defaultValue: '',
-    description: '数据库密码',
+    defaultValue: "",
+    description: "数据库密码",
     required: true,
-    type: 'string',
+    type: "string",
   },
   DATABASE_NAME: {
-    defaultValue: 'nestjs_db',
-    description: '数据库名称',
+    defaultValue: "nestjs_db",
+    description: "数据库名称",
     required: true,
-    type: 'string',
+    type: "string",
   },
-  
+
   // JWT配置
   JWT_SECRET: {
-    defaultValue: 'change-this-secret-key',
-    description: 'JWT 密钥',
+    defaultValue: "change-this-secret-key",
+    description: "JWT 密钥",
     required: true,
-    type: 'string',
+    type: "string",
   },
   JWT_EXPIRES_IN: {
-    defaultValue: '3600s',
-    description: 'JWT 过期时间',
+    defaultValue: "3600s",
+    description: "JWT 过期时间",
     required: true,
-    type: 'string',
+    type: "string",
   },
-  
+
   // 可选配置
   REDIS_URL: {
-    defaultValue: '',
-    description: 'Redis 连接 URL',
+    defaultValue: "",
+    description: "Redis 连接 URL",
     required: false,
-    type: 'string',
+    type: "string",
   },
 };
 
-function generateEnvFile(envName: string = 'development') {
-  const envDir = join(process.cwd(), 'config', 'env');
-  
+function generateEnvFile(envName: string = "development") {
+  const envDir = join(process.cwd(), "config", "env");
+
   // 确保目录存在
   if (!existsSync(envDir)) {
     mkdirSync(envDir, { recursive: true });
   }
-  
+
   const lines = [
     `# ${envName.charAt(0).toUpperCase() + envName.slice(1)} 环境配置`,
-    '# 自动生成，请根据需要修改\n',
+    "# 自动生成，请根据需要修改\n",
   ];
-  
+
   Object.entries(envTemplate).forEach(([key, config]) => {
     lines.push(`# ${config.description}`);
     lines.push(`# 类型: ${config.type}, 必需: ${config.required}`);
-    
-    if (envName === 'development' && config.required && !config.defaultValue) {
-      lines.push(`# ${key}=your-${key.toLowerCase().replace(/_/g, '-')}`);
+
+    if (envName === "development" && config.required && !config.defaultValue) {
+      lines.push(`# ${key}=your-${key.toLowerCase().replace(/_/g, "-")}`);
     } else {
       lines.push(`${key}=${config.defaultValue}`);
     }
-    
-    lines.push('');
+
+    lines.push("");
   });
-  
+
   const filename = `.env.${envName}`;
   const filepath = join(envDir, filename);
-  
-  writeFileSync(filepath, lines.join('\n'));
+
+  writeFileSync(filepath, lines.join("\n"));
   console.log(`✅ 已生成配置文件: ${filepath}`);
 }
 
 // 生成所有环境配置文件
-['development', 'production', 'test'].forEach(generateEnvFile);
+["development", "production", "test"].forEach(generateEnvFile);
 ```
 
 ## 7. 生产环境最佳实践
@@ -785,7 +790,7 @@ CMD ["node", "dist/main"]
 
 ```yaml
 # docker-compose.yml
-version: '3.8'
+version: "3.8"
 
 services:
   app:
@@ -871,57 +876,57 @@ data:
 
 ```typescript
 // config/validation.middleware.ts
-import { Injectable, NestMiddleware, HttpStatus } from '@nestjs/common';
-import { Request, Response, NextFunction } from 'express';
-import { ConfigService } from '@nestjs/config';
+import { Injectable, NestMiddleware, HttpStatus } from "@nestjs/common";
+import { Request, Response, NextFunction } from "express";
+import { ConfigService } from "@nestjs/config";
 
 @Injectable()
 export class ConfigValidationMiddleware implements NestMiddleware {
   constructor(private configService: ConfigService) {}
-  
+
   use(req: Request, res: Response, next: NextFunction) {
     // 检查必需配置
     const requiredConfigs = [
-      'DATABASE_HOST',
-      'DATABASE_USER', 
-      'DATABASE_PASSWORD',
-      'JWT_SECRET',
+      "DATABASE_HOST",
+      "DATABASE_USER",
+      "DATABASE_PASSWORD",
+      "JWT_SECRET",
     ];
-    
+
     const missingConfigs = requiredConfigs.filter(
-      key => !this.configService.get(key)
+      (key) => !this.configService.get(key)
     );
-    
+
     if (missingConfigs.length > 0) {
       return res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({
         statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
-        message: '应用配置不完整',
+        message: "应用配置不完整",
         missingConfigs,
         timestamp: new Date().toISOString(),
       });
     }
-    
+
     // 检查生产环境的安全配置
-    if (this.configService.get('NODE_ENV') === 'production') {
+    if (this.configService.get("NODE_ENV") === "production") {
       const insecureConfigs = [];
-      
+
       // 检查默认密码
-      if (this.configService.get('DATABASE_PASSWORD') === 'password123') {
-        insecureConfigs.push('DATABASE_PASSWORD 是默认密码');
+      if (this.configService.get("DATABASE_PASSWORD") === "password123") {
+        insecureConfigs.push("DATABASE_PASSWORD 是默认密码");
       }
-      
+
       // 检查默认 JWT 密钥
-      if (this.configService.get('JWT_SECRET') === 'default-secret') {
-        insecureConfigs.push('JWT_SECRET 是默认密钥');
+      if (this.configService.get("JWT_SECRET") === "default-secret") {
+        insecureConfigs.push("JWT_SECRET 是默认密钥");
       }
-      
+
       if (insecureConfigs.length > 0) {
-        console.warn('⚠️ 安全警告：', insecureConfigs);
+        console.warn("⚠️ 安全警告：", insecureConfigs);
         // 生产环境可以更严格地处理
         // throw new Error('不安全的配置检测到');
       }
     }
-    
+
     next();
   }
 }
@@ -933,88 +938,89 @@ export class ConfigValidationMiddleware implements NestMiddleware {
 
 ```typescript
 // config/debug.service.ts
-import { Injectable, Logger } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
+import { Injectable, Logger } from "@nestjs/common";
+import { ConfigService } from "@nestjs/config";
 
 @Injectable()
 export class ConfigDebugService {
   private readonly logger = new Logger(ConfigDebugService.name);
-  
+
   constructor(private configService: ConfigService) {
     this.logCurrentConfig();
   }
-  
+
   private logCurrentConfig() {
-    if (this.configService.get('NODE_ENV') === 'development') {
-      this.logger.log('=== 当前配置信息 ===');
-      
+    if (this.configService.get("NODE_ENV") === "development") {
+      this.logger.log("=== 当前配置信息 ===");
+
       // 安全地记录配置（隐藏敏感信息）
-      const allConfig = this.configService['internalConfig'];
+      const allConfig = this.configService["internalConfig"];
       const maskedConfig = this.maskSensitiveData(allConfig);
-      
+
       Object.entries(maskedConfig).forEach(([key, value]) => {
         this.logger.log(`${key}: ${value}`);
       });
-      
-      this.logger.log('=== 配置信息结束 ===');
+
+      this.logger.log("=== 配置信息结束 ===");
     }
   }
-  
+
   private maskSensitiveData(config: Record<string, any>): Record<string, any> {
     const sensitiveKeys = [
-      'password',
-      'secret', 
-      'key',
-      'token',
-      'auth',
-      'credential',
+      "password",
+      "secret",
+      "key",
+      "token",
+      "auth",
+      "credential",
     ];
-    
+
     const maskedConfig = { ...config };
-    
-    Object.keys(maskedConfig).forEach(key => {
+
+    Object.keys(maskedConfig).forEach((key) => {
       const lowerKey = key.toLowerCase();
-      
-      if (sensitiveKeys.some(sensitive => lowerKey.includes(sensitive))) {
+
+      if (sensitiveKeys.some((sensitive) => lowerKey.includes(sensitive))) {
         const value = String(maskedConfig[key]);
         if (value.length > 4) {
-          maskedConfig[key] = value.substring(0, 2) + '***' + value.substring(value.length - 2);
+          maskedConfig[key] =
+            value.substring(0, 2) + "***" + value.substring(value.length - 2);
         } else {
-          maskedConfig[key] = '****';
+          maskedConfig[key] = "****";
         }
       }
     });
-    
+
     return maskedConfig;
   }
-  
+
   // 验证配置有效性
   validateConfig() {
     const errors = [];
-    
+
     // 验证数据库连接配置
-    if (!this.configService.get('DATABASE_HOST')) {
-      errors.push('DATABASE_HOST 未配置');
+    if (!this.configService.get("DATABASE_HOST")) {
+      errors.push("DATABASE_HOST 未配置");
     }
-    
+
     // 验证端口范围
-    const port = this.configService.get('APP_PORT');
+    const port = this.configService.get("APP_PORT");
     if (port && (port < 1 || port > 65535)) {
       errors.push(`APP_PORT ${port} 无效，必须在 1-65535 之间`);
     }
-    
+
     // 验证环境变量
-    const env = this.configService.get('NODE_ENV');
-    const validEnvs = ['development', 'production', 'test'];
+    const env = this.configService.get("NODE_ENV");
+    const validEnvs = ["development", "production", "test"];
     if (env && !validEnvs.includes(env)) {
-      errors.push(`NODE_ENV ${env} 无效，必须是 ${validEnvs.join(', ')} 之一`);
+      errors.push(`NODE_ENV ${env} 无效，必须是 ${validEnvs.join(", ")} 之一`);
     }
-    
+
     if (errors.length > 0) {
-      this.logger.error('配置验证失败：', errors);
-      throw new Error(`配置错误: ${errors.join('; ')}`);
+      this.logger.error("配置验证失败：", errors);
+      throw new Error(`配置错误: ${errors.join("; ")}`);
     }
-    
+
     return { valid: true, errors: [] };
   }
 }

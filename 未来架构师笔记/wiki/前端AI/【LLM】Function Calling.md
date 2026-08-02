@@ -4,11 +4,12 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
+
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20260201133013469.png)
 
 前面是通过 **提示词** 的形式，将工具箱带过去。
 
-🙋这种方式有什么问题？
+🙋 这种方式有什么问题？
 
 1. 繁琐：大段大段的提示词，仅仅是为了约束大模型的输出
 2. 不标准：每个开发者的提示词的描述千差万别
@@ -22,36 +23,36 @@ updated: 2026-08-02
    // 工具箱
    const tools = [
      {
-       type: 'function',
-       name: 'get_weather',
+       type: "function",
+       name: "get_weather",
        description:
-         'Get current temperature for provided coordinates in celsius.',
+         "Get current temperature for provided coordinates in celsius.",
        parameters: {
-         type: 'object',
+         type: "object",
          properties: {
-           latitude: { type: 'number' },
-           longitude: { type: 'number' },
+           latitude: { type: "number" },
+           longitude: { type: "number" },
          },
-         required: ['latitude', 'longitude'],
+         required: ["latitude", "longitude"],
          additionalProperties: false,
        },
        strict: true,
      },
-   ]
+   ];
    ```
 
 2. 返回的调用工具请求
 
    ```js
-   ;[
+   [
      {
-       type: 'function_call',
-       id: 'fc_12345xyz',
-       call_id: 'call_12345xyz',
-       name: 'get_weather',
+       type: "function_call",
+       id: "fc_12345xyz",
+       call_id: "call_12345xyz",
+       name: "get_weather",
        arguments: '{"latitude":48.8566,"longitude":2.3522}',
      },
-   ]
+   ];
    ```
 
 可以在 [OpenAI 官方文档](https://platform.openai.com/docs/guides/function-calling?api-mode=responses&lang=javascript#function-calling-steps) 看到这个过程，也可以在 [Playground](https://platform.openai.com/playground/prompts?models=gpt-4.1) 这里体验整个过程。
@@ -66,30 +67,30 @@ updated: 2026-08-02
 >
 > Hugging Face 是目前最主流的开源 AI 模型托管与使用平台，相当于 AI 界的 Github.
 
-注意不同的模型，Function Calling的格式不一致。
+注意不同的模型，Function Calling 的格式不一致。
 
 deepseek
 
 ```js
 tools = [
   {
-    type: 'function',
+    type: "function",
     function: {
-      name: 'get_weather',
-      description: 'Get weather of an location',
+      name: "get_weather",
+      description: "Get weather of an location",
       parameters: {
-        type: 'object',
+        type: "object",
         properties: {
           location: {
-            type: 'string',
-            description: 'The city and state, e.g. San Francisco, CA',
+            type: "string",
+            description: "The city and state, e.g. San Francisco, CA",
           },
         },
-        required: ['location'],
+        required: ["location"],
       },
     },
   },
-]
+];
 ```
 
 GPT
@@ -97,21 +98,21 @@ GPT
 ```js
 const tools = [
   {
-    type: 'function',
-    name: 'get_weather',
-    description: 'Get current temperature for provided coordinates in celsius.',
+    type: "function",
+    name: "get_weather",
+    description: "Get current temperature for provided coordinates in celsius.",
     parameters: {
-      type: 'object',
+      type: "object",
       properties: {
-        latitude: { type: 'number' },
-        longitude: { type: 'number' },
+        latitude: { type: "number" },
+        longitude: { type: "number" },
       },
-      required: ['latitude', 'longitude'],
+      required: ["latitude", "longitude"],
       additionalProperties: false,
     },
     strict: true,
   },
-]
+];
 ```
 
 claude

@@ -4,6 +4,7 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
+
 > Vite 提供了几个核心命令，每个命令都有其特定的用途。本文详细解析这些命令的使用场景和配置。
 
 ---
@@ -76,14 +77,14 @@ export default {
     cors: true, // 启用 CORS
     // 代理配置
     proxy: {
-      '/api': {
-        target: 'http://localhost:8080',
+      "/api": {
+        target: "http://localhost:8080",
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, ''),
+        rewrite: (path) => path.replace(/^\/api/, ""),
       },
     },
   },
-}
+};
 ```
 
 **关键词解释：**
@@ -211,9 +212,9 @@ npm run build
 export default {
   build: {
     // 输出目录
-    outDir: 'dist',
+    outDir: "dist",
     // 静态资源目录
-    assetsDir: 'assets',
+    assetsDir: "assets",
     // 资源内联阈值（4KB）
     assetsInlineLimit: 4096,
     // CSS 代码分割
@@ -221,21 +222,21 @@ export default {
     // 源码映射
     sourcemap: false,
     // 压缩方式
-    minify: 'esbuild', // 或 'terser'
+    minify: "esbuild", // 或 'terser'
     // Rollup 配置
     rollupOptions: {
       input: {
-        main: './index.html',
-        admin: './admin.html',
+        main: "./index.html",
+        admin: "./admin.html",
       },
       output: {
         manualChunks: {
-          vendor: ['vue', 'vue-router'],
+          vendor: ["vue", "vue-router"],
         },
       },
     },
   },
-}
+};
 ```
 
 **关键词解释：**
@@ -252,20 +253,20 @@ export default {
 
 ```javascript
 // vite.config.js
-import { resolve } from 'path'
-import { defineConfig } from 'vite'
+import { resolve } from "path";
+import { defineConfig } from "vite";
 
 export default defineConfig({
   build: {
     rollupOptions: {
       input: {
-        main: resolve(__dirname, 'index.html'),
-        admin: resolve(__dirname, 'admin.html'),
-        mobile: resolve(__dirname, 'mobile.html'),
+        main: resolve(__dirname, "index.html"),
+        admin: resolve(__dirname, "admin.html"),
+        mobile: resolve(__dirname, "mobile.html"),
       },
     },
   },
-})
+});
 ```
 
 **目录结构：**
@@ -357,7 +358,7 @@ export default {
     host: true,
     open: true,
   },
-}
+};
 ```
 
 **使用场景：**
@@ -539,8 +540,8 @@ VITE_APP_TITLE=生产环境
 
 ```javascript
 // src/config.js
-export const API_URL = import.meta.env.VITE_API_URL
-export const APP_TITLE = import.meta.env.VITE_APP_TITLE
+export const API_URL = import.meta.env.VITE_API_URL;
+export const APP_TITLE = import.meta.env.VITE_APP_TITLE;
 ```
 
 **关键词解释：**

@@ -4,13 +4,14 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
+
 - 获取所有测试文件
 - 并行的运行测试代码
 - 添加断言
 
 ## 1. 获取所有测试文件
 
-首先第一步，我们需要搭建我们的项目，假设我们的测试框架叫做 *Best*，打开终端，输入如下的指令：
+首先第一步，我们需要搭建我们的项目，假设我们的测试框架叫做 _Best_，打开终端，输入如下的指令：
 
 ```bash
 cd desktop
@@ -28,7 +29,7 @@ touch index.mjs
 npm i glob
 ```
 
-这里我们安装了 *glob* 这个依赖包，这是一个用于匹配文件路径模式的库。它使开发人员能够使用通配符（例如 * 和 ?）轻松地查找和匹配文件。
+这里我们安装了 _glob_ 这个依赖包，这是一个用于匹配文件路径模式的库。它使开发人员能够使用通配符（例如 \* 和 ?）轻松地查找和匹配文件。
 
 ```js
 // index.mjs
@@ -39,17 +40,17 @@ const testFiles = glob.sync("**/*.test.js");
 console.log(testFiles); // ['tests/01.test.js', 'tests/02.test.js', …]˝
 ```
 
-如果你运行上面的代码，会打印出所有的测试文件，当然我们也可以选择使用 *jest-haste-map* 这个依赖，这是 *Jest* 测试框架的一个依赖项，提供了一个快速的文件查找系统。它负责构建项目中所有文件及其依赖的映射，以便 *Jest* 可以快速高效地找到运行测试所需的文件。
+如果你运行上面的代码，会打印出所有的测试文件，当然我们也可以选择使用 _jest-haste-map_ 这个依赖，这是 _Jest_ 测试框架的一个依赖项，提供了一个快速的文件查找系统。它负责构建项目中所有文件及其依赖的映射，以便 _Jest_ 可以快速高效地找到运行测试所需的文件。
 
 ```bash
 npm i jest-haste-map
 ```
 
 ```js
-import JestHasteMap from 'jest-haste-map';
-import { cpus } from 'os';
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
+import JestHasteMap from "jest-haste-map";
+import { cpus } from "os";
+import { dirname } from "path";
+import { fileURLToPath } from "url";
 
 // 这行代码使用 import.meta.url 获取当前文件的 URL
 // 然后使用 fileURLToPath() 函数将其转换为文件路径
@@ -60,9 +61,9 @@ const root = dirname(fileURLToPath(import.meta.url));
 // 这部分代码定义了一个名为 hasteMapOptions 的对象
 // 包含了 jest-haste-map 的配置选项，例如要处理的文件扩展名、工作进程的数量等。
 const hasteMapOptions = {
-  extensions: ['js'], // 只遍历 .js 文件
+  extensions: ["js"], // 只遍历 .js 文件
   maxWorkers: cpus().length, // 并行处理所有可用的 CPU
-  name: 'best', // 用于缓存的名称
+  name: "best", // 用于缓存的名称
   platforms: [], // 只针对 React Native 使用，这里不需要
   rootDir: root, // 项目的根目录
   roots: [root], // 可以用于只搜索 `rootDir` 中的某个子集文件
@@ -79,7 +80,7 @@ const { hasteFS } = await hasteMap.build();
 // 获取所有的文件
 // const testFiles = hasteFS.getAllFiles();
 // 我们并不需要获取所有的 js 文件，而是获取 test.js
-const testFiles = hasteFS.matchFilesWithGlob(['**/*.test.js']);
+const testFiles = hasteFS.matchFilesWithGlob(["**/*.test.js"]);
 
 console.log(testFiles);
 // ['/path/to/tests/01.test.js', '/path/to/tests/02.test.js', …]
@@ -93,25 +94,25 @@ console.log(testFiles);
 
 ```js
 // index.mjs
-import fs from 'fs';
+import fs from "fs";
 
 await Promise.all(
   Array.from(testFiles).map(async (testFile) => {
-    const code = await fs.promises.readFile(testFile, 'utf8');
-    console.log(testFile + ':\n' + code);
-  }),
+    const code = await fs.promises.readFile(testFile, "utf8");
+    console.log(testFile + ":\n" + code);
+  })
 );
 ```
 
-通过上面的代码，我们读取出了所有测试文件里面所写的内容，但是此时并不是并行执行的，在 *JavaScript* 中所有的代码都是单线程执行，这意味着在同一个循环中运行测试，它们将无法并发执行。如果我们想要构建一个快速的测试框架，我们需要使用所有可用的 *CPU*。
+通过上面的代码，我们读取出了所有测试文件里面所写的内容，但是此时并不是并行执行的，在 _JavaScript_ 中所有的代码都是单线程执行，这意味着在同一个循环中运行测试，它们将无法并发执行。如果我们想要构建一个快速的测试框架，我们需要使用所有可用的 _CPU_。
 
-*Node.js* 里面有针对 *worker threads*（工作线程） 的支持，这允许在同一个进程中的多个线程并行处理工作。这需要一些样板代码，因此我们将使用 *jest-worker* 包：
+_Node.js_ 里面有针对 _worker threads_（工作线程） 的支持，这允许在同一个进程中的多个线程并行处理工作。这需要一些样板代码，因此我们将使用 _jest-worker_ 包：
 
 ```js
 npm i jest-worker
 ```
 
-除了我们的 *index* 文件之外，我们还需要一个单独的模块，它知道如何在工作进程中执行测试。让我们创建一个新文件 *worker.js*。
+除了我们的 _index_ 文件之外，我们还需要一个单独的模块，它知道如何在工作进程中执行测试。让我们创建一个新文件 _worker.js_。
 
 ```js
 // worker.js
@@ -126,24 +127,24 @@ exports.runTest = async function (testFile) {
 
 ```js
 // index.mjs
-import { runTest } from './worker.js';
+import { runTest } from "./worker.js";
 
 await Promise.all(
   Array.from(testFiles).map(async (testFile) => {
     console.log(await runTest(testFile));
-  }),
+  })
 );
 ```
 
-但这还没有实现任何并行操作。我们需要在 *index* 文件和 *worker* 文件之间建立连接：
+但这还没有实现任何并行操作。我们需要在 _index_ 文件和 _worker_ 文件之间建立连接：
 
 ```js
 // index.mjs
-import { Worker } from 'jest-worker';
-import { join } from 'path';
+import { Worker } from "jest-worker";
+import { join } from "path";
 
-const worker = new Worker(join(root, 'worker.js'), {
-    enableWorkerThreads: true,
+const worker = new Worker(join(root, "worker.js"), {
+  enableWorkerThreads: true,
 });
 
 await Promise.all(
@@ -151,16 +152,16 @@ await Promise.all(
     // console.log(await runTest(testFile));
     const testResult = await worker.runTest(testFile);
     console.log(testResult);
-  }),
+  })
 );
 
 worker.end(); // Shut down the worker.
 ```
 
-这段代码通过 *new Worker* 创建了一个新的 *Worker* 实例，用于启动一个 *worker.js* 文件中的工作进程。这里有两个主要部分：
+这段代码通过 _new Worker_ 创建了一个新的 _Worker_ 实例，用于启动一个 _worker.js_ 文件中的工作进程。这里有两个主要部分：
 
-1. *join(root, 'worker.js')*：*join* 函数来自 *path* 模块，用于将 *root* 和 '*worker.js*' 这两个路径片段连接成一个完整的路径。这样，*Worker* 构造函数就知道在哪里找到 *worker.js* 文件。
-2. { *enableWorkerThreads: true* }：这是一个配置对象，传递给 *Worker* 构造函数。*enableWorkerThreads* 设置为 *true* 表示启用 *Worker Threads* 功能。*Worker Threads* 是 *Node.js* 中的一个功能，允许在同一个进程中创建多个线程来并行执行任务。这对于充分利用多核 *CPU* 和提高应用性能非常有用。
+1. _join(root, 'worker.js')_：_join_ 函数来自 _path_ 模块，用于将 _root_ 和 '_worker.js_' 这两个路径片段连接成一个完整的路径。这样，_Worker_ 构造函数就知道在哪里找到 _worker.js_ 文件。
+2. { _enableWorkerThreads: true_ }：这是一个配置对象，传递给 _Worker_ 构造函数。_enableWorkerThreads_ 设置为 _true_ 表示启用 _Worker Threads_ 功能。_Worker Threads_ 是 _Node.js_ 中的一个功能，允许在同一个进程中创建多个线程来并行执行任务。这对于充分利用多核 _CPU_ 和提高应用性能非常有用。
 
 ```js
 // worker.js
@@ -170,15 +171,15 @@ exports.runTest = async function (testFile) {
 };
 ```
 
-在 *worker.js* 中，我们返回一个字符串。这个字符串包含三部分：
+在 _worker.js_ 中，我们返回一个字符串。这个字符串包含三部分：
 
-- *worker* 的 *ID*（从环境变量 *process.env.JEST_WORKER_ID* 获取）
-- 测试文件的路径（*testFile* 变量）
-- 文件的内容（*code* 变量）
+- _worker_ 的 _ID_（从环境变量 _process.env.JEST_WORKER_ID_ 获取）
+- 测试文件的路径（_testFile_ 变量）
+- 文件的内容（_code_ 变量）
 
 ## 3. 添加断言
 
-到目前为止，我们已经能够读取到所有的测试文件里面的内容了，接下来就是进行断言，其中有一点就是需要执行测试文件里面的代码，这里我们选择使用 *eval* 来执行。
+到目前为止，我们已经能够读取到所有的测试文件里面的内容了，接下来就是进行断言，其中有一点就是需要执行测试文件里面的代码，这里我们选择使用 _eval_ 来执行。
 
 ```js
 // worker.js
@@ -198,31 +199,31 @@ exports.runTest = async function (testFile) {
 };
 ```
 
-我们对 *runTest* 做了一些修改，之前仅仅是读取测试文件里面的内容，现在我们通过 *eval* 进行执行，并且定义了一个 *testResult* 的对象，用于向外部返回执行的结果。
+我们对 _runTest_ 做了一些修改，之前仅仅是读取测试文件里面的内容，现在我们通过 _eval_ 进行执行，并且定义了一个 _testResult_ 的对象，用于向外部返回执行的结果。
 
-但是目前执行所有的测试文件，都会遇到错误：*expect is not defined*，如果我们添加 *expect* 方法的逻辑：
+但是目前执行所有的测试文件，都会遇到错误：_expect is not defined_，如果我们添加 _expect_ 方法的逻辑：
 
 ```js
 const expect = (received) => ({
-    toBe: (expected) => {
-      if (received !== expected) {
-        throw new Error(`Expected ${expected} but received ${received}.`);
-      }
-      return true;
-    },
+  toBe: (expected) => {
+    if (received !== expected) {
+      throw new Error(`Expected ${expected} but received ${received}.`);
+    }
+    return true;
+  },
 });
 try {
-    eval(code);
-    testResult.success = true;
+  eval(code);
+  testResult.success = true;
 } catch (error) {
-    testResult.errorMessage = error.message;
+  testResult.errorMessage = error.message;
 }
 return testResult;
 ```
 
-在上面的代码中，我们增加了一个 *expect* 方法，该方法返回一个对象，对象里面有一个 *toBe* 方法用于评判 *received* 和 *expected* 是否全等。
+在上面的代码中，我们增加了一个 _expect_ 方法，该方法返回一个对象，对象里面有一个 _toBe_ 方法用于评判 _received_ 和 _expected_ 是否全等。
 
-现在我们的测试框架已经能够正常运作了，运行 *node index.mjs* 的结果如下：
+现在我们的测试框架已经能够正常运作了，运行 _node index.mjs_ 的结果如下：
 
 ```bash
 { success: false, errorMessage: 'Expected 4 but received 3.' }
@@ -233,7 +234,7 @@ return testResult;
 { success: false, errorMessage: 'Expected 6 but received 5.' }
 ```
 
-但是这看上去不是太友好，我们需要美化一下控制台的输出，这里可以通过 *chalk* 这个库来做美化
+但是这看上去不是太友好，我们需要美化一下控制台的输出，这里可以通过 _chalk_ 这个库来做美化
 
 ```js
 npm i chalk
@@ -241,8 +242,8 @@ npm i chalk
 
 ```js
 // index.mjs
-import { join, relative } from 'path';
-import chalk from 'chalk';
+import { join, relative } from "path";
+import chalk from "chalk";
 
 await Promise.all(
   Array.from(testFiles).map(async (testFile) => {
@@ -259,9 +260,9 @@ await Promise.all(
 );
 ```
 
-在上面的代码中，我们从 *worker.runTest* 方法中解构出测试文件的执行结果，然后根据测试结果（成功或失败），使用 *chalk* 库为控制台输出添加颜色和样式。
+在上面的代码中，我们从 _worker.runTest_ 方法中解构出测试文件的执行结果，然后根据测试结果（成功或失败），使用 _chalk_ 库为控制台输出添加颜色和样式。
 
-另外，目前 *expect* 是我们手动实现的，实际上我们可以使用 *jest* 提供的 *expect* 扩展库：
+另外，目前 _expect_ 是我们手动实现的，实际上我们可以使用 _jest_ 提供的 _expect_ 扩展库：
 
 ```js
 npm i expect
@@ -272,9 +273,9 @@ npm i expect
 const { expect } = require("expect");
 ```
 
-在 *worker.js* 中引入 *expect* 之后，就可以去除掉我们自己实现的 *expect* 了。
+在 _worker.js_ 中引入 _expect_ 之后，就可以去除掉我们自己实现的 _expect_ 了。
 
-另外我们的测试框架目前还不支持 *mock* 功能，这个也可以通过 *jest* 提供的扩展库 *jest-mock* 来搞定：
+另外我们的测试框架目前还不支持 _mock_ 功能，这个也可以通过 _jest_ 提供的扩展库 _jest-mock_ 来搞定：
 
 ```js
 npm i jest-mock
@@ -282,7 +283,7 @@ npm i jest-mock
 
 ```js
 // worker.js
-const mock = require('jest-mock');
+const mock = require("jest-mock");
 ```
 
 ```js
@@ -295,7 +296,7 @@ fn();
 expect(fn).toHaveBeenCalled();
 ```
 
-为了让我们的测试框架支持单独测试某一个测试文件，可以在获取所有测试文件的时候，从命令行参数（*process.argv*）中获取一个可选的文件名模式，然后使用 *hasteFS.matchFilesWithGlob* 函数匹配满足该模式的测试文件，如下：
+为了让我们的测试框架支持单独测试某一个测试文件，可以在获取所有测试文件的时候，从命令行参数（_process.argv_）中获取一个可选的文件名模式，然后使用 _hasteFS.matchFilesWithGlob_ 函数匹配满足该模式的测试文件，如下：
 
 ```js
 // index.mjs
@@ -340,7 +341,7 @@ if (hasFailed) {
 }
 ```
 
-到目前为止，我们的测试框架已经初具规模，但是还有一些很常用的方法目前我们还不支持，例如 *describe* 以及 *it*，修改我们的 *worker.js*，添加这一部分的逻辑：
+到目前为止，我们的测试框架已经初具规模，但是还有一些很常用的方法目前我们还不支持，例如 _describe_ 以及 _it_，修改我们的 _worker.js_，添加这一部分的逻辑：
 
 ```js
 // worker.js
@@ -383,6 +384,7 @@ exports.runTest = async function (testFile) {
   return testResult;
 };
 ```
+
 ```js
 // circus.test.js
 describe("circus test", () => {
@@ -398,7 +400,7 @@ describe("second circus test", () => {
 });
 ```
 
-当然，我们也可以选择不手动实现，直接使用 *jest* 为我们提供的第三方库 *jest-circus*：
+当然，我们也可以选择不手动实现，直接使用 _jest_ 为我们提供的第三方库 _jest-circus_：
 
 ```js
 npm i jest-circus
@@ -406,7 +408,7 @@ npm i jest-circus
 
 ```js
 // worker.js
-const { describe, it, run } = require('jest-circus');
+const { describe, it, run } = require("jest-circus");
 
 exports.runTest = async function (testFile) {
   const code = await fs.promises.readFile(testFile, "utf8");
@@ -421,7 +423,6 @@ exports.runTest = async function (testFile) {
     const { testResults } = await run();
     testResult.testResults = testResults;
     testResult.success = testResults.every((result) => !result.errors.length);
-
   } catch (error) {
     testResult.errorMessage = error.message;
   }
@@ -429,7 +430,7 @@ exports.runTest = async function (testFile) {
 };
 ```
 
-这里我们将 *testResults* 也一并返回给调用处，在调用处就可以拿到这个 *testResults* 数组，为错误信息显示更加完整的提示：
+这里我们将 _testResults_ 也一并返回给调用处，在调用处就可以拿到这个 _testResults_ 数组，为错误信息显示更加完整的提示：
 
 ```js
 // index.mjs
@@ -437,13 +438,13 @@ await Promise.all(
   Array.from(testFiles).map(async (testFile) => {
     // 解构出 testResults
     const { success, testResults, errorMessage } = await worker.runTest(
-      testFile,
+      testFile
     );
     const status = success
-      ? chalk.green.inverse.bold(' PASS ')
-      : chalk.red.inverse.bold(' FAIL ');
+      ? chalk.green.inverse.bold(" PASS ")
+      : chalk.red.inverse.bold(" FAIL ");
 
-    console.log(status + ' ' + chalk.dim(relative(root, testFile)));
+    console.log(status + " " + chalk.dim(relative(root, testFile)));
     if (!success) {
       hasFailed = true;
       // Make use of the rich `testResults` and error messages.
@@ -454,23 +455,23 @@ await Promise.all(
           .forEach((result) =>
             console.log(
               // Skip the first part of the path which is an internal token.
-              result.testPath.slice(1).join(' ') + '\n' + result.errors[0],
-            ),
+              result.testPath.slice(1).join(" ") + "\n" + result.errors[0]
+            )
           );
         // If the test crashed before `jest-circus` ran, report it here.
       } else if (errorMessage) {
-        console.log('  ' + errorMessage);
+        console.log("  " + errorMessage);
       }
     }
-  }),
+  })
 );
 ```
 
-如果你运行了很多测试，你会发现 *jest-circus* 没有自动重置状态，导致测试文件之间的状态共享。这并不是一个好的情况，我们可以通过使用 *jest-circus* 提供的 *resetState* 函数，在执行测试代码之前重置状态，来解决这个问题。
+如果你运行了很多测试，你会发现 _jest-circus_ 没有自动重置状态，导致测试文件之间的状态共享。这并不是一个好的情况，我们可以通过使用 _jest-circus_ 提供的 _resetState_ 函数，在执行测试代码之前重置状态，来解决这个问题。
 
 ```js
 // worker.js
-const { describe, it, run, resetState } = require('jest-circus');
+const { describe, it, run, resetState } = require("jest-circus");
 // worker.js
 try {
   resetState();
@@ -482,10 +483,10 @@ try {
 }
 ```
 
-至此，我们在不到 *100* 行的代码中，已经实现了一个测试框架的一些基本功能功能。
+至此，我们在不到 _100_ 行的代码中，已经实现了一个测试框架的一些基本功能功能。
 
 ## 4. 总结
 
 本小节主要带着大家从零搭建一个测试框架。
 
-如果你查看 *Jest* 的代码，你会注意到它由 50 个包组成。对于我们的基础测试框架，我们利用到了其中的一些。通过使用这些 *Jest* 的包，我们既可以了解测试框架的架构，也可以学习如何将这些包用于其他目的。
+如果你查看 _Jest_ 的代码，你会注意到它由 50 个包组成。对于我们的基础测试框架，我们利用到了其中的一些。通过使用这些 _Jest_ 的包，我们既可以了解测试框架的架构，也可以学习如何将这些包用于其他目的。

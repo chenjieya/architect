@@ -4,15 +4,16 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
-## 1. SSL、TLS、HTTPS的关系
+
+## 1. SSL、TLS、HTTPS 的关系
 
 SSL（Secure Sockets Layer），安全套接字协议
 
 TLS（Transport Layer Security），传输层安全性协议
 
-**TLS是SSL的升级版，两者几乎是一样的**
+**TLS 是 SSL 的升级版，两者几乎是一样的**
 
-HTTPS（Hyper Text Transfer Protocol over SecureSocket Layer），建立在SSL协议之上的HTTP协议
+HTTPS（Hyper Text Transfer Protocol over SecureSocket Layer），建立在 SSL 协议之上的 HTTP 协议
 
 <img src="https://picgo-1300696809.cos.ap-beijing.myqcloud.com/obsidian/1771927240179_20211025160927.png" alt="image-20211025160927355" style="zoom:50%;" align="left" />
 

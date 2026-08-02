@@ -4,7 +4,8 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
-## 1.  esbuild自定义插件
+
+## 1. esbuild 自定义插件
 
 插件开发其实就是基于原有的体系结构中进行`扩展`和`自定义`。 Esbuild 插件也不例外，通过 Esbuild 插件我们可以扩展 Esbuild 原有的路径解析、模块加载等方面的能力，并在 Esbuild 的构建过程中执行一系列自定义的逻辑。
 
@@ -17,18 +18,17 @@ export interface Plugin {
 }
 ```
 
-`build` 对象上会暴露5个钩子函数：`onStart`、`onResolve` 、 `onLoad`、`onEnd`和`onDispose`。
+`build` 对象上会暴露 5 个钩子函数：`onStart`、`onResolve` 、 `onLoad`、`onEnd`和`onDispose`。
 
 ### 1.1 esbuild 插件运行机制
 
-build对象上的5个钩子函数，其实就是esbuild构建过程中的几个阶段我们需要去扩展执行的内容
+build 对象上的 5 个钩子函数，其实就是 esbuild 构建过程中的几个阶段我们需要去扩展执行的内容
 
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20250922202645670.png)
 
+### 1.2 `onStart`、`onEnd`、`onDispose`
 
-### 1.2  `onStart`、`onEnd`、`onDispose`
-
-其中`onStart`、`onEnd`、`onDispose`的使用都很简单。`onStart`和`onEnd`两个钩子无非就是用来在构建开启和结束时执行一些自定义的逻辑，`onDispose`无非就是不再使用插件时执行清理。这三个钩子函数都有一个回调函数作为参数。其中onEnd的回调函数可以获取esbuild执行之后的返回值。
+其中`onStart`、`onEnd`、`onDispose`的使用都很简单。`onStart`和`onEnd`两个钩子无非就是用来在构建开启和结束时执行一些自定义的逻辑，`onDispose`无非就是不再使用插件时执行清理。这三个钩子函数都有一个回调函数作为参数。其中 onEnd 的回调函数可以获取 esbuild 执行之后的返回值。
 
 ```javascript
 /** Documentation: https://esbuild.github.io/plugins/#on-start */
@@ -47,18 +47,18 @@ onDispose(callback: () => void): void
 let testPlugin = () => ({
   name: "test-plugin",
   setup(build) {
-    console.log(build.initialOptions)
+    console.log(build.initialOptions);
     build.onStart(() => {
       console.log("===> onStart <===");
     });
     build.onEnd((result) => {
-      console.log(result)
+      console.log(result);
       console.log(`===> onEnd  <===`);
     });
     build.onDispose(() => {
       console.log("===> onDispose <===");
     });
-  }
+  },
 });
 ```
 
@@ -85,8 +85,6 @@ let testPlugin = () => ({
   plugins: [ { name: 'test-plugin', setup: [Function: setup] } ]
 }
 ```
-
-
 
 ```javascript
 {
@@ -140,7 +138,7 @@ let time = () => ({
     });
     build.onEnd((result) => {
       // console.log(result)
-      if (result.errors.length > 0) { 
+      if (result.errors.length > 0) {
         return;
       }
       console.log(`===> Build ended:${Date.now() - time}ms  <===`);
@@ -148,7 +146,7 @@ let time = () => ({
     build.onDispose(() => {
       console.log("===> Build Disposed <===");
     });
-  }
+  },
 });
 export default time;
 ```
@@ -159,7 +157,7 @@ export default time;
 
 ```javascript
 import { existsSync } from "fs";
-import { rimraf } from "rimraf"
+import { rimraf } from "rimraf";
 
 const clear = () => {
   return {
@@ -168,16 +166,16 @@ const clear = () => {
       build.onStart(() => {
         const { outdir, outfile } = build.initialOptions;
         if (outdir && existsSync(outdir)) {
-          rimraf.sync(outdir)
+          rimraf.sync(outdir);
         }
         if (outfile && existsSync(outfile)) {
-          rimraf.sync(outfile)
+          rimraf.sync(outfile);
         }
       });
     },
   };
 };
-export default clear
+export default clear;
 ```
 
 这里删除文件直接使用了第三方包`rimraf`，可以安装一下这个第三方包直接使用
@@ -188,7 +186,7 @@ npm i rimraf
 
 #### 1.2.3 实现 HTML 构建
 
-我们之前简单的使用loader的copy功能构建了html页面，但是却很死板，必须在开始就定义好css，js的文件名，如果css，js要实现hash定义的话，就很麻烦了，我们可以通过自定义HTML构建来实现这个效果。
+我们之前简单的使用 loader 的 copy 功能构建了 html 页面，但是却很死板，必须在开始就定义好 css，js 的文件名，如果 css，js 要实现 hash 定义的话，就很麻烦了，我们可以通过自定义 HTML 构建来实现这个效果。
 
 ```javascript
 import fs from "fs/promises";
@@ -217,7 +215,7 @@ const htmlPlugin = () => ({
 
         assets.forEach((asset) => {
           //获取文件名
-          asset = asset.substring(asset.lastIndexOf('/') + 1);
+          asset = asset.substring(asset.lastIndexOf("/") + 1);
           if (asset.endsWith(".js")) {
             scripts.push(createScript(asset));
           } else if (asset.endsWith(".css")) {
@@ -228,11 +226,13 @@ const htmlPlugin = () => ({
       // 拼接 HTML 内容
       const templateContent = generateHTML(scripts, links);
       // HTML 写入
-      const basePath = build.initialOptions.outdir ? build.initialOptions.outdir : process.cwd();
+      const basePath = build.initialOptions.outdir
+        ? build.initialOptions.outdir
+        : process.cwd();
       const templatePath = path.join(basePath, "index.html");
       await fs.writeFile(templatePath, templateContent);
     });
-  }
+  },
 });
 
 export default htmlPlugin;
@@ -252,18 +252,20 @@ const generateHTML = (scripts, links) => `
 <body>
   <div id="root"></div>
   ${scripts.join("\n")}
-  ${development ? 
-  `<script type="module">
+  ${
+    development
+      ? `<script type="module">
     new EventSource('/esbuild').addEventListener('change', e => location.reload())
-  </script>` : ""}
+  </script>`
+      : ""
+  }
 </body>
 
 </html>
 `;
 ```
 
-
-### 1.3  `onResolve` 和 `onLoad`
+### 1.3 `onResolve` 和 `onLoad`
 
 `onResolve` 和 `onLoad`是两个非常重要的钩子函数，分别**控制路径解析**和**模块内容加载**的过程。它们都需要传入 `Options`（选项）和 `CallBack`（回调）等 2 个参数。
 
@@ -277,7 +279,7 @@ onLoad(options: OnLoadOptions, callback: (args: OnLoadArgs) =>
   (OnLoadResult | null | undefined | Promise<OnLoadResult | null | undefined>)): void
 ```
 
-#### 1.3.1 onResolve钩子函数
+#### 1.3.1 onResolve 钩子函数
 
 `onResolve`将在 esbuild 构建的每个模块中的每个导入路径上运行。该回调可以自定义 esbuild 如何进行路径解析
 
@@ -295,22 +297,22 @@ export interface OnResolveOptions {
 
 > `filter` 正则是使用 Go 原生正则实现的，为了不使性能过于劣化，规则应该尽可能严格。同时它本身和 JS 的正则也有所区别，不支持前瞻(?<=)、后顾(?=)和反向引用(\1)这三种规则。
 
-`namespace` 为选填参数，默认为file，一般在 `onResolve` 钩子中的回调参数返回`namespace`属性作为标识，我们可以在`onLoad`钩子中通过 `namespace` 将模块过滤出来。
+`namespace` 为选填参数，默认为 file，一般在 `onResolve` 钩子中的回调参数返回`namespace`属性作为标识，我们可以在`onLoad`钩子中通过 `namespace` 将模块过滤出来。
 
-而 `CallBack` 是一个回调函数。里面的参数**args: onResolveArgs**很重要，我们一般如果要操作onResolve钩子函数，一般都是在这个参数上做文章
+而 `CallBack` 是一个回调函数。里面的参数**args: onResolveArgs**很重要，我们一般如果要操作 onResolve 钩子函数，一般都是在这个参数上做文章
 
 ```javascript
 const myPlugin = () => {
   return {
-    name: 'my-plugin',
+    name: "my-plugin",
     setup(build) {
-      build.onResolve({ filter: /.*/ }, args => {
-        console.log('---onResolve---')
+      build.onResolve({ filter: /.*/ }, (args) => {
+        console.log("---onResolve---");
         console.log(args);
-      })
+      });
     },
-  }
-}
+  };
+};
 ```
 
 其实正则表达式`{ filter: /.*/ }`表示所有路径文件，因此这里会打印一堆内容，主要格式如下：
@@ -363,9 +365,9 @@ return {
 
 如果仅仅就只是对路径做一些处理，我们也可以直接开发出一些比较有用的插件，比如，有时候某些依赖的模块使用了 `nodejs` 的原生模块，但是以 `node:` 开头的的写法，这会导致 esbuild 无法识别。我们可以通过插件修改一下这些路径，比如：
 
-#### 1.3.2 改用external引入外部CDN
+#### 1.3.2 改用 external 引入外部 CDN
 
-比如现在已经引入了lodash的库，在打包的时候当然会打包lodash的内容，但是现在希望去掉打包内容改用外部external引入CDN，我们可以通过插件来实现这一步
+比如现在已经引入了 lodash 的库，在打包的时候当然会打包 lodash 的内容，但是现在希望去掉打包内容改用外部 external 引入 CDN，我们可以通过插件来实现这一步
 
 ```javascript
 // 界面调用lodash
@@ -374,66 +376,62 @@ import _ from "lodash";
 _.debounce(() => console.log("hello world"), 1000)();
 ```
 
-
-
 ```javascript
 //esbuild-plugin-lodashExternal
 
 const lodashExternal = () => {
   return {
-    name: 'plugin-lodashExternal',
+    name: "plugin-lodashExternal",
     setup(build) {
       build.onResolve({ filter: /(^lodash)/ }, (args) => ({
-        path: 'https://cdn.jsdelivr.net/npm/lodash@4.17.21/+esm',
-        external: true
-      }))
+        path: "https://cdn.jsdelivr.net/npm/lodash@4.17.21/+esm",
+        external: true,
+      }));
     },
-  }
-}
+  };
+};
 export default lodashExternal;
 ```
 
-引入插件后，就将原来的lodash打包，转变为了CDN引入。
+引入插件后，就将原来的 lodash 打包，转变为了 CDN 引入。
 
-你可以通过插件打包metafile详情看到build打包信息
+你可以通过插件打包 metafile 详情看到 build 打包信息
 
 ```javascript
 const result = await esbuild.build(config);
 const text = await esbuild.analyzeMetafile(result.metafile, {
-  verbose:true
-})
+  verbose: true,
+});
 console.log(text);
 ```
 
-其实，在esbuild配置中，我们可以直接配置external属性，写明哪些第三方包我们需要作为external引入
+其实，在 esbuild 配置中，我们可以直接配置 external 属性，写明哪些第三方包我们需要作为 external 引入
 
 ```javascript
 const config = {
   //入口列表
-  entryPoints: ['src/App.tsx'],
+  entryPoints: ["src/App.tsx"],
   //输出目录
-  outdir: './dist',
+  outdir: "./dist",
   //外部引入
-  external: ['lodash'],
+  external: ["lodash"],
   //...其他省略
 };
 ```
 
-然后删除界面的import语句，在html文件中添加script引入
+然后删除界面的 import 语句，在 html 文件中添加 script 引入
 
 ```javascript
 <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
 ```
 
-
-
-#### 1.3.3 onLoad钩子函数
+#### 1.3.3 onLoad 钩子函数
 
 `onLoad`函数的工作是返回模块的内容并告诉 esbuild 如何解释它
 
-> **注意这里的关键点**：回模块的内容，并告诉esbuild如何解释他。
+> **注意这里的关键点**：回模块的内容，并告诉 esbuild 如何解释他。
 
-和`onResolve`一样，，`Options` 是一个对象，它包含 `filter`（必须）和 `namespace`  2 个属性:
+和`onResolve`一样，，`Options` 是一个对象，它包含 `filter`（必须）和 `namespace` 2 个属性:
 
 ```javascript
 /** Documentation: https://esbuild.github.io/plugins/#on-load-options */
@@ -445,7 +443,7 @@ export interface OnLoadOptions {
 
 其中，这里的`namespace`主要是和`onResolve`函数定义的`namespace`进行对应的,当然也可以单独运行。
 
-**args参数：**
+**args 参数：**
 
 ```javascript
 /** Documentation: https://esbuild.github.io/plugins/#on-load-arguments */
@@ -464,17 +462,17 @@ export interface OnLoadArgs {
 export interface OnLoadResult {
   // 插件名称
   pluginName?: string
-  
+
 	// 错误信息
   errors?: PartialMessage[]
   // 警告信息
   warnings?: PartialMessage[]
-  
+
 	// 模块具体内容
   contents?: string | Uint8Array
   // 指定 loader，如`js`、`ts`、`jsx`、`tsx`、`json`等等
   loader?: Loader
-  
+
   // 基准路径
   resolveDir?: string
   // 额外的插件数据
@@ -487,25 +485,23 @@ export interface OnLoadResult {
 }
 ```
 
+#### 1.3.4 以 json 格式读取 txt 文件内容
 
-
-#### 1.3.4 以json格式读取txt文件内容
-
-txt文件中的内容，以键值对的形式排列，我们希望将文件中的内容取到，并以json对象的格式在代码中输出
+txt 文件中的内容，以键值对的形式排列，我们希望将文件中的内容取到，并以 json 对象的格式在代码中输出
 
 ```javascript
 // assets/word.txt
-name=jack
-age=19
-score=100
+name = jack;
+age = 19;
+score = 100;
 ```
 
-希望可以在代码中像下面的方式获取到txt文件中的内容：
+希望可以在代码中像下面的方式获取到 txt 文件中的内容：
 
 ```javascript
-import word from "../assets/word.txt"
+import word from "../assets/word.txt";
 
-console.log(word.name,word.age,word.score)
+console.log(word.name, word.age, word.score);
 ```
 
 我们可以通过插件处理这种需求
@@ -515,11 +511,11 @@ import fs from "fs/promises";
 import path from "path";
 
 const txtPlugin = () => ({
-  name: 'txt-plugin',
+  name: "txt-plugin",
   setup(build) {
     build.onLoad({ filter: /\.txt$/ }, async (args) => {
-      console.log(args)
-      let text = await fs.readFile(args.path, 'utf8')
+      console.log(args);
+      let text = await fs.readFile(args.path, "utf8");
       const arr = text.split(/\s+/);
       const obj = arr.reduce((result, item) => {
         const [key, value] = item.split("=");
@@ -529,10 +525,10 @@ const txtPlugin = () => ({
 
       return {
         contents: JSON.stringify(obj),
-        loader: 'json',
-      }
-    })
-  }
+        loader: "json",
+      };
+    });
+  },
 });
 
 export default txtPlugin;
@@ -559,19 +555,19 @@ import fs from "fs/promises";
 import path from "path";
 
 const txtPlugin = () => ({
-  name: 'txt-plugin',
- 
+  name: "txt-plugin",
+
   setup(build) {
     build.onResolve({ filter: /\.txt$/ }, (args) => {
-      const basePath = path.join(args.resolveDir, args.path)
-      console.log(basePath)
+      const basePath = path.join(args.resolveDir, args.path);
+      console.log(basePath);
       return {
         path: basePath,
-        namespace: 'txt-ns',
-      }
-    })
-    build.onLoad({ filter: /.*/, namespace: 'txt-ns' }, async (args) => {
-      let text = await fs.readFile(args.path, 'utf8')
+        namespace: "txt-ns",
+      };
+    });
+    build.onLoad({ filter: /.*/, namespace: "txt-ns" }, async (args) => {
+      let text = await fs.readFile(args.path, "utf8");
       console.log(text);
       const arr = text.split(/\s+/);
       const contents = arr.reduce((result, item) => {
@@ -582,21 +578,20 @@ const txtPlugin = () => ({
       console.log(contents);
       return {
         contents: JSON.stringify(contents),
-        loader: 'json',
-      }
-    })
-  }
-  
+        loader: "json",
+      };
+    });
+  },
 });
 
 export default txtPlugin;
 ```
 
-#### 1.3.5 读取markdown文件内容
+#### 1.3.5 读取 markdown 文件内容
 
-我们知道markdown文件格式的内容，可以轻松的转换成HTML内容
+我们知道 markdown 文件格式的内容，可以轻松的转换成 HTML 内容
 
-我们需要先引入markdown的转换插件库，[marked](https://marked.js.org/)
+我们需要先引入 markdown 的转换插件库，[marked](https://marked.js.org/)
 
 ```javascript
 npm install marked
@@ -606,11 +601,11 @@ npm install @types/marked //如果需要TS支持的话
 ```javascript
 import path from "path";
 import fs from "fs/promises";
-import {marked} from "marked";
+import { marked } from "marked";
 
-const markdownPlugin = () => ({ 
-  name: 'markdown-plugin',
-  setup(build) { 
+const markdownPlugin = () => ({
+  name: "markdown-plugin",
+  setup(build) {
     build.onResolve({ filter: /\.md$/ }, (args) => {
       if (args.resolveDir === "") return;
 
@@ -618,11 +613,11 @@ const markdownPlugin = () => ({
         path: path.isAbsolute(args.path)
           ? args.path
           : path.join(args.resolveDir, args.path),
-        namespace: "markdown"
+        namespace: "markdown",
       };
     });
     build.onLoad({ filter: /.*/, namespace: "markdown" }, async (args) => {
-      const markdownContent = await fs.readFile(args.path, "utf8")
+      const markdownContent = await fs.readFile(args.path, "utf8");
 
       const markdownHTML = marked.parse(markdownContent);
 
@@ -630,27 +625,27 @@ const markdownPlugin = () => ({
         contents: JSON.stringify({
           html: markdownHTML,
           raw: markdownContent,
-          filename: path.basename(args.path)
+          filename: path.basename(args.path),
         }),
-        loader: "json"
+        loader: "json",
       };
     });
-  }
-})
+  },
+});
 
-export default markdownPlugin
+export default markdownPlugin;
 ```
 
-我们可以直接在tsx的界面中使用
+我们可以直接在 tsx 的界面中使用
 
 ```javascript
 import markdown from "../assets/readme.md";
 
 // jsx
-<div dangerouslySetInnerHTML={{ __html: markdown.html }}></div>
+<div dangerouslySetInnerHTML={{ __html: markdown.html }}></div>;
 ```
 
-ts声明
+ts 声明
 
 ```javascript
 declare module '*.md' {
@@ -662,5 +657,3 @@ declare module '*.md' {
   export default content
 }
 ```
-
-

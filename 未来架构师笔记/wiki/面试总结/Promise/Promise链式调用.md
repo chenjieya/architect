@@ -4,9 +4,10 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
+
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20260224134552216.png)
 
-## 1. catch方法
+## 1. catch 方法
 
 `.catch(onRejected)` = `.then(null, onRejected)`
 
@@ -14,11 +15,12 @@ updated: 2026-08-02
 
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20260224134639318.png)
 
-1. then方法必定会返回一个新的Promise
+1. then 方法必定会返回一个新的 Promise
 
    可理解为`后续处理也是一个任务`
 
 2. 新任务的状态取决于后续处理：
+
    - 若没有相关的后续处理，新任务的状态和前任务一致，数据为前任务的数据
 
    - 若有后续处理但还未执行，新任务挂起。
@@ -35,17 +37,17 @@ updated: 2026-08-02
 /*
  * 任务成功后，执行处理1，失败则执行处理2
  */
-pro.then(处理1).catch(处理2)
+pro.then(处理1).catch(处理2);
 
 /*
  * 任务成功后，依次执行处理1、处理2
  */
-pro.then(处理1).then(处理2)
+pro.then(处理1).then(处理2);
 
 /*
  * 任务成功后，依次执行处理1、处理2，若任务失败或前面的处理有错，执行处理3
  */
-pro.then(处理1).then(处理2).catch(处理3)
+pro.then(处理1).then(处理2).catch(处理3);
 ```
 
 ## 3. 邓哥的解决方案
@@ -59,49 +61,49 @@ function sendMessage(name) {
   return new Promise((resolve, reject) => {
     // 模拟 发送表白短信
     console.log(
-      `邓哥 -> ${name}：最近有谣言说我喜欢你，我要澄清一下，那不是谣言😘`,
-    )
-    console.log(`等待${name}回复......`)
+      `邓哥 -> ${name}：最近有谣言说我喜欢你，我要澄清一下，那不是谣言😘`
+    );
+    console.log(`等待${name}回复......`);
     // 模拟 女神回复需要一段时间
     setTimeout(() => {
       // 模拟 有10%的几率成功
       if (Math.random() <= 0.1) {
         // 成功，调用 onFuffiled，并传递女神的回复
-        resolve(`${name} -> 邓哥：我是九，你是三，除了你还是你😘`)
+        resolve(`${name} -> 邓哥：我是九，你是三，除了你还是你😘`);
       } else {
         // 失败，调用 onRejected，并传递女神的回复
-        reject(`${name} -> 邓哥：你是个好人😜`)
+        reject(`${name} -> 邓哥：你是个好人😜`);
       }
-    }, 1000)
-  })
+    }, 1000);
+  });
 }
 
-sendMessage('李建国')
+sendMessage("李建国")
   .catch((reply) => {
     // 失败，继续
-    console.log(reply)
-    return sendMessage('王富贵')
+    console.log(reply);
+    return sendMessage("王富贵");
   })
   .catch((reply) => {
     // 失败，继续
-    console.log(reply)
-    return sendMessage('周聚财')
+    console.log(reply);
+    return sendMessage("周聚财");
   })
   .catch((reply) => {
     // 失败，继续
-    console.log(reply)
-    return sendMessage('刘人勇')
+    console.log(reply);
+    return sendMessage("刘人勇");
   })
   .then(
     (reply) => {
       // 成功，结束
-      console.log(reply)
-      console.log('邓哥终于找到了自己的伴侣')
+      console.log(reply);
+      console.log("邓哥终于找到了自己的伴侣");
     },
     (reply) => {
       // 最后一个也失败了
-      console.log(reply)
-      console.log('邓哥命犯天煞孤星，无伴终老，孤独一生')
-    },
-  )
+      console.log(reply);
+      console.log("邓哥命犯天煞孤星，无伴终老，孤独一生");
+    }
+  );
 ```

@@ -4,7 +4,8 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
-## 1. **Ollama Web服务**
+
+## 1. **Ollama Web 服务**
 
 前面我们是通过终端，来和大模型进行交互的。
 

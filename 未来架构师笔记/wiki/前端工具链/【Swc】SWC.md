@@ -4,6 +4,7 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
+
 _SWC_ 英文全称为 _Speedy Web Compiler_，翻译成中文为“快速网页编译器”。
 
 官网地址：[https://swc.rs/](https://swc.rs/)
@@ -71,43 +72,43 @@ pnpm add @swc/core -D
 接下来在 src/index.js 中书写测试代码：
 
 ```js
-const greet = (name) => `Hello, ${name}!`
-console.log(greet('World'))
+const greet = (name) => `Hello, ${name}!`;
+console.log(greet("World"));
 ```
 
 之后在项目根目录下创建 compile.js，在该文件中利用 swc 提供的 api 对文件进行编译
 
 ```js
-const swc = require('@swc/core')
-const fs = require('fs')
-const path = require('path')
+const swc = require("@swc/core");
+const fs = require("fs");
+const path = require("path");
 
 // 拼接路径
-const codePath = path.resolve('src', 'index.js')
-const sourceCode = fs.readFileSync(codePath, 'utf8')
-const outDir = path.resolve(__dirname, 'dist')
+const codePath = path.resolve("src", "index.js");
+const sourceCode = fs.readFileSync(codePath, "utf8");
+const outDir = path.resolve(__dirname, "dist");
 
 swc
   .transform(sourceCode, {
     jsc: {
-      target: 'es5', // 设置目标JavaScript版本
+      target: "es5", // 设置目标JavaScript版本
       parser: {
-        syntax: 'ecmascript', // 设置源代码的语法
+        syntax: "ecmascript", // 设置源代码的语法
       },
     },
   })
   .then((res) => {
     // console.log(res.code)
     if (!fs.existsSync(outDir)) {
-      fs.mkdirSync(outDir)
+      fs.mkdirSync(outDir);
     }
 
-    const outputFilePath = path.join(outDir, 'index.js')
-    fs.writeFileSync(outputFilePath, res.code)
+    const outputFilePath = path.join(outDir, "index.js");
+    fs.writeFileSync(outputFilePath, res.code);
   })
   .catch((err) => {
-    console.error(err)
-  })
+    console.error(err);
+  });
 ```
 
 ## 2. CLI

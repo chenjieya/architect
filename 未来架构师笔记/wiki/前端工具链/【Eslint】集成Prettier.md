@@ -4,6 +4,7 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
+
 目前我们所学习的两个工具：Pretter 和 ESLint，两者都有管理代码风格的功能，因此两者往往就会在代码风格的管理上面存在一些冲突。
 
 例如举一个例子：
@@ -38,41 +39,41 @@ module.exports = {
     es2021: true,
     node: true,
   },
-  extends: 'eslint:recommended',
+  extends: "eslint:recommended",
   parserOptions: {
     ecmaVersion: 12,
-    sourceType: 'module',
+    sourceType: "module",
   },
   rules: {
-    indent: ['error', 2],
-    quotes: ['error', 'double'],
-    semi: ['error', 'always'],
+    indent: ["error", 2],
+    quotes: ["error", "double"],
+    semi: ["error", "always"],
   },
-}
+};
 ```
 
 src/index.js
 
 ```js
-const str = 'Helo World'
+const str = "Helo World";
 
 const arr = [
   1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22,
   23, 24, 25, 26, 27, 28, 29, 30,
-]
+];
 
 const obj = {
-  name: 'John Doe',
+  name: "John Doe",
   age: 30,
   address: {
-    city: 'New York',
-    state: 'NY',
+    city: "New York",
+    state: "NY",
   },
-}
+};
 
-console.log(str)
-console.log(arr)
-console.log(obj)
+console.log(str);
+console.log(arr);
+console.log(obj);
 ```
 
 此时，我们就会发现两份配置之间就存在了冲突。只要一格式化（prettier），eslint 就会报错。
@@ -99,22 +100,22 @@ module.exports = {
     es2021: true,
     node: true,
   },
-  extends: ['eslint:recommended', 'plugin:prettier/recommended'],
+  extends: ["eslint:recommended", "plugin:prettier/recommended"],
   parserOptions: {
     ecmaVersion: 12,
-    sourceType: 'module',
+    sourceType: "module",
   },
   rules: {
-    'prettier/prettier': [
-      'warn',
+    "prettier/prettier": [
+      "warn",
       {
         semi: false,
       },
     ],
   },
-}
+};
 ```
 
 在上面的配置文件中，我们在 extends 里面添加了一个 plugin:prettier/recommended 配置项目，该配置项表示应用 prettier 来作为 ESLint 的插件来运行，当遇到 ESLint 和 Prettier 冲突的规则的时候，关闭 ESLint 的然后用 Prettier 的。
 
-我们也可以书写 rules，但是rules注意就不要再和 ESLint 冲突了，一般只修改规则的重要级别，不修改其他的配置项。
+我们也可以书写 rules，但是 rules 注意就不要再和 ESLint 冲突了，一般只修改规则的重要级别，不修改其他的配置项。

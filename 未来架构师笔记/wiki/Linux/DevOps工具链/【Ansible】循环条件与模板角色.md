@@ -4,6 +4,7 @@ ai_editable: true
 updated_by: ai
 updated: 2026-08-02
 ---
+
 ## 1. 任务失败与异常处理
 
 默认情况下任务失败时，ansible 会在该主机上中止 play 的其余部分。可以通过以下方式自定义行为。
@@ -19,7 +20,7 @@ updated: 2026-08-02
       service:
         name: htttp
         state: stopped
-      ignore_errors: yes    # 即使失败也继续
+      ignore_errors: yes # 即使失败也继续
 
     - name: 重启 ftp 服务
       service:
@@ -70,7 +71,7 @@ updated: 2026-08-02
     - name: 判断端口是否关了
       shell: /usr/local/scripts/port.sh 21
       register: port_result
-      failed_when: "'port is not exist' in port_result.stdout"   # 输出包含该字符串则判定失败
+      failed_when: "'port is not exist' in port_result.stdout" # 输出包含该字符串则判定失败
 ```
 
 ### 1.4 changed_when：控制何时报告"已更改"
@@ -116,7 +117,7 @@ updated: 2026-08-02
             url: ftp://192.168.31.147/pub/url.txt
             dest: /tmp/new.txt
 
-      when: ansible_distribution == "Redhat"   # 系统是 Redhat 才执行整个块
+      when: ansible_distribution == "Redhat" # 系统是 Redhat 才执行整个块
 ```
 
 ## 3. 块结构：block / rescue / always
@@ -164,7 +165,7 @@ updated: 2026-08-02
   tasks:
     - name: 使用 template 下发文件
       template:
-        src: ./template.j2     # src 不指定路径时，会在当前路径的 templates 目录下找
+        src: ./template.j2 # src 不指定路径时，会在当前路径的 templates 目录下找
         dest: /tmp/test.txt
 ```
 
@@ -214,7 +215,7 @@ JSON 格式输出：
   hosts: web
   roles:
     - role: redis
-      rpmdir: /usr/local/src/ttt    # 向角色传参
+      rpmdir: /usr/local/src/ttt # 向角色传参
 ```
 
 ## 6. 并发与串行
@@ -236,7 +237,7 @@ ansible-playbook forks.yml --forks 1   # 或运行时指定，可对比耗时感
 ---
 - name: 测试 serial 参数
   hosts: haproxy
-  serial: 1        # 一次只处理一台（逐台滚动）
+  serial: 1 # 一次只处理一台（逐台滚动）
   tasks:
     - name: 关闭服务
       service:

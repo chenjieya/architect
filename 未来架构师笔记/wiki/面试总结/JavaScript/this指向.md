@@ -4,6 +4,7 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
+
 ## 1. 经典真题
 
 - _this_ 的指向哪几种 ？
@@ -36,16 +37,16 @@ _this_ 可以用在构造函数之中，表示实例对象。除此之外，_thi
 
 ```js
 function f1() {
-  console.log(this)
+  console.log(this);
 }
 
 function f2() {
-  'use strict'
-  console.log(this)
+  "use strict";
+  console.log(this);
 }
 
-f1() // window or global
-f2() // undefined
+f1(); // window or global
+f2(); // undefined
 ```
 
 这种情况相对简单、直接，函数在浏览器全局环境下被简单调用，在非严格模式下 _this_ 指向 _window_，在通过 _use strict_ 指明严格模式的情况下指向 _undefined_。
@@ -58,12 +59,12 @@ f2() // undefined
 const foo = {
   bar: 10,
   fn: function () {
-    console.log(this) // window or global
-    console.log(this.bar) // undefined
+    console.log(this); // window or global
+    console.log(this.bar); // undefined
   },
-}
-var fn1 = foo.fn
-fn1()
+};
+var fn1 = foo.fn;
+fn1();
 ```
 
 这里的 _this_ 仍然指向 _window_。虽然 _fn_ 函数在 _foo_ 对象中作为该对象的一个方法，但是在赋值给 _fn1_ 之后，_fn1_ 仍然是在 _window_ 的全局环境下执行的。因此上面的代码仍然会输出 _window_ 和 _undefined_。
@@ -76,11 +77,11 @@ fn1()
 const foo = {
   bar: 10,
   fn: function () {
-    console.log(this) // { bar: 10, fn: [Function: fn] }
-    console.log(this.bar) // 10
+    console.log(this); // { bar: 10, fn: [Function: fn] }
+    console.log(this.bar); // 10
   },
-}
-foo.fn()
+};
+foo.fn();
 ```
 
 这时，_this_ 指向的是最后调用它的对象，在 _foo.fn( )_ 语句中，this 指向的是 _foo_ 对象。
@@ -91,12 +92,12 @@ foo.fn()
 
 ```js
 const student = {
-  name: 'zhangsan',
+  name: "zhangsan",
   fn: function () {
-    return this
+    return this;
   },
-}
-console.log(student.fn() === student) // true
+};
+console.log(student.fn() === student); // true
 ```
 
 在上面的代码中，_this_ 指向当前的对象 _student_，所以最终会返回 _true_。
@@ -107,15 +108,15 @@ console.log(student.fn() === student) // true
 
 ```js
 const student = {
-  name: 'zhangsan',
+  name: "zhangsan",
   son: {
-    name: 'zhangxiaosan',
+    name: "zhangxiaosan",
     fn: function () {
-      return this.name
+      return this.name;
     },
   },
-}
-console.log(student.son.fn()) // zhangxiaosan
+};
+console.log(student.son.fn()); // zhangxiaosan
 ```
 
 在上面的代码中，_this_ 会指向最后调用它的对象，因此输出的是 _zhangxiaosan_。
@@ -126,30 +127,30 @@ console.log(student.son.fn()) // zhangxiaosan
 
 ```js
 const o1 = {
-  text: 'o1',
+  text: "o1",
   fn: function () {
-    return this.text
+    return this.text;
   },
-}
+};
 
 const o2 = {
-  text: 'o2',
+  text: "o2",
   fn: function () {
-    return o1.fn()
+    return o1.fn();
   },
-}
+};
 
 const o3 = {
-  text: 'o3',
+  text: "o3",
   fn: function () {
-    var fn = o1.fn
-    return fn()
+    var fn = o1.fn;
+    return fn();
   },
-}
+};
 
-console.log(o1.fn()) // o1
-console.log(o2.fn()) // o1
-console.log(o3.fn()) // undefined
+console.log(o1.fn()); // o1
+console.log(o2.fn()); // o1
+console.log(o3.fn()); // undefined
 ```
 
 答案是 _o1、o1、undefined_。
@@ -178,12 +179,12 @@ _DOM_ 元素绑定事件时，事件处理函数里面的 _this_ 指向绑定了
 ```js
 // this 是绑定事件的元素
 // target 是触发事件的元素 和 srcElememnt 等价
-let colorList = document.getElementById('color-list')
-colorList.addEventListener('click', function (event) {
-  console.log('this:', this)
-  console.log('target:', event.target)
-  console.log('srcElement:', event.srcElement)
-})
+let colorList = document.getElementById("color-list");
+colorList.addEventListener("click", function (event) {
+  console.log("this:", this);
+  console.log("target:", event.target);
+  console.log("srcElement:", event.srcElement);
+});
 ```
 
 当我点击如下位置时打印出来的信息如下：
@@ -199,28 +200,28 @@ colorList.addEventListener('click', function (event) {
 ```
 
 ```js
-window.id = 'window'
-document.getElementById('div1').onclick = function () {
-  console.log(this.id) // div1
+window.id = "window";
+document.getElementById("div1").onclick = function () {
+  console.log(this.id); // div1
   const callback = function () {
-    console.log(this.id) // 因为是普通函数调用，所以 this 指向 window
-  }
-  callback()
-}
+    console.log(this.id); // 因为是普通函数调用，所以 this 指向 window
+  };
+  callback();
+};
 ```
 
 此时有一种简单的解决方案，可以用一个变量保存 _div_ 节点的引用，如下：
 
 ```js
-window.id = 'window'
-document.getElementById('div1').onclick = function () {
-  console.log(this.id) // div1
-  const that = this // 保存当前 this 的指向
+window.id = "window";
+document.getElementById("div1").onclick = function () {
+  console.log(this.id); // div1
+  const that = this; // 保存当前 this 的指向
   const callback = function () {
-    console.log(that.id) // div1
-  }
-  callback()
-}
+    console.log(that.id); // div1
+  };
+  callback();
+};
 ```
 
 ### 2.4 改变 this 指向
@@ -236,12 +237,12 @@ _call、apply、bind_ 基本都能实现这一功能，起到确定 _this_ 指�
 _call_ 方法可以指定 _this_ 的指向（即函数执行时所在的的作用域），然后再指定的作用域中，执行函数。
 
 ```js
-var obj = {}
+var obj = {};
 var f = function () {
-  return this
-}
-console.log(f() === window) // this 指向 window
-console.log(f.call(obj) === obj) // 改变this 指向 obj
+  return this;
+};
+console.log(f() === window); // this 指向 window
+console.log(f.call(obj) === obj); // 改变this 指向 obj
 ```
 
 上面代码中，全局环境运行函数 _f_ 时，_this_ 指向全局环境（浏览器为 _window_ 对象）；
@@ -251,18 +252,18 @@ _call_ 方法可以改变 _this_ 的指向，指定 _this_ 指向对象 _obj_，
 _call_ 方法的参数，应该是对象 _obj_，如果参数为空或 _null、undefind_，则默认传参全局对象。
 
 ```js
-var n = 123
-var obj = { n: 456 }
+var n = 123;
+var obj = { n: 456 };
 
 function a() {
-  console.log(this.n)
+  console.log(this.n);
 }
 
-a.call() // 123
-a.call(null) // 123
-a.call(undefined) // 123
-a.call(window) // 123
-a.call(obj) // 456
+a.call(); // 123
+a.call(null); // 123
+a.call(undefined); // 123
+a.call(window); // 123
+a.call(obj); // 456
 ```
 
 上面代码中，_a_ 函数中的 _this_ 关键字，如果指向全局对象，返回结果为 _123_。
@@ -275,35 +276,35 @@ a.call(obj) // 456
 
 ```js
 var f = function () {
-  return this
-}
+  return this;
+};
 
-f.call(5) // Number {[[PrimitiveValue]]: 5}
+f.call(5); // Number {[[PrimitiveValue]]: 5}
 ```
 
 _call_ 可以接受多个参数，第一个参数是 _this_ 指向的对象，之后的是函数回调所需的参数。
 
 ```js
 function add(a, b) {
-  return a + b
+  return a + b;
 }
 
-add.call(this, 1, 2) // 3
+add.call(this, 1, 2); // 3
 ```
 
 _call_ 方法的一个应用是调用对象的原生方法。
 
 ```js
-var obj = {}
-obj.hasOwnProperty('toString') // false
+var obj = {};
+obj.hasOwnProperty("toString"); // false
 
 // 覆盖掉继承的 hasOwnProperty 方法
 obj.hasOwnProperty = function () {
-  return true
-}
-obj.hasOwnProperty('toString') // true
+  return true;
+};
+obj.hasOwnProperty("toString"); // true
 
-Object.prototype.hasOwnProperty.call(obj, 'toString') // false
+Object.prototype.hasOwnProperty.call(obj, "toString"); // false
 ```
 
 上面代码中 _hasOwnProperty_ 是 _obj_ 继承来的方法，用来判断对象是否包含自身特点（非继承）属性，但是 _hasOwnProperty_ 并不是保留字，如果被对象覆盖，会造成结果错误。
@@ -326,18 +327,18 @@ _apply_ 方法的第一个参数也是 _this_ 所要指向的那个对象，如�
 
 ```js
 function f(x, y) {
-  console.log(x + y)
+  console.log(x + y);
 }
 
-f.call(null, 1, 1) // 2
-f.apply(null, [1, 1]) // 2
+f.call(null, 1, 1); // 2
+f.apply(null, [1, 1]); // 2
 ```
 
 利用这一特性，可以实现很多小功能。比如，输出数组的最大值：
 
 ```js
-var a = [24, 30, 2, 33, 1]
-Math.max.apply(null, a) //33
+var a = [24, 30, 2, 33, 1];
+Math.max.apply(null, a); //33
 ```
 
 还可以将数组中的空值，转化成 _undefined_。
@@ -345,24 +346,24 @@ Math.max.apply(null, a) //33
 通过 _apply_ 方法，利用 _Array_ 构造函数将数组的空元素变成 _undefined_。
 
 ```js
-var a = ['a', , 'b']
-Array.apply(null, a) //['a',undefind,'b']
+var a = ["a", , "b"];
+Array.apply(null, a); //['a',undefind,'b']
 ```
 
 空元素与 _undefined_ 的差别在于，数组的 _forEach_ 方法会跳过空元素，但是不会跳过 _undefined_。因此，遍历内部元素的时候，会得到不同的结果。
 
 ```js
-var a = ['a', , 'b']
+var a = ["a", , "b"];
 
 function print(i) {
-  console.log(i)
+  console.log(i);
 }
 
-a.forEach(print)
+a.forEach(print);
 // a
 // b
 
-Array.apply(null, a).forEach(print)
+Array.apply(null, a).forEach(print);
 // a
 // undefined
 // b
@@ -371,10 +372,10 @@ Array.apply(null, a).forEach(print)
 配合数组对象的 _slice_ 方法，可以将一个类似数组的对象（比如 _arguments_ 对象）转为真正的数组。
 
 ```js
-Array.prototype.slice.apply({ 0: 1, length: 1 }) // [1]
-Array.prototype.slice.apply({ 0: 1 }) // []
-Array.prototype.slice.apply({ 0: 1, length: 2 }) // [1, undefined]
-Array.prototype.slice.apply({ length: 1 }) // [undefined]
+Array.prototype.slice.apply({ 0: 1, length: 1 }); // [1]
+Array.prototype.slice.apply({ 0: 1 }); // []
+Array.prototype.slice.apply({ 0: 1, length: 2 }); // [1, undefined]
+Array.prototype.slice.apply({ length: 1 }); // [undefined]
 ```
 
 上面代码的 _apply_ 方法的参数都是对象，但是返回结果都是数组，这就起到了将对象转成数组的目的。
@@ -386,11 +387,11 @@ Array.prototype.slice.apply({ length: 1 }) // [undefined]
 _bind_ 用于将函数体内的 _this_ 绑定到某个对象，然后返回一个新函数
 
 ```js
-var d = new Date()
-d.getTime() // 1481869925657
+var d = new Date();
+d.getTime(); // 1481869925657
 
-var print = d.getTime
-print() // Uncaught TypeError: this is not a Date object.
+var print = d.getTime;
+print(); // Uncaught TypeError: this is not a Date object.
 ```
 
 报错是因为 _d.getTime_ 赋值给 _print_ 后，_getTime_ 内部的 _this_ 指向方式变化，已经不再指向 _date_ 对象实例了。
@@ -398,8 +399,8 @@ print() // Uncaught TypeError: this is not a Date object.
 解决方法：
 
 ```js
-var print = d.getTime.bind(d)
-print() // 1481869925657
+var print = d.getTime.bind(d);
+print(); // 1481869925657
 ```
 
 _bind_ 接收的参数就是所要绑定的对象
@@ -408,13 +409,13 @@ _bind_ 接收的参数就是所要绑定的对象
 var counter = {
   count: 0,
   inc: function () {
-    this.count++
+    this.count++;
   },
-}
+};
 
-var func = counter.inc.bind(counter)
-func()
-counter.count // 1
+var func = counter.inc.bind(counter);
+func();
+counter.count; // 1
 ```
 
 绑定到其他对象
@@ -423,32 +424,32 @@ counter.count // 1
 var counter = {
   count: 0,
   inc: function () {
-    this.count++
+    this.count++;
   },
-}
+};
 
 var obj = {
   count: 100,
-}
-var func = counter.inc.bind(obj)
-func()
-obj.count // 101
+};
+var func = counter.inc.bind(obj);
+func();
+obj.count; // 101
 ```
 
 _bind_ 还可以接收更多的参数，将这些参数绑定到原函数的参数
 
 ```js
 var add = function (x, y) {
-  return x * this.m + y * this.n
-}
+  return x * this.m + y * this.n;
+};
 
 var obj = {
   m: 2,
   n: 2,
-}
+};
 
-var newAdd = add.bind(obj, 5)
-newAdd(5) // 20
+var newAdd = add.bind(obj, 5);
+newAdd(5); // 20
 ```
 
 上面代码中，_bind_ 方法除了绑定 _this_ 对象，还将 _add_ 函数的第一个参数 _x_ 绑定成 _5_，然后返回一个新函数 _newAdd_，这个函数只要再接受一个参数 _y_ 就能运行了。
@@ -457,11 +458,11 @@ newAdd(5) // 20
 
 ```js
 function add(x, y) {
-  return x + y
+  return x + y;
 }
 
-var plus5 = add.bind(null, 5)
-plus5(10) // 15
+var plus5 = add.bind(null, 5);
+plus5(10); // 15
 ```
 
 上面代码中，函数 _add_ 内部并没有 _this_，使用 _bind_ 方法的主要目的是绑定参数 _x_，以后每次运行新函数 _plus5_，就只需要提供另一个参数 _y_ 就够了。
@@ -481,16 +482,16 @@ element.addEventListener('click', o.m.bind(o));
 上面代码中，_click_ 事件绑定 _bind_ 方法生成的一个匿名函数。这样会导致无法取消绑定，所以，下面的代码是无效的。
 
 ```js
-element.removeEventListener('click', o.m.bind(o))
+element.removeEventListener("click", o.m.bind(o));
 ```
 
 正确的方法是写成下面这样：
 
 ```js
-var listener = o.m.bind(o)
-element.addEventListener('click', listener)
+var listener = o.m.bind(o);
+element.addEventListener("click", listener);
 //  ...
-element.removeEventListener('click', listener)
+element.removeEventListener("click", listener);
 ```
 
 （2）结合回调函数使用
@@ -501,17 +502,17 @@ element.removeEventListener('click', listener)
 var counter = {
   count: 0,
   inc: function () {
-    'use strict'
-    this.count++
+    "use strict";
+    this.count++;
   },
-}
+};
 
 function callIt(callback) {
-  callback()
+  callback();
 }
 
-callIt(counter.inc.bind(counter))
-counter.count // 1
+callIt(counter.inc.bind(counter));
+counter.count; // 1
 ```
 
 上面代码中，_callIt_ 方法会调用回调函数。这时如果直接把 _counter.inc_ 传入，调用时 _counter.inc_ 内部的 _this_ 就会指向全局对象。使用 _bind_ 方法将 _counter.inc_ 绑定 _counter_ 以后，就不会有这个问题，_this_ 总是指向 _counter_。
@@ -520,16 +521,16 @@ counter.count // 1
 
 ```js
 var obj = {
-  name: '张三',
+  name: "张三",
   times: [1, 2, 3],
   print: function () {
     this.times.forEach(function (n) {
-      console.log(this.name)
-    })
+      console.log(this.name);
+    });
   },
-}
+};
 
-obj.print()
+obj.print();
 // 没有任何输出
 ```
 
@@ -540,11 +541,11 @@ obj.print()
 ```js
 obj.print = function () {
   this.times.forEach(function (n) {
-    console.log(this === window)
-  })
-}
+    console.log(this === window);
+  });
+};
 
-obj.print()
+obj.print();
 // true
 // true
 // true
@@ -556,12 +557,12 @@ obj.print()
 obj.print = function () {
   this.times.forEach(
     function (n) {
-      console.log(this.name)
-    }.bind(this),
-  )
-}
+      console.log(this.name);
+    }.bind(this)
+  );
+};
 
-obj.print()
+obj.print();
 // 张三
 // 张三
 // 张三
@@ -572,9 +573,9 @@ obj.print()
 利用 _bind_ 方法，可以改写一些 _JavaScript_ 原生方法的使用形式，以数组的 _slice_ 方法为例。
 
 ```js
-;[1, 2, 3].slice(0, 1) // [1]
+[1, 2, 3].slice(0, 1); // [1]
 // 等同于
-Array.prototype.slice.call([1, 2, 3], 0, 1) // [1]
+Array.prototype.slice.call([1, 2, 3], 0, 1); // [1]
 ```
 
 上面的代码中，数组的 _slice_ 方法从 _[1, 2, 3]_ 里面，按照指定位置和长度切分出另一个数组。这样做的本质是在 _[1, 2, 3]_ 上面调用 _Array.prototype.slice_ 方法，因此可以用 _call_ 方法表达这个过程，得到同样的结果。
@@ -582,34 +583,34 @@ Array.prototype.slice.call([1, 2, 3], 0, 1) // [1]
 _call_ 方法实质上是调用 _Function.prototype.call_ 方法，因此上面的表达式可以用 _bind_ 方法改写。
 
 ```js
-var slice = Function.prototype.call.bind(Array.prototype.slice)
-slice([1, 2, 3], 0, 1) // [1]
+var slice = Function.prototype.call.bind(Array.prototype.slice);
+slice([1, 2, 3], 0, 1); // [1]
 ```
 
 上面代码的含义就是，将 _Array.prototype.slice_ 变成 _Function.prototype.call_ 方法所在的对象，调用时就变成了 _Array.prototype.slice.call_。类似的写法还可以用于其他数组方法。
 
 ```js
-var push = Function.prototype.call.bind(Array.prototype.push)
-var pop = Function.prototype.call.bind(Array.prototype.pop)
+var push = Function.prototype.call.bind(Array.prototype.push);
+var pop = Function.prototype.call.bind(Array.prototype.pop);
 
-var a = [1, 2, 3]
-push(a, 4)
-a // [1, 2, 3, 4]
+var a = [1, 2, 3];
+push(a, 4);
+a; // [1, 2, 3, 4]
 
-pop(a)
-a // [1, 2, 3]
+pop(a);
+a; // [1, 2, 3]
 ```
 
 如果再进一步，将 _Function.prototype.call_ 方法绑定到 _Function.prototype.bind_ 对象，就意味着 _bind_ 的调用形式也可以被改写。
 
 ```js
 function f() {
-  console.log(this.v)
+  console.log(this.v);
 }
 
-var o = { v: 123 }
-var bind = Function.prototype.call.bind(Function.prototype.bind)
-bind(f, o)() // 123
+var o = { v: 123 };
+var bind = Function.prototype.call.bind(Function.prototype.bind);
+bind(f, o)(); // 123
 ```
 
 上面代码的含义就是，将 _Function.prototype.bind_ 方法绑定在 _Function.prototype.call_ 上面，所以 _bind_ 方法就可以直接使用，不需要在函数实例上使用。
@@ -626,11 +627,11 @@ bind(f, o)() // 123
 const obj = {
   x: 10,
   test: function () {
-    console.log(this) // 指向 obj 对象
-    console.log(this.x) // 10
+    console.log(this); // 指向 obj 对象
+    console.log(this.x); // 10
   },
-}
-obj.test()
+};
+obj.test();
 // { x: 10, test: [Function: test] }
 // 10
 ```
@@ -642,15 +643,15 @@ obj.test()
 接下来是箭头函数以对象的方式被调用的时候的 _this_ 的指向，如下：
 
 ```js
-var x = 20
+var x = 20;
 const obj = {
   x: 10,
   test: () => {
-    console.log(this) // {}
-    console.log(this.x) // undefined
+    console.log(this); // {}
+    console.log(this.x); // undefined
   },
-}
-obj.test()
+};
+obj.test();
 // {}
 // undefined
 ```
@@ -670,47 +671,47 @@ obj.test()
 接下来我们再来看一个例子，来证明箭头函数的 _this_ 指向始终是指向的外层作用域。
 
 ```js
-var name = 'JavaScript'
+var name = "JavaScript";
 const obj = {
-  name: 'PHP',
+  name: "PHP",
   test: function () {
     const i = function () {
-      console.log(this.name)
+      console.log(this.name);
       // i 是以函数的形式被调用的，所以 this 指向全局
       // 在浏览器环境中打印出 JavaScript，node 里面为 undeifned
-    }
-    i()
+    };
+    i();
   },
-}
-obj.test() // JavaScript
+};
+obj.test(); // JavaScript
 ```
 
 接下来我们将 i 函数修改为箭头函数，如下：
 
 ```js
-var name = 'JavaScript'
+var name = "JavaScript";
 const obj = {
-  name: 'PHP',
+  name: "PHP",
   test: function () {
     const i = () => {
-      console.log(this.name)
+      console.log(this.name);
       // 由于 i 为一个箭头函数，所以 this 是指向外层的
       // 所以 this.name 将会打印出 PHP
-    }
-    i()
+    };
+    i();
   },
-}
-obj.test() // PHP
+};
+obj.test(); // PHP
 ```
 
 最后需要说一点的就是，箭头函数不能作为构造函数，如下：
 
 ```js
 const Test = (name, age) => {
-  this.name = name
-  this.age = age
-}
-const test = new Test('xiejie', 18)
+  this.name = name;
+  this.age = age;
+};
+const test = new Test("xiejie", 18);
 // TypeError: Test is not a constructor
 ```
 

@@ -4,6 +4,7 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
+
 ## 1. 经典真题
 
 - _JavaScript_ 中的 _eval_ 方法是啥？一般什么场景下使用？
@@ -19,7 +20,7 @@ _eval( )_ 函数接收一个字符串作为参数，该字符串一个表示 _Ja
 示例如下：
 
 ```js
-eval('console.log("Hello!")') // Hello!
+eval('console.log("Hello!")'); // Hello!
 
 var str = `
     var a = 1;
@@ -29,16 +30,16 @@ var str = `
     } else {
         console.log('a<b');
     }
-`
-eval(str) // a<b
+`;
+eval(str); // a<b
 
-console.log(eval('2 + 2')) // 4（ number 类型 ）
+console.log(eval("2 + 2")); // 4（ number 类型 ）
 
-console.log(eval(new String('Hello'))) // [String: 'Hello']
+console.log(eval(new String("Hello"))); // [String: 'Hello']
 
-console.log(eval('2 + 2') === eval('4')) // true
+console.log(eval("2 + 2") === eval("4")); // true
 
-console.log(eval('2 + 2') === eval(new String('2 + 2'))) // false
+console.log(eval("2 + 2") === eval(new String("2 + 2"))); // false
 ```
 
 通过上面的代码我们可以发现，_eval( )_ 会将传入的字符串作为 _JavaScript_ 来进行执行。
@@ -46,15 +47,15 @@ console.log(eval('2 + 2') === eval(new String('2 + 2'))) // false
 如果 _eval( )_ 的参数不是字符串， _eval( )_ 会将参数原封不动地返回。例如：
 
 ```js
-console.log(eval(true)) // true
-console.log(eval(5)) // 5
+console.log(eval(true)); // true
+console.log(eval(5)); // 5
 ```
 
 如果传入的字符串不是 _JavaScript_ 代码，那么也会将此字符串原封不动的返回。例如：
 
 ```js
-var Hello = 5
-console.log(eval('Hello')) // 5
+var Hello = 5;
+console.log(eval("Hello")); // 5
 ```
 
 ### 2.2 _eval_ 作用域
@@ -62,40 +63,40 @@ console.log(eval('Hello')) // 5
 _eval_ 里面的代码在当前词法环境中执行，因此它可以看到外部变量：
 
 ```js
-let a = 1
+let a = 1;
 
 function f() {
-  let a = 2
+  let a = 2;
 
-  eval('console.log(a)') // 2
+  eval("console.log(a)"); // 2
 }
 
-f()
+f();
 ```
 
 它也可以改变外部变量：
 
 ```js
-let x = 5
-eval('x = 10')
-console.log(x) // 10, value modified
+let x = 5;
+eval("x = 10");
+console.log(x); // 10, value modified
 ```
 
 在严格模式下， _eval_ 有自己的词法环境。因此，在 _eval_ 内部声明的函数和变量在外部不可见：
 
 ```js
-eval('let x = 5; function f() {}')
+eval("let x = 5; function f() {}");
 
-console.log(typeof x) // undefined (no such variable)
+console.log(typeof x); // undefined (no such variable)
 ```
 
 如果没有 _use strict_，_eval_ 没有自己的词法环境，所以我们会在外面看到 _x_ 和 _f_ :
 
 ```js
-eval('var x = 5; function f() {}')
+eval("var x = 5; function f() {}");
 
-console.log(x) // 5
-console.log(typeof x) // number
+console.log(x); // 5
+console.log(typeof x); // number
 ```
 
 ### 2.3 永远不要使用 _eval_

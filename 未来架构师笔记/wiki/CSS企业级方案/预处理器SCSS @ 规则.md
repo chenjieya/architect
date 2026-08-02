@@ -11,15 +11,15 @@ updated: 2026-08-02
 
 在原生的 CSS 里面，@import 是导入其他的 CSS 文件，Sass 再此基础上做了一些增强：
 
-1. 编译时合并：*Sass* 在编译时将导入的文件内容合并到生成的 *CSS* 文件中，这意味着只会生成一个 *CSS* 文件，而不是像原生 *CSS* 那样需要额外的 *HTTP* 请求去加载导入的文件。
+1. 编译时合并：_Sass_ 在编译时将导入的文件内容合并到生成的 _CSS_ 文件中，这意味着只会生成一个 _CSS_ 文件，而不是像原生 _CSS_ 那样需要额外的 _HTTP_ 请求去加载导入的文件。
 
-2. 变量、函数和混合体共享：*Sass* 允许在导入的文件之间共享变量、函数和混合体，这有助于组织代码并避免重复。
+2. 变量、函数和混合体共享：_Sass_ 允许在导入的文件之间共享变量、函数和混合体，这有助于组织代码并避免重复。
 
-3. 部分文件：*Sass* 支持将文件名前缀为 _ 的文件称为部分文件（*partials*）。当使用 @*import* 指令导入部分文件时，*Sass* 不会生成一个单独的 *CSS* 文件，而是将其内容合并到主文件中。这有助于更好地组织项目。
+3. 部分文件：_Sass_ 支持将文件名前缀为 \_ 的文件称为部分文件（_partials_）。当使用 @_import_ 指令导入部分文件时，_Sass_ 不会生成一个单独的 _CSS_ 文件，而是将其内容合并到主文件中。这有助于更好地组织项目。
 
-4. 文件扩展名可选：在 *Sass* 中，使用 @*import* 指令时可以省略文件扩展名（.*scss* 或 .*sass*），*Sass* 会自动识别并导入正确的文件。
+4. 文件扩展名可选：在 _Sass_ 中，使用 @_import_ 指令时可以省略文件扩展名（._scss_ 或 ._sass_），_Sass_ 会自动识别并导入正确的文件。
 
-5. 嵌套导入：*Sass* 允许在一个文件中嵌套导入其他文件，但请注意，嵌套导入的文件将在父级上下文中编译，这可能会导致输出的 *CSS* 文件中的选择器层级不符合预期。
+5. 嵌套导入：_Sass_ 允许在一个文件中嵌套导入其他文件，但请注意，嵌套导入的文件将在父级上下文中编译，这可能会导致输出的 _CSS_ 文件中的选择器层级不符合预期。
 
 接下来，我们来看一个具体的例子：
 
@@ -40,21 +40,21 @@ $secondary-color: #6c757d;
 ```scss
 // _mixins.scss
 @mixin reset-margin-padding {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
 ```
 
 ```scss
 // _header.scss
 header {
-    background-color: $primary-color;
-    color: $secondary-color;
-    @include reset-margin-padding;
+  background-color: $primary-color;
+  color: $secondary-color;
+  @include reset-margin-padding;
 }
 ```
 
-可以看出，在 _header.scss 里面使用了另外两个 scss 所定义的变量以及混合体，说明变量、函数和混合体是可以共享的。
+可以看出，在 \_header.scss 里面使用了另外两个 scss 所定义的变量以及混合体，说明变量、函数和混合体是可以共享的。
 
 之后我们在 index.scss 里面导入了这三个 scss
 
@@ -63,7 +63,7 @@ header {
 @import "mixins";
 @import "header";
 
-body{
+body {
   background-color: $primary-color;
   color: $secondary-color;
   @include reset-margin-padding;
@@ -92,27 +92,24 @@ body {
 
 通常情况下，我们在通过 @import 导入文件的时候，不给后缀名，会自动的寻找 sass 文件并将其导入。但是有一些情况下，会编译为普通的 CSS 语句，并不会导入任何文件：
 
-- 文件拓展名是 .*css*；
-- 文件名以 *http*:// 开头；
-- 文件名是 *url*()；
-- @*import* 包含 *media queries*。
+- 文件拓展名是 ._css_；
+- 文件名以 _http_:// 开头；
+- 文件名是 _url_()；
+- @_import_ 包含 _media queries_。
 
 例如：
 
 ```scss
-@import "foo.css"
-@import "foo" screen;
+@import "foo.css" @import "foo" screen;
 @import "http://foo.com/bar";
 @import url(foo);
 ```
-
-
 
 ## 2. @media
 
 这个规则在原生 CSS 里面是做媒体查询，Sass 里面是完全支持的，并且做了一些增强操作。
 
-1. Sass里面允许你讲 @media 嵌套在选择器内部
+1. Sass 里面允许你讲 @media 嵌套在选择器内部
 
 ```scss
 .navigation {
@@ -183,12 +180,12 @@ $mobile-breakpoint: 768px;
   }
 }
 
-.container{
+.container {
   width: 80%;
-  @include respond-to("mobile"){
+  @include respond-to("mobile") {
     width: 100%;
   }
-  @include respond-to("desktop"){
+  @include respond-to("desktop") {
     width: 70%;
   }
 }
@@ -210,11 +207,9 @@ $mobile-breakpoint: 768px;
 }
 ```
 
-
-
 ## 3. @extend
 
-我们在书写 CSS 样式的时候，经常会遇到一种情况：一个元素使用的样式和另外一个元素基本相同，但是又增加了一些额外的样式。这个时候就可以使用继承。Sass里面提供了@extend规则来实现继承，让一个选择器能够继承另外一个选择器的样式规则。
+我们在书写 CSS 样式的时候，经常会遇到一种情况：一个元素使用的样式和另外一个元素基本相同，但是又增加了一些额外的样式。这个时候就可以使用继承。Sass 里面提供了@extend 规则来实现继承，让一个选择器能够继承另外一个选择器的样式规则。
 
 ```scss
 .button {
@@ -224,15 +219,15 @@ $mobile-breakpoint: 768px;
   color: white;
 }
 
-
-.primary-button{
+.primary-button {
   @extend .button;
   background-color: blue;
 }
 ```
 
 ```css
-.button, .primary-button {
+.button,
+.primary-button {
   display: inline-block;
   padding: 20px;
   background-color: red;
@@ -246,9 +241,9 @@ $mobile-breakpoint: 768px;
 
 如果是刚接触的同学，可能会觉得 @extend 和 @mixin 比较相似，感觉都是把公共的样式提取出来了，但是两者其实是不同的。
 
-- 参数支持：@*mixin* 支持传递参数，使其更具灵活性；而 @*extend* 不支持参数传递。
-- 生成的 *CSS*：@*extend* 会将选择器合并，生成更紧凑的 *CSS*，并且所继承的样式在最终生成的 CSS 样式中也是真实存在的；而 @*mixin* 会在每个 @*include* 处生成完整的 *CSS* 代码，做的就是一个简单的 CSS 替换。
-- 使用场景：@*extend* 更适用于继承已有样式的情况，例如 *UI* 框架中的通用样式；而 @*mixin* 更适用于需要自定义参数的情况，例如为不同组件生成类似的样式。
+- 参数支持：@_mixin_ 支持传递参数，使其更具灵活性；而 @_extend_ 不支持参数传递。
+- 生成的 _CSS_：@_extend_ 会将选择器合并，生成更紧凑的 _CSS_，并且所继承的样式在最终生成的 CSS 样式中也是真实存在的；而 @_mixin_ 会在每个 @_include_ 处生成完整的 _CSS_ 代码，做的就是一个简单的 CSS 替换。
+- 使用场景：@_extend_ 更适用于继承已有样式的情况，例如 _UI_ 框架中的通用样式；而 @_mixin_ 更适用于需要自定义参数的情况，例如为不同组件生成类似的样式。
 
 接下来我们来看一个复杂的例子：
 
@@ -263,13 +258,14 @@ $mobile-breakpoint: 768px;
   border-width: 3px;
 }
 
-.box.a{
+.box.a {
   background-image: url("/image/abc.png");
 }
 ```
 
 ```css
-.box, .container {
+.box,
+.container {
   border: 1px #f00;
   background-color: #fdd;
 }
@@ -278,14 +274,13 @@ $mobile-breakpoint: 768px;
   border-width: 3px;
 }
 
-.box.a, .a.container {
+.box.a,
+.a.container {
   background-image: url("/image/abc.png");
 }
 ```
 
 在上面的代码中，container 是继承了 box 里面的所有样式，假设一个元素需要有 box 和 a 这两个类才能对应一段样式（abc），由于 box 类所对应的样式，如果是挂 container 这个类的话，这些样式也会有，所以一个元素如果挂了 container 和 a 这两个类，同样应该应用对应 abc 样式。
-
-
 
 有些时候，我们需要定义一套用于继承的样式，不希望 Sass 单独编译输出，那么这种情况下就可以使用 % 作为占位符。
 
@@ -297,20 +292,20 @@ $mobile-breakpoint: 768px;
   color: white;
 }
 
-
-.primary-button{
+.primary-button {
   @extend %button;
   background-color: blue;
 }
 
-.secondary-button{
+.secondary-button {
   @extend %button;
   background-color: pink;
 }
 ```
 
 ```css
-.secondary-button, .primary-button {
+.secondary-button,
+.primary-button {
   display: inline-block;
   padding: 20px;
   background-color: red;
@@ -326,17 +321,15 @@ $mobile-breakpoint: 768px;
 }
 ```
 
-
-
 ## 4. @at-root
 
 有些时候，我们可能会涉及到将嵌套规则移动到根级别（声明的时候并没有写在根级别）。这个时候就可以使用 @at-root
 
 ```scss
-.parent{
+.parent {
   color: red;
 
-  @at-root .child{
+  @at-root .child {
     color: blue;
   }
 }
@@ -388,9 +381,6 @@ $mobile-breakpoint: 768px;
 }
 ```
 
-
-
 ## 5. @debug、@warn、@error
 
 这三个规则是和调试相关的，可以让我们在编译过程中输出一条信息，有助于调试和诊断代码中的问题。
-

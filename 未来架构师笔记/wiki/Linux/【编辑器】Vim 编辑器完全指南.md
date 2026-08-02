@@ -4,6 +4,7 @@ ai_editable: true
 updated_by: ai
 updated: 2026-08-02
 ---
+
 ## 1. 文本编辑器概述
 
 Linux 下编辑文件有很多工具，最常用的是这三种：

@@ -4,7 +4,8 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
-## 0. 引言
+
+## 1. 引言
 
 在日常的前端开发中，大多数同学最常用的 npm 指令可能只有三个：
 
@@ -14,9 +15,9 @@ updated: 2026-08-02
 
 然而 npm 的功能远不止于此。官方文档（[https://docs.npmjs.com/cli/v9/commands](https://docs.npmjs.com/cli/v9/commands)）中包含了大量实用但鲜为人知的指令。本文将为你详细介绍这些指令，帮助你更高效地使用 npm。
 
-## 1. 查看相关信息类指令
+## 2. 查看相关信息类指令
 
-### `npm version`
+### 2.1 `npm version`
 
 不仅显示当前 npm 的版本号，还提供更丰富的 CLI 信息：
 
@@ -28,7 +29,7 @@ npm version
 npm -v
 ```
 
-### `npm root`
+### 2.2 `npm root`
 
 查找包的安装目录：
 
@@ -40,7 +41,7 @@ npm root
 npm root -g
 ```
 
-### `npm info`
+### 2.3 `npm info`
 
 查看包的详细信息，帮助开发者选择合适的依赖：
 
@@ -52,7 +53,7 @@ npm info react
 npm info react version
 ```
 
-### `npm search`
+### 2.4 `npm search`
 
 在 npm 仓库中搜索包：
 
@@ -64,7 +65,7 @@ npm search express
 npm search express --searchlimit=5
 ```
 
-### `npm outdated`
+### 2.5 `npm outdated`
 
 检查项目依赖是否过时：
 
@@ -77,7 +78,7 @@ npm outdated
 # lodash   4.17.20  4.17.21 4.17.21 my-project
 ```
 
-### `npm ls`
+### 2.6 `npm ls`
 
 列出项目的依赖树：
 
@@ -95,13 +96,13 @@ npm ls --depth=1
 npm ls -g --depth=0
 ```
 
-## 2. 配置相关指令
+## 3. 配置相关指令
 
-### `npm config`
+### 3.1 `npm config`
 
 管理 npm 的配置项。npm 支持三种配置来源：命令行、环境变量和 `.npmrc` 文件。
 
-#### 常用配置操作：
+#### 3.1.1 常用配置操作：
 
 ```bash
 # 查看当前仓库镜像
@@ -120,7 +121,7 @@ npm config list
 npm config edit
 ```
 
-#### `.npmrc` 文件示例：
+#### 3.1.2 `.npmrc` 文件示例：
 
 ```ini
 # 设置镜像
@@ -133,15 +134,15 @@ save-prefix="~"
 proxy=http://proxy.company.com:8080
 ```
 
-## 3. 建立软链接 - `npm link`
+## 4. 建立软链接 - `npm link`
 
 `npm link` 在本地开发多个相互依赖的包时非常有用。
 
-### 使用场景示例：
+### 4.1 使用场景示例：
 
 假设有两个包：`my-utils`（工具包）和 `my-app`（应用项目），`my-app` 依赖 `my-utils`。
 
-#### 步骤 1：在工具包中创建全局链接
+#### 4.1.1 步骤 1：在工具包中创建全局链接
 
 ```bash
 # 进入工具包目录
@@ -152,7 +153,7 @@ npm link
 # 这会在全局 node_modules 中创建指向 my-utils 的链接
 ```
 
-#### 步骤 2：在应用项目中链接工具包
+#### 4.1.2 步骤 2：在应用项目中链接工具包
 
 ```bash
 # 进入应用项目目录
@@ -162,7 +163,7 @@ cd /path/to/my-app
 npm link my-utils
 ```
 
-#### 步骤 3：开发完成后断开链接
+#### 4.1.3 步骤 3：开发完成后断开链接
 
 ```bash
 # 在应用项目中解除链接
@@ -174,13 +175,13 @@ cd /path/to/my-utils
 npm unlink -g my-utils
 ```
 
-## 4. 缓存管理指令
+## 5. 缓存管理指令
 
-### `npm cache`
+### 5.1 `npm cache`
 
 npm 会缓存包的 tarball 文件（通常为 `.tar.gz` 格式），加速后续安装。
 
-#### 常用缓存操作：
+#### 5.1.1 常用缓存操作：
 
 ```bash
 # 查看缓存目录路径
@@ -199,9 +200,9 @@ npm cache clean --force
 npm cache stats
 ```
 
-## 5. 包更新与优化指令
+## 6. 包更新与优化指令
 
-### `npm update`
+### 6.1 `npm update`
 
 更新项目依赖包，遵循 `package.json` 中的版本范围约束：
 
@@ -213,7 +214,7 @@ npm update
 npm update lodash
 ```
 
-### `npm audit`
+### 6.2 `npm audit`
 
 安全检查依赖漏洞：
 
@@ -228,7 +229,7 @@ npm audit fix
 npm audit fix --force
 ```
 
-### `npm dedupe`
+### 6.3 `npm dedupe`
 
 优化依赖树，减少重复安装：
 
@@ -237,7 +238,7 @@ npm audit fix --force
 npm dedupe
 ```
 
-#### 优化示例：
+#### 6.3.1 优化示例：
 
 优化前：
 
@@ -258,7 +259,7 @@ my-project
 └── lodash@4.17.21 (被两个包共享)
 ```
 
-### `npm prune`
+### 6.4 `npm prune`
 
 清理未在 `package.json` 中声明的依赖：
 
@@ -270,9 +271,9 @@ npm prune
 npm prune --production
 ```
 
-## 6. 获取帮助
+## 7. 获取帮助
 
-### `npm help`
+### 7.1 `npm help`
 
 ```bash
 # 查看所有可用指令
@@ -286,7 +287,7 @@ npm help publish
 npm help install --viewer=browser
 ```
 
-## 7. 总结
+## 8. 总结
 
 掌握这些 npm 指令能显著提升开发效率。特别是 `npm audit` 的安全检查、`npm link` 的本地开发支持、`npm dedupe` 的依赖优化等功能，在实际项目中非常实用。
 

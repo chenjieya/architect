@@ -4,6 +4,7 @@ ai_editable: true
 updated_by: ai
 updated: 2026-08-02
 ---
+
 ## 1. 防火墙服务管理
 
 ```bash
@@ -18,17 +19,17 @@ FirewallD 通过把网络划分成不同**区域**，每个区域有不同的信
 
 ### 2.1 区域说明
 
-| 区域 | 信任级别 | 说明 |
-| --- | --- | --- |
-| block | 全部阻止 | 任何传入网络包都被阻止 |
-| dmz | 中 | 隔离区（非军事区），内外网之间的缓冲层 |
-| drop | 全部丢弃 | 任何传入连接都被拒绝 |
-| external | 中 | 不信任，仅接受指定连接 |
-| home | 高 | 信任网络上的其他计算机 |
-| internal | 高 | 信任网络上的其他计算机 |
-| public | 低 | **默认区域**，不信任任何计算机，仅接受指定连接 |
-| trusted | 最高 | 接受所有连接 |
-| work | 高 | 信任网络上的其他计算机 |
+| 区域     | 信任级别 | 说明                                           |
+| -------- | -------- | ---------------------------------------------- |
+| block    | 全部阻止 | 任何传入网络包都被阻止                         |
+| dmz      | 中       | 隔离区（非军事区），内外网之间的缓冲层         |
+| drop     | 全部丢弃 | 任何传入连接都被拒绝                           |
+| external | 中       | 不信任，仅接受指定连接                         |
+| home     | 高       | 信任网络上的其他计算机                         |
+| internal | 高       | 信任网络上的其他计算机                         |
+| public   | 低       | **默认区域**，不信任任何计算机，仅接受指定连接 |
+| trusted  | 最高     | 接受所有连接                                   |
+| work     | 高       | 信任网络上的其他计算机                         |
 
 > **FirewallD 的默认区域是 public**。
 
@@ -65,12 +66,12 @@ firewall-cmd --list-all                      # 查看已添加的端口
 
 ## 3. 小结
 
-| 操作 | 命令 |
-| --- | --- |
-| 查看区域列表 | `firewall-cmd --get-zones` |
-| 放行服务 | `firewall-cmd --permanent --add-service=http` |
-| 放行端口 | `firewall-cmd --permanent --add-port=3690/tcp` |
-| 生效永久规则 | `firewall-cmd --reload` |
-| 查看当前配置 | `firewall-cmd --list-all` |
+| 操作         | 命令                                           |
+| ------------ | ---------------------------------------------- |
+| 查看区域列表 | `firewall-cmd --get-zones`                     |
+| 放行服务     | `firewall-cmd --permanent --add-service=http`  |
+| 放行端口     | `firewall-cmd --permanent --add-port=3690/tcp` |
+| 生效永久规则 | `firewall-cmd --reload`                        |
+| 查看当前配置 | `firewall-cmd --list-all`                      |
 
 > 与 SELinux、iptables 一起构成 Linux 安全三件套，配置服务时要**三处都放行**。相关见 [[【服务】Samba 文件共享详解]] 中的系统权限提醒。

@@ -4,7 +4,8 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
-首先需要注意，当前的这个节点，配置文件系统处于一个更新期，存在两套配置文件系统，旧的配置文件系统适用于 v9.0.0 之前的版本，而新的配置文件系统适用于 v9.0.0之后的版本，但是目前就讲课的这个节点，还处于 v8.x.x 的大版本。
+
+首先需要注意，当前的这个节点，配置文件系统处于一个更新期，存在两套配置文件系统，旧的配置文件系统适用于 v9.0.0 之前的版本，而新的配置文件系统适用于 v9.0.0 之后的版本，但是目前就讲课的这个节点，还处于 v8.x.x 的大版本。
 
 ## 1. 配置文件格式
 
@@ -25,7 +26,7 @@ updated: 2026-08-02
 5. `.eslintrc.json`
 6. `package.json`
 
-在早期的时候（v7.0.0之前），ESLint 支持使用 .eslintrc 文件来作为 ESLint 的配置文件，但是从 v7.0.0 开始，官方就已经明确废弃掉这种用法，从 v7.0.0 之后，就建议使用上述的格式来作为 ESLint 的配置文件。但是为了兼容性，之前的 .eslintrc 格式的配置文件依然能够使用，但是还是建议最好使用官方推荐的格式来进行配置。
+在早期的时候（v7.0.0 之前），ESLint 支持使用 .eslintrc 文件来作为 ESLint 的配置文件，但是从 v7.0.0 开始，官方就已经明确废弃掉这种用法，从 v7.0.0 之后，就建议使用上述的格式来作为 ESLint 的配置文件。但是为了兼容性，之前的 .eslintrc 格式的配置文件依然能够使用，但是还是建议最好使用官方推荐的格式来进行配置。
 
 ## 2. 使用配置文件
 
@@ -52,9 +53,9 @@ module.exports = {
     node: true,
   },
   rules: {
-    semi: ['error', 'always'],
+    semi: ["error", "always"],
   },
-}
+};
 ```
 
 那么现在，我们就存在两份 ESLint 的配置，此时 ESLint 会在当前目录下查找配置文件，然后会一层一层往上寻找，将找到的所有的配置文件进行一个规则合并。
@@ -251,11 +252,11 @@ overrides 是支持嵌套，例如：
 export default [
   {
     rules: {
-      semi: 'error',
-      'prefer-const': 'error',
+      semi: "error",
+      "prefer-const": "error",
     },
   },
-]
+];
 ```
 
 之所以导出的是一个数组，是因为为了支持项目中不同的文件或者文件类型定义不同的规则。
@@ -265,18 +266,18 @@ export default [
 ```js
 module.exports = [
   {
-    files: ['*.js'],
+    files: ["*.js"],
     rules: {
-      'no-var': 'error',
+      "no-var": "error",
     },
   },
   {
-    files: ['*.ts'],
+    files: ["*.ts"],
     rules: {
-      '@typescript-eslint/no-var': 'error',
+      "@typescript-eslint/no-var": "error",
     },
   },
-]
+];
 ```
 
 如果你在 package.json 里面没有指定 type: module，那么就代表你使用的是 CommonJS 规范，那么 ESLint 配置文件在做模块导出的时候，也需要使用 CommonJS 模块规范
@@ -285,11 +286,11 @@ module.exports = [
 module.exports = [
   {
     rules: {
-      semi: 'error',
-      'prefer-const': 'error',
+      semi: "error",
+      "prefer-const": "error",
     },
   },
-]
+];
 ```
 
 ## 7. 配置对象的选项
@@ -321,37 +322,37 @@ globals：该配置项位于 languageOptions 配置项下面，用于配置一�
 ```js
 export default [
   {
-    files: ['**/*.js'],
+    files: ["**/*.js"],
     languageOptions: {
       globals: {
-        var1: 'writable',
-        var2: 'readonly',
+        var1: "writable",
+        var2: "readonly",
       },
     },
   },
-]
+];
 ```
 
 在上面的配置中，我们指定了 var1 这个变量是可写的，但是 var2 这个变量是只读的。
 假设你有如下的代码
 
 ```js
-var1 = 100
-var2 = 200 // 报错
+var1 = 100;
+var2 = 200; // 报错
 ```
 
 parsers：配置解析器。解析器的作用是负责将源码解析为抽象语法树。ESLint 默认使用的解析器为 Espree，但是你可以指定其他的 parser，parser 需要是一个对象，该对象里面包含了 parse 或者 parseForESLint 方法。
 
 ```js
-import babelParser from '@babel/eslint-parser'
+import babelParser from "@babel/eslint-parser";
 export default [
   {
-    files: ['**/*.js', '**/*.mjs'],
+    files: ["**/*.js", "**/*.mjs"],
     languageOptions: {
       parser: babelParser,
     },
   },
-]
+];
 ```
 
 在上面的配置中，我们就指定了其他的 parser 来解析源码。
@@ -359,17 +360,17 @@ export default [
 processor：这个是处理器，主要用于处理 ESLint 默认不能够处理的文件类型。举个例子，假设有一个 markdown 类型的文件，里面有一些 JS 代码，默认这些 JS 代码是不能够被 ESLint 处理的，通过添加额外的处理器，让 ESLint 能够对这些格式的文件进行 lint 检查
 
 ```js
-import markdown from 'eslint-plugin-markdown'
+import markdown from "eslint-plugin-markdown";
 export default [
   {
-    files: ['**/*.md'],
+    files: ["**/*.md"],
     plugins: {
       markdown,
     },
-    processor: 'markdown/markdown',
+    processor: "markdown/markdown",
     settings: {
-      sharedData: 'Hello',
+      sharedData: "Hello",
     },
   },
-]
+];
 ```

@@ -4,6 +4,7 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
+
 ## 1. 经典真题
 
 - 是否了解 _WeakMap、WeakSet_（美团 _19_ 年）
@@ -15,16 +16,16 @@ updated: 2026-08-02
 对于对象的使用，大家其实是非常熟悉的，所以我们这里仅简单的过一遍。
 
 ```js
-const algorithm = { site: 'leetcode' }
-console.log(algorithm.site) // leetcode
+const algorithm = { site: "leetcode" };
+console.log(algorithm.site); // leetcode
 
 for (const key in algorithm) {
-  console.log(key, algorithm[key])
+  console.log(key, algorithm[key]);
 }
 
 // site leetcode
-delete algorithm.site
-console.log(algorithm.site) // undefined
+delete algorithm.site;
+console.log(algorithm.site); // undefined
 ```
 
 在上面的代码中，我们有一个 _algorithm_ 对象，它的 _key_ 和 _value_ 是一个字符串类型的值，之后通过点（ . ）进行值的访问。
@@ -41,7 +42,7 @@ console.log(algorithm.site) // undefined
 
 关于对象的讨论暂时就到这儿。
 
-## 3.Map
+## 3. 3.Map
 
 _Map_ 是 _JavaScript_ 中新的集合对象，其功能类似于对象。但是，与常规对象相比，存在一些主要差异。
 
@@ -52,30 +53,30 @@ _Map_ 是 _JavaScript_ 中新的集合对象，其功能类似于对象。但是
 首先，通过 _Map_ 构造函数，我们可以创建一个 _Map_ 实例对象出来，如下：
 
 ```js
-const map = new Map()
+const map = new Map();
 // Map(0) {}
 ```
 
 _Map_ 有一种特殊的方法可在其中添加称为 _set_ 的属性。它有两个参数：键是第一个参数，值是第二个参数。
 
 ```js
-map.set('name', 'john')
+map.set("name", "john");
 // Map(1) {"name" => "john"}
 ```
 
 但是，它不允许你在其中添加现有数据。如果 _Map_ 对象中已经存在与新数据的键对应的值，则不会添加新数据。
 
 ```js
-map.set('phone', 'iPhone')
+map.set("phone", "iPhone");
 // Map(2) {"name" => "john", "phone" => "iPhone"}
-map.set('phone', 'iPhone')
+map.set("phone", "iPhone");
 // Map(2) {"name" => "john", "phone" => "iPhone"}
 ```
 
 但是可以用其他值覆盖现有数据。
 
 ```js
-map.set('phone', 'Galaxy')
+map.set("phone", "Galaxy");
 // Map(2) {"name" => "john", "phone" => "Galaxy"}
 ```
 
@@ -86,11 +87,11 @@ var arr = [
   [1, 2],
   [3, 4],
   [5, 6],
-]
+];
 
-var map = new Map(arr)
-console.log(map) //Map { 1 => 2, 3 => 4, 5 => 6 }
-console.log(Array.from(map)) //[ [ 1, 2 ], [ 3, 4 ], [ 5, 6 ] ]
+var map = new Map(arr);
+console.log(map); //Map { 1 => 2, 3 => 4, 5 => 6 }
+console.log(Array.from(map)); //[ [ 1, 2 ], [ 3, 4 ], [ 5, 6 ] ]
 ```
 
 ### 3.2 获取属性和长度
@@ -98,28 +99,28 @@ console.log(Array.from(map)) //[ [ 1, 2 ], [ 3, 4 ], [ 5, 6 ] ]
 可以通过 _get_ 方法或者 _Map_ 对象某一条属性的值：
 
 ```js
-const map = new Map()
-map.set('name', 'john')
-map.set('phone', 'iPhone')
-console.log(map.get('phone')) // iPhone
+const map = new Map();
+map.set("name", "john");
+map.set("phone", "iPhone");
+console.log(map.get("phone")); // iPhone
 ```
 
 可以通过 _has_ 方法来查询是否具有某一条属性：
 
 ```js
-const map = new Map()
-map.set('name', 'john')
-map.set('phone', 'iPhone')
-console.log(map.has('phone')) // true
+const map = new Map();
+map.set("name", "john");
+map.set("phone", "iPhone");
+console.log(map.has("phone")); // true
 ```
 
 可以通过 _size_ 属性获取 _Map_ 对象的长度：
 
 ```js
-const map = new Map()
-map.set('name', 'john')
-map.set('phone', 'iPhone')
-console.log(map.size) // 2
+const map = new Map();
+map.set("name", "john");
+map.set("phone", "iPhone");
+console.log(map.size); // 2
 ```
 
 ### 3.3 遍历 Map 对象
@@ -130,7 +131,7 @@ _Map_ 以数组形式提供数据，要获取键或值则需要解构数组或�
 
 ```js
 for (const item of map) {
-  console.dir(item)
+  console.dir(item);
 }
 // Array(2) ["name", "john"]
 // Array(2) ["phone", "Galaxy"]
@@ -139,23 +140,23 @@ for (const item of map) {
 要仅获取键或值，还有一些方法可供使用。
 
 ```js
-map.keys()
+map.keys();
 // MapIterator {"name", "phone"}
-map.values()
+map.values();
 // MapIterator {"john", "Galaxy"}
-map.entries()
+map.entries();
 // MapIterator {"name" => "john", "phone" => "Galaxy"}
 ```
 
 也可以使用 _forEach_ 方法，例如：
 
 ```js
-const map = new Map()
-map.set('name', 'john')
-map.set('phone', 'iPhone')
+const map = new Map();
+map.set("name", "john");
+map.set("phone", "iPhone");
 map.forEach((item) => {
-  console.log(item)
-})
+  console.log(item);
+});
 // john
 // iPhone
 ```
@@ -163,7 +164,7 @@ map.forEach((item) => {
 可以使用展开操作符( ... )来获取 _Map_ 的全部数据，因为展开操作符还可以在幕后与可迭代对象一起工作。
 
 ```js
-const simpleSpreadedMap = [...map]
+const simpleSpreadedMap = [...map];
 // [Array(2), Array(2)]
 ```
 
@@ -172,9 +173,9 @@ const simpleSpreadedMap = [...map]
 从 _Map_ 对象中删除数据也很容易，你所需要做的就是调用 _delete_。
 
 ```js
-map.delete('phone')
+map.delete("phone");
 // true
-map.delete('fake')
+map.delete("fake");
 // false
 ```
 
@@ -183,12 +184,12 @@ _delete_ 返回布尔值，该布尔值指示 _delete_ 函数是否成功删除�
 如果要清空整个 _Map_ 对象，可以使用 _clear_ 方法，如下：
 
 ```js
-const map = new Map()
-map.set('name', 'john')
-map.set('phone', 'iPhone')
-console.log(map) // Map(2) { 'name' => 'john', 'phone' => 'iPhone' }
-map.clear()
-console.log(map) // Map(0) {}
+const map = new Map();
+map.set("name", "john");
+map.set("phone", "iPhone");
+console.log(map); // Map(2) { 'name' => 'john', 'phone' => 'iPhone' }
+map.clear();
+console.log(map); // Map(0) {}
 ```
 
 ### 3.5 Map 和 Object 的区别
@@ -212,11 +213,11 @@ _WeakMap_ 的名字是怎么来的呢？
 可以将任何值作为键传入 _Map_ 对象，但 _WeakMap_ 不同，它只接受一个对象作为键，否则，它将返回一个错误。
 
 ```js
-const John = { name: 'John' }
-const weakMap = new WeakMap()
-weakMap.set(John, 'student')
+const John = { name: "John" };
+const weakMap = new WeakMap();
+weakMap.set(John, "student");
 // WeakMap {{...} => "student"}
-weakMap.set('john', 'student')
+weakMap.set("john", "student");
 // Uncaught TypeError: Invalid value used as weak map key
 ```
 
@@ -238,15 +239,15 @@ _WeakMap_ 可以使用的方法如下：
 例如：
 
 ```js
-let John = { major: 'math' }
+let John = { major: "math" };
 
-const map = new Map()
-const weakMap = new WeakMap()
+const map = new Map();
+const weakMap = new WeakMap();
 
-map.set(John, 'John')
-weakMap.set(John, 'John')
+map.set(John, "John");
+weakMap.set(John, "John");
 
-John = null
+John = null;
 /* John 被垃圾收集 */
 ```
 
@@ -263,21 +264,21 @@ _Set_ 也非常类似于 _Map_，但是 _Set_ 对于单个值更有用。
 使用 _add_ 方法可以添加属性。
 
 ```js
-const set = new Set()
+const set = new Set();
 
-set.add(1)
-set.add('john')
-set.add(BigInt(10))
+set.add(1);
+set.add("john");
+set.add(BigInt(10));
 // Set(4) {1, "john", 10n}
 ```
 
 与 _Map_ 一样，_Set_ 也不允许添加相同的值。
 
 ```js
-set.add(5)
+set.add(5);
 // Set(1) {5}
 
-set.add(5)
+set.add(5);
 // Set(1) {5}
 ```
 
@@ -293,14 +294,14 @@ set.add(5)
 
 ```js
 for (const val of set) {
-  console.dir(val)
+  console.dir(val);
 }
 // 1
 // 'John'
 // 10n
 // 5
 
-set.forEach((val) => console.dir(val))
+set.forEach((val) => console.dir(val));
 // 1
 // 'John'
 // 10n
@@ -314,40 +315,40 @@ set.forEach((val) => console.dir(val))
 当然也可以使用 clear 方法清空 _Set_ 集合。
 
 ```js
-set.delete(5)
+set.delete(5);
 // true
-set.delete(function () {})
+set.delete(function () {});
 // false;
 
-set.clear()
+set.clear();
 ```
 
 如果你不想将相同的值添加到数组表单中，则 _Set_ 可能会非常有用。
 
 ```js
 /* With Set */
-const set = new Set()
-set.add(1)
-set.add(2)
-set.add(2)
-set.add(3)
-set.add(3)
+const set = new Set();
+set.add(1);
+set.add(2);
+set.add(2);
+set.add(3);
+set.add(3);
 // Set {1, 2, 3}
 
 // Converting to Array
-const arr = [...set]
+const arr = [...set];
 // [1, 2, 3]
 
-Object.prototype.toString.call(arr)
+Object.prototype.toString.call(arr);
 // [object Array]
 
 /* Without Set */
-const hasSameVal = (val) => ar.some(v === val)
-const ar = []
+const hasSameVal = (val) => ar.some(v === val);
+const ar = [];
 
-if (!hasSameVal(1)) ar.push(1)
-if (!hasSameVal(2)) ar.push(2)
-if (!hasSameVal(3)) ar.push(3)
+if (!hasSameVal(1)) ar.push(1);
+if (!hasSameVal(2)) ar.push(2);
+if (!hasSameVal(3)) ar.push(3);
 ```
 
 ### 5.4 应用场景
@@ -404,17 +405,17 @@ _WeakSet_ 能够使用的方法如下：
 下面来看一下 _WeakSet_ 的代码示例，与 _WeakMap_ 一样，_WeakSet_ 也将丢失对内部数据的访问链接（如果内部数据已被垃圾收集）。
 
 ```js
-let John = { major: 'math' }
+let John = { major: "math" };
 
-const set = new Set()
-const weakSet = new WeakSet()
+const set = new Set();
+const weakSet = new WeakSet();
 
-set.add(John)
+set.add(John);
 // Set {{...}}
-weakSet.add(John)
+weakSet.add(John);
 // WeakSet {{...}}
 
-John = null
+John = null;
 /* John 被垃圾收集 */
 ```
 
@@ -427,6 +428,7 @@ John = null
   - 类似于集合，键值对的集合，任何值都可以作为一个键或者一个值
   - 可以遍历，可以转换各种数据格式，方法 _get、set、has、delete_
 - _WeakMap_
+
   - 只接受对象为键名，不接受其他类型的值作为键名，键值可以是任意
   - 键名是拖引用，键名所指向的对象，会被垃圾回收机制回收
   - 不能遍历，方法 _get、set、has、delete_

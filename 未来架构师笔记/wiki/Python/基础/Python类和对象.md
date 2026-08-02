@@ -4,13 +4,14 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
+
 Python 是一门**面向对象**的编程语言。类（Class）是创建对象的蓝图，而对象（Object）是类的具体实例。通过类和对象，可以将数据（属性）和行为（方法）封装在一起，使代码更具结构性和可复用性。
 
 ---
 
 ## 1. 定义类
 
-使用 `class` 关键字定义类：
+使用  `class`  关键字定义类：
 
 ```python
 class Dog:
@@ -21,9 +22,9 @@ my_dog = Dog()
 print(type(my_dog))  # <class '__main__.Dog'>
 ```
 
-### 1.1 使用 `type()` 动态定义类
+### 1.1 使用  `type()`  动态定义类
 
-类本身也是对象，`type()` 是创建类的内置函数。可以动态地创建类：
+类本身也是对象，`type()`  是创建类的内置函数。可以动态地创建类：
 
 ```python
 # type(类名, (父类元组,), {属性字典})
@@ -47,13 +48,13 @@ my_dog.bark()       # Buddy says: Woof!
 - 第二个参数：继承的父类元组
 - 第三个参数：类属性和方法的字典
 
-**实际应用场景：** 在 ORM 框架或需要根据配置动态生成类的场景中经常使用。
+**实际应用场景：**  在 ORM 框架或需要根据配置动态生成类的场景中经常使用。
 
 ---
 
-## 2. 构造方法 `__init__`
+## 2. 构造方法  `__init__`
 
-`__init__` 是类的构造方法，在创建对象时自动调用，用于初始化对象的属性：
+`__init__`  是类的构造方法，在创建对象时自动调用，用于初始化对象的属性：
 
 ```python
 class Dog:
@@ -67,7 +68,7 @@ print(my_dog.name)  # Buddy
 print(my_dog.age)   # 3
 ```
 
-**注意：** `self` 代表对象本身，必须是第一个参数，但调用时不需要传。
+**注意：** `self`  代表对象本身，必须是第一个参数，但调用时不需要传。
 
 ---
 
@@ -75,7 +76,7 @@ print(my_dog.age)   # 3
 
 ### 3.1 实例属性
 
-每个对象独立的属性，通过 `self` 定义：
+每个对象独立的属性，通过  `self`  定义：
 
 ```python
 class Dog:
@@ -111,13 +112,13 @@ Dog.species = "Canis lupus"
 print(dog1.species)  # Canis lupus
 ```
 
-**访问规则：** 实例属性通过 `self` 访问，类属性通过 `类名` 或 `self` 访问。
+**访问规则：**  实例属性通过  `self`  访问，类属性通过  `类名`  或  `self`  访问。
 
 ---
 
 ## 4. 实例方法
 
-定义在类中的函数，第一个参数必须是 `self`：
+定义在类中的函数，第一个参数必须是  `self`：
 
 ```python
 class Dog:
@@ -140,9 +141,9 @@ my_dog.introduce()  # Buddy says: Woof! My name is Buddy
 
 ## 5. 类方法与静态方法
 
-### 5.1 类方法 `@classmethod`
+### 5.1 类方法  `@classmethod`
 
-第一个参数是 `cls`，代表类本身，可以访问或修改类属性：
+第一个参数是  `cls`，代表类本身，可以访问或修改类属性：
 
 ```python
 class Dog:
@@ -162,9 +163,9 @@ dog2 = Dog("Max")
 print(Dog.get_count())  # 2
 ```
 
-### 5.2 静态方法 `@staticmethod`
+### 5.2 静态方法  `@staticmethod`
 
-不接收 `self` 或 `cls`，与普通函数类似，只是组织在类中：
+不接收  `self`  或  `cls`，与普通函数类似，只是组织在类中：
 
 ```python
 class MathUtils:
@@ -219,7 +220,7 @@ cat.speak()  # Kitty says: Meow!
 
 ### 6.1 调用父类方法
 
-使用 `super()` 调用父类的方法：
+使用  `super()`  调用父类的方法：
 
 ```python
 class Animal:
@@ -261,7 +262,7 @@ duck.swim()  # I can swim!
 
 #### 6.2.1 方法解析顺序（MRO）
 
-当多个父类有同名方法时，Python 按照 **MRO**（Method Resolution Order）顺序查找：
+当多个父类有同名方法时，Python 按照  **MRO**（Method Resolution Order）顺序查找：
 
 ```python
 class A:
@@ -287,9 +288,9 @@ print(D.__mro__)
 # (<class 'D'>, <class 'B'>, <class 'C'>, <class 'A'>, <class 'object'>)
 ```
 
-#### 6.2.2 `super()` 在多继承中的行为
+#### 6.2.2 `super()`  在多继承中的行为
 
-`super()` 按照 MRO 顺序调用**下一个**类的方法，不一定是直接父类：
+`super()`  按照 MRO 顺序调用**下一个**类的方法，不一定是直接父类：
 
 ```python
 class A:
@@ -319,7 +320,7 @@ D()
 # A init
 ```
 
-**注意：** 多继承虽然强大，但过度使用会使代码难以维护。通常优先考虑组合（Composition）代替多继承。
+**注意：**  多继承虽然强大，但过度使用会使代码难以维护。通常优先考虑组合（Composition）代替多继承。
 
 #### 6.2.3 MRO
 
@@ -474,7 +475,7 @@ print(isinstance(dog, (Dog, Cat)))   # True
 print(isinstance(123, (str, int)))   # True
 ```
 
-**与 `type()` 的区别：** `isinstance()` 会考虑继承关系，`type()` 不会。
+**与  `type()`  的区别：** `isinstance()`  会考虑继承关系，`type()`  不会。
 
 ---
 
@@ -515,7 +516,7 @@ print(dir())
 
 ### 8.6 `vars()`
 
-返回对象的 `__dict__` 属性，即对象的属性字典：
+返回对象的  `__dict__`  属性，即对象的属性字典：
 
 ```python
 dog = Dog("Buddy")
@@ -569,7 +570,7 @@ dog.speak()
 
 ### 8.8 `setattr()`
 
-设置对象的属性值，属性不存在时会创建。**如果父类定义了描述符（如 `@property.setter`）或 `__setattr__` 方法，会遵循继承链上的这些机制：**
+设置对象的属性值，属性不存在时会创建。**如果父类定义了描述符（如  `@property.setter`）或  `__setattr__`  方法，会遵循继承链上的这些机制：**
 
 ```python
 dog = Dog("Buddy")
@@ -714,24 +715,24 @@ print(Dog.count)
 
 ### 9.3 三、实现链表类
 
-请实现一个单链表类 `LinkedList`，支持以下操作：
+请实现一个单链表类  `LinkedList`，支持以下操作：
 
 **需要实现的方法：**
 
-| 方法                     | 说明                                                                        |
-| ------------------------ | --------------------------------------------------------------------------- |
-| `__init__(data=None)`    | 初始化空链表；`data` 可以是列表、元组或集合，其中的值会被初始化为链表的节点 |
-| `traverse(callback)`     | 遍历链表，对每个节点值调用 `callback(index, value)`                         |
-| `__str__()`              | 返回链表的字符串表示，如 `"1 -> 2 -> 3"`                                    |
-| `to_list()`              | 将链表转换为 Python 列表并返回                                              |
-| `append(value)`          | 在链表尾部添加一个新节点                                                    |
-| `prepend(value)`         | 在链表头部添加一个新节点                                                    |
-| `insert(index, value)`   | 在指定索引位置插入新节点，索引从 0 开始                                     |
-| `delete_by_value(value)` | 删除第一个值等于 `value` 的节点，返回是否删除成功                           |
-| `delete_by_index(index)` | 删除指定索引位置的节点，返回被删除的值，索引越界时返回 `None`               |
-| `find(value)`            | 查找值等于 `value` 的节点，返回其索引，不存在返回 -1                        |
-| `get(index)`             | 获取指定索引位置的值，索引越界时返回 `None`                                 |
-| `get_length()`           | 返回链表长度                                                                |
-| `is_empty()`             | 判断链表是否为空                                                            |
+| 方法                     | 说明                                                                         |
+| ------------------------ | ---------------------------------------------------------------------------- |
+| `__init__(data=None)`    | 初始化空链表；`data`  可以是列表、元组或集合，其中的值会被初始化为链表的节点 |
+| `traverse(callback)`     | 遍历链表，对每个节点值调用  `callback(index, value)`                         |
+| `__str__()`              | 返回链表的字符串表示，如  `"1 -> 2 -> 3"`                                    |
+| `to_list()`              | 将链表转换为 Python 列表并返回                                               |
+| `append(value)`          | 在链表尾部添加一个新节点                                                     |
+| `prepend(value)`         | 在链表头部添加一个新节点                                                     |
+| `insert(index, value)`   | 在指定索引位置插入新节点，索引从 0 开始                                      |
+| `delete_by_value(value)` | 删除第一个值等于  `value`  的节点，返回是否删除成功                          |
+| `delete_by_index(index)` | 删除指定索引位置的节点，返回被删除的值，索引越界时返回  `None`               |
+| `find(value)`            | 查找值等于  `value`  的节点，返回其索引，不存在返回 -1                       |
+| `get(index)`             | 获取指定索引位置的值，索引越界时返回  `None`                                 |
+| `get_length()`           | 返回链表长度                                                                 |
+| `is_empty()`             | 判断链表是否为空                                                             |
 
-**提示：** 你可能需要先定义一个 `Node` 类来表示链表节点。
+**提示：**  你可能需要先定义一个  `Node`  类来表示链表节点。

@@ -4,6 +4,7 @@ ai_editable: true
 updated_by: ai
 updated: 2026-08-02
 ---
+
 ## 1. Playbook 剧本基础
 
 ### 1.1 概念
@@ -24,11 +25,11 @@ updated: 2026-08-02
 ```yaml
 ---
 - name: 剧本描述
-  hosts: web            # 对哪些机器操作
-  tasks:                # 实际执行的操作列表
-    - name: 任务描述    # 建议写，方便排查
-      service:          # 用到的模块
-        name: httpd     # 模块参数
+  hosts: web # 对哪些机器操作
+  tasks: # 实际执行的操作列表
+    - name: 任务描述 # 建议写，方便排查
+      service: # 用到的模块
+        name: httpd # 模块参数
         state: started
         enabled: true
 ```
@@ -65,7 +66,7 @@ ansible-playbook xxx.yml --forks 1  # 指定并发数
   tasks:
     - name: 创建用户
       user:
-        name: "{{ user_name }}"    # 双花括号引用
+        name: "{{ user_name }}" # 双花括号引用
 ```
 
 **方式二：vars_files 引入外部文件**
@@ -74,7 +75,7 @@ ansible-playbook xxx.yml --forks 1  # 指定并发数
 - name: 例子
   hosts: web
   vars_files:
-    - users.yml     # 变量定义在外部文件
+    - users.yml # 变量定义在外部文件
 ```
 
 `users.yml`：
@@ -105,11 +106,11 @@ ansible-playbook xxx.yml -e "user_name=root"
       yum:
         name: httpd
         state: present
-      register: install_result    # 注册变量截获输出
+      register: install_result # 注册变量截获输出
 
     - name: 打印结果
       debug:
-        msg: "{{ install_result }}"   # 在终端屏幕输出
+        msg: "{{ install_result }}" # 在终端屏幕输出
 ```
 
 ## 3. ansible-vault 变量加密
@@ -158,7 +159,7 @@ ansible web -m setup
 ```yaml
 - name: 例子
   hosts: web
-  gather_facts: no    # 不收集事实，加快速度、减轻受管机负载
+  gather_facts: no # 不收集事实，加快速度、减轻受管机负载
   tasks: ...
 ```
 

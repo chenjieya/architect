@@ -4,7 +4,8 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
-# 安装运行
+
+## 1. 安装运行
 
 **_拉取镜像_**
 
@@ -13,7 +14,7 @@ docker pull nginx
 ```
 
 **_运行脚本_**
-nginx添加数据卷后，并不会自动复制数据（很智障），所以需要手动复制
+nginx 添加数据卷后，并不会自动复制数据（很智障），所以需要手动复制
 
 ```shell
 # 先运行一个不添加卷的nginx
@@ -30,7 +31,7 @@ docker rm -f [container id]
 
 ```
 
-启动正式的nginx
+启动正式的 nginx
 
 ```shell
 docker run -d \
@@ -90,9 +91,9 @@ nginx
 
 查看结果，有变化即为成功
 
-# 使用
+## 2. 使用
 
-**_进入nginx容器内部_**
+**_进入 nginx 容器内部_**
 
 ```shell
 docker exec -it [container id] /bin/bash

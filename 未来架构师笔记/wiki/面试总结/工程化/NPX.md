@@ -4,6 +4,7 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
+
 ## 1. 运行本地命令
 
 使用`npx 命令`时，它会首先从本地工程的`node_modules/.bin`目录中寻找是否有对应的命令
@@ -28,7 +29,7 @@ npx webpack
 npx prettyjson 1.json
 ```
 
-npx会下载`prettyjson`包到临时目录，然后运行该命令
+npx 会下载`prettyjson`包到临时目录，然后运行该命令
 
 如果命令名称和需要下载的包名不一致时，可以手动指定报名
 

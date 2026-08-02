@@ -15,7 +15,6 @@ updated: 2026-08-02
 下面是一个使用该 API 进行代码格式化的例子：
 
 ```js
-
 // 该文件使用 API 的形式来对代码进行格式化
 const prettier = require("prettier");
 const fs = require("fs");
@@ -28,29 +27,26 @@ const path = require("path");
 
 // 书写 prettier 规则配置
 const options = {
-  singleQuote: false,
-  printWidth: 50,
-  semi: false,
-  trailingComma: "es5",
-  parser: "babel",
+  singleQuote: false,
+  printWidth: 50,
+  semi: false,
+  trailingComma: "es5",
+  parser: "babel",
 };
 
 // 读取 src 目录
 fs.readdir("src", (err, files) => {
-  if (err) throw err;
-  for (let i = 0; i < files.length; i++) {
-    // 拼接路径
-    const sourcePath = path.resolve("src", files[i]);
-    // 读取源码文件
-    const jsSource = fs.readFileSync(sourcePath, "utf8");
-    // 使用 prettier.format 来进行格式化
-    // 通过 API 的方式来格式化，一定要指定 parser
-    prettier.format(jsSource, options).then((res) => {
-      // 将格式化好的结果重新写入到原来的文件里面
-      fs.writeFileSync(sourcePath, res, "utf-8");
-    });
-  }
-  console.log("格式化完毕...");
+  if (err) throw err;
+  for (let i = 0; i < files.length; i++) {
+    // 拼接路径
+    const sourcePath = path.resolve("src", files[i]); // 读取源码文件
+    const jsSource = fs.readFileSync(sourcePath, "utf8"); // 使用 prettier.format 来进行格式化 // 通过 API 的方式来格式化，一定要指定 parser
+    prettier.format(jsSource, options).then((res) => {
+      // 将格式化好的结果重新写入到原来的文件里面
+      fs.writeFileSync(sourcePath, res, "utf-8");
+    });
+  }
+  console.log("格式化完毕...");
 });
 ```
 
@@ -64,7 +60,6 @@ fs.readdir("src", (err, files) => {
 下面是一个使用示例：
 
 ```js
-
 // 判断 src 下面是否所有的文件都已经格式化
 const prettier = require("prettier");
 const fs = require("fs");
@@ -72,31 +67,29 @@ const path = require("path");
 
 // 书写 prettier 规则配置
 const options = {
-  singleQuote: false,
-  printWidth: 50,
-  semi: false,
-  trailingComma: "es5",
-  parser: "babel",
+  singleQuote: false,
+  printWidth: 50,
+  semi: false,
+  trailingComma: "es5",
+  parser: "babel",
 };
 
 fs.readdir("src", async (err, files) => {
-  if (err) throw err;
-  let isAllFormated = true;
-  for (let i = 0; i < files.length; i++) {
-    // 拼接路径
-    const sourcePath = path.resolve("src", files[i]);
-    // 读取源码文件
-    const jsSource = fs.readFileSync(sourcePath, "utf8");
-    const res = await prettier.check(jsSource, options);
-    if (!res) {
-      // 说明这个文件没有被格式化
-      console.log(`${files[i]} 文件还没有格式化`);
-      isAllFormated = false;
-    }
-  }
-  if (isAllFormated) {
-    console.log("所有文件都已经格式化...");
-  }
+  if (err) throw err;
+  let isAllFormated = true;
+  for (let i = 0; i < files.length; i++) {
+    // 拼接路径
+    const sourcePath = path.resolve("src", files[i]); // 读取源码文件
+    const jsSource = fs.readFileSync(sourcePath, "utf8");
+    const res = await prettier.check(jsSource, options);
+    if (!res) {
+      // 说明这个文件没有被格式化
+      console.log(`${files[i]} 文件还没有格式化`);
+      isAllFormated = false;
+    }
+  }
+  if (isAllFormated) {
+    console.log("所有文件都已经格式化...");
+  }
 });
 ```
-

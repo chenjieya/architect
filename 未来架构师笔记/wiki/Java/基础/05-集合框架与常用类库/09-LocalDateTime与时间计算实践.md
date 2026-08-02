@@ -4,11 +4,12 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
+
 > 所属：函数式编程与常用类库 · Java 面向对象与核心类库
 
 ## 1. 概述
 
-本节介绍 Java 8 **`java.time`** 包中的 **`LocalDate`、`LocalTime`、`LocalDateTime`** 及 **`Period`、`Duration`、`DateTimeFormatter`**，用于日期时间的创建、格式化和简单计算（本章不展开旧版 `Date`/`Calendar` 细节）。
+本节介绍 Java 8 **`java.time`**  包中的  **`LocalDate`、`LocalTime`、`LocalDateTime`**  及  **`Period`、`Duration`、`DateTimeFormatter`**，用于日期时间的创建、格式化和简单计算（本章不展开旧版  `Date`/`Calendar`  细节）。
 
 ## 2. 核心概念
 
@@ -27,13 +28,13 @@ updated: 2026-08-02
 
 在 IDEA 中完成时间计算：
 
-1. **新建** `DateTimeDemo.java`，用 **`LocalDate.now()`**、**`LocalDateTime.now()`** 打印当前值
+1. **新建** `DateTimeDemo.java`，用  **`LocalDate.now()`**、**`LocalDateTime.now()`**  打印当前值
 2. **构造**：`LocalDate.of(2026, 6, 1)`、`LocalTime.of(14, 30)`
-3. **格式化**：`DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")` 格式化 `LocalDateTime`
-4. **解析**：`LocalDate.parse("2026-06-01")` 或带 formatter 的 `parse`
-5. **新建** `BookingTimeDemo.java`，预约开始时间加 **`Duration.ofHours(2)`** 得结束时间
-6. **Period**：会员到期日 `expireDate = startDate.plus(Period.ofMonths(12))`
-7. **运行** 核对输出格式与计算结果
+3. **格式化**：`DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")`  格式化  `LocalDateTime`
+4. **解析**：`LocalDate.parse("2026-06-01")`  或带 formatter 的  `parse`
+5. **新建** `BookingTimeDemo.java`，预约开始时间加  **`Duration.ofHours(2)`**  得结束时间
+6. **Period**：会员到期日  `expireDate = startDate.plus(Period.ofMonths(12))`
+7. **运行**  核对输出格式与计算结果
 
 ## 4. 语法与写法
 
@@ -108,21 +109,21 @@ boolean after = a.isAfter(b);     // false
 
 ## 5. 常见用法
 
-1. **订单创建时间**：`LocalDateTime.now()` 记入字段
+1. **订单创建时间**：`LocalDateTime.now()`  记入字段
 2. **会员有效期**：`startDate.plus(Period.ofYears(1))`
 3. **会议时长**：`start.plus(Duration.ofMinutes(90))`
 4. **日志时间戳字符串**：`DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")`
 
 ## 6. 易错点
 
-- **`LocalDateTime` 不含时区**：跨时区业务需 **`ZonedDateTime`** 或 `Instant`（进阶）
-- **混用旧 API `Date`/`Calendar`**：新代码优先 **`java.time`**
-- **月份从 1 开始**：`LocalDate.of(2026, 1, 1)` 是一月一日，不是 0
-- **格式化模式大小写**：`MM` 是月，`mm` 是分钟；写反导致错误字符串
-- **`parse` 格式不匹配**：字符串须与 `DateTimeFormatter` 模式一致，否则 **`DateTimeParseException`**
+- **`LocalDateTime`  不含时区**：跨时区业务需  **`ZonedDateTime`**  或  `Instant`（进阶）
+- **混用旧 API `Date`/`Calendar`**：新代码优先  **`java.time`**
+- **月份从 1 开始**：`LocalDate.of(2026, 1, 1)`  是一月一日，不是 0
+- **格式化模式大小写**：`MM`  是月，`mm`  是分钟；写反导致错误字符串
+- **`parse`  格式不匹配**：字符串须与  `DateTimeFormatter`  模式一致，否则  **`DateTimeParseException`**
 
 ## 7. 本节小结
 
-- 日期时间用 **`LocalDate` / `LocalTime` / `LocalDateTime`**，替代旧 `Date` 日常用法
-- 间隔：**日历用 `Period`，时长用 `Duration`**
+- 日期时间用  **`LocalDate` / `LocalTime` / `LocalDateTime`**，替代旧  `Date`  日常用法
+- 间隔：**日历用  `Period`，时长用  `Duration`**
 - 显示与解析：**`DateTimeFormatter.ofPattern(...)`**

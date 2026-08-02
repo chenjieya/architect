@@ -4,6 +4,7 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
+
 > 静态资源处理是前端开发的重要部分。本文详细讲解 Vite 如何处理各种静态资源。
 
 ---
@@ -16,37 +17,37 @@ updated: 2026-08-02
 
 ```javascript
 // vite.config.js
-import { defineConfig } from 'vite'
-import path from 'path'
+import { defineConfig } from "vite";
+import path from "path";
 
 export default defineConfig({
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, 'src'),
-      '@assets': path.resolve(__dirname, 'src/assets'),
-      '@components': path.resolve(__dirname, 'src/components'),
+      "@": path.resolve(__dirname, "src"),
+      "@assets": path.resolve(__dirname, "src/assets"),
+      "@components": path.resolve(__dirname, "src/components"),
     },
   },
-})
+});
 ```
 
 **使用绝对路径：**
 
 ```javascript
 // 使用 path.resolve 获取绝对路径
-path.resolve(__dirname, 'src')
+path.resolve(__dirname, "src");
 ```
 
 **代码演示：使用别名**
 
 ```javascript
 // 使用别名
-import Button from '@components/Button.vue'
-import logo from '@assets/logo.png'
+import Button from "@components/Button.vue";
+import logo from "@assets/logo.png";
 
 // 而不是相对路径
-import Button from '../../../components/Button.vue'
-import logo from '../../assets/logo.png'
+import Button from "../../../components/Button.vue";
+import logo from "../../assets/logo.png";
 ```
 
 **关键词解释：**
@@ -61,6 +62,7 @@ import logo from '../../assets/logo.png'
 **Vite 使用两个插件处理别名：**
 
 1. **vite:pre-alias**：bare import 路径重定向到预构建依赖的路径
+
    - 处理 `import vue from 'vue'` 这样的 bare import
    - 重定向到预构建依赖的路径
 
@@ -86,11 +88,11 @@ vite:pre-alias 检查是否是依赖（如 'vue'）
 
 ```javascript
 // bare import：nodejs 默认支持
-import vue from 'vue' // vite:pre-alias 处理
-import lodash from 'lodash-es' // vite:pre-alias 处理
+import vue from "vue"; // vite:pre-alias 处理
+import lodash from "lodash-es"; // vite:pre-alias 处理
 
 // 别名导入：@rollup/plugin-alias 处理
-import Button from '@components/Button.vue'
+import Button from "@components/Button.vue";
 ```
 
 **关键词解释：**
@@ -141,29 +143,29 @@ import Button from '@components/Button.vue'
 ```javascript
 // 支持的格式
 const imageFormats = [
-  'apng',
-  'png',
-  'jpe?g',
-  'jfif',
-  'pjpeg',
-  'pjp',
-  'gif',
-  'svg',
-  'ico',
-  'webp',
-  'avif',
-]
+  "apng",
+  "png",
+  "jpe?g",
+  "jfif",
+  "pjpeg",
+  "pjp",
+  "gif",
+  "svg",
+  "ico",
+  "webp",
+  "avif",
+];
 ```
 
 **代码演示：使用图片**
 
 ```javascript
 // 导入图片
-import logo from './assets/logo.png'
-import icon from './assets/icon.svg'
+import logo from "./assets/logo.png";
+import icon from "./assets/icon.svg";
 
 // 使用
-;<img src={logo} alt="Logo" />
+<img src={logo} alt="Logo" />;
 ```
 
 ---
@@ -172,7 +174,16 @@ import icon from './assets/icon.svg'
 
 ```javascript
 // 支持的格式
-const mediaFormats = ['mp4', 'webm', 'ogg', 'mp3', 'wav', 'flac', 'aac', 'opus']
+const mediaFormats = [
+  "mp4",
+  "webm",
+  "ogg",
+  "mp3",
+  "wav",
+  "flac",
+  "aac",
+  "opus",
+];
 ```
 
 **代码演示：使用媒体**
@@ -191,15 +202,15 @@ import audio from './assets/audio.mp3'
 
 ```javascript
 // 支持的格式
-const fontFormats = ['woff2?', 'eot', 'ttf', 'otf']
+const fontFormats = ["woff2?", "eot", "ttf", "otf"];
 ```
 
 **代码演示：使用字体**
 
 ```css
 @font-face {
-  font-family: 'CustomFont';
-  src: url('./assets/font.woff2') format('woff2');
+  font-family: "CustomFont";
+  src: url("./assets/font.woff2") format("woff2");
 }
 ```
 
@@ -209,7 +220,7 @@ const fontFormats = ['woff2?', 'eot', 'ttf', 'otf']
 
 ```javascript
 // 支持的格式
-const otherFormats = ['webmanifest', 'pdf', 'txt']
+const otherFormats = ["webmanifest", "pdf", "txt"];
 ```
 
 ---
@@ -220,17 +231,17 @@ const otherFormats = ['webmanifest', 'pdf', 'txt']
 
 ```javascript
 // 导入图片
-import logo from './assets/logo.png'
-console.log(logo) // /assets/logo-abc123.png
+import logo from "./assets/logo.png";
+console.log(logo); // /assets/logo-abc123.png
 
 // 在 CSS 中使用
-import './styles.css'
+import "./styles.css";
 ```
 
 ```css
 /* styles.css */
 .background {
-  background-image: url('./assets/bg.jpg');
+  background-image: url("./assets/bg.jpg");
 }
 /* 编译后：url(/assets/bg-abc123.jpg) */
 ```
@@ -259,19 +270,19 @@ import './styles.css'
 // src/vite-env.d.ts
 /// <reference types="vite/client" />
 
-declare module '*.png' {
-  const src: string
-  export default src
+declare module "*.png" {
+  const src: string;
+  export default src;
 }
 
-declare module '*.jpg' {
-  const src: string
-  export default src
+declare module "*.jpg" {
+  const src: string;
+  export default src;
 }
 
-declare module '*.svg' {
-  const src: string
-  export default src
+declare module "*.svg" {
+  const src: string;
+  export default src;
 }
 ```
 
@@ -290,7 +301,7 @@ declare module '*.svg' {
 
 <script setup>
 // ❌ 错误：Vite 不会处理动态路径
-const imagePath = ref('../assets/logo.jpg')
+const imagePath = ref("../assets/logo.jpg");
 </script>
 ```
 
@@ -303,8 +314,8 @@ const imagePath = ref('../assets/logo.jpg')
 
 <script setup>
 // ✅ 正确：使用 import
-import logo from '@assets/logo.jpg'
-const imagePath = ref(logo)
+import logo from "@assets/logo.jpg";
+const imagePath = ref(logo);
 </script>
 ```
 
@@ -323,11 +334,11 @@ const imagePath = ref(logo)
 
 ```javascript
 // 开发环境
-import logo from './assets/logo.png'
+import logo from "./assets/logo.png";
 // 返回：/src/assets/logo.png
 
 // 生产环境
-import logo from './assets/logo.png'
+import logo from "./assets/logo.png";
 // 返回：/assets/logo-abc123.png
 ```
 
@@ -355,15 +366,15 @@ import logo from './assets/logo.png'
 // vite.config.js
 export default {
   build: {
-    assetsDir: 'assets', // 静态资源目录
+    assetsDir: "assets", // 静态资源目录
     // 修改输出路径
     rollupOptions: {
       output: {
-        assetFileNames: 'assets/[name]-[hash].[ext]',
+        assetFileNames: "assets/[name]-[hash].[ext]",
       },
     },
   },
-}
+};
 ```
 
 **配置说明：**
@@ -379,8 +390,8 @@ export default {
 
 ```javascript
 // 静态导入
-import logo from '@assets/logo.jpg'
-const imgPath = ref(logo)
+import logo from "@assets/logo.jpg";
+const imgPath = ref(logo);
 ```
 
 **代码演示：动态导入多个资源**
@@ -419,10 +430,10 @@ const handleChange = async (e: Event) => {
 ```javascript
 // 使用 new URL() 处理动态路径
 const getImageUrl = (name) => {
-  return new URL(`../assets/${name}.jpg`, import.meta.url).href
-}
+  return new URL(`../assets/${name}.jpg`, import.meta.url).href;
+};
 
-const imageUrl = getImageUrl('logo')
+const imageUrl = getImageUrl("logo");
 ```
 
 **关键词解释：**
@@ -438,12 +449,12 @@ const imageUrl = getImageUrl('logo')
 
 ```javascript
 // 导入所有匹配的模块（懒加载）
-const modules = import.meta.glob('./assets/*.jpg')
+const modules = import.meta.glob("./assets/*.jpg");
 
 // 使用
 for (const path in modules) {
-  const module = await modules[path]()
-  console.log(module.default)
+  const module = await modules[path]();
+  console.log(module.default);
 }
 ```
 
@@ -451,12 +462,12 @@ for (const path in modules) {
 
 ```javascript
 // 预加载所有模块
-const modules = import.meta.glob('./assets/*.jpg', { eager: true })
+const modules = import.meta.glob("./assets/*.jpg", { eager: true });
 
 // 直接使用（不需要 await）
 Object.values(modules).forEach((module) => {
-  console.log(module.default)
-})
+  console.log(module.default);
+});
 ```
 
 **import.meta.glob 选项：**
@@ -494,11 +505,11 @@ VITE_IMG_BASE_URL=http://xxx.cdnxxx.com
 // src/vite-env.d.ts
 interface ImportMetaEnv {
   // ......其他声明省略
-  readonly VITE_IMG_BASE_URL: string
+  readonly VITE_IMG_BASE_URL: string;
 }
 
 interface ImportMeta {
-  readonly env: ImportMetaEnv
+  readonly env: ImportMetaEnv;
 }
 ```
 
@@ -508,8 +519,8 @@ interface ImportMeta {
 // 使用 new URL 结合环境变量
 const href = new URL(
   `../assets/${imgPath.value}.jpg`,
-  import.meta.env.VITE_IMG_BASE_URL,
-).href
+  import.meta.env.VITE_IMG_BASE_URL
+).href;
 ```
 
 **完整示例：**
@@ -520,16 +531,16 @@ const href = new URL(
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed } from "vue";
 
-const imgPath = ref('logo')
+const imgPath = ref("logo");
 
 const imageUrl = computed(() => {
   return new URL(
     `../assets/${imgPath.value}.jpg`,
-    import.meta.env.VITE_IMG_BASE_URL,
-  ).href
-})
+    import.meta.env.VITE_IMG_BASE_URL
+  ).href;
+});
 </script>
 ```
 
@@ -550,9 +561,9 @@ const imageUrl = computed(() => {
 
 ```typescript
 // src/vite-env.d.ts
-declare module '*.md' {
-  const str: string
-  export default str
+declare module "*.md" {
+  const str: string;
+  export default str;
 }
 ```
 
@@ -560,16 +571,16 @@ declare module '*.md' {
 
 ```typescript
 // 必须声明模块类型，否则 TypeScript 会报错
-declare module '*.md' {
-  const str: string
-  export default str
+declare module "*.md" {
+  const str: string;
+  export default str;
 }
 ```
 
 ```javascript
 // 使用
-import readme from './README.md'
-console.log(readme) // Markdown 内容（字符串）
+import readme from "./README.md";
+console.log(readme); // Markdown 内容（字符串）
 ```
 
 **关键词解释：**
@@ -585,8 +596,8 @@ console.log(readme) // Markdown 内容（字符串）
 
 ```javascript
 // 获取资源的 URL（显式 URL 引入）
-import logoUrl from './assets/logo.png?url'
-console.log(logoUrl) // /assets/logo-abc123.png
+import logoUrl from "./assets/logo.png?url";
+console.log(logoUrl); // /assets/logo-abc123.png
 ```
 
 **使用场景：**
@@ -607,12 +618,12 @@ console.log(logoUrl) // /assets/logo-abc123.png
 
 ```javascript
 // 获取资源的原始内容
-import svgContent from './assets/icon.svg?raw'
-console.log(svgContent) // SVG 字符串
+import svgContent from "./assets/icon.svg?raw";
+console.log(svgContent); // SVG 字符串
 
 // 动态关联 SVG 图片可用
-const svgElement = document.createElement('div')
-svgElement.innerHTML = svgContent
+const svgElement = document.createElement("div");
+svgElement.innerHTML = svgContent;
 ```
 
 **使用场景：**
@@ -628,10 +639,10 @@ svgElement.innerHTML = svgContent
 </template>
 
 <script setup>
-import { ref } from 'vue'
-import iconSvg from './assets/icon.svg?raw'
+import { ref } from "vue";
+import iconSvg from "./assets/icon.svg?raw";
 
-const svgContent = ref(iconSvg)
+const svgContent = ref(iconSvg);
 </script>
 ```
 
@@ -652,8 +663,8 @@ const svgContent = ref(iconSvg)
 ```javascript
 // vite.config.js
 export default {
-  assetsInclude: ['**/*.md'], // 将 .md 文件视为静态资源
-}
+  assetsInclude: ["**/*.md"], // 将 .md 文件视为静态资源
+};
 ```
 
 **完整示例：**
@@ -662,10 +673,10 @@ export default {
 // vite.config.js
 export default {
   assetsInclude: [
-    '**/*.md', // Markdown 文件
-    '**/*.txt', // 文本文件
+    "**/*.md", // Markdown 文件
+    "**/*.txt", // 文本文件
   ],
-}
+};
 ```
 
 **使用场景：**
@@ -679,11 +690,11 @@ export default {
 // vite.config.js
 export default {
   assetsInclude: [
-    '**/*.md', // Markdown 文件
-    '**/*.txt', // 文本文件
-    '**/*.xml', // XML 文件
+    "**/*.md", // Markdown 文件
+    "**/*.txt", // 文本文件
+    "**/*.xml", // XML 文件
   ],
-}
+};
 ```
 
 **关键词解释：**
@@ -737,10 +748,12 @@ project/
 根据思维导图，以下文件适合放入 public 目录：
 
 1. **不会被源码引入的静态文件**
+
    - 不需要在代码中 import 的文件
    - 直接通过 URL 访问的文件
 
 2. **必须保持原有文件名的文件**
+
    - `robots.txt`：搜索引擎爬虫规则
    - `favicon.ico`：网站图标
    - `manifest.json`：PWA 配置
@@ -785,18 +798,18 @@ export default {
   build: {
     assetsInlineLimit: 4096, // 4KB，默认值
   },
-}
+};
 ```
 
 **代码演示：内联效果**
 
 ```javascript
 // 小图片会被内联（< 4KB）
-import smallIcon from './assets/icon-2kb.png'
+import smallIcon from "./assets/icon-2kb.png";
 // 编译后：data:image/png;base64,iVBORw0KGgoAAAANSUhEUg...
 
 // 大图片会单独打包（>= 4KB）
-import largeImage from './assets/image-10kb.jpg'
+import largeImage from "./assets/image-10kb.jpg";
 // 编译后：/assets/image-10kb-abc123.jpg
 ```
 
@@ -825,7 +838,7 @@ import largeImage from './assets/image-10kb.jpg'
 
 ```javascript
 // SVG 始终单独打包，不受 assetsInlineLimit 影响
-import svgIcon from './assets/icon.svg'
+import svgIcon from "./assets/icon.svg";
 // 编译后：/assets/icon-abc123.svg（始终是单独文件）
 
 // 即使 SVG 文件小于 4KB，也不会内联
@@ -835,7 +848,7 @@ import svgIcon from './assets/icon.svg'
 
 ```javascript
 // 如果需要内联 SVG，使用 ?raw
-import svgContent from './assets/icon.svg?raw'
+import svgContent from "./assets/icon.svg?raw";
 // 获取 SVG 的原始内容，可以内联到 HTML 中
 ```
 

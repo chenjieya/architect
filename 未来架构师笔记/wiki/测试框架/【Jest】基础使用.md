@@ -4,6 +4,7 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
+
 本文会包含两个部分：
 
 - Jest 快速入门
@@ -18,22 +19,21 @@ updated: 2026-08-02
  * 工具库
  */
 
-exports.sum = function(a, b){
-    return a + b + 1;
-}
+exports.sum = function (a, b) {
+  return a + b + 1;
+};
 
-exports.sub = function(a, b){
-    return a - b;
-}
+exports.sub = function (a, b) {
+  return a - b;
+};
 
-exports.mul = function(a, b){
-    return a * b;
-}
+exports.mul = function (a, b) {
+  return a * b;
+};
 
-exports.div = function(a, b){
-    return a / b;
-}
-
+exports.div = function (a, b) {
+  return a / b;
+};
 ```
 
 接下来需要安装 jest，通过命令
@@ -52,9 +52,9 @@ const { sum } = require("./tools");
  * param1 ：针对这个测试用例的一个描述
  * param2 ：执行该用例所对应的回调函数
  */
-test("测试加法", ()=>{
-    const result = sum(1, 2);
-    expect(result).toBe(3);
+test("测试加法", () => {
+  const result = sum(1, 2);
+  expect(result).toBe(3);
 });
 ```
 
@@ -68,14 +68,13 @@ const { sum, sub, mul, div } = require("./tools");
  * param1 ：针对这个测试用例的一个描述
  * param2 ：执行该用例所对应的回调函数
  */
-test("测试加法", ()=>{
+test("测试加法", () => {
   expect(sum(1, 2)).toBe(3);
   expect(sub(10, 5)).toBe(5);
   expect(mul(2, 3)).toBe(6);
   expect(div(10, 2)).toBe(5);
 });
 ```
-
 
 我们也可以书写多个测试用例：
 
@@ -123,21 +122,18 @@ const test: Global.It = (() => {
   const test = (
     testName: Circus.TestNameLike,
     fn: Circus.TestFn,
-    timeout?: number,
+    timeout?: number
   ): void => _addTest(testName, undefined, false, fn, test, timeout);
-  
+
   return test;
 })();
 
 const it: Global.It = test;
 ```
 
-
-
 上面的演示中，我们将所有的方法的测试可以写在一个测试用例中，也可以书写多个测试用例，那么真实的工具库应该如何书写呢？
 
 实际上，最好的方式是一个工具函数对应一个测试套件，每一个测试套件里面根据函数的参数来书写测试用例，一个参数对应一个测试用例，后面我们在进行实战项目的时候，会采用这样的方式。
-
 
 ## 2. 测试用例的分组
 
@@ -187,14 +183,11 @@ describe("这是一组测试，测试乘除法", () => {
 
 ```js
 const describe = (blockName: Circus.BlockNameLike, blockFn: Circus.BlockFn) =>
-    _dispatchDescribe(blockFn, blockName, describe);
+  _dispatchDescribe(blockFn, blockName, describe);
 ```
-
-
 
 ## 3. 总结
 
 1. Jest 中提供了一些全局方法或者对象，这些方法或者对象是无需引用的，可以在**测试文件**直接使用。
 2. 通过 test 或者 it 方法来创建一个测试用例，it 方法实际上是 test 方法的别名方法。
 3. 通过 describe 方法可以对多个测试用例进行分组。
-

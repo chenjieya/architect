@@ -4,13 +4,14 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
-## 0. 引言
+
+## 1. 引言
 
 在现代 Web 应用中，实时通信功能变得越来越重要。无论是聊天应用、实时协作工具还是实时数据监控，WebSocket 技术都扮演着关键角色。NestJS 作为 Node.js 的渐进式框架，提供了优雅且强大的 WebSocket 实现方案。本文将深入探讨 NestJS 中 WebSocket 的完整使用方法，涵盖从基础连接到高级功能的方方面面。
 
-## 1. WebSocket 模块安装与配置
+## 2. WebSocket 模块安装与配置
 
-### 1.1 安装依赖
+### 2.1 安装依赖
 
 首先，我们需要安装必要的包：
 
@@ -19,14 +20,14 @@ npm install @nestjs/websockets @nestjs/platform-socket.io
 npm install -D @types/socket.io
 ```
 
-### 1.2 基础模块配置
+### 2.2 基础模块配置
 
 创建一个 WebSocket 网关模块：
 
 ```typescript
 // websocket.module.ts
-import { Module } from '@nestjs/common';
-import { WebSocketGateway } from './websocket.gateway';
+import { Module } from "@nestjs/common";
+import { WebSocketGateway } from "./websocket.gateway";
 
 @Module({
   providers: [WebSocketGateway],
@@ -35,9 +36,9 @@ import { WebSocketGateway } from './websocket.gateway';
 export class WebSocketModule {}
 ```
 
-## 2. 核心网关（Gateway）实现
+## 3. 核心网关（Gateway）实现
 
-### 2.1 基础网关结构
+### 3.1 基础网关结构
 
 ```typescript
 // websocket.gateway.ts
@@ -48,30 +49,30 @@ import {
   OnGatewayInit,
   OnGatewayConnection,
   OnGatewayDisconnect,
-} from '@nestjs/websockets';
-import { Server, Socket } from 'socket.io';
-import { Logger } from '@nestjs/common';
+} from "@nestjs/websockets";
+import { Server, Socket } from "socket.io";
+import { Logger } from "@nestjs/common";
 
 @WebSocketGateway({
   cors: {
-    origin: '*', // 生产环境应配置具体的域名
+    origin: "*", // 生产环境应配置具体的域名
     credentials: true,
   },
-  namespace: '/chat', // 命名空间
-  transports: ['websocket', 'polling'], // 传输方式
+  namespace: "/chat", // 命名空间
+  transports: ["websocket", "polling"], // 传输方式
 })
 export class WebSocketGateway
   implements OnGatewayInit, OnGatewayConnection, OnGatewayDisconnect
 {
   @WebSocketServer() server: Server;
-  private logger: Logger = new Logger('WebSocketGateway');
+  private logger: Logger = new Logger("WebSocketGateway");
   private users: Map<string, any> = new Map(); // 用户映射表
   private rooms: Map<string, Set<string>> = new Map(); // 房间管理
 
   // 初始化后执行
   afterInit(server: Server) {
-    this.logger.log('WebSocket Server Initialized');
-    
+    this.logger.log("WebSocket Server Initialized");
+
     // 设置中间件
     server.use((socket: Socket, next) => {
       const token = socket.handshake.auth.token;
@@ -84,16 +85,16 @@ export class WebSocketGateway
   handleConnection(client: Socket) {
     const clientId = client.id;
     const username = client.handshake.query.username as string;
-    
+
     this.users.set(clientId, {
       id: clientId,
       username: username || `user_${clientId.slice(0, 8)}`,
       connectedAt: new Date(),
       rooms: new Set(),
     });
-    
+
     this.logger.log(`Client connected: ${clientId}`);
-    this.server.emit('user-connected', {
+    this.server.emit("user-connected", {
       userId: clientId,
       username: this.users.get(clientId).username,
       timestamp: new Date(),
@@ -105,17 +106,17 @@ export class WebSocketGateway
   handleDisconnect(client: Socket) {
     const clientId = client.id;
     const user = this.users.get(clientId);
-    
+
     if (user) {
       // 离开所有房间
-      user.rooms.forEach(room => {
+      user.rooms.forEach((room) => {
         this.handleLeaveRoom(client, room);
       });
-      
+
       this.users.delete(clientId);
       this.logger.log(`Client disconnected: ${clientId}`);
-      
-      this.server.emit('user-disconnected', {
+
+      this.server.emit("user-disconnected", {
         userId: clientId,
         username: user.username,
         timestamp: new Date(),
@@ -126,13 +127,14 @@ export class WebSocketGateway
 }
 ```
 
-## 3. 消息处理器详解
+## 4. 消息处理器详解
 
-### 3.1 参数接收的两种方式详解
+### 4.1 参数接收的两种方式详解
 
 在 NestJS WebSocket 中，处理消息时有两种主要的参数接收方式：
 
-#### 3.1.1 **显式参数接收（推荐用于简单场景）**
+#### 4.1.1 **显式参数接收（推荐用于简单场景）**
+
 ```typescript
 @SubscribeMessage('joinRoom')
 joinRoom(client: Socket, payload: any): void {
@@ -147,7 +149,8 @@ joinRoom(client: Socket, payload: any): void {
 }
 ```
 
-#### 3.1.2 **装饰器方式接收（推荐用于复杂场景）**
+#### 4.1.2 **装饰器方式接收（推荐用于复杂场景）**
+
 ```typescript
 @SubscribeMessage('sendMessage')
 sendMessage(
@@ -155,35 +158,36 @@ sendMessage(
   @ConnectedSocket() client: Socket     // 使用装饰器获取Socket连接
 ): void {
   console.log(payload);
-  this.server.to(payload.room).emit('message', { 
-    nickName: payload.nickName, 
+  this.server.to(payload.room).emit('message', {
+    nickName: payload.nickName,
     message: payload.message
   });
 }
 ```
 
-#### 3.1.3 **两种方式的对比：**
+#### 4.1.3 **两种方式的对比：**
 
-| 特性        | 显式参数接收              | 装饰器方式接收        |
-| --------- | ------------------- | -------------- |
-| **参数顺序**  | 固定：`(client, data)` | 灵活，可任意顺序       |
-| **代码简洁性** | 更简洁                 | 需要更多装饰器        |
-| **可读性**   | 直观，但不够自描述           | 明确，自描述性强       |
-| **类型安全**  | 需要手动指定类型            | 装饰器支持类型推断      |
-| **适用场景**  | 简单消息处理              | 复杂处理器，需要明确参数来源 |
+| 特性           | 显式参数接收           | 装饰器方式接收               |
+| -------------- | ---------------------- | ---------------------------- |
+| **参数顺序**   | 固定：`(client, data)` | 灵活，可任意顺序             |
+| **代码简洁性** | 更简洁                 | 需要更多装饰器               |
+| **可读性**     | 直观，但不够自描述     | 明确，自描述性强             |
+| **类型安全**   | 需要手动指定类型       | 装饰器支持类型推断           |
+| **适用场景**   | 简单消息处理           | 复杂处理器，需要明确参数来源 |
 
-### 3.2 核心对象区别：@ConnectedSocket() Socket vs @WebSocketServer() Server
+### 4.2 核心对象区别：@ConnectedSocket() Socket vs @WebSocketServer() Server
 
 这是一个非常重要的概念区别，理解这两个对象的差异对于正确使用 WebSocket 至关重要：
 
-#### 3.2.1 **@ConnectedSocket() - 单个客户端连接**
+#### 4.2.1 **@ConnectedSocket() - 单个客户端连接**
+
 ```typescript
 @SubscribeMessage('message')
 handleMessage(@ConnectedSocket() client: Socket) {
   // client 代表当前发送消息的这个特定客户端
   console.log('客户端ID:', client.id); // 如：'abc123'
   console.log('客户端地址:', client.handshake.address); // 如：'192.168.1.100'
-  
+
   // 只能操作这个特定的客户端
   client.emit('private', '只发给你'); // 单播
   client.join('room1'); // 这个客户端加入房间
@@ -191,44 +195,48 @@ handleMessage(@ConnectedSocket() client: Socket) {
 ```
 
 **特点：**
+
 - 每次调用对应一个**特定的客户端连接**
 - 不同的客户端有不同的 `Socket` 实例
 - 用于操作特定客户端（单播、离开房间等）
 
-#### 3.2.2 **@WebSocketServer() - 整个WebSocket服务器**
+#### 4.2.2 **@WebSocketServer() - 整个 WebSocket 服务器**
+
 ```typescript
 @WebSocketGateway()
 export class ChatGateway {
   @WebSocketServer()
-  server: Server;  // 整个WebSocket服务器
-  
-  @SubscribeMessage('message')
+  server: Server; // 整个WebSocket服务器
+
+  @SubscribeMessage("message")
   handleMessage(@ConnectedSocket() client: Socket, @MessageBody() data: any) {
     // server 可以操作所有连接
-    this.server.emit('broadcast', '发给所有人'); // 广播给所有客户端
-    
+    this.server.emit("broadcast", "发给所有人"); // 广播给所有客户端
+
     // 也可以操作特定房间
-    this.server.to('room1').emit('roomMessage', '发给room1所有人');
+    this.server.to("room1").emit("roomMessage", "发给room1所有人");
   }
 }
 ```
 
 **特点：**
+
 - **全局唯一**，整个应用只有一个
 - 用于广播、房间管理、获取所有连接等
 - 是 `Socket.IO` 的 `Server` 实例
 
-#### 3.2.3 **关键区别总结：**
+#### 4.2.3 **关键区别总结：**
 
-| 特性 | @ConnectedSocket() Socket | @WebSocketServer() Server |
-|------|--------------------------|---------------------------|
-| **作用范围** | 单个客户端连接 | 整个WebSocket服务器 |
-| **实例数量** | 每个连接一个实例 | 全局单例 |
-| **主要用途** | 单播、客户端操作 | 广播、房间管理 |
-| **地址** | 每个客户端地址不同 | 服务器地址，对所有客户端一样 |
-| **典型操作** | `.emit()`, `.join()`, `.leave()` | `.to().emit()`, `.sockets` |
+| 特性         | @ConnectedSocket() Socket        | @WebSocketServer() Server    |
+| ------------ | -------------------------------- | ---------------------------- |
+| **作用范围** | 单个客户端连接                   | 整个 WebSocket 服务器        |
+| **实例数量** | 每个连接一个实例                 | 全局单例                     |
+| **主要用途** | 单播、客户端操作                 | 广播、房间管理               |
+| **地址**     | 每个客户端地址不同               | 服务器地址，对所有客户端一样 |
+| **典型操作** | `.emit()`, `.join()`, `.leave()` | `.to().emit()`, `.sockets`   |
 
-#### 3.2.4 **关系示意图：**
+#### 4.2.4 **关系示意图：**
+
 ```
                               WebSocket Server (单例)
                                      ↑
@@ -252,7 +260,7 @@ export class ChatGateway {
                 +------------+           +------------+
 ```
 
-### 3.3 基础消息处理
+### 4.3 基础消息处理
 
 ```typescript
 // 继续在 websocket.gateway.ts 中添加
@@ -262,7 +270,7 @@ export class WebSocketGateway {
   // ... 之前的代码
 
   // 处理文本消息 - 使用显式参数方式
-  @SubscribeMessage('message')
+  @SubscribeMessage("message")
   handleMessage(client: Socket, payload: any): void {
     const user = this.users.get(client.id);
     const messageData = {
@@ -273,33 +281,33 @@ export class WebSocketGateway {
       },
       content: payload.content,
       timestamp: new Date(),
-      type: 'text',
-      room: payload.room || 'general',
+      type: "text",
+      room: payload.room || "general",
     };
 
     // 发送给特定房间或所有人
     if (payload.room) {
-      this.server.to(payload.room).emit('message', messageData);
+      this.server.to(payload.room).emit("message", messageData);
     } else {
-      this.server.emit('message', messageData);
+      this.server.emit("message", messageData);
     }
 
     // 消息确认 - 使用client单播
-    client.emit('message-delivered', {
+    client.emit("message-delivered", {
       messageId: messageData.id,
       timestamp: new Date(),
     });
   }
 
   // 处理私聊消息 - 使用装饰器方式
-  @SubscribeMessage('private-message')
+  @SubscribeMessage("private-message")
   handlePrivateMessage(
     @ConnectedSocket() client: Socket,
     @MessageBody() payload: any
   ) {
     const { recipientId, content } = payload;
     const sender = this.users.get(client.id);
-    
+
     // 通过server找到目标客户端
     const recipientSocket = this.server.sockets.sockets.get(recipientId);
 
@@ -313,23 +321,23 @@ export class WebSocketGateway {
         recipientId,
         content,
         timestamp: new Date(),
-        type: 'private',
+        type: "private",
       };
 
       // 发送给接收者 - 使用targetSocket单播
-      recipientSocket.emit('private-message', messageData);
-      
+      recipientSocket.emit("private-message", messageData);
+
       // 发送已读回执（可选） - 使用client单播
-      client.emit('private-message-sent', {
+      client.emit("private-message-sent", {
         messageId: messageData.id,
         recipientId,
         timestamp: new Date(),
       });
     } else {
       // 用户离线，可以存储消息等用户上线后发送
-      client.emit('error', {
-        type: 'USER_OFFLINE',
-        message: 'Recipient is offline',
+      client.emit("error", {
+        type: "USER_OFFLINE",
+        message: "Recipient is offline",
         recipientId,
       });
     }
@@ -337,7 +345,7 @@ export class WebSocketGateway {
 }
 ```
 
-### 3.4 房间管理功能
+### 4.4 房间管理功能
 
 ```typescript
 @WebSocketGateway()
@@ -345,19 +353,19 @@ export class WebSocketGateway {
   // ... 之前的代码
 
   // 加入房间 - 混合使用两种方式
-  @SubscribeMessage('join-room')
+  @SubscribeMessage("join-room")
   handleJoinRoom(
     @ConnectedSocket() client: Socket,
     @MessageBody() roomId: string
   ) {
     const user = this.users.get(client.id);
-    
+
     if (!user) {
-      return { error: 'User not found' };
+      return { error: "User not found" };
     }
 
     // 离开之前的房间（如果是切换房间）
-    user.rooms.forEach(existingRoom => {
+    user.rooms.forEach((existingRoom) => {
       if (existingRoom !== roomId) {
         client.leave(existingRoom);
         this.rooms.get(existingRoom)?.delete(client.id);
@@ -367,7 +375,7 @@ export class WebSocketGateway {
     // 加入新房间 - 使用client操作
     client.join(roomId);
     user.rooms.add(roomId);
-    
+
     // 初始化房间用户集合
     if (!this.rooms.has(roomId)) {
       this.rooms.set(roomId, new Set());
@@ -375,12 +383,12 @@ export class WebSocketGateway {
     this.rooms.get(roomId).add(client.id);
 
     // 通知房间内其他用户 - 使用server广播
-    this.server.to(roomId).emit('user-joined-room', {
+    this.server.to(roomId).emit("user-joined-room", {
       userId: client.id,
       username: user.username,
       roomId,
       timestamp: new Date(),
-      roomMembers: Array.from(this.rooms.get(roomId)).map(id => ({
+      roomMembers: Array.from(this.rooms.get(roomId)).map((id) => ({
         id,
         username: this.users.get(id)?.username,
       })),
@@ -389,18 +397,18 @@ export class WebSocketGateway {
     return {
       success: true,
       roomId,
-      members: Array.from(this.rooms.get(roomId)).map(id => 
+      members: Array.from(this.rooms.get(roomId)).map((id) =>
         this.users.get(id)
       ),
     };
   }
 
   // 离开房间
-  @SubscribeMessage('leave-room')
+  @SubscribeMessage("leave-room")
   handleLeaveRoom(client: Socket, roomId: string) {
     // 使用client操作离开房间
     client.leave(roomId);
-    
+
     const user = this.users.get(client.id);
     if (user) {
       user.rooms.delete(roomId);
@@ -415,7 +423,7 @@ export class WebSocketGateway {
     }
 
     // 通知房间内其他用户 - 使用server广播
-    this.server.to(roomId).emit('user-left-room', {
+    this.server.to(roomId).emit("user-left-room", {
       userId: client.id,
       username: user?.username,
       roomId,
@@ -426,12 +434,12 @@ export class WebSocketGateway {
   }
 
   // 创建房间
-  @SubscribeMessage('create-room')
+  @SubscribeMessage("create-room")
   handleCreateRoom(client: Socket, payload: any) {
     const { roomId, roomName, isPrivate = false, password } = payload;
-    
+
     if (this.rooms.has(roomId)) {
-      return { error: 'Room already exists' };
+      return { error: "Room already exists" };
     }
 
     const roomData = {
@@ -458,7 +466,7 @@ export class WebSocketGateway {
     }
 
     // 使用server广播房间创建事件
-    this.server.emit('room-created', {
+    this.server.emit("room-created", {
       room: roomData,
       creator: {
         id: client.id,
@@ -471,9 +479,9 @@ export class WebSocketGateway {
 }
 ```
 
-## 4. 高级功能实现
+## 5. 高级功能实现
 
-### 4.1 文件传输和媒体共享
+### 5.1 文件传输和媒体共享
 
 ```typescript
 @WebSocketGateway()
@@ -481,27 +489,35 @@ export class WebSocketGateway {
   // ... 之前的代码
 
   // 处理文件传输
-  @SubscribeMessage('file-upload')
+  @SubscribeMessage("file-upload")
   async handleFileUpload(
     @ConnectedSocket() client: Socket,
     @MessageBody() payload: any
   ) {
-    const { fileName, fileType, fileSize, chunk, totalChunks, chunkIndex, roomId } = payload;
+    const {
+      fileName,
+      fileType,
+      fileSize,
+      chunk,
+      totalChunks,
+      chunkIndex,
+      roomId,
+    } = payload;
     const user = this.users.get(client.id);
 
     // 验证文件大小
     const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
     if (fileSize > MAX_FILE_SIZE) {
       // 使用client单播发送错误
-      client.emit('file-error', {
+      client.emit("file-error", {
         fileName,
-        error: 'File size exceeds limit',
+        error: "File size exceeds limit",
       });
       return;
     }
 
     // 发送文件块接收确认 - 使用client单播
-    client.emit('chunk-received', {
+    client.emit("chunk-received", {
       fileName,
       chunkIndex,
       totalChunks,
@@ -520,28 +536,30 @@ export class WebSocketGateway {
         },
         uploadedAt: new Date(),
         roomId,
-        url: `/files/${this.generateFileId()}.${this.getFileExtension(fileName)}`,
+        url: `/files/${this.generateFileId()}.${this.getFileExtension(
+          fileName
+        )}`,
       };
 
       // 广播文件上传完成
       if (roomId) {
         // 使用server广播到房间
-        this.server.to(roomId).emit('file-uploaded', fileData);
+        this.server.to(roomId).emit("file-uploaded", fileData);
       } else {
         // 使用client.broadcast广播给除自己外的所有人
-        client.broadcast.emit('file-uploaded', fileData);
+        client.broadcast.emit("file-uploaded", fileData);
       }
     }
   }
 
   // 屏幕共享控制
-  @SubscribeMessage('screen-share-start')
+  @SubscribeMessage("screen-share-start")
   handleScreenShareStart(client: Socket, payload: any) {
     const { roomId, streamId } = payload;
     const user = this.users.get(client.id);
 
     // 使用server广播到房间
-    this.server.to(roomId).emit('screen-share-started', {
+    this.server.to(roomId).emit("screen-share-started", {
       userId: client.id,
       username: user.username,
       streamId,
@@ -553,12 +571,12 @@ export class WebSocketGateway {
     user.screenShareStreamId = streamId;
   }
 
-  @SubscribeMessage('screen-share-stop')
+  @SubscribeMessage("screen-share-stop")
   handleScreenShareStop(client: Socket, roomId: string) {
     const user = this.users.get(client.id);
-    
+
     // 使用server广播到房间
-    this.server.to(roomId).emit('screen-share-stopped', {
+    this.server.to(roomId).emit("screen-share-stopped", {
       userId: client.id,
       username: user.username,
       timestamp: new Date(),
@@ -570,7 +588,7 @@ export class WebSocketGateway {
 }
 ```
 
-### 4.2 实时协作功能
+### 5.2 实时协作功能
 
 ```typescript
 @WebSocketGateway()
@@ -578,16 +596,16 @@ export class WebSocketGateway {
   // ... 之前的代码
 
   // 白板协作
-  @SubscribeMessage('whiteboard-draw')
+  @SubscribeMessage("whiteboard-draw")
   handleWhiteboardDraw(
     @ConnectedSocket() client: Socket,
     @MessageBody() payload: any
   ) {
     const { roomId, drawingData } = payload;
-    
+
     // 广播绘图数据给房间内其他用户
     // 注意：client.to() 是发送给房间内除了自己的其他人
-    client.to(roomId).emit('whiteboard-update', {
+    client.to(roomId).emit("whiteboard-update", {
       userId: client.id,
       drawingData,
       timestamp: new Date(),
@@ -595,15 +613,15 @@ export class WebSocketGateway {
   }
 
   // 实时文档编辑
-  @SubscribeMessage('document-edit')
+  @SubscribeMessage("document-edit")
   handleDocumentEdit(client: Socket, payload: any) {
     const { roomId, documentId, changes, version } = payload;
-    
+
     // 使用 Operational Transformation 处理并发编辑
     const transformedChanges = this.transformChanges(changes, version);
-    
+
     // 广播编辑内容到房间
-    this.server.to(roomId).emit('document-updated', {
+    this.server.to(roomId).emit("document-updated", {
       documentId,
       changes: transformedChanges,
       editorId: client.id,
@@ -613,18 +631,18 @@ export class WebSocketGateway {
   }
 
   // 投票/问卷功能
-  @SubscribeMessage('create-poll')
+  @SubscribeMessage("create-poll")
   handleCreatePoll(
     @ConnectedSocket() client: Socket,
     @MessageBody() payload: any
   ) {
     const { roomId, question, options, duration } = payload;
     const pollId = this.generatePollId();
-    
+
     const poll = {
       id: pollId,
       question,
-      options: options.map(option => ({
+      options: options.map((option) => ({
         id: this.generateOptionId(),
         text: option,
         votes: 0,
@@ -641,7 +659,7 @@ export class WebSocketGateway {
     this.activePolls.set(pollId, poll);
 
     // 广播新投票到房间 - 使用server
-    this.server.to(roomId).emit('poll-created', poll);
+    this.server.to(roomId).emit("poll-created", poll);
 
     // 设置投票结束定时器
     setTimeout(() => {
@@ -651,25 +669,22 @@ export class WebSocketGateway {
     return { success: true, pollId };
   }
 
-  @SubscribeMessage('vote')
-  handleVote(
-    @ConnectedSocket() client: Socket,
-    @MessageBody() payload: any
-  ) {
+  @SubscribeMessage("vote")
+  handleVote(@ConnectedSocket() client: Socket, @MessageBody() payload: any) {
     const { pollId, optionId } = payload;
     const poll = this.activePolls.get(pollId);
-    
+
     if (!poll || !poll.isActive) {
-      return { error: 'Poll not found or expired' };
+      return { error: "Poll not found or expired" };
     }
 
-    const option = poll.options.find(opt => opt.id === optionId);
+    const option = poll.options.find((opt) => opt.id === optionId);
     if (option && !option.voters.has(client.id)) {
       option.votes++;
       option.voters.add(client.id);
-      
+
       // 广播更新到房间 - 使用server
-      this.server.to(poll.roomId).emit('vote-updated', {
+      this.server.to(poll.roomId).emit("vote-updated", {
         pollId,
         optionId,
         votes: option.votes,
@@ -682,35 +697,35 @@ export class WebSocketGateway {
 }
 ```
 
-## 5. 安全与监控
+## 6. 安全与监控
 
-### 5.1 安全中间件
+### 6.1 安全中间件
 
 ```typescript
 // websocket.middleware.ts
-import { Injectable, NestMiddleware } from '@nestjs/common';
-import { Socket } from 'socket.io';
+import { Injectable, NestMiddleware } from "@nestjs/common";
+import { Socket } from "socket.io";
 
 @Injectable()
 export class WebSocketAuthMiddleware implements NestMiddleware {
   async use(socket: Socket, next: Function) {
     try {
       const token = socket.handshake.auth.token;
-      
+
       if (!token) {
-        throw new Error('Authentication token required');
+        throw new Error("Authentication token required");
       }
 
       // 验证 token
       const user = await this.validateToken(token);
-      
+
       // 将用户信息附加到 socket 对象
       socket.data.user = user;
-      
+
       // 速率限制检查
       const isRateLimited = await this.checkRateLimit(socket.id);
       if (isRateLimited) {
-        throw new Error('Rate limit exceeded');
+        throw new Error("Rate limit exceeded");
       }
 
       next();
@@ -731,7 +746,7 @@ export class WebSocketAuthMiddleware implements NestMiddleware {
 }
 ```
 
-### 5.2 监控与日志
+### 6.2 监控与日志
 
 ```typescript
 // websocket.gateway.ts 中添加监控功能
@@ -746,7 +761,7 @@ export class WebSocketGateway {
   };
 
   // 监控端点 - 使用装饰器方式
-  @SubscribeMessage('get-metrics')
+  @SubscribeMessage("get-metrics")
   handleGetMetrics(@ConnectedSocket() client: Socket) {
     const metrics = {
       ...this.metrics,
@@ -758,15 +773,15 @@ export class WebSocketGateway {
     };
 
     // 使用client单播返回指标
-    client.emit('metrics', metrics);
+    client.emit("metrics", metrics);
   }
 
   // 错误处理
-  @SubscribeMessage('error')
+  @SubscribeMessage("error")
   handleError(client: Socket, error: any) {
     this.metrics.errors++;
     this.logger.error(`Client ${client.id} error:`, error);
-    
+
     // 发送错误报告给监控系统
     this.reportError({
       clientId: client.id,
@@ -781,14 +796,14 @@ export class WebSocketGateway {
 }
 ```
 
-## 6. 性能优化
+## 7. 性能优化
 
-### 6.1 连接池管理
+### 7.1 连接池管理
 
 ```typescript
 // connection-manager.service.ts
-import { Injectable } from '@nestjs/common';
-import { Redis } from 'ioredis';
+import { Injectable } from "@nestjs/common";
+import { Redis } from "ioredis";
 
 @Injectable()
 export class ConnectionManagerService {
@@ -804,38 +819,38 @@ export class ConnectionManagerService {
   // 分布式连接管理
   async trackConnection(socketId: string, userData: any) {
     await this.redisClient.hset(
-      'socket:connections',
+      "socket:connections",
       socketId,
-      JSON.stringify(userData),
+      JSON.stringify(userData)
     );
-    
+
     // 设置过期时间
     await this.redisClient.expire(`socket:${socketId}`, 3600);
   }
 
   // 获取所有活跃连接
   async getActiveConnections() {
-    const connections = await this.redisClient.hgetall('socket:connections');
-    return Object.keys(connections).map(socketId => 
+    const connections = await this.redisClient.hgetall("socket:connections");
+    return Object.keys(connections).map((socketId) =>
       JSON.parse(connections[socketId])
     );
   }
 }
 ```
 
-### 6.2 消息队列集成
+### 7.2 消息队列集成
 
 ```typescript
 // websocket.queue.service.ts
-import { Injectable } from '@nestjs/common';
-import { Queue } from 'bull';
+import { Injectable } from "@nestjs/common";
+import { Queue } from "bull";
 
 @Injectable()
 export class WebSocketQueueService {
   private messageQueue: Queue;
 
   constructor() {
-    this.messageQueue = new Queue('websocket-messages', {
+    this.messageQueue = new Queue("websocket-messages", {
       redis: {
         host: process.env.REDIS_HOST,
         port: parseInt(process.env.REDIS_PORT),
@@ -845,10 +860,10 @@ export class WebSocketQueueService {
 
   // 异步处理消息
   async queueMessage(message: any) {
-    await this.messageQueue.add('process-message', message, {
+    await this.messageQueue.add("process-message", message, {
       attempts: 3,
       backoff: {
-        type: 'exponential',
+        type: "exponential",
         delay: 1000,
       },
     });
@@ -865,19 +880,19 @@ export class WebSocketQueueService {
     const key = `offline:${userId}`;
     const messages = await this.redisClient.lrange(key, 0, -1);
     await this.redisClient.del(key);
-    return messages.map(msg => JSON.parse(msg));
+    return messages.map((msg) => JSON.parse(msg));
   }
 }
 ```
 
-## 7. 客户端集成示例
+## 8. 客户端集成示例
 
-### 7.1 React 客户端示例
+### 8.1 React 客户端示例
 
 ```javascript
 // WebSocketClient.jsx
-import React, { useEffect, useState, useCallback } from 'react';
-import io from 'socket.io-client';
+import React, { useEffect, useState, useCallback } from "react";
+import io from "socket.io-client";
 
 const WebSocketClient = () => {
   const [socket, setSocket] = useState(null);
@@ -888,14 +903,14 @@ const WebSocketClient = () => {
 
   useEffect(() => {
     // 初始化连接
-    const newSocket = io('http://localhost:3000/chat', {
+    const newSocket = io("http://localhost:3000/chat", {
       auth: {
-        token: localStorage.getItem('token'),
+        token: localStorage.getItem("token"),
       },
       query: {
-        username: localStorage.getItem('username'),
+        username: localStorage.getItem("username"),
       },
-      transports: ['websocket'],
+      transports: ["websocket"],
       reconnection: true,
       reconnectionAttempts: 5,
       reconnectionDelay: 1000,
@@ -904,36 +919,36 @@ const WebSocketClient = () => {
     setSocket(newSocket);
 
     // 连接事件
-    newSocket.on('connect', () => {
+    newSocket.on("connect", () => {
       setConnected(true);
-      console.log('Connected to WebSocket server');
+      console.log("Connected to WebSocket server");
     });
 
-    newSocket.on('disconnect', (reason) => {
+    newSocket.on("disconnect", (reason) => {
       setConnected(false);
-      console.log('Disconnected:', reason);
+      console.log("Disconnected:", reason);
     });
 
     // 消息处理
-    newSocket.on('message', (data) => {
-      setMessages(prev => [...prev, data]);
+    newSocket.on("message", (data) => {
+      setMessages((prev) => [...prev, data]);
     });
 
-    newSocket.on('private-message', (data) => {
-      setMessages(prev => [...prev, { ...data, isPrivate: true }]);
+    newSocket.on("private-message", (data) => {
+      setMessages((prev) => [...prev, { ...data, isPrivate: true }]);
     });
 
-    newSocket.on('user-connected', (data) => {
-      setUsers(prev => [...prev, data]);
+    newSocket.on("user-connected", (data) => {
+      setUsers((prev) => [...prev, data]);
     });
 
-    newSocket.on('user-disconnected', (data) => {
-      setUsers(prev => prev.filter(user => user.userId !== data.userId));
+    newSocket.on("user-disconnected", (data) => {
+      setUsers((prev) => prev.filter((user) => user.userId !== data.userId));
     });
 
     // 错误处理
-    newSocket.on('error', (error) => {
-      console.error('WebSocket error:', error);
+    newSocket.on("error", (error) => {
+      console.error("WebSocket error:", error);
     });
 
     // 清理函数
@@ -943,30 +958,39 @@ const WebSocketClient = () => {
   }, []);
 
   // 发送消息
-  const sendMessage = useCallback((content, roomId = null) => {
-    if (socket && connected) {
-      socket.emit('message', { content, room: roomId });
-    }
-  }, [socket, connected]);
+  const sendMessage = useCallback(
+    (content, roomId = null) => {
+      if (socket && connected) {
+        socket.emit("message", { content, room: roomId });
+      }
+    },
+    [socket, connected]
+  );
 
   // 加入房间
-  const joinRoom = useCallback((roomId) => {
-    if (socket && connected) {
-      socket.emit('join-room', roomId);
-    }
-  }, [socket, connected]);
+  const joinRoom = useCallback(
+    (roomId) => {
+      if (socket && connected) {
+        socket.emit("join-room", roomId);
+      }
+    },
+    [socket, connected]
+  );
 
   // 创建房间
-  const createRoom = useCallback((roomName, isPrivate = false) => {
-    if (socket && connected) {
-      const roomId = generateRoomId();
-      socket.emit('create-room', {
-        roomId,
-        roomName,
-        isPrivate,
-      });
-    }
-  }, [socket, connected]);
+  const createRoom = useCallback(
+    (roomName, isPrivate = false) => {
+      if (socket && connected) {
+        const roomId = generateRoomId();
+        socket.emit("create-room", {
+          roomId,
+          roomName,
+          isPrivate,
+        });
+      }
+    },
+    [socket, connected]
+  );
 
   return {
     socket,
@@ -983,27 +1007,30 @@ const WebSocketClient = () => {
 export default WebSocketClient;
 ```
 
-## 8. 最佳实践和部署建议
+## 9. 最佳实践和部署建议
 
-### 8.1 参数接收最佳实践
+### 9.1 参数接收最佳实践
 
 1. **一致性原则**
+
    - 在一个项目中保持统一的参数接收风格
    - 简单处理器使用显式参数：`(client, payload)`
    - 复杂处理器使用装饰器：`(@MessageBody() payload, @ConnectedSocket() client)`
 
-2. **正确使用Socket和Server**
+2. **正确使用 Socket 和 Server**
+
    - 操作**特定用户**时用 `Socket` 对象：单播、加入房间、离开房间
    - 操作**多个用户**时用 `Server` 对象：广播、房间广播、获取所有连接
 
 3. **避免常见错误**
+
    ```typescript
    // ❌ 错误：缺少client参数，无法进行房间操作
    @SubscribeMessage('sendMessage')
    sendMessage(@MessageBody() payload: any): void {
      // 这里无法调用 client.join() 或 client.leave()
    }
-   
+
    // ✅ 正确：添加client参数
    @SubscribeMessage('sendMessage')
    sendMessage(@MessageBody() payload: any, @ConnectedSocket() client: Socket): void {
@@ -1011,14 +1038,16 @@ export default WebSocketClient;
    }
    ```
 
-### 8.2 性能最佳实践
+### 9.2 性能最佳实践
 
 1. **连接管理**
+
    - 实现心跳机制保持连接活跃
    - 使用连接池避免过多并发连接
    - 实现自动重连机制
 
 2. **消息优化**
+
    - 压缩大型消息
    - 分批发送大量数据
    - 使用二进制传输减少开销
@@ -1028,11 +1057,11 @@ export default WebSocketClient;
    - 实现消息清理策略
    - 监控内存使用情况
 
-### 8.3 部署配置
+### 9.3 部署配置
 
 ```yaml
 # Docker 部署示例
-version: '3.8'
+version: "3.8"
 services:
   app:
     build: .
@@ -1071,24 +1100,27 @@ volumes:
   redis-data:
 ```
 
-## 9. 结论
+## 10. 结论
 
 NestJS 提供了一套完整且优雅的 WebSocket 解决方案。通过网关、订阅装饰器、中间件等特性，我们可以构建功能强大、可扩展的实时应用程序。本文涵盖了从基础连接到高级功能实现的各个方面，特别强调了：
 
-### 9.1 **核心概念理解：**
-1. **参数接收的两种方式**：显式参数 vs 装饰器方式，各有适用场景
-2. **Socket与Server的区别**：这是理解 NestJS WebSocket 的关键
-   - `Socket`：代表**单个客户端连接**，用于单播操作
-   - `Server`：代表**整个WebSocket服务器**，用于广播和房间管理
+### 10.1 **核心概念理解：**
 
-### 9.2 **实际开发建议：**
+1. **参数接收的两种方式**：显式参数 vs 装饰器方式，各有适用场景
+2. **Socket 与 Server 的区别**：这是理解 NestJS WebSocket 的关键
+   - `Socket`：代表**单个客户端连接**，用于单播操作
+   - `Server`：代表**整个 WebSocket 服务器**，用于广播和房间管理
+
+### 10.2 **实际开发建议：**
+
 - **简单场景**使用显式参数方式：`(client, payload)`
 - **复杂场景**使用装饰器方式提高可读性
 - **操作特定用户**时用 `Socket` 对象
 - **广播或房间操作**时用 `Server` 对象
 - 始终保持参数接收风格的一致性
 
-### 9.3 **涵盖的完整知识体系：**
+### 10.3 **涵盖的完整知识体系：**
+
 1. **核心架构**：网关、命名空间、房间管理
 2. **消息处理**：文本消息、私聊、文件传输
 3. **协作功能**：白板、文档编辑、投票系统
@@ -1098,7 +1130,7 @@ NestJS 提供了一套完整且优雅的 WebSocket 解决方案。通过网关�
 
 在实际项目中，建议根据具体需求选择合适的功能组合，并始终关注性能、安全性和用户体验。通过合理的设计和优化，NestJS WebSocket 可以支撑大规模的实时应用需求。
 
-## 10. 扩展资源
+## 11. 扩展资源
 
 - [NestJS 官方文档 - WebSockets](https://docs.nestjs.com/websockets/gateways)
 - [Socket.IO 官方文档](https://socket.io/docs/v4/)

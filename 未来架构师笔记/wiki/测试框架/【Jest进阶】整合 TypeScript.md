@@ -4,9 +4,10 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
+
 ## 1. 准备工作
 
-首先我们需要有一个基于 *ts* 的项目。
+首先我们需要有一个基于 _ts_ 的项目。
 
 第一步通过 npm init -y 初始化项目
 
@@ -43,7 +44,7 @@ npm i --save-dev @types/node
 ```js
 {
   "compilerOptions": {
-    "outDir": "./dist",  
+    "outDir": "./dist",
   },
   "include": ["./src"]
 }
@@ -63,8 +64,7 @@ npm install --save-dev jest
 npx jest --init
 ```
 
-
-接下来在 *src* 目录下面创建 \__test__ 这个目录，在这个目录里面新增测试套件，一般来讲一个函数对应一个测试套件，在测试套件中会针对不同的参数来书写对应的测试用例。
+接下来在 _src_ 目录下面创建 \_\_test\_\_ 这个目录，在这个目录里面新增测试套件，一般来讲一个函数对应一个测试套件，在测试套件中会针对不同的参数来书写对应的测试用例。
 
 ```ts
 const { randomNum } = require("../utils/tools");
@@ -116,7 +116,3 @@ npm i ts-jest -D
 ```js
 preset: "ts-jest",
 ```
-
-
-
-

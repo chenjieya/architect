@@ -4,7 +4,8 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
-## 1. Sass基础语法
+
+## 1. Sass 基础语法
 
 - 注释
 - 变量
@@ -15,7 +16,7 @@ updated: 2026-08-02
 
 ### 1.1 注释
 
-CSS 里面的注释 /* */ ，Sass 中支持 // 来进行注释，// 类型的注释再编译后是会消失
+CSS 里面的注释 /\* \*/ ，Sass 中支持 // 来进行注释，// 类型的注释再编译后是会消失
 
 ```scss
 /*
@@ -39,7 +40,7 @@ CSS 里面的注释 /* */ ，Sass 中支持 // 来进行注释，// 类型的注
   创建于 xxxx年xx月xx日
 */
 
-.test{
+.test {
   width: 300px;
 }
 ```
@@ -48,10 +49,11 @@ CSS 里面的注释 /* */ ，Sass 中支持 // 来进行注释，// 类型的注
 /*!
   该 CSS 作者 XXX
   创建于 xxxx年xx月xx日
-*/.test{width:300px}
+*/
+.test {
+  width: 300px;
+}
 ```
-
-
 
 ### 1.2 变量
 
@@ -62,7 +64,7 @@ CSS 里面的注释 /* */ ，Sass 中支持 // 来进行注释，// 类型的注
 $width: 1600px;
 $pen-size: 3em;
 
-div{
+div {
   width: $width;
   font-size: $pen-size;
 }
@@ -81,18 +83,17 @@ div {
 // 声明变量
 $width: 1600px;
 
-div{
+div {
   $width: 800px;
   $color: red;
 
-  p.one{
+  p.one {
     width: $width; /* 800px */
     color: $color; /* red */
   }
-  
 }
 
-p.two{
+p.two {
   width: $width; /* 1600px */
   color: $color; /* 报错，因为 $color 是一个局部变量 */
 }
@@ -104,18 +105,17 @@ p.two{
 // 声明变量
 $width: 1600px;
 
-div{
+div {
   $width: 800px;
   $color: red !global;
 
-  p.one{
+  p.one {
     width: $width;
     color: $color;
   }
-  
 }
 
-p.two{
+p.two {
   width: $width;
   color: $color;
 }
@@ -133,7 +133,6 @@ p.two {
 }
 ```
 
-
 ### 1.3 数据类型
 
 因为 CSS 预处理器就是针对 CSS 这一块融入编程语言的特性进去，所以自然会有数据类型。
@@ -148,19 +147,15 @@ p.two {
 - 字典（map）：用一个小括号扩起来，里面是一对一对的键值对 (key1:value1, key2:value2)
 - 颜色类型：blue、#04a012、rgba(0,0,12,0.5)
 
-
-
 #### 1.3.1 数值类型
 
-Sass里面支持两种数值类型：<u>带单位数值</u> 和 <u>不带单位的数值</u>，数字可以是正负数以及浮点数
+Sass 里面支持两种数值类型：<u>带单位数值</u> 和 <u>不带单位的数值</u>，数字可以是正负数以及浮点数
 
 ```scss
 $my-age: 19;
 $your-age: 19.5;
 $height: 120px;
 ```
-
-
 
 #### 1.3.2 字符串类型
 
@@ -169,11 +164,11 @@ $height: 120px;
 并且引号可以是单引号也可以是双引号
 
 ```scss
-$name: 'Tom Bob';
+$name: "Tom Bob";
 $container: "top bottom";
 $what: heart;
 
-div{
+div {
   background-image: url($what + ".png");
 }
 ```
@@ -183,7 +178,6 @@ div {
   background-image: url(heart.png);
 }
 ```
-
 
 #### 1.3.3 布尔类型
 
@@ -206,8 +200,6 @@ $value: null;
 
 因为是空值，因此不能够使用它和其他类型进行算数运算
 
-
-
 #### 1.3.5 数组类型
 
 数组有两种表示方式：<u>通过空格来间隔</u> 以及 <u>通过逗号来间隔</u>
@@ -223,14 +215,14 @@ $list2: (1px 2px) (5px 6px);
 关于数组，有如下的注意事项：
 
 1. 数组里面可以包含子数组，例如 1px 2px, 5px 6px 就是包含了两个数组，1px 2px 是一个数组，5px 6px 又是一个数组，如果内外数组的分隔方式相同，例如都是采用空格来分隔，这个时候可以使用一个小括号来分隔 (1px 2px) (5px 6px)
-2. 添加了小括号的内容最终被编译为 CSS 的时候，是会被去除掉小括号的，例如  (1px 2px) (5px 6px) ---> 1px 2px 5px 6px
+2. 添加了小括号的内容最终被编译为 CSS 的时候，是会被去除掉小括号的，例如 (1px 2px) (5px 6px) ---> 1px 2px 5px 6px
 
 ```scss
 $list0: 1px 2px 5px 6px;
 $list1: 1px 2px, 5px 6px;
 $list2: (1px 2px) (5px 6px);
 
-div{
+div {
   padding: $list2;
 }
 ```
@@ -246,7 +238,7 @@ div {
 ```scss
 $list2: ();
 
-div{
+div {
   padding: $list2; // 报错
 }
 ```
@@ -257,11 +249,11 @@ div{
 $list2: 1px 2px null 3px;
 $list3: 1px 2px () 3px;
 
-div{
+div {
   padding: $list2;
 }
 
-.div2{
+.div2 {
   padding: $list3;
 }
 ```
@@ -279,7 +271,6 @@ $base-font-size: nth($font-sizes, 3);
 body {
   font-size: $base-font-size;
 }
-
 ```
 
 ```css
@@ -322,16 +313,15 @@ $sizes: 40px 50px 60px;
 }
 ```
 
-
 #### 1.3.6 字典类型
 
 字典类型必须要使用小括号扩起来，小括号里面是一对一对的键值对
 
 ```scss
 $a: (
-	$key1: value1,
-  $key2: value2
-)
+  $key1: value1,
+  $key2: value2,
+);
 ```
 
 可以通过 map-get 方法来获取字典值
@@ -344,10 +334,9 @@ $colors: (
   "accent": #2196f3,
 );
 
-
 $primary: map-get($colors, "primary");
 
-button{
+button {
   background-color: $primary;
 }
 ```
@@ -374,7 +363,6 @@ $icons: (
     content: $value;
   }
 }
-
 ```
 
 ```css
@@ -397,26 +385,24 @@ $icons: (
 }
 ```
 
-
-
 #### 1.3.7 颜色类型
 
 支持原生 CSS 中各种颜色的表示方式，十六进制、RGB、RGBA、HSL、HSLA、颜色英语单词。
 
 Sass 还提供了内置的 Colors 相关的各种函数，可以方便我们对颜色进行一个颜色值的调整和操作。
 
-- lighten 和 darken：调整颜色的亮度，lighten是增加亮度、darken是减少亮度
+- lighten 和 darken：调整颜色的亮度，lighten 是增加亮度、darken 是减少亮度
 
 ```scss
-$color : red;
+$color: red;
 
-.div1{
+.div1 {
   width: 200px;
   height: 200px;
   background-color: lighten($color, 10%); // 亮度增加10%
 }
 
-.div2{
+.div2 {
   width: 200px;
   height: 200px;
   background-color: darken($color, 10%); // 亮度减少10%
@@ -440,36 +426,36 @@ $color : red;
 - saturate 和 desaturate：调整颜色的饱和度
 
 ```scss
-$color:#4caf50;
+$color: #4caf50;
 
-.div1{
+.div1 {
   width: 200px;
   height: 200px;
   background-color: saturate($color, 10%); // 饱和度增加10%
 }
 
-.div2{
+.div2 {
   width: 200px;
   height: 200px;
   background-color: desaturate($color, 10%); // 饱和度减少10%
 }
 ```
 
-- *Adjust Hue*：通过调整颜色的色相来创建新颜色。
+- _Adjust Hue_：通过调整颜色的色相来创建新颜色。
 
 ```scss
 $color: #4caf50;
 $new-hue: adjust-hue($color, 30); // 色相增加 30 度
 ```
 
-- *RGBA*：为颜色添加透明度。    
+- _RGBA_：为颜色添加透明度。
 
 ```scss
 $color: #4caf50;
 $transparent: rgba($color, 0.5); // 添加 50% 透明度
 ```
 
-- *Mix*：混合两种颜色。
+- _Mix_：混合两种颜色。
 
 ```scss
 $color1: #4caf50;
@@ -477,7 +463,7 @@ $color2: #2196f3;
 $mixed: mix($color1, $color2, 50%); // 混合两种颜色，权重 50%
 ```
 
-- *Complementary*：获取颜色的补充颜色。
+- _Complementary_：获取颜色的补充颜色。
 
 ```scss
 $color: #4caf50;
@@ -485,7 +471,6 @@ $complementary: adjust-hue($color, 180); // 色相增加 180 度，获取补充�
 ```
 
 如果想要查阅具体有哪些颜色相关的函数，可以参阅官方文档：https://sass-lang.com/documentation/modules/color
-
 
 ### 1.4 嵌套语法
 
@@ -542,10 +527,10 @@ a {
   }
 }
 
-div{
+div {
   width: 100px;
   height: 100px;
-  &.one{
+  &.one {
     background-color: red;
   }
 }
@@ -590,8 +575,6 @@ div.one {
   font-weight: bold;
 }
 ```
-
-
 
 ### 1.5 插值语法
 
@@ -653,8 +636,6 @@ $author: xiejie;
 */
 ```
 
-
-
 ### 1.6 运算
 
 关于运算相关的一些函数：
@@ -662,8 +643,6 @@ $author: xiejie;
 - calc
 - max 和 min
 - clamp
-
-
 
 #### 1.6.1 calc
 
@@ -678,7 +657,7 @@ $author: xiejie;
     width: calc(100% - 40px);
   }
 
-  .element2{
+  .element2 {
     width: calc(100px - 40px);
   }
 }
@@ -699,8 +678,6 @@ $author: xiejie;
 
 注意，在上面的编译当中，如果单位相同，Sass 在做编译的时候会直接运行 calc 运算表达式，得到计算出来的最终值，但是如果单位不相同，会保留 calc 运算表达式。
 
-
-
 #### 1.6.2 min 和 max
 
 min 是在一组数据里面找出最小值，max 就是在一组数据里面找到最大值。
@@ -709,7 +686,7 @@ min 是在一组数据里面找出最小值，max 就是在一组数据里面找
 $width1: 500px;
 $width2: 600px;
 
-.element{
+.element {
   width: min($width1, $width2);
 }
 ```
@@ -720,10 +697,6 @@ $width2: 600px;
 }
 ```
 
-
-
-
-
 #### 1.6.3 clamp
 
 这个也是 CSS3 提供的函数，语法为：
@@ -732,7 +705,7 @@ $width2: 600px;
 clamp(min, value, max)
 ```
 
-min代表下限，max 代表上限，value 是需要限制的值。clamp 的作用就是将 value 限制在 min 和 max 之间，如果 value 小于了 min 那么就取 min 作为值，如果 vlaue 大于了 max，那么就取 max 作为值。如果value 在 min 和 max 之间，那么就返回 value 值本身。
+min 代表下限，max 代表上限，value 是需要限制的值。clamp 的作用就是将 value 限制在 min 和 max 之间，如果 value 小于了 min 那么就取 min 作为值，如果 vlaue 大于了 max，那么就取 max 作为值。如果 value 在 min 和 max 之间，那么就返回 value 值本身。
 
 ```scss
 $min-font-size: 16px;
@@ -758,7 +731,7 @@ body {
 $width: 1600px;
 $pen-size: 3em;
 
-div{
+div {
   width: $width;
   font-size: $pen-size;
 }
@@ -777,18 +750,17 @@ div {
 // 声明变量
 $width: 1600px;
 
-div{
+div {
   $width: 800px;
   $color: red;
 
-  p.one{
+  p.one {
     width: $width; /* 800px */
     color: $color; /* red */
   }
-  
 }
 
-p.two{
+p.two {
   width: $width; /* 1600px */
   color: $color; /* 报错，因为 $color 是一个局部变量 */
 }
@@ -800,18 +772,17 @@ p.two{
 // 声明变量
 $width: 1600px;
 
-div{
+div {
   $width: 800px;
   $color: red !global;
 
-  p.one{
+  p.one {
     width: $width;
     color: $color;
   }
-  
 }
 
-p.two{
+p.two {
   width: $width;
   color: $color;
 }
@@ -828,4 +799,3 @@ p.two {
   color: red;
 }
 ```
-

@@ -4,6 +4,7 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
+
 打包构建中的代码拆分（Code Splitting）是一种优化技术，它将应用程序的代码拆分成多个小块（chunks），并在需要时按需加载这些代码块。这种技术的目的是提高应用程序的性能和用户体验，主要有以下几个原因：
 
 1. **减少初始加载时间**
@@ -58,7 +59,7 @@ updated: 2026-08-02
 
 **在生产环境下 Vite 完全利用 Rollup 进行构建，因此拆包也是基于 Rollup 来完成的**。
 
-只不过Rollup专注于JS库的打包，对应用构建的能力还有待提升，Vite 正好是补足了 Rollup 应用构建的能力，在拆包能力这一块的扩展就是很好的体现
+只不过 Rollup 专注于 JS 库的打包，对应用构建的能力还有待提升，Vite 正好是补足了 Rollup 应用构建的能力，在拆包能力这一块的扩展就是很好的体现
 
 **项目的基本结构：**
 
@@ -110,7 +111,7 @@ dist/assets/index-c0c63fdb.js        216.25 kB │ gzip: 51.48 kB
 └── vite.svg										// 静态资源
 ```
 
-这是没有任何配置的vite打包之后的产物，**自动对懒加载的路由和与其对应的css进行的处理**
+这是没有任何配置的 vite 打包之后的产物，**自动对懒加载的路由和与其对应的 css 进行的处理**
 
 ## 3. 自定义拆包策略
 
@@ -158,7 +159,7 @@ dist/assets/vue-vendor-99c39a4b.js   210.95 kB │ gzip: 49.67 kB
 
 可以看到之前很大的`index.js`文件被拆分了出来。
 
-如果代码中有其他第三方包，我们可以看的更加明显**(加入了lodash和elementUI，并加入了组件显示Table)**
+如果代码中有其他第三方包，我们可以看的更加明显**(加入了 lodash 和 elementUI，并加入了组件显示 Table)**
 
 ![](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20260117161433929.png)
 
@@ -185,14 +186,14 @@ build: {
 
 Vite 会为入口 chunk 和它们在打包出的 HTML 中的直接引入自动生成 `<link rel="modulepreload">` 指令。
 
-`modulepreload`其实就是对于原生 ESM 模块的`Preload`，也就是说，对于一般的模块，我们可以使用`Preload`进行预加载，对于ESM模块，可以使用`modulepreload`
+`modulepreload`其实就是对于原生 ESM 模块的`Preload`，也就是说，对于一般的模块，我们可以使用`Preload`进行预加载，对于 ESM 模块，可以使用`modulepreload`
 
 ```javascript
 <link rel="preload" href="main.js" as="script">
 <link rel="modulepreload" crossorigin href="/assets/vue-vendor-3dfa5d83.js">
 ```
 
-不过`modulepreload`的浏览器兼容性并不是太好,仅仅只有74%
+不过`modulepreload`的浏览器兼容性并不是太好,仅仅只有 74%
 
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20260117161508738.png)
 
@@ -200,7 +201,7 @@ Vite 会为入口 chunk 和它们在打包出的 HTML 中的直接引入自动�
 
 ```javascript
 build: {
-  polyfillModulePreload: true
+  polyfillModulePreload: true;
 }
 ```
 
@@ -252,24 +253,24 @@ manualChunks(id) {
 
 ```javascript
 // a.js
-import { funcB } from './b.js'
+import { funcB } from "./b.js";
 
-funcB()
+funcB();
 
 export const funcA = () => {
-  console.log('a')
-}
+  console.log("a");
+};
 ```
 
 ```javascript
 // b.js
-import { funcA } from './a.js'
+import { funcA } from "./a.js";
 
-funcA()
+funcA();
 
 export const funcB = () => {
-  console.log('b')
-}
+  console.log("b");
+};
 ```
 
 ```javascript
@@ -299,7 +300,7 @@ export const funcB = () => {
 
 [vite-plugin-chunk-split](https://github.com/sanyuan0704/vite-plugin-chunk-split) 是一个 Vite 插件，支持多种拆包策略，可避免手动操作`manualChunks`潜在的循环依赖问题。
 
-不过现阶段这个插件有个问题是，作者还没有更新到支持Vite4(其实主要是Rollup3)，导入插件之后会报出对等依赖（`peerDependencies`）的错误，但是使用上还没有发现大问题，但是并没有严谨测试，慎用!
+不过现阶段这个插件有个问题是，作者还没有更新到支持 Vite4(其实主要是 Rollup3)，导入插件之后会报出对等依赖（`peerDependencies`）的错误，但是使用上还没有发现大问题，但是并没有严谨测试，慎用!
 
 **安装**
 
@@ -311,7 +312,7 @@ pnpm i vite-plugin-chunk-split -D
 
 ```javascript
 // vite.config.ts
-import { chunkSplitPlugin } from 'vite-plugin-chunk-split'
+import { chunkSplitPlugin } from "vite-plugin-chunk-split";
 
 export default defineConfig({
   plugins: [
@@ -325,12 +326,12 @@ export default defineConfig({
     chunkSplitPlugin({
       // 指定拆包策略
       customSplitting: {
-        'vue-vendor': ['vue', 'vue-router'],
-        'element-plus': ['element-plus'],
+        "vue-vendor": ["vue", "vue-router"],
+        "element-plus": ["element-plus"],
         // 支持正则表达式。src 中 components 下的所有文件被会被打包为`component-util`的 chunk 中
-        'components-util': [/src\/components/],
+        "components-util": [/src\/components/],
       },
     }),
   ],
-})
+});
 ```

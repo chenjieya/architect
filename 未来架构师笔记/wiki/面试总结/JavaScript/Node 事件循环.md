@@ -4,6 +4,7 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
+
 ## 1. 经典真题
 
 - 请简述一下 _Node.js_ 中的事件循环，和浏览器环境的事件循环有何不同？
@@ -120,20 +121,20 @@ updated: 2026-08-02
 这里我们可以来看两道具体的代码题目加深理解：
 
 ```js
-console.log('script start')
+console.log("script start");
 setTimeout(function () {
-  console.log('setTimeout')
-}, 0)
+  console.log("setTimeout");
+}, 0);
 
 Promise.resolve()
   .then(function () {
-    console.log('promise1')
+    console.log("promise1");
   })
   .then(function () {
-    console.log('promise2')
-  })
+    console.log("promise2");
+  });
 
-console.log('script end')
+console.log("script end");
 ```
 
 上面的代码输出的结果为：
@@ -150,26 +151,26 @@ setTimeout
 
 ```js
 Promise.resolve().then(() => {
-  console.log('Promise1')
+  console.log("Promise1");
   setTimeout(() => {
-    console.log('setTimeout2')
-  }, 0)
-})
+    console.log("setTimeout2");
+  }, 0);
+});
 setTimeout(() => {
-  console.log('setTimeout1')
+  console.log("setTimeout1");
   Promise.resolve().then(() => {
-    console.log('Promise2')
-  })
-}, 0)
+    console.log("Promise2");
+  });
+}, 0);
 ```
 
 上面的代码输出的结果为：
 
 ```js
-Promise1
-setTimeout1
-Promise2
-setTimeout2
+Promise1;
+setTimeout1;
+Promise2;
+setTimeout2;
 ```
 
 一开始执行栈的同步任务（这属于宏任务）执行完毕，会去查看是否有微任务队列，上题中存在（有且只有一个），然后执行微任务队列中的所有任务输出 _Promise1_，同时会生成一个宏任务 _setTimeout2_。
@@ -245,19 +246,19 @@ _poll_ 是一个至关重要的阶段，这一阶段中，系统会做两件事�
 假设 _poll_ 被堵塞，那么即使 _timer_ 已经到时间了也只能等着，这也是为什么上面说定时器指定的时间并不是准确的时间。例如：
 
 ```js
-const start = Date.now()
+const start = Date.now();
 setTimeout(function f1() {
-  console.log('setTimeout', Date.now() - start)
-}, 200)
+  console.log("setTimeout", Date.now() - start);
+}, 200);
 
-const fs = require('fs')
+const fs = require("fs");
 
-fs.readFile('./index.js', 'utf-8', function f2() {
-  console.log('readFile')
-  const start = Date.now()
+fs.readFile("./index.js", "utf-8", function f2() {
+  console.log("readFile");
+  const start = Date.now();
   // 强行延时 500 毫秒
   while (Date.now() - start < 500) {}
-})
+});
 ```
 
 **_check_ 阶段**
@@ -267,23 +268,23 @@ _setImmediate( )_ 的回调会被加入 _check_ 队列中，从事件循环的�
 我们先来看个例子：
 
 ```js
-console.log('start')
+console.log("start");
 setTimeout(() => {
-  console.log('timer1')
+  console.log("timer1");
   Promise.resolve().then(function () {
-    console.log('promise1')
-  })
-}, 0)
+    console.log("promise1");
+  });
+}, 0);
 setTimeout(() => {
-  console.log('timer2')
+  console.log("timer2");
   Promise.resolve().then(function () {
-    console.log('promise2')
-  })
-}, 0)
+    console.log("promise2");
+  });
+}, 0);
 Promise.resolve().then(function () {
-  console.log('promise3')
-})
-console.log('end')
+  console.log("promise3");
+});
+console.log("end");
 // 输出结果：start => end => promise3 => timer1 => promise1 => timer2 => promise2
 ```
 
@@ -304,11 +305,11 @@ console.log('end')
 
 ```js
 setTimeout(function timeout() {
-  console.log('timeout')
-}, 0)
+  console.log("timeout");
+}, 0);
 setImmediate(function immediate() {
-  console.log('immediate')
-})
+  console.log("immediate");
+});
 ```
 
 对于以上代码来说，_setTimeout_ 可能执行在前，也可能执行在后。首先 _setTimeout(fn, 0) === setTimeout(fn, 1)_，这是由源码决定的，进入事件循环也是需要成本的，如果在准备时候花费了大于 _1ms_ 的时间，那么在 _timer_ 阶段就会直接执行 _setTimeout_ 回调。如果准备时间花费小于 _1ms_，那么就是 _setImmediate_ 回调先执行了。
@@ -316,15 +317,15 @@ setImmediate(function immediate() {
 但当二者在异步 _I/O callback_ 内部调用时，总是先执行 _setImmediate_，再执行 _setTimeout_，例如：
 
 ```js
-const fs = require('fs')
+const fs = require("fs");
 fs.readFile(__filename, () => {
   setTimeout(() => {
-    console.log('timeout')
-  }, 0)
+    console.log("timeout");
+  }, 0);
   setImmediate(() => {
-    console.log('immediate')
-  })
-})
+    console.log("immediate");
+  });
+});
 // immediate
 // timeout
 ```
@@ -337,23 +338,23 @@ fs.readFile(__filename, () => {
 
 ```js
 setTimeout(() => {
-  console.log('timer1')
+  console.log("timer1");
   Promise.resolve().then(function () {
-    console.log('promise1')
-  })
-}, 0)
+    console.log("promise1");
+  });
+}, 0);
 process.nextTick(() => {
-  console.log('nextTick')
+  console.log("nextTick");
   process.nextTick(() => {
-    console.log('nextTick')
+    console.log("nextTick");
     process.nextTick(() => {
-      console.log('nextTick')
+      console.log("nextTick");
       process.nextTick(() => {
-        console.log('nextTick')
-      })
-    })
-  })
-})
+        console.log("nextTick");
+      });
+    });
+  });
+});
 // nextTick => nextTick => nextTick => nextTick => timer1 => promise1
 ```
 
@@ -363,20 +364,20 @@ _Promise.then_ 也是独立于事件循环之外的，有一个自己的队列�
 
 ```js
 setTimeout(() => {
-  console.log('timer1')
+  console.log("timer1");
   Promise.resolve().then(function () {
-    console.log('promise1')
-  })
+    console.log("promise1");
+  });
   process.nextTick(() => {
-    console.log('nexttick')
-  })
-}, 0)
+    console.log("nexttick");
+  });
+}, 0);
 setTimeout(() => {
-  console.log('timer2')
+  console.log("timer2");
   Promise.resolve().then(function () {
-    console.log('promise2')
-  })
-}, 0)
+    console.log("promise2");
+  });
+}, 0);
 // timer1、nexttick、promise1、timer2、promise2
 ```
 

@@ -6,6 +6,7 @@ updated: 2026-08-02
 ---
 
 在最初的时候，我们在 pacakge.json 里面做了一个命令行的配置：
+
 ```js
 
 "scripts": {
@@ -28,19 +29,20 @@ prettier [options] [file/dir/glob ...]
 
 接下来我们来看一下在第一节课写的命令：
 prettier --write .
+
 - --write 就是配置选项，本来 prettier 格式化完成后是在控制台输出的， --write 代表写入到原本的文件，--write 还有一个别名就是 -w
 - . 是第二个参数，代表的是要格式化的路径，正常情况下你可以写一个文件或者写一个目录，例如
 
-  ```bash
+`bash
   prettier --write file.js # 只格式化 file.js 这个文件
   prettier -w "src/**/*.js" # 格式化 src 目录下面的所有的 js 文件（包含 src 下面的子目录）
-  ```
+  `
 
- 上面的 . 表示当前目录以及子目录下所有支持的文件，全部格式化之后写回原来的文件。
+上面的 . 表示当前目录以及子目录下所有支持的文件，全部格式化之后写回原来的文件。
 
 接下来介绍一些常见的 options
 
-- --check：该配置参数用于检查文件是否已经按照 prettier 规则进行了格式化，如果匹配的路径下面的所支持的文件已经全部被格式化，那么会输出 *All matched files use Prettier code style!*，否则会显示哪些文件还没有被 prettier 格式化
+- --check：该配置参数用于检查文件是否已经按照 prettier 规则进行了格式化，如果匹配的路径下面的所支持的文件已经全部被格式化，那么会输出 _All matched files use Prettier code style!_，否则会显示哪些文件还没有被 prettier 格式化
 - `--find-config-path` and --config：指定配置文件的路径，正常情况下，prettier 会自动去找项目下面的配置文件。但是如果你的配置文件不在项目中，而是在其他的位置，那么这个也是可以指定的
 
 ```bash

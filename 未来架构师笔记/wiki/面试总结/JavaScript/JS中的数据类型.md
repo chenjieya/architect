@@ -4,6 +4,7 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
+
 > 面试题：JS 中的数据类型有哪些？基本类型和引用类型的区别是什么？
 
 - 简单值和复杂值
@@ -31,21 +32,21 @@ JS 中的数据类型就分为**两大类**：
 
 所谓简单值，是因为**这些类型的值，无法再继续往下拆分**。
 
-**注意点1: symbol 和 bigint**
+**注意点 1: symbol 和 bigint**
 
 这两种数据类型从 ES6 开始新增的。
 
 symbol 这种类型主要用于**创建唯一的标识符**。symbol 的值是唯一且不可变的，适用于作为对象属性的键，以及保证不会与其他属性键发生冲突，特别是在多人合作的大型项目中或者当你使用第三方库的时候。
 
-bigint 是一种新增的基本数据类型，它于 ECMAScript 2020（ES11）中被正式添加到语言标准中。bigint 数据类型用于表示大于Number.MAX_SAFE_INTEGER（即 `2^53 - 1`）或小于 Number.MIN_SAFE_INTEGER（即`-2^53 + 1`）的整数。这个类型**提供了一种在 JS 中安全处理非常大的整数的方法**，这在之前的 JS 版本中是不可能的。这种类型非常适合于用在金融、科学计算和加密等领域。
+bigint 是一种新增的基本数据类型，它于 ECMAScript 2020（ES11）中被正式添加到语言标准中。bigint 数据类型用于表示大于 Number.MAX_SAFE_INTEGER（即 `2^53 - 1`）或小于 Number.MIN_SAFE_INTEGER（即`-2^53 + 1`）的整数。这个类型**提供了一种在 JS 中安全处理非常大的整数的方法**，这在之前的 JS 版本中是不可能的。这种类型非常适合于用在金融、科学计算和加密等领域。
 
-**注意点2: null 和 undefined**
+**注意点 2: null 和 undefined**
 
-> 面试题1：为什么 null 的数据类型打印出来为 object ？
+> 面试题 1：为什么 null 的数据类型打印出来为 object ？
 
 ```js
-console.log(typeof null) // object
-console.log(typeof undefined) // undefined
+console.log(typeof null); // object
+console.log(typeof undefined); // undefined
 ```
 
 这其实是 JS 从第一个版本开始时，**设计上的一个遗留问题**。最初的 JS 语言实现是在 1995 年由 Brendan Eich 在 Netscape Navigator 中设计的。在 JS 最初的版本中，**数据类型是使用底层的位模式来标识的，每种数据类型的前几位是用来表示类型信息的**。例如，**对象的类型标记通常以 00 开头**，而由于一个历史错误，**null 被表示为全零（00000000）**，这就使得 null 的类型检查结果与对象一致。
@@ -54,7 +55,7 @@ console.log(typeof undefined) // undefined
 
 不仅没有修改，这个行为目前还被 ECMAScript 标准所采纳，成为了规范的一部分，所有遵循 ECMAScript 标准的 JS 实现都默认在 typeof null 时返回 object.
 
-> 面试题2：为什么 undefined 和 null 明明是两种基础数据类型，但 undefined == null 返回的是 true ？
+> 面试题 2：为什么 undefined 和 null 明明是两种基础数据类型，但 undefined == null 返回的是 true ？
 
 这个问题其实也是一个历史问题。众所周知，JS 是借鉴了在当时很多已有的语言的一个产物。其中关于“无”这个概念，JS 就是借鉴的 Java，使用 null 来表示“无”的意思，而<u>根据 C 语言的传统，null 被设计成可以自动转为 0</u>.
 
@@ -66,8 +67,8 @@ console.log(typeof undefined) // undefined
 基于上面的这些理由，Brendan Eich 又设计出来了 undefined. 也就是说，undefined 实际上是为了填补 null 所带来的坑。
 
 ```js
-console.log(null + 1) // 1
-console.log(undefined + 1) // NaN
+console.log(null + 1); // 1
+console.log(undefined + 1); // NaN
 ```
 
 目前来讲，关于 null 和 undefined 主要区别总结如下：
@@ -89,21 +90,21 @@ console.log(undefined + 1) // NaN
 
 ```js
 const obj = {
-  name: '张三',
+  name: "张三",
   age: 18,
   scores: {
     htmlScore: 99,
     cssScore: 95,
   },
-}
+};
 ```
 
 **像数组、函数、正则这些统统都是对象类型，属于复杂值**
 
 ```js
-console.log(typeof []) // object
-console.log(typeof function () {}) // function
-console.log(typeof /abc/) // object
+console.log(typeof []); // object
+console.log(typeof function () {}); // function
+console.log(typeof /abc/); // object
 ```
 
 **函数的本质也是对象。**
@@ -111,12 +112,12 @@ console.log(typeof /abc/) // object
 ```js
 function func() {}
 // 该函数我是可以正常添加属性和方法的
-func.a = 1 // 添加了一个属性
+func.a = 1; // 添加了一个属性
 func.test = function () {
-  console.log('this is a test function')
-} // 添加了一个方法
-console.log(func.a) // 1
-func.test() // this is a test function
+  console.log("this is a test function");
+}; // 添加了一个方法
+console.log(func.a); // 1
+func.test(); // this is a test function
 ```
 
 在函数内部有一个特别的内部属性 `[[Call]]`，这个是属于内部代码，开发者层面是没有办法调用的。但是**有了这个属性之后，表示这个对象是可以被调用。**
@@ -151,12 +152,12 @@ func.test() // this is a test function
 
 ```js
 function test(obj) {
-  obj.a = 1000
+  obj.a = 1000;
 }
-const obj = {}
-console.log(obj) // {}
-test(obj)
-console.log(obj) // { a: 1000 }
+const obj = {};
+console.log(obj); // {}
+test(obj);
+console.log(obj); // { a: 1000 }
 ```
 
 上面的代码，有一定的迷惑性。你看到上面的代码，觉得调用函数之后，obj 发生了真实的修改，所以这是一个引用传递。
@@ -165,13 +166,13 @@ console.log(obj) // { a: 1000 }
 
 ```js
 function test(obj) {
-  obj = { b: 1 } // 这里就赋值了一个新对象，不再使用原来的对象
-  obj.a = 1000
+  obj = { b: 1 }; // 这里就赋值了一个新对象，不再使用原来的对象
+  obj.a = 1000;
 }
-const obj = {}
-console.log(obj) // {}
-test(obj)
-console.log(obj) // {}
+const obj = {};
+console.log(obj); // {}
+test(obj);
+console.log(obj); // {}
 ```
 
 如果是真正的引用传递，那么函数内部的 obj 和外部的 obj 是绑在一起的，函数内部对 obj 做任何修改，都会影响外部。但是上面的代码中，很明显在函数内部对 obj 重新赋值后，断开了内外的联系，因此**在 JS 中只有值传递**。
@@ -190,15 +191,15 @@ console.log(obj) // {}
 简单值是 **按值访问**，也就是说，一个变量如果存储的是一个简单值，当访问这个变量的时候，得到就是对应的值。
 
 ```js
-const str = 'Hello'
-console.log(str)
+const str = "Hello";
+console.log(str);
 ```
 
 复杂值是虽然也是 **按值访问** ，但是由于值对应的是一个 **内存地址值**，一般不能够直接使用，还需要进一步获取地址值背后对应的值。
 
 ```js
-const obj = { name: '张三' }
-console.log(obj.name)
+const obj = { name: "张三" };
+console.log(obj.name);
 ```
 
 ### 3.2 比较方式
@@ -206,9 +207,9 @@ console.log(obj.name)
 这个比较重要，**无论是简单值也好，复杂值也好，都是进行的值比较**。不过由于复杂值对应的值是一个 **内存地址值**，因此只有在这个内存地址值相同时，才会被认为是相等。
 
 ```js
-const a = {} // 内存地址不一样，假设 0x0012ff7c
-const b = {} // 内存地址不一样，假设 0x0012ff7d
-console.log(a === b) // false
+const a = {}; // 内存地址不一样，假设 0x0012ff7c
+const b = {}; // 内存地址不一样，假设 0x0012ff7d
+console.log(a === b); // false
 ```
 
 ### 3.3 动态属性
@@ -220,11 +221,11 @@ console.log(a === b) // false
 但如果为简单值动态添加方法，则会报错 xxx is not a function.
 
 ```js
-const a = 1
-a.b = 2
-console.log(a.b) // undefined
-a.c = function () {}
-a.c() // error
+const a = 1;
+a.b = 2;
+console.log(a.b); // undefined
+a.c = function () {};
+a.c(); // error
 ```
 
 ### 3.4 变量赋值
@@ -234,20 +235,20 @@ a.c() // error
 不过由于复杂值复制的是 **内存地址**，因此修改新的变量会对旧的变量有影响。
 
 ```js
-let a = 5
-let b = a
-b = 10 // 不影响 a
-console.log(a)
-console.log(b)
-let obj = {}
-let obj2 = obj
-obj2.name = '张三' // 会影响 obj
-console.log(obj) // { name: '张三' }
-console.log(obj2) // { name: '张三' }
-obj2 = { name: '张三' }
-obj2.age = 18 // 不会影响 obj
-console.log(obj)
-console.log(obj2)
+let a = 5;
+let b = a;
+b = 10; // 不影响 a
+console.log(a);
+console.log(b);
+let obj = {};
+let obj2 = obj;
+obj2.name = "张三"; // 会影响 obj
+console.log(obj); // { name: '张三' }
+console.log(obj2); // { name: '张三' }
+obj2 = { name: "张三" };
+obj2.age = 18; // 不会影响 obj
+console.log(obj);
+console.log(obj2);
 ```
 
 ---

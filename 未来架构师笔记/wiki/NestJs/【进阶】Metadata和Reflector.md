@@ -15,10 +15,9 @@ updated: 2026-08-02
 
 大家如果就这样去思考它的实现原理，还真不一定能想出来，因为缺少了一些前置知识。也就是实现 Nest 最核心的一些 api： Reflect 的 metadata 的 api。
 
-实现 Nest 用到的 api 还没有进入标准，还在草案阶段，也就是 [metadata 的 api](https://rbuckton.github.io/reflect-metadata/)：
+实现 Nest 用到的 api 还没有进入标准，还在草案阶段，也就是  [metadata 的 api](https://rbuckton.github.io/reflect-metadata/)：
 
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251203100719674.png)
-
 
 它有这些 api：
 
@@ -26,7 +25,6 @@ updated: 2026-08-02
 Reflect.defineMetadata(metadataKey, metadataValue, target);
 
 Reflect.defineMetadata(metadataKey, metadataValue, target, propertyKey);
-
 
 let result = Reflect.getMetadata(metadataKey, target);
 
@@ -46,10 +44,8 @@ Reflect.defineMetadata 和 Reflect.getMetadata 分别用于设置和获取某个
 ```js
 @Reflect.metadata(metadataKey, metadataValue)
 class C {
-
   @Reflect.metadata(metadataKey, metadataValue)
-  method() {
-  }
+  method() {}
 }
 ```
 
@@ -57,22 +53,23 @@ Reflect.metadata 装饰器当然也可以再封装一层：
 
 ```js
 function Type(type) {
-    return Reflect.metadata("design:type", type);
+  return Reflect.metadata("design:type", type);
 }
 function ParamTypes(...types) {
-    return Reflect.metadata("design:paramtypes", types);
+  return Reflect.metadata("design:paramtypes", types);
 }
 function ReturnType(type) {
-    return Reflect.metadata("design:returntype", type);
+  return Reflect.metadata("design:returntype", type);
 }
 
 @ParamTypes(String, Number)
 class Guang {
-  constructor(text, i) {
-  }
+  constructor(text, i) {}
 
   @Type(String)
-  get name() { return "text"; }
+  get name() {
+    return "text";
+  }
 
   @Type(Function)
   @ParamTypes(Number, Number)
@@ -88,13 +85,13 @@ class Guang {
 ```ts
 let obj = new Guang("a", 1);
 
-let paramTypes = Reflect.getMetadata("design:paramtypes", obj, "add"); 
+let paramTypes = Reflect.getMetadata("design:paramtypes", obj, "add");
 // [Number, Number]
 ```
+
 这里我们用 Reflect.getMetadata 的 api 取出了 add 方法的参数的类型。
 
-
-### 1.1  nest 的源码
+### 1.1 nest 的源码
 
 看到这里，大家是否明白 nest 的原理了呢？
 
@@ -102,15 +99,14 @@ let paramTypes = Reflect.getMetadata("design:paramtypes", obj, "add");
 
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251203101234039.png)
 
-
 上面就是 @Module 装饰器的实现，里面就调用了 Reflect.defineMetadata 来给这个类添加了一些元数据。
 
 所以我们这样用的时候：
 
 ```ts
-import { Module } from '@nestjs/common';
-import { CatsController } from './cats.controller';
-import { CatsService } from './cats.service';
+import { Module } from "@nestjs/common";
+import { CatsController } from "./cats.controller";
+import { CatsService } from "./cats.service";
 
 @Module({
   controllers: [CatsController],
@@ -133,26 +129,24 @@ export class CatsModule {}
 
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251203101409899.png)
 
-
 Nest 的实现原理就是通过装饰器给 class 或者对象添加元数据，然后初始化的时候取出这些元数据，进行依赖的分析，然后创建对应的实例对象就可以了。
 
 所以说，nest 实现的核心就是 Reflect metadata 的 api。
 
 当然，现在 metadata 的 api 还在草案阶段，需要使用 reflect-metadata 这个 polyfill 包才行。
 
-
-### 1.2 TypeScript编译emitDecoratorMetadata
+### 1.2 TypeScript 编译 emitDecoratorMetadata
 
 其实还有一个疑问，依赖的扫描可以通过 metadata 数据，但是创建的对象需要知道构造器的参数，现在并没有添加这部分 metadata 数据呀：
 
 比如这个 CatsController 依赖了 CatsService，但是并没有添加 metadata 呀：
 
 ```ts
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
-import { CatsService } from './cats.service';
-import { CreateCatDto } from './dto/create-cat.dto';
+import { Body, Controller, Get, Param, Post } from "@nestjs/common";
+import { CatsService } from "./cats.service";
+import { CreateCatDto } from "./dto/create-cat.dto";
 
-@Controller('cats')
+@Controller("cats")
 export class CatsController {
   constructor(private readonly catsService: CatsService) {}
 
@@ -174,11 +168,11 @@ export class CatsController {
 
 ```ts
 import "reflect-metadata";
- 
+
 class Guang {
   @Reflect.metadata("名字", "光光")
   public say(a: number): string {
-    return '加油鸭';
+    return "加油鸭";
   }
 }
 ```
@@ -192,7 +186,6 @@ class Guang {
 开启之后再试一下：
 
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251203101520295.png)
-
 
 你会看到多了三个元数据：
 
@@ -220,11 +213,10 @@ design:returntype 是 String，也很容易理解，就是返回值的类型
 
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251203101607481.png)
 
-
 这就是 nest 的核心实现原理：**通过装饰器给 class 或者对象添加 metadata，并且开启 ts 的 emitDecoratorMetadata 来自动添加类型相关的 metadata，然后运行的时候通过这些元数据来实现依赖的扫描，对象的创建等等功能。**
 
+## 2. @SetMetadata 装饰器
 
-## 2.  @SetMetadata 装饰器
 Nest 的装饰器都是依赖 reflect-metadata 实现的，而且还提供了一个 @SetMetadata 的装饰器让我们可以给 class、method 添加一些 metadata：
 
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251203101628338.png)
@@ -233,8 +225,7 @@ Nest 的装饰器都是依赖 reflect-metadata 实现的，而且还提供了一
 
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251203101716483.png)
 
-
-### 2.1 @SetMetadata应用
+### 2.1 @SetMetadata 应用
 
 Nest 为什么暴露这样一个底层的 metadata api 出来呢？
 
@@ -255,16 +246,13 @@ nest g guard aaa --flat --no-spec
 
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251203101810216.png)
 
-
 在路由级别应用：
 
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251203101825021.png)
 
-
 加个打印语句：
 
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251203101839558.png)
-
 
 然后 nest start --watch 把服务跑起来。
 
@@ -272,21 +260,17 @@ nest g guard aaa --flat --no-spec
 
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251203101853086.png)
 
-
 可以看到 guard 和 interceptor 成功执行了：
 
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251203101905858.png)
-
 
 然后我们用 @SetMetadata 在 controller 上加个 metadata：
 
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251203101917636.png)
 
-
 在 guard 和 interceptor 就就可以这样取出来：
 
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251203102106843.png)
-
 
 通过 ExecutationContext 取到目标 handler，然后注入 reflector，通过 reflector.get 取出 handler 上的 metadata。
 
@@ -294,11 +278,9 @@ interceptor 里也是这样，这里换种属性注入方式：
 
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251203102120468.png)
 
-
 刷新下页面，就可以看到已经拿到了 metadata：
 
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251203102133550.png)
-
 
 拿到 metadata 有什么用呢？
 
@@ -310,19 +292,15 @@ interceptor 里也是这样，这里换种属性注入方式：
 
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251203102150122.png)
 
-
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251203102159057.png)
-
 
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251203102208233.png)
 
-
-### 2.2 reflector的其他方法
+### 2.2 reflector 的其他方法
 
 reflector 还有 3 个方法：
 
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251203102221629.png)
-
 
 这 4 个方法有啥区别呢？
 
@@ -330,22 +308,17 @@ reflector 还有 3 个方法：
 
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251203102237998.png)
 
-
 get 的实现就是 Reflect.getMetadata。
 
-
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251203102250370.png)
-
 
 getAll 是返回一个 metadata 的数组。
 
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251203102302959.png)
 
-
 getAllAndMerge，会把它们合并为一个对象或者数组。
 
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251203102316670.png)
-
 
 getAllAndOverride 会返回第一个非空的 metadata。
 
@@ -353,11 +326,9 @@ getAllAndOverride 会返回第一个非空的 metadata。
 
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251203102331013.png)
 
-
 可以看到它们结果的区别：
 
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251203102347998.png)
-
 
 ## 3. 总结
 

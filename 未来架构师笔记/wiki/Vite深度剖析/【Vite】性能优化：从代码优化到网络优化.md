@@ -4,6 +4,7 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
+
 > 性能优化是前端开发的重要环节。本文详细讲解 Vite 中的各种性能优化手段。
 
 ---
@@ -43,20 +44,20 @@ updated: 2026-08-02
 
 ```javascript
 // ✅ 正确：导入具体函数
-import { debounce } from 'lodash-es'
+import { debounce } from "lodash-es";
 
 // ❌ 错误：导入整个对象
-import lodash from 'lodash-es'
+import lodash from "lodash-es";
 ```
 
 **代码演示：CommonJS 不支持**
 
 ```javascript
 // ✅ 正确：ESM 支持 Tree Shaking
-import { debounce } from 'lodash-es'
+import { debounce } from "lodash-es";
 
 // ❌ 错误：CommonJS 不支持 Tree Shaking
-import { debounce } from 'lodash'
+import { debounce } from "lodash";
 ```
 
 **关键词解释：**
@@ -75,9 +76,9 @@ import { debounce } from 'lodash'
 // vite.config.js
 export default {
   build: {
-    minify: 'esbuild', // 默认，速度快
+    minify: "esbuild", // 默认，速度快
   },
-}
+};
 ```
 
 **代码演示：使用 Terser 压缩**
@@ -90,7 +91,7 @@ npm install -D terser
 // vite.config.js
 export default {
   build: {
-    minify: 'terser', // 压缩效果更好
+    minify: "terser", // 压缩效果更好
     terserOptions: {
       compress: {
         drop_console: true, // 移除 console
@@ -98,7 +99,7 @@ export default {
       },
     },
   },
-}
+};
 ```
 
 **对比：**
@@ -126,16 +127,16 @@ npm install -D rollup-plugin-visualizer
 
 ```javascript
 // vite.config.js
-import { visualizer } from 'rollup-plugin-visualizer'
+import { visualizer } from "rollup-plugin-visualizer";
 
 export default {
   plugins: [
     visualizer({
       open: true, // 自动打开
-      filename: 'stats.html', // 输出文件
+      filename: "stats.html", // 输出文件
     }),
   ],
-}
+};
 ```
 
 **功能说明：**
@@ -257,15 +258,15 @@ npm install -D vite-plugin-mkcert
 
 ```javascript
 // vite.config.js
-import { defineConfig } from 'vite'
-import mkcert from 'vite-plugin-mkcert'
+import { defineConfig } from "vite";
+import mkcert from "vite-plugin-mkcert";
 
 export default defineConfig({
   server: {
     https: true, // 启用 HTTPS
   },
   plugins: [mkcert()],
-})
+});
 ```
 
 ---
@@ -378,7 +379,7 @@ export default defineConfig({
 - 存在安全风险
 - 无法控制版本和更新
 
-**代码演示：配置 CDN（方式1：使用 external）**
+**代码演示：配置 CDN（方式 1：使用 external）**
 
 ```javascript
 // vite.config.js
@@ -386,19 +387,19 @@ export default {
   build: {
     rollupOptions: {
       // 外部化依赖：不打包这些依赖
-      external: ['vue', 'vue-router', 'element-plus', 'vue-echarts'],
+      external: ["vue", "vue-router", "element-plus", "vue-echarts"],
       output: {
         globals: {
-          vue: 'Vue',
-          'vue-router': 'VueRouter',
-          'element-plus': 'ElementPlus',
-          echarts: 'echarts',
-          'vue-echarts': 'VueECharts',
+          vue: "Vue",
+          "vue-router": "VueRouter",
+          "element-plus": "ElementPlus",
+          echarts: "echarts",
+          "vue-echarts": "VueECharts",
         },
       },
     },
   },
-}
+};
 ```
 
 **代码演示：使用 rollup-plugin-external-globals**
@@ -409,21 +410,21 @@ npm install -D rollup-plugin-external-globals
 
 ```javascript
 // vite.config.js
-import externalGlobals from 'rollup-plugin-external-globals'
+import externalGlobals from "rollup-plugin-external-globals";
 
 export default {
   build: {
     rollupOptions: {
-      external: ['vue', 'vue-router'],
+      external: ["vue", "vue-router"],
       plugins: [
         externalGlobals({
-          vue: 'Vue',
-          'vue-router': 'VueRouter',
+          vue: "Vue",
+          "vue-router": "VueRouter",
         }),
       ],
     },
   },
-}
+};
 ```
 
 **代码演示：HTML 中引入 CDN**
@@ -454,19 +455,19 @@ export default {
 export default {
   resolve: {
     alias: {
-      '@': resolve(__dirname, 'src'),
+      "@": resolve(__dirname, "src"),
       // 配置 CDN
-      'lodash-es': 'https://cdn.jsdelivr.net/npm/lodash-es@4.17.21/+esm',
+      "lodash-es": "https://cdn.jsdelivr.net/npm/lodash-es@4.17.21/+esm",
     },
   },
-}
+};
 ```
 
 **使用：**
 
 ```javascript
 // 代码中正常使用
-import { debounce } from 'lodash-es'
+import { debounce } from "lodash-es";
 // 实际会从 CDN 加载
 ```
 
@@ -509,7 +510,7 @@ npm install -D vite-plugin-compression2
 
 ```javascript
 // vite.config.js
-import compression from 'vite-plugin-compression2'
+import compression from "vite-plugin-compression2";
 
 export default {
   plugins: [
@@ -524,7 +525,7 @@ export default {
       // deleteOriginalAssets: true,
     }),
   ],
-}
+};
 ```
 
 **常用配置说明：**
@@ -595,7 +596,7 @@ pnpm vite-plugin-imagemin -D
 
 ```javascript
 // vite.config.js
-import viteImagemin from 'vite-plugin-imagemin'
+import viteImagemin from "vite-plugin-imagemin";
 
 export default {
   plugins: [
@@ -617,17 +618,17 @@ export default {
       svgo: {
         plugins: [
           {
-            name: 'removeViewBox',
+            name: "removeViewBox",
           },
           {
-            name: 'removeEmptyAttrs',
+            name: "removeEmptyAttrs",
             active: false,
           },
         ],
       },
     }),
   ],
-}
+};
 ```
 
 **压缩配置说明：**

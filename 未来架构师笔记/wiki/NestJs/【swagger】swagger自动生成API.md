@@ -8,6 +8,7 @@ updated: 2026-08-02
 在前后端分离的开发模式下，**接口文档**是前后端协作中非常重要的一环。
 
 常见的痛点包括：
+
 - 接口写完后还要**手动写一份接口文档**
 - 接口一旦修改，就要**同步修改文档**
 - 文档和真实接口**经常不一致**
@@ -36,13 +37,13 @@ Swagger 是 **OpenAPI 规范**的一种实现：
 
 ## 2. 创建 NestJS 项目并安装 Swagger
 
-### 1. 新建项目
+### 2.1 新建项目
 
 ```bash
 nest new swagger-test -p npm
 ```
 
-### 2. 安装 Swagger 相关依赖
+### 2.2 安装 Swagger 相关依赖
 
 ```bash
 npm install --save @nestjs/swagger
@@ -55,34 +56,33 @@ npm install --save @nestjs/swagger
 在 `main.ts` 中添加如下代码：
 
 ```ts
-import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
+import { SwaggerModule, DocumentBuilder } from "@nestjs/swagger";
 
 const config = new DocumentBuilder()
-  .setTitle('Test example')
-  .setDescription('The API description')
-  .setVersion('1.0')
-  .addTag('test')
+  .setTitle("Test example")
+  .setDescription("The API description")
+  .setVersion("1.0")
+  .addTag("test")
   .build();
 
 const document = SwaggerModule.createDocument(app, config);
-SwaggerModule.setup('doc', app, document);
+SwaggerModule.setup("doc", app, document);
 ```
 
 ### 3.1 这段代码做了什么？
 
 1. **DocumentBuilder**
-    
-    - 用于构建 Swagger 文档的基础配置
-    - 包括标题、描述、版本、标签等
-        
+
+   - 用于构建 Swagger 文档的基础配置
+   - 包括标题、描述、版本、标签等
+
 2. **SwaggerModule.createDocument**
-    
-    - 根据应用和配置生成 OpenAPI 文档对象
-        
+
+   - 根据应用和配置生成 OpenAPI 文档对象
+
 3. **SwaggerModule.setup**
-    
-    - 指定 Swagger UI 的访问路径（这里是 `/doc`）
-        
+
+   - 指定 Swagger UI 的访问路径（这里是 `/doc`）
 
 ---
 
@@ -128,11 +128,8 @@ ccc(@Body('ccc') ccc) {
 Swagger 可以识别这些接口，但会存在几个问题：
 
 - ❌ 没有接口说明
-    
 - ❌ 参数没有描述
-    
 - ❌ 返回值结构不清晰
-    
 
 这时就需要 **Swagger 装饰器** 来补充信息。
 
@@ -163,7 +160,7 @@ Swagger 可以识别这些接口，但会存在几个问题：
 
 ---
 
-## 七、描述参数（Query / Param / Body）
+## 7. 七、描述参数（Query / Param / Body）
 
 ### 7.1 Query 参数：@ApiQuery
 
@@ -214,7 +211,7 @@ Swagger 可以识别这些接口，但会存在几个问题：
 ```ts
 export class CccDto {
   @ApiProperty({
-    enum: ['a1', 'a2', 'a3'],
+    enum: ["a1", "a2", "a3"],
     maxLength: 30,
   })
   aaa: string;
@@ -294,7 +291,7 @@ Swagger 会自动为 DTO / VO 生成 Schema。
 
 ## 10. 接口认证（JWT / Cookie / Basic Auth）
 
-### 1 接口上标记认证方式
+### 10.1 接口上标记认证方式
 
 ```ts
 @ApiBearerAuth()
@@ -342,7 +339,6 @@ http://localhost:3000/doc-json
 - 导入 Apifox / YApi / Postman
 - 用于前端自动生成 API SDK
 - 用于接口 Mock
-    
 
 ---
 
@@ -356,7 +352,7 @@ http://localhost:3000/doc-json
 - ✅ 清晰的参数 & 返回结构
 - ✅ 支持多种认证方式
 
-### 12.1 常用 Swagger 装饰器一览
+### 12.2 常用 Swagger 装饰器一览
 
 - `@ApiOperation`：接口说明
 - `@ApiResponse`：响应描述

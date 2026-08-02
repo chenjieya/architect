@@ -4,6 +4,7 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
+
 ## 1. 经典真题
 
 - _CSS_ 引用的方式有哪些？_link_ 和 _@import_ 的区别？
@@ -22,7 +23,7 @@ _import_ 指令是用来导入 _CSS_ 样式的。
 
 ```html
 <style>
-  @import url('./index.css');
+  @import url("./index.css");
 </style>
 ```
 
@@ -31,7 +32,7 @@ _import_ 指令是用来导入 _CSS_ 样式的。
 2. 在 _CSS_ 文件中引入另一个 _CSS_ 文件
 
 ```css
-@import url('./index.css');
+@import url("./index.css");
 /* 后面书写其他样式 */
 ```
 
@@ -40,12 +41,12 @@ _import_ 指令是用来导入 _CSS_ 样式的。
 3. _@import_ 规则还支持媒体查询，因此可以允许依赖媒体的导入
 
 ```css
-@import 'printstyle.css' print;
+@import "printstyle.css" print;
 /* 只在媒体为 print 时导入 "printstyle.css" 样式表 */
 ```
 
 ```css
-@import 'mobstyle.css' screen and (max-width: 768px);
+@import "mobstyle.css" screen and (max-width: 768px);
 /* 只在媒体为 screen 且视口最大宽度 768 像素时导入 "mobstyle.css" 样式表 */
 ```
 

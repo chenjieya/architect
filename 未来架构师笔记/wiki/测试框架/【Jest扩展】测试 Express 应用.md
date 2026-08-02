@@ -4,6 +4,7 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
+
 我们这里要测试的项目，是之前 React 篇章中开发的 coderstation 服务器：
 
 - 服务器框架：Express
@@ -17,14 +18,14 @@ updated: 2026-08-02
 npm i jest supertest
 ```
 
-这里简单的介绍一下 *supertest*，这是一个用于测试 *HTTP* 服务器的 *Node.js* 库，它提供了一个高级抽象，让你可以轻松地发送 *HTTP* 请求并对响应进行断言。*Supertest* 通常与测试框架（如 *Jest、Mocha* 等）一起使用，以便编写端到端的 *API* 测试。
+这里简单的介绍一下 _supertest_，这是一个用于测试 _HTTP_ 服务器的 _Node.js_ 库，它提供了一个高级抽象，让你可以轻松地发送 _HTTP_ 请求并对响应进行断言。_Supertest_ 通常与测试框架（如 _Jest、Mocha_ 等）一起使用，以便编写端到端的 _API_ 测试。
 
-*Supertest* 的一些主要特点包括：
+_Supertest_ 的一些主要特点包括：
 
-1. 链式语法：*Supertest* 使用流畅的链式语法，让你可以轻松地编写和阅读测试代码。例如，你可以通过 .*get*('/') 发送 *GET* 请求，通过 .*expect*(200) 验证响应状态码等。
-2. 内置断言：*Supertest* 支持许多内置断言，如响应状态码、内容类型、响应头等。你可以使用这些断言来验证 *API* 响应是否符合预期。
-3. 与测试框架集成：*Supertest* 可以与流行的测试框架（如 *Jest、Mocha* 等）无缝集成，使你可以使用熟悉的测试工具编写端到端的 *API* 测试。
-4. 支持 *Promises* 和 *async/await*：*Supertest* 支持 *Promises* 和 *async/await*，让你可以编写更简洁、可读的异步测试代码。
+1. 链式语法：_Supertest_ 使用流畅的链式语法，让你可以轻松地编写和阅读测试代码。例如，你可以通过 ._get_('/') 发送 _GET_ 请求，通过 ._expect_(200) 验证响应状态码等。
+2. 内置断言：_Supertest_ 支持许多内置断言，如响应状态码、内容类型、响应头等。你可以使用这些断言来验证 _API_ 响应是否符合预期。
+3. 与测试框架集成：_Supertest_ 可以与流行的测试框架（如 _Jest、Mocha_ 等）无缝集成，使你可以使用熟悉的测试工具编写端到端的 _API_ 测试。
+4. 支持 _Promises_ 和 _async/await_：_Supertest_ 支持 _Promises_ 和 _async/await_，让你可以编写更简洁、可读的异步测试代码。
 
 官方文档地址：*https://github.com/ladjs/supertest*
 
@@ -72,15 +73,14 @@ test("根据id获取其中一个问答的详情", async () => {
 });
 
 test("新增问答", async () => {
+  // 这里有一个注意点：
+  // 由于我们连接的是真实的数据库，发送的也是真实的请求
+  // 因此这里会真实的修改数据库的状态
 
-    // 这里有一个注意点：
-    // 由于我们连接的是真实的数据库，发送的也是真实的请求
-    // 因此这里会真实的修改数据库的状态
-
-    // 如果不想真实的数据库受影响：
-    // 解决方案：
-    // 1. 使用单独的测试数据库（推荐此方案）
-    // 2. 使用模拟
+  // 如果不想真实的数据库受影响：
+  // 解决方案：
+  // 1. 使用单独的测试数据库（推荐此方案）
+  // 2. 使用模拟
 
   const res = await request(app).post("/api/issue").send({
     issueTitle: "hello",
@@ -107,7 +107,6 @@ test("新增问答", async () => {
   expect(res2.body.code).toBe(406);
   expect(res2.body.msg).toBe("数据验证失败");
   expect(res2.body.data).toBeNull();
-
 });
 ```
 
@@ -124,8 +123,6 @@ test("新增问答", async () => {
 
 添加该配置后，jest 就能够侦查是哪个服务没有在测试跑完后关闭，比如我们上面的例子，就是 mongodb 没有关闭
 
-
-
 2. 我们需要在测试完成后，关闭 mongodb 服务，可以在生命周期钩子函数中（afterAll）里面做关闭操作
 
 ```js
@@ -134,8 +131,6 @@ afterAll(async () => {
   await mongoose.connection.close();
 });
 ```
-
-
 
 3. 在进行测试的时候，会发送真实的请求，并且会连接真实的数据库，这意味着会更改数据库的状态
 

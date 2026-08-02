@@ -10,7 +10,7 @@ updated: 2026-08-02
 在 Sass 里面自定义函数的语法如下：
 
 ```scss
-@function fn-name($params...){
+@function fn-name($params...) {
   @return XXX;
 }
 ```
@@ -18,12 +18,12 @@ updated: 2026-08-02
 具体示例如下：
 
 ```scss
-@function divide($a, $b){
-  @return $a / $b
-};
+@function divide($a, $b) {
+  @return $a / $b;
+}
 
 .container {
-  width: divide(100px, 2)
+  width: divide(100px, 2);
 }
 ```
 
@@ -69,7 +69,8 @@ updated: 2026-08-02
 // 根据传入的 $background-color 返回适当的文字颜色
 @function contrast-color($background-color) {
   // 计算背景颜色的亮度
-  $brightness: red($background-color) * 0.299 + green($background-color) * 0.587 + blue($background-color) * 0.114;
+  $brightness: red($background-color) * 0.299 + green($background-color) *
+    0.587 + blue($background-color) * 0.114;
 
   // 根据亮度来返回黑色或者白色的文字颜色
   @if $brightness > 128 {
@@ -95,40 +96,36 @@ updated: 2026-08-02
 }
 ```
 
-
-
 ## 2. 内置函数
 
 除了自定义函数，Sass 里面还提供了非常多的内置函数，你可以在官方文档：
 
 https://sass-lang.com/documentation/modules
 
-
-
 ### 2.1 字符串相关内置函数
 
-| 函数名和参数类型                        |                  函数作用                   |
-| :-------------------------------------- | :-----------------------------------------: |
-| quote($string)                          |                  添加引号                   |
-| unquote($string)                        |                  除去引号                   |
-| to-lower-case($string)                  |                  变为小写                   |
-| to-upper-case($string)                  |                  变为大写                   |
-| str-length($string)                     |        返回$string的长度(汉字算一个)        |
-| str-index($string，$substring)          |        返回$substring在$string的位置        |
-| str-insert($string, $insert, $index)    |       在$string的$index处插入$insert        |
-| str-slice($string, $start-at, $end-at） | 截取$string的$start-at和$end-at之间的字符串 |
+| 函数名和参数类型                        |                   函数作用                    |
+| :-------------------------------------- | :-------------------------------------------: |
+| quote($string)                          |                   添加引号                    |
+| unquote($string)                        |                   除去引号                    |
+| to-lower-case($string)                  |                   变为小写                    |
+| to-upper-case($string)                  |                   变为大写                    |
+| str-length($string)                     |        返回$string 的长度(汉字算一个)         |
+| str-index($string，$substring)          |        返回$substring在$string 的位置         |
+| str-insert($string, $insert, $index)    |        在$string的$index 处插入$insert        |
+| str-slice($string, $start-at, $end-at） | 截取$string的$start-at 和$end-at 之间的字符串 |
 
 注意索引是从 1 开始的，如果书写 -1，那么就是倒着来的。两边都是闭区间
 
 ```scss
 $str: "Hello world!";
 
-.slice1{
-  content: str-slice($str, 1, 5)
+.slice1 {
+  content: str-slice($str, 1, 5);
 }
 
-.slice2{
-  content:str-slice($str, -1)
+.slice2 {
+  content: str-slice($str, -1);
 }
 ```
 
@@ -142,26 +139,24 @@ $str: "Hello world!";
 }
 ```
 
-
-
 ### 2.2 数字相关内置函数
 
-| 函数名和参数类型        |                           函数作用                           |
-| ----------------------- | :----------------------------------------------------------: |
-| percentage($number)     |                       转换为百分比形式                       |
-| round($number)          |                        四舍五入为整数                        |
-| ceil($number)           |                         数值向上取整                         |
-| floor($number)          |                         数值向下取整                         |
-| abs($number)            |                          获取绝对值                          |
-| min($number...)         |                          获取最小值                          |
-| max($number...)         |                          获取最大值                          |
-| random($number?:number) | 不传入值：获得0-1的随机数；传入正整数n：获得0-n的随机整数（左开右闭） |
+| 函数名和参数类型        |                                  函数作用                                  |
+| ----------------------- | :------------------------------------------------------------------------: |
+| percentage($number)     |                              转换为百分比形式                              |
+| round($number)          |                               四舍五入为整数                               |
+| ceil($number)           |                                数值向上取整                                |
+| floor($number)          |                                数值向下取整                                |
+| abs($number)            |                                 获取绝对值                                 |
+| min($number...)         |                                 获取最小值                                 |
+| max($number...)         |                                 获取最大值                                 |
+| random($number?:number) | 不传入值：获得 0-1 的随机数；传入正整数 n：获得 0-n 的随机整数（左开右闭） |
 
 ```scss
-.item{
+.item {
   width: percentage(2/5);
   height: random(100) + px;
-  color: rgb(random(255),random(255),random(255));
+  color: rgb(random(255), random(255), random(255));
 }
 ```
 
@@ -173,19 +168,17 @@ $str: "Hello world!";
 }
 ```
 
-
-
 ### 2.3 数组相关内置函数
 
-| 函数名和参数类型                 |                           函数作用                           |
-| -------------------------------- | :----------------------------------------------------------: |
-| length($list)                    |                         获取数组长度                         |
-| nth($list, n)                    |                      获取指定下标的元素                      |
-| set-nth($list, $n, $value)       |                   向$list的$n处插入$value                    |
-| join($list1, $list2, $separator) | 拼接$list1和list2；$separator为新list的分隔符，默认为auto，可选择comma、space |
-| append($list, $val, $separator)  | 向$list的末尾添加$val；$separator为新list的分隔符，默认为auto，可选择comma、space |
-| index($list, $value)             |                返回$value值在$list中的索引值                 |
-| zip($lists…)                     | 将几个列表结合成一个多维的列表；要求每个的列表个数值必须是相同的 |
+| 函数名和参数类型                 |                                        函数作用                                        |
+| -------------------------------- | :------------------------------------------------------------------------------------: |
+| length($list)                    |                                      获取数组长度                                      |
+| nth($list, n)                    |                                   获取指定下标的元素                                   |
+| set-nth($list, $n, $value)       |                                向$list的$n 处插入$value                                |
+| join($list1, $list2, $separator) |   拼接$list1和list2；$separator 为新 list 的分隔符，默认为 auto，可选择 comma、space   |
+| append($list, $val, $separator)  | 向$list的末尾添加$val；$separator 为新 list 的分隔符，默认为 auto，可选择 comma、space |
+| index($list, $value)             |                             返回$value值在$list 中的索引值                             |
+| zip($lists…)                     |            将几个列表结合成一个多维的列表；要求每个的列表个数值必须是相同的            |
 
 下面是一个具体的示例：
 
@@ -277,13 +270,11 @@ $font-pair: zip($fonts, $weights);
 }
 ```
 
-
-
 ### 2.4 字典相关内置函数
 
 | 函数名和参数类型        |                 函数作用                 |
 | ----------------------- | :--------------------------------------: |
-| map-get($map, $key)     |        获取$map中$key对应的$value        |
+| map-get($map, $key)     |       获取$map中$key 对应的$value        |
 | map-merge($map1, $map2) |     合并$map1和$map2，返回一个新$map     |
 | map-remove($map, $key)  |     从$map中删除$key，返回一个新$map     |
 | map-keys($map)          |            返回$map所有的$key            |
@@ -305,7 +296,7 @@ $colors: (
 );
 
 // 演示通过 map-get 获取对应的值
-@function btn-color($color-name){
+@function btn-color($color-name) {
   @return map-get($colors, $color-name);
 }
 
@@ -313,9 +304,9 @@ $colors: (
 $color-keys: map-keys($colors);
 
 // 一个新的颜色映射表
-$more-colors:(
+$more-colors: (
   "light": #f8f9fa,
-  "dark": #343a40
+  "dark": #343a40,
 );
 
 // 要将新的颜色映射表合并到 $colors 里面
@@ -323,9 +314,9 @@ $more-colors:(
 $all-colors: map-merge($colors, $more-colors);
 
 // 接下来我们来根据颜色映射表生成样式
-@each $color-key, $color-value in $all-colors{
-  .text-#{$color-key}{
-    color:$color-value
+@each $color-key, $color-value in $all-colors {
+  .text-#{$color-key} {
+    color: $color-value;
   }
 }
 
@@ -372,36 +363,33 @@ button {
 }
 ```
 
-
-
 ### 2.5 颜色相关内置函数
 
-*RGB* 函数
+_RGB_ 函数
 
-| 函数名和参数类型               |                           函数作用                           |
-| ------------------------------ | :----------------------------------------------------------: |
-| rgb($red, $green, $blue)       |                     返回一个16进制颜色值                     |
-| rgba($red,$green,$blue,$alpha) | 返回一个rgba；$red,$green和$blue可被当作一个整体以颜色单词、hsl、rgb或16进制形式传入 |
-| red($color)                    |                   从$color中获取其中红色值                   |
-| green($color)                  |                   从$color中获取其中绿色值                   |
-| blue($color)                   |                   从$color中获取其中蓝色值                   |
-| mix($color1,$color2,$weight?)  |     按照$weight比例，将$color1和$color2混合为一个新颜色      |
+| 函数名和参数类型               |                                          函数作用                                          |
+| ------------------------------ | :----------------------------------------------------------------------------------------: |
+| rgb($red, $green, $blue)       |                                   返回一个 16 进制颜色值                                   |
+| rgba($red,$green,$blue,$alpha) | 返回一个 rgba；$red,$green 和$blue 可被当作一个整体以颜色单词、hsl、rgb 或 16 进制形式传入 |
+| red($color)                    |                                 从$color 中获取其中红色值                                  |
+| green($color)                  |                                 从$color 中获取其中绿色值                                  |
+| blue($color)                   |                                 从$color 中获取其中蓝色值                                  |
+| mix($color1,$color2,$weight?)  |                   按照$weight比例，将$color1 和$color2 混合为一个新颜色                    |
 
+_HSL_ 函数
 
-*HSL* 函数
-
-| 函数名和参数类型                                 | 函数作用                                                      |
-| ---------------------------------------- | --------------------------------------------------------- |
-| hsl($hue,$saturation,$lightness)         | 通过色相（hue）、饱和度(saturation)和亮度（lightness）的值创建一个颜色           |
+| 函数名和参数类型                         | 函数作用                                                                              |
+| ---------------------------------------- | ------------------------------------------------------------------------------------- |
+| hsl($hue,$saturation,$lightness)         | 通过色相（hue）、饱和度(saturation)和亮度（lightness）的值创建一个颜色                |
 | hsla($hue,$saturation,$lightness,$alpha) | 通过色相（hue）、饱和度(saturation)、亮度（lightness）和透明（alpha）的值创建一个颜色 |
-| saturation($color)                       | 从一个颜色中获取饱和度（saturation）值                                  |
-| lightness($color)                        | 从一个颜色中获取亮度（lightness）值                                    |
-| adjust-hue($color,$degrees)              | 通过改变一个颜色的色相值，创建一个新的颜色                                     |
-| lighten($color,$amount)                  | 通过改变颜色的亮度值，让颜色变亮，创建一个新的颜色                                 |
-| darken($color,$amount)                   | 通过改变颜色的亮度值，让颜色变暗，创建一个新的颜色                                 |
-| hue($color)                              | 从一个颜色中获取亮度色相（hue）值                                        |
+| saturation($color)                       | 从一个颜色中获取饱和度（saturation）值                                                |
+| lightness($color)                        | 从一个颜色中获取亮度（lightness）值                                                   |
+| adjust-hue($color,$degrees)              | 通过改变一个颜色的色相值，创建一个新的颜色                                            |
+| lighten($color,$amount)                  | 通过改变颜色的亮度值，让颜色变亮，创建一个新的颜色                                    |
+| darken($color,$amount)                   | 通过改变颜色的亮度值，让颜色变暗，创建一个新的颜色                                    |
+| hue($color)                              | 从一个颜色中获取亮度色相（hue）值                                                     |
 
-*Opacity* 函数
+_Opacity_ 函数
 
 | 函数名和参数类型                                            | 函数作用         |
 | ----------------------------------------------------------- | ---------------- |
@@ -410,16 +398,14 @@ button {
 | opacify($color, $amount) / fade-in($color, $amount)         | 使颜色更不透明   |
 | transparentize($color, $amount) / fade-out($color, $amount) | 使颜色更加透明   |
 
-
-
 ### 2.6 其他内置函数
 
-| 函数名和参数类型                       |                  函数作用                   |
-| ------------------------------ | :-------------------------------------: |
-| type-of($value)                |               返回$value的类型               |
-| unit($number)                  |              返回$number的单位               |
-| unitless($number)              |  判断$number是否没用带单位，返回对应的布尔值，没有带单位为 true  |
-| comparable($number1, $number2) | 判断$number1和$number2是否可以做加、减和合并，返回对应的布尔值 |
+| 函数名和参数类型               |                            函数作用                             |
+| ------------------------------ | :-------------------------------------------------------------: |
+| type-of($value)                |                        返回$value 的类型                        |
+| unit($number)                  |                       返回$number 的单位                        |
+| unitless($number)              | 判断$number 是否没用带单位，返回对应的布尔值，没有带单位为 true |
+| comparable($number1, $number2) | 判断$number1和$number2 是否可以做加、减和合并，返回对应的布尔值 |
 
 示例如下：
 
@@ -482,5 +468,3 @@ $can-compare2: comparable(1px, 2px); // true
   content: "Can compare: true";
 }
 ```
-
-

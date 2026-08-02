@@ -4,9 +4,10 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
-## 1. IoC的核心思想
 
-首先，你需要先理解前面介绍的三层架构和MVC，正是由于三层架构和MVC的出现，在后端体系中，通常包含下面几个组成部分
+## 1. IoC 的核心思想
+
+首先，你需要先理解前面介绍的三层架构和 MVC，正是由于三层架构和 MVC 的出现，在后端体系中，通常包含下面几个组成部分
 
 - **Controller（控制器）**：负责接受客户端的请求和响应返回
 - **Service（服务）**：处理业务逻辑
@@ -22,11 +23,11 @@ const service = new Service(dao);
 const controller = new Controller(service);
 ```
 
-在后端系统中，通常有很多的业务模块，也就意味着，有很多不同的`Controller`，`Service`和`Dao`。而且，经常会出现**多个不同的Controller模块，调用同一个Service的情况**。那这个时候，如果重新new不同的Service对象，是不合适的，因为我们希望确保它们使用的是**同一个Service实例**，也就是**维持单例模式**。
+在后端系统中，通常有很多的业务模块，也就意味着，有很多不同的`Controller`，`Service`和`Dao`。而且，经常会出现**多个不同的 Controller 模块，调用同一个 Service 的情况**。那这个时候，如果重新 new 不同的 Service 对象，是不合适的，因为我们希望确保它们使用的是**同一个 Service 实例**，也就是**维持单例模式**。
 
 在大型应用中，手动管理这种依赖关系，会变得非常复杂和繁琐。所以，**IoC（Inverse of Control，控制反转）**就提供了这么一种解决方案。
 
-> IoC容器在应用初始化时，会查找每个类上声明的依赖，并按照顺序创建相应的实例，并且管理这些实例，当需要使用某个依赖时，**IoC容器会帮你提供相应的对象实例**。
+> IoC 容器在应用初始化时，会查找每个类上声明的依赖，并按照顺序创建相应的实例，并且管理这些实例，当需要使用某个依赖时，**IoC 容器会帮你提供相应的对象实例**。
 >
 > 由于一般情况下，都是根据类的依赖关系来进行容器的实例创建的，所以，也会更具这种实现方式称之为**依赖注入(Dependency Injection, DI)**，通过依赖注入，外部容器将所需的依赖对象注入到目标对象中，而不是由目标对象自己创建依赖对象
 >
@@ -40,11 +41,11 @@ const controller = new Controller(service);
 
 我们只需要到餐厅告诉服务员：“请给我一份红烧牛肉盖浇饭”，餐厅后厨接到通知后，控制权已经发生了转移，厨师会根据菜单要求，有序的处理后厨的所有事情，最后提供给我们一份美味的红烧牛肉盖浇饭
 
-在这个例子中，后厨就相当于IoC容器，菜单相当于在类上声明的依赖，服务员则相当于依赖注入的过程。这样，IoC容器会根据类上声明的依赖来创建和管理对象
+在这个例子中，后厨就相当于 IoC 容器，菜单相当于在类上声明的依赖，服务员则相当于依赖注入的过程。这样，IoC 容器会根据类上声明的依赖来创建和管理对象
 
-> 总之，**通过IoC，我们从主动创建和维护对象，转变为了被动等待依赖注入，实现了从主动下厨到等待服务员上菜的转变，这就是IoC控制反转的精髓**
+> 总之，**通过 IoC，我们从主动创建和维护对象，转变为了被动等待依赖注入，实现了从主动下厨到等待服务员上菜的转变，这就是 IoC 控制反转的精髓**
 
-## 2. 模拟IoC实现
+## 2. 模拟 IoC 实现
 
 我们模拟一个简单的电子商务系统，其中有 `OrderService` 、 `PaymentService`和`ShippingService`，并且 `OrderService` 依赖于 `PaymentService`和`ShippingService`。
 
@@ -76,19 +77,19 @@ class ShippingService {
 class OrderService {
   constructor() {
     // 直接在构造函数中创建依赖
-    this.paymentService = new PaymentService();  // 直接创建 PaymentService 实例
+    this.paymentService = new PaymentService(); // 直接创建 PaymentService 实例
     this.shippingService = new ShippingService(); // 直接创建 ShippingService 实例
   }
 
   createOrder(amount, address) {
     console.log(`创建订单金额： $${amount}`);
-    
+
     // 调用 paymentService 进行支付
     const paymentSuccess = this.paymentService.processPayment(amount);
-    
+
     if (paymentSuccess) {
       console.log(`订单创建成功!`);
-      
+
       // 调用 shippingService 发货
       this.shippingService.shipOrder({ address });
     } else {
@@ -101,10 +102,10 @@ class OrderService {
 const orderService = new OrderService();
 
 // 创建订单
-orderService.createOrder(200, '成都市天府三街');
+orderService.createOrder(200, "成都市天府三街");
 ```
 
-#### 2.1.2 IoC方式
+#### 2.1.2 IoC 方式
 
 ```typescript
 class Container {
@@ -124,7 +125,7 @@ class Container {
       throw new Error(`Service ${name} not found!`);
     }
     // 如果服务是一个工厂函数，执行它来创建实例
-    if (typeof service === 'function') {
+    if (typeof service === "function") {
       const instance = service(this); // 创建实例
       this.services.set(name, instance); // 缓存实例
       return instance;
@@ -169,22 +170,22 @@ class OrderService {
 // 创建一个 IoC 容器实例
 const container = new Container();
 
-container.register('paymentService', new PaymentService()); // 直接注册 PaymentService
-container.register('shippingService', new ShippingService()); // 直接注册 ShippingService
+container.register("paymentService", new PaymentService()); // 直接注册 PaymentService
+container.register("shippingService", new ShippingService()); // 直接注册 ShippingService
 
-container.register('orderService', (container) => {
+container.register("orderService", (container) => {
   return new OrderService(
-    container.get('paymentService'),
-    container.get('shippingService')
+    container.get("paymentService"),
+    container.get("shippingService")
   ); // 注入 PaymentService 和 ShippingService
 });
 
 // 从容器中获取 OrderService，并创建一个订单
-const orderService = container.get('orderService');
-orderService.createOrder(200, '成都市天府三街');
+const orderService = container.get("orderService");
+orderService.createOrder(200, "成都市天府三街");
 ```
 
-最终实现的效果其实是一致的，但是我们仔细看一下，如果传统的方式，再次来获取订单服务，我们可能会不经意之间直接又会**重新new一次订单服务**，但是，IoC的模式下，我们是从容器中直接获取的，从而保证了订单服务始终都是同一个对象。
+最终实现的效果其实是一致的，但是我们仔细看一下，如果传统的方式，再次来获取订单服务，我们可能会不经意之间直接又会**重新 new 一次订单服务**，但是，IoC 的模式下，我们是从容器中直接获取的，从而保证了订单服务始终都是同一个对象。
 
 如果是**传统模式**，使用下面的代码，就能很清楚的分辨出缺陷
 
@@ -195,14 +196,11 @@ console.log(orderService === orderService2); // false
 console.log(orderService.paymentService === orderService2.paymentService); // false
 ```
 
-同样的代码，我们换到**IoC模式**：
+同样的代码，我们换到**IoC 模式**：
 
 ```typescript
-const orderService2 = container.get('orderService');
+const orderService2 = container.get("orderService");
 
 console.log(orderService === orderService2); // true
 console.log(orderService.paymentService === orderService2.paymentService); // true
 ```
-
-
-

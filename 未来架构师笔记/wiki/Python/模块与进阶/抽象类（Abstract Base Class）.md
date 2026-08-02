@@ -4,7 +4,8 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
-抽象类是**不能被实例化**的类，用于定义子类**必须实现**的接口。Python 通过 `abc` 模块提供抽象类的支持。
+
+抽象类是**不能被实例化**的类，用于定义子类**必须实现**的接口。Python 通过  `abc`  模块提供抽象类的支持。
 
 ```python
 from abc import ABC, abstractmethod
@@ -25,11 +26,11 @@ dog = Dog()
 dog.speak()  # Woof!
 ```
 
-> 在vscode设置中，打开`python.analysis.typeCheckingMode`开关
+> 在 vscode 设置中，打开`python.analysis.typeCheckingMode`开关
 
 ## 1. 定义抽象类
 
-使用 `abc` 模块中的 `ABC` 类和 `@abstractmethod` 装饰器：
+使用  `abc`  模块中的  `ABC`  类和  `@abstractmethod`  装饰器：
 
 ```python
 from abc import ABC, abstractmethod
@@ -52,8 +53,8 @@ class Shape(ABC):
 
 **要点：**
 
-- 继承 `ABC` 表示这是一个抽象类
-- `@abstractmethod` 标记的方法**必须**在子类中实现
+- 继承  `ABC`  表示这是一个抽象类
+- `@abstractmethod`  标记的方法**必须**在子类中实现
 - 抽象类可以包含普通方法（有默认实现）
 - 抽象类**不能**被实例化
 
@@ -85,7 +86,7 @@ emp = FullTimeEmployee(10000)
 print(emp.salary)  # 10000
 ```
 
-**注意：** `@property` 和 `@abstractmethod` 的顺序**不能颠倒**。
+**注意：** `@property`  和  `@abstractmethod`  的顺序**不能颠倒**。
 
 ---
 
@@ -166,11 +167,11 @@ process_data(MongoDBSource())
 
 ---
 
-## 5. 作业（使用AI）
+## 5. 作业（使用 AI）
 
 ### 5.1 实现抽象缓存类
 
-编写一个抽象基类 `Cache`，定义缓存的基本接口，然后实现 `MemoryCache` 和 `FileCache`：
+编写一个抽象基类  `Cache`，定义缓存的基本接口，然后实现  `MemoryCache`  和  `FileCache`：
 
 ```python
 from abc import ABC, abstractmethod
@@ -194,7 +195,7 @@ class Cache(ABC):
 
 ### 5.2 实现抽象序列类
 
-编写一个抽象基类 `Sequence`，然后实现 `ListSequence` 和 `LinkedListSequence`：
+编写一个抽象基类  `Sequence`，然后实现  `ListSequence`  和  `LinkedListSequence`：
 
 ```python
 from abc import ABC, abstractmethod

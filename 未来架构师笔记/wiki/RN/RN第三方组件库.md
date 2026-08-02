@@ -5,103 +5,81 @@ updated_by: human
 updated: 2026-08-02
 ---
 
-## 1. *RN* 常见第三方组件库
+## 1. _RN_ 常见第三方组件库
 
-### 1. 1 NativeBase* 组件库
+### 1.1 1 NativeBase\* 组件库
 
-*NativeBase* 是一个广受欢迎的 *UI* 组件库，为 *RN* 提供了数十个跨平台组件。在使用 *NativeBase* 时，你可以使用任意开箱即用的第三方原生库，而这个项目本身也拥有一个丰富的生态系统，从有用的入门套件到可定制的主题模板。
+_NativeBase_ 是一个广受欢迎的 _UI_ 组件库，为 _RN_ 提供了数十个跨平台组件。在使用 _NativeBase_ 时，你可以使用任意开箱即用的第三方原生库，而这个项目本身也拥有一个丰富的生态系统，从有用的入门套件到可定制的主题模板。
 
-*NativeBase* 官网地址：*https://nativebase.io/*
+_NativeBase_ 官网地址：*https://nativebase.io/*
 
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251021160542188.png)
 
+### 1.2 Ant Design Mobile RN\*组件库
 
-### 1.2 Ant Design Mobile RN*组件库
-
-*Ant Design Mobile RN* 是由蚂蚁金服推出的 *RN* 组件库，如果是 *React* 的开发者都会对 *React* 的常用组件库 *Ant Design* 有所耳闻，而 *Ant Design Mobile RN* 则是蚂蚁金服在 *RN* 方向的延伸。
+_Ant Design Mobile RN_ 是由蚂蚁金服推出的 _RN_ 组件库，如果是 _React_ 的开发者都会对 _React_ 的常用组件库 _Ant Design_ 有所耳闻，而 _Ant Design Mobile RN_ 则是蚂蚁金服在 _RN_ 方向的延伸。
 
 特点如下：
 
-- *UI* 样式高度可配置，拓展性更强，轻松适应各类产品风格
-- 基于 *React Native 的 iOS / Android / Web* 多平台支持，组件丰富、能全面覆盖各类场景 (*antd-mobile*)
-- 提供 "组件按需加载" / "*Web* 页面高清显示" / "*SVG Icon*" 等优化方案，一体式开发
-- 使用 *TypeScript* 开发，提供类型定义文件，支持类型及属性智能提示，方便业务开发
-- 全面兼容 *react*
+- _UI_ 样式高度可配置，拓展性更强，轻松适应各类产品风格
+- 基于 _React Native 的 iOS / Android / Web_ 多平台支持，组件丰富、能全面覆盖各类场景 (_antd-mobile_)
+- 提供 "组件按需加载" / "_Web_ 页面高清显示" / "_SVG Icon_" 等优化方案，一体式开发
+- 使用 _TypeScript_ 开发，提供类型定义文件，支持类型及属性智能提示，方便业务开发
+- 全面兼容 _react_
 
-*Ant Design Mobile RN* 官网地址：*https://rn.mobile.ant.design/index-cn*
+_Ant Design Mobile RN_ 官网地址：*https://rn.mobile.ant.design/index-cn*
 
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251021160551228.png)
 
-
-
-
 ### 1.3 React Native Elements 组件库
 
-*React Native Elements* 是一个高度可定制的跨平台 *UI* 工具包，完全用 *Javascript* 构建。该库的作者声称“*React Native Elements* 的想法更多的是关于组件结构而不是设计，这意味着在使用某些元素时可以减少样板代码，但可以完全控制它们的设计”，这对于开发新手和经验丰富的老手来说都很有吸引力。
+_React Native Elements_ 是一个高度可定制的跨平台 _UI_ 工具包，完全用 _Javascript_ 构建。该库的作者声称“_React Native Elements_ 的想法更多的是关于组件结构而不是设计，这意味着在使用某些元素时可以减少样板代码，但可以完全控制它们的设计”，这对于开发新手和经验丰富的老手来说都很有吸引力。
 
-*React Native Elements* 官网地址：*https://reactnativeelements.com/*
+_React Native Elements_ 官网地址：*https://reactnativeelements.com/*
 
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251021160602682.png)
 
-
-
-
 ### 1.4 React Native Material 组件库
 
-*React Native Material UI* 是一组高度可定制的 *UI* 组件，实现了谷歌的 *Material Design*。请注意，这个库使用了一个名为 *uiTheme* 的 *JS* 对象，这个对象在上下文间传递，以实现最大化的定制化能力。
+_React Native Material UI_ 是一组高度可定制的 _UI_ 组件，实现了谷歌的 _Material Design_。请注意，这个库使用了一个名为 _uiTheme_ 的 _JS_ 对象，这个对象在上下文间传递，以实现最大化的定制化能力。
 
-*React Native Material* 官网地址：*https://www.react-native-material.com/*
+_React Native Material_ 官网地址：*https://www.react-native-material.com/*
 
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251021160611957.png)
 
-
-
-
 ### 1.5 Nachos UI 组件库
 
-*Nachos UI* 是一个 *RN* 组件库，提供了 *30* 多个可定制的组件，这些组件也可以通过 *react-native-web* 在 *Web* 上运行。它通过了快照测试，支持格式化和 *yarn*，提供了热火的设计和全局主题管理器。
+_Nachos UI_ 是一个 _RN_ 组件库，提供了 _30_ 多个可定制的组件，这些组件也可以通过 _react-native-web_ 在 _Web_ 上运行。它通过了快照测试，支持格式化和 _yarn_，提供了热火的设计和全局主题管理器。
 
-*Nachos UI* 官网地址：*https://avocode.com/nachos-ui*
+_Nachos UI_ 官网地址：*https://avocode.com/nachos-ui*
 
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251021160621493.png)
 
-
-
-
 ### 1.6 React Native Paper 组件库
 
-*React Native Paper* 是一个跨平台的 *UI* 组件库，它遵循 *Material Design* 指南，提供了全局主题支持和可选的 *babel* 插件，用以减少捆绑包大小。
+_React Native Paper_ 是一个跨平台的 _UI_ 组件库，它遵循 _Material Design_ 指南，提供了全局主题支持和可选的 _babel_ 插件，用以减少捆绑包大小。
 
-*React Native Paper* 官网地址：*https://callstack.github.io/react-native-paper/*
-
-
+_React Native Paper_ 官网地址：*https://callstack.github.io/react-native-paper/*
 
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251021160632372.png)
 
+## 2. _NativeBase_ 使用示例
 
+上面罗列了很多 _RN_ 的第三方组件库，但并不是说每一个我们都需要去学习，在开发时选择一个自己用的惯的来使用即可。
 
-
-## 2. *NativeBase* 使用示例
-
-上面罗列了很多 *RN* 的第三方组件库，但并不是说每一个我们都需要去学习，在开发时选择一个自己用的惯的来使用即可。
-
-这里我们以第一个 *NativeBase* 为例来演示如何使用第三方组件库。
+这里我们以第一个 _NativeBase_ 为例来演示如何使用第三方组件库。
 
 要使用第三方组件库，首先第一步需要进行安装。
 
 官方提供了安装指南：*https://docs.nativebase.io/installation*
 
-
-
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251021160643637.png)
 
+可以看到，在安装指南中，官方根据开发者不同形式搭建的 _RN_ 项目，提供了对应的安装方式。
 
-可以看到，在安装指南中，官方根据开发者不同形式搭建的 *RN* 项目，提供了对应的安装方式。
-
-由于我们目前的 *RN* 项目是使用 *expo* 搭建的，因此选择对应的安装指南。
+由于我们目前的 _RN_ 项目是使用 _expo_ 搭建的，因此选择对应的安装指南。
 
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251021160654444.png)
-
 
 上面分为了“新项目”和“已有项目”，选择已有项目，然后根据指南输入下面的指令：
 
@@ -111,9 +89,9 @@ expo install react-native-svg
 expo install react-native-safe-area-context
 ```
 
->注：安装过程中可能会涉及到科学上网，请自行解决网络问题
+> 注：安装过程中可能会涉及到科学上网，请自行解决网络问题
 
-当然，你也可以选择基于 *NativeBase* 组件库创建一个全新的项目，命令为：
+当然，你也可以选择基于 _NativeBase_ 组件库创建一个全新的项目，命令为：
 
 ```js
 expo init my-app --template @native-base/expo-template
@@ -123,10 +101,9 @@ expo init my-app --template @native-base/expo-template
 
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251021160703655.png)
 
-
 最后，我们可以测试一下组件库是否安装成功。
 
-下面的代码是创建一个全新的 *NativeBase* 项目时，根组件 *App.js* 所对应的代码：
+下面的代码是创建一个全新的 _NativeBase_ 项目时，根组件 _App.js_ 所对应的代码：
 
 ```js
 import React from "react";
@@ -217,7 +194,7 @@ function ToggleDarkMode() {
 }
 ```
 
-在根组件中引入了 *NativeBaseIcon* 组件，该组件位于 *components* 目录下面：
+在根组件中引入了 _NativeBaseIcon_ 组件，该组件位于 _components_ 目录下面：
 
 ```js
 import React from "react";
@@ -270,11 +247,8 @@ export default NativeBaseIcon;
 
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251021160713997.png)
 
-
-至此，我们就成功了引入了 *NativeBase* 组件库，之后要使用该组件库中的某一个组件，只需要按照文档说明引入然后使用即可。
+至此，我们就成功了引入了 _NativeBase_ 组件库，之后要使用该组件库中的某一个组件，只需要按照文档说明引入然后使用即可。
 
 ---
 
--*EOF*-
-
-
+-_EOF_-

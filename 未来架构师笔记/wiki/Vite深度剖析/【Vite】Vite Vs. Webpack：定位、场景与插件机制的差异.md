@@ -4,6 +4,7 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
+
 > Vite 和 Webpack 经常被拿来比较，但它们真的是一类工具吗？本文深入解析两者的本质差异。
 
 ---
@@ -21,20 +22,20 @@ updated: 2026-08-02
 ```javascript
 // webpack.config.js
 module.exports = {
-  entry: './src/index.js',
+  entry: "./src/index.js",
   output: {
-    filename: 'bundle.js',
-    path: path.resolve(__dirname, 'dist'),
+    filename: "bundle.js",
+    path: path.resolve(__dirname, "dist"),
   },
   module: {
     rules: [
       {
         test: /\.js$/,
-        use: 'babel-loader',
+        use: "babel-loader",
       },
     ],
   },
-}
+};
 ```
 
 **工作流程：**
@@ -85,12 +86,12 @@ export default {
   },
   // 构建配置（类似 webpack）
   build: {
-    outDir: 'dist',
+    outDir: "dist",
     rollupOptions: {
       // Rollup 配置
     },
   },
-}
+};
 ```
 
 **工作流程（开发环境）：**
@@ -128,29 +129,29 @@ Vite 按需编译并返回
 // webpack.config.js
 // 可以打包 Web 应用
 module.exports = {
-  target: 'web',
+  target: "web",
   // ...
-}
+};
 
 // 可以打包 Node.js 应用
 module.exports = {
-  target: 'node',
+  target: "node",
   // ...
-}
+};
 
 // 可以打包库
 module.exports = {
   output: {
-    library: 'MyLib',
-    libraryTarget: 'umd',
+    library: "MyLib",
+    libraryTarget: "umd",
   },
-}
+};
 
 // 可以打包 Electron 应用
 module.exports = {
-  target: 'electron-main',
+  target: "electron-main",
   // ...
-}
+};
 ```
 
 **特点：**
@@ -178,11 +179,11 @@ export default {
     // 专注于 Web 构建优化
     rollupOptions: {
       output: {
-        format: 'es', // 或 'iife', 'umd'
+        format: "es", // 或 'iife', 'umd'
       },
     },
   },
-}
+};
 ```
 
 **特点：**
@@ -218,15 +219,15 @@ module.exports = {
     rules: [
       {
         test: /\.vue$/,
-        use: 'vue-loader',
+        use: "vue-loader",
       },
       {
         test: /\.scss$/,
-        use: ['style-loader', 'css-loader', 'sass-loader'],
+        use: ["style-loader", "css-loader", "sass-loader"],
       },
     ],
   },
-}
+};
 ```
 
 **工作流程：**
@@ -257,11 +258,11 @@ module.exports = {
     rules: [
       {
         test: /\.tsx$/,
-        use: 'ts-loader', // 必须在打包时执行
+        use: "ts-loader", // 必须在打包时执行
       },
     ],
   },
-}
+};
 ```
 
 **关键词解释：**
@@ -281,13 +282,13 @@ module.exports = {
 
 ```javascript
 // vite.config.js
-import vue from '@vitejs/plugin-vue'
+import vue from "@vitejs/plugin-vue";
 
 export default {
   plugins: [
     vue(), // 基于 Rollup 插件规范
   ],
-}
+};
 ```
 
 **工作流程（开发环境）：**
@@ -324,27 +325,27 @@ Rollup 插件全部生效
 // 自定义插件
 export default function myPlugin() {
   return {
-    name: 'my-plugin',
+    name: "my-plugin",
     // resolveId: 解析模块 ID
     resolveId(id) {
-      if (id === 'virtual:module') {
-        return id // 返回虚拟模块 ID
+      if (id === "virtual:module") {
+        return id; // 返回虚拟模块 ID
       }
     },
     // load: 加载模块内容
     load(id) {
-      if (id === 'virtual:module') {
-        return 'export default "Hello from virtual module"'
+      if (id === "virtual:module") {
+        return 'export default "Hello from virtual module"';
       }
     },
     // transform: 转换模块内容
     transform(code, id) {
-      if (id.endsWith('.vue')) {
+      if (id.endsWith(".vue")) {
         // 转换 Vue 文件
-        return transformVue(code)
+        return transformVue(code);
       }
     },
-  }
+  };
 }
 ```
 
@@ -404,28 +405,28 @@ export default function myPlugin() {
 ```javascript
 // Webpack 生产构建
 module.exports = {
-  mode: 'production',
+  mode: "production",
   optimization: {
     minimize: true,
     splitChunks: {
-      chunks: 'all',
+      chunks: "all",
     },
   },
-}
+};
 
 // Vite 生产构建
 export default {
   build: {
-    minify: 'esbuild', // 或 'terser'
+    minify: "esbuild", // 或 'terser'
     rollupOptions: {
       output: {
         manualChunks: {
-          vendor: ['vue', 'vue-router'],
+          vendor: ["vue", "vue-router"],
         },
       },
     },
   },
-}
+};
 ```
 
 ---

@@ -4,7 +4,8 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
-## 1. git核心概念和命令
+
+## 1. git 核心概念和命令
 
 ### 1.1 动机
 
@@ -15,7 +16,7 @@ updated: 2026-08-02
 ### 1.2 安装
 
 - windows: 从[https://git-scm.com/install/](https://git-scm.com/downloads)下载安装包，双击运行安装即可。
-- mac: 自带git，无需安装。
+- mac: 自带 git，无需安装。
 - _linux: 使用命令 `sudo apt-get install git` 安装。_
 
 ### 1.3 配置
@@ -55,13 +56,13 @@ git config --global init.defaultbranch "main"
 
 ### 1.4 初始化
 
-要对一个目录使用git进行版本管理，必须先将该目录设置为git仓库。
+要对一个目录使用 git 进行版本管理，必须先将该目录设置为 git 仓库。
 
-使用 `git init` 命令初始化一个新的git仓库。
+使用 `git init` 命令初始化一个新的 git 仓库。
 
-该命令会在当前目录下创建一个 `.git` 目录，该目录就是git仓库，里面记录了仓库的所有信息。该目录不可删除，一旦删除，该仓库就不存在了。
+该命令会在当前目录下创建一个 `.git` 目录，该目录就是 git 仓库，里面记录了仓库的所有信息。该目录不可删除，一旦删除，该仓库就不存在了。
 
-### 1.5 .gitignore文件
+### 1.5 .gitignore 文件
 
 仓库中某些文件是「个人专属」，不会在团队间共享，可以使用`.gitignore`文件将不需要的文件排除。
 
@@ -104,14 +105,14 @@ git config --global init.defaultbranch "main"
 | 提交类型     | 标识符     | 说明                       | 示例                           |
 | :----------- | :--------- | :------------------------- | :----------------------------- |
 | **功能新增** | `feat`     | 新增功能或特性             | `feat: 添加用户登录功能`       |
-| **问题修复** | `fix`      | 修复bug或问题              | `fix: 修复登录超时问题`        |
+| **问题修复** | `fix`      | 修复 bug 或问题            | `fix: 修复登录超时问题`        |
 | **文档更新** | `docs`     | 仅文档变更                 | `docs: 更新API使用说明`        |
 | **代码风格** | `style`    | 代码格式调整（不影响功能） | `style: 调整代码缩进格式`      |
 | **代码重构** | `refactor` | 代码重构（非功能变更）     | `refactor: 重构用户认证模块`   |
 | **性能优化** | `perf`     | 性能优化相关               | `perf: 优化数据库查询性能`     |
 | **测试相关** | `test`     | 测试用例相关               | `test: 添加登录功能单元测试`   |
 | **构建系统** | `build`    | 构建系统或外部依赖变更     | `build: 更新webpack配置`       |
-| **持续集成** | `ci`       | CI/CD配置变更              | `ci: 添加GitHub Actions工作流` |
+| **持续集成** | `ci`       | CI/CD 配置变更             | `ci: 添加GitHub Actions工作流` |
 | **工具变更** | `chore`    | 构建过程或辅助工具变更     | `chore: 更新依赖包版本`        |
 | **回滚操作** | `revert`   | 回滚之前的提交             | `revert: 回滚错误的合并提交`   |
 
@@ -125,12 +126,12 @@ git commit --amend
 
 所以使用该命令时，要确保自己所在的位置在最新的位置。
 
-> 最佳实践1：
+> 最佳实践 1：
 >
 > 1. 编写提交消息时，尽量不要犯错
 > 2. 提交后，立即审核提交消息，发现消息错误，立即通过上面的命令修复
 >
-> 最佳实践2: 让AI编写提交消息，审核后发布
+> 最佳实践 2: 让 AI 编写提交消息，审核后发布
 
 #### 1.6.5 回滚某个提交
 
@@ -187,7 +188,7 @@ git commit --amend
 ==永远不能在主分支上直接改动，主分支永远保证功能完整可用、可部署==
 
 1. **新需求**
-   功能/bug修复/版本回滚/...
+   功能/bug 修复/版本回滚/...
 
 2. **新建分支**
 
@@ -231,13 +232,13 @@ git stash pop <stash-id> # 调用某个存储库恢复工作区，同时删除�
 
 ![image-20260209154128608](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/obsidian/1775013046479_202602091541687.png)
 
-#### 1.8.1 注册github账号
+#### 1.8.1 注册 github 账号
 
 https://github.com/
 
 自行注册
 
-#### 1.8.2 SSH连接通道配置
+#### 1.8.2 SSH 连接通道配置
 
 ![image-20260209160956572](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/obsidian/1775013046481_202602091609611.png)
 
@@ -245,9 +246,9 @@ https://github.com/
 
 本地生成密钥对
 
-> windows电脑必须打开powershell，而不是普通终端
+> windows 电脑必须打开 powershell，而不是普通终端
 >
-> mac电脑随意
+> mac 电脑随意
 
 ```shell
 ssh-keygen -t ed25519 -C "注册github的邮箱地址" -f ~/.ssh/xxx_github_key
@@ -257,14 +258,14 @@ ssh-keygen -t ed25519 -C "注册github的邮箱地址" -f ~/.ssh/xxx_github_key
 
 生成完后，到电脑的`~/.ssh`目录即可看到之前生成的两个文件：
 
-> windows电脑的位置在`c:/Users/你的用户名/.ssh`
+> windows 电脑的位置在`c:/Users/你的用户名/.ssh`
 
 ```shell
 xxx_github_key   		# 这是私钥
 xxx_github_key.pub 	# 这是公钥
 ```
 
-##### 1.8.2.2 到github配置公钥
+##### 1.8.2.2 到 github 配置公钥
 
 https://github.com/settings/keys
 
@@ -302,7 +303,7 @@ https://github.com/settings/keys
 
 要和远程仓库同步，先得有远程仓库
 
-1. 在github中创建远程仓库
+1. 在 github 中创建远程仓库
 
 2. 在本地仓库中添加远程仓库的别名
 
@@ -325,7 +326,7 @@ git remote remove 要删除的别名
 
 #### 1.8.4 分支同步
 
-##### 1.8.4.1 push命令
+##### 1.8.4.1 push 命令
 
 ![image-20260209181424840](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/obsidian/1775013047282_202602091814947.png)
 
@@ -346,7 +347,7 @@ git push -u 远程仓库别名 本地分支名
 
 这样，就完成了本地到远程的同步
 
-##### 1.8.4.2 pull命令
+##### 1.8.4.2 pull 命令
 
 ![image-20260209182025435](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/obsidian/1775013047484_202602091820476.png)
 
@@ -397,8 +398,8 @@ git clone [-b 分支名] 远程仓库地址 [想要保存的文件夹]
 简单总结：
 
 1. 正常推送拉取，没问题什么也不管
-2. 推送报错，进入第3步
-3. 拉取有冲突，解决冲突重新提交，然后进入第2步
+2. 推送报错，进入第 3 步
+3. 拉取有冲突，解决冲突重新提交，然后进入第 2 步
 
 ## 2. github flow
 
@@ -424,13 +425,13 @@ sequenceDiagram
 
 **开发者规范：**
 
-1. **main分支只读**
+1. **main 分支只读**
 2. **基于最新提交开发**
 
 **管理员规范**
 
-1. **main分支只能通过PR修改**
-2. **PR永远无冲突**
+1. **main 分支只能通过 PR 修改**
+2. **PR 永远无冲突**
 
 ### 2.2 各个环节的细节
 
@@ -439,15 +440,15 @@ sequenceDiagram
 和管理员开发基本相同，差异点：
 
 1. 管理员需要添加协作者
-2. PR时必须review
+2. PR 时必须 review
 
 #### 2.2.2 非协作者(陌生人)流程
 
 前期准备
 
-1. fork仓库
+1. fork 仓库
 
-2. 克隆fork仓库
+2. 克隆 fork 仓库
 
 3. 添加原仓库源
    ```shell
@@ -471,9 +472,9 @@ git merge upstream/main
 git push origin main
 ```
 
-2. 提交PR
+2. 提交 PR
 
-需要到自己仓库主页提交PR
+需要到自己仓库主页提交 PR
 
 #### 2.2.3 冲突变基处理
 
@@ -481,7 +482,7 @@ merge vs rebase
 
 ![image-20260303131926182](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/obsidian/1775013048662_202603031319297.png)
 
-rebase是一个过程，无法立即完成
+rebase 是一个过程，无法立即完成
 
 ![image-20260303132804209](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/obsidian/1775013048513_202603031328272.png)
 
@@ -499,7 +500,7 @@ rebase是一个过程，无法立即完成
 >
 > actions: https://github.com/actions
 
-#### 2.2.6 tag和release
+#### 2.2.6 tag 和 release
 
 **时机：当需要对外发布版本时**
 

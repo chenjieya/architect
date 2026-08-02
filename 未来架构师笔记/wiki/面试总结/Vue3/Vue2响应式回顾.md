@@ -4,6 +4,7 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
+
 > 面试题：说一说 Vue3 响应式相较于 Vue2 是否有改变？如果有，那么说一下具体有哪些改变？
 
 **观察者模式**
@@ -21,7 +22,7 @@ updated: 2026-08-02
 
 解决方案：其实很简单，让有需求的顾客（watcher）主动订阅即可，之后商店（dep）只需要给订阅了用户发送通知。
 
-**Vue2响应式工作机制**
+**Vue2 响应式工作机制**
 
 1. data 中的数据会被 Vue 遍历生成 getter 和 setter，这样一来当访问或设置属性时，Vue 就有机会做一些别的事情。
 2. 每个组件实例都对应一个 watcher 实例，它会在组件渲染的过程中把“接触”过的数据 property 记录为依赖。之后当依赖项的 setter 触发时，会通知 watcher，从而使它关联的组件重新渲染。
@@ -69,22 +70,22 @@ Observer 是 Vue 内部的构造器，我们可以通过 Vue 提供的静态方�
 
 **scheduler**
 
-Vue2 内部实现中，还存在一个 Scheduler，因为Dep 通知 watcher 之后，如果 watcher 执行重运行对应的函数，就有可能导致函数频繁运行，从而导致效率低下
+Vue2 内部实现中，还存在一个 Scheduler，因为 Dep 通知 watcher 之后，如果 watcher 执行重运行对应的函数，就有可能导致函数频繁运行，从而导致效率低下
 
 试想，如果一个交给 watcher 的函数，它里面用到了属性 a、b、c、d，那么 a、b、c、d 属性都会记录依赖，于是下面的代码将触发 4 次更新：
 
 ```js
-state.a = 'new data'
-state.b = 'new data'
-state.c = 'new data'
-state.d = 'new data'
+state.a = "new data";
+state.b = "new data";
+state.c = "new data";
+state.d = "new data";
 ```
 
 这样显然是不合适的，因此，watcher 收到派发更新的通知后，实际上不是立即执行对应函数，而是把自己交给一个叫调度器的东西
 
 调度器维护一个执行队列，该**队列同一个 watcher 仅会存在一次，队列中的 watcher 不是立即执行，它会通过一个叫做 nextTick 的工具方法，把这些需要执行的 watcher 放入到事件循环的微队列中**，也就是说，当响应式数据变化时，render 函数的执行是**异步**的，并且在**微队列**中。
 
-**Vue2响应式整体流程**
+**Vue2 响应式整体流程**
 
 ![20210226163936](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/obsidian/1771984731754_2024-09-01-053804.png)
 

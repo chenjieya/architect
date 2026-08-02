@@ -4,6 +4,7 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
+
 _While ESLint is designed to be run on the command line, it’s possible to use ESLint programmatically through the Node.js API. The purpose of the Node.js API is to allow plugin and tool authors to use the ESLint functionality directly, without going through the command line interface._
 
 一般在如下的场景中，我们会涉及到使用 API 来编程：
@@ -84,9 +85,9 @@ module.exports = {
  */
 async function lintAndFix(eslint, filePaths) {
   // 要做 lint 检查，很明显就是调用 eslint 实例对象上面的方法
-  const results = await eslint.lintFiles(filePaths)
+  const results = await eslint.lintFiles(filePaths);
 
-  console.log(results)
+  console.log(results);
 }
 ```
 
@@ -103,19 +104,19 @@ function outputLintingResults(results) {
   // 拿到 lint 后错误的总数（包含警告）
   const problems = results.reduce(
     (a, b) => a + b.errorCount + b.warningCount,
-    0,
-  )
+    0
+  );
   if (problems > 0) {
-    console.log('Linging errors found! \n')
+    console.log("Linging errors found! \n");
 
-    const messages = results[0].messages
+    const messages = results[0].messages;
     for (let i = 0; i < messages.length; i++) {
-      console.error(chalk.red.bold(' FAIL ') + ' ' + messages[i].message)
+      console.error(chalk.red.bold(" FAIL ") + " " + messages[i].message);
     }
     // dim 是 chalk 库里面的一个方法，用于创建一种暗淡模式的输出
-    console.log('\n' + chalk.dim(results[0].filePath))
+    console.log("\n" + chalk.dim(results[0].filePath));
   } else {
-    console.log('No linting errors found')
+    console.log("No linting errors found");
   }
 }
 ```

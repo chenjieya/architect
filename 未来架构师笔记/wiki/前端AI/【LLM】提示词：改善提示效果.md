@@ -4,6 +4,7 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
+
 1. 指导模型提出更多问题
 2. 格式化输出
 3. 重复指令

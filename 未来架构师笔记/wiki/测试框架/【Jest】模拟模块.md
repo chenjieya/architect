@@ -4,6 +4,7 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
+
 模块可以分为两种模块：
 
 - 第三方模块
@@ -41,34 +42,32 @@ module.exports = User;
 这个时候我们可以使用 jest.mock 来模拟 axios 这个模块，如下：
 
 ```js
-const axios = require('axios');
-const User = require('../api/userApi');
+const axios = require("axios");
+const User = require("../api/userApi");
 const userData = require("./user.json");
 
 // 模拟 axios 模块
-jest.mock('axios');
+jest.mock("axios");
 
 // 测试用例
-test("测试获取用户数据", async ()=>{
-    // 模拟响应数据
-    const resp = {
-        data : userData
-    };
-    // 现在我们已经模拟了 axios
-    // 但是目前的 axios 没有书写任何的行为
-    // 因此我们需要在这里进行一个 axios 模块行为的指定
-    // 指定了在使用 axios.get 的时候返回 resp 响应
-    axios.get.mockImplementation(()=>Promise.resolve(resp));
+test("测试获取用户数据", async () => {
+  // 模拟响应数据
+  const resp = {
+    data: userData,
+  };
+  // 现在我们已经模拟了 axios
+  // 但是目前的 axios 没有书写任何的行为
+  // 因此我们需要在这里进行一个 axios 模块行为的指定
+  // 指定了在使用 axios.get 的时候返回 resp 响应
+  axios.get.mockImplementation(() => Promise.resolve(resp));
 
-    await expect(User.all()).resolves.toEqual(userData);
+  await expect(User.all()).resolves.toEqual(userData);
 });
 ```
 
 在上面的测试套件中，我们首先使用 jest.mock 方法模拟了 axios 这个模块。
 
 之后书写了一个测试用例，在测试用例里面，我们指定了 axios.get 方法的行为，之后对 User.all 方法进行测试。在 User.all 方法里面使用到 axios.get 方法，这个时候就会使用模拟的 axios 模块。
-
-
 
 在上面的示例中，我们也可以传入第二个参数，第二个参数可以指定模块的一些实现，如下：
 
@@ -99,7 +98,6 @@ test("测试获取用户数据", async () => {
 
   await expect(User.all()).resolves.toEqual(userData);
 });
-
 ```
 
 在上面的方法中，我们使用 jest.mock 模拟 axios 模块时，传入了第二个参数，第二个参数是一个工厂函数，指定了模块的一些行为，之后，我们就不用在单独使用诸如 mockImplementation 之类的方法来指定模块的实现了。
@@ -119,7 +117,7 @@ jest.mock("axios", () => {
     // 这个方法本身 axios 是没有的
     // 我们通过模拟 axios 这个模块，然后给 axios 这个模块添加了这么一个 test方法
     // 这里在实际开发中没有太大意义，仅做演示
-    test : jest.fn(() => Promise.resolve("this is a test")),
+    test: jest.fn(() => Promise.resolve("this is a test")),
   };
 });
 ```
@@ -153,12 +151,9 @@ test("对模块进行测试", () => {
   expect(mul(10, 3)).toBe(30);
   expect(div(10, 2)).toBe(5);
 });
-
 ```
 
 在上面的例子中，我们引入了路径为 ../utils/tools 的文件模块，并且我们对这个文件模块进行了一个模拟，替换掉了这个文件模块里面的部分方法。
-
-
 
 在今天的例子中，我们第一次创建了两个测试套件，可以看到在运行的时候，没有再像之前一样显示出测试用例的描述。如果想要显示，可以添加如下的配置：
 
@@ -168,19 +163,17 @@ test("对模块进行测试", () => {
 
 这个配置实际上就是 jest cli 的配置选项，关于配置我们后面专门拿一节课来进行介绍。
 
-
 ## 3. 总结
 
-本节课我们介绍了非常有用的 *jest.mock( )* 方法，通过该方法可以模拟导入的模块，从而方便地测试被测试模块的行为，而不需要真正地执行模块的代码。
+本节课我们介绍了非常有用的 _jest.mock( )_ 方法，通过该方法可以模拟导入的模块，从而方便地测试被测试模块的行为，而不需要真正地执行模块的代码。
 
-除了上面介绍的示例以外，下面罗列了一些在实际开发中可能会使用到 *jest.mock( )* 方法的例子：
+除了上面介绍的示例以外，下面罗列了一些在实际开发中可能会使用到 _jest.mock( )_ 方法的例子：
 
 1. 模拟外部依赖
-   当您的被测试模块依赖于外部模块时，您可以使用 *jest.mock( )* 方法来模拟这些模块的行为，以便更好地控制测试环境。例如，当您的代码依赖于一个需要连接到数据库的模块时，您可以使用 *jest.mock( )* 方法来模拟这个模块的行为，以便在测试时避免连接到真实的数据库。
+   当您的被测试模块依赖于外部模块时，您可以使用 _jest.mock( )_ 方法来模拟这些模块的行为，以便更好地控制测试环境。例如，当您的代码依赖于一个需要连接到数据库的模块时，您可以使用 _jest.mock( )_ 方法来模拟这个模块的行为，以便在测试时避免连接到真实的数据库。
 2. 模拟函数的行为
-   当您的被测试模块调用其他函数时，您可以使用 *jest.mock( )* 方法来模拟这些函数的行为，以便更好地控制测试环境。例如，当您的代码调用一个外部第三方库中的函数时，您可以使用 *jest.mock( )* 方法来模拟这个函数的行为，以便在测试时避免调用真实的库函数，同时确保您的代码正确处理了这个函数的返回值和参数。
+   当您的被测试模块调用其他函数时，您可以使用 _jest.mock( )_ 方法来模拟这些函数的行为，以便更好地控制测试环境。例如，当您的代码调用一个外部第三方库中的函数时，您可以使用 _jest.mock( )_ 方法来模拟这个函数的行为，以便在测试时避免调用真实的库函数，同时确保您的代码正确处理了这个函数的返回值和参数。
 3. 模拟组件
-   当您的被测试模块是一个 *React* 组件时，您可以使用 *jest.mock( )* 方法来模拟这个组件的行为，以便更好地控制测试环境。例如，当您测试一个依赖于其他组件的组件时，您可以使用 *jest.mock( )* 方法来模拟这些组件的行为，以便在测试时避免真正地渲染这些组件。
+   当您的被测试模块是一个 _React_ 组件时，您可以使用 _jest.mock( )_ 方法来模拟这个组件的行为，以便更好地控制测试环境。例如，当您测试一个依赖于其他组件的组件时，您可以使用 _jest.mock( )_ 方法来模拟这些组件的行为，以便在测试时避免真正地渲染这些组件。
 
-总之，使用 *Jest* 的 *jest.mock( )* 方法，可以帮助您轻松地模拟各种依赖项和操作的行为，从而使测试更加简单和可靠。
-
+总之，使用 _Jest_ 的 _jest.mock( )_ 方法，可以帮助您轻松地模拟各种依赖项和操作的行为，从而使测试更加简单和可靠。

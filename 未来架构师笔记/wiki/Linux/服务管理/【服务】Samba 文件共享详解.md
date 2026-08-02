@@ -4,6 +4,7 @@ ai_editable: true
 updated_by: ai
 updated: 2026-08-02
 ---
+
 ## 1. Samba 简介
 
 Samba 让 Linux 和 Windows 之间实现**文件共享和打印共享**，是 Linux 服务器给 Windows 客户端共享目录的常用方案。
@@ -26,11 +27,11 @@ systemctl status smb           # 查看状态
 
 `security` 三种模式：
 
-| 模式 | 说明 |
-| --- | --- |
-| `share` | 没有账号密码，直接共享 |
-| `user` | 用主机的密码文件做登录验证（最常用） |
-| `server` | 由其他服务端做登录验证 |
+| 模式     | 说明                                 |
+| -------- | ------------------------------------ |
+| `share`  | 没有账号密码，直接共享               |
+| `user`   | 用主机的密码文件做登录验证（最常用） |
+| `server` | 由其他服务端做登录验证               |
 
 ### 2.2 共享段例子
 
@@ -44,6 +45,7 @@ systemctl status smb           # 查看状态
 ```
 
 > **注意**：
+>
 > - 客户端连接时显示的是 `[data]` 这个名字，而非真实路径 `/home/username`
 > - 修改配置后先用 `testparm` 检查配置文件语法
 > - 除了 samba 权限，**系统权限、SELinux、iptables/firewalld** 也要匹配放行，三层都要通
@@ -92,12 +94,12 @@ mount -t cifs -o username=guest,password=guest //192.168.116.3/img /smb
 
 ## 5. 小结
 
-| 操作 | 命令 |
-| --- | --- |
-| 增加 samba 用户 | `useradd 用户名` + `smbpasswd -a 用户名` |
-| 查看 samba 用户 | `pdbedit -L` |
-| 检查配置语法 | `testparm` |
-| 客户端看共享 | `smbclient -L //IP` |
-| 客户端挂载 | `mount -t cifs -o username=..,password=.. //IP/共享 /本地目录` |
+| 操作            | 命令                                                           |
+| --------------- | -------------------------------------------------------------- |
+| 增加 samba 用户 | `useradd 用户名` + `smbpasswd -a 用户名`                       |
+| 查看 samba 用户 | `pdbedit -L`                                                   |
+| 检查配置语法    | `testparm`                                                     |
+| 客户端看共享    | `smbclient -L //IP`                                            |
+| 客户端挂载      | `mount -t cifs -o username=..,password=.. //IP/共享 /本地目录` |
 
 > 放行 samba 端口见 [[【服务】防火墙 firewalld 区域管理]]。

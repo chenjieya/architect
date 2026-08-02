@@ -4,6 +4,7 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
+
 发布自己的包到 npm 是 Node.js 开发者必备的技能。下面将详细介绍从准备到发布的完整流程。
 
 ## 1. 准备工作
@@ -232,29 +233,29 @@ your-package/
 
 ```javascript
 // rollup.config.js
-import resolve from '@rollup/plugin-node-resolve'
-import terser from '@rollup/plugin-terser'
+import resolve from "@rollup/plugin-node-resolve";
+import terser from "@rollup/plugin-terser";
 
 export default {
-  input: 'src/index.js',
+  input: "src/index.js",
   output: [
     {
-      file: 'dist/index.cjs.js',
-      format: 'cjs',
-      exports: 'auto',
+      file: "dist/index.cjs.js",
+      format: "cjs",
+      exports: "auto",
     },
     {
-      file: 'dist/index.esm.js',
-      format: 'es',
-      exports: 'auto',
+      file: "dist/index.esm.js",
+      format: "es",
+      exports: "auto",
     },
   ],
   plugins: [
     resolve(),
     terser(), // 代码压缩
   ],
-  external: ['lodash'], // 外部依赖，不打包
-}
+  external: ["lodash"], // 外部依赖，不打包
+};
 ```
 
 ### 3.3 发布流程
@@ -359,7 +360,7 @@ npm deprecate your-package-name@1.0.0 "这个版本有安全问题，请升级�
 1. 遵循语义化版本规范
 2. 重大变更使用主版本号
 3. 新功能使用次版本号
-4. Bug修复使用修订号
+4. Bug 修复使用修订号
 5. 预发布版本使用标签：`1.0.0-beta.1`
 
 ### 4.3 发布前检查清单

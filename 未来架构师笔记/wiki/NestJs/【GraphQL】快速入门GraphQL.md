@@ -4,11 +4,12 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
-## 1. 快速入门GraphQL
+
+## 1. 快速入门 GraphQL
 
 我们常见的理所当然的模式，是后端提供接口，前端调用对应接口获取数据或者传递数据，然后页面展示。
 
-这种接口返回什么数据是后端决定的，前端只是根据restful的方式传递数据，或者获取数据。
+这种接口返回什么数据是后端决定的，前端只是根据 restful 的方式传递数据，或者获取数据。
 
 而**不同场景下需要的数据不同**，这时候可能就需要后端又要**新开发一个接口**。所以，当需求有变动的时候，接口就需要跟着有变化，这样不但**很容易导致一大堆类似的接口**，也大大**增加了沟通成本**
 
@@ -18,13 +19,13 @@ updated: 2026-08-02
 
 服务端只需要提供一个接口，客户端通过这个接口就可以取任意格式的数据，实现 CRUD，或者干脆前端自己去搞定也行。
 
-我们先写个 demo 快速入门一下，首先创建一个简单node工程，安装需要用到的包：
+我们先写个 demo 快速入门一下，首先创建一个简单 node 工程，安装需要用到的包：
 
 ```typescript
 pnpm add @apollo/server
 ```
 
-然后创建index.js文件：
+然后创建 index.js 文件：
 
 ```typescript
 import { ApolloServer } from "@apollo/server";
@@ -50,12 +51,11 @@ const typeDefs = `
     query: Query,
   }
 `;
-
 ```
 
-定义了一个 Employee 员工的对象类型，有 id、name、sex、age 这几个字段，还有Department部门的对象类型，employees字段是部门下的员工
+定义了一个 Employee 员工的对象类型，有 id、name、sex、age 这几个字段，还有 Department 部门的对象类型，employees 字段是部门下的员工
 
-关键是，还定义了**查询的入口**，可以通过方法employees和departments对应的信息，这样**定义类型的部分就是一个 `schema`**
+关键是，还定义了**查询的入口**，可以通过方法 employees 和 departments 对应的信息，这样**定义类型的部分就是一个 `schema`**
 
 对象类型和对象类型之间有关联关系，部门关联了员工、员工其实也可以关联部门，这就是一个图，也就是 graph。
 
@@ -109,7 +109,7 @@ const resolvers = {
 有了 `schema` 类型定义，有了取数据的 `resovler`，就可以启动 `graphql` 了
 
 ```typescript
-import { startStandaloneServer } from '@apollo/server/standalone' 
+import { startStandaloneServer } from "@apollo/server/standalone";
 // ......
 const server = new ApolloServer({
   typeDefs,
@@ -123,19 +123,15 @@ const { url } = await startStandaloneServer(server, {
 console.log(`graphql服务监听在端口: ${url}`);
 ```
 
-注意我们这里创建的是一个简单工程，全部是ESM引入，所以在`package.json`中，需要加入 **`type:module`**
+注意我们这里创建的是一个简单工程，全部是 ESM 引入，所以在`package.json`中，需要加入 **`type:module`**
 
-跑起服务之后，其实就是一个**沙盒sandbox**，我们可以模拟访问。
+跑起服务之后，其实就是一个**沙盒 sandbox**，我们可以模拟访问。
 
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251221162510856.png)
-
-
-
 
 如果要使用客户端：
 
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251221162524371.png)
-
 
 进入项目，安装 **@apollo/client**
 
@@ -144,23 +140,23 @@ pnpm i
 pnpm add @apollo/client
 ```
 
-在main.tsx中引入，创建 **ApolloClient** 并设置到 **ApolloProvider**
+在 main.tsx 中引入，创建 **ApolloClient** 并设置到 **ApolloProvider**
 
 ```typescript
-import { createRoot } from 'react-dom/client'
-import App from './App.tsx'
-import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
+import { createRoot } from "react-dom/client";
+import App from "./App.tsx";
+import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 
 const client = new ApolloClient({
-  uri: 'http://localhost:4000',
+  uri: "http://localhost:4000",
   cache: new InMemoryCache(),
 });
 
-createRoot(document.getElementById('root')!).render(
+createRoot(document.getElementById("root")!).render(
   <ApolloProvider client={client}>
     <App />
-  </ApolloProvider>,
-)
+  </ApolloProvider>
+);
 ```
 
 然后我们只需要在需要的页面使用 `useQuery` 发出请求即可，比如**App.tsx**
@@ -208,7 +204,6 @@ function App() {
 }
 
 export default App;
-
 ```
 
 前面都是查询全部，如果是按照某个条件进行查询呢？这个其实才是我们的重点。
@@ -223,7 +218,7 @@ type Query {
 }
 ```
 
-新加一个 query 入口，声明一个 name 的参数。String 后的 ! 代表不能为空，和TS的定义差不多
+新加一个 query 入口，声明一个 name 的参数。String 后的 ! 代表不能为空，和 TS 的定义差不多
 
 然后处理它对应的 `resolver`
 
@@ -243,11 +238,9 @@ const resolvers = {
 
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251221162542750.png)
 
-
 查看后台打印：
 
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251221162552403.png)
-
 
 其他参数暂且不管，反正第二个参数，就是传递过来的参数内容，我们稍微修改判断一下
 
@@ -262,7 +255,7 @@ const resolvers = {
       return name === "技术部" ? employees : [];
     },
   },
-}
+};
 ```
 
 这是查询，如果是增删改呢？我们需要单独定义，主要是要加入**Mutation**，在**schema**中添加定义
@@ -366,13 +359,11 @@ const resolvers = {
 
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251221162609300.png)
 
-
 再次查询，也可以查到刚刚添加的员工
 
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251221162623006.png)
 
-
-在前端，同样通过相应的方式进行处理，比如在**App.tsx中，加入新增的处理**
+在前端，同样通过相应的方式进行处理，比如在**App.tsx 中，加入新增的处理**
 
 ```typescript
 import { gql, useQuery, useMutation } from "@apollo/client";
@@ -444,4 +435,3 @@ function App() {
 
 export default App;
 ```
-

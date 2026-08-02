@@ -4,6 +4,7 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
+
 本文主要包含以下内容：
 
 - _CSS3_ 遮罩介绍
@@ -58,7 +59,7 @@ div {
   height: 600px;
   outline: 1px solid;
   margin: 50px auto;
-  background: url('./zelda.jpg') no-repeat center/cover;
+  background: url("./zelda.jpg") no-repeat center/cover;
 }
 
 /*  
@@ -67,7 +68,7 @@ div {
   和 mask 不相关的属性设置放入到了 div 选择器中 
 */
 .mask {
-  -webkit-mask-image: url('./mask.png');
+  -webkit-mask-image: url("./mask.png");
 }
 ```
 
@@ -127,7 +128,7 @@ div {
 
 ```css
 .mask {
-  -webkit-mask-image: url('./mask.png');
+  -webkit-mask-image: url("./mask.png");
   -webkit-mask-repeat: no-repeat;
 }
 ```
@@ -144,7 +145,7 @@ div {
 
 ```css
 .mask {
-  -webkit-mask-image: url('./mask.png');
+  -webkit-mask-image: url("./mask.png");
   -webkit-mask-repeat: no-repeat;
   -webkit-mask-position: center;
 }
@@ -166,7 +167,7 @@ div {
 
 ```css
 .mask {
-  -webkit-mask-image: url('./mask.png');
+  -webkit-mask-image: url("./mask.png");
   -webkit-mask-repeat: no-repeat;
   -webkit-mask-position: center;
   -webkit-mask-size: contain;
@@ -193,7 +194,7 @@ div {
   height: 600px;
   border: 100px solid;
   margin: 50px auto;
-  background: url('./zelda.jpg') no-repeat center/cover;
+  background: url("./zelda.jpg") no-repeat center/cover;
 }
 
 /*  
@@ -202,7 +203,7 @@ div {
 和 mask 不相关的属性设置放入到了 div 选择器中 
 */
 .mask {
-  -webkit-mask-image: url('./mask.png');
+  -webkit-mask-image: url("./mask.png");
   -webkit-mask-repeat: no-repeat;
 }
 ```
@@ -217,7 +218,7 @@ div {
 
 ```css
 .mask {
-  -webkit-mask-image: url('./mask.png');
+  -webkit-mask-image: url("./mask.png");
   -webkit-mask-repeat: no-repeat;
   -webkit-mask-origin: content-box;
 }
@@ -245,7 +246,7 @@ div {
 
 ```css
 .mask {
-  -webkit-mask-image: url('./mask.png');
+  -webkit-mask-image: url("./mask.png");
   -webkit-mask-repeat: no-repeat;
   -webkit-mask-clip: content-box;
 }
@@ -279,7 +280,7 @@ _mask-mode_ 属性默认值为 _match-source_，作用是根据资源的类型�
 
 ```css
 .mask {
-  -webkit-mask-image: url('./mask2.jpg');
+  -webkit-mask-image: url("./mask2.jpg");
   -webkit-mask-repeat: no-repeat;
   -webkit-mask-position: center;
   mask-mode: luminance;

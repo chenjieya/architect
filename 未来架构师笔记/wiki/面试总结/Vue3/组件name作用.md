@@ -4,20 +4,22 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
+
 > 面试题：组件 name 有什么用？可不可以不写 name？
 
-**如何定义组件name**
+**如何定义组件 name**
 
 - Vue2 OptionsAPI：添加 name 配置项即可
 
   ```js
   export default {
-    name: 'xxxx', // 组件的name
-  }
+    name: "xxxx", // 组件的name
+  };
   ```
 
 - Vue3 CompositionAPI
-  - 多书写一个script标签，仍然导出对象，在对象中配置name
+
+  - 多书写一个 script 标签，仍然导出对象，在对象中配置 name
 
     ```vue
     <script setup>
@@ -25,22 +27,22 @@ updated: 2026-08-02
     </script>
     <script>
     export default {
-      name: 'xxx',
-    }
+      name: "xxx",
+    };
     </script>
     ```
 
-  - 通过一个 defineOptions 的宏来配置name
+  - 通过一个 defineOptions 的宏来配置 name
 
     ```vue
     <script setup>
     defineOptions({
-      name: 'xxx',
-    })
+      name: "xxx",
+    });
     </script>
     ```
 
-**组件name的作用**
+**组件 name 的作用**
 
 1. 通过名字找到对应的组件
    - 递归组件
@@ -55,6 +57,7 @@ updated: 2026-08-02
 > 在 Vue 中，组件的 name 选项有多个作用，虽然它不是必须的，但在某些场景下它非常有用。
 >
 > 1.  通过名字找到对应的组件
+>
 >     - 递归组件
 >     - 跨级组件通信
 >

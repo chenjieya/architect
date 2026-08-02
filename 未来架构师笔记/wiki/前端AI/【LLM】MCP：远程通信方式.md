@@ -4,6 +4,7 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
+
 通信方式：
 
 1. Stdio： 推荐，高效、简洁、本地
@@ -47,9 +48,9 @@ data: 这是默认消息（data 代表要发送的消息）
 客户端监听方式：
 
 ```js
-eventSource.addEventListener('message', (e) => {
-  console.log('默认事件：', e.data)
-})
+eventSource.addEventListener("message", (e) => {
+  console.log("默认事件：", e.data);
+});
 ```
 
 可以自定义事件名：使用 `event:` 字段
@@ -62,9 +63,9 @@ data: 新的更新内容
 客户端监听方式：
 
 ```js
-eventSource.addEventListener('update', (e) => {
-  console.log('收到 update 事件：', e.data)
-})
+eventSource.addEventListener("update", (e) => {
+  console.log("收到 update 事件：", e.data);
+});
 ```
 
 **实践**
@@ -123,12 +124,12 @@ StreamableHTTP 使用场景
 使用方式：
 
 ```js
-import { StreamableHTTPServerTransport } from '@modelcontextprotocol/sdk/server/streamableHttp.js'
-import { randomUUID } from 'crypto'
+import { StreamableHTTPServerTransport } from "@modelcontextprotocol/sdk/server/streamableHttp.js";
+import { randomUUID } from "crypto";
 
 const transport = new StreamableHTTPServerTransport({
   sessionIdGenerator: () => randomUUID(), // 为每个连接生成唯一会话ID
-})
+});
 ```
 
 该接口内部提供了一系列的方法，其中需要了解的，是 handleRequest 方法。

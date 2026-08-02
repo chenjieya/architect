@@ -4,6 +4,7 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
+
 ## 1. 经典真题
 
 - 谈一谈事件委托以及冒泡原理
@@ -83,23 +84,23 @@ _IE9、Firefox、Chrome、Safari_ 将事件一直冒泡到 _window_ 对象。
 // IE8 以下浏览器返回 div body html document
 // 其他浏览器返回 div body html document window
 reset.onclick = function () {
-  history.go()
-}
+  history.go();
+};
 box.onclick = function () {
-  box.innerHTML += 'div\n'
-}
+  box.innerHTML += "div\n";
+};
 document.body.onclick = function () {
-  box.innerHTML += 'body\n'
-}
+  box.innerHTML += "body\n";
+};
 document.documentElement.onclick = function () {
-  box.innerHTML += 'html\n'
-}
+  box.innerHTML += "html\n";
+};
 document.onclick = function () {
-  box.innerHTML += 'document\n'
-}
+  box.innerHTML += "document\n";
+};
 window.onclick = function () {
-  box.innerHTML += 'window\n'
-}
+  box.innerHTML += "window\n";
+};
 ```
 
 在上面的示例中，我们为 _div_ 以及它的祖先元素绑定了点击事件，由于事件冒泡的存在，当我们点击 _div_ 时，所有祖先元素的点击事件也会被触发。
@@ -151,43 +152,43 @@ _IE9、Firefox、Chrome、Safari_ 等现代浏览器都支持事件捕获，但�
 // IE8 以下浏览器不支持
 // 其他浏览器返回 window document html body div
 reset.onclick = function () {
-  history.go()
-}
+  history.go();
+};
 box.addEventListener(
-  'click',
+  "click",
   function () {
-    box.innerHTML += 'div\n'
+    box.innerHTML += "div\n";
   },
-  true,
-)
+  true
+);
 document.body.addEventListener(
-  'click',
+  "click",
   function () {
-    box.innerHTML += 'body\n'
+    box.innerHTML += "body\n";
   },
-  true,
-)
+  true
+);
 document.documentElement.addEventListener(
-  'click',
+  "click",
   function () {
-    box.innerHTML += 'html\n'
+    box.innerHTML += "html\n";
   },
-  true,
-)
+  true
+);
 document.addEventListener(
-  'click',
+  "click",
   function () {
-    box.innerHTML += 'document\n'
+    box.innerHTML += "document\n";
   },
-  true,
-)
+  true
+);
 window.addEventListener(
-  'click',
+  "click",
   function () {
-    box.innerHTML += 'window\n'
+    box.innerHTML += "window\n";
   },
-  true,
-)
+  true
+);
 ```
 
 在上面的示例中，我们为 _div_ 以及它所有的祖先元素绑定了点击事件，使用的 _addEventListener_ 的方式来绑定的事件，并将第 _2_ 个参数设置为了 _true_ 表示使用事件捕获的方式来触发事件。
@@ -252,10 +253,10 @@ _DOM_ 标准规定事件流包括三个阶段：**事件捕获阶段**、**处�
 将事件监听器绑定到父元素 _ul_ 上，这样即可对所有的 _li_ 元素添加事件，如下：
 
 ```js
-var colorList = document.getElementById('color-list')
-colorList.addEventListener('click', function () {
-  alert('Hello')
-})
+var colorList = document.getElementById("color-list");
+colorList.addEventListener("click", function () {
+  alert("Hello");
+});
 ```
 
 现在我们单击列表中的任何一个 _li_ 都会弹出东西，就好像这些 _li_ 元素就是 _click_ 事件的目标一样。
@@ -269,12 +270,12 @@ colorList.addEventListener('click', function () {
 此时我们可以对点击的节点进行一个小小的判断，从而保证用户只在点击 _li_ 的时候才触发事件，如下：
 
 ```js
-var colorList = document.getElementById('color-list')
-colorList.addEventListener('click', function (event) {
-  if (event.target.nodeName === 'LI') {
-    alert('点击 li')
+var colorList = document.getElementById("color-list");
+colorList.addEventListener("click", function (event) {
+  if (event.target.nodeName === "LI") {
+    alert("点击 li");
   }
-})
+});
 ```
 
 ## 4. 真题解答

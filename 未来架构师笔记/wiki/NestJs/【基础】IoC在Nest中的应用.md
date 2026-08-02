@@ -5,34 +5,34 @@ updated_by: human
 updated: 2026-08-02
 ---
 
-在xxx.controller.ts文件中，我们都会有如下的装饰器，比如`app.controller.ts`：
+在 xxx.controller.ts 文件中，我们都会有如下的装饰器，比如`app.controller.ts`：
 
 ```typescript
 @Controller()
 export class AppController {
   constructor(private readonly appService: AppService) {}
-	// ......
+  // ......
 }
 ```
 
-`AppController`类通过 **@Controller** 装饰器来装饰，表示它可以进行依赖注入，由Nest内部的IoC容器接管。
+`AppController`类通过 **@Controller** 装饰器来装饰，表示它可以进行依赖注入，由 Nest 内部的 IoC 容器接管。
 
 接着比如`app.service.ts`：
 
 ```typescript
 @Injectable()
 export class AppService {
- 	//......
+  //......
 }
 ```
 
-`AppService`类通过 **@Injectable** 进行装饰，表示这个类可以被注入，注意 **@Injectable** 不单是可以装饰 **service(服务)** 类，包括**过滤器(Filter)、拦截器(Intercepter)、提供者(Provide)、网关(Gateway)**等等，在没有特殊情况下，Nest中所需要依赖注入的模块都可以使用**@Injectable**进行标记，以便在IoC容器中进行收集和管理。
+`AppService`类通过 **@Injectable** 进行装饰，表示这个类可以被注入，注意 **@Injectable** 不单是可以装饰 **service(服务)** 类，包括**过滤器(Filter)、拦截器(Intercepter)、提供者(Provide)、网关(Gateway)**等等，在没有特殊情况下，Nest 中所需要依赖注入的模块都可以使用**@Injectable**进行标记，以便在 IoC 容器中进行收集和管理。
 
 > **为什么控制器是单独使用`@Controller`来装饰？**
 >
 > **控制器(Controller)** 只用于处理请求，不作为依赖对象被其他对象组件注入，我们其实可以**把控制器看做是消费者**，而**服务(Service)** 和**中间件(Middleware)** 则**是提供者**
 
-这些组件会在AppModule中进行引入
+这些组件会在 AppModule 中进行引入
 
 ```typescript
 @Module({
@@ -43,11 +43,11 @@ export class AppService {
 export class AppModule {}
 ```
 
-**@Module**装饰器在Nest中用于定义模块，这些模块包含需要注入的组件。
+**@Module**装饰器在 Nest 中用于定义模块，这些模块包含需要注入的组件。
 
 **控制器仅仅只能作为消费者被注入**，而**提供者(Providers)**，比如服务(Service)，既能作为依赖被注入，也可以注入到其他依赖对象中。
 
-除此之外，在Nest中实现模块化管理非常简单。**`imports`属性用于引入其他模块**，这有助于实现功能逻辑的分组和重用。比如我们之前的`UserModule`，在我们使用了`nest g resource user`命令之后，在AppModule中就自动引入了`UserModule`，当然还包括之前测试的`PersonModule`，`OrderModule`等等
+除此之外，在 Nest 中实现模块化管理非常简单。**`imports`属性用于引入其他模块**，这有助于实现功能逻辑的分组和重用。比如我们之前的`UserModule`，在我们使用了`nest g resource user`命令之后，在 AppModule 中就自动引入了`UserModule`，当然还包括之前测试的`PersonModule`，`OrderModule`等等
 
 ```typescript
 @Module({
@@ -58,7 +58,7 @@ export class AppModule {}
 export class AppModule {}
 ```
 
-比如我们这里直接引入了`UserModule`，那么在**User模块**中，我们是这样的：
+比如我们这里直接引入了`UserModule`，那么在**User 模块**中，我们是这样的：
 
 ```typescript
 @Module({
@@ -69,10 +69,10 @@ export class AppModule {}
 export class UserModule {}
 ```
 
-**UserController类**中：
+**UserController 类**中：
 
 ```typescript
-@Controller('user')
+@Controller("user")
 export class UserController {
   constructor(private readonly userService: UserService) {}
   @Get()
@@ -82,13 +82,13 @@ export class UserController {
 }
 ```
 
-**UserService类**中：
+**UserService 类**中：
 
 ```typescript
 @Injectable()
 export class UserService {
   findAll(): string {
-    return 'This action returns all users';
+    return "This action returns all users";
   }
 }
 ```
@@ -116,7 +116,7 @@ export class UserController {
 
 ## 2. provider 注入
 
-前面我们就简单提了一下provider是作为提供者，其实提供的就是可以注入的内容，比如我们前面是这样写的：
+前面我们就简单提了一下 provider 是作为提供者，其实提供的就是可以注入的内容，比如我们前面是这样写的：
 
 ```typescript
 @Module({
@@ -127,7 +127,7 @@ export class UserController {
 export class AppModule {}
 ```
 
-意思就是AppService可以被注入，这里**其实是一种简写**，完整的写法应该是下面这个样子：
+意思就是 AppService 可以被注入，这里**其实是一种简写**，完整的写法应该是下面这个样子：
 
 ```typescript
 @Module({
@@ -145,13 +145,13 @@ export class AppModule {}
 
 **通过 `provide` 指定 `token`，通过 `useClass` 指定对象的类**，Nest 会自动对它做实例化后用来注入。
 
- AppController 的**构造器里参数**里声明了 `AppService` 的依赖，就会自动注入
+AppController 的**构造器里参数**里声明了 `AppService` 的依赖，就会自动注入
 
 ```typescript
 @Controller()
 export class AppController {
   constructor(private readonly appService: AppService) {}
-  
+
   // ......
 }
 ```
@@ -159,20 +159,20 @@ export class AppController {
 如果不想用构造器注入，也可以**属性注入**
 
 ```typescript
-@Controller('admin')
+@Controller("admin")
 export class AppController {
   @Inject(AppService)
   private appService: AppService;
-	
+
   // ......
 }
 ```
 
 通过 `@Inject` 指定注入的 `provider` 的 `token` 即可。
 
-在构造器参数里指定 AppService 的依赖的时候不是没有指定 token吗？那是因为我们直接把**AppService 这个class本身作为了token**
+在构造器参数里指定 AppService 的依赖的时候不是没有指定 token 吗？那是因为我们直接把**AppService 这个 class 本身作为了 token**
 
-这个token只是一个标识，因此，也可以是一个**字符串**，比如：
+这个 token 只是一个标识，因此，也可以是一个**字符串**，比如：
 
 ```typescript
 @Module({
@@ -180,7 +180,7 @@ export class AppController {
   controllers: [AppController],
   providers: [
     {
-      provide: 'app_service',
+      provide: "app_service",
       useClass: AppService,
     },
   ],
@@ -188,12 +188,12 @@ export class AppController {
 export class AppModule {}
 ```
 
-那么，无论是构造器参数注入，还是属性注入，我们就必须引入这个字符串的token
+那么，无论是构造器参数注入，还是属性注入，我们就必须引入这个字符串的 token
 
 ```typescript
 @Controller()
 export class AppController {
-  @Inject('app_service')
+  @Inject("app_service")
   private appService: AppService;
 }
 ```
@@ -203,7 +203,7 @@ export class AppController {
 ```typescript
 @Controller()
 export class AppController {
-  constructor(@Inject('app_service') private readonly appService: AppService) {}
+  constructor(@Inject("app_service") private readonly appService: AppService) {}
 }
 ```
 
@@ -211,7 +211,7 @@ export class AppController {
 
 ### 2.1 直接注入值
 
-既然provider可以直接指定一个class，那其实也能指定一个**值**，比如
+既然 provider 可以直接指定一个 class，那其实也能指定一个**值**，比如
 
 ```typescript
 @Module({
@@ -219,13 +219,13 @@ export class AppController {
   controllers: [AppController],
   providers: [
     {
-      provide: 'app_service',
+      provide: "app_service",
       useClass: AppService,
     },
     {
-      provide: 'car',
+      provide: "car",
       useValue: {
-        brand: 'BYD',
+        brand: "BYD",
         price: 100000,
       },
     },
@@ -234,18 +234,18 @@ export class AppController {
 export class AppModule {}
 ```
 
-那么，在controller中，我们就可以直接注入这个**’car‘**
+那么，在 controller 中，我们就可以直接注入这个**’car‘**
 
 ```typescript
 @Controller()
 export class AppController {
-  @Inject('app_service')
+  @Inject("app_service")
   private appService: AppService;
 
-  @Inject('car')
+  @Inject("car")
   private car: { brand: string; price: number };
 
-  @Get('car')
+  @Get("car")
   hello(): string {
     return `Hello, I have a ${this.car.brand} car, it's price is ${this.car.price}`;
   }
@@ -264,18 +264,18 @@ const createRandomFactory = () => Math.random();
   controllers: [AppController],
   providers: [
     {
-      provide: 'app_service',
+      provide: "app_service",
       useClass: AppService,
     },
     {
-      provide: 'car',
+      provide: "car",
       useValue: {
-        brand: 'BYD',
+        brand: "BYD",
         price: 100000,
       },
     },
     {
-      provide: 'random',
+      provide: "random",
       useFactory: createRandomFactory,
     },
   ],
@@ -283,29 +283,29 @@ const createRandomFactory = () => Math.random();
 export class AppModule {}
 ```
 
-这样，在app.controller.ts中，也可以注入这个`random`
+这样，在 app.controller.ts 中，也可以注入这个`random`
 
 ```typescript
 @Controller()
 export class AppController {
-	// ......
+  // ......
 
-  @Inject('random')
+  @Inject("random")
   private random: number;
 
-  @Get('random')
+  @Get("random")
   randomNum(): number {
     return this.random;
   }
 }
 ```
 
-而且，useFactory既然可以是函数，那么当然可以给他传递参数，而且注意一个问题，我们所有的对象都是通过Nest容器帮我们管理的，所以，我们甚至可以写成下面这个样子：
+而且，useFactory 既然可以是函数，那么当然可以给他传递参数，而且注意一个问题，我们所有的对象都是通过 Nest 容器帮我们管理的，所以，我们甚至可以写成下面这个样子：
 
 ```typescript
 const createRandomFactory = (
   car: { brand: string; price: number },
-  appService: AppService,
+  appService: AppService
 ) => {
   return {
     random: Math.random(),
@@ -322,7 +322,7 @@ const createRandomFactory = (
 ```typescript
 const createRandomFactory = (
   car: { brand: string; price: number },
-  appService: AppService,
+  appService: AppService
 ) => {
   return {
     random: Math.random(),
@@ -336,20 +336,20 @@ const createRandomFactory = (
   controllers: [AppController],
   providers: [
     {
-      provide: 'app_service',
+      provide: "app_service",
       useClass: AppService,
     },
     {
-      provide: 'car',
+      provide: "car",
       useValue: {
-        brand: 'BYD',
+        brand: "BYD",
         price: 100000,
       },
     },
     {
-      provide: 'random',
+      provide: "random",
       useFactory: createRandomFactory,
-      inject: ['car', 'app_service'],
+      inject: ["car", "app_service"],
     },
   ],
 })
@@ -357,6 +357,3 @@ export class AppModule {}
 ```
 
 通过 **inject**注入了两个`token`，`'car'`和 `'app_service'`这两个我们在之前都已经注册到了容器中
-
-
-

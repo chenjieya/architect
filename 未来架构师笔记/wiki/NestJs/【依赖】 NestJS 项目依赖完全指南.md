@@ -4,6 +4,7 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
+
 ## 1. 📦 前言：构建企业级 Node.js 应用的必备依赖
 
 NestJS 是一个用于构建高效、可扩展的 Node.js 服务器端应用程序的框架。它使用渐进式 JavaScript，构建并完全支持 TypeScript。以下是一个完整 NestJS 项目所需的核心依赖集合：
@@ -74,16 +75,17 @@ NestJS 是一个用于构建高效、可扩展的 Node.js 服务器端应用程�
 
 这是 NestJS 框架的核心模块，提供了装饰器、HTTP 异常过滤器、管道、守卫、拦截器等基础功能。
 
-##### 作用
+##### 2.1.1.1 作用
+
 - **@nestjs/common**: 提供装饰器、HTTP 状态码、异常类等基础工具
 - **@nestjs/core**: NestJS 应用运行时的核心引擎
 
-##### 基本配置
+##### 2.1.1.2 基本配置
 
 ```typescript
 // main.ts
-import { NestFactory } from '@nestjs/core';
-import { AppModule } from './app.module';
+import { NestFactory } from "@nestjs/core";
+import { AppModule } from "./app.module";
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -92,7 +94,8 @@ async function bootstrap() {
 bootstrap();
 ```
 
-##### 关键特性
+##### 2.1.1.3 关键特性
+
 - **模块化系统**: 支持模块化组织代码
 - **依赖注入**: 强大的依赖注入容器
 - **装饰器支持**: 全面的装饰器语法糖
@@ -102,23 +105,24 @@ bootstrap();
 
 NestJS 默认使用 Express 作为底层 HTTP 服务器，此包提供了 Express 适配器。
 
-##### 作用
+##### 2.2.1.1 作用
+
 将 NestJS 应用与 Express 框架桥接，使 NestJS 能够处理 HTTP 请求。
 
 ```typescript
 // 自定义 Express 配置
-import { NestFactory } from '@nestjs/core';
-import { AppModule } from './app.module';
-import * as express from 'express';
+import { NestFactory } from "@nestjs/core";
+import { AppModule } from "./app.module";
+import * as express from "express";
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  
+
   // 使用 Express 实例
   const expressApp = app.getHttpAdapter().getInstance();
   expressApp.use(express.json());
   expressApp.use(express.urlencoded({ extended: true }));
-  
+
   await app.listen(3000);
 }
 ```
@@ -129,20 +133,20 @@ async function bootstrap() {
 
 提供了 JWT 认证和 Passport 策略集成，用于构建安全的身份验证系统。
 
-##### 安装与配置
+##### 3.1.1.1 安装与配置
 
 ```typescript
 // auth.module.ts
-import { Module } from '@nestjs/common';
-import { JwtModule } from '@nestjs/jwt';
-import { PassportModule } from '@nestjs/passport';
+import { Module } from "@nestjs/common";
+import { JwtModule } from "@nestjs/jwt";
+import { PassportModule } from "@nestjs/passport";
 
 @Module({
   imports: [
-    PassportModule.register({ defaultStrategy: 'jwt' }),
+    PassportModule.register({ defaultStrategy: "jwt" }),
     JwtModule.register({
       secret: process.env.JWT_SECRET,
-      signOptions: { expiresIn: '24h' },
+      signOptions: { expiresIn: "24h" },
     }),
   ],
   providers: [JwtStrategy, LocalStrategy],
@@ -151,13 +155,14 @@ import { PassportModule } from '@nestjs/passport';
 export class AuthModule {}
 ```
 
-##### 常用配置选项
+##### 3.1.1.2 常用配置选项
+
 ```typescript
 JwtModule.register({
-  secret: 'your-secret-key',
+  secret: "your-secret-key",
   signOptions: {
-    expiresIn: '24h',
-    algorithm: 'HS256',
+    expiresIn: "24h",
+    algorithm: "HS256",
   },
   verifyOptions: {
     ignoreExpiration: false,
@@ -169,13 +174,13 @@ JwtModule.register({
 
 Passport 身份验证中间件及其策略实现。
 
-##### 策略配置示例
+##### 3.2.1.1 策略配置示例
 
 ```typescript
 // jwt.strategy.ts
-import { Injectable } from '@nestjs/common';
-import { PassportStrategy } from '@nestjs/passport';
-import { ExtractJwt, Strategy } from 'passport-jwt';
+import { Injectable } from "@nestjs/common";
+import { PassportStrategy } from "@nestjs/passport";
+import { ExtractJwt, Strategy } from "passport-jwt";
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
@@ -195,10 +200,10 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
 
 ```typescript
 // local.strategy.ts
-import { Injectable, UnauthorizedException } from '@nestjs/common';
-import { PassportStrategy } from '@nestjs/passport';
-import { Strategy } from 'passport-local';
-import { AuthService } from './auth.service';
+import { Injectable, UnauthorizedException } from "@nestjs/common";
+import { PassportStrategy } from "@nestjs/passport";
+import { Strategy } from "passport-local";
+import { AuthService } from "./auth.service";
 
 @Injectable()
 export class LocalStrategy extends PassportStrategy(Strategy) {
@@ -220,11 +225,12 @@ export class LocalStrategy extends PassportStrategy(Strategy) {
 
 会话管理中间件，用于处理用户会话。
 
-##### 配置示例
+##### 3.3.1.1 配置示例
+
 ```typescript
-import * as session from 'express-session';
-import * as redisStore from 'connect-redis';
-import Redis from 'redis';
+import * as session from "express-session";
+import * as redisStore from "connect-redis";
+import Redis from "redis";
 
 // main.ts 中配置
 app.use(
@@ -238,47 +244,48 @@ app.use(
     cookie: {
       maxAge: 1000 * 60 * 60 * 24, // 24小时
       httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
+      secure: process.env.NODE_ENV === "production",
     },
-  }),
+  })
 );
 ```
 
-## 4. 💾 数据库与ORM依赖
+## 4. 💾 数据库与 ORM 依赖
 
 ### 4.1 @nestjs/typeorm、typeorm、mysql2
 
 TypeORM 集成和 MySQL 数据库驱动。
 
-##### 安装配置
+##### 4.1.1.1 安装配置
 
 ```typescript
 // app.module.ts
-import { Module } from '@nestjs/common';
-import { TypeOrmModule } from '@nestjs/typeorm';
+import { Module } from "@nestjs/common";
+import { TypeOrmModule } from "@nestjs/typeorm";
 
 @Module({
   imports: [
     TypeOrmModule.forRoot({
-      type: 'mysql',
+      type: "mysql",
       host: process.env.DB_HOST,
       port: parseInt(process.env.DB_PORT),
       username: process.env.DB_USERNAME,
       password: process.env.DB_PASSWORD,
       database: process.env.DB_DATABASE,
-      entities: [__dirname + '/**/*.entity{.ts,.js}'],
-      synchronize: process.env.NODE_ENV !== 'production',
-      logging: process.env.NODE_ENV !== 'production',
+      entities: [__dirname + "/**/*.entity{.ts,.js}"],
+      synchronize: process.env.NODE_ENV !== "production",
+      logging: process.env.NODE_ENV !== "production",
     }),
   ],
 })
 export class AppModule {}
 ```
 
-##### 实体定义示例
+##### 4.1.1.2 实体定义示例
+
 ```typescript
 // user.entity.ts
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class User {
@@ -294,7 +301,7 @@ export class User {
   @Column({ default: true })
   isActive: boolean;
 
-  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+  @Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
   createdAt: Date;
 }
 ```
@@ -303,11 +310,12 @@ export class User {
 
 Redis 客户端，用于缓存、会话存储和消息队列。
 
-##### 基本使用
+##### 4.2.1.1 基本使用
+
 ```typescript
 // redis.service.ts
-import { Injectable, OnModuleDestroy } from '@nestjs/common';
-import Redis from 'redis';
+import { Injectable, OnModuleDestroy } from "@nestjs/common";
+import Redis from "redis";
 
 @Injectable()
 export class RedisService implements OnModuleDestroy {
@@ -343,11 +351,18 @@ export class RedisService implements OnModuleDestroy {
 
 数据验证和类转换工具，用于 DTO 验证和序列化。
 
-##### DTO 验证示例
+##### 5.1.1.1 DTO 验证示例
+
 ```typescript
 // create-user.dto.ts
-import { IsEmail, IsString, MinLength, MaxLength, IsOptional } from 'class-validator';
-import { Transform } from 'class-transformer';
+import {
+  IsEmail,
+  IsString,
+  MinLength,
+  MaxLength,
+  IsOptional,
+} from "class-validator";
+import { Transform } from "class-transformer";
 
 export class CreateUserDto {
   @IsString()
@@ -369,12 +384,19 @@ export class CreateUserDto {
 }
 ```
 
-##### 在控制器中使用
+##### 5.1.1.2 在控制器中使用
+
 ```typescript
 // user.controller.ts
-import { Body, Controller, Post, UsePipes, ValidationPipe } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Post,
+  UsePipes,
+  ValidationPipe,
+} from "@nestjs/common";
 
-@Controller('users')
+@Controller("users")
 export class UserController {
   @Post()
   @UsePipes(new ValidationPipe({ transform: true }))
@@ -389,19 +411,25 @@ export class UserController {
 
 基于现有 DTO 创建变体类型，减少重复代码。
 
-##### 使用示例
+##### 5.2.1.1 使用示例
+
 ```typescript
-import { PartialType, PickType, OmitType } from '@nestjs/mapped-types';
-import { CreateUserDto } from './create-user.dto';
+import { PartialType, PickType, OmitType } from "@nestjs/mapped-types";
+import { CreateUserDto } from "./create-user.dto";
 
 // 创建部分更新 DTO（所有字段可选）
 export class UpdateUserDto extends PartialType(CreateUserDto) {}
 
 // 只选择特定字段
-export class UserLoginDto extends PickType(CreateUserDto, ['email', 'password'] as const) {}
+export class UserLoginDto extends PickType(CreateUserDto, [
+  "email",
+  "password",
+] as const) {}
 
 // 排除特定字段
-export class UserPublicDto extends OmitType(CreateUserDto, ['password'] as const) {}
+export class UserPublicDto extends OmitType(CreateUserDto, [
+  "password",
+] as const) {}
 ```
 
 ## 6. 📁 文件上传处理
@@ -410,18 +438,19 @@ export class UserPublicDto extends OmitType(CreateUserDto, ['password'] as const
 
 文件上传中间件，用于处理 multipart/form-data。
 
-##### 配置示例
+##### 6.1.1.1 配置示例
+
 ```typescript
 // file-upload.config.ts
-import { MulterModuleOptions } from '@nestjs/platform-express';
-import { diskStorage } from 'multer';
-import { extname } from 'path';
+import { MulterModuleOptions } from "@nestjs/platform-express";
+import { diskStorage } from "multer";
+import { extname } from "path";
 
 export const multerConfig: MulterModuleOptions = {
   storage: diskStorage({
-    destination: './uploads',
+    destination: "./uploads",
     filename: (req, file, callback) => {
-      const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
+      const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
       const ext = extname(file.originalname);
       callback(null, `${file.fieldname}-${uniqueSuffix}${ext}`);
     },
@@ -431,22 +460,28 @@ export const multerConfig: MulterModuleOptions = {
   },
   fileFilter: (req, file, callback) => {
     if (!file.originalname.match(/\.(jpg|jpeg|png|gif)$/)) {
-      return callback(new Error('Only image files are allowed!'), false);
+      return callback(new Error("Only image files are allowed!"), false);
     }
     callback(null, true);
   },
 };
 ```
 
-##### 在控制器中使用
-```typescript
-import { Controller, Post, UploadedFile, UseInterceptors } from '@nestjs/common';
-import { FileInterceptor } from '@nestjs/platform-express';
+##### 6.1.1.2 在控制器中使用
 
-@Controller('upload')
+```typescript
+import {
+  Controller,
+  Post,
+  UploadedFile,
+  UseInterceptors,
+} from "@nestjs/common";
+import { FileInterceptor } from "@nestjs/platform-express";
+
+@Controller("upload")
 export class UploadController {
-  @Post('avatar')
-  @UseInterceptors(FileInterceptor('avatar', multerConfig))
+  @Post("avatar")
+  @UseInterceptors(FileInterceptor("avatar", multerConfig))
   uploadAvatar(@UploadedFile() file: Express.Multer.File) {
     return {
       filename: file.filename,
@@ -460,26 +495,27 @@ export class UploadController {
 
 ## 7. ⚙️ 配置管理
 
-### 6.1 @nestjs/config
+### 7.1 @nestjs/config
 
 应用程序配置管理，支持环境变量、配置文件等。
 
-##### 基本配置
+##### 7.1.1.1 基本配置
+
 ```typescript
 // app.module.ts
-import { Module } from '@nestjs/common';
-import { ConfigModule } from '@nestjs/config';
+import { Module } from "@nestjs/common";
+import { ConfigModule } from "@nestjs/config";
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true, // 全局可用
-      envFilePath: [`.env.${process.env.NODE_ENV}`, '.env'],
-      ignoreEnvFile: process.env.NODE_ENV === 'production',
+      envFilePath: [`.env.${process.env.NODE_ENV}`, ".env"],
+      ignoreEnvFile: process.env.NODE_ENV === "production",
       validationSchema: Joi.object({
         NODE_ENV: Joi.string()
-          .valid('development', 'production', 'test')
-          .default('development'),
+          .valid("development", "production", "test")
+          .default("development"),
         PORT: Joi.number().default(3000),
         DATABASE_URL: Joi.string().required(),
         JWT_SECRET: Joi.string().required(),
@@ -490,11 +526,12 @@ import { ConfigModule } from '@nestjs/config';
 export class AppModule {}
 ```
 
-##### 在服务中使用配置
+##### 7.1.1.2 在服务中使用配置
+
 ```typescript
 // database.service.ts
-import { Injectable } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
+import { Injectable } from "@nestjs/common";
+import { ConfigService } from "@nestjs/config";
 
 @Injectable()
 export class DatabaseService {
@@ -502,11 +539,11 @@ export class DatabaseService {
 
   getConnectionConfig() {
     return {
-      host: this.configService.get<string>('DB_HOST'),
-      port: this.configService.get<number>('DB_PORT'),
-      database: this.configService.get<string>('DB_NAME'),
-      username: this.configService.get<string>('DB_USERNAME'),
-      password: this.configService.get<string>('DB_PASSWORD'),
+      host: this.configService.get<string>("DB_HOST"),
+      port: this.configService.get<number>("DB_PORT"),
+      database: this.configService.get<string>("DB_NAME"),
+      username: this.configService.get<string>("DB_USERNAME"),
+      password: this.configService.get<string>("DB_PASSWORD"),
     };
   }
 }
@@ -514,21 +551,22 @@ export class DatabaseService {
 
 ## 8. 🧪 测试相关依赖
 
-### 7.1 @nestjs/testing、jest、supertest
+### 8.1 @nestjs/testing、jest、supertest
 
 单元测试和端到端测试工具。
 
-##### 单元测试示例
+##### 8.1.1.1 单元测试示例
+
 ```typescript
 // user.service.spec.ts
-import { Test, TestingModule } from '@nestjs/testing';
-import { UserService } from './user.service';
-import { getRepositoryToken } from '@nestjs/typeorm';
-import { User } from './user.entity';
+import { Test, TestingModule } from "@nestjs/testing";
+import { UserService } from "./user.service";
+import { getRepositoryToken } from "@nestjs/typeorm";
+import { User } from "./user.entity";
 
-describe('UserService', () => {
+describe("UserService", () => {
   let service: UserService;
-  
+
   const mockUserRepository = {
     findOne: jest.fn(),
     save: jest.fn(),
@@ -548,31 +586,32 @@ describe('UserService', () => {
     service = module.get<UserService>(UserService);
   });
 
-  it('should be defined', () => {
+  it("should be defined", () => {
     expect(service).toBeDefined();
   });
 
-  describe('findByUsername', () => {
-    it('should return a user', async () => {
-      const mockUser = { id: 1, username: 'test' };
+  describe("findByUsername", () => {
+    it("should return a user", async () => {
+      const mockUser = { id: 1, username: "test" };
       mockUserRepository.findOne.mockResolvedValue(mockUser);
 
-      const result = await service.findByUsername('test');
+      const result = await service.findByUsername("test");
       expect(result).toEqual(mockUser);
     });
   });
 });
 ```
 
-##### 端到端测试示例
+##### 8.1.1.2 端到端测试示例
+
 ```typescript
 // app.e2e-spec.ts
-import { Test, TestingModule } from '@nestjs/testing';
-import { INestApplication } from '@nestjs/common';
-import * as request from 'supertest';
-import { AppModule } from './../src/app.module';
+import { Test, TestingModule } from "@nestjs/testing";
+import { INestApplication } from "@nestjs/common";
+import * as request from "supertest";
+import { AppModule } from "./../src/app.module";
 
-describe('AppController (e2e)', () => {
+describe("AppController (e2e)", () => {
   let app: INestApplication;
 
   beforeEach(async () => {
@@ -584,11 +623,11 @@ describe('AppController (e2e)', () => {
     await app.init();
   });
 
-  it('/ (GET)', () => {
+  it("/ (GET)", () => {
     return request(app.getHttpServer())
-      .get('/')
+      .get("/")
       .expect(200)
-      .expect('Hello World!');
+      .expect("Hello World!");
   });
 
   afterEach(async () => {
@@ -603,7 +642,8 @@ describe('AppController (e2e)', () => {
 
 NestJS CLI 工具和 TypeScript 编译工具。
 
-##### 常用 CLI 命令
+##### 9.1.1.1 常用 CLI 命令
+
 ```bash
 # 创建新项目
 nest new project-name
@@ -637,35 +677,37 @@ nest generate pipe validation
 
 代码质量检查和格式化工具。
 
-##### ESLint 配置示例 (.eslintrc.js)
+##### 9.2.1.1 ESLint 配置示例 (.eslintrc.js)
+
 ```javascript
 module.exports = {
-  parser: '@typescript-eslint/parser',
+  parser: "@typescript-eslint/parser",
   parserOptions: {
-    project: 'tsconfig.json',
-    sourceType: 'module',
+    project: "tsconfig.json",
+    sourceType: "module",
   },
-  plugins: ['@typescript-eslint/eslint-plugin'],
+  plugins: ["@typescript-eslint/eslint-plugin"],
   extends: [
-    'plugin:@typescript-eslint/recommended',
-    'plugin:prettier/recommended',
+    "plugin:@typescript-eslint/recommended",
+    "plugin:prettier/recommended",
   ],
   root: true,
   env: {
     node: true,
     jest: true,
   },
-  ignorePatterns: ['.eslintrc.js'],
+  ignorePatterns: [".eslintrc.js"],
   rules: {
-    '@typescript-eslint/interface-name-prefix': 'off',
-    '@typescript-eslint/explicit-function-return-type': 'off',
-    '@typescript-eslint/explicit-module-boundary-types': 'off',
-    '@typescript-eslint/no-explicit-any': 'warn',
+    "@typescript-eslint/interface-name-prefix": "off",
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "@typescript-eslint/no-explicit-any": "warn",
   },
 };
 ```
 
-##### Prettier 配置示例 (.prettierrc)
+##### 9.2.1.2 Prettier 配置示例 (.prettierrc)
+
 ```json
 {
   "singleQuote": true,
@@ -685,15 +727,15 @@ module.exports = {
 响应式编程库，NestJS 的 Observable 流处理基础。
 
 ```typescript
-import { Observable, interval } from 'rxjs';
-import { map, take } from 'rxjs/operators';
+import { Observable, interval } from "rxjs";
+import { map, take } from "rxjs/operators";
 
 @Injectable()
 export class NotificationService {
   sendPeriodicNotifications(): Observable<string> {
     return interval(1000).pipe(
       take(10),
-      map(value => `Notification ${value + 1}`)
+      map((value) => `Notification ${value + 1}`)
     );
   }
 }
@@ -704,7 +746,7 @@ export class NotificationService {
 简单的哈希函数库，用于密码哈希等场景。
 
 ```typescript
-import * as md5 from 'md5';
+import * as md5 from "md5";
 
 @Injectable()
 export class PasswordService {

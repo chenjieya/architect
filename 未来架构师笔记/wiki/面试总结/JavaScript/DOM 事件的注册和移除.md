@@ -4,6 +4,7 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
+
 ## 1. 经典真题
 
 - 总结一下 _DOM_ 中如何注册事件和移除事件
@@ -26,7 +27,7 @@ _HTML_ 元素中注册的事件，又被称之为行内事件监听器。这是�
 
 ```js
 function test(name) {
-  console.log(`我知道你已经点击了，${name}`)
+  console.log(`我知道你已经点击了，${name}`);
 }
 ```
 
@@ -55,10 +56,10 @@ function test(name) {
 ```
 
 ```js
-var test = document.getElementById('test')
+var test = document.getElementById("test");
 test.onclick = function () {
-  console.log('this is a test')
-}
+  console.log("this is a test");
+};
 ```
 
 这种方式虽然相比 _HTML_ 元素中注册事件有所改进，但是它也有一个缺点，那就是它依然存在每个元素只能绑定一个函数的局限性。
@@ -66,13 +67,13 @@ test.onclick = function () {
 下面我们尝试使用这种方式为同一个元素节点绑定 _2_ 个事件，如下：
 
 ```js
-var test = document.getElementById('test')
+var test = document.getElementById("test");
 test.onclick = function () {
-  console.log('this is a test')
-}
+  console.log("this is a test");
+};
 test.onclick = function () {
-  console.log('this is a test,too')
-}
+  console.log("this is a test,too");
+};
 ```
 
 当我们为该 _DOM_ 元素绑定 _2_ 个相同类型的事件时，后面的事件处理函数就会把前面的事件处理函数给覆盖掉。
@@ -90,21 +91,21 @@ _DOM2_ 级通过 _addEventListener_ 方法来为一个 _DOM_ 元素添加多个�
 接下来我们来看下面的示例：这里我们为 _button_ 元素绑定了 _2_ 个事件处理程序，并且 _2_ 个事件处理程序都是通过点击来触发。
 
 ```js
-var test = document.getElementById('test')
+var test = document.getElementById("test");
 test.addEventListener(
-  'click',
+  "click",
   function () {
-    console.log('this is a test')
+    console.log("this is a test");
   },
-  false,
-)
+  false
+);
 test.addEventListener(
-  'click',
+  "click",
   function () {
-    console.log('this is a test,too')
+    console.log("this is a test,too");
   },
-  false,
-)
+  false
+);
 ```
 
 在上面的代码中，我们通过 _addEventListener_ 为按钮绑定了 _2_ 个点击的事件处理程序，_2_ 个事件处理程序都会执行。
@@ -118,11 +119,11 @@ test.addEventListener(
 例如：
 
 ```js
-var test = document.getElementById('test')
+var test = document.getElementById("test");
 test.onclick = function () {
-  console.log('this is a test')
-  test.onclick = null
-}
+  console.log("this is a test");
+  test.onclick = null;
+};
 ```
 
 在上面的代码中，我们通过 _DOM0_ 级的方式为 _button_ 按钮绑定了点击事件，但是在事件处理函数中又移除了该事件。所以该事件只会生效一次。
@@ -136,17 +137,17 @@ test.onclick = function () {
 示例如下：
 
 ```js
-var test = document.getElementById('test')
+var test = document.getElementById("test");
 //DOM 2级添加事件
 function fn1() {
-  console.log('this is a test')
-  test.removeEventListener('click', fn1) // 只删除第一个点击事件
+  console.log("this is a test");
+  test.removeEventListener("click", fn1); // 只删除第一个点击事件
 }
 function fn2() {
-  console.log('this is a test,too')
+  console.log("this is a test,too");
 }
-test.addEventListener('click', fn1, false)
-test.addEventListener('click', fn2, false)
+test.addEventListener("click", fn1, false);
+test.addEventListener("click", fn2, false);
 ```
 
 在上面的代码中，我们为 _button_ 元素绑定了两个 _click_ 事件，之后在第一个事件处理函数中，对 _fn1_ 事件处理函数进行了移除。所以第一次点击时，_fn1_ 和 _fn2_ 都会起作用，之后因为 _fn1_ 被移除，所以只会 _fn2_ 有作用。

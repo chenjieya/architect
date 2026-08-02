@@ -4,6 +4,7 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
+
 ## 1. MCP Client
 
 🤔 Claude Desktop 是如何使用 MCP Server 的？

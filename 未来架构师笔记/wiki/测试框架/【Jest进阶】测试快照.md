@@ -4,6 +4,7 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
+
 在对组件进行测试的时候，往往需要从两个方面进行测试：
 
 - 交互：确保组件在进行交互时功能正常
@@ -54,10 +55,10 @@ export default App;
 接下来编写我们的测试代码，代码如下：
 
 ```ts
-import { render } from '@testing-library/react';
-import App from './App';
+import { render } from "@testing-library/react";
+import App from "./App";
 
-test('renders learn react link', () => {
+test("renders learn react link", () => {
   const { baseElement } = render(<App />);
   expect(baseElement).toMatchSnapshot();
 });
@@ -69,8 +70,7 @@ test('renders learn react link', () => {
 
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251105155332056.png)
 
-
-通过执行结果也可以看到，生成了一张快照，并且在我们的项目目录中（和你的测试文件是同级的），生成了一个名为 \__snapshots__ 的目录，里面就是一张测试快照，测试快照的本质就是渲染出来的 DOM 的结构的字符串序列。
+通过执行结果也可以看到，生成了一张快照，并且在我们的项目目录中（和你的测试文件是同级的），生成了一个名为 \_\_snapshots\_\_ 的目录，里面就是一张测试快照，测试快照的本质就是渲染出来的 DOM 的结构的字符串序列。
 
 ```js
 // Jest Snapshot v1, https://goo.gl/fbAQLP
@@ -105,19 +105,16 @@ exports[`renders learn react link 1`] = `
 `;
 ```
 
-之后在下一次测试的时候，针对这个组件测试，就会将组件渲染出来的 DOM 结构的序列和之前的快照进行一个比对，看是否一致，如果和之前的快照是一致的，那么测试就通过，如果不一致（这一次渲染新增了DOM节点或者少了DOM 节点），那么就说明这一次渲染和之前的渲染不一致的，测试不通过。
+之后在下一次测试的时候，针对这个组件测试，就会将组件渲染出来的 DOM 结构的序列和之前的快照进行一个比对，看是否一致，如果和之前的快照是一致的，那么测试就通过，如果不一致（这一次渲染新增了 DOM 节点或者少了 DOM 节点），那么就说明这一次渲染和之前的渲染不一致的，测试不通过。
 
 如下图所示：
 
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251105155344505.png)
 
-
 测试快照虽然很简单，但是有一些注意点：
 
 - 快照本身并不验证渲染逻辑是否正确，它只是防止意外更改，所以当测试快照不通过的时候，我们就需要检查一下所需的元素、样式是否发生了我们不期望的改变
 - 快照失败的时候，如果确定渲染逻辑没有问题，确确实实是结构需要发生更改，那么我们可以更新快照。可以通过 jest --updateSnapshot 这个命令进行更新。
-
-
 
 ## 2. 避免大快照
 
@@ -126,31 +123,30 @@ exports[`renders learn react link 1`] = `
 例如：
 
 ```ts
-import TestUI from "./components/TestUI"
-import Items from "./components/Items"
+import TestUI from "./components/TestUI";
+import Items from "./components/Items";
 
 function App() {
   return (
     <div className="App">
-      <Items/>
-      <TestUI/>
+      <Items />
+      <TestUI />
     </div>
   );
 }
 
 export default App;
-
 ```
 
 ```tsx
-function TestUI(){
-    return (
-        <ul data-testid="list">
-            <li>张三</li>
-            <li>李四</li>
-            <li>王武</li>
-        </ul>
-    );
+function TestUI() {
+  return (
+    <ul data-testid="list">
+      <li>张三</li>
+      <li>李四</li>
+      <li>王武</li>
+    </ul>
+  );
 }
 
 export default TestUI;
@@ -184,7 +180,6 @@ function Items() {
 }
 
 export default Items;
-
 ```
 
 那么现在针对 App 组件生成快照的时候，就会导致快照文件比较大，因为会连同 TestUI 以及 Items 组件的 DOM 结构一起生成。
@@ -194,19 +189,17 @@ export default Items;
 代码如下：
 
 ```tsx
-import { render, screen } from '@testing-library/react';
-import App from './App';
+import { render, screen } from "@testing-library/react";
+import App from "./App";
 
-test('renders learn react link', () => {
+test("renders learn react link", () => {
   render(<App />);
-  const content = screen.getByTestId('list');
+  const content = screen.getByTestId("list");
   expect(content).toMatchSnapshot();
 });
 ```
 
 上面的代码，只会针对 TestUI 组件生成快照。
-
-
 
 ## 3. 扩展场景
 
@@ -217,19 +210,19 @@ test('renders learn react link', () => {
 ```ts
 // getUserById.ts
 const getUserById = async (id: string) => {
-  return request.get('user', {
-    params: { id }
-  })
-}
+  return request.get("user", {
+    params: { id },
+  });
+};
 
 // getUserById.test.ts
-describe('getUserById', () => {
-  it('可以获取 userId == 1 的用户', async () => {
-    const result = await getUserById('1')
+describe("getUserById", () => {
+  it("可以获取 userId == 1 的用户", async () => {
+    const result = await getUserById("1");
     expect(result).toEqual({
       // 非常巨大的一个 JSON 返回...
-    })
-  })
+    });
+  });
 });
 ```
 
@@ -240,30 +233,28 @@ describe('getUserById', () => {
 ```ts
 // getUserById.ts
 const getUserById = async (id: string) => {
-  return request.get('user', {
-    params: { id }
-  })
-}
+  return request.get("user", {
+    params: { id },
+  });
+};
 
 // getUserById.test.ts
-describe('getUserById', () => {
-  it('可以获取 userId == 1 的用户', async () => {
-    const result = await getUserById('1')
+describe("getUserById", () => {
+  it("可以获取 userId == 1 的用户", async () => {
+    const result = await getUserById("1");
     expect(result).toMatchSnapshot();
-  })
+  });
 });
 ```
-
-
 
 ## 4. 总结
 
 这一小节我们学会了 快照测试。快照测试的思想很简单：
 
-先执行一次测试，把输出结果记录到 .*snap* 文件，以后每次测试都会把输出结果和 .*snap* 文件做对比。快照失败有两种可能：
+先执行一次测试，把输出结果记录到 ._snap_ 文件，以后每次测试都会把输出结果和 ._snap_ 文件做对比。快照失败有两种可能：
 
-- 业务代码变更后导致输出结果和以前记录的 .*snap* 不一致，说明业务代码有问题，要排查 *Bug*。
-- 业务代码有更新导致输出结果和以前记录的 .*snap* 不一致，新增功能改变了原有的 *DOM* 结构，要用 *npx jest --updateSnapshot* 更新当前快照。
+- 业务代码变更后导致输出结果和以前记录的 ._snap_ 不一致，说明业务代码有问题，要排查 _Bug_。
+- 业务代码有更新导致输出结果和以前记录的 ._snap_ 不一致，新增功能改变了原有的 _DOM_ 结构，要用 _npx jest --updateSnapshot_ 更新当前快照。
 
 不过现实中这两种失败情况并不好区分，更多的情况是你既在重构又要加新需求，这就是为什么快照测试会出现 “假错误”。而如果开发者还滥用快照测试，并生成很多大快照， 那么最终的结果是没有人再相信快照测试。一遇到快照测试不通过，都不愿意探究失败的原因，而是选择更新快照来 “糊弄一下”。
 

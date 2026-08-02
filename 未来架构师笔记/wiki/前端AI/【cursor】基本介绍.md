@@ -4,7 +4,8 @@ ai_editable: false
 updated_by: human
 updated: 2026-08-02
 ---
-## 1.基本介绍
+
+## 1. 1.基本介绍
 
 Cursor 是一款**基于 VS Code** 打造的 AI 编程增强编辑器，它集成了 GPT-4、Claude 等主流大模型，具备强大的 **代码自动补全、对话生成、智能重构** 等能力。无论你是初学者还是经验丰富的开发者，Cursor 都能成为你得力的“编程助手”。
 
@@ -16,7 +17,7 @@ Cursor 具备如下的特点：
 3. 支持 AI 驱动协作开发：结合“结对编程”理念，Cursor 可以成为你随时在线、逻辑清晰、不知疲倦的搭档。
    - Pair Programming（结对编程）：关键的核心模块、新人培训、复杂的问题的 Debug
 
-### 1.1 安装Cursor
+### 1.1 安装 Cursor
 
 访问 [Cursor 的官网](https://www.cursor.com/)，然后注册 Cursor 的账号。
 
@@ -34,9 +35,9 @@ Cursor 具备如下的特点：
 
 Cursor 版本更新还是比较频繁的，此前 Cursor 会自动升级到最新版本，但有时新版本不太稳定，会遇到一些问题，也有的用户更习惯使用旧版本的体验， Github 上有个开源的[仓库](https://github.com/oslook/cursor-ai-downloads)，维护了 0.36.2 版本之后所有 Cursor 的历史版本。
 
-### 1.2 Cursor收费计划
+### 1.2 Cursor 收费计划
 
-Cursor 提供了 3 种不同的订阅计划，可以选择按月付费或者按年付费（年付可节省20%）
+Cursor 提供了 3 种不同的订阅计划，可以选择按月付费或者按年付费（年付可节省 20%）
 
 ![image.png](https://picgo-1300696809.cos.ap-beijing.myqcloud.com/20251009150430034.png)
 
@@ -63,6 +64,7 @@ Cursor 提供了 3 种不同的订阅计划，可以选择按月付费或者按�
 包含 Pro 版本所有功能，另外还有：
 
 - 在所有 OpenAI、Claude、Gemini 模型上拥有 20 倍的使用额度。
+
   - 更高的并发请求数
   - 更大的上下文长度或响应 token 限额
   - 更快的响应速度
@@ -70,7 +72,7 @@ Cursor 提供了 3 种不同的订阅计划，可以选择按月付费或者按�
 
 - 优先使用新功能
 
-### 1.3 Cursor主界面
+### 1.3 Cursor 主界面
 
 Cursor 在结构布局上与 VSCode 十分类似，但它增加了面向 AI 编程的核心区域。
 
@@ -83,12 +85,14 @@ Cursor 在结构布局上与 VSCode 十分类似，但它增加了面向 AI 编�
 - 下方：终端（Terminal）
 
 - 右侧：AI 聊天面板（Chat Assistant）
-  - New chat区域：可直接发起 AI 对话
+
+  - New chat 区域：可直接发起 AI 对话
   - `@ Add context`：绑定当前文件上下文（代码自动传入对话）
   - 输入框：支持提问、代码生成、bug 解释等自然语言操作
   - `Agent` 下拉：选择对话模式
 
 - 底部状态栏右下角：Cursor Tab 与模型状态
+
   - 显示当前是否连接到 AI 服务、当前模型类型
 
   - 如果网络或模型切换，通常会在这里提示
