@@ -25,12 +25,20 @@
 
 ```yaml
 ---
-author: human        # human=人类手写 | ai=AI生成 | mixed=人机协作
+author: human        # human=人类手写（AI 只小修） | ai=AI生成 | mixed=人机协作
 ai_editable: false   # false=AI只读（人类笔记） | true=AI可自由维护
 updated_by: human    # 最近一次修改者：human / ai
 updated: 2026-08-02  # 最近修改日期
 ---
 ```
+
+`author` 三种状态判定标准：
+
+| 状态 | 触发条件 | ai_editable |
+|---|---|---|
+| `human` | 人类手写，AI 仅小修（改错字、修伪链接、改文件名这类） | `false` |
+| `mixed` | 人类笔记 + AI 在用户授权下**实质性参与**：大段补充、重构、把零散内容整理成结构化页面，内容已是双方合作产物 | `true` |
+| `ai` | AI 生成，人类基本不参与 | `true`
 
 ### 硬性规则
 
@@ -38,10 +46,13 @@ updated: 2026-08-02  # 最近修改日期
    - 想补充/修正 → 先以建议形式提出，用户明确同意后才能改，且只改用户同意的最小范围。
    - 需要链接 → 允许在**其他 AI 拥有的文件**里添加指向该笔记的 `[[链接]]`，但绝不改动该笔记本身。
 2. **`ai_editable: true`（AI 笔记，当前为 `wiki/Linux/**`）**：AI 可自由创建、更新、维护，但仍须遵守第 3 节的边界。
-3. **没有 frontmatter 的文件 = 按 `ai_editable: false` 处理**（默认人类笔记，AI 只读）。
-4. **`raw/` 目录：只读**。不新增、不删除、不修改任何内容，连 frontmatter 都不能加。唯一例外：新加入的 `.md` 源文件允许运行 `node tools/format.mjs` 做格式统一（不改内容）。
-5. 每篇**新建**的 AI 笔记必须带完整 frontmatter，`updated_by: ai`，并更新 `index.md`。
-6. **`index.md`（根目录）与 `log/`（操作日志）属于 AI 专属文件**：等价 `ai_editable: true`，即使不带 frontmatter 也由 AI 全权维护，无须征求同意。
+3. **`author: mixed`（人机协作）**：人类笔记 + AI 实质性参与后的状态，`ai_editable: true`，AI 可继续维护。
+   - **升级条件**：只有用户明确授权并**实际提出/认可**那次实质性修改后，才能把该笔记 `author` 从 `human` 改为 `mixed`。AI 不得自行升级。
+   - 仅小修（错字、伪链接、改文件名）不触发升级，保持 `human`。
+4. **没有 frontmatter 的文件 = 按 `ai_editable: false` 处理**（默认人类笔记，AI 只读）。
+5. **`raw/` 目录：只读**。不新增、不删除、不修改任何内容，连 frontmatter 都不能加。唯一例外：新加入的 `.md` 源文件允许运行 `node tools/format.mjs` 做格式统一（不改内容）。
+6. 每篇**新建**的 AI 笔记必须带完整 frontmatter，`updated_by: ai`，并更新 `index.md`。
+7. **`index.md`（根目录）与 `log/`（操作日志）属于 AI 专属文件**：等价 `ai_editable: true`，即使不带 frontmatter 也由 AI 全权维护，无须征求同意。
 
 ## 3. 修改边界（防止污染人类笔记生态）
 
