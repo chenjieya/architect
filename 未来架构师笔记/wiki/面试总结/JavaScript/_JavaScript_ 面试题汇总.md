@@ -1507,7 +1507,7 @@ try {
 >
 > 4. _toString_
 >
-> *toString( )*  是  *Object*  的原型方法，调用该方法，默认返回当前对象的  *[[Class]]* 。这是一个内部属性，其格式为  *[object Xxx]* ，其中  *Xxx*  就是对象的类型。
+> *toString( )*  是  *Object*  的原型方法，调用该方法，默认返回当前对象的  *`[[Class]]`* 。这是一个内部属性，其格式为  *[object Xxx]* ，其中  *Xxx*  就是对象的类型。
 >
 > 对于  *Object*  对象，直接调用  *toString( )*  就能返回  *[object Object]* 。而对于其他对象，则需要通过  *call / apply*  来调用才能返回正确的类型信息。例如：
 >
@@ -6906,7 +6906,7 @@ setInterval(() => console.log("Hi"), 1000);
 - A: *["L", "y", "d", "i", "a"]*
 - B: *["Lydia"]*
 - C: *[[], "Lydia"]*
-- D: *[["L", "y", "d", "i", "a"]]*
+- D: *`[["L", "y", "d", "i", "a"]]`*
 
 > **分析：**
 >
