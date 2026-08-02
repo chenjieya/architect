@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "96c5c82158dbae57",
+        "id": "1a00aa4cfb2d766f",
         "type": "tabs",
         "children": [
           {
-            "id": "62f90b77ec02840f",
+            "id": "48062b40d0d7a6d3",
             "type": "leaf",
             "state": {
               "type": "empty",
@@ -158,13 +158,12 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Linux/服务管理/【服务】防火墙 firewalld 区域管理.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "【服务】防火墙 firewalld 区域管理 的大纲"
+              "title": "大纲"
             }
           },
           {
@@ -200,11 +199,18 @@
       "markdown-importer:打开 Markdown 格式转换器": false
     }
   },
-  "active": "b126c51181683d12",
+  "active": "48062b40d0d7a6d3",
   "lastOpenFiles": [
-    "wiki/log.md",
+    "tools/format.mjs",
+    "tools",
     "wiki/index.md",
+    "wiki/Linux/【进程】系统状态和进程管理.md",
+    "wiki/Vite深度剖析/【Vite】 CSS 工程化处理：从预处理器到原子化框架.md",
+    "wiki/Vite深度剖析/【代码分割】Code Splitting.md",
+    "raw/operations-container/1-容器安装和管理/1.1 容器安装和管理.md",
     "AGENTS.md",
+    "Linux/服务管理/【服务】防火墙 firewalld 区域管理.md",
+    "wiki/log.md",
     "raw/operations-shell/1.2 shell-2-gai.md",
     "raw/operations-shell/README.md",
     "raw/operations-shell/3 awk和sed.md",
@@ -223,7 +229,6 @@
     "raw/operations-services/2. linux运维-nginx服务管理/http-ssl-rhel8.0.doc",
     "raw/operations-services/2. linux运维-nginx服务管理/4-nginx的https设置.docx",
     "raw/operations-services/2. linux运维-nginx服务管理/3.1-nginx的反向代理之负载平衡.docx",
-    "raw/operations-services/2. linux运维-nginx服务管理/3-nginx的反向代理设置.docx",
     "raw/operations-services/2. linux运维-nginx服务管理/2.4、nginx服务管理四负载平衡.md",
     "raw/operations-services/3. linux运维-防火墙/3. 防火墙.md",
     "raw/operations-services/2. linux运维-nginx服务管理/2.3、nginx服务管理三反向代理.md",
@@ -232,13 +237,7 @@
     "raw/operations-services/1. linux运维-apache服务管理/1.2、apache服务管理二.md",
     "raw/operations-services/1. linux运维-apache服务管理/1.1、apache服务管理一.md",
     "raw/operations-services/README.md",
-    "raw/operations-monitor/zabbix/2.zabbix_client安装和配置.md",
-    "raw/operations-monitor/zabbix/1.zabbix_server安装和配置 .md",
-    "raw/operations-monitor/ELK/ELK资料下载地址.md",
-    "raw/operations-linux/01. linux系统安装/01、系统安装.md",
     "raw/operations-linux/03. Linux_vim使用介绍/Linux目录路径树状图.png",
-    "raw/operations-linux/03. Linux_vim使用介绍/03、linux_vim使用介绍.md",
-    "raw/operations-linux/04. linux管道和常用命令介绍/04、linux管道和常用命令介绍.md",
     "Linux/_images/Linux目录路径树状图.png",
     "_代码/Python/python框架/code/demo/ai-demo/src/assets/vite.svg",
     "_代码/Python/python框架/code/demo/ai-demo/src/assets/hero.png",
