@@ -25,7 +25,7 @@ class TestLookup:
 
     def test_returns_mapped_entry_via_mro(self):
         code, http_status, msg = _lookup(DatabaseException("test"))
-        assert code == "422002"
+        assert code == "422001"
         assert http_status == 422
 
     def test_falls_back_to_exception_handler(self):
