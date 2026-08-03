@@ -1,8 +1,16 @@
 ---
 author: ai
 ai_editable: true
+summary: "Zabbix 是企业级开源监控平台，采用 Server/Agent 架构：Zabbix Server 汇总数据，Agent 安装在被监控主机上采集数据。本文以 Zabb…"
+refs:
+  pages: []
+  raw:
+    - path: "raw/operations-monitor/zabbix/1.zabbix_server安装和配置 .md"
+      sha256: dbd9020177f3d8bc9ee1b980c838452aae12f5c3b169451fd7b713b43f96312b
+    - path: "raw/operations-monitor/zabbix/2.zabbix_client安装和配置.md"
+      sha256: 81b1f7767585125e3d10b6f20accf6fadcaba80db65bbde36954417af87e68c6
 updated_by: ai
-updated: 2026-08-02
+updated: 2026-08-03
 ---
 
 ## 1. Zabbix 是什么

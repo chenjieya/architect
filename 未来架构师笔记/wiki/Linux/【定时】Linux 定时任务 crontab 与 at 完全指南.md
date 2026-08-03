@@ -1,8 +1,14 @@
 ---
 author: ai
 ai_editable: true
+summary: 'Linux 中"定时任务"就是让系统在指定时间自动执行某条命令或脚本。最常见、功能最强大的是 crontab（周期性任务，如"每天凌晨 3 点备份"），另外还有一个轻量…'
+refs:
+  pages: []
+  raw:
+    - path: "raw/operations-linux/10. crontab周期性任务/10、crontab周期性任务.md"
+      sha256: e10b973d36b127070dc56c6a6b565a6118848abc67ecb7a3a8c0c8eff88bc604
 updated_by: ai
-updated: 2026-08-02
+updated: 2026-08-03
 ---
 
 ## 1. 定时任务概述

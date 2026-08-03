@@ -1,8 +1,15 @@
 ---
 author: ai
 ai_editable: true
+summary: "sed（Stream Editor）是一个非交互式的文本流编辑器，擅长对文件按行做增删改查，是重要的文本过滤工具。"
+refs:
+  pages:
+    - "【数据流】标准数据流重定向与时间属性"
+  raw:
+    - path: "raw/operations-shell/3 awk和sed.md"
+      sha256: a89027d26c64ccf2d6a2603c0ee1abf18d71ad27b33ac66ba043057962b92b79
 updated_by: ai
-updated: 2026-08-02
+updated: 2026-08-03
 ---
 
 ## 1. sed：非交互式文本流编辑器

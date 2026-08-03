@@ -1,8 +1,16 @@
 ---
 author: ai
 ai_editable: true
+summary: "块(Block)：文件系统的最小存储单位"
+refs:
+  pages: []
+  raw:
+    - path: "raw/operations-linux/08. 文件系统和磁盘管理/8-1、文件系统和磁盘管理.md"
+      sha256: 4a9f65c2bea07364cad8cbf5fe7f9b8f1b9f159bc41a0c2cd8985cfd3c461c2b
+    - path: "raw/operations-linux/08. 文件系统和磁盘管理/8-2、LVM磁盘.md"
+      sha256: 52ae1e3c2026ab0bdce96688ec4fef2f727cab9f143229abc1dbbd8c43817cbf
 updated_by: ai
-updated: 2026-08-02
+updated: 2026-08-03
 ---
 
 ## 1. 一、文件系统详解

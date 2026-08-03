@@ -1,8 +1,14 @@
 ---
 author: ai
 ai_editable: true
+summary: "Ansible 是基于 SSH 的批量自动化运维工具，无需在被管机器上安装 agent。一个主控机（控制节点）通过 SSH 就能批量管理几百台机器，常用于批量部署、配置…"
+refs:
+  pages: []
+  raw:
+    - path: "raw/operations-devops/2.ansible/2.1、ansible安装和配置.md"
+      sha256: 0232ba63ae894b4cb95c587690ecc314268f10d811bd65613a10e9f263aa3af0
 updated_by: ai
-updated: 2026-08-02
+updated: 2026-08-03
 ---
 
 ## 1. Ansible 是什么

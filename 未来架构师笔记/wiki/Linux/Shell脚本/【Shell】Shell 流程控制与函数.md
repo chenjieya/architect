@@ -1,8 +1,16 @@
 ---
 author: ai
 ai_editable: true
+summary: "脚本示例（判断用户输入是否为 y）："
+refs:
+  pages: []
+  raw:
+    - path: "raw/operations-shell/1.2 shell-2.md"
+      sha256: 2a733f0e4a7ad9724deb840787fda3908c1e872c1c05d84a74c30a9943fea24d
+    - path: "raw/operations-shell/1.2 shell-2-gai.md"
+      sha256: 5f8a01c8e617a2c7812b6a9615ac94f600348543747ca1d2fc672f8cc755cdd8
 updated_by: ai
-updated: 2026-08-02
+updated: 2026-08-03
 ---
 
 ## 1. if 条件判断

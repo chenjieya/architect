@@ -1,8 +1,23 @@
 ---
 author: ai
 ai_editable: true
+summary: "本笔记补充老师课程中已有的 Nginx 笔记没有覆盖的内容（编译安装、管理脚本、日志变量、日志轮转、负载均衡补充策略）。"
+refs:
+  pages:
+    - "【定时】Linux 定时任务 crontab 与 at 完全指南"
+    - "核心技术"
+    - "Nginx 配置学习笔记"
+  raw:
+    - path: "raw/operations-services/2. linux运维-nginx服务管理/2.1、nginx服务管理一之安装和基本配置.md"
+      sha256: b17b9c942c6e3e2951c30a5a74369eaba864b3b591350d24711be9ddf8711c12
+    - path: "raw/operations-services/2. linux运维-nginx服务管理/2.2、nginx服务管理二之日志和虚拟主机.md"
+      sha256: 09e77b0bc6ba94c8014bcf81b174fbac7be6872f307199b0942f862df55427f8
+    - path: "raw/operations-services/2. linux运维-nginx服务管理/2.3、nginx服务管理三反向代理.md"
+      sha256: 0ce612dfb1e38d8f282e4637e1b16204a4b293fb381713adc02283003fec7aea
+    - path: "raw/operations-services/2. linux运维-nginx服务管理/2.4、nginx服务管理四负载平衡.md"
+      sha256: bace11cf33afe2a6ac296ce72f2d45acf9b681f4fbd226151142bf3dbfac804a
 updated_by: ai
-updated: 2026-08-02
+updated: 2026-08-03
 ---
 
 > 本笔记补充老师课程中**已有的 Nginx 笔记没有覆盖**的内容（编译安装、管理脚本、日志变量、日志轮转、负载均衡补充策略）。

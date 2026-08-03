@@ -1,8 +1,14 @@
 ---
 author: ai
 ai_editable: true
+summary: "在 Linux 系统中，我们经常需要在不同用户身份之间切换来执行特定任务，主要有两种方式：su 和 sudo。"
+refs:
+  pages: []
+  raw:
+    - path: "raw/operations-linux/07. 用户和组和权限/07-3、sudo和su.md"
+      sha256: c2fb6d2389de41dbdb80f167a3c7437d7abc4d8643a2674c255e8973c1860b83
 updated_by: ai
-updated: 2026-08-02
+updated: 2026-08-03
 ---
 
 ## 1. 用户切换基础概念

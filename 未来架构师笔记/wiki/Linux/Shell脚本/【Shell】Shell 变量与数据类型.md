@@ -1,8 +1,19 @@
 ---
 author: ai
 ai_editable: true
+summary: "bash shell 把任何存储在变量中的值，在未声明数据类型的情况下，都视为字符串。"
+refs:
+  pages:
+    - "【Shell】sed 与 awk 详解"
+  raw:
+    - path: "raw/operations-shell/1.1 shell-1.md"
+      sha256: 8d52722ff15f3caf8cf2c4c7aa0f19d4645dce4960c5f916c48c91af1b5c5a60
+    - path: "raw/operations-shell/1.2 shell-2.md"
+      sha256: 2a733f0e4a7ad9724deb840787fda3908c1e872c1c05d84a74c30a9943fea24d
+    - path: "raw/operations-shell/1.2 shell-2-gai.md"
+      sha256: 5f8a01c8e617a2c7812b6a9615ac94f600348543747ca1d2fc672f8cc755cdd8
 updated_by: ai
-updated: 2026-08-02
+updated: 2026-08-03
 ---
 
 ## 1. 变量概述

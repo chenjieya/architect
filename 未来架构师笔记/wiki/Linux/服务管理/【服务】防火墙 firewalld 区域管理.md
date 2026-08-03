@@ -1,8 +1,15 @@
 ---
 author: ai
 ai_editable: true
+summary: "FirewallD 通过把网络划分成不同区域，每个区域有不同的信任级别，实现不同的访问控制策略。"
+refs:
+  pages:
+    - "【服务】Samba 文件共享详解"
+  raw:
+    - path: "raw/operations-services/3. linux运维-防火墙/3. 防火墙.md"
+      sha256: 2a77388527c3fc428d970324a4ebb0d4b905c94d9c30a0b2b18e66eb09e0322f
 updated_by: ai
-updated: 2026-08-02
+updated: 2026-08-03
 ---
 
 ## 1. 防火墙服务管理

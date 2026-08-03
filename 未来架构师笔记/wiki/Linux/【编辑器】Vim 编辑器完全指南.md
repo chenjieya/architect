@@ -1,8 +1,14 @@
 ---
 author: ai
 ai_editable: true
+summary: "Linux 下编辑文件有很多工具，最常用的是这三种："
+refs:
+  pages: []
+  raw:
+    - path: "raw/operations-linux/03. Linux_vim使用介绍/03、linux_vim使用介绍.md"
+      sha256: eb3a1e3d46d39a304f714043491450a684655e78a5b5183cbcb796e2de9db5ca
 updated_by: ai
-updated: 2026-08-02
+updated: 2026-08-03
 ---
 
 ## 1. 文本编辑器概述

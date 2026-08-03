@@ -1,8 +1,16 @@
 ---
 author: ai
 ai_editable: true
+summary: "默认情况下任务失败时，ansible 会在该主机上中止 play 的其余部分。可以通过以下方式自定义行为。"
+refs:
+  pages: []
+  raw:
+    - path: "raw/operations-devops/2.ansible/2.5、ansible循环和条件.md"
+      sha256: c5ea3418550115e88323d3e3c405da05c3f9763708265cc121e10c0ad49ae180
+    - path: "raw/operations-devops/2.ansible/2.6、模版和角色.md"
+      sha256: 37d8f4c93a79a2defd1b5ebcd91db775ce5a65f628a9fec3710af99db57ba401
 updated_by: ai
-updated: 2026-08-02
+updated: 2026-08-03
 ---
 
 ## 1. 任务失败与异常处理

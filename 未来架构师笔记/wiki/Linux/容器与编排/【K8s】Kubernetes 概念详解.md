@@ -1,8 +1,16 @@
 ---
 author: ai
 ai_editable: true
+summary: "Kubernetes（简称 K8s，取首尾字母 + 中间 8 个字符）是开源的容器编排平台，用于管理多台主机上的容器化应用，提供应用部署、规划、更新、维护的机制。源于 …"
+refs:
+  pages:
+    - "【Docker】Dockerfile 镜像构建与运维补充"
+    - "docker的常用命令"
+  raw:
+    - path: "raw/operations-container/2-k8s安装和管理/k8s概念介绍.md"
+      sha256: e12c709367726f5d52f0afa261f51cf4c6dbfb66eae431331d65a8aea7ccbac5
 updated_by: ai
-updated: 2026-08-02
+updated: 2026-08-03
 ---
 
 ## 1. K8s 是什么

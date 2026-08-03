@@ -1,8 +1,15 @@
 ---
 author: ai
 ai_editable: true
+summary: "Samba 让 Linux 和 Windows 之间实现文件共享和打印共享，是 Linux 服务器给 Windows 客户端共享目录的常用方案。"
+refs:
+  pages:
+    - "【服务】防火墙 firewalld 区域管理"
+  raw:
+    - path: "raw/operations-services/4. linux运维-ftp和samba/4.2 samba.md"
+      sha256: fdd507d8ef644aa7f2508c02884953703d94401ba3cb9d7f966877b9c479243a
 updated_by: ai
-updated: 2026-08-02
+updated: 2026-08-03
 ---
 
 ## 1. Samba 简介

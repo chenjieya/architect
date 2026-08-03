@@ -1,6 +1,16 @@
 ---
 author: ai
 ai_editable: true
+summary: "Vite 的 HMR（Hot Module Replacement，热模块替换）不是简单的“文件变了就刷新页面”。它的核心是：在应用仍然运行的情况下，找到能接住变更的模…"
+refs:
+  pages:
+    - "【Vite】从工程痛点到架构革新"
+    - "【Vite】框架集成：Vue 3 与 React 18 的完整指南"
+    - "【Vite】命令详解：从开发到生产的完整流程"
+    - "【Vite】Vite Vs. Webpack：定位、场景与插件机制的差异"
+  raw:
+    - path: "raw/Hot Module Replacement is Easy.md"
+      sha256: dd8130168dfdb7aa813f05ce9f7042f0cc994f3ac70df2cb8744cf9cb25af55c
 updated_by: ai
 updated: 2026-08-03
 ---

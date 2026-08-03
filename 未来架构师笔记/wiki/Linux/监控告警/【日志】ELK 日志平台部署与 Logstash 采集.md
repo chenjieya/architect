@@ -1,8 +1,14 @@
 ---
 author: ai
 ai_editable: true
+summary: "ELK = Elasticsearch（搜索存储） + Logstash（日志采集处理） + Kibana（可视化），用于日志的集中采集、分析、检索和展示。"
+refs:
+  pages: []
+  raw:
+    - path: "raw/operations-monitor/ELK/ELK资料下载地址.md"
+      sha256: d6c13e36ce8864d3a3cd108ccd145821653b5c813c49cb7166d198e3b30fe3de
 updated_by: ai
-updated: 2026-08-02
+updated: 2026-08-03
 ---
 
 ## 1. ELK 是什么

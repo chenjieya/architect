@@ -1,8 +1,16 @@
 ---
 author: ai
 ai_editable: true
+summary: "在日常运维或开发工作中，经常需要使用一些基础的 Linux 命令来进行系统管理、文件操作、网络调试等。本文对常见命令进行了整理，方便查阅。"
+refs:
+  pages: []
+  raw:
+    - path: "raw/operations-linux/02. linux基础命令/02、基础命令使用介绍.md"
+      sha256: 019e68537b80b16fe1843d8c6fb7afc3405992300ac1b55429bbc76483373a17
+    - path: "raw/operations-linux/04. linux管道和常用命令介绍/04、linux管道和常用命令介绍.md"
+      sha256: a44b0918bd05e8950800af91167ec5ebf5f11e23100a879a299273b573f7d0ee
 updated_by: ai
-updated: 2026-08-02
+updated: 2026-08-03
 ---
 
 在日常运维或开发工作中，经常需要使用一些基础的 Linux 命令来进行系统管理、文件操作、网络调试等。本文对常见命令进行了整理，方便查阅。

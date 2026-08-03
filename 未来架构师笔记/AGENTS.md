@@ -27,6 +27,10 @@
 ---
 author: human # human=人类手写（AI 只小修） | ai=AI生成 | mixed=人机协作
 ai_editable: false # false=AI只读（人类笔记） | true=AI可自由维护
+summary: 一句话摘要 # 供 index.md 和检索定位使用，尽量控制在 80 字以内
+refs:
+  pages: [] # 当前页面依赖的 Wiki 页面，使用 Obsidian 文件名，不写路径
+  raw: [] # 当前页面依赖的 raw 源文件，建议记录 path + sha256
 updated_by: human # 最近一次修改者：human / ai
 updated: 2026-08-02 # 最近修改日期
 ---
@@ -40,6 +44,21 @@ updated: 2026-08-02 # 最近修改日期
 | `mixed` | 人类笔记 + AI 在用户授权下**实质性参与**：大段补充、重构、把零散内容整理成结构化页面，内容已是双方合作产物 | `true`      |
 | `ai`    | AI 生成，人类基本不参与                                                                                    | `true`      |
 
+`summary` 与 `refs` 字段用于支撑规模化维护：
+
+- `summary`：一句话说明页面解决什么问题，供根目录 `index.md` 展示和 Agent 快速判断页面价值。
+- `refs.pages`：显式声明当前页面依赖的 Wiki 页面，使用 Obsidian 文件名（如 `【LLM】RAG：基础知识`），不写相对路径或全路径。
+- `refs.raw`：显式声明当前页面依赖的 `raw/` 源文件。AI 从 raw 整理出的页面应记录源文件路径与 `sha256`，用于后续检测源文件变化后哪些 Wiki 页面可能过时。
+
+`refs.raw` 推荐格式：
+
+```yaml
+refs:
+  raw:
+    - path: raw/Hot Module Replacement is Easy.md
+      sha256: <源文件当前 sha256>
+```
+
 #### 1.2.2 硬性规则
 
 1. **`ai_editable: false`（人类笔记）**：AI 只能 **读** 和 **引用**，**严禁修改内容**。
@@ -51,7 +70,7 @@ updated: 2026-08-02 # 最近修改日期
    - 仅小修（错字、伪链接、改文件名）不触发升级，保持 `human`。
 4. **没有 frontmatter 的文件 = 按 `ai_editable: false` 处理**（默认人类笔记，AI 只读）。
 5. **`raw/` 目录：只读**。不新增、不删除、不修改任何内容，连 frontmatter 都不能加。唯一例外：新加入的 `.md` 源文件允许运行 `node tools/format.mjs` 做格式统一（不改内容）。
-6. 每篇**新建**的 AI 笔记必须带完整 frontmatter，`author: ai`、`ai_editable: true`、`updated_by: ai`，并更新 `index.md`。新建笔记的目录归属由主题决定，不受同目录已有旧笔记所有权限制。
+6. 每篇**新建**的 AI 笔记必须带完整 frontmatter，`author: ai`、`ai_editable: true`、`summary`、`refs`、`updated_by: ai`，并更新 `index.md`。新建笔记的目录归属由主题决定，不受同目录已有旧笔记所有权限制。
 7. **`index.md`（根目录）与 `log/`（操作日志）属于 AI 专属文件**：等价 `ai_editable: true`，即使不带 frontmatter 也由 AI 全权维护，无须征求同意。
 
 ### 1.3 修改边界（防止污染人类笔记生态）
@@ -76,7 +95,10 @@ updated: 2026-08-02 # 最近修改日期
 #### 1.4.1 Ingest（摄取新资料）
 
 1. 新资料（文章/PDF/笔记）先放入 `raw/`。若是 `.md` 源文件，先运行 `node tools/format.mjs` 统一格式，之后 AI 只读引用。
-2. 读取 `raw/` 后，AI 应按主题提炼成新的 Wiki 页面；新页面可以放入任意合适主题目录，frontmatter 标为 `author: ai`、`ai_editable: true`、`updated_by: ai`。
+2. 读取 `raw/` 后，AI 应按主题提炼成新的 Wiki 页面；新页面可以放入任意合适主题目录，frontmatter 标为 `author: ai`、`ai_editable: true`、`summary`、`refs`、`updated_by: ai`。
+   - `summary` 必须写一句话摘要。
+   - `refs.raw` 必须记录直接依据的 raw 源文件路径与 sha256。
+   - `refs.pages` 必须记录写作时实质参考或依赖的 Wiki 页面；只是正文里顺手提到的概念，用双链即可，不必放入 `refs.pages`。
 3. 若新资料与已有 `ai_editable: false` 人类笔记相关，AI 不得直接改旧笔记正文；应先新建 AI 整理页，并在回复中列出建议关联的旧笔记。需要把内容并入、重构或实质性修改旧笔记时，必须先询问并获得用户明确授权。
 4. **确定存放位置（写页面前的第一道判断）**：
    - 先对照根目录 `index.md` 与现有目录树，判断新内容能否归入某个**已有主题目录**（含子目录）：能归入 → 放到对应目录，文件名沿用该目录的命名习惯。
@@ -97,7 +119,8 @@ updated: 2026-08-02 # 最近修改日期
 #### 1.4.2 Query（查询）
 
 1. 先读根目录 `index.md` 定位相关页面，再深入阅读，综合出带引用的答案。
-2. 好的答案（对比、分析、总结）可以写成新页面存入 Wiki；新页面按主题归入合适目录，frontmatter 标为 `author: ai`、`ai_editable: true`。不得因此擅自修改已有 `ai_editable: false` 页面。
+2. 好的答案（对比、分析、总结）可以写成新页面存入 Wiki；新页面按主题归入合适目录，frontmatter 标为 `author: ai`、`ai_editable: true`、`summary`、`refs`。不得因此擅自修改已有 `ai_editable: false` 页面。
+   - 若新页面来自查询综合，`refs.pages` 记录回答时实际读取并依赖的 Wiki 页面；没有 raw 依赖时 `refs.raw: []`。
 3. 涉及 `raw/` 的资料，引用时注明来源文件。
 
 #### 1.4.3 Lint（体检）
@@ -109,8 +132,16 @@ updated: 2026-08-02 # 最近修改日期
 - 无入链的孤岛页面
 - 被频繁提及但没有独立页面的概念
 - 人类笔记区中待处理的 AI 建议
+- `summary` / `refs` 元数据缺失
+- `refs.raw` 中记录的 sha256 与当前 raw 文件内容不一致
 
 修复可修复项后，更新 `index.md`、追加 `log/` 当月文件。
+
+机械项优先用本地脚本检查：
+
+```bash
+node tools/wiki-lint.mjs
+```
 
 #### 1.4.4 修改流程要求
 

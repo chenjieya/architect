@@ -1,8 +1,15 @@
 ---
 author: ai
 ai_editable: true
+summary: "对两个数用 和 gt 比较，结果可能不一样，因为语义完全不同："
+refs:
+  pages:
+    - "【数据流】标准数据流重定向与时间属性"
+  raw:
+    - path: "raw/operations-shell/2.1 shell-计算和比较.md"
+      sha256: 94b7f027a242d2ada3a8f74b08a7c3453519b1f7c1b95384c0101faed2579612
 updated_by: ai
-updated: 2026-08-02
+updated: 2026-08-03
 ---
 
 ## 1. 数值比较：`>` 还是 `-gt`？

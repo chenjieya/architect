@@ -1,8 +1,14 @@
 ---
 author: ai
 ai_editable: true
+summary: "适用于像 ./backup.sh b 1 d blog 这种带选项的参数："
+refs:
+  pages: []
+  raw:
+    - path: "raw/operations-shell/2.2 shell-参数和信号.md"
+      sha256: 234fc46f820233b950dd7b2d6f45e33f4f2abe21ccf1c4cbad77d680aef906a1
 updated_by: ai
-updated: 2026-08-02
+updated: 2026-08-03
 ---
 
 ## 1. 特殊变量

@@ -1,8 +1,14 @@
 ---
 author: ai
 ai_editable: true
+summary: "FTP（文件传输协议）是最常用的网络协议之一，用于通过网络和远程服务器进行文件传输。"
+refs:
+  pages: []
+  raw:
+    - path: "raw/operations-services/4. linux运维-ftp和samba/4.1 ftp.md"
+      sha256: 943d1f7c6643ee89fbc14777cee43422884ff09140bd0a80ce62c3d53c19a0d4
 updated_by: ai
-updated: 2026-08-02
+updated: 2026-08-03
 ---
 
 ## 1. FTP 简介与软件选型

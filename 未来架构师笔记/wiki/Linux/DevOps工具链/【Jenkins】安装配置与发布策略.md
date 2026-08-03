@@ -1,8 +1,20 @@
 ---
 author: ai
 ai_editable: true
+summary: "jenkins + ssh 无密码"
+refs:
+  pages:
+    - "【GitLab】GitLab 安装与协同使用"
+    - "【K8s】Kubernetes 概念详解"
+  raw:
+    - path: "raw/operations-devops/3. jenkins/1. jenkins安装和配置.md"
+      sha256: 7ded8490e7bcb568784d4a8d3c2afbdefd759f5cbb86e761e07117d8981520b1
+    - path: "raw/operations-devops/3. jenkins/2. 发布策略和实验.md"
+      sha256: e81a9de93d262b1f3381992a99d11fc15a1f178a615034aaf8f34279213da827
+    - path: "raw/operations-devops/3. jenkins/3. 发布和回滚.md"
+      sha256: 047b9b669e59930254c324bdc66f9cd8a3f5cc4850b987511a6d91982bda9c19
 updated_by: ai
-updated: 2026-08-02
+updated: 2026-08-03
 ---
 
 ## 1. 完整发布线路（CI/CD）

@@ -1,8 +1,19 @@
 ---
 author: ai
 ai_editable: true
+summary: "本笔记讲 GitLab 平台本身（安装、项目/用户/协同）。git 基础命令（提交、分支、暂存、远程）见 git从入门到精通。"
+refs:
+  pages:
+    - "git从入门到精通"
+  raw:
+    - path: "raw/operations-devops/1. gitlab/1.1、gitlab.md"
+      sha256: 4949b5e1dc278c0d4ef9b1b67de14f7f7749c11711de2c5f632f772200418629
+    - path: "raw/operations-devops/1. gitlab/2.1 gitlab.readme1.md"
+      sha256: 72ec3252e4177b37a3c2ebd63123fcae736be01603f69dedcc94a5626276fffd
+    - path: "raw/operations-devops/1. gitlab/2.2 gitlab.readme2.md"
+      sha256: 7658a1f1a008758df38eeb6dfabe316f20779650a6b2f2090656badc5c62b251
 updated_by: ai
-updated: 2026-08-02
+updated: 2026-08-03
 ---
 
 > 本笔记讲 **GitLab 平台本身**（安装、项目/用户/协同）。git 基础命令（提交、分支、暂存、远程）见 [[git从入门到精通]]。
