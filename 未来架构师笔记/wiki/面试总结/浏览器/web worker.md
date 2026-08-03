@@ -168,7 +168,7 @@ timedCount();
 
 当用户点击"停止工作"时，则会调用 _terminate( )_ 方法来终止 _Web Worker_ 的运行。
 
-## 3. 使用 _web Worker_ 实现跨标签页通信
+## 3. 使用 _web Worker_ 实现[[跨标签页通信]]
 
 _web Worker_ 可分为两种类型：
 

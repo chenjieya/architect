@@ -242,7 +242,7 @@ const increasingNewIndexSequence = moved
   - newIndex = 3
   - 锚点 DOM：a --> 真实 DOM
   - `newIndexToOldIndexMap[3]` 不为 0，说明旧节点列表里面是有的，能够复用
-  - 接下来需要看 i 是否在最长递增子序列里面，发现存在，所以不做任何操作
+- 接下来需要看 i 是否在[[最长递增子序列]]里面，发现存在，所以不做任何操作
 - i = 2
   - newIndex = 2
   - 锚点 DOM：d --> 真实 DOM

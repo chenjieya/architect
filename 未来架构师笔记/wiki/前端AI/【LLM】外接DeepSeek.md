@@ -5,7 +5,7 @@ updated_by: human
 updated: 2026-08-02
 ---
 
-## 1. Function Calling
+## 1. [[【LLM】Function Calling|Function Calling]]
 
 [deepseek 开发平台](https://platform.deepseek.com/) 申请一个 api key
 

@@ -5,7 +5,7 @@ updated_by: human
 updated: 2026-08-02
 ---
 
-> Vite 采用了独特的双引擎架构：开发环境使用 Esbuild，生产环境使用 Rollup。为什么这样设计？
+> Vite 采用了独特的双引擎架构：开发环境使用 [[esbuild 概述|Esbuild]]，生产环境使用 [[初始Rollup|Rollup]]。为什么这样设计？
 
 ---
 

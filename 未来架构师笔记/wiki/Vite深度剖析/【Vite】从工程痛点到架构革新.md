@@ -292,6 +292,8 @@ const handleClick = () => {
 - **HMR (Hot Module Replacement)**：热模块替换，修改代码后无需刷新页面即可看到更新
 - **WebSocket**：用于实时通信的协议，Vite 用它推送更新
 
+HMR 的模块边界、传播和客户端执行细节见 [[【Vite】HMR 热更新原理]]。
+
 ---
 
 ### 2.3 生产环境：仍需打包

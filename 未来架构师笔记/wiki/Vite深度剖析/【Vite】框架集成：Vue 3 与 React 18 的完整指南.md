@@ -231,6 +231,8 @@ React Fast Refresh 需要能够识别组件，如果组件导出不符合规范�
 - **导出规范**：组件应该使用函数声明或箭头函数直接导出
 - **Fast Refresh**：React 的快速刷新机制
 
+React Fast Refresh 触发 invalidate 后，Vite 如何继续向上寻找 HMR 边界，见 [[【Vite】HMR 热更新原理]]。
+
 ---
 
 ### 2.5 加入 ESLint

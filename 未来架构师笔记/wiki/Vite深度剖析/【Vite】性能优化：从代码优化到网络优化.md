@@ -70,7 +70,7 @@ import { debounce } from "lodash";
 
 ### 2.2 代码压缩
 
-**代码演示：使用 Esbuild 压缩（默认）**
+**代码演示：使用 [[esbuild 概述|Esbuild]] 压缩（默认）**
 
 ```javascript
 // vite.config.js
@@ -652,7 +652,7 @@ export default {
 ### 5.1 代码层面
 
 1. **使用 Tree Shaking**：只导入需要的代码
-2. **代码分割**：按需加载
+2. **[[【Vite】代码分割（Code Splitting）：从基础到高级策略|代码分割]]**：按需加载
 3. **代码压缩**：减小体积
 
 ### 5.2 网络层面
