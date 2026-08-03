@@ -6,7 +6,7 @@ refs:
   pages: []
   raw:
     - path: "raw/operations-linux/03. Linux_vim使用介绍/03、linux_vim使用介绍.md"
-      sha256: eb3a1e3d46d39a304f714043491450a684655e78a5b5183cbcb796e2de9db5ca
+      sha256: 39c6a6c61077bc2bdc9a501722c8ec552b3b0ffafdf357bc13a3e2fe5e7dca48
 updated_by: ai
 updated: 2026-08-03
 ---

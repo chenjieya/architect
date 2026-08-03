@@ -6,7 +6,7 @@ refs:
   pages: []
   raw:
     - path: "raw/operations-linux/07. 用户和组和权限/07-2、特殊权限.md"
-      sha256: 2f4d4a8f7cefce0bbd3349430abb7aff4d51bc62ec3ff807b0b1da5e2a7c6c3f
+      sha256: 8759d3be3e219c6cb8ef3307f7f6b5f3b4e2644f9c4c4a901bda3344f8865517
 updated_by: ai
 updated: 2026-08-03
 ---

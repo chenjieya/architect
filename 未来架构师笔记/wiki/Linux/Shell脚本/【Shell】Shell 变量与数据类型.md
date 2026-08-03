@@ -7,11 +7,11 @@ refs:
     - "【Shell】sed 与 awk 详解"
   raw:
     - path: "raw/operations-shell/1.1 shell-1.md"
-      sha256: 8d52722ff15f3caf8cf2c4c7aa0f19d4645dce4960c5f916c48c91af1b5c5a60
+      sha256: 58bd52c17ed98717bea45efe1e96df73baf3a33675445a9fa1cad617bd163ac3
     - path: "raw/operations-shell/1.2 shell-2.md"
-      sha256: 2a733f0e4a7ad9724deb840787fda3908c1e872c1c05d84a74c30a9943fea24d
+      sha256: d0ec231487e62025613419f7d4f3f3cf7492898625443878047651976e42bd5d
     - path: "raw/operations-shell/1.2 shell-2-gai.md"
-      sha256: 5f8a01c8e617a2c7812b6a9615ac94f600348543747ca1d2fc672f8cc755cdd8
+      sha256: 1a64a72eb41bff6a601fbf3328755242eb6ce9e91160cbdda215e8f584063ae5
 updated_by: ai
 updated: 2026-08-03
 ---

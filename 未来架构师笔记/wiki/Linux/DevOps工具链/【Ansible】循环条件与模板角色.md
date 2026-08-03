@@ -6,9 +6,9 @@ refs:
   pages: []
   raw:
     - path: "raw/operations-devops/2.ansible/2.5、ansible循环和条件.md"
-      sha256: c5ea3418550115e88323d3e3c405da05c3f9763708265cc121e10c0ad49ae180
+      sha256: b65a7308a82ca07f3f5206accecdc55d41df6c08c4a2fde2e0240d89fb8a27b5
     - path: "raw/operations-devops/2.ansible/2.6、模版和角色.md"
-      sha256: 37d8f4c93a79a2defd1b5ebcd91db775ce5a65f628a9fec3710af99db57ba401
+      sha256: ccc558d6e0db5bffb5f8ff9ade06f01c59b194f40feccf08dcc2dc4e46d19a89
 updated_by: ai
 updated: 2026-08-03
 ---

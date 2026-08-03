@@ -6,7 +6,7 @@ refs:
   pages: []
   raw:
     - path: "raw/operations-services/4. linux运维-ftp和samba/4.1 ftp.md"
-      sha256: 943d1f7c6643ee89fbc14777cee43422884ff09140bd0a80ce62c3d53c19a0d4
+      sha256: ef1a58b328a9a004fcbc0fcf5c9f5666315ebaaba07d78fe863db56cfc5c9425
 updated_by: ai
 updated: 2026-08-03
 ---

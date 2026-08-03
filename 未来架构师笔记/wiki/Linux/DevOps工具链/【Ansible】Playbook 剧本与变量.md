@@ -6,11 +6,11 @@ refs:
   pages: []
   raw:
     - path: "raw/operations-devops/2.ansible/2.2、ansible剧本编写.md"
-      sha256: 0c34c8eb4dede6d2bc584beb4359c72a235236dad8a0b7d4e26c0e32d905d93c
+      sha256: c7120b5c6f24bbf6aa36672b771c1d131ef3847e69a33adc2ef51efb32711f52
     - path: "raw/operations-devops/2.ansible/2.3、ansible变量使用.md"
-      sha256: 8b09dfc19b0d71dbdca672fbd19423a02fc36635391485e8c9173d3108a98d5b
+      sha256: 7be1680e5d4f603768b7b3cd8075f92766a5525e91c45bb114534594d1c10ea9
     - path: "raw/operations-devops/2.ansible/2.4、ansible变量加密和事实收集.md"
-      sha256: a890039b025acb9903cdc8680189876e934c0beb3520e393a14b6e8cf0d8e5f8
+      sha256: 155d2d2718d17c6dbfd8dcf0ee4c31a1363e341288ff07148c6d6b62979c873e
 updated_by: ai
 updated: 2026-08-03
 ---

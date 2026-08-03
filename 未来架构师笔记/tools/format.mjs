@@ -6,8 +6,8 @@
 // 图片上传（图床）步骤刻意跳过：AI 不允许碰图床。
 //
 // 用法:
-//   node tools/format.mjs                 # 格式化 raw/ 与 wiki/ 下所有 .md
-//   node tools/format.mjs 文件或目录...     # 只格式化指定路径
+//   node tools/format.mjs                 # 格式化 wiki/ 下所有 .md（raw/ 只读，排除）
+//   node tools/format.mjs 文件或目录...     # 只格式化指定路径（raw/ 仍会被排除）
 
 import { execSync } from 'node:child_process';
 import { readFileSync, writeFileSync } from 'node:fs';
@@ -16,6 +16,7 @@ import { join } from 'node:path';
 
 const HEADER_START_LEVEL = 2;
 const FENCE_RE = /^```/;
+const RAW_SEGMENT_RE = /(^|\/|\\)raw(\/|\\|$)/;
 
 function collectFiles(paths) {
   const out = [];
@@ -24,7 +25,7 @@ function collectFiles(paths) {
     if (st.isDirectory()) {
       for (const name of readdirSync(p)) walk(join(p, name));
     } else if (p.endsWith('.md')) {
-      out.push(p);
+      if (!RAW_SEGMENT_RE.test(p)) out.push(p);
     }
   };
   for (const p of paths) walk(p);
@@ -109,7 +110,7 @@ function addHeaderNumbering(text) {
 
 function main() {
   const args = process.argv.slice(2);
-  const paths = args.length ? args : ['raw', 'wiki'];
+  const paths = args.length ? args : ['wiki'];
   const files = collectFiles(paths);
   if (!files.length) { console.log('没有找到 .md 文件'); return; }
 

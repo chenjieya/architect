@@ -9,13 +9,13 @@ refs:
     - "Nginx 配置学习笔记"
   raw:
     - path: "raw/operations-services/2. linux运维-nginx服务管理/2.1、nginx服务管理一之安装和基本配置.md"
-      sha256: b17b9c942c6e3e2951c30a5a74369eaba864b3b591350d24711be9ddf8711c12
+      sha256: efa04dbcecaa3b793e758bcb4e5c0be7c306f52964fc185030011fd303a9484b
     - path: "raw/operations-services/2. linux运维-nginx服务管理/2.2、nginx服务管理二之日志和虚拟主机.md"
-      sha256: 09e77b0bc6ba94c8014bcf81b174fbac7be6872f307199b0942f862df55427f8
+      sha256: b37ce0d6b861ceab1347d311e5433c82899f1469416892b04d086509e95f3e46
     - path: "raw/operations-services/2. linux运维-nginx服务管理/2.3、nginx服务管理三反向代理.md"
-      sha256: 0ce612dfb1e38d8f282e4637e1b16204a4b293fb381713adc02283003fec7aea
+      sha256: 94b715d694b54f18cf59a78019acbb302117ecc7496c17ed6e185658724748a6
     - path: "raw/operations-services/2. linux运维-nginx服务管理/2.4、nginx服务管理四负载平衡.md"
-      sha256: bace11cf33afe2a6ac296ce72f2d45acf9b681f4fbd226151142bf3dbfac804a
+      sha256: ac44174e407f0d545b38b77c94bb3ef4de47acf29875459dd2418023ac5460f0
 updated_by: ai
 updated: 2026-08-03
 ---

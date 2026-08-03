@@ -6,7 +6,7 @@ refs:
   pages: []
   raw:
     - path: "raw/operations-monitor/ELK/ELK资料下载地址.md"
-      sha256: d6c13e36ce8864d3a3cd108ccd145821653b5c813c49cb7166d198e3b30fe3de
+      sha256: 1835ba6c11f95432f8430c17db4c384f938f4beddbe68e9cb49dd07c5490c0ca
 updated_by: ai
 updated: 2026-08-03
 ---

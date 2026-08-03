@@ -10,9 +10,9 @@ refs:
     - "docker准备工作"
   raw:
     - path: "raw/operations-container/1-容器安装和管理/1.1 容器安装和管理.md"
-      sha256: ce6f722124f67f1e499a3cc4d5b5ecb2aa4264b55430028a182173008c986494
+      sha256: bad2ea128f7745dcb7ded78fbbb20a4a1365ca7184cd5f29b7331d3ad8a9bc06
     - path: "raw/operations-container/1-容器安装和管理/1.2 容器镜像构建.md"
-      sha256: 5c79ae15191e7299c904b2bb8fc448f72baf74d107e725878a025b331f09774c
+      sha256: 4c9f314aa4dabc9e1331c68e36067b415dab9eae1b0c10033a6f73442e8f04a4
 updated_by: ai
 updated: 2026-08-03
 ---

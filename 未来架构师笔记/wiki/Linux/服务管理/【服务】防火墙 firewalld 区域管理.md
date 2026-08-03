@@ -7,7 +7,7 @@ refs:
     - "【服务】Samba 文件共享详解"
   raw:
     - path: "raw/operations-services/3. linux运维-防火墙/3. 防火墙.md"
-      sha256: 2a77388527c3fc428d970324a4ebb0d4b905c94d9c30a0b2b18e66eb09e0322f
+      sha256: ccf6cf994f1b150bdc51663b3dcf9060db1b618ad4defba7557614b711280184
 updated_by: ai
 updated: 2026-08-03
 ---

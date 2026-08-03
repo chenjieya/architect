@@ -6,7 +6,7 @@ refs:
   pages: []
   raw:
     - path: "raw/operations-linux/10. crontab周期性任务/10、crontab周期性任务.md"
-      sha256: e10b973d36b127070dc56c6a6b565a6118848abc67ecb7a3a8c0c8eff88bc604
+      sha256: a6751e5d7e5bc589e2883c056eb18925b99cf3264ddeda7d928b04c6a1a5ae32
 updated_by: ai
 updated: 2026-08-03
 ---

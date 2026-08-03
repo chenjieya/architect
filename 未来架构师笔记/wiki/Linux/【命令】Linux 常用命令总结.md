@@ -6,9 +6,9 @@ refs:
   pages: []
   raw:
     - path: "raw/operations-linux/02. linux基础命令/02、基础命令使用介绍.md"
-      sha256: 019e68537b80b16fe1843d8c6fb7afc3405992300ac1b55429bbc76483373a17
+      sha256: 86501f19a3ace97d6fef8142038776cd6fb8b31cb3dfbf7fc0679e1c19f6be27
     - path: "raw/operations-linux/04. linux管道和常用命令介绍/04、linux管道和常用命令介绍.md"
-      sha256: a44b0918bd05e8950800af91167ec5ebf5f11e23100a879a299273b573f7d0ee
+      sha256: 20eb66aac394c36635c490e8e2286b9ab9fe7a1742203a8cd680771439abf2d0
 updated_by: ai
 updated: 2026-08-03
 ---

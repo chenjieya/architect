@@ -7,7 +7,7 @@ refs:
     - "【数据流】标准数据流重定向与时间属性"
   raw:
     - path: "raw/operations-shell/3 awk和sed.md"
-      sha256: a89027d26c64ccf2d6a2603c0ee1abf18d71ad27b33ac66ba043057962b92b79
+      sha256: f645e33eb097ef1257aeeabbf9e0cb796668162a47c90a30b4cf53423907b060
 updated_by: ai
 updated: 2026-08-03
 ---

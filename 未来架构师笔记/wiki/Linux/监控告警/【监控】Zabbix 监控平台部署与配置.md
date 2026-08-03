@@ -6,9 +6,9 @@ refs:
   pages: []
   raw:
     - path: "raw/operations-monitor/zabbix/1.zabbix_server安装和配置 .md"
-      sha256: dbd9020177f3d8bc9ee1b980c838452aae12f5c3b169451fd7b713b43f96312b
+      sha256: e0896f031ec7216ce33eb4d4346c8d6c79cc238992e9cc341c8a4d7f16aa956f
     - path: "raw/operations-monitor/zabbix/2.zabbix_client安装和配置.md"
-      sha256: 81b1f7767585125e3d10b6f20accf6fadcaba80db65bbde36954417af87e68c6
+      sha256: 78666a4ab291a46306e2408a7ab9a7c8e2fb8312031f96d5a64202dfdea690da
 updated_by: ai
 updated: 2026-08-03
 ---

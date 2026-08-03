@@ -6,7 +6,7 @@ refs:
   pages: []
   raw:
     - path: "raw/operations-devops/2.ansible/2.1、ansible安装和配置.md"
-      sha256: 0232ba63ae894b4cb95c587690ecc314268f10d811bd65613a10e9f263aa3af0
+      sha256: d3a5368f7bbc23ff9a8a76cb3404f4612d8a07b4686ad3dc459a3a1a2e7da8ec
 updated_by: ai
 updated: 2026-08-03
 ---

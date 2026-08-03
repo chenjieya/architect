@@ -7,7 +7,7 @@ refs:
     - "【服务】防火墙 firewalld 区域管理"
   raw:
     - path: "raw/operations-services/4. linux运维-ftp和samba/4.2 samba.md"
-      sha256: fdd507d8ef644aa7f2508c02884953703d94401ba3cb9d7f966877b9c479243a
+      sha256: 8b2b030f6f6a8fd900da3e5156d76296a07ccf3098892bf8678fd28f284bc933
 updated_by: ai
 updated: 2026-08-03
 ---

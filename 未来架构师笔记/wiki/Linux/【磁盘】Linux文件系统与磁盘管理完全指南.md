@@ -6,9 +6,9 @@ refs:
   pages: []
   raw:
     - path: "raw/operations-linux/08. 文件系统和磁盘管理/8-1、文件系统和磁盘管理.md"
-      sha256: 4a9f65c2bea07364cad8cbf5fe7f9b8f1b9f159bc41a0c2cd8985cfd3c461c2b
+      sha256: 2c86a11a560bb71f7d1662562dec82ec723c61301d80b3987696f03ee33e659a
     - path: "raw/operations-linux/08. 文件系统和磁盘管理/8-2、LVM磁盘.md"
-      sha256: 52ae1e3c2026ab0bdce96688ec4fef2f727cab9f143229abc1dbbd8c43817cbf
+      sha256: 57ec1466a7fd8340a2312772e77ff220f9bf1881b738ae71b9243fd2f5532aa4
 updated_by: ai
 updated: 2026-08-03
 ---

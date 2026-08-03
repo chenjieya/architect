@@ -7,11 +7,11 @@ refs:
     - "git从入门到精通"
   raw:
     - path: "raw/operations-devops/1. gitlab/1.1、gitlab.md"
-      sha256: 4949b5e1dc278c0d4ef9b1b67de14f7f7749c11711de2c5f632f772200418629
+      sha256: 5bf75ce76161adda8f8f255f0c5394811350e865756c7f8f2fd2931e4521333b
     - path: "raw/operations-devops/1. gitlab/2.1 gitlab.readme1.md"
-      sha256: 72ec3252e4177b37a3c2ebd63123fcae736be01603f69dedcc94a5626276fffd
+      sha256: 9c3adf90e78f47f841234af37a1a0fe219d7b32dc0ad04e73db0f6bda7cbb212
     - path: "raw/operations-devops/1. gitlab/2.2 gitlab.readme2.md"
-      sha256: 7658a1f1a008758df38eeb6dfabe316f20779650a6b2f2090656badc5c62b251
+      sha256: 1e5c6bfd814c9e6172593644c963bc059eebc94f83df606c3544ed60fbc06435
 updated_by: ai
 updated: 2026-08-03
 ---

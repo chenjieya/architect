@@ -8,7 +8,7 @@ refs:
     - "docker的常用命令"
   raw:
     - path: "raw/operations-container/2-k8s安装和管理/k8s概念介绍.md"
-      sha256: e12c709367726f5d52f0afa261f51cf4c6dbfb66eae431331d65a8aea7ccbac5
+      sha256: 0203cd00927d45d9bbbfec3ca63e3e4d2a24dacba0d47eae6597fe7c80b89a38
 updated_by: ai
 updated: 2026-08-03
 ---

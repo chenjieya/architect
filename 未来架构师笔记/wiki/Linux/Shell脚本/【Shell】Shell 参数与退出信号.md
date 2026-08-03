@@ -6,7 +6,7 @@ refs:
   pages: []
   raw:
     - path: "raw/operations-shell/2.2 shell-参数和信号.md"
-      sha256: 234fc46f820233b950dd7b2d6f45e33f4f2abe21ccf1c4cbad77d680aef906a1
+      sha256: b547663f565c69680d3d4d860ebd1cdb7fdec0bdb3042bba3ddbca6032f5a8b0
 updated_by: ai
 updated: 2026-08-03
 ---

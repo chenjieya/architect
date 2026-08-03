@@ -8,11 +8,11 @@ refs:
     - "【K8s】Kubernetes 概念详解"
   raw:
     - path: "raw/operations-devops/3. jenkins/1. jenkins安装和配置.md"
-      sha256: 7ded8490e7bcb568784d4a8d3c2afbdefd759f5cbb86e761e07117d8981520b1
+      sha256: e6ec01c9c2af3b6cc04b7f2ad3795d6cf05025e892cb81950be4152b0a76096c
     - path: "raw/operations-devops/3. jenkins/2. 发布策略和实验.md"
-      sha256: e81a9de93d262b1f3381992a99d11fc15a1f178a615034aaf8f34279213da827
+      sha256: f9834f2bc4d1ea36bc7c012328dd44b65648c77db9898158cb1e9a6ff9f1b82f
     - path: "raw/operations-devops/3. jenkins/3. 发布和回滚.md"
-      sha256: 047b9b669e59930254c324bdc66f9cd8a3f5cc4850b987511a6d91982bda9c19
+      sha256: db0db265587c3168522e1b8a1560fbd904d342fb4c5161d734db7e1176250706
 updated_by: ai
 updated: 2026-08-03
 ---

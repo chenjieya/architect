@@ -6,7 +6,7 @@ refs:
   pages: []
   raw:
     - path: "raw/operations-linux/07. 用户和组和权限/07-3、sudo和su.md"
-      sha256: c2fb6d2389de41dbdb80f167a3c7437d7abc4d8643a2674c255e8973c1860b83
+      sha256: 56f612258a059a7f6a9b8e30771fa5beaa316f26f8c0430083c86031e69580a3
 updated_by: ai
 updated: 2026-08-03
 ---

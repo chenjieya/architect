@@ -69,7 +69,7 @@ refs:
    - **升级条件**：只有用户明确授权并**实际提出/认可**那次实质性修改后，才能把该笔记 `author` 从 `human` 改为 `mixed`。AI 不得自行升级。
    - 仅小修（错字、伪链接、改文件名）不触发升级，保持 `human`。
 4. **没有 frontmatter 的文件 = 按 `ai_editable: false` 处理**（默认人类笔记，AI 只读）。
-5. **`raw/` 目录：只读**。不新增、不删除、不修改任何内容，连 frontmatter 都不能加。唯一例外：新加入的 `.md` 源文件允许运行 `node tools/format.mjs` 做格式统一（不改内容）。
+5. **`raw/` 目录：只读**。不新增、不删除、不修改任何内容，连 frontmatter 都不能加；`tools/format.mjs` 已排除 `raw/`，任何情况下不对 raw 做格式化。
 6. 每篇**新建**的 AI 笔记必须带完整 frontmatter，`author: ai`、`ai_editable: true`、`summary`、`refs`、`updated_by: ai`，并更新 `index.md`。新建笔记的目录归属由主题决定，不受同目录已有旧笔记所有权限制。
 7. **`index.md`（根目录）与 `log/`（操作日志）属于 AI 专属文件**：等价 `ai_editable: true`，即使不带 frontmatter 也由 AI 全权维护，无须征求同意。
 
@@ -77,7 +77,7 @@ refs:
 
 本 vault 使用了以下 Obsidian 插件，AI 的写入必须与之兼容：
 
-- **格式统一（强制）**：任何 AI 创建或修改过的 `.md` 文件（无论 `raw/` 还是 `wiki/`），操作完成后必须运行 `node tools/format.mjs`，该脚本复刻用户 prettier 插件（Alvis 二次开发版）的完整管线：prettier@2.8.8 格式化 + 标题级别调整（headerStartLevel=2）+ 自动编号（autoNumbering）。保证与用户 Obsidian 保存时的输出一致，用户无需手动再保存格式化。
+- **格式统一（强制）**：任何 AI 创建或修改过的 `wiki/` 下 `.md` 文件，操作完成后必须运行 `node tools/format.mjs`，该脚本复刻用户 prettier 插件（Alvis 二次开发版）的完整管线：prettier@2.8.8 格式化 + 标题级别调整（headerStartLevel=2）+ 自动编号（autoNumbering）。保证与用户 Obsidian 保存时的输出一致，用户无需手动再保存格式化。`raw/` 目录已被脚本排除，禁止格式化。
 - **规则文件例外**：`AGENTS.md`、`CLAUDE.md` 这类规则/桥接文件必须保留既有标题层级和章节引用，不应用自动编号改变其 Schema 结构；修改规则文件后只做最小文本调整和人工自查。
 - **禁止手工整篇格式化/重排**：不要自己手动重排段落、改动 callout 写法、动 emoji 标题、合并/拆分章节。格式统一交给 `tools/format.mjs`，AI 只做**最小必要内容改动**。
 - **图片处理边界**：图片是理解型笔记的一部分，Ingest 源文件含图片时，AI 整理 Wiki 必须结合图片与正文组织内容，不得默认省略图片。
@@ -94,7 +94,7 @@ refs:
 
 #### 1.4.1 Ingest（摄取新资料）
 
-1. 新资料（文章/PDF/笔记）先放入 `raw/`。若是 `.md` 源文件，先运行 `node tools/format.mjs` 统一格式，之后 AI 只读引用。
+1. 新资料（文章/PDF/笔记）先放入 `raw/`，AI 只读引用，不做任何格式化（`tools/format.mjs` 已排除 `raw/`）。
 2. 读取 `raw/` 后，AI 应按主题提炼成新的 Wiki 页面；新页面可以放入任意合适主题目录，frontmatter 标为 `author: ai`、`ai_editable: true`、`summary`、`refs`、`updated_by: ai`。
    - `summary` 必须写一句话摘要。
    - `refs.raw` 必须记录直接依据的 raw 源文件路径与 sha256。
