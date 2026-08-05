@@ -4,17 +4,57 @@
     "type": "split",
     "children": [
       {
-        "id": "af465df6508a7b79",
+        "id": "d3e1bb282f8a48d7",
         "type": "tabs",
         "children": [
           {
-            "id": "a3a82b8efd3fc7be",
+            "id": "f793308f1b03d847",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "index.md",
+                "mode": "source",
+                "source": false
+              },
               "icon": "lucide-file",
-              "title": "新标签页"
+              "title": "index"
+            }
+          },
+          {
+            "id": "49ecb6b746175278",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "task/任务总揽.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "任务总揽"
+            }
+          }
+        ],
+        "currentTab": 1
+      },
+      {
+        "id": "362999b73d1d2ab1",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "930caa9584aa41ba",
+            "type": "leaf",
+            "state": {
+              "type": "terminus-view",
+              "state": {
+                "scrollback": "opencode\r\n\u001b[40m chenjie \u001b[30;44m ~/Desktop/FutureArchitect/未来架构师笔记 \u001b[34;43m\u001b[30m  main ± \u001b[33;49m\u001b[0m \u001b[32mopencode\u001b[1B\u001b[73D\u001b[0m",
+                "cwd": "file://192.168.0.104/Users/chenjie/Desktop/FutureArchitect/%E6%9C%AA%E6%9D%A5%E6%9E%B6%E6%9E%84%E5%B8%88%E7%AC%94%E8%AE%B0",
+                "customName": "opencode",
+                "color": "var(--color-blue, #086ddd)"
+              },
+              "icon": "square-terminal",
+              "title": "opencode"
             }
           }
         ]
@@ -163,6 +203,7 @@
             "state": {
               "type": "outline",
               "state": {
+                "file": "task/任务总揽.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
@@ -180,13 +221,24 @@
               "icon": "spreadsheet",
               "title": "Advanced Tables"
             }
+          },
+          {
+            "id": "860fe51f0aefe96c",
+            "type": "leaf",
+            "state": {
+              "type": "terminus-pending-changes",
+              "state": {},
+              "icon": "diff",
+              "title": "Pending Changes"
+            }
           }
         ],
         "currentTab": 4
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -201,14 +253,37 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false,
       "obsidian42-brat:BRAT": false,
       "obsidian-excalidraw-plugin:新建绘图文件": false,
-      "markdown-importer:打开 Markdown 格式转换器": false
+      "markdown-importer:打开 Markdown 格式转换器": false,
+      "terminus:Open Terminus": false
     }
   },
-  "active": "b126c51181683d12",
+  "active": "930caa9584aa41ba",
   "lastOpenFiles": [
+    "raw/operations-datascience/2. jupyter/课件.md",
+    "task/任务总揽.md",
+    "task",
+    "raw/operations-datascience/1. 课程导言/课件.md",
+    "wiki/Vite深度剖析/【Vite】HMR 热更新原理.md",
+    "raw/operations-datascience/README.txt",
+    "raw/operations-datascience/10. seaborn/课件.ipynb",
+    "raw/operations-datascience/10. seaborn",
+    "raw/operations-datascience/9. matplotlib-交互式组件/课件.ipynb",
+    "raw/operations-datascience/9. matplotlib-交互式组件/demo_textbox.py",
+    "raw/operations-datascience/9. matplotlib-交互式组件/demo_slider_single.py",
+    "raw/operations-datascience/9. matplotlib-交互式组件/demo_slider_multi.py",
+    "raw/operations-datascience/9. matplotlib-交互式组件/demo_radiobutton.py",
+    "raw/operations-datascience/9. matplotlib-交互式组件/demo_checkbox.py",
+    "raw/operations-datascience/8. matplotlib-动画/sine_wave.gif",
+    "raw/operations-datascience/7. matplotlib-核心概念/assets/核心概念.png",
+    "raw/operations-datascience/3. numpy-核心概念/assets/axis.png",
+    "raw/operations-datascience/3. numpy-核心概念/assets/stride.png",
+    "raw/operations-datascience/Agents.md",
+    "index.md",
+    "wiki/Nginx/核心技术.md",
+    "raw/Hot Module Replacement is Easy.md",
+    "wiki/Nginx/Nginx 配置学习笔记.md",
     "wiki/前端服务监控/错误监控.md",
     "wiki/前端服务监控/数据上报.md",
-    "index.md",
     "2026-08-02.md",
     "未命名.canvas",
     "log/2026-08.md",
@@ -220,39 +295,17 @@
     "CLAUDE.md",
     "log/log.md",
     "log.md",
-    "log",
     "wiki/log.md",
-    "tools/format.mjs",
-    "tools",
     "wiki/index.md",
     "wiki/Linux/【进程】系统状态和进程管理.md",
     "wiki/Vite深度剖析/【Vite】 CSS 工程化处理：从预处理器到原子化框架.md",
     "wiki/Vite深度剖析/【代码分割】Code Splitting.md",
-    "raw/operations-container/1-容器安装和管理/1.1 容器安装和管理.md",
-    "Linux/服务管理/【服务】防火墙 firewalld 区域管理.md",
-    "raw/operations-shell/1.2 shell-2-gai.md",
-    "raw/operations-shell/README.md",
-    "raw/operations-shell/3 awk和sed.md",
-    "raw/operations-shell/2.2 shell-参数和信号.md",
-    "raw/operations-shell/2.1 shell-计算和比较.md",
-    "raw/operations-shell/1.2 shell-2.md",
-    "raw/operations-shell",
-    "raw/operations-services/2. linux运维-nginx服务管理/lnmp1.8.tar.gz",
-    "raw/operations-services/2. linux运维-nginx服务管理/weblog.sh",
-    "raw/operations-services/2. linux运维-nginx服务管理/nginxlog.sh",
-    "raw/operations-services/2. linux运维-nginx服务管理/nginx",
-    "raw/operations-services/2. linux运维-nginx服务管理/install_lamp.sh",
-    "raw/operations-services/2. linux运维-nginx服务管理/http-ssl-rhel8.0.doc",
     "raw/operations-linux/03. Linux_vim使用介绍/Linux目录路径树状图.png",
     "Linux/_images/Linux目录路径树状图.png",
     "_代码/Python/python框架/code/demo/ai-demo/src/assets/vite.svg",
     "_代码/Python/python框架/code/demo/ai-demo/src/assets/hero.png",
     "_代码/Python/python框架/code/demo/upload-demo/src/assets/hero.png",
     "_代码/Python/python框架/code/demo/ai-demo/public/icons.svg",
-    "_代码/Python/python框架/code/demo/ai-demo/public/favicon.svg",
-    "_代码/Python/python框架/code/demo/upload-demo/public/icons.svg",
-    "_代码/Python/python框架/code/demo/upload-demo/public/favicon.svg",
-    "_代码/Python/python框架/code/demo/login-demo/public/favicon.svg",
     "Java/基础/未命名.canvas",
     "Untitled.canvas"
   ]
