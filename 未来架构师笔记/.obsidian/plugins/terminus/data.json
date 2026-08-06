@@ -1,0 +1,17 @@
+{
+  "fontSize": 13,
+  "terminalPlacement": "ask",
+  "autoRevealPendingChanges": true,
+  "autoRevealDelayMs": 800,
+  "confirmBulkActions": false,
+  "shellBinOverride": "",
+  "python3BinOverride": "",
+  "fontFamilyOverride": "",
+  "cursorStyle": "block",
+  "cursorBlink": true,
+  "scrollbackLines": 1000,
+  "autoThemeTerminal": true,
+  "startupCommand": "opencode",
+  "ribbonIcon": "square-terminal",
+  "wikiLinkInsertFormat": "wikilink"
+}

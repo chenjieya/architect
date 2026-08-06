@@ -3,5 +3,8 @@
   "cssTheme": "AnuPpuccin",
   "baseFontSize": 14,
   "translucency": false,
-  "theme": "obsidian"
+  "theme": "obsidian",
+  "enabledCssSnippets": [
+    "tasks-search"
+  ]
 }

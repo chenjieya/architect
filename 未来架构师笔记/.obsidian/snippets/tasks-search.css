@@ -1,0 +1,143 @@
+/* Tasks 插件搜索框 — 匹配 AnuPpuccin 卡片风格（ctp-mocha） */
+.plugin-tasks-toolbar label {
+    position: relative;
+    flex: 1;
+}
+
+.plugin-tasks-toolbar label svg {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-faint);
+    pointer-events: none;
+}
+
+.plugin-tasks-toolbar label input {
+    height: var(--input-height);
+    width: 100%;
+    padding: 4px 12px 4px 30px;
+    border-radius: var(--radius-m);
+    background-color: rgb(var(--ctp-mantle));
+    border: 1px solid rgb(var(--ctp-surface0));
+    color: var(--text-normal);
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.plugin-tasks-toolbar label input:focus {
+    border-color: rgb(var(--ctp-lavender));
+    box-shadow: 0 0 0 2px rgba(var(--ctp-lavender), 0.2);
+}
+
+.plugin-tasks-toolbar label input::placeholder {
+    color: var(--text-faint);
+}
+
+/* 查询框与下方任务列表的间距 */
+.plugin-tasks-toolbar {
+    margin-bottom: 16px;
+}
+
+/* ===== flatpickr 日期选择器（Tasks 编辑任务时弹出）===== */
+.flatpickr-calendar {
+    background: rgb(var(--ctp-base)) !important;
+    border: 1px solid rgb(var(--ctp-surface0)) !important;
+    border-radius: var(--radius-m) !important;
+    box-shadow: var(--shadow-s) !important;
+    color: var(--text-normal) !important;
+}
+
+.flatpickr-calendar:before,
+.flatpickr-calendar:after {
+    display: none !important;
+}
+
+.flatpickr-months .flatpickr-month,
+.flatpickr-months .flatpickr-prev-month,
+.flatpickr-months .flatpickr-next-month {
+    color: var(--text-normal) !important;
+    fill: var(--text-normal) !important;
+}
+
+.flatpickr-months .flatpickr-prev-month:hover,
+.flatpickr-months .flatpickr-next-month:hover {
+    color: rgb(var(--ctp-lavender)) !important;
+}
+
+.flatpickr-months .flatpickr-prev-month:hover svg,
+.flatpickr-months .flatpickr-next-month:hover svg {
+    fill: rgb(var(--ctp-lavender)) !important;
+}
+
+.flatpickr-current-month span.cur-month,
+.flatpickr-current-month input.cur-year,
+.flatpickr-current-month .flatpickr-monthDropdown-months {
+    color: var(--text-normal) !important;
+    fill: var(--text-normal) !important;
+}
+
+.numInputWrapper span:hover {
+    background: rgb(var(--ctp-surface0)) !important;
+}
+
+span.flatpickr-weekday {
+    color: var(--text-muted) !important;
+}
+
+.flatpickr-day {
+    color: var(--text-normal) !important;
+    border-radius: var(--radius-s) !important;
+}
+
+.flatpickr-day:hover,
+.flatpickr-day:focus,
+.flatpickr-day.inRange {
+    background: rgb(var(--ctp-surface0)) !important;
+    border-color: rgb(var(--ctp-surface0)) !important;
+    color: var(--text-normal) !important;
+}
+
+.flatpickr-day.today {
+    border-color: rgb(var(--ctp-lavender)) !important;
+    color: rgb(var(--ctp-lavender)) !important;
+}
+
+.flatpickr-day.today:hover,
+.flatpickr-day.today:focus {
+    background: rgb(var(--ctp-surface1)) !important;
+    border-color: rgb(var(--ctp-lavender)) !important;
+    color: var(--text-normal) !important;
+}
+
+.flatpickr-day.selected,
+.flatpickr-day.startRange,
+.flatpickr-day.endRange,
+.flatpickr-day.selected:hover,
+.flatpickr-day.startRange:hover,
+.flatpickr-day.endRange:hover {
+    background: rgb(var(--ctp-lavender)) !important;
+    border-color: rgb(var(--ctp-lavender)) !important;
+    color: #1e1e2e !important;
+}
+
+.flatpickr-day.flatpickr-disabled,
+.flatpickr-day.prevMonthDay,
+.flatpickr-day.nextMonthDay,
+.flatpickr-day.notAllowed {
+    color: rgb(var(--ctp-overlay0)) !important;
+    background: transparent !important;
+    border-color: transparent !important;
+}
+
+.flatpickr-time,
+.flatpickr-time input,
+.flatpickr-time .flatpickr-time-separator,
+.flatpickr-time .flatpickr-am-pm {
+    color: var(--text-normal) !important;
+}
+
+.flatpickr-time input:hover,
+.flatpickr-time .flatpickr-am-pm:hover,
+.flatpickr-time input:focus {
+    background: rgb(var(--ctp-surface0)) !important;
+}
