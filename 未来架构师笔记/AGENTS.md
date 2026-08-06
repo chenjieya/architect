@@ -72,6 +72,7 @@ refs:
 5. **`raw/` 目录：只读**。不新增、不删除、不修改任何内容，连 frontmatter 都不能加；`tools/format.mjs` 已排除 `raw/`，任何情况下不对 raw 做格式化。
 6. 每篇**新建**的 AI 笔记必须带完整 frontmatter，`author: ai`、`ai_editable: true`、`summary`、`refs`、`updated_by: ai`，并更新 `index.md`。新建笔记的目录归属由主题决定，不受同目录已有旧笔记所有权限制。
 7. **`index.md`（根目录）与 `log/`（操作日志）属于 AI 专属文件**：等价 `ai_editable: true`，即使不带 frontmatter 也由 AI 全权维护，无须征求同意。
+8. 忽略task文件夹下面的所有内容。是人类自己维护任务的目录，和本知识库无关。
 
 ### 1.3 修改边界（防止污染人类笔记生态）
 

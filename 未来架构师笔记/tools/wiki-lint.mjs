@@ -152,7 +152,8 @@ function extractWikiLinks(text) {
 }
 
 function sha256(file) {
-  return createHash('sha256').update(readFileSync(file)).digest('hex');
+  const text = readFileSync(file, 'utf8').replace(/\r\n/g, '\n');
+  return createHash('sha256').update(text, 'utf8').digest('hex');
 }
 
 function checkWiki() {

@@ -3,3 +3,4 @@
 .obsidian/plugins/prettier-dev/data.json
 .claude/
 .obsidian/plugins/vscode-editor/
+.claude/settings.local.json
