@@ -634,6 +634,7 @@ updated: 2026-08-03
 - [[Matplotlib动画]]：FuncAnimation（函数驱动）与 ArtistAnimation（预生成帧），含实时数据、blit 优化与保存 GIF/MP4/HTML。
 - [[Matplotlib交互组件]]：Slider、Button、CheckButtons、RadioButtons、TextBox 交互组件 + 回调让图表"活"起来。
 - [[Seaborn可视化]]：基于 Matplotlib 的高级统计可视化：直方图/核密度/箱线图/小提琴图/回归图，用薪资调研数据实战。
+- [[标准差公式详解]]：标准差公式逐项拆解与总体/样本（n vs n-1）差异，应用包括 3σ 异常值检测、Z-score 标准化、CV 变异系数、风险波动度量。
 
 ### 1.31 根目录笔记
 
