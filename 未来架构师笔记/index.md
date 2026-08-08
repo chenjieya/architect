@@ -623,7 +623,19 @@ updated: 2026-08-03
 - [[网路性能优化]]：列举优化网络性能方法
 - [[输入URL地址后]]：在浏览器地址栏输入地址，并按下回车键后，发生了哪些事情？
 
-### 1.30 根目录笔记
+### 1.30 Python·数据科学工具包 · AI 区（可维护）
+
+- [[数据科学工具包总览]]：《数据科学工具包》课程总览，面向 AI Agents 应用开发，用 uv + Jupyter 工程化整合 NumPy/Pandas 处理数据、Matplotlib/Seaborn 可视化。
+- [[NumPy核心概念]]：ndarray 多维数组：shape、dtype、strides、axis 四个核心概念，理解数组形状、存储方式与运算规则。
+- [[NumPy数据操作]]：数组创建、索引切片（视图 vs 拷贝）、变形、向量化运算、统计、np.where、拼接分割、排序、广播。
+- [[Pandas数据类型]]：Series 与 DataFrame 两种核心结构，支持字典/列表/NumPy/文件/SQL 多种来源创建与读取。
+- [[Pandas数据清洗]]：数据初探（info/head/isna）、应届信息提取、分类映射、自定义函数 + apply 解析经验与薪资、loc/iloc 定位。
+- [[Matplotlib核心概念]]：Figure 画布 / Axes 绘图区 / Artist 元素三层架构，一套体系覆盖所有图表 API 查询。
+- [[Matplotlib动画]]：FuncAnimation（函数驱动）与 ArtistAnimation（预生成帧），含实时数据、blit 优化与保存 GIF/MP4/HTML。
+- [[Matplotlib交互组件]]：Slider、Button、CheckButtons、RadioButtons、TextBox 交互组件 + 回调让图表"活"起来。
+- [[Seaborn可视化]]：基于 Matplotlib 的高级统计可视化：直方图/核密度/箱线图/小提琴图/回归图，用薪资调研数据实战。
+
+### 1.31 根目录笔记
 
 - [[LLM Wiki思想]]：LLM Wiki 是让大模型持续维护 Markdown 知识库的思想，并可扩展为团队级生产知识系统。
 - [[实战思路]]：好的，这是一个非常棒且充满创意的项目！我将为您提供一个完整的思维导图结构和详细的页面样式设计，帮助您系统地规划和开发这个“情侣点单系统”。

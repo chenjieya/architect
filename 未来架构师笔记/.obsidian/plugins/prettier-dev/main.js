@@ -77532,7 +77532,11 @@ var ImageUploader = class {
 		}
 		const results = await Promise.all(uploads);
 		results.sort((a$13, b$7) => b$7.match.start - a$13.match.start);
-		for (const { match, newUrl } of results) if (newUrl) index = content.update(match.urlStart, match.urlEnd, newUrl, index);
+		for (const { match, newUrl } of results) {
+			if (!newUrl) continue;
+			if (match.wiki) index = content.update(match.start, match.end, `![${match.alt}](${newUrl})`, index);
+			else index = content.update(match.urlStart, match.urlEnd, newUrl, index);
+		}
 		const uploadedCount = results.filter((r$12) => r$12.newUrl).length;
 		if (uploadedCount > 0) new obsidian.Notice(`Uploaded ${uploadedCount} images to Tencent COS.`);
 		else console.log("[ImageUploader] No images uploaded.");
@@ -77587,6 +77591,27 @@ var ImageUploader = class {
 					urlEnd
 				});
 			}
+		}
+		const wikiImgRegex = /!\[\[([^\[\]]+)\]\]/g;
+		let wikiMatch;
+		while ((wikiMatch = wikiImgRegex.exec(text)) !== null) {
+			const raw = wikiMatch[1] || "";
+			const cleaned = raw.split("|")[0].trim();
+			const url = cleaned.split("#")[0].trim();
+			if (!url) continue;
+			if (!/\.(png|jpe?g|gif|webp|svg|bmp)$/i.test(url)) continue;
+			const start = wikiMatch.index;
+			const end = start + wikiMatch[0].length;
+			const alt = raw.split("|")[1]?.trim() || "";
+			matches.push({
+				alt,
+				url,
+				start,
+				end,
+				urlStart: start + 3,
+				urlEnd: start + 3 + url.length,
+				wiki: true
+			});
 		}
 		return matches;
 	}

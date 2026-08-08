@@ -11,7 +11,7 @@
   "obsidian-html-tags-autocomplete",
   "obsidian-table-generator",
   "prettier-dev",
-  "prettier",
   "obsidian-tasks-plugin",
-  "terminus"
+  "terminus",
+  "prettier"
 ]

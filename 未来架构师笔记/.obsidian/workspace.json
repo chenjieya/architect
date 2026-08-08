@@ -6,7 +6,7 @@
       {
         "id": "d3e1bb282f8a48d7",
         "type": "tabs",
-        "dimension": 52.68214571657326,
+        "dimension": 47.7982385908727,
         "children": [
           {
             "id": "49ecb6b746175278",
@@ -23,13 +23,28 @@
               "icon": "lucide-file",
               "title": "任务总揽"
             }
+          },
+          {
+            "id": "d23cea67add73c16",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "wiki/Python/数据科学工具包/数据科学工具包总览.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "数据科学工具包总览"
+            }
           }
-        ]
+        ],
+        "currentTab": 1
       },
       {
         "id": "362999b73d1d2ab1",
         "type": "tabs",
-        "dimension": 47.31785428342674,
+        "dimension": 52.2017614091273,
         "children": [
           {
             "id": "930caa9584aa41ba",
@@ -37,7 +52,7 @@
             "state": {
               "type": "terminus-view",
               "state": {
-                "scrollback": "opencode\r\n\u001b[40m chenjie \u001b[30;44m ~/Desktop/FutureArchitect/未来架构师笔记 \u001b[34;43m\u001b[30m  main ± \u001b[33;49m\u001b[0m \u001b[32mopencode\r\n\r\n\u001b[90m─── restored from previous session ───\r\n\u001b[0mopencode\r\n\u001b[40m chenjie \u001b[30;44m ~/Desktop/FutureArchitect/未来架构师笔记 \u001b[34;43m\u001b[30m  main ± \u001b[33;49m\u001b[0m \u001b[32mopencode\r\n\r\n\u001b[90m─── restored from previous session ───\r\n\u001b[0mopencode\r\n\u001b[40m chenjie \u001b[30;44m ~/Desktop/FutureArchitect/未来架构师笔记 \u001b[34;43m\u001b[30m  main ± \u001b[33;49m\u001b[0m \u001b[32mopencode\u001b[1B\u001b[4D\u001b[0m",
+                "scrollback": "opencode\r\n\u001b[40m chenjie \u001b[30;44m ~/Desktop/FutureArchitect/未来架构师笔记 \u001b[34;43m\u001b[30m  main ± \u001b[33;49m\u001b[0m \u001b[32mopencode\r\n\r\n\u001b[90m─── restored from previous session ───\r\n\u001b[0mopencode\r\n\u001b[40m chenjie \u001b[30;44m ~/Desktop/FutureArchitect/未来架构师笔记 \u001b[34;43m\u001b[30m  main ± \u001b[33;49m\u001b[0m \u001b[32mopencode\r\n\r\n\u001b[90m─── restored from previous session ───\r\n\u001b[0mopencode\r\n\u001b[40m chenjie \u001b[30;44m ~/Desktop/FutureArchitect/未来架构师笔记 \u001b[34;43m\u001b[30m  main ± \u001b[33;49m\u001b[0m \u001b[32mopencode\r\n\r\n\u001b[90m─── restored from previous session ───\r\n\u001b[0mopencode\r\n\u001b[40m chenjie \u001b[30;44m ~/Desktop/FutureArchitect/未来架构师笔记 \u001b[34;43m\u001b[30m  main ± \u001b[33;49m\u001b[0m \u001b[32mopencode\u001b[1B\u001b[73D\u001b[0m",
                 "cwd": "file://192.168.0.104/Users/chenjie/Desktop/FutureArchitect/%E6%9C%AA%E6%9D%A5%E6%9E%B6%E6%9E%84%E5%B8%88%E7%AC%94%E8%AE%B0",
                 "customName": "opencode",
                 "color": "var(--color-blue, #086ddd)"
@@ -244,14 +259,32 @@
       "terminus:Open Terminus": false
     }
   },
-  "active": "49ecb6b746175278",
+  "active": "d23cea67add73c16",
   "lastOpenFiles": [
-    "task/2026-08-05.md",
     "task/任务总揽.md",
+    "wiki/Python/数据科学工具包/Matplotlib动画.md",
+    "wiki/Python/数据科学工具包/Matplotlib核心概念.md",
+    "wiki/Python/数据科学工具包/NumPy核心概念.md",
+    "raw/operations-datascience/3..md",
+    "wiki/Python/数据科学工具包/数据科学工具包总览.md",
+    "wiki/Python/数据科学工具包/axis.png",
+    "wiki/Python/数据科学工具包/核心概念.png",
+    "wiki/Python/数据科学工具包/Seaborn可视化.md",
+    "wiki/Python/数据科学工具包/Matplotlib交互组件.md",
+    "wiki/Python/数据科学工具包/Pandas数据清洗.md",
+    "wiki/Python/数据科学工具包/Pandas数据类型.md",
+    "wiki/Python/数据科学工具包/NumPy数据操作.md",
+    "wiki/Python/数据科学工具包/sine_wave.gif",
+    "wiki/Python/数据科学工具包/stride.png",
+    "raw/operations-datascience/1. 课程导言/课件.md",
+    "raw/operations-datascience/8. matplotlib-动画/课件.ipynb",
+    "raw/python数据科学包/未命名.md",
+    "wiki/Python/基础/Python容器类型.md",
+    "raw/python数据科学包",
+    "task/2026-08-05.md",
     "index.md",
     "raw/operations-datascience/2. jupyter/课件.md",
     "task",
-    "raw/operations-datascience/1. 课程导言/课件.md",
     "wiki/Vite深度剖析/【Vite】HMR 热更新原理.md",
     "raw/operations-datascience/README.txt",
     "raw/operations-datascience/10. seaborn/课件.ipynb",
@@ -260,8 +293,6 @@
     "raw/operations-datascience/9. matplotlib-交互式组件/demo_textbox.py",
     "raw/operations-datascience/9. matplotlib-交互式组件/demo_slider_single.py",
     "raw/operations-datascience/9. matplotlib-交互式组件/demo_slider_multi.py",
-    "raw/operations-datascience/9. matplotlib-交互式组件/demo_radiobutton.py",
-    "raw/operations-datascience/9. matplotlib-交互式组件/demo_checkbox.py",
     "raw/operations-datascience/8. matplotlib-动画/sine_wave.gif",
     "raw/operations-datascience/7. matplotlib-核心概念/assets/核心概念.png",
     "raw/operations-datascience/3. numpy-核心概念/assets/axis.png",
@@ -275,24 +306,8 @@
     "2026-08-02.md",
     "未命名.canvas",
     "log/2026-08.md",
-    "AGENTS.md",
-    "wiki/Linux/【权限】用户和组以及权限.md",
-    "wiki/面试总结/JavaScript/_JavaScript_ 面试题汇总.md",
-    "wiki/Linux/【编辑器】Vim 编辑器完全指南.md",
-    "wiki/Python/框架/对象存储直传.md",
-    "CLAUDE.md",
-    "log/log.md",
-    "log.md",
-    "wiki/log.md",
-    "wiki/index.md",
-    "wiki/Linux/【进程】系统状态和进程管理.md",
-    "wiki/Vite深度剖析/【Vite】 CSS 工程化处理：从预处理器到原子化框架.md",
     "raw/operations-linux/03. Linux_vim使用介绍/Linux目录路径树状图.png",
     "Linux/_images/Linux目录路径树状图.png",
-    "_代码/Python/python框架/code/demo/ai-demo/src/assets/vite.svg",
-    "_代码/Python/python框架/code/demo/ai-demo/src/assets/hero.png",
-    "_代码/Python/python框架/code/demo/upload-demo/src/assets/hero.png",
-    "_代码/Python/python框架/code/demo/ai-demo/public/icons.svg",
     "Java/基础/未命名.canvas",
     "Untitled.canvas"
   ]
