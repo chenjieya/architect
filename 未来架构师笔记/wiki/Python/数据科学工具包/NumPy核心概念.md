@@ -1,7 +1,7 @@
 ---
-author: ai
+author: mixed
 ai_editable: true
-summary: 'ndarray 是 NumPy 的多维数组：同质化、连续内存、向量化运算。核心四概念——shape（各维大小）、dtype（数据类型，Embedding 用 float32）、strides（维上前进字节数，转置零拷贝）、axis（沿哪个维度操作）。'
+summary: ndarray 是 NumPy 的多维数组：同质化、连续内存、向量化运算。核心四概念——shape（各维大小）、dtype（数据类型，Embedding 用 float32）、strides（维上前进字节数，转置零拷贝）、axis（沿哪个维度操作）。
 refs:
   pages: []
   raw:
@@ -88,12 +88,39 @@ print(arr.strides)  # (24, 8) = (3*8, 1*8)，int64 每元素 8 字节
 
 **关键影响——转置是零拷贝的**：
 
+转置就是行变成列，列变成行。
+
+```python
+arr = [[1, 2, 3], [4, 5, 6]]
+
+t = arr.T
+
+t: [
+	[1, 4],
+	[2, 5],
+	[3, 6]
+	]
+```
+
 ```python
 t = arr.T
 print(t.shape)    # (3, 2)
 print(t.strides)  # (8, 24)——只是交换步幅
 t[0, 0] = 99
 print(arr)        # 原数组也被修改：视图共享内存
+```
+
+为什么直接交换步幅就变成了这个样子呢？查询之类的也正常。
+
+```python
+# 内存地址：0 = 1  8 = 2 16 = 3 24 = 4 32 = 5 40 = 6
+arr = [[1, 2, 3], [4, 5, 6]]
+# 步幅是 （24， 8）
+
+# 转置之后步幅是（8， 24）
+
+arr[1, 2] = 1*24+2*8 = 40(字节) = 6
+t[2, 1] = 2*8+1*24 = 40(字节) = 6
 ```
 
 ## 5. axis（轴）

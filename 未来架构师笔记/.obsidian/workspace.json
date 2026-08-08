@@ -30,12 +30,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "wiki/Python/数据科学工具包/数据科学工具包总览.md",
+                "file": "wiki/Python/数据科学工具包/NumPy数据操作.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "数据科学工具包总览"
+              "title": "NumPy数据操作"
             }
           }
         ],
@@ -261,19 +261,20 @@
   },
   "active": "d23cea67add73c16",
   "lastOpenFiles": [
-    "task/任务总揽.md",
-    "wiki/Python/数据科学工具包/Matplotlib动画.md",
-    "wiki/Python/数据科学工具包/Matplotlib核心概念.md",
     "wiki/Python/数据科学工具包/NumPy核心概念.md",
-    "raw/operations-datascience/3..md",
+    "wiki/Python/数据科学工具包/Matplotlib核心概念.md",
+    "wiki/Python/数据科学工具包/NumPy数据操作.md",
+    "task/任务总揽.md",
+    "task/2026-08-08.md",
     "wiki/Python/数据科学工具包/数据科学工具包总览.md",
+    "wiki/Python/数据科学工具包/Matplotlib动画.md",
+    "raw/operations-datascience/3..md",
     "wiki/Python/数据科学工具包/axis.png",
     "wiki/Python/数据科学工具包/核心概念.png",
     "wiki/Python/数据科学工具包/Seaborn可视化.md",
     "wiki/Python/数据科学工具包/Matplotlib交互组件.md",
     "wiki/Python/数据科学工具包/Pandas数据清洗.md",
     "wiki/Python/数据科学工具包/Pandas数据类型.md",
-    "wiki/Python/数据科学工具包/NumPy数据操作.md",
     "wiki/Python/数据科学工具包/sine_wave.gif",
     "wiki/Python/数据科学工具包/stride.png",
     "raw/operations-datascience/1. 课程导言/课件.md",
@@ -305,7 +306,6 @@
     "wiki/前端服务监控/数据上报.md",
     "2026-08-02.md",
     "未命名.canvas",
-    "log/2026-08.md",
     "raw/operations-linux/03. Linux_vim使用介绍/Linux目录路径树状图.png",
     "Linux/_images/Linux目录路径树状图.png",
     "Java/基础/未命名.canvas",
