@@ -1,15 +1,15 @@
 ---
 author: ai
 ai_editable: true
-summary: "Vite 的 HMR（Hot Module Replacement，热模块替换）不是简单的“文件变了就刷新页面”。它的核心是：在应用仍然运行的情况下，找到能接住变更的模…"
+summary: 'Vite 的 HMR（Hot Module Replacement，热模块替换）不是简单的“文件变了就刷新页面”。它的核心是：在应用仍然运行的情况下，找到能接住变更的模…'
 refs:
   pages:
-    - "【Vite】从工程痛点到架构革新"
-    - "【Vite】框架集成：Vue 3 与 React 18 的完整指南"
-    - "【Vite】命令详解：从开发到生产的完整流程"
-    - "【Vite】Vite Vs. Webpack：定位、场景与插件机制的差异"
+    - '【Vite】从工程痛点到架构革新'
+    - '【Vite】框架集成：Vue 3 与 React 18 的完整指南'
+    - '【Vite】命令详解：从开发到生产的完整流程'
+    - '【Vite】Vite Vs. Webpack：定位、场景与插件机制的差异'
   raw:
-    - path: "raw/Hot Module Replacement is Easy.md"
+    - path: 'raw/Hot Module Replacement is Easy.md'
       sha256: dd8130168dfdb7aa813f05ce9f7042f0cc994f3ac70df2cb8744cf9cb25af55c
 updated_by: ai
 updated: 2026-08-03
@@ -56,12 +56,12 @@ _图示说明：accepted module 是边界根节点，边界内的依赖变化可
 // 1. 自接受：当前模块自己变了，自己处理
 import.meta.hot.accept((newModule) => {
   // 用 newModule 替换旧模块导出的运行时引用
-});
+})
 
 // 2. 接受指定依赖：依赖变了，当前模块处理
-import.meta.hot.accept(["./stuff.js"], ([newModule]) => {
+import.meta.hot.accept(['./stuff.js'], ([newModule]) => {
   // 重新渲染依赖结果
-});
+})
 ```
 
 第一种叫 self-accepted module。这个区别很重要：如果模块自己变更，但它不是自接受模块，Vite 不能直接让它处理自己的更新，只能继续向上找能接住变更的 importer。
@@ -80,13 +80,13 @@ import.meta.hot.accept(["./stuff.js"], ([newModule]) => {
 
 ```javascript
 const timer = setInterval(() => {
-  console.log("tick");
-}, 1000);
+  console.log('tick')
+}, 1000)
 
 if (import.meta.hot) {
   import.meta.hot.dispose(() => {
-    clearInterval(timer);
-  });
+    clearInterval(timer)
+  })
 }
 ```
 
@@ -110,17 +110,17 @@ Vite 的 CSS HMR 就会用到这类能力：CSS 模块更新时替换 style 或 
 `invalidate()` 不是生命周期钩子，而是一个动作。它通常在 `accept()` 回调里调用，表示模块运行到一半发现自己无法安全处理这次更新。
 
 ```javascript
-export let data = [1, 2, 3];
+export let data = [1, 2, 3]
 
 if (import.meta.hot) {
   import.meta.hot.accept((newModule) => {
-    if (!("data" in newModule)) {
-      import.meta.hot.invalidate();
-      return;
+    if (!('data' in newModule)) {
+      import.meta.hot.invalidate()
+      return
     }
 
-    data = newModule.data;
-  });
+    data = newModule.data
+  })
 }
 ```
 
@@ -156,18 +156,18 @@ Vite 找到变更文件关联的模块后，会调用插件的 `handleHotUpdate(
 ```javascript
 function vuePlugin() {
   return {
-    name: "vue",
+    name: 'vue',
     async handleHotUpdate(ctx) {
-      if (ctx.file.endsWith(".vue")) {
-        const oldContent = cache.get(ctx.file);
-        const newContent = await ctx.read();
+      if (ctx.file.endsWith('.vue')) {
+        const oldContent = cache.get(ctx.file)
+        const newContent = await ctx.read()
 
         if (isOnlyStyleChanged(oldContent, newContent)) {
-          return ctx.modules.filter((mod) => mod.url.endsWith(".css"));
+          return ctx.modules.filter((mod) => mod.url.endsWith('.css'))
         }
       }
     },
-  };
+  }
 }
 ```
 
@@ -176,14 +176,14 @@ function vuePlugin() {
 ```javascript
 function globalCssPlugin() {
   return {
-    name: "global-css",
+    name: 'global-css',
     handleHotUpdate(ctx) {
-      if (ctx.file.endsWith(".css")) {
-        const mod = ctx.server.moduleGraph.getModuleById("virtual:global-css");
-        return mod ? ctx.modules.concat(mod) : ctx.modules;
+      if (ctx.file.endsWith('.css')) {
+        const mod = ctx.server.moduleGraph.getModuleById('virtual:global-css')
+        return mod ? ctx.modules.concat(mod) : ctx.modules
       }
     },
-  };
+  }
 }
 ```
 
@@ -198,7 +198,7 @@ function globalCssPlugin() {
 客户端常见请求形态类似：
 
 ```javascript
-await import("/src/App.vue?t=1720000000000");
+await import('/src/App.vue?t=1720000000000')
 ```
 
 时间戳的作用是绕开浏览器缓存，确保拿到最新转换结果。
@@ -269,25 +269,25 @@ _图示说明：HMR client 负责连接 dev server、接收消息、注册运行
 简化后的消息处理逻辑如下：
 
 ```javascript
-const ws = new WebSocket("ws://localhost:5173");
+const ws = new WebSocket('ws://localhost:5173')
 
-ws.addEventListener("message", ({ data }) => {
-  const payload = JSON.parse(data);
+ws.addEventListener('message', ({ data }) => {
+  const payload = JSON.parse(data)
 
   switch (payload.type) {
-    case "full-reload":
-      location.reload();
-      break;
-    case "update":
+    case 'full-reload':
+      location.reload()
+      break
+    case 'update':
       for (const update of payload.updates) {
-        handleUpdate(update);
+        handleUpdate(update)
       }
-      break;
-    case "prune":
-      handlePrune(payload.paths);
-      break;
+      break
+    case 'prune':
+      handlePrune(payload.paths)
+      break
   }
-});
+})
 ```
 
 ### 5.2 `createHotContext()` 如何关联模块
@@ -295,9 +295,9 @@ ws.addEventListener("message", ({ data }) => {
 Vite 会在 import analysis 阶段给模块注入 HMR 上下文。
 
 ```javascript
-import { createHotContext } from "/@vite/client";
+import { createHotContext } from '/@vite/client'
 
-import.meta.hot = createHotContext("/src/app.jsx");
+import.meta.hot = createHotContext('/src/app.jsx')
 ```
 
 这里的 `/src/app.jsx` 可以理解为 owner path。客户端会用它把某个模块注册的回调存进运行时 Map：
@@ -315,10 +315,10 @@ Vite 的 JS update payload 通常包含：
 
 ```typescript
 interface Update {
-  type: "js-update" | "css-update";
-  path: string;
-  acceptedPath: string;
-  timestamp: number;
+  type: 'js-update' | 'css-update'
+  path: string
+  acceptedPath: string
+  timestamp: number
 }
 ```
 
@@ -334,17 +334,15 @@ interface Update {
 
 ```typescript
 async function handleUpdate(update: Update) {
-  const acceptCallbacks = ownerPathToAcceptCallbacks.get(update.path);
+  const acceptCallbacks = ownerPathToAcceptCallbacks.get(update.path)
 
-  ownerPathToDisposeCallbacks.get(update.path)?.();
+  ownerPathToDisposeCallbacks.get(update.path)?.()
 
-  const newModule = await import(
-    `${update.acceptedPath}?t=${update.timestamp}`
-  );
+  const newModule = await import(`${update.acceptedPath}?t=${update.timestamp}`)
 
   for (const cb of acceptCallbacks) {
     if (cb.deps.includes(update.acceptedPath)) {
-      cb.fn(newModule);
+      cb.fn(newModule)
     }
   }
 }

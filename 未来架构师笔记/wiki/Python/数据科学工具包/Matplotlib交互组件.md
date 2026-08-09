@@ -1,7 +1,7 @@
 ---
 author: ai
 ai_editable: true
-summary: "Matplotlib 交互式组件（matplotlib.widgets）：Slider 滑块、Button 按钮、CheckButtons 复选框、RadioButtons 单选、TextBox 文本框，绑定回调让图表可交互。"
+summary: 'Matplotlib 交互式组件（matplotlib.widgets）：Slider 滑块、Button 按钮、CheckButtons 复选框、RadioButtons 单选、TextBox 文本框，绑定回调让图表可交互。'
 refs:
   pages:
     - Matplotlib核心概念

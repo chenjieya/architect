@@ -1,11 +1,11 @@
 ---
 author: ai
 ai_editable: true
-summary: "Ansible 是基于 SSH 的批量自动化运维工具，无需在被管机器上安装 agent。一个主控机（控制节点）通过 SSH 就能批量管理几百台机器，常用于批量部署、配置…"
+summary: 'Ansible 是基于 SSH 的批量自动化运维工具，无需在被管机器上安装 agent。一个主控机（控制节点）通过 SSH 就能批量管理几百台机器，常用于批量部署、配置…'
 refs:
   pages: []
   raw:
-    - path: "raw/operations-devops/2.ansible/2.1、ansible安装和配置.md"
+    - path: 'raw/operations-devops/2.ansible/2.1、ansible安装和配置.md'
       sha256: d3a5368f7bbc23ff9a8a76cb3404f4612d8a07b4686ad3dc459a3a1a2e7da8ec
 updated_by: ai
 updated: 2026-08-03
@@ -105,6 +105,8 @@ become_ask_pass = false
 
 ### 4.3 SSH 免密与 sudo
 
+SSH 服务本身的安装与配置见 [[【SSH】Linux SSH 服务管理与配置详解]]：
+
 ```bash
 # 主控机生成密钥，并把公钥拷到受控机
 ssh-keygen
@@ -153,6 +155,8 @@ ansible web -m yum -a 'name=vsftpd state=present'   # 安装
 ansible web -m yum -a 'name=vsftpd state=absent'    # 卸载
 # state: present 安装，absent 卸载，latest 最新版
 ```
+
+> yum/rpm 包管理机制本身见 [[【软件包】软件和包管理]]。
 
 ### 5.4 文件属性 file
 
@@ -203,3 +207,7 @@ ansible web -m lineinfile -a 'path=/tmp/1.file regexp="^000" state=absent'
 ```
 
 > `backrefs=yes`：正则没匹配到任何行时**不做任何操作**，保持文件不变。
+
+---
+
+> **更完整的打法**：上面都是 ad-hoc 单命令；把多个任务编排成剧本见 [[【Ansible】Playbook 剧本与变量]]，循环/条件/模板/角色见 [[【Ansible】循环条件与模板角色]]，发布闭环可配合 [[【Jenkins】安装配置与发布策略]] 与 [[【GitLab】GitLab 安装与协同使用]]。

@@ -1,13 +1,13 @@
 ---
 author: ai
 ai_editable: true
-summary: "脚本示例（判断用户输入是否为 y）："
+summary: '脚本示例（判断用户输入是否为 y）：'
 refs:
   pages: []
   raw:
-    - path: "raw/operations-shell/1.2 shell-2.md"
+    - path: 'raw/operations-shell/1.2 shell-2.md'
       sha256: d0ec231487e62025613419f7d4f3f3cf7492898625443878047651976e42bd5d
-    - path: "raw/operations-shell/1.2 shell-2-gai.md"
+    - path: 'raw/operations-shell/1.2 shell-2-gai.md'
       sha256: 1a64a72eb41bff6a601fbf3328755242eb6ce9e91160cbdda215e8f584063ae5
 updated_by: ai
 updated: 2026-08-03
@@ -246,3 +246,5 @@ echo "function outer \$i=$i \$b=$b"
 2. **批量建文件**：在 `/tmp/tempdir` 目录下建立 `001`~`999` 共 999 个文件，文件内容为对应的文件名（如 001 文件内容就是 001）
 3. **找最大值**：在数组 `(1 9 8 6 10 11)` 中找出最大值输出
 4. **定时负载**：每隔 3 秒获取隔壁同学服务器的负载情况（可结合 uptime + sleep）
+
+> **本系列**：变量与类型见 [[【Shell】Shell 变量与数据类型]]，参数与退出信号见 [[【Shell】Shell 参数与退出信号]]，数值计算与比较见 [[【Shell】Shell 计算与比较]]。

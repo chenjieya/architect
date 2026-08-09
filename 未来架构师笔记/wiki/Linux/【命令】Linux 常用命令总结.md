@@ -1,13 +1,13 @@
 ---
 author: ai
 ai_editable: true
-summary: "在日常运维或开发工作中，经常需要使用一些基础的 Linux 命令来进行系统管理、文件操作、网络调试等。本文对常见命令进行了整理，方便查阅。"
+summary: '在日常运维或开发工作中，经常需要使用一些基础的 Linux 命令来进行系统管理、文件操作、网络调试等。本文对常见命令进行了整理，方便查阅。'
 refs:
   pages: []
   raw:
-    - path: "raw/operations-linux/02. linux基础命令/02、基础命令使用介绍.md"
+    - path: 'raw/operations-linux/02. linux基础命令/02、基础命令使用介绍.md'
       sha256: 86501f19a3ace97d6fef8142038776cd6fb8b31cb3dfbf7fc0679e1c19f6be27
-    - path: "raw/operations-linux/04. linux管道和常用命令介绍/04、linux管道和常用命令介绍.md"
+    - path: 'raw/operations-linux/04. linux管道和常用命令介绍/04、linux管道和常用命令介绍.md'
       sha256: 20eb66aac394c36635c490e8e2286b9ab9fe7a1742203a8cd680771439abf2d0
 updated_by: ai
 updated: 2026-08-03
@@ -214,6 +214,8 @@ route -n       # 数字形式显示路由表
 ---
 
 ## 5. 三、vim 编辑器常用命令
+
+> 编辑器的模式、配置与进阶操作见 [[【编辑器】Vim 编辑器完全指南]]；非交互文本流处理（sed/awk）见 [[【Shell】sed 与 awk 详解]]。
 
 ### 5.1 配置文件路径
 

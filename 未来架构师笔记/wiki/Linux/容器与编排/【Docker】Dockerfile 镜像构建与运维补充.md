@@ -1,17 +1,17 @@
 ---
 author: ai
 ai_editable: true
-summary: "本笔记补充老师课程中已有的 Docker 笔记没有覆盖的内容：Dockerfile 镜像构建、容器导出导入、数据卷容器、仓库概念、可视化工具。"
+summary: '本笔记补充老师课程中已有的 Docker 笔记没有覆盖的内容：Dockerfile 镜像构建、容器导出导入、数据卷容器、仓库概念、可视化工具。'
 refs:
   pages:
-    - "容器数据卷"
-    - "docker的常用命令"
-    - "docker网络"
-    - "docker准备工作"
+    - '容器数据卷'
+    - 'docker的常用命令'
+    - 'docker网络'
+    - 'docker准备工作'
   raw:
-    - path: "raw/operations-container/1-容器安装和管理/1.1 容器安装和管理.md"
+    - path: 'raw/operations-container/1-容器安装和管理/1.1 容器安装和管理.md'
       sha256: bad2ea128f7745dcb7ded78fbbb20a4a1365ca7184cd5f29b7331d3ad8a9bc06
-    - path: "raw/operations-container/1-容器安装和管理/1.2 容器镜像构建.md"
+    - path: 'raw/operations-container/1-容器安装和管理/1.2 容器镜像构建.md'
       sha256: 4c9f314aa4dabc9e1331c68e36067b415dab9eae1b0c10033a6f73442e8f04a4
 updated_by: ai
 updated: 2026-08-03

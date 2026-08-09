@@ -1,7 +1,7 @@
 ---
 author: ai
 ai_editable: true
-summary: "Pandas 数据清洗完整流程：数据初探（info/head/dtypes/isna）、应届信息提取、学历/城市用 map+映射归类、经验/薪资用自定义函数+apply 解析为标准数值、结果验证与导出。"
+summary: 'Pandas 数据清洗完整流程：数据初探（info/head/dtypes/isna）、应届信息提取、学历/城市用 map+映射归类、经验/薪资用自定义函数+apply 解析为标准数值、结果验证与导出。'
 refs:
   pages:
     - Pandas数据类型

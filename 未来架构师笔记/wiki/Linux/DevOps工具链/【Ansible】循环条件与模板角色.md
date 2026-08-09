@@ -1,13 +1,13 @@
 ---
 author: ai
 ai_editable: true
-summary: "默认情况下任务失败时，ansible 会在该主机上中止 play 的其余部分。可以通过以下方式自定义行为。"
+summary: '默认情况下任务失败时，ansible 会在该主机上中止 play 的其余部分。可以通过以下方式自定义行为。'
 refs:
   pages: []
   raw:
-    - path: "raw/operations-devops/2.ansible/2.5、ansible循环和条件.md"
+    - path: 'raw/operations-devops/2.ansible/2.5、ansible循环和条件.md'
       sha256: b65a7308a82ca07f3f5206accecdc55d41df6c08c4a2fde2e0240d89fb8a27b5
-    - path: "raw/operations-devops/2.ansible/2.6、模版和角色.md"
+    - path: 'raw/operations-devops/2.ansible/2.6、模版和角色.md'
       sha256: ccc558d6e0db5bffb5f8ff9ade06f01c59b194f40feccf08dcc2dc4e46d19a89
 updated_by: ai
 updated: 2026-08-03
@@ -256,3 +256,7 @@ ansible-playbook forks.yml --forks 1   # 或运行时指定，可对比耗时感
         name: httpd
         state: started
 ```
+
+---
+
+> **相关页**：环境安装与常用模块见 [[【Ansible】安装配置与常用模块]]，剧本与变量基础见 [[【Ansible】Playbook 剧本与变量]]。

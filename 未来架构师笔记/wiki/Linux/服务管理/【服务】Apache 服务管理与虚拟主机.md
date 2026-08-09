@@ -1,14 +1,14 @@
 ---
 author: ai
 ai_editable: true
-summary: "如果想源码编译安装，方式是经典的 configure/make/make install 三步："
+summary: '如果想源码编译安装，方式是经典的 configure/make/make install 三步：'
 refs:
   pages:
-    - "【Nginx】编译安装与运维脚本补充"
+    - '【Nginx】编译安装与运维脚本补充'
   raw:
-    - path: "raw/operations-services/1. linux运维-apache服务管理/1.1、apache服务管理一.md"
+    - path: 'raw/operations-services/1. linux运维-apache服务管理/1.1、apache服务管理一.md'
       sha256: 49c116c6ff9783a8a5d5b328a81ba0bec243a0af33ba9df81beffd631317186d
-    - path: "raw/operations-services/1. linux运维-apache服务管理/1.2、apache服务管理二.md"
+    - path: 'raw/operations-services/1. linux运维-apache服务管理/1.2、apache服务管理二.md'
       sha256: 6810613aa7e48dce336ef8d91a176c253579dafa2b087255fe7a1bb4727c3af5
 updated_by: ai
 updated: 2026-08-03

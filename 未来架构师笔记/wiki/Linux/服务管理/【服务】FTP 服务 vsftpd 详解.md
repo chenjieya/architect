@@ -1,11 +1,11 @@
 ---
 author: ai
 ai_editable: true
-summary: "FTP（文件传输协议）是最常用的网络协议之一，用于通过网络和远程服务器进行文件传输。"
+summary: 'FTP（文件传输协议）是最常用的网络协议之一，用于通过网络和远程服务器进行文件传输。'
 refs:
   pages: []
   raw:
-    - path: "raw/operations-services/4. linux运维-ftp和samba/4.1 ftp.md"
+    - path: 'raw/operations-services/4. linux运维-ftp和samba/4.1 ftp.md'
       sha256: ef1a58b328a9a004fcbc0fcf5c9f5666315ebaaba07d78fe863db56cfc5c9425
 updated_by: ai
 updated: 2026-08-03
@@ -102,3 +102,5 @@ xferlog_std_format=YES|NO  # 建议改成 NO
 | 只允许指定用户登录（白名单） | `userlist_enable=YES` + `userlist_deny=NO`          |
 | 改变共享目录                 | `anon_root=路径`                                    |
 | 查看传输日志                 | 关闭 `xferlog_std_format`，看 `/var/log/vsftpd.log` |
+
+> **关联页**：放行 FTP 端口见 [[【服务】防火墙 firewalld 区域管理]]；FTP 是文件传输，Windows 文件共享可用 [[【服务】Samba 文件共享详解]]；Web 服务见 [[【服务】Apache 服务管理与虚拟主机]]。

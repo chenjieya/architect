@@ -1,13 +1,13 @@
 ---
 author: ai
 ai_editable: true
-summary: "Zabbix 是企业级开源监控平台，采用 Server/Agent 架构：Zabbix Server 汇总数据，Agent 安装在被监控主机上采集数据。本文以 Zabb…"
+summary: 'Zabbix 是企业级开源监控平台，采用 Server/Agent 架构：Zabbix Server 汇总数据，Agent 安装在被监控主机上采集数据。本文以 Zabb…'
 refs:
   pages: []
   raw:
-    - path: "raw/operations-monitor/zabbix/1.zabbix_server安装和配置 .md"
+    - path: 'raw/operations-monitor/zabbix/1.zabbix_server安装和配置 .md'
       sha256: e0896f031ec7216ce33eb4d4346c8d6c79cc238992e9cc341c8a4d7f16aa956f
-    - path: "raw/operations-monitor/zabbix/2.zabbix_client安装和配置.md"
+    - path: 'raw/operations-monitor/zabbix/2.zabbix_client安装和配置.md'
       sha256: 78666a4ab291a46306e2408a7ab9a7c8e2fb8312031f96d5a64202dfdea690da
 updated_by: ai
 updated: 2026-08-03
@@ -161,3 +161,5 @@ killall zabbix_agentd
 2. **添加触发器**：为监控项设置告警条件（如返回值异常时告警），绑定到该监控项
 
 > 数据采集到告警的完整链路：Agent 脚本 → UserParameter → zabbix_get 验证 → 监控项 → 触发器 → 通知。
+
+> **关联页**：Zabbix 管"指标与告警"，日志的集中采集、检索、展示见 [[【日志】ELK 日志平台部署与 Logstash 采集]]。

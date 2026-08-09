@@ -140,9 +140,11 @@ function extractWikiLinks(text) {
     }
     if (!inFence) searchable.push(line);
   }
+  // 去掉行内反引号代码，避免 `[[X]]` 这类内部属性/字符串被误判为双链
+  const searchText = searchable.join('\n').replace(/`[^`\n]+`/g, '');
   const re = /!?\[\[([^\]]+)\]\]/g;
   let match;
-  while ((match = re.exec(searchable.join('\n')))) {
+  while ((match = re.exec(searchText))) {
     const rawTarget = match[1].split('|')[0].split('#')[0].trim();
     if (!rawTarget) continue;
     if (ASSET_EXTS.has(extname(rawTarget).toLowerCase())) continue;

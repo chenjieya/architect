@@ -1,20 +1,20 @@
 ---
 author: ai
 ai_editable: true
-summary: "本笔记补充老师课程中已有的 Nginx 笔记没有覆盖的内容（编译安装、管理脚本、日志变量、日志轮转、负载均衡补充策略）。"
+summary: '本笔记补充老师课程中已有的 Nginx 笔记没有覆盖的内容（编译安装、管理脚本、日志变量、日志轮转、负载均衡补充策略）。'
 refs:
   pages:
-    - "【定时】Linux 定时任务 crontab 与 at 完全指南"
-    - "核心技术"
-    - "Nginx 配置学习笔记"
+    - '【定时】Linux 定时任务 crontab 与 at 完全指南'
+    - '核心技术'
+    - 'Nginx 配置学习笔记'
   raw:
-    - path: "raw/operations-services/2. linux运维-nginx服务管理/2.1、nginx服务管理一之安装和基本配置.md"
+    - path: 'raw/operations-services/2. linux运维-nginx服务管理/2.1、nginx服务管理一之安装和基本配置.md'
       sha256: efa04dbcecaa3b793e758bcb4e5c0be7c306f52964fc185030011fd303a9484b
-    - path: "raw/operations-services/2. linux运维-nginx服务管理/2.2、nginx服务管理二之日志和虚拟主机.md"
+    - path: 'raw/operations-services/2. linux运维-nginx服务管理/2.2、nginx服务管理二之日志和虚拟主机.md'
       sha256: b37ce0d6b861ceab1347d311e5433c82899f1469416892b04d086509e95f3e46
-    - path: "raw/operations-services/2. linux运维-nginx服务管理/2.3、nginx服务管理三反向代理.md"
+    - path: 'raw/operations-services/2. linux运维-nginx服务管理/2.3、nginx服务管理三反向代理.md'
       sha256: 94b715d694b54f18cf59a78019acbb302117ecc7496c17ed6e185658724748a6
-    - path: "raw/operations-services/2. linux运维-nginx服务管理/2.4、nginx服务管理四负载平衡.md"
+    - path: 'raw/operations-services/2. linux运维-nginx服务管理/2.4、nginx服务管理四负载平衡.md'
       sha256: ac44174e407f0d545b38b77c94bb3ef4de47acf29875459dd2418023ac5460f0
 updated_by: ai
 updated: 2026-08-03

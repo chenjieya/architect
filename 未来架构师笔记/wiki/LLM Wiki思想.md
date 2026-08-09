@@ -1,7 +1,7 @@
 ---
 author: mixed
 ai_editable: true
-summary: "LLM Wiki 是让大模型持续维护 Markdown 知识库的思想，并可扩展为团队级生产知识系统。"
+summary: 'LLM Wiki 是让大模型持续维护 Markdown 知识库的思想，并可扩展为团队级生产知识系统。'
 refs:
   pages: []
   raw: []

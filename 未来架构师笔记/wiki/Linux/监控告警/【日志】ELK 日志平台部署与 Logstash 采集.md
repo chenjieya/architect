@@ -1,11 +1,11 @@
 ---
 author: ai
 ai_editable: true
-summary: "ELK = Elasticsearch（搜索存储） + Logstash（日志采集处理） + Kibana（可视化），用于日志的集中采集、分析、检索和展示。"
+summary: 'ELK = Elasticsearch（搜索存储） + Logstash（日志采集处理） + Kibana（可视化），用于日志的集中采集、分析、检索和展示。'
 refs:
   pages: []
   raw:
-    - path: "raw/operations-monitor/ELK/ELK资料下载地址.md"
+    - path: 'raw/operations-monitor/ELK/ELK资料下载地址.md'
       sha256: 1835ba6c11f95432f8430c17db4c384f938f4beddbe68e9cb49dd07c5490c0ca
 updated_by: ai
 updated: 2026-08-03
@@ -247,3 +247,5 @@ cd /usr/share/logstash
 ```
 
 > 启动方式：nohup+&、screen、systemd、supervisord、脚本方式。**一台机器不能同时开多个 logstash**。
+
+> **关联页**：ELK 管"日志分析"，指标监控与告警见 [[【监控】Zabbix 监控平台部署与配置]]。两类监控常搭配使用：指标异常看 Zabbix，追溯原因查 ELK 日志。

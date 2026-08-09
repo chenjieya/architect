@@ -1,7 +1,7 @@
 ---
 author: ai
 ai_editable: true
-summary: "Pandas 核心数据结构：Series（带标签一维数组）与 DataFrame（二维表格）。含创建方式、从文件/数据库读取、DataFrame 内部结构（columns/index/values/dtypes/shape 等）。"
+summary: 'Pandas 核心数据结构：Series（带标签一维数组）与 DataFrame（二维表格）。含创建方式、从文件/数据库读取、DataFrame 内部结构（columns/index/values/dtypes/shape 等）。'
 refs:
   pages: []
   raw:

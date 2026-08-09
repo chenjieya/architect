@@ -1,13 +1,13 @@
 ---
 author: ai
 ai_editable: true
-summary: "块(Block)：文件系统的最小存储单位"
+summary: '块(Block)：文件系统的最小存储单位'
 refs:
   pages: []
   raw:
-    - path: "raw/operations-linux/08. 文件系统和磁盘管理/8-1、文件系统和磁盘管理.md"
+    - path: 'raw/operations-linux/08. 文件系统和磁盘管理/8-1、文件系统和磁盘管理.md'
       sha256: 2c86a11a560bb71f7d1662562dec82ec723c61301d80b3987696f03ee33e659a
-    - path: "raw/operations-linux/08. 文件系统和磁盘管理/8-2、LVM磁盘.md"
+    - path: 'raw/operations-linux/08. 文件系统和磁盘管理/8-2、LVM磁盘.md'
       sha256: 57ec1466a7fd8340a2312772e77ff220f9bf1881b738ae71b9243fd2f5532aa4
 updated_by: ai
 updated: 2026-08-03
@@ -20,7 +20,6 @@ updated: 2026-08-03
 #### 1.1.1 节点和块
 
 - **块(Block)**：文件系统的最小存储单位
-
   - 小文件较多的应用：建议使用较小的块大小
   - 存储大容量文件：建议使用较大的块大小
   - **超级块(Superblock)**：文件系统起始位置的块，记录整个文件系统的信息
@@ -65,6 +64,8 @@ dd if=/dev/zero of=n bs=1K count=1
 df -h      # 查看磁盘空间使用
 df -ih     # 查看inode使用情况
 ```
+
+> 常用磁盘/文件命令（du、fdisk、mount、umount）见 [[【命令】Linux 常用命令总结]]；软硬链接对 inode 的引用见 [[【链接】软硬链接详解]]。
 
 ### 1.5 主流文件系统比较
 

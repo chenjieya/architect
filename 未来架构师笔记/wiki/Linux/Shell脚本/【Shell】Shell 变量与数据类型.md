@@ -1,16 +1,16 @@
 ---
 author: ai
 ai_editable: true
-summary: "bash shell 把任何存储在变量中的值，在未声明数据类型的情况下，都视为字符串。"
+summary: 'bash shell 把任何存储在变量中的值，在未声明数据类型的情况下，都视为字符串。'
 refs:
   pages:
-    - "【Shell】sed 与 awk 详解"
+    - '【Shell】sed 与 awk 详解'
   raw:
-    - path: "raw/operations-shell/1.1 shell-1.md"
+    - path: 'raw/operations-shell/1.1 shell-1.md'
       sha256: 58bd52c17ed98717bea45efe1e96df73baf3a33675445a9fa1cad617bd163ac3
-    - path: "raw/operations-shell/1.2 shell-2.md"
+    - path: 'raw/operations-shell/1.2 shell-2.md'
       sha256: d0ec231487e62025613419f7d4f3f3cf7492898625443878047651976e42bd5d
-    - path: "raw/operations-shell/1.2 shell-2-gai.md"
+    - path: 'raw/operations-shell/1.2 shell-2-gai.md'
       sha256: 1a64a72eb41bff6a601fbf3328755242eb6ce9e91160cbdda215e8f584063ae5
 updated_by: ai
 updated: 2026-08-03
@@ -172,3 +172,5 @@ echo -e '\$num1=$num1'    # 单引号：原样输出 \$num1=$num1
 1. 定义变量 `name=dog`，分别用不带引号、双引号、单引号赋含空格的值，观察区别
 2. 用 `declare -i` 计算 `5*6` 的和，验证结果是整数
 3. 定义数组 `(1 9 8 6 10 11)`，用 `for` 循环找出最大值并输出
+
+> **本系列**：参数获取见 [[【Shell】Shell 参数与退出信号]]，流程控制与函数见 [[【Shell】Shell 流程控制与函数]]，数值计算与比较见 [[【Shell】Shell 计算与比较]]。

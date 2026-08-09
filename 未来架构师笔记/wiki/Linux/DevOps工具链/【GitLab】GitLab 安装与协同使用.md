@@ -1,16 +1,16 @@
 ---
 author: ai
 ai_editable: true
-summary: "本笔记讲 GitLab 平台本身（安装、项目/用户/协同）。git 基础命令（提交、分支、暂存、远程）见 git从入门到精通。"
+summary: '本笔记讲 GitLab 平台本身（安装、项目/用户/协同）。git 基础命令（提交、分支、暂存、远程）见 git从入门到精通。'
 refs:
   pages:
-    - "git从入门到精通"
+    - 'git从入门到精通'
   raw:
-    - path: "raw/operations-devops/1. gitlab/1.1、gitlab.md"
+    - path: 'raw/operations-devops/1. gitlab/1.1、gitlab.md'
       sha256: 5bf75ce76161adda8f8f255f0c5394811350e865756c7f8f2fd2931e4521333b
-    - path: "raw/operations-devops/1. gitlab/2.1 gitlab.readme1.md"
+    - path: 'raw/operations-devops/1. gitlab/2.1 gitlab.readme1.md'
       sha256: 9c3adf90e78f47f841234af37a1a0fe219d7b32dc0ad04e73db0f6bda7cbb212
-    - path: "raw/operations-devops/1. gitlab/2.2 gitlab.readme2.md"
+    - path: 'raw/operations-devops/1. gitlab/2.2 gitlab.readme2.md'
       sha256: 1e5c6bfd814c9e6172593644c963bc059eebc94f83df606c3544ed60fbc06435
 updated_by: ai
 updated: 2026-08-03
@@ -35,7 +35,7 @@ updated: 2026-08-03
 gitlab + docker/k8s + jenkins + ansible
 ```
 
-一套标准的 CI/CD 发布系统：**git 负责代码托管，Jenkins 和 Ansible 负责发布，docker 作为微服务部署的承载体**。
+一套标准的 CI/CD 发布系统：**git 负责代码托管，[[【Jenkins】安装配置与发布策略|Jenkins]] 和 [[【Ansible】安装配置与常用模块|Ansible]] 负责发布，docker 作为微服务部署的承载体**。
 
 ## 2. GitLab 安装
 
@@ -107,6 +107,8 @@ git push
 ### 3.3 每次提交都让输用户名密码怎么办
 
 **方法一：SSH 密钥方式（推荐）**
+
+SSH 免密登录的原理与配置详解见 [[【SSH】Linux SSH 服务管理与配置详解]]：
 
 ```bash
 # 生成密钥对

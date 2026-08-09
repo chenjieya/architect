@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 // 复刻 obsidian prettier 插件（Alvis 二次开发版）的完整格式化管线：
-//   1. prettier@2.8.8 markdown 格式化（embeddedLanguageFormatting: auto）
+//   1. prettier@3.6.2 markdown 格式化，参数与插件 data.json 的 formatOptions 完全一致：
+//      --no-semi --single-quote --tab-width 2（插件为 semi:false / singleQuote:true / tabWidth:2）
 //   2. adjustHeaderLevels   : headerStartLevel=2，把整篇最小标题级别抬到 ##
 //   3. addHeaderNumbering   : autoNumbering，按层级给标题插入 1. / 1.1 编号
 // 图片上传（图床）步骤刻意跳过：AI 不允许碰图床。
@@ -18,6 +19,17 @@ const HEADER_START_LEVEL = 2;
 const FENCE_RE = /^```/;
 const RAW_SEGMENT_RE = /(^|\/|\\)raw(\/|\\|$)/;
 
+// 人类笔记保护：读 frontmatter 跳过 ai_editable:false（默认只读）
+function isAIMaintainable(p) {
+  try {
+    const head = readFileSync(p, 'utf8').slice(0, 1000);
+    const m = head.match(/^ai_editable:\s*(true|false)/m);
+    return m ? m[1] === 'true' : false;
+  } catch {
+    return false;
+  }
+}
+
 function collectFiles(paths) {
   const out = [];
   const walk = (p) => {
@@ -25,7 +37,7 @@ function collectFiles(paths) {
     if (st.isDirectory()) {
       for (const name of readdirSync(p)) walk(join(p, name));
     } else if (p.endsWith('.md')) {
-      if (!RAW_SEGMENT_RE.test(p)) out.push(p);
+      if (!RAW_SEGMENT_RE.test(p) && isAIMaintainable(p)) out.push(p);
     }
   };
   for (const p of paths) walk(p);
@@ -116,7 +128,12 @@ function main() {
 
   const quoted = files.map((f) => `"${f}"`).join(' ');
   console.log(`[1/2] prettier 格式化 ${files.length} 个文件 ...`);
-  execSync(`npx --yes prettier@2.8.8 --write ${quoted}`, { stdio: 'inherit' });
+  // 与插件 data.json 的 formatOptions 对齐：semi:false、singleQuote:true、tabWidth:2
+  // （prettier CLI 布尔选项写法为 --no-semi / --single-quote / --tab-width）
+  execSync(
+    `npx --yes prettier@3.6.2 --write --no-semi --single-quote --tab-width 2 ${quoted}`,
+    { stdio: 'inherit' }
+  );
 
   console.log('[2/2] 标题级别调整 + 自动编号 ...');
   let touched = 0;

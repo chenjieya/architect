@@ -1,12 +1,12 @@
 ---
 author: ai
 ai_editable: true
-summary: "FirewallD 通过把网络划分成不同区域，每个区域有不同的信任级别，实现不同的访问控制策略。"
+summary: 'FirewallD 通过把网络划分成不同区域，每个区域有不同的信任级别，实现不同的访问控制策略。'
 refs:
   pages:
-    - "【服务】Samba 文件共享详解"
+    - '【服务】Samba 文件共享详解'
   raw:
-    - path: "raw/operations-services/3. linux运维-防火墙/3. 防火墙.md"
+    - path: 'raw/operations-services/3. linux运维-防火墙/3. 防火墙.md'
       sha256: ccf6cf994f1b150bdc51663b3dcf9060db1b618ad4defba7557614b711280184
 updated_by: ai
 updated: 2026-08-03
@@ -82,3 +82,5 @@ firewall-cmd --list-all                      # 查看已添加的端口
 | 查看当前配置 | `firewall-cmd --list-all`                      |
 
 > 与 SELinux、iptables 一起构成 Linux 安全三件套，配置服务时要**三处都放行**。相关见 [[【服务】Samba 文件共享详解]] 中的系统权限提醒。
+
+> **关联页**：放行 HTTP 端口配 [[【服务】Apache 服务管理与虚拟主机|Apache]]，放行文件传输端口配 [[【服务】FTP 服务 vsftpd 详解|FTP/Samba]]。

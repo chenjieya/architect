@@ -1,15 +1,15 @@
 ---
 author: ai
 ai_editable: true
-summary: "play：针对清单中选定的主机运行的一组有序任务"
+summary: 'play：针对清单中选定的主机运行的一组有序任务'
 refs:
   pages: []
   raw:
-    - path: "raw/operations-devops/2.ansible/2.2、ansible剧本编写.md"
+    - path: 'raw/operations-devops/2.ansible/2.2、ansible剧本编写.md'
       sha256: c7120b5c6f24bbf6aa36672b771c1d131ef3847e69a33adc2ef51efb32711f52
-    - path: "raw/operations-devops/2.ansible/2.3、ansible变量使用.md"
+    - path: 'raw/operations-devops/2.ansible/2.3、ansible变量使用.md'
       sha256: 7be1680e5d4f603768b7b3cd8075f92766a5525e91c45bb114534594d1c10ea9
-    - path: "raw/operations-devops/2.ansible/2.4、ansible变量加密和事实收集.md"
+    - path: 'raw/operations-devops/2.ansible/2.4、ansible变量加密和事实收集.md'
       sha256: 155d2d2718d17c6dbfd8dcf0ee4c31a1363e341288ff07148c6d6b62979c873e
 updated_by: ai
 updated: 2026-08-03
@@ -76,7 +76,7 @@ ansible-playbook xxx.yml --forks 1  # 指定并发数
   tasks:
     - name: 创建用户
       user:
-        name: "{{ user_name }}" # 双花括号引用
+        name: '{{ user_name }}' # 双花括号引用
 ```
 
 **方式二：vars_files 引入外部文件**
@@ -120,7 +120,7 @@ ansible-playbook xxx.yml -e "user_name=root"
 
     - name: 打印结果
       debug:
-        msg: "{{ install_result }}" # 在终端屏幕输出
+        msg: '{{ install_result }}' # 在终端屏幕输出
 ```
 
 ## 3. ansible-vault 变量加密
@@ -174,3 +174,5 @@ ansible web -m setup
 ```
 
 > 如果剧本不涉及事实变量，建议关闭收集。关闭不影响手动运行 setup 模块。
+>
+> **相关页**：环境安装与常用模块见 [[【Ansible】安装配置与常用模块]]，循环/条件/模板/角色进阶见 [[【Ansible】循环条件与模板角色]]。

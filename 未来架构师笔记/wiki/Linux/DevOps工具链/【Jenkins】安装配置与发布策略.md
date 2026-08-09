@@ -1,17 +1,17 @@
 ---
 author: ai
 ai_editable: true
-summary: "jenkins + ssh 无密码"
+summary: 'jenkins + ssh 无密码'
 refs:
   pages:
-    - "【GitLab】GitLab 安装与协同使用"
-    - "【K8s】Kubernetes 概念详解"
+    - '【GitLab】GitLab 安装与协同使用'
+    - '【K8s】Kubernetes 概念详解'
   raw:
-    - path: "raw/operations-devops/3. jenkins/1. jenkins安装和配置.md"
+    - path: 'raw/operations-devops/3. jenkins/1. jenkins安装和配置.md'
       sha256: e6ec01c9c2af3b6cc04b7f2ad3795d6cf05025e892cb81950be4152b0a76096c
-    - path: "raw/operations-devops/3. jenkins/2. 发布策略和实验.md"
+    - path: 'raw/operations-devops/3. jenkins/2. 发布策略和实验.md'
       sha256: f9834f2bc4d1ea36bc7c012328dd44b65648c77db9898158cb1e9a6ff9f1b82f
-    - path: "raw/operations-devops/3. jenkins/3. 发布和回滚.md"
+    - path: 'raw/operations-devops/3. jenkins/3. 发布和回滚.md'
       sha256: db0db265587c3168522e1b8a1560fbd904d342fb4c5161d734db7e1176250706
 updated_by: ai
 updated: 2026-08-03

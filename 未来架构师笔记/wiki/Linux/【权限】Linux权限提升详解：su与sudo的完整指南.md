@@ -1,11 +1,11 @@
 ---
 author: ai
 ai_editable: true
-summary: "在 Linux 系统中，我们经常需要在不同用户身份之间切换来执行特定任务，主要有两种方式：su 和 sudo。"
+summary: '在 Linux 系统中，我们经常需要在不同用户身份之间切换来执行特定任务，主要有两种方式：su 和 sudo。'
 refs:
   pages: []
   raw:
-    - path: "raw/operations-linux/07. 用户和组和权限/07-3、sudo和su.md"
+    - path: 'raw/operations-linux/07. 用户和组和权限/07-3、sudo和su.md'
       sha256: 56f612258a059a7f6a9b8e30771fa5beaa316f26f8c0430083c86031e69580a3
 updated_by: ai
 updated: 2026-08-03
@@ -113,23 +113,19 @@ vim /etc/sudoers
 #### 3.3.1 各字段说明
 
 - **用户或组**：
-
   - 用户名：`john`
   - 用户组：`%wheel`、`%admin`
   - 用户别名：`User_Alias`
 
 - **登录的主机**：
-
   - 主机名或 IP
   - `ALL` 表示所有主机
 
 - **可切换的身份**：
-
   - 用户名或`ALL`
   - 省略时默认为 root
 
 - **NOPASSWD**：（可选）
-
   - 包含时：执行命令不需要密码
   - 不包含时：需要验证当前用户密码
 
@@ -262,6 +258,8 @@ User_Alias MONITORS = nagios, zabbix
 MONITORS ALL = NOPASSWD: /bin/ps, /usr/bin/top, /bin/df, /usr/bin/iostat
 ```
 
+这里 ps/top 的系统状态监控细节见 [[【进程】系统状态和进程管理]]。
+
 ## 6. 总结
 
 - **su**：用于完全切换用户身份，推荐使用 `su -` 获得完整环境
@@ -270,3 +268,5 @@ MONITORS ALL = NOPASSWD: /bin/ps, /usr/bin/top, /bin/df, /usr/bin/iostat
 - **最小权限**：遵循安全原则，按需分配权限
 
 正确使用 su 和 sudo 可以大大提高系统安全性，同时保证工作效率。建议在生产环境中优先使用 sudo，并严格限制权限范围。
+
+> **关联页**：用户/组基础与基本权限见 [[【权限】用户和组以及权限]]，SUID/SGID/Sticky Bit 与隐藏属性见 [[【权限】Linux特殊权限与隐藏属性详解]]。

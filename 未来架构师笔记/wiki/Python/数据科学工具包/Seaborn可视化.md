@@ -1,7 +1,7 @@
 ---
 author: ai
 ai_editable: true
-summary: "Seaborn 建立在 Matplotlib 之上的高级统计可视化库。用前端开发薪资调研数据带出核心图类型：histplot/kdeplot（分布）、boxplot/violinplot（分类对比）、scatterplot/regplot（回归）。"
+summary: 'Seaborn 建立在 Matplotlib 之上的高级统计可视化库。用前端开发薪资调研数据带出核心图类型：histplot/kdeplot（分布）、boxplot/violinplot（分类对比）、scatterplot/regplot（回归）。'
 refs:
   pages:
     - Pandas数据清洗

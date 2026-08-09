@@ -1,11 +1,11 @@
 ---
 author: ai
 ai_editable: true
-summary: "SSH（Secure Shell）是 Linux/Unix 系统中最常用的远程登录和管理工具。通过 SSH，我们可以安全地连接到远程主机，执行命令、传输文件，甚至做端口…"
+summary: 'SSH（Secure Shell）是 Linux/Unix 系统中最常用的远程登录和管理工具。通过 SSH，我们可以安全地连接到远程主机，执行命令、传输文件，甚至做端口…'
 refs:
   pages: []
   raw:
-    - path: "raw/operations-linux/05. linux_ssh服务管理/05、linux_ssh服务管理.md"
+    - path: 'raw/operations-linux/05. linux_ssh服务管理/05、linux_ssh服务管理.md'
       sha256: 1393f6b9860f42aa513b746596a0eeb523a0ac24af210edbe0d036e0cff02459
 updated_by: ai
 updated: 2026-08-03

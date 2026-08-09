@@ -1,11 +1,11 @@
 ---
 author: ai
 ai_editable: true
-summary: "适用于像 ./backup.sh b 1 d blog 这种带选项的参数："
+summary: '适用于像 ./backup.sh b 1 d blog 这种带选项的参数：'
 refs:
   pages: []
   raw:
-    - path: "raw/operations-shell/2.2 shell-参数和信号.md"
+    - path: 'raw/operations-shell/2.2 shell-参数和信号.md'
       sha256: b547663f565c69680d3d4d860ebd1cdb7fdec0bdb3042bba3ddbca6032f5a8b0
 updated_by: ai
 updated: 2026-08-03
@@ -157,3 +157,5 @@ echo $!      # 后台任务 PID，配合 wait/kill 使用
 | 解析 `-a xx -b yy` 选项 | `getopts`      |
 | 函数提前返回并传值      | `return N`     |
 | 脚本异常退出            | `exit N`       |
+
+> **本系列**：变量与类型见 [[【Shell】Shell 变量与数据类型]]，流程控制与函数见 [[【Shell】Shell 流程控制与函数]]，数值计算与比较见 [[【Shell】Shell 计算与比较]]。

@@ -1,11 +1,11 @@
 ---
 author: ai
 ai_editable: true
-summary: "Linux 下编辑文件有很多工具，最常用的是这三种："
+summary: 'Linux 下编辑文件有很多工具，最常用的是这三种：'
 refs:
   pages: []
   raw:
-    - path: "raw/operations-linux/03. Linux_vim使用介绍/03、linux_vim使用介绍.md"
+    - path: 'raw/operations-linux/03. Linux_vim使用介绍/03、linux_vim使用介绍.md'
       sha256: 39c6a6c61077bc2bdc9a501722c8ec552b3b0ffafdf357bc13a3e2fe5e7dca48
 updated_by: ai
 updated: 2026-08-03
@@ -192,3 +192,5 @@ Ctrl+r   # 重做（取消撤销）
 3. 用 `yy`、`p` 复制粘贴行，用 `dd` 删除行
 4. 把文件中的单词 `hello` 全文替换为 `world`
 5. 用 `:wq` 保存退出，重新打开确认修改已生效
+
+> **关联页**：文本处理场景下 vim 与流编辑器 [[【Shell】sed 与 awk 详解]] 的分工；其他常用命令见 [[【命令】Linux 常用命令总结]]。

@@ -1,11 +1,11 @@
 ---
 author: ai
 ai_editable: true
-summary: "除了基本的 rwx 权限外，Linux 还提供了三种特殊权限：SUID、SGID 和 Sticky Bit，它们为文件和目录提供了更精细的权限控制。"
+summary: '除了基本的 rwx 权限外，Linux 还提供了三种特殊权限：SUID、SGID 和 Sticky Bit，它们为文件和目录提供了更精细的权限控制。'
 refs:
   pages: []
   raw:
-    - path: "raw/operations-linux/07. 用户和组和权限/07-2、特殊权限.md"
+    - path: 'raw/operations-linux/07. 用户和组和权限/07-2、特殊权限.md'
       sha256: 8759d3be3e219c6cb8ef3307f7f6b5f3b4e2644f9c4c4a901bda3344f8865517
 updated_by: ai
 updated: 2026-08-03
@@ -323,3 +323,5 @@ chmod +t /team-share      # Sticky Bit
 ```
 
 通过合理使用特殊权限和隐藏属性，可以大大提高 Linux 系统的安全性和管理效率。
+
+> **关联页**：基本 rwx 权限与用户/组基础见 [[【权限】用户和组以及权限]]，日常切换身份提权见 [[【权限】Linux权限提升详解：su与sudo的完整指南|su 与 sudo]]。
