@@ -4,71 +4,6 @@
     "type": "split",
     "children": [
       {
-        "id": "d3e1bb282f8a48d7",
-        "type": "tabs",
-        "children": [
-          {
-            "id": "49ecb6b746175278",
-            "type": "leaf",
-            "pinned": true,
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "task/任务总揽.md",
-                "mode": "source",
-                "source": false
-              },
-              "pinned": true,
-              "icon": "lucide-file",
-              "title": "任务总揽"
-            }
-          },
-          {
-            "id": "a2014a17d6e6e12c",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "wiki/Python/数据科学工具包/Pandas数据清洗.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Pandas数据清洗"
-            }
-          },
-          {
-            "id": "d70e0c3c861afb48",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "AGENTS.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "AGENTS"
-            }
-          },
-          {
-            "id": "0c9ba432ec092293",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "wiki/Python/数据科学工具包/标准差公式详解.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "标准差公式详解"
-            }
-          }
-        ],
-        "currentTab": 3
-      },
-      {
         "id": "37400ba2b5cb2f15",
         "type": "tabs",
         "children": [
@@ -78,15 +13,30 @@
             "state": {
               "type": "terminus-view",
               "state": {
-                "scrollback": "opencode\r\n\u001b[40m chenjie \u001b[30;44m ~/Desktop/FutureArchitect/未来架构师笔记 \u001b[34;43m\u001b[30m  main ± \u001b[33;49m\u001b[0m \u001b[32mopencode\u001b[0m \r\n                                   ▄     \r\n  \u001b[90m█▀▀█\u001b[0m \u001b[90m█▀▀█\u001b[0m \u001b[90m█▀▀█\u001b[0m \u001b[90m█▀▀▄\u001b[0m █▀▀▀ █▀▀█ █▀▀█ █▀▀█\r\n  \u001b[90m█\u001b[39;48;5;235m  \u001b[90;49m█\u001b[0m \u001b[90m█\u001b[39;48;5;235m  \u001b[90;49m█\u001b[0m \u001b[90m█\u001b[48;5;235m▀▀▀\u001b[0m \u001b[90m█\u001b[39;48;5;235m  \u001b[90;49m█\u001b[0m █\u001b[48;5;238m   \u001b[0m █\u001b[48;5;238m  \u001b[0m█ █\u001b[48;5;238m  \u001b[0m█ █\u001b[48;5;238m▀▀▀\u001b[0m\r\n  \u001b[90m▀▀▀▀\u001b[0m \u001b[90m█▀▀▀\u001b[0m \u001b[90m▀▀▀▀\u001b[0m \u001b[90m▀\u001b[38;5;235m▀▀\u001b[90m▀\u001b[0m ▀▀▀▀ ▀▀▀▀ ▀▀▀▀ ▀▀▀▀\r\n\r\n  \u001b[90mSession   \u001b[39;1m双色球8/9开奖预测分析\r\n\u001b[0m  \u001b[90mContinue  \u001b[39;1mopencode -s ses_01b458360ffeKH6osjjKabxNLy\r\n\r\n\u001b[40;22m chenjie \u001b[30;44m ~/Desktop/FutureArchitect/未来架构师笔记 \u001b[34;43m\u001b[30m  main ± \u001b[33;49m\u001b[0m \u001b[32mopencode\u001b[0m \u001b[1B\u001b[1D",
+                "scrollback": "opencode\r\n\u001b[40m chenjie \u001b[30;44m ~/Desktop/FutureArchitect/未来架构师笔记 \u001b[34;43m\u001b[30m  main ± \u001b[33;49m\u001b[0m \u001b[32mopencode\u001b[0m \r\n                                   ▄     \r\n  \u001b[90m█▀▀█\u001b[0m \u001b[90m█▀▀█\u001b[0m \u001b[90m█▀▀█\u001b[0m \u001b[90m█▀▀▄\u001b[0m █▀▀▀ █▀▀█ █▀▀█ █▀▀█\r\n  \u001b[90m█\u001b[39;48;5;235m  \u001b[90;49m█\u001b[0m \u001b[90m█\u001b[39;48;5;235m  \u001b[90;49m█\u001b[0m \u001b[90m█\u001b[48;5;235m▀▀▀\u001b[0m \u001b[90m█\u001b[39;48;5;235m  \u001b[90;49m█\u001b[0m █\u001b[48;5;238m   \u001b[0m █\u001b[48;5;238m  \u001b[0m█ █\u001b[48;5;238m  \u001b[0m█ █\u001b[48;5;238m▀▀▀\u001b[0m\r\n  \u001b[90m▀▀▀▀\u001b[0m \u001b[90m█▀▀▀\u001b[0m \u001b[90m▀▀▀▀\u001b[0m \u001b[90m▀\u001b[38;5;235m▀▀\u001b[90m▀\u001b[0m ▀▀▀▀ ▀▀▀▀ ▀▀▀▀ ▀▀▀▀\r\n\r\n  \u001b[90mSession   \u001b[39;1m双色球8/9开奖预测分析\r\n\u001b[0m  \u001b[90mContinue  \u001b[39;1mopencode -s ses_01b458360ffeKH6osjjKabxNLy\r\n\r\n\u001b[40;22m chenjie \u001b[30;44m ~/Desktop/FutureArchitect/未来架构师笔记 \u001b[34;43m\u001b[30m  main ± \u001b[33;49m\u001b[0m \u001b[32mopencode\u001b[0m \r\n                                   ▄     \r\n  \u001b[90m█▀▀█\u001b[0m \u001b[90m█▀▀█\u001b[0m \u001b[90m█▀▀█\u001b[0m \u001b[90m█▀▀▄\u001b[0m █▀▀▀ █▀▀█ █▀▀█ █▀▀█\r\n  \u001b[90m█\u001b[39;48;5;235m  \u001b[90;49m█\u001b[0m \u001b[90m█\u001b[39;48;5;235m  \u001b[90;49m█\u001b[0m \u001b[90m█\u001b[48;5;235m▀▀▀\u001b[0m \u001b[90m█\u001b[39;48;5;235m  \u001b[90;49m█\u001b[0m █\u001b[48;5;238m   \u001b[0m █\u001b[48;5;238m  \u001b[0m█ █\u001b[48;5;238m  \u001b[0m█ █\u001b[48;5;238m▀▀▀\u001b[0m\r\n  \u001b[90m▀▀▀▀\u001b[0m \u001b[90m█▀▀▀\u001b[0m \u001b[90m▀▀▀▀\u001b[0m \u001b[90m▀\u001b[38;5;235m▀▀\u001b[90m▀\u001b[0m ▀▀▀▀ ▀▀▀▀ ▀▀▀▀ ▀▀▀▀\r\n\r\n  \u001b[90mSession   \u001b[39;1m体检知识库\r\n\u001b[0m  \u001b[90mContinue  \u001b[39;1mopencode -s ses_019fa0956ffeyqSTSP11eYKrsL\r\n\r\n\u001b[40;22m chenjie \u001b[30;44m ~/Desktop/FutureArchitect/未来架构师笔记 \u001b[34;43m\u001b[30m  main ± \u001b[33;49m\u001b[0m \r\n\u001b[40m chenjie \u001b[30;44m ~/Desktop/FutureArchitect/未来架构师笔记 \u001b[34;43m\u001b[30m  main ± \u001b[33;49m\u001b[0m \u001b[32mopencode\r\n\u001b[0m                                   ▄     \r\n  \u001b[90m█▀▀█\u001b[0m \u001b[90m█▀▀█\u001b[0m \u001b[90m█▀▀█\u001b[0m \u001b[90m█▀▀▄\u001b[0m █▀▀▀ █▀▀█ █▀▀█ █▀▀█\r\n  \u001b[90m█\u001b[39;48;5;235m  \u001b[90;49m█\u001b[0m \u001b[90m█\u001b[39;48;5;235m  \u001b[90;49m█\u001b[0m \u001b[90m█\u001b[48;5;235m▀▀▀\u001b[0m \u001b[90m█\u001b[39;48;5;235m  \u001b[90;49m█\u001b[0m █\u001b[48;5;238m   \u001b[0m █\u001b[48;5;238m  \u001b[0m█ █\u001b[48;5;238m  \u001b[0m█ █\u001b[48;5;238m▀▀▀\u001b[0m\r\n  \u001b[90m▀▀▀▀\u001b[0m \u001b[90m█▀▀▀\u001b[0m \u001b[90m▀▀▀▀\u001b[0m \u001b[90m▀\u001b[38;5;235m▀▀\u001b[90m▀\u001b[0m ▀▀▀▀ ▀▀▀▀ ▀▀▀▀ ▀▀▀▀\r\n\r\n  \u001b[90mSession   \u001b[39;1m知识库分析\r\n\u001b[0m  \u001b[90mContinue  \u001b[39;1mopencode -s ses_ff6beb70dffeuJlG7RNzIIP4mf\r\n\r\n\u001b[40;22m chenjie \u001b[30;44m ~/Desktop/FutureArchitect/未来架构师笔记 \u001b[34;43m\u001b[30m  main ± \u001b[33;49m\u001b[0m \u001b[32mopencode\u001b[0m                                   \u001b[1B\u001b[108D",
                 "cwd": "file://192.168.0.104/Users/chenjie/Desktop/FutureArchitect/%E6%9C%AA%E6%9D%A5%E6%9E%B6%E6%9E%84%E5%B8%88%E7%AC%94%E8%AE%B0",
                 "customName": "知识库"
               },
               "icon": "square-terminal",
               "title": "知识库"
             }
+          },
+          {
+            "id": "cce898a5b1584845",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "wiki/数学/线性回归.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "线性回归"
+            }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -106,7 +56,7 @@
               "type": "file-explorer",
               "state": {
                 "sortOrder": "alphabetical",
-                "autoReveal": false,
+                "autoReveal": true,
                 "showSearch": false,
                 "searchQuery": ""
               },
@@ -284,55 +234,55 @@
       "terminus:Open Terminus": false
     }
   },
-  "active": "0c9ba432ec092293",
+  "active": "cce898a5b1584845",
   "lastOpenFiles": [
+    "wiki/数学/决策树.md",
+    "wiki/数学/支持向量机.md",
+    "wiki/数学/正态分布详解.md",
+    "wiki/数学/线性回归.md",
+    "wiki/前端AI/Agent核心/【基础】AI的分类：三大流派与机器学习入门.md",
+    "wiki/前端AI/Agent核心/【导言】AI岗位分布与学习路线.md",
     "AGENTS.md",
-    "wiki/Python/数据科学工具包/Pandas数据清洗.md",
-    "log/2026-08.md",
-    "wiki/Python/数据科学工具包/Matplotlib动画.md",
-    "wiki/前端服务监控/错误监控.md",
-    "wiki/Python/数据科学工具包/Matplotlib核心概念.md",
-    "wiki/Python/数据科学工具包/正态分布详解.md",
-    "wiki/Python/数据科学工具包/Pandas数据类型.md",
-    "wiki/Python/数据科学工具包/数据科学工具包总览.md",
-    "wiki/Python/数据科学工具包/标准差公式详解.md",
-    "raw/双色球往期开奖.md",
-    "task/2026-08-08.md",
-    "wiki/Python/数据科学工具包/NumPy数据操作.md",
-    "wiki/Python/数据科学工具包/NumPy核心概念.md",
-    "task/任务总揽.md",
-    "raw/operations-datascience/3..md",
+    "wiki/数学/深度学习.md",
+    "wiki/数学/神经网络.md",
+    "wiki/数学/机器学习算法谱系.md",
+    "wiki/数学/标准差公式详解.md",
+    "wiki/数学",
+    "wiki/前端AI/Agent核心/【导言】AI岗位分布与课程安排.md",
+    "wiki/Agent开发/【导言】AI岗位分布与课程安排.md",
+    "wiki/Agent开发/【基础】AI的分类：三大流派与机器学习入门.md",
+    "wiki/Agent开发",
+    "raw/agent-core/01. 必看导言/assets/课程安排.excalidraw",
+    "raw/agent-core/01. 必看导言/课件.md",
+    "raw/agent-core/02. AI的分类/AI的分类.xmind",
+    "raw/agent-core/02. AI的分类/AI的分类.jpg",
+    "raw/agent-core/02. AI的分类",
+    "raw/agent-core/01. 必看导言/assets",
+    "raw/agent-core/01. 必看导言",
+    "raw/agent-core",
+    "wiki/前端AI/Agent核心",
+    "wiki/面试总结/JavaScript/深浅拷贝.md",
+    "wiki/面试总结/网络/输入URL地址后.md",
+    "wiki/面试总结/网络/网路性能优化.md",
+    "wiki/面试总结/网络/断点续传.md",
+    "wiki/面试总结/网络/文件下载.md",
+    "wiki/面试总结/网络/文件上传.md",
+    "wiki/面试总结/网络/常见请求方法.md",
+    "wiki/面试总结/网络/域名和DNS.md",
+    "wiki/面试总结/网络/同源策略.md",
+    "wiki/面试总结/网络/加密.md",
+    "wiki/面试总结/网络/五层网络模型.md",
+    "wiki/面试总结/网络",
+    "raw/operations-datascience/7. matplotlib-核心概念/assets/核心概念.png",
+    "raw/operations-datascience/3. numpy-核心概念/assets/stride.png",
+    "raw/operations-datascience/3. numpy-核心概念/assets/axis.png",
+    "raw/operations-linux/03. Linux_vim使用介绍/Linux目录路径树状图.png",
+    "raw/operations-datascience/8. matplotlib-动画/sine_wave.gif",
     "wiki/Python/数据科学工具包/axis.png",
     "wiki/Python/数据科学工具包/核心概念.png",
-    "wiki/Python/数据科学工具包/Seaborn可视化.md",
-    "wiki/Python/数据科学工具包/Matplotlib交互组件.md",
     "wiki/Python/数据科学工具包/sine_wave.gif",
     "wiki/Python/数据科学工具包/stride.png",
-    "raw/operations-datascience/1. 课程导言/课件.md",
-    "raw/operations-datascience/8. matplotlib-动画/课件.ipynb",
-    "raw/python数据科学包/未命名.md",
-    "wiki/Python/基础/Python容器类型.md",
-    "raw/python数据科学包",
-    "task/2026-08-05.md",
-    "index.md",
-    "raw/operations-datascience/2. jupyter/课件.md",
-    "task",
-    "wiki/Vite深度剖析/【Vite】HMR 热更新原理.md",
-    "raw/operations-datascience/README.txt",
-    "raw/operations-datascience/10. seaborn/课件.ipynb",
-    "raw/operations-datascience/10. seaborn",
-    "raw/operations-datascience/9. matplotlib-交互式组件/课件.ipynb",
-    "raw/operations-datascience/9. matplotlib-交互式组件/demo_textbox.py",
-    "raw/operations-datascience/9. matplotlib-交互式组件/demo_slider_single.py",
-    "raw/operations-datascience/9. matplotlib-交互式组件/demo_slider_multi.py",
-    "raw/operations-datascience/8. matplotlib-动画/sine_wave.gif",
-    "raw/operations-datascience/7. matplotlib-核心概念/assets/核心概念.png",
-    "raw/operations-datascience/3. numpy-核心概念/assets/axis.png",
-    "raw/operations-datascience/3. numpy-核心概念/assets/stride.png",
-    "raw/operations-datascience/Agents.md",
     "未命名.canvas",
-    "raw/operations-linux/03. Linux_vim使用介绍/Linux目录路径树状图.png",
-    "Linux/_images/Linux目录路径树状图.png",
     "Java/基础/未命名.canvas",
     "Untitled.canvas"
   ]

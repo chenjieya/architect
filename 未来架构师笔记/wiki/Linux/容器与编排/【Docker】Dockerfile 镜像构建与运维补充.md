@@ -1,7 +1,7 @@
 ---
 author: ai
 ai_editable: true
-summary: '本笔记补充老师课程中已有的 Docker 笔记没有覆盖的内容：Dockerfile 镜像构建、容器导出导入、数据卷容器、仓库概念、可视化工具。'
+summary: '本笔记补充既有 Docker 笔记没有覆盖的内容：Dockerfile 镜像构建、容器导出导入、数据卷容器、仓库概念、可视化工具。'
 refs:
   pages:
     - '容器数据卷'
@@ -17,7 +17,7 @@ updated_by: ai
 updated: 2026-08-03
 ---
 
-> 本笔记补充老师课程中**已有的 Docker 笔记没有覆盖**的内容：Dockerfile 镜像构建、容器导出导入、数据卷容器、仓库概念、可视化工具。
+> 本笔记补充既有 **Docker 笔记没有覆盖**的内容：Dockerfile 镜像构建、容器导出导入、数据卷容器、仓库概念、可视化工具。
 > 基础命令见 [[docker的常用命令]]，安装见 [[docker准备工作]]，网络见 [[docker网络]]，数据卷见 [[容器数据卷]]。
 
 ## 1. Docker 基本概念
