@@ -48,6 +48,20 @@
               "icon": "lucide-file",
               "title": "AGENTS"
             }
+          },
+          {
+            "id": "0a83b07ef5186a18",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "wiki/数学/数学学习路线.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "数学学习路线"
+            }
           }
         ]
       }
@@ -69,7 +83,7 @@
               "type": "file-explorer",
               "state": {
                 "sortOrder": "alphabetical",
-                "autoReveal": false,
+                "autoReveal": true,
                 "showSearch": false,
                 "searchQuery": ""
               },
@@ -247,8 +261,14 @@
       "terminus:Open Terminus": false
     }
   },
-  "active": "b126c51181683d12",
+  "active": "a0310427012b6393",
   "lastOpenFiles": [
+    "raw/agent-core/04. 前向传播/课件.md",
+    "raw/agent-core/04. 前向传播",
+    "raw/agent-core/03. 神经元/课件.md",
+    "raw/agent-core/03. 神经元",
+    "AGENTS.md",
+    "wiki/前端AI/Agent核心/【基础】AI的分类：三大流派与机器学习入门.md",
     "wiki/数学/数学学习路线.md",
     "wiki/数学/概率基础.md",
     "wiki/数学/机器学习算法/线性回归.md",
@@ -277,15 +297,11 @@
     "wiki/数学/正态分布详解.md",
     "wiki/数学/线性回归.md",
     "wiki/数学/导数与梯度.md",
-    "AGENTS.md",
-    "wiki/前端AI/Agent核心/【基础】AI的分类：三大流派与机器学习入门.md",
     "wiki/前端AI/Agent核心/【导言】AI岗位分布与学习路线.md",
-    "wiki/数学/支持向量机.md",
     "wiki/数学/神经网络结构图.png",
     "wiki/数学/线性回归拟合图.png",
     "wiki/数学/正态分布钟形曲线.png",
     "wiki/数学/支持向量机分界线.png",
-    "wiki/数学/标准差公式详解.md",
     "wiki/数学",
     "wiki/Agent开发",
     "raw/agent-core/01. 必看导言/assets/课程安排.excalidraw",
@@ -293,8 +309,6 @@
     "raw/agent-core/02. AI的分类/AI的分类.jpg",
     "raw/agent-core/02. AI的分类",
     "raw/agent-core/01. 必看导言/assets",
-    "raw/agent-core/01. 必看导言",
-    "raw/agent-core",
     "未命名.canvas",
     "Java/基础/未命名.canvas",
     "Untitled.canvas"
