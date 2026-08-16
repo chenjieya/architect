@@ -1,0 +1,9 @@
+# Python 虚拟环境残留
+node/test-python/test-python/
+
+# Python 缓存
+__pycache__/
+*.pyc
+
+# 依赖
+node_modules/
