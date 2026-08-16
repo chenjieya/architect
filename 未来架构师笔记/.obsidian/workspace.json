@@ -263,6 +263,8 @@
   },
   "active": "a0310427012b6393",
   "lastOpenFiles": [
+    "wiki/数学/机器学习算法/前向传播维度图.png",
+    "wiki/数学/机器学习算法/前向传播.md",
     "raw/agent-core/04. 前向传播/课件.md",
     "raw/agent-core/04. 前向传播",
     "raw/agent-core/03. 神经元/课件.md",
@@ -296,8 +298,6 @@
     "wiki/数学/梯度下降.md",
     "wiki/数学/正态分布详解.md",
     "wiki/数学/线性回归.md",
-    "wiki/数学/导数与梯度.md",
-    "wiki/前端AI/Agent核心/【导言】AI岗位分布与学习路线.md",
     "wiki/数学/神经网络结构图.png",
     "wiki/数学/线性回归拟合图.png",
     "wiki/数学/正态分布钟形曲线.png",
