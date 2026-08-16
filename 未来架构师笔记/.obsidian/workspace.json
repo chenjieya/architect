@@ -8,34 +8,6 @@
         "type": "tabs",
         "children": [
           {
-            "id": "cce898a5b1584845",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "wiki/数学/决策树.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "决策树"
-            }
-          },
-          {
-            "id": "c2d4d2a8993e25cb",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "wiki/数学/支持向量机.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "支持向量机"
-            }
-          },
-          {
             "id": "a0310427012b6393",
             "type": "leaf",
             "state": {
@@ -76,23 +48,8 @@
               "icon": "lucide-file",
               "title": "AGENTS"
             }
-          },
-          {
-            "id": "b4b06f0a4de813c3",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "wiki/数学/概率基础.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "概率基础"
-            }
           }
-        ],
-        "currentTab": 2
+        ]
       }
     ],
     "direction": "vertical"
@@ -290,10 +247,24 @@
       "terminus:Open Terminus": false
     }
   },
-  "active": "a0310427012b6393",
+  "active": "b126c51181683d12",
   "lastOpenFiles": [
-    "wiki/数学/学习率对比图.png",
+    "wiki/数学/数学学习路线.md",
     "wiki/数学/概率基础.md",
+    "wiki/数学/机器学习算法/线性回归.md",
+    "wiki/数学/机器学习算法/神经网络.md",
+    "wiki/数学/机器学习算法/机器学习算法谱系.md",
+    "wiki/数学/机器学习算法/深度学习.md",
+    "wiki/数学/机器学习算法/支持向量机.md",
+    "wiki/数学/机器学习算法/决策树.md",
+    "wiki/数学/机器学习算法",
+    "wiki/数学/数学基础/梯度下降.md",
+    "wiki/数学/数学基础/正态分布详解.md",
+    "wiki/数学/数学基础/概率基础.md",
+    "wiki/数学/数学基础/标准差公式详解.md",
+    "wiki/数学/数学基础/导数与梯度.md",
+    "wiki/数学/数学基础",
+    "wiki/数学/学习率对比图.png",
     "wiki/数学/梯度下降下山图.png",
     "wiki/数学/梯度方向图.png",
     "wiki/数学/导数切线图.png",
@@ -316,27 +287,14 @@
     "wiki/数学/支持向量机分界线.png",
     "wiki/数学/标准差公式详解.md",
     "wiki/数学",
-    "wiki/前端AI/Agent核心/【导言】AI岗位分布与课程安排.md",
-    "wiki/Agent开发/【导言】AI岗位分布与课程安排.md",
-    "wiki/Agent开发/【基础】AI的分类：三大流派与机器学习入门.md",
     "wiki/Agent开发",
     "raw/agent-core/01. 必看导言/assets/课程安排.excalidraw",
-    "raw/agent-core/01. 必看导言/课件.md",
     "raw/agent-core/02. AI的分类/AI的分类.xmind",
     "raw/agent-core/02. AI的分类/AI的分类.jpg",
     "raw/agent-core/02. AI的分类",
     "raw/agent-core/01. 必看导言/assets",
     "raw/agent-core/01. 必看导言",
     "raw/agent-core",
-    "wiki/前端AI/Agent核心",
-    "wiki/面试总结/JavaScript/深浅拷贝.md",
-    "wiki/面试总结/网络/输入URL地址后.md",
-    "wiki/面试总结/网络/网路性能优化.md",
-    "wiki/面试总结/网络/断点续传.md",
-    "wiki/面试总结/网络/文件下载.md",
-    "wiki/面试总结/网络/文件上传.md",
-    "wiki/面试总结/网络/常见请求方法.md",
-    "wiki/面试总结/网络",
     "未命名.canvas",
     "Java/基础/未命名.canvas",
     "Untitled.canvas"
