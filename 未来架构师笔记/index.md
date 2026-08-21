@@ -6,7 +6,7 @@ refs:
   pages: []
   raw: []
 updated_by: ai
-updated: 2026-08-17
+updated: 2026-08-19
 ---
 
 ## 1. 全库目录
@@ -352,6 +352,20 @@ updated: 2026-08-17
 - [[【基础】AI的分类：三大流派与机器学习入门]]：从三个哲学流派讲清人工智能的来龙去脉，再用任务/经验/性能三要素拆解机器学习定义，区分监督、自监督、无监督、强化四种学习方法及经典实现算法。
 - [[【基础】神经元]]：神经元是神经网络的最小计算单元，讲透其数学模型 y=σ(Σwᵢxᵢ+b) 各分量，是 Agent 底层逻辑的起点。
 - [[【基础】前向传播]]：数据从输入层逐层流到输出层的计算过程，讲透矩阵形式 a^(l)=σ(W^(l)a^(l-1)+b^(l)) 与总参数量公式。
+
+**DeepSeek Harness（子目录）**
+
+- [[DeepSeek Harness 总览]]：面向小白解释 DeepSeek Harness 是什么：它把模型、工具、会话、安全策略和界面做成可插拔的 Agent 运行底座。
+- [[插件化架构与 Cordis]]：解释 DeepSeek Harness 为什么采用 Cordis 插件架构，以及 ctx、inject、事件和可逆副作用分别解决什么问题。
+- [[Profile 与组合包]]：解释 DeepSeek Harness 中 profile、组合包和 patch 如何共同决定一次 dsh 启动时加载哪些插件。
+- [[Agent 轮次与步骤生命周期]]：解释 DeepSeek Harness 中 turn 和 step 的区别，以及一次用户输入如何经过模型请求、工具调用和轮次结束。
+- [[会话日志与可回放上下文]]：解释 DeepSeek Harness 为什么把会话日志作为唯一真源，以及模型可见内容为什么必须能从日志重建。
+- [[模型消息与流式输出]]：解释 DeepSeek Harness 如何把模型消息拆成内容块、流式片段和完整消息，从而支持文本、推理、图片和工具调用。
+- [[工具调用与执行流水线]]：解释 DeepSeek Harness 的工具系统如何从模型 tool-call 走到参数校验、审批、执行、结果渲染和日志记录。
+- [[能力服务与子系统地图]]：用小白能读懂的方式梳理 DeepSeek Harness 的 capability seam、Service Definition、Provider、Consumer 和主要子系统分组。
+- [[沙箱权限与安全执行]]：解释 DeepSeek Harness 为什么需要沙箱、审批和权限预设，以及 read-only、workspace-write、danger-full-access 三种模式的差异。
+- [[插件开发入门]]：用第一个插件、工具注册和配置 schema 三个最小例子解释 DeepSeek Harness 插件开发的基本路径。
+
 - [[【LLM】Agent]]：前面我们是通过终端，来和大模型进行交互的。
 - [[【LLM】Function Calling]]：前面是通过 提示词 的形式，将工具箱带过去。
 - [[【LLM】MCP：Client]]：🤔 Claude Desktop 是如何使用 MCP Server 的？
