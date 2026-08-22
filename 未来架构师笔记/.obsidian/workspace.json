@@ -8,73 +8,36 @@
         "type": "tabs",
         "children": [
           {
-            "id": "a0310427012b6393",
-            "type": "leaf",
-            "state": {
-              "type": "terminus-view",
-              "state": {
-                "scrollback": "opencode\r\n\u001b[40m chenjie \u001b[30;44m ~/Desktop/FutureArchitect/未来架构师笔记 \u001b[34;43m\u001b[30m  main ± \u001b[33;49m\u001b[0m \u001b[32mopencode\u001b[0m \r\n                                   ▄     \r\n  \u001b[90m█▀▀█\u001b[0m \u001b[90m█▀▀█\u001b[0m \u001b[90m█▀▀█\u001b[0m \u001b[90m█▀▀▄\u001b[0m █▀▀▀ █▀▀█ █▀▀█ █▀▀█\r\n  \u001b[90m█\u001b[39;48;5;235m  \u001b[90;49m█\u001b[0m \u001b[90m█\u001b[39;48;5;235m  \u001b[90;49m█\u001b[0m \u001b[90m█\u001b[48;5;235m▀▀▀\u001b[0m \u001b[90m█\u001b[39;48;5;235m  \u001b[90;49m█\u001b[0m █\u001b[48;5;238m   \u001b[0m █\u001b[48;5;238m  \u001b[0m█ █\u001b[48;5;238m  \u001b[0m█ █\u001b[48;5;238m▀▀▀\u001b[0m\r\n  \u001b[90m▀▀▀▀\u001b[0m \u001b[90m█▀▀▀\u001b[0m \u001b[90m▀▀▀▀\u001b[0m \u001b[90m▀\u001b[38;5;235m▀▀\u001b[90m▀\u001b[0m ▀▀▀▀ ▀▀▀▀ ▀▀▀▀ ▀▀▀▀\r\n\r\n  \u001b[90mSession   \u001b[39;1m双色球8/9开奖预测分析\r\n\u001b[0m  \u001b[90mContinue  \u001b[39;1mopencode -s ses_01b458360ffeKH6osjjKabxNLy\r\n\r\n\u001b[40;22m chenjie \u001b[30;44m ~/Desktop/FutureArchitect/未来架构师笔记 \u001b[34;43m\u001b[30m  main ± \u001b[33;49m\u001b[0m \u001b[32mopencode\u001b[0m \r\n                                   ▄     \r\n  \u001b[90m█▀▀█\u001b[0m \u001b[90m█▀▀█\u001b[0m \u001b[90m█▀▀█\u001b[0m \u001b[90m█▀▀▄\u001b[0m █▀▀▀ █▀▀█ █▀▀█ █▀▀█\r\n  \u001b[90m█\u001b[39;48;5;235m  \u001b[90;49m█\u001b[0m \u001b[90m█\u001b[39;48;5;235m  \u001b[90;49m█\u001b[0m \u001b[90m█\u001b[48;5;235m▀▀▀\u001b[0m \u001b[90m█\u001b[39;48;5;235m  \u001b[90;49m█\u001b[0m █\u001b[48;5;238m   \u001b[0m █\u001b[48;5;238m  \u001b[0m█ █\u001b[48;5;238m  \u001b[0m█ █\u001b[48;5;238m▀▀▀\u001b[0m\r\n  \u001b[90m▀▀▀▀\u001b[0m \u001b[90m█▀▀▀\u001b[0m \u001b[90m▀▀▀▀\u001b[0m \u001b[90m▀\u001b[38;5;235m▀▀\u001b[90m▀\u001b[0m ▀▀▀▀ ▀▀▀▀ ▀▀▀▀ ▀▀▀▀\r\n\r\n  \u001b[90mSession   \u001b[39;1m体检知识库\r\n\u001b[0m  \u001b[90mContinue  \u001b[39;1mopencode -s ses_019fa0956ffeyqSTSP11eYKrsL\r\n\r\n\u001b[40;22m chenjie \u001b[30;44m ~/Desktop/FutureArchitect/未来架构师笔记 \u001b[34;43m\u001b[30m  main ± \u001b[33;49m\u001b[0m \r\n\u001b[40m chenjie \u001b[30;44m ~/Desktop/FutureArchitect/未来架构师笔记 \u001b[34;43m\u001b[30m  main ± \u001b[33;49m\u001b[0m \u001b[32mopencode\r\n\u001b[0m                                   ▄     \r\n  \u001b[90m█▀▀█\u001b[0m \u001b[90m█▀▀█\u001b[0m \u001b[90m█▀▀█\u001b[0m \u001b[90m█▀▀▄\u001b[0m █▀▀▀ █▀▀█ █▀▀█ █▀▀█\r\n  \u001b[90m█\u001b[39;48;5;235m  \u001b[90;49m█\u001b[0m \u001b[90m█\u001b[39;48;5;235m  \u001b[90;49m█\u001b[0m \u001b[90m█\u001b[48;5;235m▀▀▀\u001b[0m \u001b[90m█\u001b[39;48;5;235m  \u001b[90;49m█\u001b[0m █\u001b[48;5;238m   \u001b[0m █\u001b[48;5;238m  \u001b[0m█ █\u001b[48;5;238m  \u001b[0m█ █\u001b[48;5;238m▀▀▀\u001b[0m\r\n  \u001b[90m▀▀▀▀\u001b[0m \u001b[90m█▀▀▀\u001b[0m \u001b[90m▀▀▀▀\u001b[0m \u001b[90m▀\u001b[38;5;235m▀▀\u001b[90m▀\u001b[0m ▀▀▀▀ ▀▀▀▀ ▀▀▀▀ ▀▀▀▀\r\n\r\n  \u001b[90mSession   \u001b[39;1m知识库分析\r\n\u001b[0m  \u001b[90mContinue  \u001b[39;1mopencode -s ses_ff6beb70dffeuJlG7RNzIIP4mf\r\n\r\n\u001b[40;22m chenjie \u001b[30;44m ~/Desktop/FutureArchitect/未来架构师笔记 \u001b[34;43m\u001b[30m  main ± \u001b[33;49m\u001b[0m \u001b[32mopencode\u001b[0m                                   \r\n                                   ▄     \r\n  \u001b[90m█▀▀█\u001b[0m \u001b[90m█▀▀█\u001b[0m \u001b[90m█▀▀█\u001b[0m \u001b[90m█▀▀▄\u001b[0m █▀▀▀ █▀▀█ █▀▀█ █▀▀█\r\n  \u001b[90m█\u001b[39;48;5;235m  \u001b[90;49m█\u001b[0m \u001b[90m█\u001b[39;48;5;235m  \u001b[90;49m█\u001b[0m \u001b[90m█\u001b[48;5;235m▀▀▀\u001b[0m \u001b[90m█\u001b[39;48;5;235m  \u001b[90;49m█\u001b[0m █\u001b[48;5;238m   \u001b[0m █\u001b[48;5;238m  \u001b[0m█ █\u001b[48;5;238m  \u001b[0m█ █\u001b[48;5;238m▀▀▀\u001b[0m\r\n  \u001b[90m▀▀▀▀\u001b[0m \u001b[90m█▀▀▀\u001b[0m \u001b[90m▀▀▀▀\u001b[0m \u001b[90m▀\u001b[38;5;235m▀▀\u001b[90m▀\u001b[0m ▀▀▀▀ ▀▀▀▀ ▀▀▀▀ ▀▀▀▀\r\n\r\n  \u001b[90mSession   \u001b[39;1mConversation 1\r\n\u001b[0m  \u001b[90mContinue  \u001b[39;1mopencode -s ses_ff6a923f9ffedc9TDpOw16sQIg\r\n\r\n\u001b[40;22m chenjie \u001b[30;44m ~/Desktop/FutureArchitect/未来架构师笔记 \u001b[34;43m\u001b[30m  main ± \u001b[33;49m\u001b[0m \u001b[32mopencode\u001b[0m -s ses_ff6a923f9ffedc9TDpOw16sQIg                                 \r\n                                   ▄     \r\n  \u001b[90m█▀▀█\u001b[0m \u001b[90m█▀▀█\u001b[0m \u001b[90m█▀▀█\u001b[0m \u001b[90m█▀▀▄\u001b[0m █▀▀▀ █▀▀█ █▀▀█ █▀▀█\r\n  \u001b[90m█\u001b[39;48;5;235m  \u001b[90;49m█\u001b[0m \u001b[90m█\u001b[39;48;5;235m  \u001b[90;49m█\u001b[0m \u001b[90m█\u001b[48;5;235m▀▀▀\u001b[0m \u001b[90m█\u001b[39;48;5;235m  \u001b[90;49m█\u001b[0m █\u001b[48;5;238m   \u001b[0m █\u001b[48;5;238m  \u001b[0m█ █\u001b[48;5;238m  \u001b[0m█ █\u001b[48;5;238m▀▀▀\u001b[0m\r\n  \u001b[90m▀▀▀▀\u001b[0m \u001b[90m█▀▀▀\u001b[0m \u001b[90m▀▀▀▀\u001b[0m \u001b[90m▀\u001b[38;5;235m▀▀\u001b[90m▀\u001b[0m ▀▀▀▀ ▀▀▀▀ ▀▀▀▀ ▀▀▀▀\r\n\r\n  \u001b[90mSession   \u001b[39;1mConversation 1\r\n\u001b[0m  \u001b[90mContinue  \u001b[39;1mopencode -s ses_ff6a923f9ffedc9TDpOw16sQIg\r\n\r\n\u001b[40;22m chenjie \u001b[30;44m ~/Desktop/FutureArchitect/未来架构师笔记 \u001b[34;43m\u001b[30m  main ± \u001b[33;49m\u001b[0m \u001b[32mopencode\u001b[0m -s ses_ff6a923f9ffedc9TDpOw16sQIg\r\n                                   ▄     \r\n  \u001b[90m█▀▀█\u001b[0m \u001b[90m█▀▀█\u001b[0m \u001b[90m█▀▀█\u001b[0m \u001b[90m█▀▀▄\u001b[0m █▀▀▀ █▀▀█ █▀▀█ █▀▀█\r\n  \u001b[90m█\u001b[39;48;5;235m  \u001b[90;49m█\u001b[0m \u001b[90m█\u001b[39;48;5;235m  \u001b[90;49m█\u001b[0m \u001b[90m█\u001b[48;5;235m▀▀▀\u001b[0m \u001b[90m█\u001b[39;48;5;235m  \u001b[90;49m█\u001b[0m █\u001b[48;5;238m   \u001b[0m █\u001b[48;5;238m  \u001b[0m█ █\u001b[48;5;238m  \u001b[0m█ █\u001b[48;5;238m▀▀▀\u001b[0m\r\n  \u001b[90m▀▀▀▀\u001b[0m \u001b[90m█▀▀▀\u001b[0m \u001b[90m▀▀▀▀\u001b[0m \u001b[90m▀\u001b[38;5;235m▀▀\u001b[90m▀\u001b[0m ▀▀▀▀ ▀▀▀▀ ▀▀▀▀ ▀▀▀▀\r\n\r\n  \u001b[90mSession   \u001b[39;1mConversation 1\r\n\u001b[0m  \u001b[90mContinue  \u001b[39;1mopencode -s ses_ff6a923f9ffedc9TDpOw16sQIg\r\n\r\n\u001b[40;22m chenjie \u001b[30;44m ~/Desktop/FutureArchitect/未来架构师笔记 \u001b[34;43m\u001b[30m  main ± \u001b[33;49m\u001b[0m \r\n\u001b[40m chenjie \u001b[30;44m ~/Desktop/FutureArchitect/未来架构师笔记 \u001b[34;43m\u001b[30m  main ± \u001b[33;49m\u001b[0m \u001b[32mopencode\u001b[0m -s ses_ff6a923f9ffedc9TDpOw16sQIg\r\n",
-                "cwd": "file://192.168.0.104/Users/chenjie/Desktop/FutureArchitect/%E6%9C%AA%E6%9D%A5%E6%9E%B6%E6%9E%84%E5%B8%88%E7%AC%94%E8%AE%B0",
-                "customName": "知识库"
-              },
-              "icon": "square-terminal",
-              "title": "知识库"
-            }
-          },
-          {
-            "id": "17090642a8577885",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "wiki/前端AI/Agent核心/【基础】AI的分类：三大流派与机器学习入门.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "【基础】AI的分类：三大流派与机器学习入门"
-            }
-          },
-          {
-            "id": "8b110830671e4ff9",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "AGENTS.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "AGENTS"
-            }
-          },
-          {
-            "id": "0a83b07ef5186a18",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "wiki/数学/数学学习路线.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "数学学习路线"
-            }
-          },
-          {
             "id": "962a903ea6a0bd93",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "wiki/数学/机器学习算法/神经网络.md",
+                "file": "wiki/前端AI/Agent核心/【基础】反向传播.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "神经网络"
+              "title": "【基础】反向传播"
+            }
+          }
+        ]
+      },
+      {
+        "id": "49c0828398008859",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "4c8e3ee50c6200ea",
+            "type": "leaf",
+            "state": {
+              "type": "terminus-view",
+              "state": {
+                "scrollback": "opencode\r\n[oh-my-zsh] Would you like to update? [Y/n] \r\n[oh-my-zsh] You can update manually by running `omz update`\r\npencode\r\n\u001b[40m chenjie \u001b[30;44m ~/Desktop/FutureArchitect/未来架构师笔记 \u001b[34;43m\u001b[30m  main ± \u001b[33;49m\u001b[0m \u001b[31;1mpencode\r\n\u001b[0mzsh: command not found: pencode\r\n\u001b[40m \u001b[31m✘\u001b[39m chenjie \u001b[30;44m ~/Desktop/FutureArchitect/未来架构师笔记 \u001b[34;43m\u001b[30m  main ± \u001b[33;49m\u001b[0m \u001b[32mopencode\u001b[0m                                  \r\n\u001b[40m chenjie \u001b[30;44m ~/Desktop/FutureArchitect/未来架构师笔记 \u001b[34;43m\u001b[30m  main ± \u001b[33;49m\u001b[0m \u001b[32mopencode\u001b[0m \r\n\r\n\u001b[90m─── restored from previous session ───\r\n\u001b[0mopencode\r\n\u001b[40m chenjie \u001b[30;44m ~/Desktop/FutureArchitect/未来架构师笔记 \u001b[34;43m\u001b[30m  main ± \u001b[33;49m\u001b[0m \u001b[32mopencode\u001b[1B\u001b[73D\u001b[0m",
+                "cwd": "file://192.168.0.108/Users/chenjie/Desktop/FutureArchitect/%E6%9C%AA%E6%9D%A5%E6%9E%B6%E6%9E%84%E5%B8%88%E7%AC%94%E8%AE%B0"
+              },
+              "icon": "square-terminal",
+              "title": "Terminus 1"
             }
           }
         ]
@@ -275,54 +238,54 @@
       "terminus:Open Terminus": false
     }
   },
-  "active": "a0310427012b6393",
+  "active": "962a903ea6a0bd93",
   "lastOpenFiles": [
+    "wiki/前端AI/Agent核心/【基础】梯度下降.md",
+    "wiki/前端AI/Agent核心/【基础】反向传播.md",
     "wiki/前端AI/Agent核心/【基础】前向传播.md",
-    "wiki/前端AI/Agent核心/【基础】AI的分类：三大流派与机器学习入门.md",
+    "raw/agent-core/34. Graph Engeering/assets/graph.excalidraw",
+    "raw/agent-core/34. Graph Engeering/课件.md",
+    "raw/agent-core/34. Graph Engeering/assets",
+    "raw/agent-core/34. Graph Engeering",
+    "raw/agent-core/33. Loop Engeering/assets/loop.excalidraw",
+    "raw/agent-core/33. Loop Engeering/课件.md",
+    "raw/agent-core/33. Loop Engeering/assets",
+    "raw/agent-core/33. Loop Engeering",
+    "raw/agent-core/32. Harness Engeering/assets/Harness.excalidraw",
+    "raw/agent-core/32. Harness Engeering/课件.md",
+    "raw/agent-core/32. Harness Engeering/assets",
+    "raw/agent-core/32. Harness Engeering",
+    "raw/agent-core/31. Context Engeering/assets/上下文工程.excalidraw",
+    "raw/agent-core/31. Context Engeering/课件.md",
+    "raw/agent-core/30. Prompt Engeering/课件.md",
+    "raw/agent-core/29. 子代理/assets/子代理.svg",
+    "raw/agent-core/28. Skill VS MCP/assets/获取天气.svg",
+    "raw/agent-core/28. Skill VS MCP/assets/mcp.svg",
+    "raw/agent-core/28. Skill VS MCP/assets/skill.svg",
+    "raw/agent-core/28. Skill VS MCP/课件.md",
+    "raw/agent-core/26. Agent接入MCP/assets/mcp.svg",
+    "raw/agent-core/24. MCP协议/课件.md",
+    "raw/agent-core/23. Skill/assets/skill.svg",
+    "raw/agent-core/22. Agent 搜索引擎/assets/AI搜索原理.svg",
+    "raw/agent-core/21. Agent/分析.md",
+    "raw/agent-core/20. ReAct/assets/tool_calling.svg",
+    "raw/agent-core/20. ReAct/分析.md",
+    "raw/agent-core/19. 封装tools/assets/tool_calling.svg",
+    "raw/agent-core/19. 封装tools/uv.md",
+    "raw/agent-core/18. tools/assets/tool_calling.svg",
+    "raw/agent-core/15. Ollama/课件.md",
+    "raw/agent-core/14. 训练阶段/课件.md",
+    "raw/agent-core/13. 推理机制/课件.md",
+    "raw/agent-core/12. Transformer的完整训练流程/课件.md",
+    "raw/agent-core/11. 注意力机制/课件.md",
+    "raw/agent-core/10. 词嵌入/课件.md",
+    "raw/agent-core/09. 神经网络的本质/课件.md",
+    "raw/agent-core/06. 训练模式和框架/课件.md",
+    "raw/agent-core/05. 梯度下降/课件.md",
     "wiki/前端AI/Agent核心/【基础】神经元.md",
-    "wiki/前端AI/Agent核心/前向传播维度图.png",
-    "wiki/数学/机器学习算法/前向传播维度图.png",
-    "wiki/数学/机器学习算法/前向传播.md",
-    "raw/agent-core/04. 前向传播/课件.md",
-    "raw/agent-core/04. 前向传播",
-    "raw/agent-core/03. 神经元/课件.md",
-    "raw/agent-core/03. 神经元",
-    "AGENTS.md",
-    "wiki/数学/数学学习路线.md",
-    "wiki/数学/概率基础.md",
-    "wiki/数学/机器学习算法/线性回归.md",
-    "wiki/数学/机器学习算法/神经网络.md",
-    "wiki/数学/机器学习算法/机器学习算法谱系.md",
-    "wiki/数学/机器学习算法/深度学习.md",
-    "wiki/数学/机器学习算法/支持向量机.md",
-    "wiki/数学/机器学习算法/决策树.md",
-    "wiki/数学/机器学习算法",
-    "wiki/数学/数学基础/梯度下降.md",
-    "wiki/数学/数学基础/正态分布详解.md",
-    "wiki/数学/数学基础/概率基础.md",
-    "wiki/数学/数学基础/标准差公式详解.md",
-    "wiki/数学/数学基础/导数与梯度.md",
-    "wiki/数学/数学基础",
-    "wiki/数学/学习率对比图.png",
-    "wiki/数学/梯度下降下山图.png",
-    "wiki/数学/梯度方向图.png",
-    "wiki/数学/导数切线图.png",
-    "wiki/数学/概率分布与期望.png",
-    "wiki/数学/机器学习算法谱系.md",
-    "wiki/数学/决策树.md",
-    "wiki/数学/深度学习.md",
-    "wiki/数学/神经网络.md",
-    "wiki/数学/梯度下降.md",
-    "wiki/数学/正态分布详解.md",
-    "wiki/数学/神经网络结构图.png",
-    "wiki/数学/线性回归拟合图.png",
-    "wiki/数学/正态分布钟形曲线.png",
-    "wiki/数学",
-    "wiki/Agent开发",
-    "raw/agent-core/01. 必看导言/assets/课程安排.excalidraw",
-    "raw/agent-core/02. AI的分类/AI的分类.xmind",
-    "raw/agent-core/02. AI的分类",
-    "raw/agent-core/01. 必看导言/assets",
+    "wiki/前端AI/Agent核心/【导言】AI岗位分布与学习路线.md",
+    "wiki/前端AI/Agent核心/【基础】AI的分类：三大流派与机器学习入门.md",
+    "wiki/数学/数学基础/偏导数进阶.md",
     "未命名.canvas",
     "Java/基础/未命名.canvas",
     "Untitled.canvas"
