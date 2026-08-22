@@ -14,6 +14,8 @@ updated: 2026-08-03
 
 ## 1. 防火墙服务管理
 
+> 虚拟机里如何初始化关闭 firewalld，见 [[虚拟机基础事项]]。
+
 ```bash
 systemctl enable firewalld.service   # 设置开机启动
 systemctl start firewalld.service    # 开启服务
