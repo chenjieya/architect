@@ -1,0 +1,17 @@
+[project]
+name = "local-model"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "mac:jie.Chen", email = "chenjie.goodday@gmail.com" }
+]
+requires-python = ">=3.14.5"
+dependencies = [
+    "openai==1.74.0",
+    "python-dotenv==1.2.2",
+]
+
+[build-system]
+requires = ["uv_build>=0.11.25,<0.12.0"] # 依赖的构建后端
+build-backend = "uv_build"
