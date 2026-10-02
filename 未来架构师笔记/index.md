@@ -369,6 +369,7 @@ updated: 2026-09-30
 - [[【基础】会话管理]]：模型本身无状态，会话就是把历史消息攒起来、每次整包发回。本文用 Session 类管理消息与 id、保存/加载会话，并给出两条最佳实践：历史上下文不可修改、上下文中保留思维链。
 - [[【实战】Tool Calling]]：大模型只能文本进出，Tool Calling 让模型"说出"要调用的工具，由外部代码真正执行。本文从定义工具、手写 JSON Schema 绑定会话，到解析 tool_calls 执行，并补上事件系统与流式 Tool Call 解析。
 - [[【实战】封装 Tool Calling]]：把 Tool Calling 的五步流水线封装成简洁 API：用 Pydantic 动态生成参数模型与 JSON Schema，用 Tool 类包装函数并提供 @tool 装饰器，再用工具调度中心统一 register / schemas / invoke。
+- [[【实战】ReAct 循环]]：ReAct = Reasoning + Acting，让 Agent 循环执行"思考→行动→观察"直到任务完成。本文用 while 循环替代手动五步，新增 bash_command 工具、系统提示词注入操作系统、Session 自动装配提示词与工具，并跑通分析 agent 目录的全流程。
 
 **DeepSeek Harness（子目录）**
 

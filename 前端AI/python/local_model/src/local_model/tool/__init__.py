@@ -2,6 +2,7 @@ from local_model.tool.core import Tool
 import json
 from local_model.tool.read_file import read_file
 from local_model.tool.write_file import write_file
+from local_model.tool.bash_command import bash_command
 
 
 class _ToolRegistry:
@@ -45,3 +46,4 @@ class _ToolRegistry:
 registry = _ToolRegistry()
 registry.register(read_file)
 registry.register(write_file)
+registry.register(bash_command)
