@@ -41,15 +41,15 @@ print(list.to_json())
 
 
 # 流式响应提取
-# stream = client.chat.completions.create(
-#     model=config.OPENAI_MODEL,
-#     messages=[
-#         {"role": "system", "content": "少思考，简洁回答"},
-#         {"role": "user", "content": "从1数到10"},
-#     ],
-#     stream=True,
-# )
-# print_stream(stream)
+stream = client.chat.completions.create(
+    model=config.OPENAI_MODEL,
+    messages=[
+        {"role": "system", "content": "少思考，简洁回答"},
+        {"role": "user", "content": "从1数到10"},
+    ],
+    stream=True,
+)
+print_stream(stream)
 
 
 # 读取本地图片并转换为 Base64
