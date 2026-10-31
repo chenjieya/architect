@@ -4,67 +4,51 @@
     "type": "split",
     "children": [
       {
-        "id": "49c0828398008859",
+        "id": "dc56e06355aa3778",
         "type": "tabs",
         "children": [
           {
-            "id": "4c8e3ee50c6200ea",
-            "type": "leaf",
-            "state": {
-              "type": "terminus-view",
-              "state": {
-                "scrollback": "opencode\r\n[oh-my-zsh] Would you like to update? [Y/n] \r\n[oh-my-zsh] You can update manually by running `omz update`\r\npencode\r\n\u001b[40m chenjie \u001b[30;44m ~/Desktop/FutureArchitect/未来架构师笔记 \u001b[34;43m\u001b[30m  main ± \u001b[33;49m\u001b[0m \u001b[31;1mpencode\r\n\u001b[0mzsh: command not found: pencode\r\n\u001b[40m \u001b[31m✘\u001b[39m chenjie \u001b[30;44m ~/Desktop/FutureArchitect/未来架构师笔记 \u001b[34;43m\u001b[30m  main ± \u001b[33;49m\u001b[0m \u001b[32mopencode\u001b[0m                                  \r\n\u001b[40m chenjie \u001b[30;44m ~/Desktop/FutureArchitect/未来架构师笔记 \u001b[34;43m\u001b[30m  main ± \u001b[33;49m\u001b[0m \u001b[32mopencode\u001b[0m \r\n\r\n\u001b[90m─── restored from previous session ───\r\n\u001b[0mopencode\r\n\u001b[40m chenjie \u001b[30;44m ~/Desktop/FutureArchitect/未来架构师笔记 \u001b[34;43m\u001b[30m  main ± \u001b[33;49m\u001b[0m \u001b[32mopencode\r\n\u001b[0m                                   ▄     \r\n  \u001b[90m█▀▀█\u001b[0m \u001b[90m█▀▀█\u001b[0m \u001b[90m█▀▀█\u001b[0m \u001b[90m█▀▀▄\u001b[0m █▀▀▀ █▀▀█ █▀▀█ █▀▀█\r\n  \u001b[90m█\u001b[39;48;5;235m  \u001b[90;49m█\u001b[0m \u001b[90m█\u001b[39;48;5;235m  \u001b[90;49m█\u001b[0m \u001b[90m█\u001b[48;5;235m▀▀▀\u001b[0m \u001b[90m█\u001b[39;48;5;235m  \u001b[90;49m█\u001b[0m █\u001b[48;5;238m   \u001b[0m █\u001b[48;5;238m  \u001b[0m█ █\u001b[48;5;238m  \u001b[0m█ █\u001b[48;5;238m▀▀▀\u001b[0m\r\n  \u001b[90m▀▀▀▀\u001b[0m \u001b[90m█▀▀▀\u001b[0m \u001b[90m▀▀▀▀\u001b[0m \u001b[90m▀\u001b[38;5;235m▀▀\u001b[90m▀\u001b[0m ▀▀▀▀ ▀▀▀▀ ▀▀▀▀ ▀▀▀▀\r\n\r\n  \u001b[90mSession   \u001b[39;1m整理第13章推理机制到Wiki\r\n\u001b[0m  \u001b[90mContinue  \u001b[39;1mopencode -s ses_f8b1ff256fferubK1Jo402Nsw8\r\n\r\n\u001b[40;22m chenjie \u001b[30;44m ~/Desktop/FutureArchitect/未来架构师笔记 \u001b[34;43m\u001b[30m  main ± \u001b[33;49m\u001b[0m \u001b[32mopencode\r\n\u001b[39;40m chenjie \u001b[30;44m ~/Desktop/FutureArchitect/未来架构师笔记 \u001b[34;43m\u001b[30m  main ± \u001b[33;49m\u001b[0m \u001b[32mopencode\r\n\u001b[0m                                   ▄     \r\n  \u001b[90m█▀▀█\u001b[0m \u001b[90m█▀▀█\u001b[0m \u001b[90m█▀▀█\u001b[0m \u001b[90m█▀▀▄\u001b[0m █▀▀▀ █▀▀█ █▀▀█ █▀▀█\r\n  \u001b[90m█\u001b[39;48;5;235m  \u001b[90;49m█\u001b[0m \u001b[90m█\u001b[39;48;5;235m  \u001b[90;49m█\u001b[0m \u001b[90m█\u001b[48;5;235m▀▀▀\u001b[0m \u001b[90m█\u001b[39;48;5;235m  \u001b[90;49m█\u001b[0m █\u001b[48;5;238m   \u001b[0m █\u001b[48;5;238m  \u001b[0m█ █\u001b[48;5;238m  \u001b[0m█ █\u001b[48;5;238m▀▀▀\u001b[0m\r\n  \u001b[90m▀▀▀▀\u001b[0m \u001b[90m█▀▀▀\u001b[0m \u001b[90m▀▀▀▀\u001b[0m \u001b[90m▀\u001b[38;5;235m▀▀\u001b[90m▀\u001b[0m ▀▀▀▀ ▀▀▀▀ ▀▀▀▀ ▀▀▀▀\r\n\r\n  \u001b[90mSession   \u001b[39;1mGreeting\r\n\u001b[0m  \u001b[90mContinue  \u001b[39;1mopencode -s ses_f6706b4e1ffer5T9C68miiy5Ff\r\n\r\n\u001b[40;22m chenjie \u001b[30;44m ~/Desktop/FutureArchitect/未来架构师笔记 \u001b[34;43m\u001b[30m  main ± \u001b[33;49m\u001b[0m \u001b[32mopencode\r\n\r\n\u001b[90m─── restored from previous session ───\r\n\u001b[0mopencode\r\n\u001b[40m chenjie \u001b[30;44m ~/Desktop/FutureArchitect/未来架构师笔记 \u001b[34;43m\u001b[30m  main ± \u001b[33;49m\u001b[0m \u001b[32mopencode\r\n\u001b[90m─── restored from previous session ───\r\n\u001b[0mopencode\r\n[oh-my-zsh] Would you like to update? [Y/n] \r\n[oh-my-zsh] You can update manually by running `omz update`\r\npencode\r\n\u001b[40m chenjie \u001b[30;44m ~/Desktop/FutureArchitect/未来架构师笔记 \u001b[34;43m\u001b[30m  main ± \u001b[33;49m\u001b[0m \u001b[31;1mpencode\r\n\u001b[0mzsh: command not found: pencode\r\n\u001b[40m \u001b[31m✘\u001b[39m chenjie \u001b[30;44m ~/Desktop/FutureArchitect/未来架构师笔记 \u001b[34;43m\u001b[30m  main ± \u001b[33;49m\u001b[0m \r\n\u001b[90m─── restored from previous session ───\r\n\u001b[0mopencode\r\n[oh-my-zsh] Would you like to update? [Y/n] \r\n[oh-my-zsh] You can update manually by running `omz update`\r\npencode\r\n\u001b[40m chenjie \u001b[30;44m ~/Desktop/FutureArchitect/未来架构师笔记 \u001b[34;43m\u001b[30m  main ± \u001b[33;49m\u001b[0m \u001b[31;1mpencode\r\n\u001b[0mzsh: command not found: pencode\r\n\u001b[40m \u001b[31m✘\u001b[39m chenjie \u001b[30;44m ~/Desktop/FutureArchitect/未来架构师笔记 \u001b[34;43m\u001b[30m  main ± \u001b[33;49m\u001b[0m ",
-                "cwd": "file://chens-MacBook-Pro.local/Users/chenjie/Desktop/FutureArchitect/%E6%9C%AA%E6%9D%A5%E6%9E%B6%E6%9E%84%E5%B8%88%E7%AC%94%E8%AE%B0",
-                "customName": "wiki知识库"
-              },
-              "icon": "square-terminal",
-              "title": "wiki知识库"
-            }
-          },
-          {
-            "id": "d33e74f1660f3f16",
+            "id": "d7fb026738fc596d",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "wiki/前端AI/Agent核心/【实战】封装 Tool Calling.md",
+                "file": "wiki/前端AI/LangGraph/【导言】LangGraph 学习地图.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "【实战】封装 Tool Calling"
+              "title": "【导言】LangGraph 学习地图"
             }
           },
           {
-            "id": "ca0a9bcd3dcd7011",
+            "id": "abc39abb2a2ff759",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "wiki/Python/基础/Python函数参数与解构.md",
+                "file": "wiki/前端AI/LangGraph/【基础】Store 与长期记忆.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Python函数参数与解构"
+              "title": "【基础】Store 与长期记忆"
             }
           },
           {
-            "id": "51b4c2bdf9f10e0a",
+            "id": "22f168fb40159188",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "excalidraw",
               "state": {
-                "file": "task/2026-08-08.md",
-                "mode": "source",
-                "source": false
+                "file": "raw/langgraph-python/assets/依赖关系.excalidraw"
               },
-              "icon": "lucide-file",
-              "title": "2026-08-08"
+              "icon": "excalidraw-icon",
+              "title": "依赖关系"
             }
           }
         ],
-        "currentTab": 2
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -85,7 +69,7 @@
               "type": "file-explorer",
               "state": {
                 "sortOrder": "alphabetical",
-                "autoReveal": true,
+                "autoReveal": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
@@ -222,7 +206,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "wiki/Python/基础/Python函数参数与解构.md",
+                "file": "wiki/前端AI/LangGraph/【基础】Store 与长期记忆.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
@@ -266,7 +250,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -284,54 +269,53 @@
       "leetcode-chinese:打开 LeetCode 题库": false
     }
   },
-  "active": "29452482a6a81afe",
+  "active": "abc39abb2a2ff759",
   "lastOpenFiles": [
-    "wiki/Python/基础/Python函数.md",
+    "wiki/前端AI/LangGraph/【实战】动态扇出与运行控制.md",
+    "wiki/前端AI/LangGraph/【基础】容错与错误重试.md",
+    "wiki/前端AI/LangGraph/【实战】时间旅行.md",
+    "wiki/前端AI/LangGraph/【实战】System API、MCP 与 A2A.md",
+    "wiki/前端AI/LangGraph/【实战】Assistant API 与子图.md",
+    "wiki/前端AI/LangGraph/【实战】配置体系：RunnableConfig 与 Runtime.md",
+    "wiki/前端AI/LangGraph/【实战】Agent Server 与线程检查点.md",
+    "wiki/前端AI/LangGraph/【基础】状态与 Reducer.md",
+    "wiki/前端AI/LangGraph/【基础】模型接入与消息体系.md",
+    "wiki/前端AI/LangGraph/【基础】核心概念与执行模型.md",
+    "wiki/前端AI/LangGraph/【导言】LangGraph 学习地图.md",
+    "raw/langgraph-python/assets/依赖关系.excalidraw",
+    "wiki/前端AI/LangGraph/【实战】Agent 部署.md",
+    "wiki/前端AI/LangGraph/【基础】Store 与长期记忆.md",
+    "wiki/前端AI/LangGraph/【实战】事件流.md",
+    "wiki/前端AI/LangGraph/【实战】Command、中断与人在回路.md",
+    "wiki/前端AI/LangGraph/【实战】Cron API.md",
+    "wiki/前端AI/LangGraph/【实战】Run API.md",
+    "wiki/前端AI/LangGraph/【实战】Thread API.md",
+    "raw/langgraph-python/01. 必看导言.md",
+    "wiki/前端AI/LangGraph/【基础】模拟模型与测试.md",
+    "wiki/前端AI/LangGraph/【基础】工具与工具节点.md",
+    "wiki/前端AI/LangGraph",
     "wiki/Python/工程化/项目管理工具.md",
-    "wiki/Python/模块与进阶/元类.md",
-    "wiki/Python/事件循环/事件循环.md",
-    "wiki/Python/模块与进阶/对象的创建过程.md",
-    "wiki/Python/模块与进阶/对象的类型.md",
-    "wiki/Python/基础/Python类和对象.md",
-    "wiki/Python/基础/Python容器类型.md",
-    "wiki/Python/基础/Lambda表达式.md",
-    "wiki/前端AI/Agent核心/【实战】Tool Calling.md",
-    "wiki/前端AI/Agent核心/【对比】Skill 与 MCP 的区别与选型.md",
-    "wiki/前端AI/Agent核心/【实战】ReAct 循环.md",
-    "task/2026-08-08.md",
-    "raw/java-basic/26. 多模块项目管理/parent-project/service/src/main/java/com/example/Main.java",
-    "raw/java-basic/26. 多模块项目管理/parent-project/common/src/main/java/com/example/Main.java",
-    "raw/java-basic/26. 多模块项目管理/parent-project/web/src/main/java/com/example/Main.java",
-    "raw/java-basic/26. 多模块项目管理/parent-project/api/src/main/java/com/example/Main.java",
-    "raw/java-basic/26. 多模块项目管理/parent-project/web/src/main/java/com/example",
-    "raw/java-basic/26. 多模块项目管理/parent-project/service/src/main/java/com/example",
-    "raw/java-basic/26. 多模块项目管理/parent-project/api/src/main/java/com/example",
-    "raw/java-basic/26. 多模块项目管理/parent-project/common/src/main/java/com/example",
-    "raw/java-basic/25. Maven生命周期与插件体系/my-first-maven-project/src/test/java/com/example/AppTest.java",
-    "raw/java-basic/23. Maven入门与环境配置/my-first-maven-project/src/test/java/com/example/AppTest.java",
-    "raw/java-basic/04. 容器类型/assets/image-20260619222221711.png",
-    "raw/java-basic/02. 构建第一个Java应用程序/assets/image-20260617025319787.png",
-    "raw/java-basic/01. 课程导言/assets/讲师.png",
-    "raw/java-basic/01. 课程导言/assets/图片6.png",
-    "raw/java-basic/01. 课程导言/assets/图片5.png",
-    "raw/java-basic/01. 课程导言/assets/图片3.png",
-    "raw/java-basic/01. 课程导言/assets/图片4.png",
-    "raw/java-basic/01. 课程导言/assets/图片2.png",
-    "raw/java-basic/01. 课程导言/assets/图片1.png",
-    "raw/java-basic/26. 多模块项目管理/课件.md",
-    "raw/java-basic/25. Maven生命周期与插件体系/课件.md",
-    "raw/java-basic/24. POM文件与依赖管理/课件.md",
-    "raw/java-basic/23. Maven入门与环境配置/课件.md",
-    "raw/java-basic/22. 高级并发与最佳实践/课件.md",
-    "raw/java-basic/21. 并发集合与同步工具类/课件.md",
-    "raw/java-basic/20. 线程池与Executor框架/课件.md",
-    "raw/java-basic/19. 线程安全与锁机制/课件.md",
-    "raw/java-basic/18. 线程生命周期与控制方法/课件.md",
-    "raw/java-basic/17. 线程基础与创建方式/课件.md",
-    "raw/java-basic/16. Java特性拾遗与精进/课件.md",
-    "raw/java-basic/15. 注解/课件.md",
-    "raw/java-basic/14. 泛型/课件.md",
-    "raw/agent-core/29. 子代理/assets/子代理.svg",
+    "raw/langgraph-python/assets/audio/test.mp3",
+    "raw/langgraph-python/assets/长期记忆-简单处理.excalidraw",
+    "raw/langgraph-python/assets/长期记忆-简单处理.svg",
+    "raw/langgraph-python/assets/部署模式.svg",
+    "raw/langgraph-python/assets/部署模式.excalidraw",
+    "raw/langgraph-python/assets/课程安排.excalidraw",
+    "raw/langgraph-python/assets/节点.svg",
+    "raw/langgraph-python/assets/节点.excalidraw",
+    "raw/langgraph-python/assets/监控平台.svg",
+    "raw/langgraph-python/assets/线程.svg",
+    "raw/langgraph-python/assets/时间旅行_魔法.excalidraw",
+    "raw/langgraph-python/assets/线程.excalidraw",
+    "raw/langgraph-python/assets/监控平台.excalidraw",
+    "raw/langgraph-python/assets/时间旅行_魔法.svg",
+    "raw/langgraph-python/assets/时间旅行.svg",
+    "raw/langgraph-python/assets/子图模式.svg",
+    "raw/langgraph-python/assets/图.svg",
+    "raw/langgraph-python/assets/初始图结构.svg",
+    "raw/langgraph-python/38. 课程总结.md",
+    "raw/langgraph-python/37. Agent部署.md",
+    "raw/langgraph-python/30. 动态扇出.md",
     "未命名.canvas",
     "Java/基础/未命名.canvas",
     "Untitled.canvas"

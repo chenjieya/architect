@@ -399,6 +399,29 @@ updated: 2026-10-21
 - [[沙箱权限与安全执行]]：解释 DeepSeek Harness 为什么需要沙箱、审批和权限预设，以及 read-only、workspace-write、danger-full-access 三种模式的差异。
 - [[插件开发入门]]：用第一个插件、工具注册和配置 schema 三个最小例子解释 DeepSeek Harness 插件开发的基本路径。
 
+**LangGraph（子目录）**
+
+- [[【导言】LangGraph 学习地图]]：梳理 LangChain 生态四层分工、学习顺序、两种部署模式，以及 LangGraph 全系列的知识地图。
+- [[【基础】核心概念与执行模型]]：讲清定义/编译/运行三阶段、节点与图状态的关系，以及 Pregel/BSP 下的超步执行模型。
+- [[【基础】模型接入与消息体系]]：从供应商选型、统一模型初始化、流式输出，到 Human/AI/Tool 消息与多模态内容块。
+- [[【基础】状态与 Reducer]]：Reducer 决定每个状态字段如何合并新旧值，含覆盖、追加、取最大值与 add_messages 的按 id 更新规则。
+- [[【基础】工具与工具节点]]：用 @tool 把函数变成 Runnable，讲清参数 Schema、工具绑定与工具节点在图中的位置。
+- [[【基础】模拟模型与测试]]：对比 langchain_core 的几种 Fake 模型，用可控模型复现报错、死循环和工具调用异常。
+- [[【实战】Agent Server 与线程检查点]]：用 langgraph-cli 启动服务，讲清检查点、线程、Run 的关系与状态历史查询。
+- [[【实战】配置体系：RunnableConfig 与 Runtime]]：讲清动态模型参数、context 注入，以及两者不要混用的原因。
+- [[【实战】Assistant API 与子图]]：Assistant = 图 + 配置并支持版本回滚；子图的通信模式与持久化行为。
+- [[【实战】Thread API]]：线程的增删改查、搜索复制、状态与历史、指定检查点与清理接口。
+- [[【实战】Run API]]：有状态与无状态运行、create/join/wait 的差异、durability 落盘策略与批量创建。
+- [[【实战】Cron API]]：无状态与绑定线程两种定时任务，含 cron 表达式速查与管理接口。
+- [[【实战】System API、MCP 与 A2A]]：健康检查与监控指标，把 Agent 暴露成 MCP 工具，并通过 A2A 与其他 Agent 协作。
+- [[【实战】时间旅行]]：从任意检查点 Replay 或 Fork 重跑，含手动模式、SDK 写法与子图限制。
+- [[【基础】容错与错误重试]]：RetryPolicy、TimeoutPolicy、error_handler 三件套，以及错误后检查点停在哪、如何手动重试。
+- [[【实战】Command、中断与人在回路]]：Command 的四个参数、interrupt 的暂停与恢复流程、HITL 契约与五条避坑实践。
+- [[【实战】动态扇出与运行控制]]：用 Send 动态生成并行分支做 map-reduce，配合 cancel 与多任务策略控制并发。
+- [[【实战】事件流]]：stream_mode 的几种取值、子图命名空间，以及从消息块区分思考、正文与工具调用。
+- [[【基础】Store 与长期记忆]]：namespace/key/value 模型、两套读写 API，以及长期记忆的四个改造步骤。
+- [[【实战】Agent 部署]]：用 Docker 起 Postgres、pgAdmin、Redis，配置 langgraph.json 与环境变量并容器化启动。
+
 - [[【LLM】Agent]]：前面我们是通过终端，来和大模型进行交互的。
 - [[【LLM】Function Calling]]：前面是通过 提示词 的形式，将工具箱带过去。
 - [[【LLM】MCP：Client]]：🤔 Claude Desktop 是如何使用 MCP Server 的？
