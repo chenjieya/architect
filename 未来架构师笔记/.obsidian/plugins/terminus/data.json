@@ -1,11 +1,29 @@
 {
+  "experience": "multi-agent",
+  "classic": {
+    "autoRevealPendingChanges": true,
+    "autoRevealDelayMs": 800
+  },
+  "multiAgent": {
+    "autoRevealInbox": true,
+    "autoRevealDelayMs": 800,
+    "trackSubagents": true,
+    "resumeSessions": true,
+    "sendBehavior": "steer",
+    "showEstimatedCost": true,
+    "showGitBranch": true,
+    "logSessions": false,
+    "sessionLogFolder": "Terminus/Sessions",
+    "sessionBaseFolder": "",
+    "checkForUpdates": false
+  },
   "fontSize": 13,
   "terminalPlacement": "ask",
-  "autoRevealPendingChanges": true,
-  "autoRevealDelayMs": 800,
   "confirmBulkActions": false,
+  "detectShellChanges": true,
   "shellBinOverride": "",
   "python3BinOverride": "",
+  "claudeAuthToken": "",
   "fontFamilyOverride": "",
   "cursorStyle": "block",
   "cursorBlink": true,
@@ -13,5 +31,15 @@
   "autoThemeTerminal": true,
   "startupCommand": "opencode",
   "ribbonIcon": "square-terminal",
-  "wikiLinkInsertFormat": "wikilink"
+  "wikiLinkInsertFormat": "wikilink",
+  "hasSeenWelcome": true,
+  "hasSeenMultiAgentInvite": false,
+  "hasSeenMultiAgentDefault": true,
+  "groups": {
+    "groups": [],
+    "activeGroupId": null,
+    "lastLeafByGroup": {},
+    "tabGroups": {},
+    "nextNumber": 1
+  }
 }

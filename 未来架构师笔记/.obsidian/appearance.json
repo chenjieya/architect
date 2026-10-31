@@ -5,6 +5,7 @@
   "translucency": false,
   "theme": "obsidian",
   "enabledCssSnippets": [
-    "tasks-search"
+    "tasks-search",
+    "transparent-top-bar"
   ]
 }

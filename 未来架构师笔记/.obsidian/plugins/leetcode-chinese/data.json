@@ -1,0 +1,79 @@
+{
+  "version": 1,
+  "leetcodeSite": "cn",
+  "auth": null,
+  "username": null,
+  "isPremium": null,
+  "problemsFolder": "leetcode",
+  "defaultLanguage": "python3",
+  "indentSizeOverride": "auto",
+  "showRelativeLineNumbers": false,
+  "autoMigrateOnOpen": true,
+  "widgetSyncDebounceMs": 400,
+  "problemIndex": null,
+  "filter": null,
+  "problemDetails": {},
+  "legacyBaseNoticeShown": false,
+  "autoBacklinksEnabled": true,
+  "techniquesFolderOverride": "",
+  "previewClickBehavior": "preview",
+  "activeAIProvider": null,
+  "providerConfigs": {
+    "anthropic": {
+      "apiKey": "",
+      "baseUrl": "https://api.anthropic.com/v1",
+      "model": "claude-haiku-4-5",
+      "disclosureAcknowledged": false
+    },
+    "openai": {
+      "apiKey": "",
+      "baseUrl": "https://api.openai.com/v1",
+      "model": "gpt-5-mini",
+      "disclosureAcknowledged": false
+    },
+    "openrouter": {
+      "apiKey": "",
+      "baseUrl": "https://openrouter.ai/api/v1",
+      "model": "anthropic/claude-haiku-4.5",
+      "disclosureAcknowledged": false
+    },
+    "ollama": {
+      "apiKey": "",
+      "baseUrl": "http://localhost:11434/v1",
+      "model": "llama3.2",
+      "disclosureAcknowledged": false
+    },
+    "custom": {
+      "apiKey": "",
+      "baseUrl": "",
+      "model": "",
+      "disclosureAcknowledged": false
+    },
+    "bedrock": {
+      "apiKey": "",
+      "baseUrl": "",
+      "model": "",
+      "disclosureAcknowledged": false,
+      "region": "us-east-1",
+      "modelId": "us.anthropic.claude-sonnet-4-6",
+      "authMethod": "default-chain",
+      "accessKeyId": "",
+      "secretAccessKey": "",
+      "ssoProfile": "",
+      "bedrockApiKey": "",
+      "sessionToken": ""
+    }
+  },
+  "aiCostLedger": {
+    "date": "2026-10-31",
+    "usdToday": 0
+  },
+  "autoAIReviewOnAC": false,
+  "contestSession": null,
+  "autoAIContestAnalysis": false,
+  "contestIndex": null,
+  "autoAIKnowledgeGraph": true,
+  "featureFlags": {
+    "lookAheadEdges": false
+  }
+}

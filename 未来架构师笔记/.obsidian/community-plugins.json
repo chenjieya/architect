@@ -13,5 +13,7 @@
   "prettier-dev",
   "obsidian-tasks-plugin",
   "terminus",
-  "prettier"
+  "prettier",
+  "secret-mask",
+  "leetcode-chinese"
 ]

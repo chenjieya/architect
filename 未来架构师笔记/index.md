@@ -370,6 +370,20 @@ updated: 2026-09-30
 - [[【实战】Tool Calling]]：大模型只能文本进出，Tool Calling 让模型"说出"要调用的工具，由外部代码真正执行。本文从定义工具、手写 JSON Schema 绑定会话，到解析 tool_calls 执行，并补上事件系统与流式 Tool Call 解析。
 - [[【实战】封装 Tool Calling]]：把 Tool Calling 的五步流水线封装成简洁 API：用 Pydantic 动态生成参数模型与 JSON Schema，用 Tool 类包装函数并提供 @tool 装饰器，再用工具调度中心统一 register / schemas / invoke。
 - [[【实战】ReAct 循环]]：ReAct = Reasoning + Acting，让 Agent 循环执行"思考→行动→观察"直到任务完成。本文用 while 循环替代手动五步，新增 bash_command 工具、系统提示词注入操作系统、Session 自动装配提示词与工具，并跑通分析 agent 目录的全流程。
+- [[【实战】Agent 封装]]：把 ReAct 循环收进一个 Agent 类，invoke 内部自主"模型决策→执行工具→结果回喂"；抽象 ModelListener 让打印与推理解耦；Session 创建即自动装配提示词与工具，并新增 print_friendly 可读打印。
+- [[【实战】Agent 接入搜索引擎]]：传统搜索返回的 HTML 噪音大、费 token，改用 Tavily 这类面向 LLM 的搜索服务，用 @tool 封装 web_search（发现链接）与 fetch_url（深挖内容）两个工具接入 Agent。
+- [[【实战】Skill 技能系统]]：用"渐进式披露"解决系统提示词膨胀——平时只常驻每个技能的 name+description，命中场景时再调 use_skill 工具加载 SKILL.md 全文，并支持从社区安装公共 Skill。
+- [[【基础】MCP 协议]]：MCP 定义 Agent 与外部工具之间的通信标准：客户端/服务端角色、stdio 与 http 传输、JSON-RPC 2.0 格式，以及 initialize / tools/list / tools/call 三条核心消息。
+- [[【实战】MCP Client 封装]]：用 MCP 官方 Python SDK 手写客户端，封装 connect_mcp 上下文管理器与 MCPClient 类管理多服务器，并用独立线程包一层同步 API 绕开 Jupyter 事件循环限制。
+- [[【实战】Agent 接入 MCP]]：用 .agents/mcp.json 独立配置服务器，把 MCP 调用包装成 use_mcp 工具并注册，渲染系统提示词时动态列出可用 MCP 工具，Agent 零改动获得 MCP 能力。
+- [[【实战】实现 MCP 服务器]]：用 FastMCP 三步写出自己的 MCP 服务器：实例化、@mcp.tool() 定义工具、mcp.run(transport="streamable-http") 启动，并用 Inspector 验证。
+- [[【对比】Skill 与 MCP 的区别与选型]]：两者定位不同——MCP 告诉模型"谁来做"（确定性底层工具），Skill 告诉模型"怎么做"（灵活业务流程）；从上下文、成本、扩展性、确定性、风险等维度对比并给出选型原则。
+- [[【实战】子代理 Sub Agent]]：单代理处理多阶段任务会攒出庞大上下文，子代理把任务拆给多个独立 Agent 用多线程并行执行、只回传结论，用 create_agent 工具实现。
+- [[【概念】提示词工程]]：研究如何组织文字指令让模型稳定产出期望结果，介绍角色设定、指令结构化、少样本、思维链、结构化输出、迭代优化等常用技巧，并说明它只是上下文工程的子集。
+- [[【概念】上下文工程]]：讲清四条注意力偏差（长度稀释、分布外、信噪比、首尾强化），以及编排（何时放入何内容、放哪里）与治理（内容安全可信 + 上下文膨胀管理）两大关注点。
+- [[【概念】驾驭工程]]：Harness 意为马具，主张从"选模型"转向"驾驭模型"；三大关注点为情境与状态管理（召回→规划→行动）、护栏（最小权限）、可观测（如何判断任务完成）。
+- [[【概念】循环工程]]：让 Agent 自我推动交付可用产品，循环中自主发现未完成任务、驱动子代理并行并用工作树隔离、自主沉淀知识、自主接入工具、子代理分工。
+- [[【概念】图工程]]：把 Agent 工作流显式建模成有向图（节点/边/状态/条件边/循环边/人工节点），相比一个大循环更利于表达依赖、并行、回退与人工审批。
 
 **DeepSeek Harness（子目录）**
 

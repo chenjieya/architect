@@ -17,6 +17,7 @@ const ASSET_EXTS = new Set([
   '.gif',
   '.webp',
   '.svg',
+  '.excalidraw',
   '.bmp',
   '.avif',
   '.pdf',

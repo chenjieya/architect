@@ -16,6 +16,9 @@
   flex: 1 1 auto;
   min-height: 0;
   padding: 4px;
+  /* Positioning context for the activity chip that floats in its
+     bottom-right corner (see .terminus-activity). */
+  position: relative;
 }
 
 /* xterm.css's own .xterm-char-measure-element (its hidden cell-size probe)
@@ -534,6 +537,23 @@
 
 .terminus-backlink-warning-detail {
   border: 1px solid var(--color-yellow, #d9a441);
+  border-radius: 4px;
+  padding: 6px 8px;
+  margin: 8px 10px 0;
+  font-size: 11.5px;
+  color: var(--text-normal);
+}
+
+/* Another terminal's edits coalesced into this row (see modals/collisions.ts).
+   Orange rather than the backlink warning's yellow: a reject here can lose
+   work, not just break a link. */
+.terminus-collision-warning {
+  font-size: 11px;
+  color: var(--color-orange, #e8871e);
+}
+
+.terminus-collision-warning-detail {
+  border: 1px solid var(--color-orange, #e8871e);
   border-radius: 4px;
   padding: 6px 8px;
   margin: 8px 10px 0;
@@ -1174,6 +1194,60 @@
   pointer-events: none;
 }
 
+/* Blinking "needs attention" dot on the native tab header -- applied via
+   terminal/tabHeaderColor.ts's refreshTabPendingDot(). Signals that Claude
+   is waiting on this terminal (a permission prompt, or idle input) even when
+   the tab strip is crowded enough that the title text itself has truncated.
+   Same sibling-of-`-inner` trick as .terminus-tab-color-bar above, for the
+   same reason: -inner clips its own overflow, so anything meant to survive
+   truncation has to live outside it -- positioned off the tab's right edge
+   here rather than left, so it reads as sitting just past the title instead
+   of stacking on the color bar. Present-but-invisible by default (toggled
+   via .is-pending) rather than added/removed, since refreshTabPendingDot()
+   reuses the same node. */
+.terminus-tab-pending-dot {
+  position: absolute;
+  top: 50%;
+  right: 6px;
+  transform: translateY(-50%);
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: var(--color-orange, #e8a33d);
+  /* A hairline ring in the tab's own background color separates the dot from
+     the title text sitting right behind it, so it still reads as a distinct
+     badge rather than a smudge on the text. */
+  box-shadow: 0 0 0 1px var(--background-primary);
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.terminus-tab-pending-dot.is-pending {
+  opacity: 1;
+  visibility: visible;
+  animation: terminus-tab-pending-pulse 1.4s ease-in-out infinite;
+}
+
+@keyframes terminus-tab-pending-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .terminus-tab-pending-dot.is-pending { animation: none; }
+}
+
+/* The tab's own close button occupies this same right-edge spot on hover
+   (or always, depending on the user's Obsidian settings) -- ceding the spot
+   while hovering avoids the two visually colliding. Higher specificity than
+   the .is-pending rule above (three selectors vs two) so it wins regardless
+   of source order. */
+.workspace-tab-header:hover > .terminus-tab-pending-dot.is-pending {
+  opacity: 0;
+  visibility: hidden;
+}
+
 /* Colored terminal identity in the Pending Changes group card (see
    views/PendingChangesView.ts) -- edge strip spanning the whole group
    (header + its file rows), matching the terminal tab's own indicator
@@ -1191,19 +1265,39 @@
 /* Live "Claude is editing X" chip in a terminal's own view header (see
    views/TerminalView.ts). Sits between the header title and the action
    icons. */
+/* Floats over the bottom-right of the terminal, next to where Claude's own
+   input box sits -- see mountActivityIndicator() for why it lives there and
+   not in the view header.
+
+   Positioned against .terminus-xterm-container (which sets position:
+   relative for exactly this), not against xterm's own .xterm element: the
+   container is ours, so nothing here depends on xterm's internal DOM.
+
+   The inset clears the terminal's own scrollbar on the right and leaves the
+   bottom row legible. It deliberately sits *over* terminal output rather
+   than reserving space away from it -- the chip is only on screen while a
+   turn is actually writing files. */
 .terminus-activity {
+  position: absolute;
+  right: var(--size-4-3);
+  bottom: var(--size-4-2);
+  z-index: 2;
   display: flex;
   align-items: center;
   gap: var(--size-2-2);
-  /* min-width:0 is load-bearing: without it a flex item refuses to shrink
-     below its content width, so a long filename shoves the pencil/palette
-     actions off the edge of a narrow (split-right) header. */
+  max-width: calc(100% - var(--size-4-6));
   min-width: 0;
-  flex: 0 1 auto;
   overflow: hidden;
-  margin-right: var(--size-4-2);
-  padding: 0 var(--size-2-2);
+  padding: var(--size-2-1) var(--size-2-3);
+  /* Reads as a control laid on the terminal rather than as terminal output:
+     the terminal's text is the plugin's least-owned surface, so anything
+     drawn on top has to be unmistakably not part of it. */
+  border: 1px solid var(--background-modifier-border);
+  border-radius: var(--radius-m);
+  background-color: var(--background-secondary);
+  box-shadow: var(--shadow-s);
   cursor: pointer;
+  user-select: none;
   opacity: 0;
   visibility: hidden;
   transition: opacity 150ms ease;
@@ -1213,11 +1307,6 @@
   opacity: 1;
   visibility: visible;
 }
-
-/* The header's action icons must never be the thing that gives way -- that
-   guard is applied to the actions container directly in
-   mountActivityIndicator(), since its class name is Obsidian's internal
-   detail rather than something to depend on from here. */
 
 /* A pulsing dot rather than a glyph: the header already renders a `pencil`
    action for Rename, so a second pencil would read as a duplicate control,
@@ -1253,6 +1342,2585 @@
    the signal without the pulse. */
 @media (prefers-reduced-motion: reduce) {
   .terminus-activity-dot { animation: none; }
+}
+
+/* Tooltip shown while hovering a linkified path/URL in terminal output.
+   Positioned from the mouse coordinates the link provider hands us (see
+   LinkTooltip in TerminalLinks.ts) rather than anchored to a cell, since a
+   link's own range can span several wrapped rows.
+
+   The offsets are custom properties, not a static rule, because they change
+   per hover; everything else here is fixed and belongs in CSS. */
+.terminus-link-hover {
+  position: absolute;
+  left: var(--terminus-link-hover-left, 0);
+  top: var(--terminus-link-hover-top, 0);
+  /* Sits above the pointer rather than under it -- below the cursor it
+     would cover the very text the user is aiming at. */
+  transform: translate(-50%, calc(-100% - var(--size-4-2)));
+  z-index: var(--layer-tooltip);
+  pointer-events: none;
+  white-space: nowrap;
+  padding: var(--size-2-1) var(--size-2-3);
+  border-radius: var(--radius-s);
+  background-color: var(--background-modifier-message);
+  color: var(--text-on-accent);
+  font-size: var(--font-ui-smaller);
+  line-height: var(--line-height-tight);
+}
+
+/* Inline warning under the custom font field (see
+   describeCustomFontProblem). Empty most of the time -- :empty keeps it
+   from reserving vertical space when there's nothing to say. */
+.terminus-setting-warning {
+  color: var(--text-warning);
+  font-size: var(--font-ui-smaller);
+  margin-top: var(--size-2-2);
+}
+
+.terminus-setting-warning:empty {
+  display: none;
+}
+
+/* Result line under the Claude Code auth token field's Test button. Empty
+   until a test runs, same :empty pattern as the warning above. */
+.terminus-setting-status {
+  font-size: var(--font-ui-smaller);
+  margin-top: var(--size-2-2);
+}
+
+.terminus-setting-status:empty {
+  display: none;
+}
+
+.terminus-setting-status.is-success {
+  color: var(--text-success);
+}
+
+.terminus-setting-status.is-error {
+  color: var(--text-error);
+}
+
+/* "What's new" popup: a short clip, three points, and the way back. */
+.terminus-whats-new-modal {
+  max-width: 36rem;
+  width: 100%;
+}
+
+.terminus-whats-new-lead {
+  color: var(--text-muted);
+}
+
+.terminus-whats-new-video {
+  display: block;
+  width: 100%;
+  margin: 12px 0;
+  border: 1px solid var(--background-modifier-border);
+  border-radius: var(--radius-m);
+  background-color: var(--background-secondary);
+}
+
+.terminus-whats-new-list {
+  margin: 0 0 12px;
+  padding-left: 20px;
+}
+
+.terminus-whats-new-list li + li {
+  margin-top: 4px;
+}
+
+/* Onboarding modal. Wider than Obsidian's default so the shortcut tables
+   don't wrap a two-word key combo onto two lines, and height-capped so the
+   full guide scrolls its body rather than growing past the window. */
+.terminus-getting-started-modal {
+  max-width: 40rem;
+  width: 100%;
+}
+
+.terminus-getting-started-body {
+  max-height: 60vh;
+  overflow-y: auto;
+}
+
+.terminus-getting-started-body table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+/* The shortcut column shouldn't stretch to half the table just because the
+   description beside it is long. Applied to th as well as td, or the header
+   sits at its own natural width and stops lining up with the column it
+   labels -- which is what made these read as two loose lists rather than a
+   table. */
+.terminus-getting-started-body th:first-child,
+.terminus-getting-started-body td:first-child {
+  white-space: nowrap;
+  width: 1%;
+}
+
+/* Obsidian centers th by default; a left-aligned header is what actually
+   sits above the cells below it. */
+.terminus-getting-started-body th {
+  text-align: left;
+  font-size: var(--font-ui-smaller);
+  color: var(--text-muted);
+  font-weight: var(--font-medium);
+  border-bottom: 1px solid var(--background-modifier-border);
+}
+
+.terminus-getting-started-body th,
+.terminus-getting-started-body td {
+  padding: var(--size-2-2) var(--size-4-3) var(--size-2-2) 0;
+  vertical-align: baseline;
+  border-top: none;
+}
+
+/* Key caps. The markdown writes shortcuts as inline code, which by default
+   renders in the same flat style as a file path -- these want to read as
+   keys. */
+.terminus-getting-started-body td:first-child code {
+  background-color: var(--background-modifier-border);
+  color: var(--text-normal);
+  border-radius: var(--radius-s);
+  padding: 0.1em 0.4em;
+  font-size: var(--font-ui-smaller);
+  white-space: nowrap;
+}
+
+/* Separated by a rule rather than whitespace alone: the body above it
+   scrolls, and without a hard edge a row clipped mid-scroll reads as the
+   modal being broken rather than as there being more to see. */
+.terminus-getting-started-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--size-4-2);
+  margin-top: var(--size-4-3);
+  padding-top: var(--size-4-3);
+  border-top: 1px solid var(--background-modifier-border);
+}
+
+/* ==========================================================================
+   Multi-agent experience: the Terminus sidebar, the Agent inbox, and Split
+   Diff's comments. Everything is built on Obsidian's own theme variables
+   (nav items, interactive colours, the --color-*-rgb set), so both views
+   follow the user's theme in light and dark. Icons are Obsidian's Lucide
+   set (setIcon), never text glyphs.
+   ========================================================================== */
+
+.terminus-sidebar,
+.terminus-inbox-view {
+  --tm-attention: var(--color-orange, #e8871e);
+  --tm-attention-soft: rgba(var(--color-orange-rgb, 232, 135, 30), 0.12);
+  --tm-working: var(--interactive-accent);
+  --tm-finished: var(--color-blue, #086ddd);
+  --tm-ok: var(--color-green, #08b94e);
+  --tm-bad: var(--color-red, #e93147);
+  --tm-gap: 6px;
+  /* Every text button in both views shares the ＋ Terminal height. */
+  --tm-button-height: 24px;
+  font-size: var(--font-ui-small);
+}
+
+/* A group's colour, everywhere: a folder. Statuses are dots and a terminal's
+   colour is a stroke, so none of the three reads as another. */
+.terminus-group-icon {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  color: var(--terminus-group-color, var(--text-faint));
+}
+
+.terminus-group-icon svg {
+  width: 14px;
+  height: 14px;
+  /* The fill is the group's colour, light, so the folder reads as a swatch
+     and not as one more outline icon. */
+  fill: color-mix(in srgb, currentColor 28%, transparent);
+  stroke-width: 2;
+}
+
+/* Icons inside text: one size, aligned with the text they sit in. */
+.terminus-meta-icon {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  color: var(--text-faint);
+}
+
+.terminus-meta-icon svg {
+  width: 13px;
+  height: 13px;
+}
+
+/* Every custom control shows where the keyboard is. Rows inset the ring so
+   neighbours don't clip it. */
+.terminus-sidebar :focus-visible,
+.terminus-inbox-view :focus-visible,
+.terminus-split-diff-comment-box :focus-visible {
+  outline: 2px solid var(--interactive-accent);
+  outline-offset: 1px;
+  box-shadow: none;
+}
+
+.terminus-sidebar [role="button"]:focus-visible,
+.terminus-inbox-view [role="button"]:focus-visible {
+  outline-offset: -2px;
+}
+
+.terminus-icon-button {
+  flex: none;
+  --icon-size: 14px;
+  padding: 3px;
+}
+
+/* --- Terminus sidebar --------------------------------------------------- */
+
+.terminus-sidebar {
+  padding: 0;
+}
+
+.terminus-sidebar-header {
+  padding: 12px 12px 10px;
+}
+
+.terminus-sidebar-brand {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.terminus-sidebar-title {
+  font-weight: 600;
+  font-size: var(--font-ui-medium);
+  color: var(--text-normal);
+}
+
+.terminus-sidebar-version {
+  font-size: var(--font-ui-smaller);
+  color: var(--text-faint);
+  text-decoration: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-variant-numeric: tabular-nums;
+}
+
+.terminus-sidebar-version:hover {
+  color: var(--text-muted);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.terminus-sidebar-version.is-outdated {
+  color: var(--text-accent);
+  font-weight: 600;
+}
+
+.terminus-sidebar-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--tm-gap);
+  margin-top: 16px;
+}
+
+.terminus-sidebar-actions button,
+.terminus-sidebar-plus {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  height: var(--tm-button-height);
+  padding: 0 10px;
+}
+
+/* The icon's wrapper is a flex box and the svg a block, so the icon centres
+   on the label instead of sitting on its text baseline (which put it high). */
+.terminus-sidebar-plus > span:first-child {
+  display: inline-flex;
+}
+
+.terminus-sidebar-plus svg {
+  display: block;
+  width: 14px;
+  height: 14px;
+}
+
+.terminus-sidebar-selected {
+  margin-right: auto;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.terminus-sidebar-list {
+  padding: 6px;
+}
+
+/* Each group is a card, like the Agent inbox's; the showing group's border
+   is the accent, and one with a session needing attention is orange, as
+   its inbox card is. Ungrouped terminals aren't a group, so they sit on the
+   sidebar itself, below the cards. */
+.terminus-sidebar-group-card {
+  margin: 0 0 8px;
+  padding: 4px;
+  border: 1px solid var(--background-modifier-border);
+  border-radius: var(--radius-m);
+  background-color: var(--background-primary);
+}
+
+.terminus-sidebar-group-card.is-active {
+  border-color: var(--interactive-accent);
+}
+
+.terminus-sidebar-group-card.is-needs-attention {
+  border-color: var(--tm-attention);
+  box-shadow: 0 2px 8px rgba(var(--color-orange-rgb, 232, 135, 30), 0.12);
+}
+
+/* The card's border marks the showing group, so its row needn't. */
+.terminus-sidebar-group-card .terminus-sidebar-group-row.is-active:not(:hover) {
+  background-color: transparent;
+}
+
+/* The card's body: the terminals, on the theme's alternate surface below a
+   rule, so they read as the group's contents rather than more header. */
+.terminus-sidebar-group-terminals {
+  margin: 4px -4px -4px;
+  padding: 4px;
+  border-top: 1px solid var(--background-modifier-border);
+  border-radius: 0 0 var(--radius-m) var(--radius-m);
+  background-color: var(--background-primary-alt);
+}
+
+.terminus-sidebar-group.is-ungrouped {
+  padding: 4px 5px 6px;
+}
+
+/* Ungrouped isn't a group and doesn't fold: a plain heading, its terminals
+   in line with it rather than indented. */
+.terminus-sidebar-group-row.is-ungrouped {
+  padding-left: 8px;
+}
+
+.terminus-sidebar-group.is-ungrouped .terminus-sidebar-terminal {
+  margin-left: 0;
+}
+
+/* Group and terminal rows read like Obsidian's own file tree. */
+.terminus-sidebar-group-row,
+.terminus-sidebar-terminal {
+  display: flex;
+  align-items: center;
+  gap: var(--tm-gap);
+  min-height: 28px;
+  padding: 3px 4px 3px 8px;
+  border-radius: var(--radius-s);
+  color: var(--nav-item-color, var(--text-muted));
+  cursor: pointer;
+}
+
+.terminus-sidebar-group-row:hover,
+.terminus-sidebar-terminal:hover {
+  color: var(--nav-item-color-hover, var(--text-normal));
+  background-color: var(--nav-item-background-hover, var(--background-modifier-hover));
+}
+
+.terminus-sidebar-group-row.is-active {
+  color: var(--nav-item-color-active, var(--text-normal));
+  background-color: var(--nav-item-background-active, var(--background-modifier-active-hover));
+}
+
+.terminus-sidebar-group-row {
+  padding-left: 2px;
+}
+
+.terminus-sidebar-group-row.is-ungrouped {
+  cursor: default;
+}
+
+/* The fold chevron: the Agent inbox's own (Lucide, 14px, faint). */
+.terminus-sidebar .terminus-sidebar-chevron {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  padding: 0;
+  border: none;
+  background: none;
+  box-shadow: none;
+  color: var(--text-faint);
+  cursor: pointer;
+}
+
+.terminus-sidebar .terminus-sidebar-chevron svg {
+  width: 14px;
+  height: 14px;
+}
+
+.terminus-sidebar .terminus-sidebar-chevron:hover {
+  color: var(--text-normal);
+}
+
+.terminus-sidebar-group-row.is-ungrouped:hover {
+  background-color: transparent;
+}
+
+.terminus-sidebar-group-row.is-drop-target {
+  outline: 2px dashed var(--interactive-accent);
+  outline-offset: -2px;
+}
+
+.terminus-sidebar-group-name {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-weight: 600;
+  color: var(--text-normal);
+}
+
+.terminus-sidebar-group-row.is-ungrouped .terminus-sidebar-group-name {
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+.terminus-sidebar-rename {
+  flex: 1 1 auto;
+  min-width: 0;
+  height: 24px;
+  font-size: var(--font-ui-small);
+}
+
+.terminus-sidebar-group-state {
+  flex: none;
+  font-size: var(--font-ui-smaller);
+  color: var(--text-faint);
+  font-variant-numeric: tabular-nums;
+}
+
+/* The summary's parts take their status colours (see the inbox pills);
+   "Showing" the accent, a turn not yet read a little louder. */
+.terminus-sidebar-group-state.is-showing {
+  color: var(--text-accent);
+}
+
+.terminus-sidebar-group-state .is-needs-attention {
+  font-weight: 600;
+  color: var(--tm-attention);
+}
+
+.terminus-sidebar-group-state .is-working {
+  color: var(--tm-working);
+}
+
+.terminus-sidebar-group-state.is-unread {
+  color: var(--text-muted);
+}
+
+.terminus-sidebar-branch {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  min-width: 0;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* A row's own actions appear where the pointer or keyboard is, at the end
+   of the row and on the row's own hover colour (no backing of their own,
+   which never matched every theme's sidebar). Hidden, they take no space;
+   shown, they take the place of a terminal's "Shell" tag, sit after a
+   group's summary, and the name truncates before them. On touch screens
+   there's no hover, so they're always shown. */
+.terminus-sidebar-row-actions {
+  display: none;
+  flex: none;
+  align-items: center;
+  gap: 1px;
+  margin-left: auto;
+}
+
+.terminus-sidebar-row-actions .clickable-icon {
+  height: 22px;
+  padding: 0 4px;
+}
+
+.terminus-sidebar-group-row:hover .terminus-sidebar-row-actions,
+.terminus-sidebar-group-row:focus-within .terminus-sidebar-row-actions,
+.terminus-sidebar-terminal:hover .terminus-sidebar-row-actions,
+.terminus-sidebar-terminal:focus-within .terminus-sidebar-row-actions {
+  display: flex;
+}
+
+/* A group's summary stays: it's what says the group needs you. */
+.terminus-sidebar-terminal:hover .terminus-sidebar-shell-tag,
+.terminus-sidebar-terminal:focus-within .terminus-sidebar-shell-tag {
+  display: none;
+}
+
+@media (hover: none) {
+  .terminus-sidebar-row-actions {
+    display: flex;
+  }
+}
+
+.terminus-sidebar-group-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 2px 12px;
+  padding: 0 8px 4px 40px;
+  font-size: var(--font-ui-smaller);
+  color: var(--text-faint);
+}
+
+.terminus-sidebar-folder,
+.terminus-sidebar-note {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  min-width: 0;
+}
+
+.terminus-sidebar-note {
+  color: var(--text-muted);
+  text-decoration: none;
+}
+
+.terminus-sidebar-note:hover {
+  color: var(--text-normal);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.terminus-sidebar-note-status {
+  padding: 0 6px;
+  border-radius: 999px;
+  font-size: 10px;
+  line-height: 16px;
+  color: var(--text-muted);
+  background-color: var(--background-modifier-hover);
+}
+
+.terminus-sidebar-note-status.is-active {
+  color: var(--tm-working);
+}
+
+.terminus-sidebar-note-status.is-review {
+  color: var(--tm-attention);
+}
+
+.terminus-sidebar-note-status.is-done {
+  color: var(--tm-ok);
+}
+
+/* Terminals sit indented under their group, their colour stroke under the
+   group's dot. */
+.terminus-sidebar-terminal {
+  margin-left: 22px;
+}
+
+.terminus-sidebar-terminal.is-focused {
+  color: var(--text-normal);
+}
+
+.terminus-sidebar-terminal.is-focused .terminus-sidebar-terminal-name {
+  font-weight: 600;
+}
+
+.terminus-sidebar-terminal.is-selected {
+  color: var(--text-normal);
+  background-color: var(--nav-item-background-selected, var(--background-modifier-active-hover));
+}
+
+/* A note open in a group: its tab's icon where a terminal has its stroke,
+   the name in the same place. */
+.terminus-sidebar-tab-icon {
+  display: inline-flex;
+  flex: none;
+  justify-content: center;
+  width: 13px;
+  /* Takes the stroke's 3px, centred on it, so names line up. */
+  margin: 0 -2px 0 -8px;
+  color: var(--text-faint);
+}
+
+.terminus-sidebar-tab-icon svg {
+  width: 13px;
+  height: 13px;
+}
+
+/* A terminal's colour, everywhere: a short stroke, like the one on its
+   tab. */
+.terminus-sidebar-terminal-color,
+.terminus-inbox-card-stroke {
+  flex: none;
+  width: 3px;
+  height: 16px;
+  border-radius: 2px;
+  background-color: var(--terminus-terminal-color, var(--background-modifier-border-hover));
+}
+
+.terminus-sidebar-terminal-name {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.terminus-sidebar-pending {
+  flex: none;
+  min-width: 18px;
+  padding: 0 5px;
+  border-radius: 999px;
+  font-size: 10px;
+  line-height: 16px;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-muted);
+  background-color: var(--background-modifier-hover);
+}
+
+.terminus-sidebar-status {
+  flex: none;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+}
+
+.terminus-sidebar-status.is-working {
+  background-color: var(--tm-working);
+  animation: terminus-tab-pending-pulse 2s ease-in-out infinite;
+}
+
+.terminus-sidebar-status.is-needs-attention {
+  background-color: var(--tm-attention);
+  animation: terminus-tab-pending-pulse 1.2s ease-in-out infinite;
+}
+
+.terminus-sidebar-status.is-finished-unread {
+  background-color: var(--tm-finished);
+}
+
+.terminus-sidebar-status.is-idle {
+  box-shadow: inset 0 0 0 1.5px var(--text-faint);
+}
+
+/* "Tell this session…": a box on a running session's card. */
+.terminus-inbox-steer {
+  box-sizing: border-box;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 8px;
+  padding: 0 10px 8px;
+}
+
+.terminus-inbox-steer-input {
+  box-sizing: border-box;
+  width: 100%;
+  resize: vertical;
+  font-size: var(--font-ui-small);
+}
+
+.terminus-inbox-steer-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 6px;
+}
+
+/* The reason the buttons are off wraps onto its own line, not past the card. */
+.terminus-inbox-steer-actions .terminus-inbox-foot-note {
+  order: -1;
+  flex: 1 1 100%;
+  min-width: 0;
+  overflow-wrap: anywhere;
+  text-align: right;
+}
+
+/* The footer's way into a closed "Tell this session…" box. */
+.terminus-inbox-reply {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Messages queued for a session, above its "Tell this session…" box. */
+.terminus-inbox-queue {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 6px;
+  border: 1px solid var(--background-modifier-border);
+  border-radius: var(--radius-m);
+  background-color: var(--background-primary);
+}
+
+.terminus-inbox-queue-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  padding: 0 2px 2px;
+  color: var(--text-muted);
+  font-size: var(--font-ui-smaller);
+}
+
+.terminus-inbox-queue-title {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: var(--font-semibold);
+}
+
+.terminus-inbox-queue-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  min-width: 0;
+  padding: 2px 2px 2px 0;
+  border-radius: var(--radius-s);
+  font-size: var(--font-ui-small);
+}
+
+.terminus-inbox-queue-item:hover {
+  background-color: var(--background-modifier-hover);
+}
+
+.terminus-inbox-queue-item.is-dragging {
+  opacity: 0.45;
+}
+
+.terminus-inbox-queue-item.is-drop-before::before,
+.terminus-inbox-queue-item.is-drop-after::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: var(--interactive-accent);
+}
+
+.terminus-inbox-queue-item.is-drop-before::before {
+  top: -2px;
+}
+
+.terminus-inbox-queue-item.is-drop-after::after {
+  bottom: -2px;
+}
+
+.terminus-inbox-queue-grip {
+  display: flex;
+  flex: 0 0 auto;
+  color: var(--text-faint);
+  cursor: grab;
+}
+
+.terminus-inbox-queue-text {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.terminus-inbox-queue-steer {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 3px;
+}
+
+.terminus-inbox-queue-editor {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+/* Tasks sent from a session to new terminals, on its card. */
+.terminus-inbox-delegations {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.terminus-inbox-delegation {
+  padding: 8px 10px;
+  border: 1px solid var(--background-modifier-border);
+  border-radius: var(--radius-s);
+}
+
+.terminus-inbox-delegation-head {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.terminus-inbox-delegation-name {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-weight: 600;
+}
+
+.terminus-inbox-delegation-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+.terminus-delegate-input {
+  width: 100%;
+  resize: vertical;
+}
+
+/* A group back from a snooze, until it's visited. */
+.terminus-sidebar-woke {
+  flex: none;
+  font-size: var(--font-ui-smaller);
+  font-weight: 600;
+  color: var(--text-accent);
+}
+
+/* Reordering groups: a line where the dragged one will land. */
+.terminus-sidebar-group-card.is-dragging {
+  opacity: 0.5;
+}
+
+.terminus-sidebar-group-card.is-drop-before {
+  box-shadow: 0 -2px 0 0 var(--interactive-accent);
+}
+
+.terminus-sidebar-group-card.is-drop-after {
+  box-shadow: 0 2px 0 0 var(--interactive-accent);
+}
+
+/* "Go to terminal or group…": name, where it is, what it's doing. */
+.suggestion-item.terminus-switcher-item {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.terminus-switcher-item .terminus-switcher-name {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.terminus-switcher-item .terminus-switcher-meta,
+.terminus-switcher-item .terminus-switcher-status {
+  flex: none;
+  font-size: var(--font-ui-smaller);
+  color: var(--text-faint);
+}
+
+.terminus-switcher-item .terminus-switcher-status.is-needs-attention {
+  color: var(--color-orange, #e8871e);
+  font-weight: 600;
+}
+
+.terminus-switcher-item .terminus-switcher-status.is-working {
+  color: var(--interactive-accent);
+}
+
+/* The Done shelf: groups put away, one quiet line each. */
+.terminus-sidebar-done {
+  margin-top: 10px;
+}
+
+.terminus-sidebar-done-heading {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 8px;
+  border-radius: var(--radius-s);
+  font-size: var(--font-ui-smaller);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  cursor: pointer;
+}
+
+.terminus-sidebar-done-heading:hover,
+.terminus-sidebar-done-heading:focus-visible {
+  background-color: var(--background-modifier-hover);
+}
+
+.terminus-sidebar-done-count {
+  font-variant-numeric: tabular-nums;
+  font-weight: 400;
+  color: var(--text-faint);
+}
+
+.terminus-sidebar-done-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 8px;
+  border-radius: var(--radius-s);
+  font-size: var(--font-ui-small);
+  color: var(--text-muted);
+  cursor: pointer;
+}
+
+.terminus-sidebar-done-row:hover,
+.terminus-sidebar-done-row:focus-within {
+  background-color: var(--background-modifier-hover);
+}
+
+.terminus-sidebar-done-row.is-active {
+  color: var(--text-normal);
+}
+
+.terminus-sidebar-done-name {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.terminus-sidebar-done-row:hover .terminus-sidebar-group-state,
+.terminus-sidebar-done-row:focus-within .terminus-sidebar-group-state {
+  display: none;
+}
+
+.terminus-sidebar-done-row:hover .terminus-sidebar-row-actions,
+.terminus-sidebar-done-row:focus-within .terminus-sidebar-row-actions {
+  display: flex;
+}
+
+.terminus-sidebar-shell-tag {
+  flex: none;
+  font-size: 10px;
+  color: var(--text-faint);
+}
+
+/* Inline questions under a row: closing a busy terminal, and a linked
+   note's suggested status. */
+.terminus-sidebar-confirm,
+.terminus-sidebar-suggestion {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--tm-gap);
+  margin: 2px 4px 6px 26px;
+  padding: 8px 10px;
+  border-radius: var(--radius-s);
+  font-size: var(--font-ui-smaller);
+  color: var(--text-normal);
+}
+
+.terminus-sidebar-confirm {
+  background-color: var(--tm-attention-soft);
+}
+
+.terminus-sidebar-confirm .terminus-meta-icon {
+  color: var(--tm-attention);
+}
+
+.terminus-sidebar-suggestion {
+  background-color: var(--background-secondary-alt, var(--background-modifier-hover));
+}
+
+.terminus-sidebar-confirm-text,
+.terminus-sidebar-suggestion > span {
+  flex: 1 1 100%;
+}
+
+.terminus-sidebar-confirm button,
+.terminus-sidebar-suggestion button {
+  height: auto;
+  padding: 4px 10px;
+  font-size: var(--font-ui-smaller);
+}
+
+.terminus-sidebar-empty {
+  padding: 2px 8px 6px;
+  font-size: var(--font-ui-smaller);
+  color: var(--text-faint);
+}
+
+/* --- Empty states (sidebar and inbox) ------------------------------------ */
+
+.terminus-sidebar-empty-state,
+.terminus-inbox-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 32px 20px;
+  text-align: center;
+}
+
+.terminus-sidebar-empty-icon,
+.terminus-inbox-empty-icon {
+  margin-bottom: 4px;
+  color: var(--text-faint);
+  --icon-size: 28px;
+}
+
+.terminus-sidebar-empty-icon svg,
+.terminus-inbox-empty-icon svg {
+  width: 28px;
+  height: 28px;
+  stroke-width: 1.5;
+}
+
+.terminus-sidebar-empty-title,
+.terminus-inbox-empty-title {
+  font-weight: 600;
+  color: var(--text-normal);
+}
+
+.terminus-sidebar-empty-text,
+.terminus-inbox-empty-text {
+  max-width: 30ch;
+  font-size: var(--font-ui-smaller);
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+
+/* --- Agent inbox ---------------------------------------------------------
+   The view also carries terminus-pending-view, so change rows, the
+   Recently resolved list and its button reset look exactly as they do in
+   Pending Changes. That reset strips default button styling, so the
+   inbox's own buttons are styled here. */
+
+.terminus-inbox-header {
+  display: flex;
+  align-items: center;
+  gap: var(--tm-gap);
+  padding: 10px 10px 6px 14px;
+  /* The overlap popover hangs off this. */
+  position: relative;
+}
+
+.terminus-inbox-title {
+  flex: 1 1 auto;
+  font-weight: 600;
+  font-size: var(--font-ui-medium);
+  color: var(--text-normal);
+}
+
+.terminus-inbox-view .terminus-inbox-next,
+.terminus-inbox-view .terminus-inbox-feedback-row button,
+.terminus-inbox-view .terminus-inbox-banner button {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  height: var(--tm-button-height);
+  padding: 0 10px;
+  line-height: 1;
+  border-radius: var(--button-radius, var(--radius-s));
+  font-size: var(--font-ui-smaller);
+  font-weight: 500;
+  color: var(--text-normal);
+  background-color: var(--interactive-normal);
+  box-shadow: var(--input-shadow);
+}
+
+.terminus-inbox-view .terminus-inbox-next:hover:not(:disabled),
+.terminus-inbox-view .terminus-inbox-feedback-row button:hover,
+.terminus-inbox-view .terminus-inbox-banner button:hover {
+  background-color: var(--interactive-hover);
+}
+
+.terminus-inbox-view button.mod-cta {
+  color: var(--text-on-accent);
+  background-color: var(--interactive-accent);
+}
+
+.terminus-inbox-view button.mod-cta:hover {
+  background-color: var(--interactive-accent-hover);
+}
+
+.terminus-inbox-view .terminus-inbox-next:disabled {
+  opacity: 0.55;
+  cursor: default;
+  box-shadow: none;
+}
+
+.terminus-inbox-count {
+  min-width: 18px;
+  padding: 0 5px;
+  border-radius: 999px;
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 16px;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-on-accent);
+  background-color: var(--tm-attention);
+}
+
+.terminus-inbox-section .terminus-inbox-count {
+  color: var(--text-muted);
+  background-color: var(--background-modifier-hover);
+}
+
+/* One quiet line of totals; its parts are separated by middle dots. */
+.terminus-inbox-totals {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px 0;
+  /* Equal above and below: it sits between two rules. */
+  padding: 8px 14px;
+  border-bottom: 1px solid var(--background-modifier-border);
+  font-size: var(--font-ui-smaller);
+  line-height: 1.3;
+  color: var(--text-faint);
+  font-variant-numeric: tabular-nums;
+}
+
+.terminus-inbox-totals > span + span::before {
+  content: "·";
+  margin: 0 7px;
+}
+
+/* The inbox scrolls as a whole: a long list of cards would otherwise be
+   clipped by the pending-view frame's overflow. */
+.terminus-inbox-view.terminus-pending-view {
+  overflow-y: auto;
+}
+
+/* What the inbox is showing (the sidebar's selected group), and the way to
+   see everything. */
+.terminus-inbox-scope {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 8px;
+  padding: 6px 14px;
+  border-bottom: 1px solid var(--background-modifier-border);
+  font-size: var(--font-ui-smaller);
+  color: var(--text-muted);
+}
+
+/* Show all / Follow group stays at the right edge, wrapped or not. */
+.terminus-inbox-scope .terminus-btn-ghost {
+  margin-left: auto;
+}
+
+.terminus-inbox-scope-what {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 600;
+  color: var(--text-normal);
+}
+
+/* Prefixed like the other inbox buttons, to outrank the theme's own. */
+.terminus-inbox-view .terminus-inbox-scope-alert {
+  padding: 0 6px;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+  height: auto;
+  font-size: inherit;
+  font-weight: 600;
+  color: var(--tm-attention);
+  cursor: pointer;
+}
+
+.terminus-inbox-view .terminus-inbox-scope-alert:hover {
+  text-decoration: underline;
+}
+
+/* The card of the terminal in front. */
+.terminus-inbox-card.is-focused:not(.is-needs-attention) {
+  border-color: var(--interactive-accent);
+}
+
+/* A session in another group: one line, who it is and what it wants. */
+.terminus-inbox-elsewhere {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 2px;
+  padding: 5px 8px;
+  border-radius: var(--radius-s);
+  font-size: var(--font-ui-small);
+  cursor: pointer;
+}
+
+.terminus-inbox-elsewhere:hover,
+.terminus-inbox-elsewhere:focus-visible {
+  background-color: var(--background-modifier-hover);
+}
+
+.terminus-inbox-elsewhere-name {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.terminus-inbox-elsewhere-group {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.terminus-inbox-elsewhere-group,
+.terminus-inbox-elsewhere-review {
+  flex: 0 1 auto;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: var(--font-ui-smaller);
+  color: var(--text-faint);
+}
+
+/* A long change list, grouped by folder. */
+.terminus-inbox-tree-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 8px;
+  font-size: var(--font-ui-smaller);
+  color: var(--text-muted);
+  /* Opaque, and the same surface as the card body it rides over. */
+  background-color: var(--background-primary-alt);
+}
+
+.terminus-inbox-folder {
+  position: sticky;
+  top: calc(var(--terminus-stick-top, 0px) + var(--terminus-section-h, 25px) + var(--terminus-card-head-h, 32px));
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 8px;
+  background-color: var(--background-primary-alt);
+  transition: box-shadow 140ms ease;
+  border-radius: var(--radius-s);
+  font-size: var(--font-ui-smaller);
+  color: var(--text-muted);
+  cursor: pointer;
+}
+
+.terminus-inbox-folder:hover,
+.terminus-inbox-folder:focus-visible {
+  background-image: linear-gradient(var(--background-modifier-hover), var(--background-modifier-hover));
+}
+
+.terminus-inbox-folder-name {
+  display: inline-flex;
+  flex: 1 1 auto;
+  min-width: 0;
+  align-items: center;
+  gap: 5px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.terminus-inbox-folder-count {
+  color: var(--text-faint);
+  font-variant-numeric: tabular-nums;
+}
+
+/* The card a sidebar count pointed at. */
+.terminus-inbox-card.is-revealed {
+  box-shadow: 0 0 0 2px var(--interactive-accent);
+}
+
+.terminus-sidebar-pending {
+  cursor: pointer;
+}
+
+.terminus-sidebar-pending:hover,
+.terminus-sidebar-group-state .is-review-link:hover {
+  color: var(--text-accent);
+}
+
+.terminus-sidebar-group-state .is-review-link {
+  cursor: pointer;
+}
+
+.terminus-inbox-body {
+  padding: 4px 8px 16px;
+}
+
+/* Four levels pin, each inside its own box: the section heading
+   ("Finished"), the session card's name, the turn, and the folder. Every
+   level parks under the one above it, and because each lives in its own
+   containing block, scrolling past a section or a card hands the pin to the
+   next one instead of stacking two of them. */
+.terminus-inbox-section {
+  position: sticky;
+  top: var(--terminus-stick-top, 0px);
+  z-index: 6;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  /* The side margin became padding: same text position, but the band is
+     wide enough to cover the cards passing under it. */
+  margin: 14px 0 6px;
+  padding: 2px 4px 3px;
+  /* Every heading on a level is the height of its tallest sibling, so the
+     level below pins flush against any of them. The measured height is a
+     border box, so min-height has to mean the same thing or each pass
+     inflates it by the padding. */
+  box-sizing: border-box;
+  min-height: var(--terminus-section-h, 25px);
+  background-color: var(--terminus-pane-bg, var(--background-secondary));
+  transition: box-shadow 140ms ease;
+  font-size: var(--font-ui-smaller);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.terminus-inbox-section.is-collapsible {
+  cursor: pointer;
+  border-radius: var(--radius-s);
+}
+
+.terminus-inbox-section-chevron,
+.terminus-inbox-chevron {
+  display: inline-flex;
+  color: var(--text-faint);
+}
+
+.terminus-inbox-section-chevron svg,
+.terminus-inbox-chevron svg {
+  width: 14px;
+  height: 14px;
+}
+
+.terminus-inbox-card {
+  position: relative;
+  /* `hidden` would make the card a scroll container, and a sticky header
+     inside one pins to the card instead of to the pane -- it never moves.
+     `clip` clips identically without becoming a scroller. The `hidden`
+     above it is the fallback for engines without `clip`, where the
+     headers simply scroll away as they used to. */
+  overflow: hidden;
+  overflow: clip;
+  margin: 0 0 10px;
+  border: 1px solid var(--background-modifier-border);
+  border-radius: var(--radius-m);
+  background-color: var(--background-primary);
+}
+
+.terminus-inbox-card.is-needs-attention {
+  border-color: var(--tm-attention);
+  box-shadow: 0 2px 8px rgba(var(--color-orange-rgb, 232, 135, 30), 0.12);
+}
+
+.terminus-inbox-card.is-ended {
+  opacity: 0.8;
+}
+
+/* The session's whole identity -- name, status, counts, banner, closing
+   message -- pins as one block, with the card's own surface behind it so
+   the work below passes out of sight. `flow-root` keeps the banner's and
+   the message's bottom margins inside the block, so the measured height is
+   the height the eye sees and the turn below lands flush. */
+.terminus-inbox-card-top {
+  position: sticky;
+  top: calc(var(--terminus-stick-top, 0px) + var(--terminus-section-h, 25px));
+  z-index: 5;
+  display: flow-root;
+  background-color: var(--background-primary);
+  transition: box-shadow 140ms ease;
+  /* Once the card's own top border has scrolled away, the pinned block
+     redraws it, joining the left and right borders that are still there --
+     so a pinned session still reads as the top of a card. Straight, not
+     rounded: the rounded corners went with the border. */
+  --terminus-card-edge: transparent;
+  box-shadow: inset 0 1px 0 var(--terminus-card-edge);
+}
+
+.terminus-inbox-card-top.is-pinned {
+  --terminus-card-edge: var(--background-modifier-border);
+}
+
+.terminus-inbox-card.is-needs-attention .terminus-inbox-card-top.is-pinned {
+  --terminus-card-edge: var(--tm-attention);
+}
+
+.terminus-inbox-card-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 10px 4px 16px;
+  cursor: pointer;
+}
+
+.terminus-inbox-card-name {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-weight: 600;
+  color: var(--text-normal);
+}
+
+.terminus-inbox-pill {
+  flex: none;
+  padding: 0 8px;
+  border-radius: 999px;
+  font-size: 10.5px;
+  font-weight: 500;
+  line-height: 18px;
+  color: var(--text-muted);
+  background-color: var(--background-modifier-hover);
+}
+
+.terminus-inbox-pill.is-needs-attention {
+  color: var(--tm-attention);
+  background-color: var(--tm-attention-soft);
+}
+
+.terminus-inbox-pill.is-working {
+  color: var(--tm-working);
+  background-color: rgba(var(--interactive-accent-rgb, 124, 111, 240), 0.14);
+}
+
+.terminus-inbox-pill.is-finished {
+  color: var(--tm-finished);
+  background-color: rgba(var(--color-blue-rgb, 8, 109, 221), 0.12);
+}
+
+.terminus-inbox-card-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 2px 10px;
+  padding: 0 12px 8px 16px;
+  font-size: var(--font-ui-smaller);
+  color: var(--text-faint);
+  font-variant-numeric: tabular-nums;
+}
+
+.terminus-inbox-pending {
+  display: inline-flex;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+.terminus-inbox-group {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--text-muted);
+}
+
+.terminus-inbox-group .terminus-group-icon svg {
+  width: 13px;
+  height: 13px;
+}
+
+/* The agent a session runs as (`claude --agent`), like the branch. */
+.terminus-inbox-agent-name-meta {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.terminus-inbox-branch {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-family: var(--font-monospace);
+  font-size: 0.95em;
+}
+
+.terminus-inbox-banner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin: 0 12px 10px 16px;
+  padding: 8px 10px;
+  border-radius: var(--radius-s);
+  background-color: var(--tm-attention-soft);
+}
+
+.terminus-inbox-banner-text {
+  display: inline-flex;
+  flex: 1 1 auto;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+  font-size: var(--font-ui-smaller);
+  color: var(--text-normal);
+}
+
+.terminus-inbox-banner-text .terminus-meta-icon {
+  color: var(--tm-attention);
+}
+
+.terminus-inbox-quote {
+  margin: 0 12px 10px 16px;
+  font-size: var(--font-ui-smaller);
+  line-height: 1.5;
+  color: var(--text-muted);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.terminus-inbox-quote.is-failed {
+  color: var(--tm-bad);
+}
+
+.terminus-inbox-quote.is-failed .terminus-meta-icon {
+  margin-right: 4px;
+  color: var(--tm-bad);
+  vertical-align: -2px;
+}
+
+/* Change rows inside a card line up with the card's text: on the card's
+   left edge when there are no subagents, and under the agent's name when
+   they belong to one. The rows themselves are Pending Changes' own. */
+.terminus-inbox-changes .terminus-pending-list {
+  padding: 0 6px 6px 8px;
+}
+
+/* An agent's files hang off it on a hairline guide that runs down from
+   its mark, so each file reads as that agent's, however many agents the
+   card has. */
+.terminus-inbox-agent-changes {
+  margin: 4px 0 2px 6px;
+  border-left: 1px solid var(--background-modifier-border-hover);
+}
+
+.terminus-inbox-agent-changes .terminus-pending-list {
+  padding: 0 0 0 6px;
+}
+
+/* The inbox's change row (Multi-agent only; Classic keeps the original):
+   the name with its counts on the right, the path, then the actions on a
+   line of their own, always shown -- Split diff and Open as small
+   icon-and-label buttons on the left, Reject and Keep as plain icons on the
+   right that take their colour only on hover. A card is a narrow column,
+   so the actions get their own line rather than squeezing the name. */
+.terminus-pending-row.is-inbox .terminus-pending-row-summary {
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 0 6px;
+  /* 8px on the right, matching the turn and folder headings above, so the
+     +/- counts and the Keep button run down one line. */
+  padding: 6px 8px 4px 6px;
+}
+
+.terminus-pending-row.is-inbox .terminus-pending-chevron {
+  line-height: 18px;
+}
+
+/* The row wraps so the actions can take a line of their own. A zero basis
+   keeps the name beside the chevron however long it is: with `auto`, a long
+   name's full width would push the whole block onto a new line. */
+.terminus-pending-row.is-inbox .terminus-pending-info {
+  flex: 1 1 0;
+}
+
+.terminus-pending-row.is-inbox .terminus-pending-filename-row {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.terminus-pending-row.is-inbox .terminus-pending-filename {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.terminus-pending-stats {
+  display: inline-flex;
+  flex: none;
+  gap: 4px;
+  margin-left: auto;
+  font-variant-numeric: tabular-nums;
+}
+
+.terminus-pending-warning {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.terminus-pending-warning .terminus-meta-icon {
+  color: inherit;
+}
+
+.terminus-pending-row.is-inbox .terminus-pending-row-actions {
+  display: flex;
+  flex: 1 0 100%;
+  align-items: center;
+  gap: 2px;
+  margin-top: 2px;
+  /* Under the name: the chevron's width (20px) plus the gap (6px). */
+  padding-left: 26px;
+}
+
+.terminus-pending-row.is-inbox .terminus-row-resolve.is-reject {
+  margin-left: auto;
+}
+
+.terminus-inbox-view .terminus-row-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  height: 24px;
+  padding: 0 7px;
+  border-radius: var(--radius-s);
+  font-size: var(--font-ui-smaller);
+  color: var(--text-muted);
+  background: transparent;
+}
+
+.terminus-inbox-view .terminus-row-action:hover {
+  color: var(--text-normal);
+  background-color: var(--background-modifier-hover);
+}
+
+.terminus-inbox-view .terminus-row-action .terminus-meta-icon {
+  color: inherit;
+}
+
+.terminus-inbox-view .terminus-row-resolve {
+  --icon-size: 15px;
+  padding: 4px;
+  color: var(--text-muted);
+}
+
+.terminus-inbox-view .terminus-row-resolve.is-reject:hover {
+  color: var(--tm-bad);
+  background-color: rgba(var(--color-red-rgb, 233, 49, 71), 0.1);
+}
+
+.terminus-inbox-view .terminus-row-resolve.is-keep:hover {
+  color: var(--tm-ok);
+  background-color: rgba(var(--color-green-rgb, 8, 185, 78), 0.12);
+}
+
+/* One agent on a card -- the lead or a subagent -- always the same shape. */
+.terminus-inbox-agent {
+  padding: 8px 10px 6px 16px;
+  border-top: 1px solid var(--background-modifier-border);
+}
+
+.terminus-inbox-agent-line {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.terminus-inbox-agent-mark {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 14px;
+  height: 14px;
+}
+
+.terminus-inbox-agent-mark svg {
+  width: 13px;
+  height: 13px;
+  stroke-width: 2.5;
+}
+
+.terminus-inbox-agent-mark.is-lead {
+  color: var(--text-muted);
+}
+
+.terminus-inbox-agent-mark.is-lead svg {
+  stroke-width: 2;
+}
+
+.terminus-inbox-agent-mark.is-running::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: var(--tm-working);
+  animation: terminus-tab-pending-pulse 2s ease-in-out infinite;
+}
+
+.terminus-inbox-agent-mark.is-done {
+  color: var(--tm-ok);
+}
+
+.terminus-inbox-agent-mark.is-failed {
+  color: var(--tm-bad);
+}
+
+.terminus-inbox-agent-mark.is-stopped {
+  color: var(--text-faint);
+}
+
+/* The agent's task, then its type, quieter; its change count and stats
+   at the end of the line, like a file's. */
+.terminus-inbox-agent-name {
+  flex: 0 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-weight: 600;
+  color: var(--text-normal);
+}
+
+.terminus-inbox-agent-desc {
+  flex: 0 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: var(--font-ui-smaller);
+  color: var(--text-faint);
+}
+
+.terminus-inbox-agent-stats {
+  display: inline-flex;
+  flex: none;
+  gap: 4px;
+  margin-left: auto;
+  padding-left: 6px;
+  font-size: var(--font-ui-smaller);
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+/* An agent that finished without changes, inside the folded line: one
+   quiet line, no rule above it. */
+.terminus-inbox-agent.is-compact {
+  padding: 3px 10px 3px 16px;
+  border-top: none;
+}
+
+.terminus-inbox-agent.is-compact .terminus-inbox-agent-name {
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+.terminus-inbox-quiet {
+  padding: 2px 0 4px;
+  border-top: 1px solid var(--background-modifier-border);
+}
+
+.terminus-inbox-card-body > .terminus-inbox-quiet:first-child {
+  border-top: none;
+}
+
+.terminus-inbox-quiet-toggle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 2px 6px;
+  padding: 3px 4px 3px 10px;
+  border-radius: var(--radius-s);
+  font-size: var(--font-ui-smaller);
+  color: var(--text-muted);
+  cursor: pointer;
+}
+
+.terminus-inbox-quiet-toggle:hover {
+  color: var(--text-normal);
+  background-color: var(--background-modifier-hover);
+}
+
+.terminus-inbox-quiet .terminus-inbox-more {
+  padding-left: 36px;
+}
+
+/* A file other agents in the session also edited: who, under its path. */
+.terminus-pending-coeditors {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: var(--font-ui-smaller);
+  color: var(--text-muted);
+}
+
+.terminus-pending-coeditors .terminus-meta-icon {
+  color: inherit;
+}
+
+/* "Clear" on the Finished heading: dismisses what's done. */
+.terminus-inbox-view .terminus-inbox-clear {
+  height: auto;
+  margin-left: auto;
+  padding: 1px 6px;
+  border: none;
+  box-shadow: none;
+  background: none;
+  font-size: var(--font-ui-smaller);
+  font-weight: 500;
+  letter-spacing: normal;
+  text-transform: none;
+  color: var(--text-faint);
+  cursor: pointer;
+}
+
+.terminus-inbox-view .terminus-inbox-clear:hover {
+  color: var(--text-normal);
+  background-color: var(--background-modifier-hover);
+}
+
+.terminus-inbox-agent-details {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px 10px;
+  padding-left: 20px;
+  font-size: var(--font-ui-smaller);
+  color: var(--text-faint);
+  font-variant-numeric: tabular-nums;
+}
+
+.terminus-inbox-agent-error {
+  padding-left: 20px;
+  font-size: var(--font-ui-smaller);
+  color: var(--tm-bad);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.terminus-inbox-more {
+  padding: 4px 12px 6px 36px;
+  font-size: var(--font-ui-smaller);
+  color: var(--text-faint);
+}
+
+/* Turn grouping (Multi-agent): a header per user request above the files it
+   changed, shown only when a card's pending changes span more than one. The
+   header reads as a quieter sibling of the folder header it sits beside. */
+.terminus-inbox-turns-summary {
+  display: inline-flex;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+.terminus-inbox-turns {
+  padding: 2px 0;
+}
+
+.terminus-inbox-turn-head {
+  position: sticky;
+  top: calc(var(--terminus-stick-top, 0px) + var(--terminus-section-h, 25px) + var(--terminus-card-head-h, 32px));
+  z-index: 3;
+  display: flex;
+  align-items: baseline;
+  gap: 5px;
+  /* More room above a heading than below it, and the same 8px right edge
+     as every folder heading and file row, so the counts line up. */
+  margin-top: 10px;
+  padding: 5px 8px;
+  font-size: var(--font-ui-smaller);
+  color: var(--text-muted);
+  cursor: pointer;
+  background-color: var(--background-primary-alt);
+  transition: box-shadow 140ms ease;
+}
+
+.terminus-inbox-turn:first-child .terminus-inbox-turn-head {
+  margin-top: 0;
+}
+
+/* No rule anywhere at rest. One hairline appears under the bottom of the
+   pinned stack, where rows are actually passing -- an affordance, not
+   decoration; the seams inside the stack stay unruled so four pinned levels
+   don't read as four stripes. Inset, so it takes no space and nothing
+   below it shifts. */
+.terminus-inbox-section.is-stuck,
+.terminus-inbox-card-top.is-stuck,
+.terminus-inbox-turn-head.is-stuck,
+.terminus-inbox-folder.is-stuck {
+  box-shadow: inset 0 -1px 0 var(--background-modifier-border);
+}
+
+/* A card top can be both: the card's edge above, the stack's hairline below. */
+.terminus-inbox-card-top.is-stuck {
+  box-shadow: inset 0 1px 0 var(--terminus-card-edge), inset 0 -1px 0 var(--background-modifier-border);
+}
+
+/* Under a turn the folder heading is the fourth level, so it adds the turn
+   header's height to the stack above it. */
+.terminus-inbox-turn-body .terminus-inbox-folder {
+  top: calc(var(--terminus-stick-top, 0px) + var(--terminus-section-h, 25px) + var(--terminus-card-head-h, 32px) + var(--terminus-turn-head-h, 28px));
+}
+
+/* The fold-all control, left of the totals so the numbers stay rightmost. */
+.terminus-inbox-fold-slot {
+  display: inline-flex;
+  flex: none;
+  align-self: center;
+}
+
+.terminus-inbox-fold-slot:empty {
+  display: none;
+}
+
+.terminus-inbox-turn-head:hover,
+.terminus-inbox-turn-head:focus-visible {
+  /* Layered over the opaque surface rather than replacing it: the header
+     has to stay opaque while rows pass under it. */
+  background-image: linear-gradient(var(--background-modifier-hover), var(--background-modifier-hover));
+}
+
+.terminus-inbox-turn-head .terminus-inbox-chevron {
+  flex: none;
+  align-self: center;
+}
+
+/* The turn's position in the session, so two similar prompts stay apart. */
+.terminus-inbox-turn-index {
+  flex: none;
+  min-width: 1.1em;
+  padding: 0 3px;
+  border-radius: var(--radius-s);
+  background-color: var(--background-modifier-border);
+  color: var(--text-faint);
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+}
+
+.terminus-inbox-turn-head.is-failed .terminus-inbox-turn-index {
+  background-color: var(--background-modifier-error);
+  color: var(--text-normal);
+}
+
+/* The prompt takes the room that's left and ends in an ellipsis; the whole
+   of it is on the header's title. */
+.terminus-inbox-turn-prompt {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--text-normal);
+}
+
+.terminus-inbox-turn-stats {
+  flex: none;
+  display: inline-flex;
+  gap: 5px;
+  color: var(--text-faint);
+  font-variant-numeric: tabular-nums;
+}
+
+.terminus-inbox-turn-body {
+  margin: 0 0 4px 10px;
+}
+
+.terminus-inbox-turn-body > .terminus-inbox-changes .terminus-pending-list {
+  padding: 0 0 0 6px;
+}
+
+/* Files changed outside Claude's edit tools (see git/gitStatus.ts). Warning
+   colours would overstate it -- these are most often a formatter doing its
+   job -- so it reads as a note, with only the rows clickable. */
+.terminus-inbox-shell {
+  padding: 2px 0 4px;
+  border-top: 1px solid var(--background-modifier-border);
+}
+
+.terminus-inbox-shell-head {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 10px 5px 8px;
+  border-radius: var(--radius-s);
+  font-size: var(--font-ui-smaller);
+  color: var(--text-muted);
+  cursor: pointer;
+}
+
+.terminus-inbox-shell-head:hover,
+.terminus-inbox-shell-head:focus-visible {
+  background-color: var(--background-modifier-hover);
+}
+
+.terminus-inbox-shell-list {
+  margin: 0 0 2px 10px;
+  border-left: 1px solid var(--background-modifier-border-hover);
+}
+
+.terminus-inbox-shell-row {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  padding: 3px 8px 3px 10px;
+  border-radius: var(--radius-s);
+  font-size: var(--font-ui-smaller);
+  cursor: pointer;
+}
+
+.terminus-inbox-shell-row:hover,
+.terminus-inbox-shell-row:focus-visible {
+  background-color: var(--background-modifier-hover);
+}
+
+.terminus-inbox-shell-path {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-family: var(--font-monospace);
+  color: var(--text-muted);
+}
+
+.terminus-inbox-shell-status {
+  flex: none;
+  color: var(--text-faint);
+}
+
+.terminus-inbox-feedback {
+  padding: 8px 12px 10px 16px;
+  border-top: 1px solid var(--background-modifier-border);
+}
+
+.terminus-inbox-feedback-title {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 500;
+  color: var(--text-normal);
+}
+
+.terminus-inbox-feedback-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--tm-gap);
+  margin-top: 8px;
+}
+
+.terminus-inbox-feedback-list {
+  margin-top: 6px;
+}
+
+.terminus-inbox-feedback-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 2px 0;
+  font-size: var(--font-ui-smaller);
+  color: var(--text-muted);
+}
+
+.terminus-inbox-feedback-place {
+  flex: none;
+  max-width: 45%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-family: var(--font-monospace);
+  color: var(--text-faint);
+}
+
+.terminus-inbox-feedback-text {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.terminus-inbox-card-foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 8px 4px 10px;
+  border-top: 1px solid var(--background-modifier-border);
+  background-color: var(--background-primary-alt);
+}
+
+/* The card's body: what the session did (changes, agents, queued
+   comments), below a rule on the alternate surface, as a group card's
+   terminals are in the sidebar. The header above it says what the
+   session is doing; the footer shares the body's surface. */
+.terminus-inbox-card-body {
+  padding-top: 6px;
+  border-top: 1px solid var(--background-modifier-border);
+  background-color: var(--background-primary-alt);
+}
+
+.terminus-inbox-card-body > .terminus-inbox-agent:first-child,
+.terminus-inbox-card-body > .terminus-inbox-feedback:first-child {
+  border-top: none;
+}
+
+.terminus-inbox-card-body > .terminus-inbox-agent:first-child {
+  padding-top: 2px;
+}
+
+.terminus-inbox-card-body > .terminus-inbox-feedback:first-child {
+  padding-top: 2px;
+}
+
+.terminus-inbox-spacer {
+  flex: 1 1 auto;
+}
+
+.terminus-inbox-foot-note {
+  font-size: var(--font-ui-smaller);
+  color: var(--text-faint);
+}
+
+/* In a card's footer the note sits among ghost buttons (10.5px): match them. */
+.terminus-inbox-card-foot .terminus-inbox-foot-note {
+  font-size: 10.5px;
+}
+
+/* --- Split Diff comments ------------------------------------------------ */
+
+.terminus-split-diff-queued {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin-left: 10px;
+  font-size: var(--font-ui-smaller);
+  color: var(--text-muted);
+}
+
+.terminus-split-diff-comment-box {
+  margin: 0 10px 10px;
+  padding: 10px;
+  border: 1px solid var(--background-modifier-border);
+  border-radius: var(--radius-m);
+  background-color: var(--background-secondary);
+  font-family: var(--font-interface);
+}
+
+.terminus-split-diff-comment-input {
+  display: block;
+  width: 100%;
+  min-height: 64px;
+  resize: vertical;
+  font-family: var(--font-interface);
+  font-size: var(--font-ui-small);
+  line-height: 1.5;
+}
+
+.terminus-split-diff-comment-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--tm-gap);
+  margin-top: 8px;
+}
+
+.terminus-split-diff-comment-actions button {
+  font-family: var(--font-interface);
+  font-size: var(--font-ui-smaller);
+}
+
+.terminus-split-diff-comment-actions button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+/* Split Diff's per-hunk Comment: quiet, so it doesn't compete with
+   Reject/Accept. */
+.terminus-inline-diff-comment {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  margin-right: 8px;
+}
+
+.terminus-inline-diff-comment:hover {
+  color: var(--text-normal);
+}
+
+/* --- Status bar: the selected group ------------------------------------- */
+
+.terminus-group-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+}
+
+.terminus-group-status .terminus-meta-icon {
+  color: inherit;
+}
+
+.terminus-group-status .terminus-meta-icon svg {
+  width: 12px;
+  height: 12px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .terminus-sidebar-status.is-working,
+  .terminus-sidebar-status.is-needs-attention,
+  .terminus-inbox-agent-mark.is-running::before {
+    animation: none;
+  }
+}
+
+/* Groups (Multi-agent): another group's tabs are hidden, not closed, and a
+   pane left with nothing showing collapses. The split rule counts panes
+   hidden by Working tabs too, so the two plugins' hiding adds up instead of
+   leaving an empty split behind; it's specific enough to win over Working
+   tabs' own "show a split with a visible pane" rule. */
+.workspace-tab-header.terminus-hidden-tab {
+  display: none;
+}
+
+body:not(.is-phone) .workspace-split.mod-root .workspace-tabs.terminus-hidden-pane {
+  display: none;
+}
+
+body:not(.is-phone) .workspace-split.mod-root .workspace-split:has(.workspace-tabs):not(:has(.workspace-tabs:not(.terminus-hidden-pane):not(.working-tabs-hidden-pane))) {
+  display: none;
+}
+
+/* --------------------------------------------------------------------------
+   Files more than one session wrote.
+
+   PendingChangesStore keys a pending change by file path alone, so two
+   terminals editing one file inside a review window coalesce into a single
+   row that keeps the FIRST edit's snapshot. Three surfaces say so: a chip in
+   the header, a note under the turn that produced the files, and a line on
+   the card of the session whose edits are filed elsewhere.
+
+   Nothing here is an alarm. Leaving the changes alone is identical to
+   keeping them (resolveItem writes nothing when accepted), so these say what
+   happened rather than warn, and carry no attention colour.
+   -------------------------------------------------------------------------- */
+
+.terminus-pending-view .terminus-inbox-overlap-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  height: 22px;
+  padding: 0 6px;
+  border: 0;
+  border-radius: var(--radius-s);
+  background-color: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+}
+
+.terminus-pending-view .terminus-inbox-overlap-chip:hover,
+.terminus-pending-view .terminus-inbox-overlap-chip[aria-expanded="true"] {
+  background-color: var(--background-modifier-hover);
+  color: var(--text-normal);
+}
+
+.terminus-pending-view .terminus-inbox-overlap-chip .terminus-inbox-count {
+  background-color: var(--background-modifier-hover);
+  color: var(--text-normal);
+}
+
+.terminus-inbox-overlap-pop {
+  position: absolute;
+  top: calc(100% - 2px);
+  right: 10px;
+  z-index: 20;
+  /* Never wider than the pane: a floating panel that overhangs a sidebar
+     gets clipped at the workspace edge. */
+  width: min(320px, calc(100% - 20px));
+  padding: 10px 0 6px;
+  border: 1px solid var(--background-modifier-border);
+  border-radius: var(--radius-m);
+  background-color: var(--background-primary-alt, var(--background-primary));
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+}
+
+.terminus-inbox-overlap-group {
+  padding: 0 12px;
+}
+
+.terminus-inbox-overlap-group + .terminus-inbox-overlap-group {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid var(--background-modifier-border);
+}
+
+.terminus-inbox-overlap-ask {
+  padding-left: 8px;
+  border-left: 2px solid var(--background-modifier-border);
+  color: var(--text-normal);
+  font-size: var(--font-ui-smaller);
+  line-height: 1.5;
+  /* Two lines of the request is enough to recognise it; more would push
+     the files it is about off the bottom. */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.terminus-inbox-overlap-ask.is-unrecorded {
+  color: var(--text-faint);
+  font-style: italic;
+}
+
+.terminus-inbox-overlap-by {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin: 4px 0 0 8px;
+  color: var(--text-muted);
+  font-size: var(--font-ui-smaller);
+}
+
+.terminus-inbox-overlap-dot {
+  width: 6px;
+  height: 6px;
+  flex: none;
+  border-radius: 50%;
+  background-color: var(--text-faint);
+}
+
+.terminus-inbox-overlap-then {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 6px 0;
+  color: var(--text-faint);
+  font-size: var(--font-ui-smaller);
+}
+
+.terminus-inbox-overlap-line {
+  flex: 1;
+  height: 1px;
+  background-color: var(--background-modifier-border);
+}
+
+.terminus-inbox-overlap-files {
+  margin: 6px -12px 0;
+}
+
+/* An ordinary file row. Nothing marks it as overlapping: inside this
+   popover every row is, and the pairing is told once above. */
+.terminus-pending-view .terminus-inbox-overlap-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto 16px;
+  align-items: center;
+  gap: 0 6px;
+  width: 100%;
+  min-height: 28px;
+  padding: 3px 12px;
+  border: 0;
+  border-radius: var(--radius-s);
+  background-color: transparent;
+  color: var(--text-normal);
+  text-align: left;
+  cursor: pointer;
+}
+
+.terminus-pending-view .terminus-inbox-overlap-row:hover {
+  background-color: var(--background-modifier-hover);
+}
+
+.terminus-inbox-overlap-name {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  min-width: 0;
+}
+
+.terminus-inbox-overlap-file {
+  flex: 0 1 auto;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: var(--font-ui-small);
+}
+
+/* Shrinks far sooner than the filename: the folder disambiguates, the
+   filename is the thing being read. */
+.terminus-inbox-overlap-folder {
+  flex: 0 40 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--text-faint);
+  font-size: var(--font-ui-smaller);
+}
+
+.terminus-inbox-overlap-stats {
+  display: flex;
+  gap: 4px;
+  justify-content: flex-end;
+  font-variant-numeric: tabular-nums;
+  font-size: var(--font-ui-smaller);
+}
+
+.terminus-inbox-overlap-go {
+  display: flex;
+  justify-content: flex-end;
+  color: var(--text-faint);
+  opacity: 0;
+  transition: opacity 120ms ease;
+}
+
+.terminus-pending-view .terminus-inbox-overlap-row:hover .terminus-inbox-overlap-go,
+.terminus-pending-view .terminus-inbox-overlap-row:focus-visible .terminus-inbox-overlap-go {
+  opacity: 1;
+}
+
+.terminus-inbox-overlap-foot {
+  margin-top: 8px;
+  padding: 8px 12px 0;
+  border-top: 1px solid var(--background-modifier-border);
+  color: var(--text-faint);
+  font-size: var(--font-ui-smaller);
+  line-height: 1.5;
+}
+
+/* Under the turn whose files were rewritten afterwards. Indented past the
+   turn header's chevron and index so it reads as belonging to it. */
+.terminus-inbox-overlap-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 4px;
+  padding: 0 10px 4px 32px;
+  color: var(--text-muted);
+  font-size: var(--font-ui-smaller);
+  line-height: 1.45;
+}
+
+.terminus-inbox-overlap-note .terminus-meta-icon {
+  color: var(--text-faint);
+  margin-top: 1px;
+}
+
+/* On a card with no turn headers the note has nothing to sit under, so it
+   lines up with the card's own content instead. */
+.terminus-inbox-card-body > .terminus-inbox-overlap-note {
+  padding-left: 16px;
+}
+
+/* On the card of the session whose overlapping edits are filed on another
+   card (renderOnAnotherCard -- nothing to do with the Elsewhere section,
+   which lists cards outside the selected group). Boxed, because it is about
+   files that are NOT in the list below it, and an unboxed line there would
+   read as a caption for them. */
+.terminus-inbox-overlap-moved {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  margin: 2px 10px 8px 14px;
+  padding: 6px 8px;
+  border-radius: var(--radius-s);
+  background-color: var(--background-modifier-hover);
+  color: var(--text-muted);
+  font-size: var(--font-ui-smaller);
+  line-height: 1.45;
+}
+
+.terminus-inbox-overlap-moved .terminus-meta-icon {
+  color: var(--text-faint);
+  margin-top: 1px;
+}
+
+.terminus-inbox-overlap-strong {
+  color: var(--text-normal);
+  font-weight: 600;
+}
+
+.terminus-pending-view .terminus-inbox-overlap-show {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--text-accent);
+  font-size: var(--font-ui-smaller);
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.terminus-pending-view .terminus-inbox-overlap-show:hover {
+  color: var(--text-accent-hover);
+  text-decoration: underline;
+}
+
+/* --------------------------------------------------------------------------
+   Split Diff: which baseline the left column shows.
+
+   Only appears when a second terminal edited the file, because only then is
+   there a second baseline: ChangeContributor.before, the content that
+   terminal found and overwrote. Without it that version exists nowhere,
+   since recordChange resets the row's oldText to the first edit's snapshot.
+
+   Buttons are scoped to the view so Obsidian's default button fill does not
+   win over them.
+   -------------------------------------------------------------------------- */
+
+.terminus-split-diff-compare {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 6px 10px;
+  border-bottom: 1px solid var(--background-modifier-border);
+  color: var(--text-muted);
+  font-size: var(--font-ui-smaller);
+}
+
+.terminus-split-diff-compare-label {
+  color: var(--text-faint);
+}
+
+.terminus-diff-split-view .terminus-split-diff-compare-option {
+  height: 22px;
+  padding: 0 8px;
+  border: 1px solid transparent;
+  border-radius: var(--radius-s);
+  background-color: transparent;
+  color: var(--text-muted);
+  font-size: var(--font-ui-smaller);
+  cursor: pointer;
+}
+
+.terminus-diff-split-view .terminus-split-diff-compare-option:hover {
+  background-color: var(--background-modifier-hover);
+  color: var(--text-normal);
+}
+
+.terminus-diff-split-view .terminus-split-diff-compare-option.is-active {
+  background-color: var(--background-modifier-active);
+  border-color: var(--background-modifier-border);
+  color: var(--text-normal);
+  font-weight: 600;
+}
+
+/* Says why the hunk bars went quiet, next to the control that did it. */
+.terminus-split-diff-compare-note {
+  color: var(--text-faint);
+  font-style: italic;
+}
+
+.terminus-split-diff-hunk-readonly {
+  margin-left: auto;
+  color: var(--text-faint);
+  font-size: var(--font-ui-smaller);
 }
 
 /**

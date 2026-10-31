@@ -1,0 +1,19 @@
+/* 顶部左右两侧（标题栏、侧边栏标签行、折叠按钮）跟随 AnuPpuccin 卡片配色，
+   开启自定义背景时即透明，露出下面的背景。 */
+
+body.anp-card-layout {
+  --sidebar-tab-container-background: var(--card-background-color);
+  --titlebar-background: var(--card-background-color);
+  --titlebar-background-focused: var(--card-background-color);
+}
+
+body.anp-card-layout .sidebar-toggle-button,
+body.anp-card-layout .workspace-tabs.mod-top {
+  --tab-container-background: var(--card-background-color);
+  --sidebar-tab-container-background: var(--card-background-color);
+}
+
+body.anp-card-layout .titlebar,
+body.anp-card-layout .workspace-tab-header-container {
+  background-color: var(--card-background-color);
+}
