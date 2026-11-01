@@ -8,47 +8,141 @@
         "type": "tabs",
         "children": [
           {
-            "id": "d7fb026738fc596d",
+            "id": "1727cf63dddc8873",
+            "type": "leaf",
+            "pinned": true,
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "task/任务总揽.md",
+                "mode": "source",
+                "source": false
+              },
+              "pinned": true,
+              "icon": "lucide-file",
+              "title": "任务总揽"
+            }
+          },
+          {
+            "id": "a056fb4522dd779c",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "wiki/前端AI/LangGraph/【导言】LangGraph 学习地图.md",
+                "file": "wiki/Python/框架/Web服务框架.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "【导言】LangGraph 学习地图"
+              "title": "Web服务框架"
             }
           },
           {
-            "id": "abc39abb2a2ff759",
+            "id": "270f83eba0a6ed11",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "wiki/前端AI/LangGraph/【基础】Store 与长期记忆.md",
+                "file": "wiki/Python/框架/Web服务框架.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "【基础】Store 与长期记忆"
+              "title": "Web服务框架"
             }
           },
           {
-            "id": "22f168fb40159188",
+            "id": "9a0fb8587d8abf92",
             "type": "leaf",
             "state": {
-              "type": "excalidraw",
+              "type": "markdown",
               "state": {
-                "file": "raw/langgraph-python/assets/依赖关系.excalidraw"
+                "file": "task/2026-10-31.md",
+                "mode": "source",
+                "source": false
               },
-              "icon": "excalidraw-icon",
-              "title": "依赖关系"
+              "icon": "lucide-file",
+              "title": "2026-10-31"
+            }
+          },
+          {
+            "id": "70f8f1419053d7c0",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "wiki/Python/框架/Web服务框架.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Web服务框架"
+            }
+          },
+          {
+            "id": "302612c250f51150",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "wiki/Python/基础/Python数据类 dataclass.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Python数据类 dataclass"
+            }
+          },
+          {
+            "id": "9173078c4069adcd",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "task/2026-10-31.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "2026-10-31"
+            }
+          },
+          {
+            "id": "77c0f713e64d77ae",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "wiki/Python/模块与进阶/类型标注.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "类型标注"
             }
           }
-        ],
-        "currentTab": 1
+        ]
+      },
+      {
+        "id": "41959ae917b0179e",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "35c127cbf7ef648d",
+            "type": "leaf",
+            "state": {
+              "type": "terminus-view",
+              "state": {
+                "scrollback": "opencode\r\n\u001b[40m chenjie \u001b[30;44m ~/Desktop/FutureArchitect/未来架构师笔记 \u001b[34;43m\u001b[30m  main ± \u001b[33;49m\u001b[0m \u001b[32mopencode\u001b[1B\u001b[73D\u001b[0m",
+                "cwd": "file://192.168.0.107/Users/chenjie/Desktop/FutureArchitect/%E6%9C%AA%E6%9D%A5%E6%9E%B6%E6%9E%84%E5%B8%88%E7%AC%94%E8%AE%B0",
+                "autoName": "opencode",
+                "autoNameSource": "command"
+              },
+              "icon": "square-terminal",
+              "title": "opencode"
+            }
+          }
+        ]
       }
     ],
     "direction": "vertical"
@@ -69,7 +163,7 @@
               "type": "file-explorer",
               "state": {
                 "sortOrder": "alphabetical",
-                "autoReveal": false,
+                "autoReveal": true,
                 "showSearch": false,
                 "searchQuery": ""
               },
@@ -83,7 +177,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "dataclass",
+                "query": "BaseModel",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -206,7 +300,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "wiki/前端AI/LangGraph/【基础】Store 与长期记忆.md",
+                "file": "task/任务总揽.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
@@ -269,32 +363,36 @@
       "leetcode-chinese:打开 LeetCode 题库": false
     }
   },
-  "active": "abc39abb2a2ff759",
+  "active": "1727cf63dddc8873",
   "lastOpenFiles": [
-    "wiki/前端AI/LangGraph/【实战】动态扇出与运行控制.md",
-    "wiki/前端AI/LangGraph/【基础】容错与错误重试.md",
-    "wiki/前端AI/LangGraph/【实战】时间旅行.md",
-    "wiki/前端AI/LangGraph/【实战】System API、MCP 与 A2A.md",
-    "wiki/前端AI/LangGraph/【实战】Assistant API 与子图.md",
-    "wiki/前端AI/LangGraph/【实战】配置体系：RunnableConfig 与 Runtime.md",
-    "wiki/前端AI/LangGraph/【实战】Agent Server 与线程检查点.md",
-    "wiki/前端AI/LangGraph/【基础】状态与 Reducer.md",
-    "wiki/前端AI/LangGraph/【基础】模型接入与消息体系.md",
+    "wiki/Python/框架/Web服务框架.md",
+    "task/2026-10-31.md",
+    "task/任务总揽.md",
+    "wiki/Python/基础/Python数据类 dataclass.md",
+    "index.md",
+    "wiki/Python/模块与进阶/魔术方法.md",
+    "wiki/Python/模块与进阶/类型标注.md",
+    "log/2026-11.md",
+    "wiki/Python/模块与进阶/元类.md",
+    "wiki/Python/模块与进阶/对象的类型.md",
+    "wiki/Python/模块与进阶/可调用对象.md",
+    "wiki/Python/模块与进阶/对象的创建过程.md",
+    "wiki/Python/模块与进阶/装饰器.md",
+    "wiki/前端AI/LangGraph/【基础】工具与工具节点.md",
     "wiki/前端AI/LangGraph/【基础】核心概念与执行模型.md",
     "wiki/前端AI/LangGraph/【导言】LangGraph 学习地图.md",
+    "raw/langgraph-python/38. 课程总结.md",
+    "wiki/Java/基础/05-集合框架与常用类库/06-Lambda表达式语法与函数式接口.md",
+    "wiki/Java/基础/Lambda 表达式.md",
+    "raw/java-basic/19. 线程安全与锁机制/课件.md",
+    "raw/java-basic/22. 高级并发与最佳实践/课件.md",
+    "wiki/前端AI/LangGraph/【实战】Agent Server 与线程检查点.md",
+    "wiki/前端AI/Agent核心/【实战】封装 Tool Calling.md",
+    "wiki/前端AI/Agent核心/【实战】Tool Calling.md",
+    "wiki/前端AI/LangGraph/【基础】状态与 Reducer.md",
+    "wiki/前端AI/LangGraph/【基础】模型接入与消息体系.md",
     "raw/langgraph-python/assets/依赖关系.excalidraw",
-    "wiki/前端AI/LangGraph/【实战】Agent 部署.md",
-    "wiki/前端AI/LangGraph/【基础】Store 与长期记忆.md",
-    "wiki/前端AI/LangGraph/【实战】事件流.md",
-    "wiki/前端AI/LangGraph/【实战】Command、中断与人在回路.md",
-    "wiki/前端AI/LangGraph/【实战】Cron API.md",
-    "wiki/前端AI/LangGraph/【实战】Run API.md",
-    "wiki/前端AI/LangGraph/【实战】Thread API.md",
-    "raw/langgraph-python/01. 必看导言.md",
-    "wiki/前端AI/LangGraph/【基础】模拟模型与测试.md",
-    "wiki/前端AI/LangGraph/【基础】工具与工具节点.md",
     "wiki/前端AI/LangGraph",
-    "wiki/Python/工程化/项目管理工具.md",
     "raw/langgraph-python/assets/audio/test.mp3",
     "raw/langgraph-python/assets/长期记忆-简单处理.excalidraw",
     "raw/langgraph-python/assets/长期记忆-简单处理.svg",
@@ -313,9 +411,6 @@
     "raw/langgraph-python/assets/子图模式.svg",
     "raw/langgraph-python/assets/图.svg",
     "raw/langgraph-python/assets/初始图结构.svg",
-    "raw/langgraph-python/38. 课程总结.md",
-    "raw/langgraph-python/37. Agent部署.md",
-    "raw/langgraph-python/30. 动态扇出.md",
     "未命名.canvas",
     "Java/基础/未命名.canvas",
     "Untitled.canvas"

@@ -1,7 +1,7 @@
 ---
 author: ai
 ai_editable: true
-summary: "全库目录，按主题列出 Wiki 页面并提供一句话摘要。"
+summary: '全库目录，按主题列出 Wiki 页面并提供一句话摘要。'
 refs:
   pages: []
   raw: []
@@ -245,6 +245,7 @@ updated: 2026-10-21
 - [[Python容器类型]]：容器类型用于存储多个数据。Python 中内置的容器类型包括：
 - [[Python环境搭建]]：Python 安装包中包含以下核心组件：
 - [[Python类和对象]]：Python 是一门面向对象的编程语言。类（Class）是创建对象的蓝图，而对象（Object）是类的具体实例。通过类和对象，可以将数据（属性）和行为（方法）封装在一起…
+- [[Python数据类 dataclass]]：用 @dataclass 自动生成构造、打印、比较方法，讲清字段默认值、frozen/order/slots、继承坑，以及它与 Pydantic BaseModel 的区别。
 - [[异常处理]]：使用 try...except 捕获可能发生的异常
 - [[Monorepo]]：Monorepo（单一仓库）是将多个相关的项目/包放在同一个代码仓库中管理的策略。
 - [[构建发布]]：构建协议：https://peps.python.org/pep0517/

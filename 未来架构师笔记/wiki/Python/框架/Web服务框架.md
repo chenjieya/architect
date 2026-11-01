@@ -28,6 +28,8 @@ uv add --package web-service "fastapi[standard]==0.136.3"
 
 `库名[额外安装名/可选安装名]==版本号`
 
+> 方括号里的 extras 是“可选安装包”：`fastapi[standard]` 表示在核心包之外，再把 `standard` 组里的 CLI、httpx、jinja2 等附加依赖一起装上，不写方括号就只装最小核心。
+
 ```toml
 # pyproject.toml
 [project.optional-dependencies]
