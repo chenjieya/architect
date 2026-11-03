@@ -1,0 +1,5741 @@
+[
+  {
+    "document": "api",
+    "method": "GET",
+    "path": "/api/setup",
+    "summary": "获取初始化状态",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "POST",
+    "path": "/api/setup",
+    "summary": "初始化系统",
+    "requestBody": {
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "username": {
+                "type": "string"
+              },
+              "password": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "GET",
+    "path": "/api/status",
+    "summary": "获取系统状态",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "GET",
+    "path": "/api/status/test",
+    "summary": "测试系统状态",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "GET",
+    "path": "/api/uptime/status",
+    "summary": "获取Uptime Kuma状态",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "GET",
+    "path": "/api/notice",
+    "summary": "获取公告",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "GET",
+    "path": "/api/user-agreement",
+    "summary": "获取用户协议",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "GET",
+    "path": "/api/privacy-policy",
+    "summary": "获取隐私政策",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "GET",
+    "path": "/api/about",
+    "summary": "获取关于信息",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "GET",
+    "path": "/api/home_page_content",
+    "summary": "获取首页内容",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "GET",
+    "path": "/api/pricing",
+    "summary": "获取定价信息",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "GET",
+    "path": "/api/models",
+    "summary": "获取模型列表",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "GET",
+    "path": "/api/ratio_config",
+    "summary": "获取倍率配置",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "GET",
+    "path": "/api/verification",
+    "summary": "发送邮箱验证码",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "GET",
+    "path": "/api/reset_password",
+    "summary": "发送密码重置邮件",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "POST",
+    "path": "/api/user/reset",
+    "summary": "重置密码",
+    "requestBody": {
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "email": {
+                "type": "string"
+              },
+              "token": {
+                "type": "string"
+              },
+              "password": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "POST",
+    "path": "/api/user/register",
+    "summary": "用户注册",
+    "requestBody": {
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "username": {
+                "type": "string"
+              },
+              "password": {
+                "type": "string"
+              },
+              "email": {
+                "type": "string"
+              },
+              "verification_code": {
+                "type": "string"
+              },
+              "aff_code": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "POST",
+    "path": "/api/user/login",
+    "summary": "用户登录",
+    "requestBody": {
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "username": {
+                "type": "string"
+              },
+              "password": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      },
+      "409": {
+        "description": "该用户的活跃登录 Session 已达上限",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/AuthSessionIssuanceError"
+            }
+          }
+        }
+      },
+      "429": {
+        "description": "该用户在统计窗口内创建的 Session 已达上限",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/AuthSessionIssuanceError"
+            }
+          }
+        }
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "POST",
+    "path": "/api/user/login/2fa",
+    "summary": "两步验证登录",
+    "requestBody": {
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "string"
+              },
+              "flow_token": {
+                "type": "string",
+                "description": "密码校验成功后返回的一次性 2FA 登录流程令牌"
+              }
+            }
+          }
+        }
+      }
+    },
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      },
+      "409": {
+        "description": "该用户的活跃登录 Session 已达上限",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/AuthSessionIssuanceError"
+            }
+          }
+        }
+      },
+      "429": {
+        "description": "该用户在统计窗口内创建的 Session 已达上限",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/AuthSessionIssuanceError"
+            }
+          }
+        }
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "POST",
+    "path": "/api/user/auth/refresh",
+    "summary": "刷新面板登录",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      },
+      "409": {
+        "description": "X-Auth-Session 与 Refresh Cookie 的 SID 不一致；不修改 Cookie 或会话",
+        "headers": {}
+      }
+    },
+    "security": []
+  },
+  {
+    "document": "api",
+    "method": "POST",
+    "path": "/api/user/auth/logout",
+    "summary": "撤销当前登录会话",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": []
+  },
+  {
+    "document": "api",
+    "method": "GET",
+    "path": "/api/user/sessions",
+    "summary": "查看登录会话",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "返回当前鉴权版本的有效登录会话",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "AccessToken1": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "DELETE",
+    "path": "/api/user/sessions/{sid}",
+    "summary": "撤销指定登录会话",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "AccessToken1": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "POST",
+    "path": "/api/user/sessions/revoke-others",
+    "summary": "撤销其他登录会话",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "AccessToken1": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "GET",
+    "path": "/api/user/groups",
+    "summary": "获取用户分组列表",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "POST",
+    "path": "/api/user/passkey/login/begin",
+    "summary": "开始Passkey登录",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "POST",
+    "path": "/api/user/passkey/login/finish",
+    "summary": "完成Passkey登录",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      },
+      "409": {
+        "description": "该用户的活跃登录 Session 已达上限",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/AuthSessionIssuanceError"
+            }
+          }
+        }
+      },
+      "429": {
+        "description": "该用户在统计窗口内创建的 Session 已达上限",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/AuthSessionIssuanceError"
+            }
+          }
+        }
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "GET",
+    "path": "/api/oauth/github",
+    "summary": "GitHub OAuth登录",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      },
+      "409": {
+        "$ref": "#/components/responses/AuthSessionLimit"
+      },
+      "429": {
+        "$ref": "#/components/responses/AuthSessionIssuanceLimit"
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "GET",
+    "path": "/api/oauth/discord",
+    "summary": "Discord OAuth登录",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      },
+      "409": {
+        "$ref": "#/components/responses/AuthSessionLimit"
+      },
+      "429": {
+        "$ref": "#/components/responses/AuthSessionIssuanceLimit"
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "GET",
+    "path": "/api/oauth/oidc",
+    "summary": "OIDC登录",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      },
+      "409": {
+        "$ref": "#/components/responses/AuthSessionLimit"
+      },
+      "429": {
+        "$ref": "#/components/responses/AuthSessionIssuanceLimit"
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "GET",
+    "path": "/api/oauth/linuxdo",
+    "summary": "LinuxDO OAuth登录",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      },
+      "409": {
+        "$ref": "#/components/responses/AuthSessionLimit"
+      },
+      "429": {
+        "$ref": "#/components/responses/AuthSessionIssuanceLimit"
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "POST",
+    "path": "/api/oauth/state",
+    "summary": "生成OAuth State",
+    "requestBody": {
+      "required": true,
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "required": [
+              "provider",
+              "intent"
+            ],
+            "properties": {
+              "provider": {
+                "type": "string"
+              },
+              "intent": {
+                "type": "string",
+                "enum": [
+                  "login",
+                  "bind"
+                ]
+              },
+              "aff": {
+                "type": "string",
+                "description": "仅 login intent 可用的 affiliate code"
+              }
+            }
+          }
+        }
+      }
+    },
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "GET",
+    "path": "/api/oauth/wechat",
+    "summary": "微信OAuth登录",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      },
+      "409": {
+        "$ref": "#/components/responses/AuthSessionLimit"
+      },
+      "429": {
+        "$ref": "#/components/responses/AuthSessionIssuanceLimit"
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "POST",
+    "path": "/api/oauth/wechat/bind",
+    "summary": "绑定微信",
+    "requestBody": {
+      "required": true,
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "required": [
+              "code"
+            ],
+            "properties": {
+              "code": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "AccessToken1": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "POST",
+    "path": "/api/oauth/email/bind",
+    "summary": "绑定邮箱",
+    "requestBody": {
+      "required": true,
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "required": [
+              "email",
+              "code"
+            ],
+            "properties": {
+              "email": {
+                "type": "string",
+                "format": "email"
+              },
+              "code": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "AccessToken1": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "GET",
+    "path": "/api/oauth/telegram/login",
+    "summary": "Telegram登录",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      },
+      "409": {
+        "$ref": "#/components/responses/AuthSessionLimit"
+      },
+      "429": {
+        "$ref": "#/components/responses/AuthSessionIssuanceLimit"
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "POST",
+    "path": "/api/oauth/telegram/bind/start",
+    "summary": "创建 Telegram 绑定流程",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "AccessToken1": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "GET",
+    "path": "/api/oauth/telegram/bind/{flow_token}",
+    "summary": "完成 Telegram 绑定",
+    "requestBody": null,
+    "responses": {
+      "302": {
+        "description": "重定向到 /oauth/telegram 的绑定结果回调",
+        "headers": {}
+      }
+    },
+    "security": []
+  },
+  {
+    "document": "api",
+    "method": "GET",
+    "path": "/api/user/self/groups",
+    "summary": "获取当前用户分组",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "GET",
+    "path": "/api/user/self",
+    "summary": "获取当前用户信息",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "PUT",
+    "path": "/api/user/self",
+    "summary": "更新当前用户信息",
+    "requestBody": {
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "username": {
+                "type": "string"
+              },
+              "display_name": {
+                "type": "string"
+              },
+              "password": {
+                "type": "string"
+              },
+              "original_password": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "DELETE",
+    "path": "/api/user/self",
+    "summary": "注销当前用户",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "GET",
+    "path": "/api/user/models",
+    "summary": "获取用户可用模型",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "GET",
+    "path": "/api/user/token",
+    "summary": "生成访问令牌",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "GET",
+    "path": "/api/user/passkey",
+    "summary": "获取Passkey状态",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "DELETE",
+    "path": "/api/user/passkey",
+    "summary": "删除Passkey",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "POST",
+    "path": "/api/user/passkey/register/begin",
+    "summary": "开始注册Passkey",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "POST",
+    "path": "/api/user/passkey/register/finish",
+    "summary": "完成注册Passkey",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "POST",
+    "path": "/api/user/passkey/verify/begin",
+    "summary": "开始验证Passkey",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "POST",
+    "path": "/api/user/passkey/verify/finish",
+    "summary": "完成验证Passkey",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "GET",
+    "path": "/api/user/aff",
+    "summary": "获取邀请码",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "POST",
+    "path": "/api/user/aff_transfer",
+    "summary": "转换邀请额度",
+    "requestBody": {
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "quota": {
+                "type": "integer"
+              }
+            }
+          }
+        }
+      }
+    },
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "PUT",
+    "path": "/api/user/setting",
+    "summary": "更新用户设置",
+    "requestBody": {
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "notify_type": {
+                "type": "string"
+              },
+              "quota_warning_threshold": {
+                "type": "number"
+              },
+              "webhook_url": {
+                "type": "string"
+              },
+              "notification_email": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "GET",
+    "path": "/api/user/topup",
+    "summary": "获取所有充值记录",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "GET",
+    "path": "/api/user/",
+    "summary": "获取所有用户",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "POST",
+    "path": "/api/user/",
+    "summary": "创建用户",
+    "requestBody": {
+      "content": {
+        "application/json": {
+          "schema": {
+            "$ref": "#/components/schemas/User"
+          }
+        }
+      }
+    },
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "PUT",
+    "path": "/api/user/",
+    "summary": "更新用户",
+    "requestBody": {
+      "content": {
+        "application/json": {
+          "schema": {
+            "$ref": "#/components/schemas/User"
+          }
+        }
+      }
+    },
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "POST",
+    "path": "/api/user/topup/complete",
+    "summary": "管理员完成充值",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "GET",
+    "path": "/api/user/search",
+    "summary": "搜索用户",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "GET",
+    "path": "/api/user/{id}",
+    "summary": "获取指定用户",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "DELETE",
+    "path": "/api/user/{id}",
+    "summary": "删除用户",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "DELETE",
+    "path": "/api/user/{id}/reset_passkey",
+    "summary": "管理员重置用户Passkey",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "DELETE",
+    "path": "/api/user/{id}/2fa",
+    "summary": "管理员禁用用户2FA",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "POST",
+    "path": "/api/user/manage",
+    "summary": "管理用户状态",
+    "requestBody": {
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer"
+              },
+              "action": {
+                "type": "string",
+                "enum": [
+                  "disable",
+                  "enable",
+                  "delete",
+                  "promote",
+                  "demote"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "GET",
+    "path": "/api/user/topup/info",
+    "summary": "获取充值信息",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "GET",
+    "path": "/api/user/topup/self",
+    "summary": "获取用户充值记录",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "POST",
+    "path": "/api/user/pay",
+    "summary": "发起易支付",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "POST",
+    "path": "/api/user/amount",
+    "summary": "获取支付金额",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "POST",
+    "path": "/api/user/stripe/pay",
+    "summary": "发起Stripe支付",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "POST",
+    "path": "/api/user/stripe/amount",
+    "summary": "获取Stripe支付金额",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "POST",
+    "path": "/api/user/creem/pay",
+    "summary": "发起Creem支付",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "GET",
+    "path": "/api/user/epay/notify",
+    "summary": "易支付回调",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "POST",
+    "path": "/api/stripe/webhook",
+    "summary": "Stripe Webhook",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "POST",
+    "path": "/api/creem/webhook",
+    "summary": "Creem Webhook",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "GET",
+    "path": "/api/user/2fa/status",
+    "summary": "获取2FA状态",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "POST",
+    "path": "/api/user/2fa/setup",
+    "summary": "设置2FA",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "POST",
+    "path": "/api/user/2fa/enable",
+    "summary": "启用2FA",
+    "requestBody": {
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "POST",
+    "path": "/api/user/2fa/disable",
+    "summary": "禁用2FA",
+    "requestBody": {
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "POST",
+    "path": "/api/user/2fa/backup_codes",
+    "summary": "重新生成备用码",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "GET",
+    "path": "/api/user/2fa/stats",
+    "summary": "获取2FA统计",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "POST",
+    "path": "/api/verify",
+    "summary": "通用安全验证",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "GET",
+    "path": "/api/verify/status",
+    "summary": "获取验证状态",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "GET",
+    "path": "/api/channel/",
+    "summary": "获取所有渠道",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "POST",
+    "path": "/api/channel/",
+    "summary": "添加渠道",
+    "requestBody": {
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "mode": {
+                "type": "string",
+                "enum": [
+                  "single",
+                  "batch",
+                  "multi_to_single"
+                ]
+              },
+              "channel": {
+                "$ref": "#/components/schemas/Channel"
+              }
+            }
+          }
+        }
+      }
+    },
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "PUT",
+    "path": "/api/channel/",
+    "summary": "更新渠道",
+    "requestBody": {
+      "content": {
+        "application/json": {
+          "schema": {
+            "$ref": "#/components/schemas/Channel"
+          }
+        }
+      }
+    },
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "GET",
+    "path": "/api/channel/search",
+    "summary": "搜索渠道",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "GET",
+    "path": "/api/channel/models",
+    "summary": "获取渠道模型列表",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "GET",
+    "path": "/api/channel/models_enabled",
+    "summary": "获取已启用模型列表",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "GET",
+    "path": "/api/channel/{id}",
+    "summary": "获取指定渠道",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "DELETE",
+    "path": "/api/channel/{id}",
+    "summary": "删除渠道",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "POST",
+    "path": "/api/channel/{id}/key",
+    "summary": "获取渠道密钥",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "GET",
+    "path": "/api/channel/test",
+    "summary": "测试所有渠道",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "GET",
+    "path": "/api/channel/test/{id}",
+    "summary": "测试指定渠道",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "GET",
+    "path": "/api/channel/update_balance",
+    "summary": "更新所有渠道余额",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "GET",
+    "path": "/api/channel/update_balance/{id}",
+    "summary": "更新指定渠道余额",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "DELETE",
+    "path": "/api/channel/disabled",
+    "summary": "删除已禁用渠道",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "POST",
+    "path": "/api/channel/batch",
+    "summary": "批量删除渠道",
+    "requestBody": {
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "ids": {
+                "type": "array",
+                "items": {
+                  "type": "integer"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "POST",
+    "path": "/api/channel/fix",
+    "summary": "修复渠道能力",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "GET",
+    "path": "/api/channel/fetch_models/{id}",
+    "summary": "获取上游模型列表",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "POST",
+    "path": "/api/channel/fetch_models",
+    "summary": "获取模型列表",
+    "requestBody": {
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "base_url": {
+                "type": "string",
+                "description": "上游基础地址。编辑预览时显式空字符串表示清除已保存值，省略则沿用已保存值；相对上游路径要求非空的完整基础地址。"
+              },
+              "type": {
+                "type": "integer",
+                "description": "渠道类型。高级自定义渠道为 58。"
+              },
+              "key": {
+                "type": "string",
+                "description": "新建渠道预览使用的 API 密钥。提供 channel_id 时忽略此字段，并在服务端使用渠道已保存的单密钥或多密钥配置。"
+              },
+              "channel_id": {
+                "type": "integer",
+                "description": "可选的已保存渠道 ID。用于在不向前端返回密钥的情况下预览尚未保存的高级自定义配置。"
+              },
+              "advanced_custom": {
+                "type": "string",
+                "description": "可选的高级自定义配置 JSON 字符串。新建高级自定义渠道时必填；编辑预览时覆盖已保存配置，省略则沿用已保存配置。模型发现仅支持显式的 /v1/models 路由和 OpenAI data[].id 响应。"
+              },
+              "header_override": {
+                "type": "string",
+                "description": "可选的全局请求头覆盖 JSON 字符串。编辑预览时覆盖已保存值，显式空字符串表示清除，省略则沿用。"
+              },
+              "proxy": {
+                "type": "string",
+                "description": "可选的网络代理。编辑预览时覆盖已保存值，显式空字符串表示清除，省略则沿用。"
+              }
+            }
+          }
+        }
+      }
+    },
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "POST",
+    "path": "/api/channel/batch/tag",
+    "summary": "批量设置渠道标签",
+    "requestBody": {
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "ids": {
+                "type": "array",
+                "items": {
+                  "type": "integer"
+                }
+              },
+              "tag": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "GET",
+    "path": "/api/channel/tag/models",
+    "summary": "获取标签模型",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "POST",
+    "path": "/api/channel/tag/disabled",
+    "summary": "禁用标签渠道",
+    "requestBody": {
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "tag": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "POST",
+    "path": "/api/channel/tag/enabled",
+    "summary": "启用标签渠道",
+    "requestBody": {
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "tag": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "PUT",
+    "path": "/api/channel/tag",
+    "summary": "编辑标签渠道",
+    "requestBody": {
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "tag": {
+                "type": "string"
+              },
+              "new_tag": {
+                "type": "string"
+              },
+              "priority": {
+                "type": "integer"
+              },
+              "weight": {
+                "type": "integer"
+              }
+            }
+          }
+        }
+      }
+    },
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "POST",
+    "path": "/api/channel/copy/{id}",
+    "summary": "复制渠道",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "POST",
+    "path": "/api/channel/multi_key/manage",
+    "summary": "管理多密钥",
+    "requestBody": {
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "channel_id": {
+                "type": "integer"
+              },
+              "action": {
+                "type": "string",
+                "enum": [
+                  "get_key_status",
+                  "disable_key",
+                  "enable_key",
+                  "delete_key",
+                  "delete_disabled_keys",
+                  "enable_all_keys",
+                  "disable_all_keys"
+                ]
+              },
+              "key_index": {
+                "type": "integer"
+              }
+            }
+          }
+        }
+      }
+    },
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "GET",
+    "path": "/api/token/",
+    "summary": "获取所有令牌",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "POST",
+    "path": "/api/token/",
+    "summary": "创建令牌",
+    "requestBody": {
+      "content": {
+        "application/json": {
+          "schema": {
+            "$ref": "#/components/schemas/Token"
+          }
+        }
+      }
+    },
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "PUT",
+    "path": "/api/token/",
+    "summary": "更新令牌",
+    "requestBody": {
+      "content": {
+        "application/json": {
+          "schema": {
+            "$ref": "#/components/schemas/Token"
+          }
+        }
+      }
+    },
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "GET",
+    "path": "/api/token/search",
+    "summary": "搜索令牌",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "GET",
+    "path": "/api/token/{id}",
+    "summary": "获取指定令牌",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "DELETE",
+    "path": "/api/token/{id}",
+    "summary": "删除令牌",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "POST",
+    "path": "/api/token/batch",
+    "summary": "批量删除令牌",
+    "requestBody": {
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "ids": {
+                "type": "array",
+                "items": {
+                  "type": "integer"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "GET",
+    "path": "/api/usage/token/",
+    "summary": "获取令牌使用情况",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "GET",
+    "path": "/api/redemption/",
+    "summary": "获取所有兑换码",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "POST",
+    "path": "/api/redemption/",
+    "summary": "创建兑换码",
+    "requestBody": {
+      "content": {
+        "application/json": {
+          "schema": {
+            "$ref": "#/components/schemas/Redemption"
+          }
+        }
+      }
+    },
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "PUT",
+    "path": "/api/redemption/",
+    "summary": "更新兑换码",
+    "requestBody": {
+      "content": {
+        "application/json": {
+          "schema": {
+            "$ref": "#/components/schemas/Redemption"
+          }
+        }
+      }
+    },
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "GET",
+    "path": "/api/redemption/search",
+    "summary": "搜索兑换码",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "GET",
+    "path": "/api/redemption/{id}",
+    "summary": "获取指定兑换码",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "DELETE",
+    "path": "/api/redemption/{id}",
+    "summary": "删除兑换码",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "DELETE",
+    "path": "/api/redemption/invalid",
+    "summary": "删除无效兑换码",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "GET",
+    "path": "/api/log/",
+    "summary": "获取所有日志",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "POST",
+    "path": "/api/system-task/log-cleanup",
+    "summary": "创建日志清理任务",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功创建任务或返回参数错误",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "GET",
+    "path": "/api/log/stat",
+    "summary": "获取日志统计",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "GET",
+    "path": "/api/log/self/stat",
+    "summary": "获取个人日志统计",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "GET",
+    "path": "/api/log/search",
+    "summary": "搜索日志",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "GET",
+    "path": "/api/log/self",
+    "summary": "获取个人日志",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "GET",
+    "path": "/api/log/self/search",
+    "summary": "搜索个人日志",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "GET",
+    "path": "/api/log/token",
+    "summary": "通过令牌获取日志",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "GET",
+    "path": "/api/data/",
+    "summary": "获取所有额度数据",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "GET",
+    "path": "/api/data/self",
+    "summary": "获取个人额度数据",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "GET",
+    "path": "/api/group/",
+    "summary": "获取所有分组",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "GET",
+    "path": "/api/prefill_group/",
+    "summary": "获取预填分组",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "POST",
+    "path": "/api/prefill_group/",
+    "summary": "创建预填分组",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "PUT",
+    "path": "/api/prefill_group/",
+    "summary": "更新预填分组",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "DELETE",
+    "path": "/api/prefill_group/{id}",
+    "summary": "删除预填分组",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "GET",
+    "path": "/api/mj/",
+    "summary": "获取所有Midjourney任务",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "GET",
+    "path": "/api/mj/self",
+    "summary": "获取个人Midjourney任务",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "GET",
+    "path": "/api/task/",
+    "summary": "获取所有任务",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "GET",
+    "path": "/api/task/self",
+    "summary": "获取个人任务",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "GET",
+    "path": "/api/vendors/",
+    "summary": "获取所有供应商",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "POST",
+    "path": "/api/vendors/",
+    "summary": "创建供应商",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "PUT",
+    "path": "/api/vendors/",
+    "summary": "更新供应商",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "GET",
+    "path": "/api/vendors/search",
+    "summary": "搜索供应商",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "GET",
+    "path": "/api/vendors/{id}",
+    "summary": "获取指定供应商",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "DELETE",
+    "path": "/api/vendors/{id}",
+    "summary": "删除供应商",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "GET",
+    "path": "/api/models/",
+    "summary": "获取所有模型元数据",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "POST",
+    "path": "/api/models/",
+    "summary": "创建模型元数据",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "PUT",
+    "path": "/api/models/",
+    "summary": "更新模型元数据",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "GET",
+    "path": "/api/models/search",
+    "summary": "搜索模型",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "GET",
+    "path": "/api/models/{id}",
+    "summary": "获取指定模型",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "DELETE",
+    "path": "/api/models/{id}",
+    "summary": "删除模型",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "GET",
+    "path": "/api/models/sync_upstream/preview",
+    "summary": "预览上游模型同步",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "POST",
+    "path": "/api/models/sync_upstream",
+    "summary": "同步上游模型",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "GET",
+    "path": "/api/models/missing",
+    "summary": "获取缺失模型",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "GET",
+    "path": "/api/option/",
+    "summary": "获取系统选项",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "PUT",
+    "path": "/api/option/",
+    "summary": "更新系统选项",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "POST",
+    "path": "/api/option/rest_model_ratio",
+    "summary": "重置模型倍率",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "GET",
+    "path": "/api/ratio_sync/channels",
+    "summary": "获取可同步渠道",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "api",
+    "method": "POST",
+    "path": "/api/ratio_sync/fetch",
+    "summary": "获取上游倍率",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功",
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "Combination343": []
+      },
+      {
+        "Combination1243": []
+      }
+    ]
+  },
+  {
+    "document": "relay",
+    "method": "GET",
+    "path": "/v1/models",
+    "summary": "获取模型列表",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功获取模型列表",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ModelsResponse"
+            }
+          }
+        },
+        "headers": {}
+      },
+      "401": {
+        "description": "认证失败",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse"
+            }
+          }
+        },
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "BearerAuth": []
+      }
+    ]
+  },
+  {
+    "document": "relay",
+    "method": "GET",
+    "path": "/v1beta/models",
+    "summary": "Gemini 格式获取",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功获取模型列表",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/GeminiModelsResponse"
+            }
+          }
+        },
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "BearerAuth": []
+      }
+    ]
+  },
+  {
+    "document": "relay",
+    "method": "POST",
+    "path": "/v1/chat/completions",
+    "summary": "创建聊天对话",
+    "requestBody": {
+      "content": {
+        "application/json": {
+          "schema": {
+            "$ref": "#/components/schemas/ChatCompletionRequest"
+          }
+        }
+      },
+      "required": true
+    },
+    "responses": {
+      "200": {
+        "description": "成功创建响应",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ChatCompletionResponse"
+            }
+          }
+        },
+        "headers": {}
+      },
+      "400": {
+        "description": "请求参数错误",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse"
+            }
+          }
+        },
+        "headers": {}
+      },
+      "429": {
+        "description": "请求频率限制",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse"
+            }
+          }
+        },
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "BearerAuth": []
+      }
+    ]
+  },
+  {
+    "document": "relay",
+    "method": "POST",
+    "path": "/v1/responses",
+    "summary": "创建响应 (OpenAI Responses API)",
+    "requestBody": {
+      "content": {
+        "application/json": {
+          "schema": {
+            "$ref": "#/components/schemas/ResponsesRequest"
+          }
+        }
+      },
+      "required": true
+    },
+    "responses": {
+      "200": {
+        "description": "成功创建响应",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ResponsesResponse"
+            }
+          }
+        },
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "BearerAuth": []
+      }
+    ]
+  },
+  {
+    "document": "relay",
+    "method": "POST",
+    "path": "/v1/responses/compact",
+    "summary": "压缩对话 (OpenAI Responses API)",
+    "requestBody": {
+      "content": {
+        "application/json": {
+          "schema": {
+            "$ref": "#/components/schemas/ResponsesCompactionRequest"
+          }
+        }
+      },
+      "required": true
+    },
+    "responses": {
+      "200": {
+        "description": "成功压缩对话",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ResponsesCompactionResponse"
+            }
+          }
+        },
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "BearerAuth": []
+      }
+    ]
+  },
+  {
+    "document": "relay",
+    "method": "POST",
+    "path": "/v1/images/generations",
+    "summary": "生成图像(qwen-image)",
+    "requestBody": {
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "model": {
+                "type": "string"
+              },
+              "input": {
+                "type": "object",
+                "properties": {
+                  "messages": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "role": {
+                          "type": "string"
+                        },
+                        "content": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "text": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "required": [
+                  "messages"
+                ]
+              },
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "negative_prompt": {
+                    "type": "string"
+                  },
+                  "prompt_extend": {
+                    "type": "boolean"
+                  },
+                  "watermark": {
+                    "type": "boolean"
+                  },
+                  "size": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "required": [
+              "model",
+              "input"
+            ]
+          },
+          "example": {
+            "model": "qwen-image-plus",
+            "input": {
+              "messages": [
+                {
+                  "role": "user",
+                  "content": [
+                    {
+                      "text": "一副典雅庄重的对联悬挂于厅堂之中，房间是个安静古典的中式布置，桌子上放着一些青花瓷，对联上左书“义本生知人机同道善思新”，右书“通云赋智乾坤启数高志远”， 横批“智启通义”，字体飘逸，在中间挂着一幅中国风的画作，内容是岳阳楼。"
+                    }
+                  ]
+                }
+              ]
+            },
+            "parameters": {
+              "negative_prompt": "",
+              "prompt_extend": true,
+              "watermark": false,
+              "size": "1328*1328"
+            }
+          }
+        }
+      }
+    },
+    "responses": {
+      "200": {
+        "description": "成功生成图像",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ImageResponse"
+            }
+          }
+        },
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "BearerAuth": []
+      }
+    ]
+  },
+  {
+    "document": "relay",
+    "method": "POST",
+    "path": "/v1/images/edits",
+    "summary": "编辑图像(qwen-image-edit)",
+    "requestBody": {
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "model": {
+                "type": "string"
+              },
+              "input": {
+                "type": "object",
+                "properties": {
+                  "messages": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "role": {
+                          "type": "string"
+                        },
+                        "content": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "image": {
+                                "type": "string"
+                              },
+                              "text": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "required": [
+                  "messages"
+                ]
+              },
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "n": {
+                    "type": "integer"
+                  },
+                  "negative_prompt": {
+                    "type": "string"
+                  },
+                  "prompt_extend": {
+                    "type": "boolean"
+                  },
+                  "watermark": {
+                    "type": "boolean"
+                  },
+                  "size": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "required": [
+              "model",
+              "input"
+            ]
+          },
+          "example": "{\n    \"model\": \"qwen-image-edit-plus\",\n    \"input\": {\n        \"messages\": [\n            {\n                \"role\": \"user\",\n                \"content\": [\n                    {\n                        \"image\": \"https://help-static-aliyun-doc.aliyuncs.com/file-manage-files/zh-CN/20250925/fpakfo/image36.webp\"\n                    },\n                    {\n                        \"text\": \"生成一张符合深度图的图像，遵循以下描述：一辆红色的破旧的自行车停在一条泥泞的小路上，背景是茂密的原始森林\"\n                    }\n                ]\n            }\n        ]\n    },\n    \"parameters\": {\n        \"n\": 2,\n        \"negative_prompt\": \" \",\n        \"prompt_extend\": true,\n        \"watermark\": false\n    }"
+        }
+      }
+    },
+    "responses": {
+      "200": {
+        "description": "成功生成图像",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ImageResponse"
+            }
+          }
+        },
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "BearerAuth": []
+      }
+    ]
+  },
+  {
+    "document": "relay",
+    "method": "POST",
+    "path": "/v1/videos",
+    "summary": "创建视频 ",
+    "requestBody": {
+      "content": {
+        "multipart/form-data": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "model": {
+                "description": "模型名称",
+                "example": "sora-2",
+                "type": "string"
+              },
+              "prompt": {
+                "description": "提示词",
+                "example": "cute cat dance",
+                "type": "string"
+              },
+              "seconds": {
+                "description": "生成秒数",
+                "example": "8",
+                "type": "string"
+              },
+              "input_reference": {
+                "format": "binary",
+                "type": "string",
+                "description": "参考图片文件",
+                "example": ""
+              }
+            }
+          },
+          "examples": {}
+        }
+      }
+    },
+    "responses": {
+      "200": {
+        "description": "成功创建视频任务",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "description": "视频 ID"
+                },
+                "object": {
+                  "type": "string",
+                  "description": "对象类型"
+                },
+                "model": {
+                  "type": "string",
+                  "description": "使用的模型"
+                },
+                "status": {
+                  "type": "string",
+                  "description": "任务状态"
+                },
+                "progress": {
+                  "type": "integer",
+                  "description": "进度百分比"
+                },
+                "created_at": {
+                  "type": "integer",
+                  "description": "创建时间戳"
+                },
+                "seconds": {
+                  "type": "string",
+                  "description": "视频时长"
+                },
+                "completed_at": {
+                  "type": "integer",
+                  "description": "完成时间戳"
+                },
+                "expires_at": {
+                  "type": "integer",
+                  "description": "过期时间戳"
+                },
+                "size": {
+                  "type": "string",
+                  "description": "视频尺寸"
+                },
+                "error": {
+                  "$ref": "#/components/schemas/OpenAIVideoError"
+                },
+                "metadata": {
+                  "type": "object",
+                  "description": "额外元数据",
+                  "additionalProperties": true,
+                  "properties": {}
+                }
+              },
+              "required": [
+                "id",
+                "object",
+                "model",
+                "status",
+                "progress",
+                "created_at",
+                "seconds"
+              ]
+            },
+            "example": {
+              "id": "sora-2-123456",
+              "object": "video",
+              "model": "sora-2",
+              "status": "queued",
+              "progress": 0,
+              "created_at": 1764347090922,
+              "seconds": "8"
+            }
+          }
+        },
+        "headers": {}
+      },
+      "400": {
+        "description": "请求参数错误",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse"
+            }
+          }
+        },
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "BearerAuth": []
+      }
+    ]
+  },
+  {
+    "document": "relay",
+    "method": "GET",
+    "path": "/v1/videos/{task_id}",
+    "summary": "获取视频任务状态 ",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功获取视频任务状态",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "object": {
+                  "type": "string"
+                },
+                "model": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string"
+                },
+                "progress": {
+                  "type": "integer"
+                },
+                "created_at": {
+                  "type": "integer"
+                },
+                "seconds": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "id",
+                "object",
+                "model",
+                "status",
+                "progress",
+                "created_at",
+                "seconds"
+              ]
+            },
+            "example": {
+              "id": "sora-2-123456",
+              "object": "video",
+              "model": "sora-2",
+              "status": "queued",
+              "progress": 0,
+              "created_at": 1764347090922,
+              "seconds": "8"
+            }
+          }
+        },
+        "headers": {}
+      },
+      "404": {
+        "description": "任务不存在",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse"
+            }
+          }
+        },
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "BearerAuth": []
+      }
+    ]
+  },
+  {
+    "document": "relay",
+    "method": "GET",
+    "path": "/v1/videos/{task_id}/content",
+    "summary": "获取视频内容",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功获取视频内容",
+        "content": {
+          "video/mp4": {
+            "schema": {
+              "type": "string",
+              "format": "binary"
+            }
+          }
+        },
+        "headers": {}
+      },
+      "404": {
+        "description": "视频不存在或未完成",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse"
+            }
+          }
+        },
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "BearerAuth": []
+      }
+    ]
+  },
+  {
+    "document": "relay",
+    "method": "POST",
+    "path": "/kling/v1/videos/text2video",
+    "summary": "Kling 文生视频",
+    "requestBody": {
+      "content": {
+        "application/json": {
+          "schema": {
+            "$ref": "#/components/schemas/VideoRequest"
+          },
+          "example": {
+            "model": "kling-v1",
+            "prompt": "宇航员站起身走了",
+            "duration": 5,
+            "width": 1280,
+            "height": 720,
+            "fps": 30
+          }
+        }
+      }
+    },
+    "responses": {
+      "200": {
+        "description": "成功创建视频生成任务",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/VideoResponse"
+            }
+          }
+        },
+        "headers": {}
+      },
+      "400": {
+        "description": "请求参数错误",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse"
+            }
+          }
+        },
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "BearerAuth": []
+      }
+    ]
+  },
+  {
+    "document": "relay",
+    "method": "GET",
+    "path": "/kling/v1/videos/text2video/{task_id}",
+    "summary": "获取 Kling 文生视频任务状态",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功获取任务状态",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/VideoTaskResponse"
+            }
+          }
+        },
+        "headers": {}
+      },
+      "404": {
+        "description": "任务不存在",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse"
+            }
+          }
+        },
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "BearerAuth": []
+      }
+    ]
+  },
+  {
+    "document": "relay",
+    "method": "POST",
+    "path": "/kling/v1/videos/image2video",
+    "summary": "Kling 图生视频",
+    "requestBody": {
+      "content": {
+        "application/json": {
+          "schema": {
+            "$ref": "#/components/schemas/VideoRequest"
+          },
+          "example": {
+            "model": "kling-v1",
+            "prompt": "人物转身走开",
+            "image": "https://example.com/image.jpg",
+            "duration": 5,
+            "width": 1280,
+            "height": 720
+          }
+        }
+      }
+    },
+    "responses": {
+      "200": {
+        "description": "成功创建视频生成任务",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/VideoResponse"
+            }
+          }
+        },
+        "headers": {}
+      },
+      "400": {
+        "description": "请求参数错误",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse"
+            }
+          }
+        },
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "BearerAuth": []
+      }
+    ]
+  },
+  {
+    "document": "relay",
+    "method": "GET",
+    "path": "/kling/v1/videos/image2video/{task_id}",
+    "summary": "获取 Kling 图生视频任务状态",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功获取任务状态",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/VideoTaskResponse"
+            }
+          }
+        },
+        "headers": {}
+      },
+      "404": {
+        "description": "任务不存在",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse"
+            }
+          }
+        },
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "BearerAuth": []
+      }
+    ]
+  },
+  {
+    "document": "relay",
+    "method": "POST",
+    "path": "/jimeng/",
+    "summary": "即梦视频生成",
+    "requestBody": {
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "description": "即梦官方 API 请求格式",
+            "properties": {
+              "req_key": {
+                "type": "string",
+                "description": "请求类型标识"
+              },
+              "prompt": {
+                "type": "string",
+                "description": "文本描述"
+              },
+              "binary_data_base64": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Base64 编码的图片数据"
+              }
+            }
+          },
+          "example": {
+            "req_key": "jimeng_video_generation",
+            "prompt": "一只猫在弹钢琴"
+          }
+        }
+      }
+    },
+    "responses": {
+      "200": {
+        "description": "成功处理请求",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "description": "响应码"
+                },
+                "message": {
+                  "type": "string",
+                  "description": "响应消息"
+                },
+                "data": {
+                  "type": "object",
+                  "description": "响应数据",
+                  "properties": {}
+                }
+              }
+            }
+          }
+        },
+        "headers": {}
+      },
+      "400": {
+        "description": "请求参数错误",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse"
+            }
+          }
+        },
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "BearerAuth": []
+      }
+    ]
+  },
+  {
+    "document": "relay",
+    "method": "POST",
+    "path": "/v1/video/generations",
+    "summary": "创建视频生成任务",
+    "requestBody": {
+      "content": {
+        "application/json": {
+          "schema": {
+            "$ref": "#/components/schemas/VideoRequest"
+          },
+          "example": {
+            "model": "kling-v1",
+            "prompt": "宇航员在月球上漫步",
+            "duration": 5,
+            "width": 1280,
+            "height": 720
+          }
+        }
+      },
+      "required": true
+    },
+    "responses": {
+      "200": {
+        "description": "成功创建视频生成任务",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/VideoResponse"
+            }
+          }
+        },
+        "headers": {}
+      },
+      "400": {
+        "description": "请求参数错误",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse"
+            }
+          }
+        },
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "BearerAuth": []
+      }
+    ]
+  },
+  {
+    "document": "relay",
+    "method": "GET",
+    "path": "/v1/video/generations/{task_id}",
+    "summary": "获取视频生成任务状态",
+    "requestBody": null,
+    "responses": {
+      "200": {
+        "description": "成功获取任务状态",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/VideoTaskResponse"
+            }
+          }
+        },
+        "headers": {}
+      },
+      "404": {
+        "description": "任务不存在",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse"
+            }
+          }
+        },
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "BearerAuth": []
+      }
+    ]
+  },
+  {
+    "document": "relay",
+    "method": "POST",
+    "path": "/v1/messages",
+    "summary": "Claude 聊天",
+    "requestBody": {
+      "content": {
+        "application/json": {
+          "schema": {
+            "$ref": "#/components/schemas/ClaudeRequest"
+          },
+          "examples": {}
+        }
+      }
+    },
+    "responses": {
+      "200": {
+        "description": "成功创建响应",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ClaudeResponse"
+            }
+          }
+        },
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "BearerAuth": []
+      }
+    ]
+  },
+  {
+    "document": "relay",
+    "method": "POST",
+    "path": "/v1beta/models/{model}:generateContent",
+    "summary": "Gemini 图片(Nano Banana)",
+    "requestBody": {
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "contents": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "role": {
+                      "type": "string"
+                    },
+                    "parts": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "text": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "generationConfig": {
+                "type": "object",
+                "properties": {
+                  "responseModalities": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "imageConfig": {
+                    "type": "object",
+                    "properties": {
+                      "aspectRatio": {
+                        "type": "string"
+                      },
+                      "imageSize": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                "required": [
+                  "responseModalities"
+                ]
+              }
+            },
+            "required": [
+              "contents",
+              "generationConfig"
+            ]
+          },
+          "example": {
+            "contents": [
+              {
+                "role": "user",
+                "parts": [
+                  {
+                    "text": "draw a cat"
+                  }
+                ]
+              }
+            ],
+            "generationConfig": {
+              "responseModalities": [
+                "TEXT",
+                "IMAGE"
+              ],
+              "imageConfig": {
+                "aspectRatio": "16:9",
+                "imageSize": "4K"
+              }
+            }
+          }
+        }
+      }
+    },
+    "responses": {
+      "200": {
+        "description": "成功",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/GeminiResponse"
+            }
+          }
+        },
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "BearerAuth": []
+      }
+    ]
+  },
+  {
+    "document": "relay",
+    "method": "POST",
+    "path": "/v1/engines/{model}/embeddings",
+    "summary": "Gemini 嵌入(Embeddings)",
+    "requestBody": {
+      "content": {
+        "application/json": {
+          "schema": {
+            "$ref": "#/components/schemas/EmbeddingRequest"
+          },
+          "examples": {}
+        }
+      }
+    },
+    "responses": {
+      "200": {
+        "description": "成功创建嵌入",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/EmbeddingResponse"
+            }
+          }
+        },
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "BearerAuth": []
+      }
+    ]
+  },
+  {
+    "document": "relay",
+    "method": "POST",
+    "path": "/v1/embeddings",
+    "summary": "创建文本嵌入",
+    "requestBody": {
+      "content": {
+        "application/json": {
+          "schema": {
+            "$ref": "#/components/schemas/EmbeddingRequest"
+          }
+        }
+      },
+      "required": true
+    },
+    "responses": {
+      "200": {
+        "description": "成功创建嵌入",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/EmbeddingResponse"
+            }
+          }
+        },
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "BearerAuth": []
+      }
+    ]
+  },
+  {
+    "document": "relay",
+    "method": "POST",
+    "path": "/v1/completions",
+    "summary": "创建文本补全",
+    "requestBody": {
+      "content": {
+        "application/json": {
+          "schema": {
+            "$ref": "#/components/schemas/CompletionRequest"
+          }
+        }
+      },
+      "required": true
+    },
+    "responses": {
+      "200": {
+        "description": "成功创建响应",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/CompletionResponse"
+            }
+          }
+        },
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "BearerAuth": []
+      }
+    ]
+  },
+  {
+    "document": "relay",
+    "method": "POST",
+    "path": "/v1/audio/transcriptions",
+    "summary": "音频转录",
+    "requestBody": {
+      "content": {
+        "multipart/form-data": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "file": {
+                "type": "string",
+                "format": "binary",
+                "description": "音频文件",
+                "example": ""
+              },
+              "model": {
+                "type": "string",
+                "example": "whisper-1"
+              },
+              "language": {
+                "type": "string",
+                "description": "ISO-639-1 语言代码",
+                "example": ""
+              },
+              "prompt": {
+                "type": "string",
+                "example": ""
+              },
+              "response_format": {
+                "type": "string",
+                "enum": [
+                  "json",
+                  "text",
+                  "srt",
+                  "verbose_json",
+                  "vtt"
+                ],
+                "default": "json",
+                "example": "json"
+              },
+              "temperature": {
+                "type": "number",
+                "example": 0
+              },
+              "timestamp_granularities": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "word",
+                    "segment"
+                  ]
+                },
+                "example": ""
+              }
+            },
+            "required": [
+              "file",
+              "model"
+            ]
+          }
+        }
+      },
+      "required": true
+    },
+    "responses": {
+      "200": {
+        "description": "成功转录",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/AudioTranscriptionResponse"
+            }
+          }
+        },
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "BearerAuth": []
+      }
+    ]
+  },
+  {
+    "document": "relay",
+    "method": "POST",
+    "path": "/v1/audio/translations",
+    "summary": "音频翻译",
+    "requestBody": {
+      "content": {
+        "multipart/form-data": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "file": {
+                "type": "string",
+                "format": "binary",
+                "example": ""
+              },
+              "model": {
+                "type": "string",
+                "example": ""
+              },
+              "prompt": {
+                "type": "string",
+                "example": ""
+              },
+              "response_format": {
+                "type": "string",
+                "example": ""
+              },
+              "temperature": {
+                "type": "number",
+                "example": 0
+              }
+            },
+            "required": [
+              "file",
+              "model"
+            ]
+          }
+        }
+      },
+      "required": true
+    },
+    "responses": {
+      "200": {
+        "description": "成功翻译",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/AudioTranscriptionResponse"
+            }
+          }
+        },
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "BearerAuth": []
+      }
+    ]
+  },
+  {
+    "document": "relay",
+    "method": "POST",
+    "path": "/v1/audio/speech",
+    "summary": "文本转语音",
+    "requestBody": {
+      "content": {
+        "application/json": {
+          "schema": {
+            "$ref": "#/components/schemas/SpeechRequest"
+          }
+        }
+      },
+      "required": true
+    },
+    "responses": {
+      "200": {
+        "description": "成功生成音频",
+        "content": {
+          "audio/mpeg": {
+            "schema": {
+              "type": "string",
+              "format": "binary"
+            }
+          }
+        },
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "BearerAuth": []
+      }
+    ]
+  },
+  {
+    "document": "relay",
+    "method": "POST",
+    "path": "/v1/rerank",
+    "summary": "文档重排序",
+    "requestBody": {
+      "content": {
+        "application/json": {
+          "schema": {
+            "$ref": "#/components/schemas/RerankRequest"
+          }
+        }
+      },
+      "required": true
+    },
+    "responses": {
+      "200": {
+        "description": "成功重排序",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/RerankResponse"
+            }
+          }
+        },
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "BearerAuth": []
+      }
+    ]
+  },
+  {
+    "document": "relay",
+    "method": "POST",
+    "path": "/v1/moderations",
+    "summary": "内容审核",
+    "requestBody": {
+      "content": {
+        "application/json": {
+          "schema": {
+            "$ref": "#/components/schemas/ModerationRequest"
+          }
+        }
+      },
+      "required": true
+    },
+    "responses": {
+      "200": {
+        "description": "成功审核",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ModerationResponse"
+            }
+          }
+        },
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "BearerAuth": []
+      }
+    ]
+  },
+  {
+    "document": "relay",
+    "method": "GET",
+    "path": "/v1/realtime",
+    "summary": "实时 WebSocket 连接",
+    "requestBody": null,
+    "responses": {
+      "101": {
+        "description": "WebSocket 协议切换",
+        "headers": {}
+      },
+      "400": {
+        "description": "请求错误",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse"
+            }
+          }
+        },
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "BearerAuth": []
+      }
+    ]
+  },
+  {
+    "document": "relay",
+    "method": "GET",
+    "path": "/v1/fine-tunes",
+    "summary": "列出微调任务 (未实现)",
+    "requestBody": null,
+    "responses": {
+      "501": {
+        "description": "未实现",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse"
+            }
+          }
+        },
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "BearerAuth": []
+      }
+    ]
+  },
+  {
+    "document": "relay",
+    "method": "POST",
+    "path": "/v1/fine-tunes",
+    "summary": "创建微调任务 (未实现)",
+    "requestBody": {
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {}
+          }
+        }
+      }
+    },
+    "responses": {
+      "501": {
+        "description": "未实现",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse"
+            }
+          }
+        },
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "BearerAuth": []
+      }
+    ]
+  },
+  {
+    "document": "relay",
+    "method": "GET",
+    "path": "/v1/fine-tunes/{fine_tune_id}",
+    "summary": "获取微调任务详情 (未实现)",
+    "requestBody": null,
+    "responses": {
+      "501": {
+        "description": "未实现",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse"
+            }
+          }
+        },
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "BearerAuth": []
+      }
+    ]
+  },
+  {
+    "document": "relay",
+    "method": "POST",
+    "path": "/v1/fine-tunes/{fine_tune_id}/cancel",
+    "summary": "取消微调任务 (未实现)",
+    "requestBody": null,
+    "responses": {
+      "501": {
+        "description": "未实现",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse"
+            }
+          }
+        },
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "BearerAuth": []
+      }
+    ]
+  },
+  {
+    "document": "relay",
+    "method": "GET",
+    "path": "/v1/fine-tunes/{fine_tune_id}/events",
+    "summary": "获取微调任务事件 (未实现)",
+    "requestBody": null,
+    "responses": {
+      "501": {
+        "description": "未实现",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse"
+            }
+          }
+        },
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "BearerAuth": []
+      }
+    ]
+  },
+  {
+    "document": "relay",
+    "method": "GET",
+    "path": "/v1/files",
+    "summary": "列出文件 (未实现)",
+    "requestBody": null,
+    "responses": {
+      "501": {
+        "description": "未实现",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse"
+            }
+          }
+        },
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "BearerAuth": []
+      }
+    ]
+  },
+  {
+    "document": "relay",
+    "method": "POST",
+    "path": "/v1/files",
+    "summary": "上传文件 (未实现)",
+    "requestBody": {
+      "content": {
+        "multipart/form-data": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "file": {
+                "type": "string",
+                "format": "binary",
+                "example": ""
+              },
+              "purpose": {
+                "type": "string",
+                "example": ""
+              }
+            }
+          }
+        }
+      }
+    },
+    "responses": {
+      "501": {
+        "description": "未实现",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse"
+            }
+          }
+        },
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "BearerAuth": []
+      }
+    ]
+  },
+  {
+    "document": "relay",
+    "method": "GET",
+    "path": "/v1/files/{file_id}",
+    "summary": "获取文件信息 (未实现)",
+    "requestBody": null,
+    "responses": {
+      "501": {
+        "description": "未实现",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse"
+            }
+          }
+        },
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "BearerAuth": []
+      }
+    ]
+  },
+  {
+    "document": "relay",
+    "method": "DELETE",
+    "path": "/v1/files/{file_id}",
+    "summary": "删除文件 (未实现)",
+    "requestBody": null,
+    "responses": {
+      "501": {
+        "description": "未实现",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse"
+            }
+          }
+        },
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "BearerAuth": []
+      }
+    ]
+  },
+  {
+    "document": "relay",
+    "method": "GET",
+    "path": "/v1/files/{file_id}/content",
+    "summary": "获取文件内容 (未实现)",
+    "requestBody": null,
+    "responses": {
+      "501": {
+        "description": "未实现",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse"
+            }
+          }
+        },
+        "headers": {}
+      }
+    },
+    "security": [
+      {
+        "BearerAuth": []
+      }
+    ]
+  }
+]

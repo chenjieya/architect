@@ -1,0 +1,2316 @@
+{
+  "commit": "9b473a3fe4fed8d18980fd8d3c6a8908847a5f25",
+  "scope": "router/*.go; literal declarations, includes groups and middleware; not a runtime route dump",
+  "declarations": [
+    {
+      "source": "router/api-router.go",
+      "line": 18,
+      "declaration": "apiRouter := router.Group(\"/api\")"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 19,
+      "declaration": "apiRouter.Use(middleware.RouteTag(\"api\"))"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 20,
+      "declaration": "apiRouter.Use(gzip.Gzip(gzip.DefaultCompression))"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 21,
+      "declaration": "apiRouter.Use(middleware.AccessTokenAudit())"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 22,
+      "declaration": "apiRouter.Use(middleware.BodyStorageCleanup()) // 清理请求体存储"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 23,
+      "declaration": "apiRouter.Use(middleware.GlobalAPIRateLimit())"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 26,
+      "declaration": "apiRouter.GET(\"/setup\", controller.GetSetup)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 27,
+      "declaration": "apiRouter.POST(\"/setup\", anonymousRequestBodyLimit, controller.PostSetup)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 28,
+      "declaration": "apiRouter.GET(\"/status\", controller.GetStatus)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 29,
+      "declaration": "apiRouter.GET(\"/uptime/status\", controller.GetUptimeKumaStatus)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 30,
+      "declaration": "apiRouter.GET(\"/models\", middleware.UserAuth(), controller.DashboardListModels)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 31,
+      "declaration": "apiRouter.GET(\"/status/test\", middleware.AdminAuth(), controller.TestStatus)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 32,
+      "declaration": "apiRouter.GET(\"/notice\", controller.GetNotice)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 33,
+      "declaration": "apiRouter.GET(\"/user-agreement\", controller.GetUserAgreement)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 34,
+      "declaration": "apiRouter.GET(\"/privacy-policy\", controller.GetPrivacyPolicy)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 35,
+      "declaration": "apiRouter.GET(\"/about\", controller.GetAbout)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 37,
+      "declaration": "apiRouter.GET(\"/home_page_content\", controller.GetHomePageContent)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 38,
+      "declaration": "apiRouter.GET(\"/pricing\", middleware.HeaderNavModuleAuth(\"pricing\"), controller.GetPricing)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 39,
+      "declaration": "perfMetricsRoute := apiRouter.Group(\"/perf-metrics\")"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 40,
+      "declaration": "perfMetricsRoute.Use(middleware.HeaderNavModulePublicOrUserAuth(\"pricing\"))"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 42,
+      "declaration": "perfMetricsRoute.GET(\"/summary\", controller.GetPerfMetricsSummary)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 43,
+      "declaration": "perfMetricsRoute.GET(\"\", controller.GetPerfMetrics)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 45,
+      "declaration": "apiRouter.GET(\"/rankings\", middleware.HeaderNavModuleAuth(\"rankings\"), controller.GetRankings)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 46,
+      "declaration": "apiRouter.GET(\"/verification\", middleware.EmailVerificationRateLimit(), middleware.TurnstileCheck(), controller.SendEmailVerification)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 47,
+      "declaration": "apiRouter.GET(\"/reset_password\", middleware.CriticalRateLimit(), middleware.TurnstileCheck(), controller.SendPasswordResetEmail)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 48,
+      "declaration": "apiRouter.POST(\"/user/reset\", middleware.CriticalRateLimit(), anonymousRequestBodyLimit, controller.ResetPassword)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 50,
+      "declaration": "apiRouter.POST(\"/oauth/state\", middleware.CriticalRateLimit(), middleware.DisableCache(), middleware.TryUserAuth(), anonymousRequestBodyLimit, controller.GenerateOAuthCode)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 51,
+      "declaration": "apiRouter.POST(\"/oauth/email/bind/start\", middleware.UserAuth(), middleware.CriticalRateLimit(), middleware.UserCriticalRateLimit(\"account-security\"), middleware.EmailVerificationRateLimit(), middleware.DisableCache(), controller.EmailBindStart)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 52,
+      "declaration": "apiRouter.POST(\"/oauth/email/bind/resend\", middleware.UserAuth(), middleware.CriticalRateLimit(), middleware.UserCriticalRateLimit(\"account-security\"), middleware.EmailVerificationRateLimit(), middleware.DisableCache(), controller.EmailBindResend)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 53,
+      "declaration": "apiRouter.POST(\"/oauth/email/bind\", middleware.UserAuth(), middleware.CriticalRateLimit(), middleware.UserCriticalRateLimit(\"account-security\"), middleware.DisableCache(), controller.EmailBind)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 55,
+      "declaration": "apiRouter.GET(\"/oauth/wechat\", middleware.CriticalRateLimit(), middleware.DisableCache(), controller.WeChatAuth)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 56,
+      "declaration": "apiRouter.POST(\"/oauth/wechat/bind\", middleware.UserAuth(), middleware.CriticalRateLimit(), controller.WeChatBind)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 57,
+      "declaration": "apiRouter.GET(\"/oauth/telegram/login\", middleware.CriticalRateLimit(), middleware.DisableCache(), controller.TelegramLegacyAuth)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 58,
+      "declaration": "apiRouter.POST(\"/oauth/telegram/bind/start\", middleware.UserAuth(), middleware.CriticalRateLimit(), middleware.DisableCache(), controller.TelegramLegacyAuth)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 59,
+      "declaration": "apiRouter.GET(\"/oauth/telegram/bind/:flow_token\", middleware.CriticalRateLimit(), middleware.DisableCache(), controller.TelegramLegacyAuth)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 61,
+      "declaration": "apiRouter.GET(\"/oauth/:provider\", middleware.CriticalRateLimit(), middleware.DisableCache(), middleware.TryUserAuth(), controller.HandleOAuth)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 62,
+      "declaration": "apiRouter.GET(\"/ratio_config\", middleware.CriticalRateLimit(), controller.GetRatioConfig)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 64,
+      "declaration": "apiRouter.POST(\"/stripe/webhook\", anonymousRequestBodyLimit, controller.StripeWebhook)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 65,
+      "declaration": "apiRouter.POST(\"/creem/webhook\", anonymousRequestBodyLimit, controller.CreemWebhook)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 66,
+      "declaration": "apiRouter.POST(\"/waffo/webhook\", anonymousRequestBodyLimit, controller.WaffoWebhook)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 69,
+      "declaration": "apiRouter.POST(\"/waffo-pancake/webhook/:env\", anonymousRequestBodyLimit, controller.WaffoPancakeWebhook)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 72,
+      "declaration": "apiRouter.GET(\"/verify/methods\", middleware.UserAuth(), middleware.DisableCache(), controller.GetVerificationMethods)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 73,
+      "declaration": "apiRouter.POST(\"/verify\", middleware.UserAuth(), middleware.CriticalRateLimit(), middleware.UserCriticalRateLimit(\"security-verification\"), middleware.DisableCache(), controller.UniversalVerify)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 75,
+      "declaration": "userRoute := apiRouter.Group(\"/user\")"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 77,
+      "declaration": "userRoute.POST(\"/auth/refresh\", middleware.SessionCookieOriginGuard(), middleware.CriticalRateLimit(), middleware.DisableCache(), controller.RefreshAuth)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 78,
+      "declaration": "userRoute.POST(\"/auth/logout\", middleware.SessionCookieOriginGuard(), middleware.CriticalRateLimit(), middleware.DisableCache(), controller.AuthLogout)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 79,
+      "declaration": "userRoute.POST(\"/register\", middleware.CriticalRateLimit(), anonymousRequestBodyLimit, middleware.TurnstileCheck(), controller.Register)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 80,
+      "declaration": "userRoute.GET(\"/login/encryption-key\", middleware.DisableCache(), controller.GetPasswordEncryptionKey)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 81,
+      "declaration": "userRoute.POST(\"/login\", middleware.CriticalRateLimit(), middleware.DisableCache(), anonymousRequestBodyLimit, middleware.TurnstileCheck(), controller.Login)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 82,
+      "declaration": "userRoute.POST(\"/login/2fa\", middleware.CriticalRateLimit(), middleware.DisableCache(), anonymousRequestBodyLimit, controller.Verify2FALogin)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 83,
+      "declaration": "userRoute.POST(\"/login/verify\", middleware.CriticalRateLimit(), middleware.DisableCache(), anonymousRequestBodyLimit, controller.VerifyLogin)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 84,
+      "declaration": "userRoute.POST(\"/login/passkey/begin\", middleware.CriticalRateLimit(), middleware.DisableCache(), anonymousRequestBodyLimit, controller.LoginPasskeyBegin)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 85,
+      "declaration": "userRoute.POST(\"/login/passkey/finish\", middleware.CriticalRateLimit(), middleware.DisableCache(), anonymousRequestBodyLimit, controller.LoginPasskeyFinish)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 86,
+      "declaration": "userRoute.POST(\"/passkey/login/begin\", middleware.CriticalRateLimit(), middleware.DisableCache(), anonymousRequestBodyLimit, controller.PasskeyLoginBegin)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 87,
+      "declaration": "userRoute.POST(\"/passkey/login/finish\", middleware.CriticalRateLimit(), middleware.DisableCache(), anonymousRequestBodyLimit, controller.PasskeyLoginFinish)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 89,
+      "declaration": "userRoute.POST(\"/epay/notify\", anonymousRequestBodyLimit, controller.EpayNotify)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 90,
+      "declaration": "userRoute.GET(\"/epay/notify\", controller.EpayNotify)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 91,
+      "declaration": "userRoute.GET(\"/groups\", controller.GetUserGroups)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 93,
+      "declaration": "selfRoute := userRoute.Group(\"/\")"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 94,
+      "declaration": "selfRoute.Use(middleware.DisableCache(), middleware.UserAuth())"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 96,
+      "declaration": "selfRoute.GET(\"/sessions\", middleware.DisableCache(), controller.GetLoginSessions)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 97,
+      "declaration": "selfRoute.DELETE(\"/sessions/:sid\", middleware.DisableCache(), controller.DeleteLoginSession)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 98,
+      "declaration": "selfRoute.POST(\"/sessions/revoke-others\", middleware.DisableCache(), controller.RevokeOtherLoginSessions)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 99,
+      "declaration": "selfRoute.GET(\"/self/groups\", controller.GetUserGroups)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 100,
+      "declaration": "selfRoute.GET(\"/self\", controller.GetSelf)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 101,
+      "declaration": "selfRoute.GET(\"/models\", controller.GetUserModels)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 102,
+      "declaration": "selfRoute.PUT(\"/self\", middleware.CriticalRateLimit(), middleware.DisableCache(), controller.UpdateSelf)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 103,
+      "declaration": "selfRoute.DELETE(\"/self\", middleware.DisableCache(), controller.DeleteSelf)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 104,
+      "declaration": "accessTokenRoute := selfRoute.Group(\"/access_tokens\")"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 105,
+      "declaration": "accessTokenRoute.Use(middleware.DisableCache())"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 107,
+      "declaration": "accessTokenRoute.GET(\"\", controller.ListAccessTokens)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 108,
+      "declaration": "accessTokenRoute.GET(\"/catalog\", controller.GetAccessTokenCatalog)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 109,
+      "declaration": "accessTokenRoute.GET(\"/scopes\", controller.GetAccessTokenScopes)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 110,
+      "declaration": "accessTokenRoute.POST(\"\", middleware.CriticalRateLimit(), middleware.UserCriticalRateLimit(\"access-token\"), controller.CreateAccessToken)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 111,
+      "declaration": "accessTokenRoute.PATCH(\"/:id\", middleware.CriticalRateLimit(), middleware.UserCriticalRateLimit(\"access-token\"), controller.UpdateAccessToken)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 112,
+      "declaration": "accessTokenRoute.DELETE(\"/:id\", middleware.CriticalRateLimit(), middleware.UserCriticalRateLimit(\"access-token\"), controller.DeleteAccessToken)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 113,
+      "declaration": "accessTokenRoute.DELETE(\"/legacy\", middleware.CriticalRateLimit(), middleware.UserCriticalRateLimit(\"access-token\"), controller.RevokeLegacyAccessToken)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 115,
+      "declaration": "selfRoute.GET(\"/passkey\", controller.PasskeyStatus)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 116,
+      "declaration": "selfRoute.POST(\"/passkey/register/begin\", middleware.UserCriticalRateLimit(\"security-verification\"), middleware.DisableCache(), controller.PasskeyRegisterBegin)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 117,
+      "declaration": "selfRoute.POST(\"/passkey/register/finish\", middleware.UserCriticalRateLimit(\"security-verification\"), middleware.DisableCache(), controller.PasskeyRegisterFinish)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 118,
+      "declaration": "selfRoute.POST(\"/passkey/verify/begin\", middleware.UserCriticalRateLimit(\"security-verification\"), middleware.DisableCache(), controller.PasskeyVerifyBegin)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 119,
+      "declaration": "selfRoute.POST(\"/passkey/verify/finish\", middleware.UserCriticalRateLimit(\"security-verification\"), middleware.DisableCache(), controller.PasskeyVerifyFinish)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 120,
+      "declaration": "selfRoute.DELETE(\"/passkey\", middleware.DisableCache(), controller.PasskeyDelete)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 121,
+      "declaration": "selfRoute.GET(\"/aff\", controller.GetAffCode)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 122,
+      "declaration": "selfRoute.GET(\"/topup/info\", controller.GetTopUpInfo)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 123,
+      "declaration": "selfRoute.GET(\"/topup/self\", controller.GetUserTopUps)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 124,
+      "declaration": "selfRoute.POST(\"/topup\", middleware.CriticalRateLimit(), controller.TopUp)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 125,
+      "declaration": "selfRoute.POST(\"/pay\", middleware.CriticalRateLimit(), controller.RequestEpay)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 126,
+      "declaration": "selfRoute.POST(\"/amount\", controller.RequestAmount)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 127,
+      "declaration": "selfRoute.POST(\"/stripe/pay\", middleware.CriticalRateLimit(), controller.RequestStripePay)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 128,
+      "declaration": "selfRoute.POST(\"/stripe/amount\", controller.RequestStripeAmount)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 129,
+      "declaration": "selfRoute.POST(\"/creem/pay\", middleware.CriticalRateLimit(), controller.RequestCreemPay)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 130,
+      "declaration": "selfRoute.POST(\"/waffo/amount\", controller.RequestWaffoAmount)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 131,
+      "declaration": "selfRoute.POST(\"/waffo/pay\", middleware.CriticalRateLimit(), controller.RequestWaffoPay)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 132,
+      "declaration": "selfRoute.POST(\"/waffo-pancake/amount\", controller.RequestWaffoPancakeAmount)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 133,
+      "declaration": "selfRoute.POST(\"/waffo-pancake/pay\", middleware.CriticalRateLimit(), controller.RequestWaffoPancakePay)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 134,
+      "declaration": "selfRoute.POST(\"/aff_transfer\", middleware.UserCriticalRateLimit(\"aff-transfer\"), controller.TransferAffQuota)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 135,
+      "declaration": "selfRoute.PUT(\"/setting\", controller.UpdateUserSetting)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 138,
+      "declaration": "selfRoute.GET(\"/2fa/status\", controller.Get2FAStatus)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 139,
+      "declaration": "selfRoute.POST(\"/2fa/setup\", middleware.UserCriticalRateLimit(\"security-verification\"), middleware.DisableCache(), controller.Setup2FA)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 140,
+      "declaration": "selfRoute.POST(\"/2fa/enable\", middleware.UserCriticalRateLimit(\"security-verification\"), middleware.DisableCache(), controller.Enable2FA)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 141,
+      "declaration": "selfRoute.POST(\"/2fa/disable\", middleware.DisableCache(), controller.Disable2FA)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 142,
+      "declaration": "selfRoute.POST(\"/2fa/backup_codes\", middleware.DisableCache(), controller.RegenerateBackupCodes)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 145,
+      "declaration": "selfRoute.GET(\"/checkin\", controller.GetCheckinStatus)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 146,
+      "declaration": "selfRoute.POST(\"/checkin\", middleware.TurnstileCheck(), controller.DoCheckin)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 149,
+      "declaration": "selfRoute.GET(\"/oauth/bindings\", controller.GetUserOAuthBindings)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 150,
+      "declaration": "selfRoute.DELETE(\"/oauth/bindings/:provider_id\", controller.UnbindCustomOAuth)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 153,
+      "declaration": "adminRoute := userRoute.Group(\"/\")"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 154,
+      "declaration": "adminRoute.Use(middleware.AdminAuth())"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 156,
+      "declaration": "adminRoute.GET(\"/\", controller.GetAllUsers)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 157,
+      "declaration": "adminRoute.GET(\"/topup\", controller.GetAllTopUps)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 158,
+      "declaration": "adminRoute.POST(\"/topup/complete\", controller.AdminCompleteTopUp)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 159,
+      "declaration": "adminRoute.GET(\"/search\", controller.SearchUsers)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 160,
+      "declaration": "adminRoute.GET(\"/:id/oauth/bindings\", controller.GetUserOAuthBindingsByAdmin)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 161,
+      "declaration": "adminRoute.DELETE(\"/:id/oauth/bindings/:provider_id\", controller.UnbindCustomOAuthByAdmin)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 162,
+      "declaration": "adminRoute.DELETE(\"/:id/bindings/:binding_type\", controller.AdminClearUserBinding)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 163,
+      "declaration": "adminRoute.GET(\"/:id\", controller.GetUser)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 164,
+      "declaration": "adminRoute.POST(\"/\", controller.CreateUser)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 165,
+      "declaration": "adminRoute.POST(\"/manage\", controller.ManageUser)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 166,
+      "declaration": "adminRoute.PUT(\"/\", controller.UpdateUser)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 167,
+      "declaration": "adminRoute.DELETE(\"/:id\", controller.DeleteUser)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 168,
+      "declaration": "adminRoute.DELETE(\"/:id/reset_passkey\", controller.AdminResetPasskey)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 171,
+      "declaration": "adminRoute.GET(\"/2fa/stats\", controller.Admin2FAStats)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 172,
+      "declaration": "adminRoute.DELETE(\"/:id/2fa\", controller.AdminDisable2FA)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 177,
+      "declaration": "subscriptionRoute := apiRouter.Group(\"/subscription\")"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 178,
+      "declaration": "subscriptionRoute.Use(middleware.UserAuth())"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 180,
+      "declaration": "subscriptionRoute.GET(\"/plans\", controller.GetSubscriptionPlans)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 181,
+      "declaration": "subscriptionRoute.GET(\"/self\", controller.GetSubscriptionSelf)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 182,
+      "declaration": "subscriptionRoute.PUT(\"/self/preference\", controller.UpdateSubscriptionPreference)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 183,
+      "declaration": "subscriptionRoute.POST(\"/balance/pay\", middleware.CriticalRateLimit(), controller.SubscriptionRequestBalancePay)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 184,
+      "declaration": "subscriptionRoute.POST(\"/epay/pay\", middleware.CriticalRateLimit(), controller.SubscriptionRequestEpay)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 185,
+      "declaration": "subscriptionRoute.POST(\"/stripe/pay\", middleware.CriticalRateLimit(), controller.SubscriptionRequestStripePay)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 186,
+      "declaration": "subscriptionRoute.POST(\"/creem/pay\", middleware.CriticalRateLimit(), controller.SubscriptionRequestCreemPay)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 187,
+      "declaration": "subscriptionRoute.POST(\"/waffo-pancake/pay\", middleware.CriticalRateLimit(), controller.SubscriptionRequestWaffoPancakePay)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 189,
+      "declaration": "subscriptionAdminRoute := apiRouter.Group(\"/subscription/admin\")"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 190,
+      "declaration": "subscriptionAdminRoute.Use(middleware.AdminAuth())"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 192,
+      "declaration": "subscriptionAdminRoute.GET(\"/plans\", controller.AdminListSubscriptionPlans)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 193,
+      "declaration": "subscriptionAdminRoute.POST(\"/plans\", controller.AdminCreateSubscriptionPlan)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 194,
+      "declaration": "subscriptionAdminRoute.PUT(\"/plans/:id\", controller.AdminUpdateSubscriptionPlan)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 195,
+      "declaration": "subscriptionAdminRoute.PATCH(\"/plans/:id\", controller.AdminUpdateSubscriptionPlanStatus)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 196,
+      "declaration": "subscriptionAdminRoute.POST(\"/bind\", controller.AdminBindSubscription)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 197,
+      "declaration": "subscriptionAdminRoute.POST(\"/plans/:id/subscriptions/reset\", controller.AdminResetPlanSubscriptions)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 200,
+      "declaration": "subscriptionAdminRoute.GET(\"/users/:id/subscriptions\", controller.AdminListUserSubscriptions)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 201,
+      "declaration": "subscriptionAdminRoute.POST(\"/users/:id/subscriptions\", controller.AdminCreateUserSubscription)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 202,
+      "declaration": "subscriptionAdminRoute.POST(\"/users/:id/subscriptions/reset\", controller.AdminResetUserSubscriptionsByPlan)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 203,
+      "declaration": "subscriptionAdminRoute.POST(\"/user_subscriptions/:id/invalidate\", controller.AdminInvalidateUserSubscription)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 204,
+      "declaration": "subscriptionAdminRoute.DELETE(\"/user_subscriptions/:id\", controller.AdminDeleteUserSubscription)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 208,
+      "declaration": "apiRouter.POST(\"/subscription/epay/notify\", anonymousRequestBodyLimit, controller.SubscriptionEpayNotify)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 209,
+      "declaration": "apiRouter.GET(\"/subscription/epay/notify\", controller.SubscriptionEpayNotify)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 210,
+      "declaration": "apiRouter.GET(\"/subscription/epay/return\", controller.SubscriptionEpayReturn)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 211,
+      "declaration": "apiRouter.POST(\"/subscription/epay/return\", anonymousRequestBodyLimit, controller.SubscriptionEpayReturn)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 212,
+      "declaration": "optionRoute := apiRouter.Group(\"/option\")"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 213,
+      "declaration": "optionRoute.Use(middleware.RootAuth())"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 215,
+      "declaration": "optionRoute.GET(\"/\", controller.GetOptions)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 216,
+      "declaration": "optionRoute.GET(\"/request_policy\", controller.GetRequestPolicy)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 217,
+      "declaration": "optionRoute.PATCH(\"/request_policy\", controller.UpdateRequestPolicy)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 218,
+      "declaration": "optionRoute.PUT(\"/\", controller.UpdateOption)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 219,
+      "declaration": "optionRoute.PUT(\"/passkey/domains\", controller.UpdatePasskeyDomains)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 220,
+      "declaration": "optionRoute.GET(\"/model_pricing\", controller.GetModelPricingConfig)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 221,
+      "declaration": "optionRoute.GET(\"/model_pricing/issues\", controller.GetModelPricingIssues)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 222,
+      "declaration": "optionRoute.PATCH(\"/model_pricing\", controller.UpdateModelPricingConfig)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 223,
+      "declaration": "optionRoute.POST(\"/model_pricing/convert\", controller.PreviewModelPricingConversion)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 224,
+      "declaration": "optionRoute.POST(\"/model_pricing/preview\", controller.PreviewModelPricing)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 225,
+      "declaration": "optionRoute.POST(\"/payment_compliance\", controller.ConfirmPaymentCompliance)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 226,
+      "declaration": "optionRoute.GET(\"/channel_affinity_cache\", controller.GetChannelAffinityCacheStats)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 227,
+      "declaration": "optionRoute.DELETE(\"/channel_affinity_cache\", controller.ClearChannelAffinityCache)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 228,
+      "declaration": "optionRoute.POST(\"/rest_model_ratio\", controller.ResetModelRatio)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 229,
+      "declaration": "optionRoute.GET(\"/waffo-pancake/catalog\", controller.ListWaffoPancakeCatalog)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 230,
+      "declaration": "optionRoute.POST(\"/waffo-pancake/pair\", controller.CreateWaffoPancakePair)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 231,
+      "declaration": "optionRoute.POST(\"/waffo-pancake/save\", controller.SaveWaffoPancake)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 232,
+      "declaration": "optionRoute.POST(\"/waffo-pancake/subscription-product\", controller.CreateWaffoPancakeSubscriptionProduct)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 233,
+      "declaration": "optionRoute.GET(\"/waffo-pancake/subscription-product-options\", controller.ListWaffoPancakeSubscriptionProductOptions)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 237,
+      "declaration": "customOAuthRoute := apiRouter.Group(\"/custom-oauth-provider\")"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 238,
+      "declaration": "customOAuthRoute.Use(middleware.RootAuth())"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 240,
+      "declaration": "customOAuthRoute.POST(\"/discovery\", controller.FetchCustomOAuthDiscovery)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 241,
+      "declaration": "customOAuthRoute.GET(\"/\", controller.GetCustomOAuthProviders)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 242,
+      "declaration": "customOAuthRoute.GET(\"/:id\", controller.GetCustomOAuthProvider)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 243,
+      "declaration": "customOAuthRoute.POST(\"/\", controller.CreateCustomOAuthProvider)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 244,
+      "declaration": "customOAuthRoute.PUT(\"/:id\", controller.UpdateCustomOAuthProvider)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 245,
+      "declaration": "customOAuthRoute.DELETE(\"/:id\", controller.DeleteCustomOAuthProvider)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 247,
+      "declaration": "performanceRoute := apiRouter.Group(\"/performance\")"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 248,
+      "declaration": "performanceRoute.Use(middleware.RootAuth())"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 250,
+      "declaration": "performanceRoute.GET(\"/stats\", controller.GetPerformanceStats)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 251,
+      "declaration": "performanceRoute.DELETE(\"/disk_cache\", controller.ClearDiskCache)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 252,
+      "declaration": "performanceRoute.POST(\"/reset_stats\", controller.ResetPerformanceStats)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 253,
+      "declaration": "performanceRoute.POST(\"/gc\", controller.ForceGC)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 254,
+      "declaration": "performanceRoute.GET(\"/logs\", controller.GetLogFiles)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 255,
+      "declaration": "performanceRoute.DELETE(\"/logs\", controller.CleanupLogFiles)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 257,
+      "declaration": "ratioSyncRoute := apiRouter.Group(\"/ratio_sync\")"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 258,
+      "declaration": "ratioSyncRoute.Use(middleware.RootAuth())"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 260,
+      "declaration": "ratioSyncRoute.GET(\"/channels\", controller.GetSyncableChannels)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 261,
+      "declaration": "ratioSyncRoute.POST(\"/fetch\", controller.FetchUpstreamRatios)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 263,
+      "declaration": "taskPluginRoute := apiRouter.Group(\"/plugin/task\")"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 264,
+      "declaration": "taskPluginRoute.Use(middleware.RootAuth())"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 266,
+      "declaration": "taskPluginRoute.GET(\"\", controller.ListTaskPlugins)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 267,
+      "declaration": "taskPluginRoute.POST(\"\", controller.UploadTaskPlugin)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 268,
+      "declaration": "taskPluginRoute.PUT(\"\", controller.UploadTaskPlugin)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 269,
+      "declaration": "taskPluginRoute.GET(\"/runtime/status\", controller.GetTaskPluginRuntime)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 270,
+      "declaration": "taskPluginRoute.GET(\"/marketplace/sources\", controller.GetTaskPluginMarketplaceSources)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 271,
+      "declaration": "taskPluginRoute.PUT(\"/marketplace/sources\", controller.UpdateTaskPluginMarketplaceSources)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 272,
+      "declaration": "taskPluginRoute.GET(\"/:key\", controller.GetTaskPlugin)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 273,
+      "declaration": "taskPluginRoute.GET(\"/:key/icon\", controller.GetTaskPluginIcon)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 274,
+      "declaration": "taskPluginRoute.GET(\"/:key/versions\", controller.GetTaskPluginVersions)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 275,
+      "declaration": "taskPluginRoute.POST(\"/:key/activate\", controller.ActivateTaskPlugin)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 276,
+      "declaration": "taskPluginRoute.POST(\"/:key/status\", controller.SetTaskPluginStatus)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 277,
+      "declaration": "taskPluginRoute.POST(\"/:key/dryrun\", controller.DryRunTaskPlugin)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 278,
+      "declaration": "taskPluginRoute.DELETE(\"/:key/versions/:version\", controller.DeleteTaskPluginVersion)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 280,
+      "declaration": "handlePermissionRoute(apiRouter.Group(\"\", middleware.AdminAuth()), http.MethodGet, \"/task_plugin_options\", authz.TaskPluginBind, controller.GetTaskPluginOptions)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 283,
+      "declaration": "tokenRoute := apiRouter.Group(\"/token\")"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 284,
+      "declaration": "tokenRoute.Use(middleware.UserAuth())"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 285,
+      "declaration": "tokenRoute.Use(middleware.TokenOperationAudit())"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 287,
+      "declaration": "tokenRoute.GET(\"/\", controller.GetAllTokens)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 288,
+      "declaration": "tokenRoute.GET(\"/search\", middleware.SearchRateLimit(), controller.SearchTokens)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 289,
+      "declaration": "tokenRoute.GET(\"/auto-groups\", controller.GetTokenAutoGroups)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 290,
+      "declaration": "tokenRoute.GET(\"/:id\", controller.GetToken)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 291,
+      "declaration": "tokenRoute.POST(\"/:id/key\", middleware.CriticalRateLimit(), middleware.DisableCache(), controller.GetTokenKey)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 292,
+      "declaration": "tokenRoute.POST(\"/\", controller.AddToken)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 293,
+      "declaration": "tokenRoute.PUT(\"/\", controller.UpdateToken)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 294,
+      "declaration": "tokenRoute.DELETE(\"/:id\", controller.DeleteToken)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 295,
+      "declaration": "tokenRoute.POST(\"/batch\", controller.DeleteTokenBatch)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 296,
+      "declaration": "tokenRoute.POST(\"/batch/keys\", middleware.CriticalRateLimit(), middleware.DisableCache(), controller.GetTokenKeysBatch)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 299,
+      "declaration": "usageRoute := apiRouter.Group(\"/usage\")"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 300,
+      "declaration": "usageRoute.Use(middleware.CORS(), middleware.CriticalRateLimit())"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 302,
+      "declaration": "tokenUsageRoute := usageRoute.Group(\"/token\")"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 303,
+      "declaration": "tokenUsageRoute.Use(middleware.TokenAuthReadOnly())"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 305,
+      "declaration": "tokenUsageRoute.GET(\"/\", controller.GetTokenUsage)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 309,
+      "declaration": "redemptionRoute := apiRouter.Group(\"/redemption\")"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 310,
+      "declaration": "redemptionRoute.Use(middleware.AdminAuth())"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 312,
+      "declaration": "redemptionRoute.GET(\"/\", controller.GetAllRedemptions)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 313,
+      "declaration": "redemptionRoute.GET(\"/search\", controller.SearchRedemptions)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 314,
+      "declaration": "redemptionRoute.GET(\"/:id\", controller.GetRedemption)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 315,
+      "declaration": "redemptionRoute.POST(\"/\", controller.AddRedemption)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 316,
+      "declaration": "redemptionRoute.POST(\"/batch\", controller.DeleteRedemptionBatch)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 317,
+      "declaration": "redemptionRoute.PUT(\"/\", controller.UpdateRedemption)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 318,
+      "declaration": "redemptionRoute.DELETE(\"/invalid\", controller.DeleteInvalidRedemption)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 319,
+      "declaration": "redemptionRoute.DELETE(\"/:id\", controller.DeleteRedemption)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 321,
+      "declaration": "handlePermissionRoute(apiRouter.Group(\"\", middleware.DisableCache(), middleware.AdminAuth()), http.MethodGet, \"/audit\", authz.AuditRead, controller.GetAuditLogs)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 322,
+      "declaration": "apiRouter.GET(\"/audit/self\", middleware.DisableCache(), middleware.UserAuth(), controller.GetAuditLogs)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 323,
+      "declaration": "logRoute := apiRouter.Group(\"/log\")"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 324,
+      "declaration": "logRoute.GET(\"/\", middleware.AdminAuth(), controller.GetAllLogs)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 325,
+      "declaration": "logRoute.GET(\"/stat\", middleware.AdminAuth(), controller.GetLogsStat)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 326,
+      "declaration": "logRoute.GET(\"/self/stat\", middleware.UserAuth(), controller.GetLogsSelfStat)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 327,
+      "declaration": "logRoute.GET(\"/channel_affinity_usage_cache\", middleware.AdminAuth(), controller.GetChannelAffinityUsageCacheStats)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 328,
+      "declaration": "logRoute.GET(\"/search\", middleware.AdminAuth(), controller.SearchAllLogs)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 329,
+      "declaration": "logRoute.GET(\"/self\", middleware.UserAuth(), controller.GetUserLogs)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 330,
+      "declaration": "logRoute.GET(\"/export\", middleware.AdminAuth(), controller.ExportAllLogs)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 331,
+      "declaration": "logRoute.GET(\"/self/export\", middleware.UserAuth(), controller.ExportUserLogs)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 332,
+      "declaration": "logRoute.GET(\"/self/search\", middleware.UserAuth(), middleware.SearchRateLimit(), controller.SearchUserLogs)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 334,
+      "declaration": "systemTaskRoute := apiRouter.Group(\"/system-task\")"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 335,
+      "declaration": "systemTaskRoute.Use(middleware.RootAuth())"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 337,
+      "declaration": "systemTaskRoute.POST(\"/log-cleanup\", controller.CreateLogCleanupSystemTask)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 338,
+      "declaration": "systemTaskRoute.GET(\"/list\", controller.ListSystemTasks)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 339,
+      "declaration": "systemTaskRoute.DELETE(\"/history\", controller.DeleteSystemTaskHistory)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 340,
+      "declaration": "systemTaskRoute.GET(\"/current\", controller.GetCurrentSystemTask)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 341,
+      "declaration": "systemTaskRoute.GET(\"/:task_id\", controller.GetSystemTask)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 343,
+      "declaration": "systemInfoRoute := apiRouter.Group(\"/system-info\")"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 344,
+      "declaration": "systemInfoRoute.Use(middleware.RootAuth())"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 346,
+      "declaration": "systemInfoRoute.GET(\"/instances\", controller.ListSystemInstances)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 347,
+      "declaration": "systemInfoRoute.DELETE(\"/stale-instances\", controller.DeleteStaleSystemInstances)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 348,
+      "declaration": "systemInfoRoute.DELETE(\"/instances/:node_name\", controller.DeleteStaleSystemInstance)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 351,
+      "declaration": "dataRoute := apiRouter.Group(\"/data\")"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 352,
+      "declaration": "dataRoute.GET(\"/\", middleware.AdminAuth(), controller.GetAllQuotaDates)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 353,
+      "declaration": "dataRoute.GET(\"/users\", middleware.AdminAuth(), controller.GetQuotaDatesByUser)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 354,
+      "declaration": "dataRoute.GET(\"/self\", middleware.UserAuth(), controller.GetUserQuotaDates)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 355,
+      "declaration": "dataRoute.GET(\"/flow\", middleware.AdminAuth(), controller.GetAllFlowQuotaDates)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 356,
+      "declaration": "dataRoute.GET(\"/flow/self\", middleware.UserAuth(), controller.GetUserFlowQuotaDates)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 358,
+      "declaration": "logRoute.Use(middleware.CORS(), middleware.CriticalRateLimit())"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 360,
+      "declaration": "logRoute.GET(\"/token\", middleware.TokenAuthReadOnly(), controller.GetLogByKey)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 362,
+      "declaration": "groupRoute := apiRouter.Group(\"/group\")"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 363,
+      "declaration": "groupRoute.Use(middleware.AdminAuth())"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 365,
+      "declaration": "groupRoute.GET(\"/\", controller.GetGroups)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 368,
+      "declaration": "prefillGroupRoute := apiRouter.Group(\"/prefill_group\")"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 369,
+      "declaration": "prefillGroupRoute.Use(middleware.AdminAuth())"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 371,
+      "declaration": "prefillGroupRoute.GET(\"/\", controller.GetPrefillGroups)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 372,
+      "declaration": "prefillGroupRoute.POST(\"/\", controller.CreatePrefillGroup)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 373,
+      "declaration": "prefillGroupRoute.PUT(\"/\", controller.UpdatePrefillGroup)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 374,
+      "declaration": "prefillGroupRoute.DELETE(\"/:id\", controller.DeletePrefillGroup)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 377,
+      "declaration": "mjRoute := apiRouter.Group(\"/mj\")"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 378,
+      "declaration": "mjRoute.GET(\"/self\", middleware.UserAuth(), controller.GetUserMidjourney)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 379,
+      "declaration": "mjRoute.GET(\"/\", middleware.AdminAuth(), controller.GetAllMidjourney)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 381,
+      "declaration": "taskRoute := apiRouter.Group(\"/task\")"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 383,
+      "declaration": "taskRoute.GET(\"/self\", middleware.UserAuth(), controller.GetUserTask)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 384,
+      "declaration": "taskRoute.GET(\"\", middleware.AdminAuth(), controller.GetAllTask)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 385,
+      "declaration": "taskRoute.GET(\"/:task_id/artifacts\", middleware.UserAuth(), controller.GetDashboardTaskArtifacts)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 388,
+      "declaration": "vendorRoute := apiRouter.Group(\"/vendors\")"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 389,
+      "declaration": "vendorRoute.Use(middleware.AdminAuth())"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 391,
+      "declaration": "vendorRoute.POST(\"/operations/preview\", controller.PreviewVendorOperation)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 392,
+      "declaration": "vendorRoute.POST(\"/operations\", controller.ApplyVendorOperation)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 393,
+      "declaration": "vendorRoute.GET(\"/\", controller.GetAllVendors)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 394,
+      "declaration": "vendorRoute.GET(\"/search\", controller.SearchVendors)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 395,
+      "declaration": "vendorRoute.GET(\"/:id\", controller.GetVendorMeta)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 396,
+      "declaration": "vendorRoute.POST(\"/\", controller.CreateVendorMeta)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 397,
+      "declaration": "vendorRoute.PUT(\"/\", controller.UpdateVendorMeta)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 398,
+      "declaration": "vendorRoute.DELETE(\"/:id\", controller.DeleteVendorMeta)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 401,
+      "declaration": "modelsRoute := apiRouter.Group(\"/models\")"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 402,
+      "declaration": "modelsRoute.Use(middleware.AdminAuth())"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 404,
+      "declaration": "modelsRoute.GET(\"/sync_upstream/preview\", controller.SyncUpstreamPreview)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 405,
+      "declaration": "modelsRoute.POST(\"/sync_upstream\", controller.SyncUpstreamModels)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 406,
+      "declaration": "modelsRoute.POST(\"/delete\", controller.BatchDeleteModelMeta)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 407,
+      "declaration": "modelsRoute.GET(\"/missing\", controller.GetMissingModels)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 408,
+      "declaration": "modelsRoute.GET(\"/\", controller.GetAllModelsMeta)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 409,
+      "declaration": "modelsRoute.GET(\"/search\", controller.SearchModelsMeta)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 410,
+      "declaration": "modelsRoute.GET(\"/:id\", controller.GetModelMeta)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 411,
+      "declaration": "modelsRoute.POST(\"/\", controller.CreateModelMeta)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 412,
+      "declaration": "modelsRoute.PUT(\"/\", controller.UpdateModelMeta)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 413,
+      "declaration": "modelsRoute.DELETE(\"/:id\", controller.DeleteModelMeta)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 417,
+      "declaration": "deploymentsRoute := apiRouter.Group(\"/deployments\")"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 418,
+      "declaration": "deploymentsRoute.Use(middleware.AdminAuth())"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 420,
+      "declaration": "deploymentsRoute.GET(\"/settings\", controller.GetModelDeploymentSettings)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 421,
+      "declaration": "deploymentsRoute.POST(\"/settings/test-connection\", controller.TestIoNetConnection)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 422,
+      "declaration": "deploymentsRoute.GET(\"/\", controller.GetAllDeployments)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 423,
+      "declaration": "deploymentsRoute.GET(\"/search\", controller.SearchDeployments)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 424,
+      "declaration": "deploymentsRoute.POST(\"/test-connection\", controller.TestIoNetConnection)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 425,
+      "declaration": "deploymentsRoute.GET(\"/hardware-types\", controller.GetHardwareTypes)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 426,
+      "declaration": "deploymentsRoute.GET(\"/locations\", controller.GetLocations)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 427,
+      "declaration": "deploymentsRoute.GET(\"/available-replicas\", controller.GetAvailableReplicas)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 428,
+      "declaration": "deploymentsRoute.POST(\"/price-estimation\", controller.GetPriceEstimation)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 429,
+      "declaration": "deploymentsRoute.GET(\"/check-name\", controller.CheckClusterNameAvailability)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 430,
+      "declaration": "deploymentsRoute.POST(\"/\", controller.CreateDeployment)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 432,
+      "declaration": "deploymentsRoute.GET(\"/:id\", controller.GetDeployment)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 433,
+      "declaration": "deploymentsRoute.GET(\"/:id/logs\", controller.GetDeploymentLogs)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 434,
+      "declaration": "deploymentsRoute.GET(\"/:id/containers\", controller.ListDeploymentContainers)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 435,
+      "declaration": "deploymentsRoute.GET(\"/:id/containers/:container_id\", controller.GetContainerDetails)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 436,
+      "declaration": "deploymentsRoute.PUT(\"/:id\", controller.UpdateDeployment)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 437,
+      "declaration": "deploymentsRoute.PUT(\"/:id/name\", controller.UpdateDeploymentName)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 438,
+      "declaration": "deploymentsRoute.POST(\"/:id/extend\", controller.ExtendDeployment)"
+    },
+    {
+      "source": "router/api-router.go",
+      "line": 439,
+      "declaration": "deploymentsRoute.DELETE(\"/:id\", controller.DeleteDeployment)"
+    },
+    {
+      "source": "router/authz-router.go",
+      "line": 14,
+      "declaration": "authzRoute := apiRouter.Group(\"/authz\")"
+    },
+    {
+      "source": "router/authz-router.go",
+      "line": 15,
+      "declaration": "authzRoute.Use(middleware.AdminAuth())"
+    },
+    {
+      "source": "router/authz-router.go",
+      "line": 17,
+      "declaration": "authzRoute.GET(\"/catalog\", controller.GetPermissionCatalog)"
+    },
+    {
+      "source": "router/channel-router.go",
+      "line": 24,
+      "declaration": "group.Handle(method, relativePath, append([]gin.HandlerFunc{middleware.RequirePermission(permission)}, handlers...)...)"
+    },
+    {
+      "source": "router/channel-router.go",
+      "line": 41,
+      "declaration": "channelRoute := apiRouter.Group(\"/channel\")"
+    },
+    {
+      "source": "router/channel-router.go",
+      "line": 42,
+      "declaration": "channelRoute.Use(middleware.AdminAuth())"
+    },
+    {
+      "source": "router/channel-router.go",
+      "line": 44,
+      "declaration": "channelRoute.POST(\"/:id/key\","
+    },
+    {
+      "source": "router/dashboard.go",
+      "line": 11,
+      "declaration": "apiRouter := router.Group(\"/\")"
+    },
+    {
+      "source": "router/dashboard.go",
+      "line": 12,
+      "declaration": "apiRouter.Use(middleware.RouteTag(\"old_api\"))"
+    },
+    {
+      "source": "router/dashboard.go",
+      "line": 13,
+      "declaration": "apiRouter.Use(gzip.Gzip(gzip.DefaultCompression))"
+    },
+    {
+      "source": "router/dashboard.go",
+      "line": 14,
+      "declaration": "apiRouter.Use(middleware.GlobalAPIRateLimit())"
+    },
+    {
+      "source": "router/dashboard.go",
+      "line": 15,
+      "declaration": "apiRouter.Use(middleware.CORS())"
+    },
+    {
+      "source": "router/dashboard.go",
+      "line": 16,
+      "declaration": "apiRouter.Use(middleware.TokenAuth())"
+    },
+    {
+      "source": "router/dashboard.go",
+      "line": 18,
+      "declaration": "apiRouter.GET(\"/dashboard/billing/subscription\", controller.GetSubscription)"
+    },
+    {
+      "source": "router/dashboard.go",
+      "line": 19,
+      "declaration": "apiRouter.GET(\"/v1/dashboard/billing/subscription\", controller.GetSubscription)"
+    },
+    {
+      "source": "router/dashboard.go",
+      "line": 20,
+      "declaration": "apiRouter.GET(\"/dashboard/billing/usage\", controller.GetUsage)"
+    },
+    {
+      "source": "router/dashboard.go",
+      "line": 21,
+      "declaration": "apiRouter.GET(\"/v1/dashboard/billing/usage\", controller.GetUsage)"
+    },
+    {
+      "source": "router/plugin-router.go",
+      "line": 100,
+      "declaration": "engine.Handle(group.Method, group.GinPath, routeHandlers...)"
+    },
+    {
+      "source": "router/plugin-router.go",
+      "line": 353,
+      "declaration": "engine.Use(importPluginDispatchState())"
+    },
+    {
+      "source": "router/plugin-router.go",
+      "line": 354,
+      "declaration": "engine.Use(pluginRouteRecovery())"
+    },
+    {
+      "source": "router/plugin-router.go",
+      "line": 355,
+      "declaration": "engine.Use(middleware.BodyStorageCleanup())"
+    },
+    {
+      "source": "router/relay-router.go",
+      "line": 16,
+      "declaration": "router.Use(middleware.CORS())"
+    },
+    {
+      "source": "router/relay-router.go",
+      "line": 17,
+      "declaration": "router.Use(middleware.DecompressRequestMiddleware())"
+    },
+    {
+      "source": "router/relay-router.go",
+      "line": 18,
+      "declaration": "router.Use(middleware.BodyStorageCleanup()) // 清理请求体存储"
+    },
+    {
+      "source": "router/relay-router.go",
+      "line": 19,
+      "declaration": "router.Use(middleware.StatsMiddleware())"
+    },
+    {
+      "source": "router/relay-router.go",
+      "line": 21,
+      "declaration": "modelsRouter := router.Group(\"/v1/models\")"
+    },
+    {
+      "source": "router/relay-router.go",
+      "line": 22,
+      "declaration": "modelsRouter.Use(middleware.RouteTag(\"relay\"))"
+    },
+    {
+      "source": "router/relay-router.go",
+      "line": 23,
+      "declaration": "modelsRouter.Use(middleware.TokenAuth())"
+    },
+    {
+      "source": "router/relay-router.go",
+      "line": 25,
+      "declaration": "modelsRouter.GET(\"\", func(c *gin.Context) {"
+    },
+    {
+      "source": "router/relay-router.go",
+      "line": 36,
+      "declaration": "modelsRouter.GET(\"/:model\", func(c *gin.Context) {"
+    },
+    {
+      "source": "router/relay-router.go",
+      "line": 46,
+      "declaration": "geminiRouter := router.Group(\"/v1beta/models\")"
+    },
+    {
+      "source": "router/relay-router.go",
+      "line": 47,
+      "declaration": "geminiRouter.Use(middleware.RouteTag(\"relay\"))"
+    },
+    {
+      "source": "router/relay-router.go",
+      "line": 48,
+      "declaration": "geminiRouter.Use(middleware.TokenAuth())"
+    },
+    {
+      "source": "router/relay-router.go",
+      "line": 50,
+      "declaration": "geminiRouter.GET(\"\", func(c *gin.Context) {"
+    },
+    {
+      "source": "router/relay-router.go",
+      "line": 55,
+      "declaration": "geminiCompatibleRouter := router.Group(\"/v1beta/openai/models\")"
+    },
+    {
+      "source": "router/relay-router.go",
+      "line": 56,
+      "declaration": "geminiCompatibleRouter.Use(middleware.RouteTag(\"relay\"))"
+    },
+    {
+      "source": "router/relay-router.go",
+      "line": 57,
+      "declaration": "geminiCompatibleRouter.Use(middleware.TokenAuth())"
+    },
+    {
+      "source": "router/relay-router.go",
+      "line": 59,
+      "declaration": "geminiCompatibleRouter.GET(\"\", func(c *gin.Context) {"
+    },
+    {
+      "source": "router/relay-router.go",
+      "line": 64,
+      "declaration": "playgroundRouter := router.Group(\"/pg\")"
+    },
+    {
+      "source": "router/relay-router.go",
+      "line": 65,
+      "declaration": "playgroundRouter.Use(middleware.RouteTag(\"relay\"))"
+    },
+    {
+      "source": "router/relay-router.go",
+      "line": 66,
+      "declaration": "playgroundRouter.Use(middleware.SystemPerformanceCheck())"
+    },
+    {
+      "source": "router/relay-router.go",
+      "line": 67,
+      "declaration": "playgroundRouter.Use(middleware.UserAuth(), middleware.Distribute())"
+    },
+    {
+      "source": "router/relay-router.go",
+      "line": 69,
+      "declaration": "playgroundRouter.POST(\"/chat/completions\", controller.Playground)"
+    },
+    {
+      "source": "router/relay-router.go",
+      "line": 71,
+      "declaration": "relayV1Router := router.Group(\"/v1\")"
+    },
+    {
+      "source": "router/relay-router.go",
+      "line": 72,
+      "declaration": "relayV1Router.Use(middleware.RouteTag(\"relay\"))"
+    },
+    {
+      "source": "router/relay-router.go",
+      "line": 73,
+      "declaration": "relayV1Router.Use(middleware.SystemPerformanceCheck())"
+    },
+    {
+      "source": "router/relay-router.go",
+      "line": 74,
+      "declaration": "relayV1Router.Use(middleware.TokenAuth())"
+    },
+    {
+      "source": "router/relay-router.go",
+      "line": 78,
+      "declaration": "relayV1Router.GET(\"/responses\", controller.ResponsesWebSocket)"
+    },
+    {
+      "source": "router/relay-router.go",
+      "line": 80,
+      "declaration": "relayV1Router.Use(middleware.ModelRequestRateLimit())"
+    },
+    {
+      "source": "router/relay-router.go",
+      "line": 83,
+      "declaration": "wsRouter := relayV1Router.Group(\"\")"
+    },
+    {
+      "source": "router/relay-router.go",
+      "line": 84,
+      "declaration": "wsRouter.Use(middleware.Distribute())"
+    },
+    {
+      "source": "router/relay-router.go",
+      "line": 85,
+      "declaration": "wsRouter.GET(\"/realtime\", func(c *gin.Context) {"
+    },
+    {
+      "source": "router/relay-router.go",
+      "line": 91,
+      "declaration": "httpRouter := relayV1Router.Group(\"\")"
+    },
+    {
+      "source": "router/relay-router.go",
+      "line": 92,
+      "declaration": "httpRouter.Use(middleware.Distribute())"
+    },
+    {
+      "source": "router/relay-router.go",
+      "line": 97,
+      "declaration": "httpRouter.POST(\"/messages\", func(c *gin.Context) {"
+    },
+    {
+      "source": "router/relay-router.go",
+      "line": 102,
+      "declaration": "httpRouter.POST(\"/completions\", func(c *gin.Context) {"
+    },
+    {
+      "source": "router/relay-router.go",
+      "line": 105,
+      "declaration": "httpRouter.POST(\"/chat/completions\", func(c *gin.Context) {"
+    },
+    {
+      "source": "router/relay-router.go",
+      "line": 110,
+      "declaration": "httpRouter.POST(\"/responses/compact\", func(c *gin.Context) {"
+    },
+    {
+      "source": "router/relay-router.go",
+      "line": 115,
+      "declaration": "httpRouter.POST(\"/alpha/search\", func(c *gin.Context) {"
+    },
+    {
+      "source": "router/relay-router.go",
+      "line": 120,
+      "declaration": "httpRouter.POST(\"/tools/search\", func(c *gin.Context) {"
+    },
+    {
+      "source": "router/relay-router.go",
+      "line": 123,
+      "declaration": "httpRouter.POST(\"/tools/fetch\", func(c *gin.Context) {"
+    },
+    {
+      "source": "router/relay-router.go",
+      "line": 130,
+      "declaration": "httpRouter.POST(\"/edits\", func(c *gin.Context) {"
+    },
+    {
+      "source": "router/relay-router.go",
+      "line": 135,
+      "declaration": "httpRouter.POST(\"/embeddings\", func(c *gin.Context) {"
+    },
+    {
+      "source": "router/relay-router.go",
+      "line": 140,
+      "declaration": "httpRouter.POST(\"/audio/transcriptions\", func(c *gin.Context) {"
+    },
+    {
+      "source": "router/relay-router.go",
+      "line": 143,
+      "declaration": "httpRouter.POST(\"/audio/translations\", func(c *gin.Context) {"
+    },
+    {
+      "source": "router/relay-router.go",
+      "line": 146,
+      "declaration": "httpRouter.POST(\"/audio/speech\", func(c *gin.Context) {"
+    },
+    {
+      "source": "router/relay-router.go",
+      "line": 151,
+      "declaration": "httpRouter.POST(\"/rerank\", func(c *gin.Context) {"
+    },
+    {
+      "source": "router/relay-router.go",
+      "line": 156,
+      "declaration": "httpRouter.POST(\"/engines/:model/embeddings\", func(c *gin.Context) {"
+    },
+    {
+      "source": "router/relay-router.go",
+      "line": 159,
+      "declaration": "httpRouter.POST(\"/models/*path\", func(c *gin.Context) {"
+    },
+    {
+      "source": "router/relay-router.go",
+      "line": 164,
+      "declaration": "httpRouter.POST(\"/moderations\", func(c *gin.Context) {"
+    },
+    {
+      "source": "router/relay-router.go",
+      "line": 169,
+      "declaration": "httpRouter.POST(\"/images/variations\", controller.RelayNotImplemented)"
+    },
+    {
+      "source": "router/relay-router.go",
+      "line": 170,
+      "declaration": "httpRouter.GET(\"/files\", controller.RelayNotImplemented)"
+    },
+    {
+      "source": "router/relay-router.go",
+      "line": 171,
+      "declaration": "httpRouter.POST(\"/files\", controller.RelayNotImplemented)"
+    },
+    {
+      "source": "router/relay-router.go",
+      "line": 172,
+      "declaration": "httpRouter.DELETE(\"/files/:id\", controller.RelayNotImplemented)"
+    },
+    {
+      "source": "router/relay-router.go",
+      "line": 173,
+      "declaration": "httpRouter.GET(\"/files/:id/content\", controller.RelayNotImplemented)"
+    },
+    {
+      "source": "router/relay-router.go",
+      "line": 174,
+      "declaration": "httpRouter.POST(\"/fine-tunes\", controller.RelayNotImplemented)"
+    },
+    {
+      "source": "router/relay-router.go",
+      "line": 175,
+      "declaration": "httpRouter.GET(\"/fine-tunes\", controller.RelayNotImplemented)"
+    },
+    {
+      "source": "router/relay-router.go",
+      "line": 176,
+      "declaration": "httpRouter.GET(\"/fine-tunes/:id\", controller.RelayNotImplemented)"
+    },
+    {
+      "source": "router/relay-router.go",
+      "line": 177,
+      "declaration": "httpRouter.POST(\"/fine-tunes/:id/cancel\", controller.RelayNotImplemented)"
+    },
+    {
+      "source": "router/relay-router.go",
+      "line": 178,
+      "declaration": "httpRouter.GET(\"/fine-tunes/:id/events\", controller.RelayNotImplemented)"
+    },
+    {
+      "source": "router/relay-router.go",
+      "line": 179,
+      "declaration": "httpRouter.DELETE(\"/models/:model\", controller.RelayNotImplemented)"
+    },
+    {
+      "source": "router/relay-router.go",
+      "line": 182,
+      "declaration": "relayMjRouter := router.Group(\"/mj\")"
+    },
+    {
+      "source": "router/relay-router.go",
+      "line": 183,
+      "declaration": "relayMjRouter.Use(middleware.RouteTag(\"relay\"))"
+    },
+    {
+      "source": "router/relay-router.go",
+      "line": 184,
+      "declaration": "relayMjRouter.Use(middleware.SystemPerformanceCheck())"
+    },
+    {
+      "source": "router/relay-router.go",
+      "line": 187,
+      "declaration": "relayMjModeRouter := router.Group(\"/:mode/mj\")"
+    },
+    {
+      "source": "router/relay-router.go",
+      "line": 188,
+      "declaration": "relayMjModeRouter.Use(middleware.RouteTag(\"relay\"))"
+    },
+    {
+      "source": "router/relay-router.go",
+      "line": 189,
+      "declaration": "relayMjModeRouter.Use(middleware.SystemPerformanceCheck())"
+    },
+    {
+      "source": "router/relay-router.go",
+      "line": 193,
+      "declaration": "relayGeminiRouter := router.Group(\"/v1beta\")"
+    },
+    {
+      "source": "router/relay-router.go",
+      "line": 197,
+      "declaration": "relayGeminiRouter.Use(func(c *gin.Context) {"
+    },
+    {
+      "source": "router/relay-router.go",
+      "line": 206,
+      "declaration": "relayGeminiRouter.Use(func(c *gin.Context) {"
+    },
+    {
+      "source": "router/relay-router.go",
+      "line": 211,
+      "declaration": "relayGeminiRouter.Use(middleware.RouteTag(\"relay\"))"
+    },
+    {
+      "source": "router/relay-router.go",
+      "line": 212,
+      "declaration": "relayGeminiRouter.Use(middleware.SystemPerformanceCheck())"
+    },
+    {
+      "source": "router/relay-router.go",
+      "line": 213,
+      "declaration": "relayGeminiRouter.Use(middleware.TokenAuth())"
+    },
+    {
+      "source": "router/relay-router.go",
+      "line": 214,
+      "declaration": "relayGeminiRouter.Use(middleware.ModelRequestRateLimit())"
+    },
+    {
+      "source": "router/relay-router.go",
+      "line": 215,
+      "declaration": "relayGeminiRouter.Use(middleware.Distribute())"
+    },
+    {
+      "source": "router/relay-router.go",
+      "line": 218,
+      "declaration": "relayGeminiRouter.POST(\"/models/*path\", func(c *gin.Context) {"
+    },
+    {
+      "source": "router/relay-router.go",
+      "line": 225,
+      "declaration": "relayMjRouter.GET(\"/image/:id\", relay.RelayMidjourneyImage)"
+    },
+    {
+      "source": "router/relay-router.go",
+      "line": 226,
+      "declaration": "relayMjRouter.Use(middleware.TokenAuth(), middleware.Distribute())"
+    },
+    {
+      "source": "router/relay-router.go",
+      "line": 228,
+      "declaration": "relayMjRouter.POST(\"/submit/action\", controller.RelayMidjourney)"
+    },
+    {
+      "source": "router/relay-router.go",
+      "line": 229,
+      "declaration": "relayMjRouter.POST(\"/submit/shorten\", controller.RelayMidjourney)"
+    },
+    {
+      "source": "router/relay-router.go",
+      "line": 230,
+      "declaration": "relayMjRouter.POST(\"/submit/modal\", controller.RelayMidjourney)"
+    },
+    {
+      "source": "router/relay-router.go",
+      "line": 231,
+      "declaration": "relayMjRouter.POST(\"/submit/imagine\", controller.RelayMidjourney)"
+    },
+    {
+      "source": "router/relay-router.go",
+      "line": 232,
+      "declaration": "relayMjRouter.POST(\"/submit/change\", controller.RelayMidjourney)"
+    },
+    {
+      "source": "router/relay-router.go",
+      "line": 233,
+      "declaration": "relayMjRouter.POST(\"/submit/simple-change\", controller.RelayMidjourney)"
+    },
+    {
+      "source": "router/relay-router.go",
+      "line": 234,
+      "declaration": "relayMjRouter.POST(\"/submit/describe\", controller.RelayMidjourney)"
+    },
+    {
+      "source": "router/relay-router.go",
+      "line": 235,
+      "declaration": "relayMjRouter.POST(\"/submit/blend\", controller.RelayMidjourney)"
+    },
+    {
+      "source": "router/relay-router.go",
+      "line": 236,
+      "declaration": "relayMjRouter.POST(\"/submit/edits\", controller.RelayMidjourney)"
+    },
+    {
+      "source": "router/relay-router.go",
+      "line": 237,
+      "declaration": "relayMjRouter.POST(\"/submit/video\", controller.RelayMidjourney)"
+    },
+    {
+      "source": "router/relay-router.go",
+      "line": 239,
+      "declaration": "relayMjRouter.GET(\"/task/:id/fetch\", controller.RelayMidjourney)"
+    },
+    {
+      "source": "router/relay-router.go",
+      "line": 240,
+      "declaration": "relayMjRouter.GET(\"/task/:id/image-seed\", controller.RelayMidjourney)"
+    },
+    {
+      "source": "router/relay-router.go",
+      "line": 241,
+      "declaration": "relayMjRouter.POST(\"/task/list-by-condition\", controller.RelayMidjourney)"
+    },
+    {
+      "source": "router/relay-router.go",
+      "line": 242,
+      "declaration": "relayMjRouter.POST(\"/insight-face/swap\", controller.RelayMidjourney)"
+    },
+    {
+      "source": "router/relay-router.go",
+      "line": 243,
+      "declaration": "relayMjRouter.POST(\"/submit/upload-discord-images\", controller.RelayMidjourney)"
+    },
+    {
+      "source": "router/task-plugin-protocol-router.go",
+      "line": 21,
+      "declaration": "router.Handle(method, operation.Path, handlers...)"
+    },
+    {
+      "source": "router/task-router.go",
+      "line": 15,
+      "declaration": "taskSubmitRouter := router.Group(\"/v1/tasks\")"
+    },
+    {
+      "source": "router/task-router.go",
+      "line": 16,
+      "declaration": "taskSubmitRouter.Use(middleware.RouteTag(\"relay\"), middleware.TokenAuth())"
+    },
+    {
+      "source": "router/task-router.go",
+      "line": 18,
+      "declaration": "taskSubmitRouter.POST(\"/:key\", middleware.PrepareTaskPluginSubmit(), middleware.Distribute(), controller.RelayTask)"
+    },
+    {
+      "source": "router/task-router.go",
+      "line": 21,
+      "declaration": "taskReadRouter := router.Group(\"/v1/tasks\")"
+    },
+    {
+      "source": "router/task-router.go",
+      "line": 22,
+      "declaration": "taskReadRouter.Use(middleware.RouteTag(\"relay\"), middleware.TokenAuth())"
+    },
+    {
+      "source": "router/task-router.go",
+      "line": 24,
+      "declaration": "taskReadRouter.GET(\"/:key\", controller.GetTask)"
+    },
+    {
+      "source": "router/task-router.go",
+      "line": 25,
+      "declaration": "taskReadRouter.GET(\"/:key/artifacts\", controller.GetTaskArtifacts)"
+    },
+    {
+      "source": "router/task-router.go",
+      "line": 28,
+      "declaration": "taskContentRouter := router.Group(\"/v1/tasks\")"
+    },
+    {
+      "source": "router/task-router.go",
+      "line": 29,
+      "declaration": "taskContentRouter.Use("
+    },
+    {
+      "source": "router/task-router.go",
+      "line": 34,
+      "declaration": "taskContentRouter.GET(\"/:key/artifacts/:artifact_key/content\", controller.TaskArtifactContent)"
+    },
+    {
+      "source": "router/task-router.go",
+      "line": 35,
+      "declaration": "taskContentRouter.HEAD(\"/:key/artifacts/:artifact_key/content\", controller.TaskArtifactContent)"
+    },
+    {
+      "source": "router/video-router.go",
+      "line": 11,
+      "declaration": "videoSharedRouter := router.Group(\"/v1\")"
+    },
+    {
+      "source": "router/video-router.go",
+      "line": 12,
+      "declaration": "videoSharedRouter.Use(middleware.RouteTag(\"relay\"))"
+    },
+    {
+      "source": "router/video-router.go",
+      "line": 13,
+      "declaration": "videoSharedRouter.Use(middleware.TokenAuth())"
+    },
+    {
+      "source": "router/video-router.go",
+      "line": 14,
+      "declaration": "videoSharedRouter.Use(middleware.SystemPerformanceCheck())"
+    },
+    {
+      "source": "router/video-router.go",
+      "line": 15,
+      "declaration": "videoSharedRouter.POST("
+    },
+    {
+      "source": "router/video-router.go",
+      "line": 26,
+      "declaration": "videoV1Router := router.Group(\"/v1\")"
+    },
+    {
+      "source": "router/video-router.go",
+      "line": 27,
+      "declaration": "videoV1Router.Use(middleware.RouteTag(\"relay\"))"
+    },
+    {
+      "source": "router/video-router.go",
+      "line": 28,
+      "declaration": "videoV1Router.Use(middleware.TokenAuth(), middleware.Distribute())"
+    },
+    {
+      "source": "router/video-router.go",
+      "line": 30,
+      "declaration": "videoV1Router.GET(\"/video/generations/:task_id\", controller.RelayTaskFetch)"
+    },
+    {
+      "source": "router/video-router.go",
+      "line": 31,
+      "declaration": "videoV1Router.POST(\"/videos/:video_id/remix\", controller.RelayTask)"
+    }
+  ]
+}

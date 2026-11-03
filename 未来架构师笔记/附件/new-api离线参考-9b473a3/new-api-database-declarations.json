@@ -1,0 +1,5439 @@
+{
+  "source_commit": "9b473a3fe4fed8d18980fd8d3c6a8908847a5f25",
+  "kind": "static-source-declarations-not-live-ddl",
+  "models": [
+    {
+      "name": "Channel",
+      "source": "model/channel.go",
+      "line": 23,
+      "fields": [
+        {
+          "name": "Id",
+          "go_type": "int",
+          "json": "id",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Type",
+          "go_type": "int",
+          "json": "type",
+          "gorm": "default:0",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Key",
+          "go_type": "string",
+          "json": "key",
+          "gorm": "not null",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "OpenAIOrganization",
+          "go_type": "*string",
+          "json": "openai_organization",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "TestModel",
+          "go_type": "*string",
+          "json": "test_model",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Status",
+          "go_type": "int",
+          "json": "status",
+          "gorm": "default:1",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Name",
+          "go_type": "string",
+          "json": "name",
+          "gorm": "index",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Weight",
+          "go_type": "*uint",
+          "json": "weight",
+          "gorm": "default:0",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "CreatedTime",
+          "go_type": "int64",
+          "json": "created_time",
+          "gorm": "bigint",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "TestTime",
+          "go_type": "int64",
+          "json": "test_time",
+          "gorm": "bigint",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "ResponseTime",
+          "go_type": "int",
+          "json": "response_time",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": "in milliseconds"
+        },
+        {
+          "name": "BaseURL",
+          "go_type": "*string",
+          "json": "base_url",
+          "gorm": "column:base_url;default:''",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Other",
+          "go_type": "string",
+          "json": "other",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Balance",
+          "go_type": "float64",
+          "json": "balance",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": "in USD"
+        },
+        {
+          "name": "BalanceUpdatedTime",
+          "go_type": "int64",
+          "json": "balance_updated_time",
+          "gorm": "bigint",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Models",
+          "go_type": "string",
+          "json": "models",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Group",
+          "go_type": "string",
+          "json": "group",
+          "gorm": "type:varchar(64);default:'default'",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "UsedQuota",
+          "go_type": "int64",
+          "json": "used_quota",
+          "gorm": "bigint;default:0",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "ModelMapping",
+          "go_type": "*string",
+          "json": "model_mapping",
+          "gorm": "type:text",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "StatusCodeMapping",
+          "go_type": "*string",
+          "json": "status_code_mapping",
+          "gorm": "type:varchar(1024);default:''",
+          "validate": "",
+          "persisted": true,
+          "comment": "MaxInputTokens     *int    `json:\"max_input_tokens\" gorm:\"default:0\"`"
+        },
+        {
+          "name": "Priority",
+          "go_type": "*int64",
+          "json": "priority",
+          "gorm": "bigint;default:0",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "AutoBan",
+          "go_type": "*int",
+          "json": "auto_ban",
+          "gorm": "default:1",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "OtherInfo",
+          "go_type": "string",
+          "json": "other_info",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Tag",
+          "go_type": "*string",
+          "json": "tag",
+          "gorm": "index",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Setting",
+          "go_type": "*string",
+          "json": "setting",
+          "gorm": "type:text",
+          "validate": "",
+          "persisted": true,
+          "comment": "渠道额外设置"
+        },
+        {
+          "name": "ParamOverride",
+          "go_type": "*string",
+          "json": "param_override",
+          "gorm": "type:text",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "HeaderOverride",
+          "go_type": "*string",
+          "json": "header_override",
+          "gorm": "type:text",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Remark",
+          "go_type": "*string",
+          "json": "remark",
+          "gorm": "type:varchar(255)",
+          "validate": "max=255",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "ChannelInfo",
+          "go_type": "ChannelInfo",
+          "json": "channel_info",
+          "gorm": "type:json",
+          "validate": "",
+          "persisted": true,
+          "comment": "add after v0.8.5"
+        },
+        {
+          "name": "OtherSettings",
+          "go_type": "string",
+          "json": "settings",
+          "gorm": "column:settings",
+          "validate": "",
+          "persisted": true,
+          "comment": "其他设置，存储azure版本等不需要检索的信息，详见dto.ChannelOtherSettings"
+        },
+        {
+          "name": "Keys",
+          "go_type": "[]string",
+          "json": "-",
+          "gorm": "-",
+          "validate": "",
+          "persisted": false,
+          "comment": "cache info"
+        }
+      ],
+      "table_name_override": null,
+      "raw": "type Channel struct {\n\tId                 int     `json:\"id\"`\n\tType               int     `json:\"type\" gorm:\"default:0\"`\n\tKey                string  `json:\"key\" gorm:\"not null\"`\n\tOpenAIOrganization *string `json:\"openai_organization\"`\n\tTestModel          *string `json:\"test_model\"`\n\tStatus             int     `json:\"status\" gorm:\"default:1\"`\n\tName               string  `json:\"name\" gorm:\"index\"`\n\tWeight             *uint   `json:\"weight\" gorm:\"default:0\"`\n\tCreatedTime        int64   `json:\"created_time\" gorm:\"bigint\"`\n\tTestTime           int64   `json:\"test_time\" gorm:\"bigint\"`\n\tResponseTime       int     `json:\"response_time\"` // in milliseconds\n\tBaseURL            *string `json:\"base_url\" gorm:\"column:base_url;default:''\"`\n\tOther              string  `json:\"other\"`\n\tBalance            float64 `json:\"balance\"` // in USD\n\tBalanceUpdatedTime int64   `json:\"balance_updated_time\" gorm:\"bigint\"`\n\tModels             string  `json:\"models\"`\n\tGroup              string  `json:\"group\" gorm:\"type:varchar(64);default:'default'\"`\n\tUsedQuota          int64   `json:\"used_quota\" gorm:\"bigint;default:0\"`\n\tModelMapping       *string `json:\"model_mapping\" gorm:\"type:text\"`\n\t//MaxInputTokens     *int    `json:\"max_input_tokens\" gorm:\"default:0\"`\n\tStatusCodeMapping *string `json:\"status_code_mapping\" gorm:\"type:varchar(1024);default:''\"`\n\tPriority          *int64  `json:\"priority\" gorm:\"bigint;default:0\"`\n\tAutoBan           *int    `json:\"auto_ban\" gorm:\"default:1\"`\n\tOtherInfo         string  `json:\"other_info\"`\n\tTag               *string `json:\"tag\" gorm:\"index\"`\n\tSetting           *string `json:\"setting\" gorm:\"type:text\"` // 渠道额外设置\n\tParamOverride     *string `json:\"param_override\" gorm:\"type:text\"`\n\tHeaderOverride    *string `json:\"header_override\" gorm:\"type:text\"`\n\tRemark            *string `json:\"remark\" gorm:\"type:varchar(255)\" validate:\"max=255\"`\n\t// add after v0.8.5\n\tChannelInfo ChannelInfo `json:\"channel_info\" gorm:\"type:json\"`\n\n\tOtherSettings string `json:\"settings\" gorm:\"column:settings\"` // 其他设置，存储azure版本等不需要检索的信息，详见dto.ChannelOtherSettings\n\n\t// cache info\n\tKeys []string `json:\"-\" gorm:\"-\"`\n}",
+      "unmatched": []
+    },
+    {
+      "name": "Token",
+      "source": "model/token.go",
+      "line": 14,
+      "fields": [
+        {
+          "name": "Id",
+          "go_type": "int",
+          "json": "id",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "UserId",
+          "go_type": "int",
+          "json": "user_id",
+          "gorm": "index",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Key",
+          "go_type": "string",
+          "json": "key",
+          "gorm": "type:varchar(128);uniqueIndex",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Status",
+          "go_type": "int",
+          "json": "status",
+          "gorm": "default:1",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Name",
+          "go_type": "string",
+          "json": "name",
+          "gorm": "index",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "CreatedTime",
+          "go_type": "int64",
+          "json": "created_time",
+          "gorm": "bigint",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "AccessedTime",
+          "go_type": "int64",
+          "json": "accessed_time",
+          "gorm": "bigint",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "ExpiredTime",
+          "go_type": "int64",
+          "json": "expired_time",
+          "gorm": "bigint;default:-1",
+          "validate": "",
+          "persisted": true,
+          "comment": "-1 means never expired"
+        },
+        {
+          "name": "RemainQuota",
+          "go_type": "int",
+          "json": "remain_quota",
+          "gorm": "default:0",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "UnlimitedQuota",
+          "go_type": "bool",
+          "json": "unlimited_quota",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "ModelLimitsEnabled",
+          "go_type": "bool",
+          "json": "model_limits_enabled",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "ModelLimits",
+          "go_type": "string",
+          "json": "model_limits",
+          "gorm": "type:text",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "AllowIps",
+          "go_type": "*string",
+          "json": "allow_ips",
+          "gorm": "default:''",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "UsedQuota",
+          "go_type": "int",
+          "json": "used_quota",
+          "gorm": "default:0",
+          "validate": "",
+          "persisted": true,
+          "comment": "used quota"
+        },
+        {
+          "name": "Group",
+          "go_type": "string",
+          "json": "group",
+          "gorm": "default:''",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "CrossGroupRetry",
+          "go_type": "bool",
+          "json": "cross_group_retry",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": "跨分组重试，仅auto分组有效"
+        },
+        {
+          "name": "AutoGroups",
+          "go_type": "string",
+          "json": "-",
+          "gorm": "type:text",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "DeletedAt",
+          "go_type": "gorm.DeletedAt",
+          "json": "(未声明)",
+          "gorm": "index",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "AllowUserQuotaQuery",
+          "go_type": "bool",
+          "json": "allow_user_quota_query",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": "允许用此令牌查询所属用户的额度；新建令牌默认开启，已有令牌升级后保持关闭"
+        }
+      ],
+      "table_name_override": null,
+      "raw": "type Token struct {\n\tId                 int            `json:\"id\"`\n\tUserId             int            `json:\"user_id\" gorm:\"index\"`\n\tKey                string         `json:\"key\" gorm:\"type:varchar(128);uniqueIndex\"`\n\tStatus             int            `json:\"status\" gorm:\"default:1\"`\n\tName               string         `json:\"name\" gorm:\"index\" `\n\tCreatedTime        int64          `json:\"created_time\" gorm:\"bigint\"`\n\tAccessedTime       int64          `json:\"accessed_time\" gorm:\"bigint\"`\n\tExpiredTime        int64          `json:\"expired_time\" gorm:\"bigint;default:-1\"` // -1 means never expired\n\tRemainQuota        int            `json:\"remain_quota\" gorm:\"default:0\"`\n\tUnlimitedQuota     bool           `json:\"unlimited_quota\"`\n\tModelLimitsEnabled bool           `json:\"model_limits_enabled\"`\n\tModelLimits        string         `json:\"model_limits\" gorm:\"type:text\"`\n\tAllowIps           *string        `json:\"allow_ips\" gorm:\"default:''\"`\n\tUsedQuota          int            `json:\"used_quota\" gorm:\"default:0\"` // used quota\n\tGroup              string         `json:\"group\" gorm:\"default:''\"`\n\tCrossGroupRetry    bool           `json:\"cross_group_retry\"` // 跨分组重试，仅auto分组有效\n\tAutoGroups         string         `json:\"-\" gorm:\"type:text\"`\n\tDeletedAt          gorm.DeletedAt `gorm:\"index\"`\n\t// 允许用此令牌查询所属用户的额度；新建令牌默认开启，已有令牌升级后保持关闭\n\tAllowUserQuotaQuery bool `json:\"allow_user_quota_query\"`\n}",
+      "unmatched": []
+    },
+    {
+      "name": "User",
+      "source": "model/user.go",
+      "line": 79,
+      "fields": [
+        {
+          "name": "Id",
+          "go_type": "int",
+          "json": "id",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Username",
+          "go_type": "string",
+          "json": "username",
+          "gorm": "unique;index",
+          "validate": "max=20",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Password",
+          "go_type": "string",
+          "json": "password",
+          "gorm": "not null;",
+          "validate": "min=8,max=128",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "HasPassword",
+          "go_type": "bool",
+          "json": "-",
+          "gorm": "-:all",
+          "validate": "",
+          "persisted": false,
+          "comment": ""
+        },
+        {
+          "name": "OriginalPassword",
+          "go_type": "string",
+          "json": "original_password",
+          "gorm": "-:all",
+          "validate": "",
+          "persisted": false,
+          "comment": "this field is only for Password change verification, don't save it to database!"
+        },
+        {
+          "name": "DisplayName",
+          "go_type": "string",
+          "json": "display_name",
+          "gorm": "index",
+          "validate": "max=20",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Role",
+          "go_type": "int",
+          "json": "role",
+          "gorm": "type:int;default:1",
+          "validate": "",
+          "persisted": true,
+          "comment": "admin, common"
+        },
+        {
+          "name": "Status",
+          "go_type": "int",
+          "json": "status",
+          "gorm": "type:int;default:1",
+          "validate": "",
+          "persisted": true,
+          "comment": "enabled, disabled"
+        },
+        {
+          "name": "Email",
+          "go_type": "string",
+          "json": "email",
+          "gorm": "index",
+          "validate": "max=50",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "GitHubId",
+          "go_type": "string",
+          "json": "github_id",
+          "gorm": "column:github_id;index",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "DiscordId",
+          "go_type": "string",
+          "json": "discord_id",
+          "gorm": "column:discord_id;index",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "OidcId",
+          "go_type": "string",
+          "json": "oidc_id",
+          "gorm": "column:oidc_id;index",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "WeChatId",
+          "go_type": "string",
+          "json": "wechat_id",
+          "gorm": "column:wechat_id;index",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "TelegramId",
+          "go_type": "string",
+          "json": "telegram_id",
+          "gorm": "column:telegram_id;index",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "VerificationCode",
+          "go_type": "string",
+          "json": "verification_code",
+          "gorm": "-:all",
+          "validate": "",
+          "persisted": false,
+          "comment": "this field is only for Email verification, don't save it to database!"
+        },
+        {
+          "name": "AccessToken",
+          "go_type": "*string",
+          "json": "-",
+          "gorm": "type:char(32);column:access_token;uniqueIndex",
+          "validate": "",
+          "persisted": true,
+          "comment": "Deprecated: 旧版面板访问令牌，仅在升级后的过渡期内使用；删除 users.access_token 列时一并移除。"
+        },
+        {
+          "name": "AccessTokenCreatedAt",
+          "go_type": "*int64",
+          "json": "-",
+          "gorm": "type:bigint;column:access_token_created_at",
+          "validate": "",
+          "persisted": true,
+          "comment": "Deprecated: 旧版面板访问令牌，仅在升级后的过渡期内使用；删除 users.access_token 列时一并移除。"
+        },
+        {
+          "name": "Quota",
+          "go_type": "int",
+          "json": "quota",
+          "gorm": "type:int;default:0",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "UsedQuota",
+          "go_type": "int",
+          "json": "used_quota",
+          "gorm": "type:int;default:0;column:used_quota",
+          "validate": "",
+          "persisted": true,
+          "comment": "used quota"
+        },
+        {
+          "name": "RequestCount",
+          "go_type": "int",
+          "json": "request_count",
+          "gorm": "type:int;default:0;",
+          "validate": "",
+          "persisted": true,
+          "comment": "request number"
+        },
+        {
+          "name": "Group",
+          "go_type": "string",
+          "json": "group",
+          "gorm": "type:varchar(64);default:'default'",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "AffCode",
+          "go_type": "string",
+          "json": "aff_code",
+          "gorm": "type:varchar(32);column:aff_code;uniqueIndex",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "AffCount",
+          "go_type": "int",
+          "json": "aff_count",
+          "gorm": "type:int;default:0;column:aff_count",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "AffQuota",
+          "go_type": "int",
+          "json": "aff_quota",
+          "gorm": "type:int;default:0;column:aff_quota",
+          "validate": "",
+          "persisted": true,
+          "comment": "邀请剩余额度"
+        },
+        {
+          "name": "AffHistoryQuota",
+          "go_type": "int",
+          "json": "aff_history_quota",
+          "gorm": "type:int;default:0;column:aff_history",
+          "validate": "",
+          "persisted": true,
+          "comment": "邀请历史额度"
+        },
+        {
+          "name": "InviterId",
+          "go_type": "int",
+          "json": "inviter_id",
+          "gorm": "type:int;column:inviter_id;index",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "DeletedAt",
+          "go_type": "gorm.DeletedAt",
+          "json": "(未声明)",
+          "gorm": "index",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "LinuxDOId",
+          "go_type": "string",
+          "json": "linux_do_id",
+          "gorm": "column:linux_do_id;index",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Setting",
+          "go_type": "string",
+          "json": "setting",
+          "gorm": "type:text;column:setting",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Remark",
+          "go_type": "string",
+          "json": "remark,omitempty",
+          "gorm": "type:varchar(255)",
+          "validate": "max=255",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "StripeCustomer",
+          "go_type": "string",
+          "json": "stripe_customer",
+          "gorm": "type:varchar(64);column:stripe_customer;index",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "CreatedAt",
+          "go_type": "int64",
+          "json": "created_at",
+          "gorm": "autoCreateTime;column:created_at",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "LastLoginAt",
+          "go_type": "int64",
+          "json": "last_login_at",
+          "gorm": "default:0;column:last_login_at",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "AuthVersion",
+          "go_type": "int64",
+          "json": "-",
+          "gorm": "type:bigint;not null;default:1;column:auth_version",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "AdminPermissions",
+          "go_type": "map[string]map[string]bool",
+          "json": "admin_permissions,omitempty",
+          "gorm": "-:all",
+          "validate": "",
+          "persisted": false,
+          "comment": ""
+        }
+      ],
+      "table_name_override": null,
+      "raw": "type User struct {\n\tId                   int                        `json:\"id\"`\n\tUsername             string                     `json:\"username\" gorm:\"unique;index\" validate:\"max=20\"`\n\tPassword             string                     `json:\"password\" gorm:\"not null;\" validate:\"min=8,max=128\"`\n\tHasPassword          bool                       `json:\"-\" gorm:\"-:all\"`\n\tOriginalPassword     string                     `json:\"original_password\" gorm:\"-:all\"` // this field is only for Password change verification, don't save it to database!\n\tDisplayName          string                     `json:\"display_name\" gorm:\"index\" validate:\"max=20\"`\n\tRole                 int                        `json:\"role\" gorm:\"type:int;default:1\"`   // admin, common\n\tStatus               int                        `json:\"status\" gorm:\"type:int;default:1\"` // enabled, disabled\n\tEmail                string                     `json:\"email\" gorm:\"index\" validate:\"max=50\"`\n\tGitHubId             string                     `json:\"github_id\" gorm:\"column:github_id;index\"`\n\tDiscordId            string                     `json:\"discord_id\" gorm:\"column:discord_id;index\"`\n\tOidcId               string                     `json:\"oidc_id\" gorm:\"column:oidc_id;index\"`\n\tWeChatId             string                     `json:\"wechat_id\" gorm:\"column:wechat_id;index\"`\n\tTelegramId           string                     `json:\"telegram_id\" gorm:\"column:telegram_id;index\"`\n\tVerificationCode     string                     `json:\"verification_code\" gorm:\"-:all\"`                         // this field is only for Email verification, don't save it to database!\n\tAccessToken          *string                    `json:\"-\" gorm:\"type:char(32);column:access_token;uniqueIndex\"` // Deprecated: 旧版面板访问令牌，仅在升级后的过渡期内使用；删除 users.access_token 列时一并移除。\n\tAccessTokenCreatedAt *int64                     `json:\"-\" gorm:\"type:bigint;column:access_token_created_at\"`    // Deprecated: 旧版面板访问令牌，仅在升级后的过渡期内使用；删除 users.access_token 列时一并移除。\n\tQuota                int                        `json:\"quota\" gorm:\"type:int;default:0\"`\n\tUsedQuota            int                        `json:\"used_quota\" gorm:\"type:int;default:0;column:used_quota\"` // used quota\n\tRequestCount         int                        `json:\"request_count\" gorm:\"type:int;default:0;\"`               // request number\n\tGroup                string                     `json:\"group\" gorm:\"type:varchar(64);default:'default'\"`\n\tAffCode              string                     `json:\"aff_code\" gorm:\"type:varchar(32);column:aff_code;uniqueIndex\"`\n\tAffCount             int                        `json:\"aff_count\" gorm:\"type:int;default:0;column:aff_count\"`\n\tAffQuota             int                        `json:\"aff_quota\" gorm:\"type:int;default:0;column:aff_quota\"`           // 邀请剩余额度\n\tAffHistoryQuota      int                        `json:\"aff_history_quota\" gorm:\"type:int;default:0;column:aff_history\"` // 邀请历史额度\n\tInviterId            int                        `json:\"inviter_id\" gorm:\"type:int;column:inviter_id;index\"`\n\tDeletedAt            gorm.DeletedAt             `gorm:\"index\"`\n\tLinuxDOId            string                     `json:\"linux_do_id\" gorm:\"column:linux_do_id;index\"`\n\tSetting              string                     `json:\"setting\" gorm:\"type:text;column:setting\"`\n\tRemark               string                     `json:\"remark,omitempty\" gorm:\"type:varchar(255)\" validate:\"max=255\"`\n\tStripeCustomer       string                     `json:\"stripe_customer\" gorm:\"type:varchar(64);column:stripe_customer;index\"`\n\tCreatedAt            int64                      `json:\"created_at\" gorm:\"autoCreateTime;column:created_at\"`\n\tLastLoginAt          int64                      `json:\"last_login_at\" gorm:\"default:0;column:last_login_at\"`\n\tAuthVersion          int64                      `json:\"-\" gorm:\"type:bigint;not null;default:1;column:auth_version\"`\n\tAdminPermissions     map[string]map[string]bool `json:\"admin_permissions,omitempty\" gorm:\"-:all\"`\n}",
+      "unmatched": []
+    },
+    {
+      "name": "UserSession",
+      "source": "model/user_session.go",
+      "line": 42,
+      "fields": [
+        {
+          "name": "SID",
+          "go_type": "string",
+          "json": "sid",
+          "gorm": "column:sid;type:varchar(64);primaryKey",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "UserID",
+          "go_type": "int",
+          "json": "user_id",
+          "gorm": "column:user_id;not null;index:idx_user_sessions_user_status_expiry,priority:1;index:idx_user_sessions_user_created,priority:1",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Version",
+          "go_type": "int64",
+          "json": "version",
+          "gorm": "type:bigint;not null;default:1",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "UserAuthVersion",
+          "go_type": "int64",
+          "json": "user_auth_version",
+          "gorm": "type:bigint;not null",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Status",
+          "go_type": "string",
+          "json": "status",
+          "gorm": "type:varchar(16);not null;index:idx_user_sessions_user_status_expiry,priority:2;index:idx_user_sessions_status_revoked,priority:1",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "RefreshHash",
+          "go_type": "string",
+          "json": "-",
+          "gorm": "type:char(64);not null",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "PreviousRefreshHash",
+          "go_type": "string",
+          "json": "-",
+          "gorm": "type:varchar(64)",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "PreviousValidUntil",
+          "go_type": "int64",
+          "json": "-",
+          "gorm": "type:bigint;not null;default:0",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "LoginMethod",
+          "go_type": "string",
+          "json": "login_method",
+          "gorm": "type:varchar(32);not null",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "IP",
+          "go_type": "string",
+          "json": "ip",
+          "gorm": "type:varchar(64)",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "UserAgent",
+          "go_type": "string",
+          "json": "user_agent",
+          "gorm": "type:text",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "CreatedAt",
+          "go_type": "int64",
+          "json": "created_at",
+          "gorm": "autoCreateTime;column:created_at;index:idx_user_sessions_user_created,priority:2",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "LastActiveAt",
+          "go_type": "int64",
+          "json": "last_active_at",
+          "gorm": "type:bigint;not null;column:last_active_at",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "ExpiresAt",
+          "go_type": "int64",
+          "json": "expires_at",
+          "gorm": "type:bigint;not null;column:expires_at;index:idx_user_sessions_user_status_expiry,priority:3;index:idx_user_sessions_expires_at",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "RevokedAt",
+          "go_type": "int64",
+          "json": "revoked_at,omitempty",
+          "gorm": "type:bigint;not null;default:0;column:revoked_at;index:idx_user_sessions_status_revoked,priority:2",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "RevokedReason",
+          "go_type": "string",
+          "json": "revoked_reason,omitempty",
+          "gorm": "type:varchar(64);column:revoked_reason",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        }
+      ],
+      "table_name_override": "user_sessions",
+      "raw": "type UserSession struct {\n\tSID                 string `json:\"sid\" gorm:\"column:sid;type:varchar(64);primaryKey\"`\n\tUserID              int    `json:\"user_id\" gorm:\"column:user_id;not null;index:idx_user_sessions_user_status_expiry,priority:1;index:idx_user_sessions_user_created,priority:1\"`\n\tVersion             int64  `json:\"version\" gorm:\"type:bigint;not null;default:1\"`\n\tUserAuthVersion     int64  `json:\"user_auth_version\" gorm:\"type:bigint;not null\"`\n\tStatus              string `json:\"status\" gorm:\"type:varchar(16);not null;index:idx_user_sessions_user_status_expiry,priority:2;index:idx_user_sessions_status_revoked,priority:1\"`\n\tRefreshHash         string `json:\"-\" gorm:\"type:char(64);not null\"`\n\tPreviousRefreshHash string `json:\"-\" gorm:\"type:varchar(64)\"`\n\tPreviousValidUntil  int64  `json:\"-\" gorm:\"type:bigint;not null;default:0\"`\n\tLoginMethod         string `json:\"login_method\" gorm:\"type:varchar(32);not null\"`\n\tIP                  string `json:\"ip\" gorm:\"type:varchar(64)\"`\n\tUserAgent           string `json:\"user_agent\" gorm:\"type:text\"`\n\tCreatedAt           int64  `json:\"created_at\" gorm:\"autoCreateTime;column:created_at;index:idx_user_sessions_user_created,priority:2\"`\n\tLastActiveAt        int64  `json:\"last_active_at\" gorm:\"type:bigint;not null;column:last_active_at\"`\n\tExpiresAt           int64  `json:\"expires_at\" gorm:\"type:bigint;not null;column:expires_at;index:idx_user_sessions_user_status_expiry,priority:3;index:idx_user_sessions_expires_at\"`\n\tRevokedAt           int64  `json:\"revoked_at,omitempty\" gorm:\"type:bigint;not null;default:0;column:revoked_at;index:idx_user_sessions_status_revoked,priority:2\"`\n\tRevokedReason       string `json:\"revoked_reason,omitempty\" gorm:\"type:varchar(64);column:revoked_reason\"`\n}",
+      "unmatched": []
+    },
+    {
+      "name": "AuthFlow",
+      "source": "model/auth_flow.go",
+      "line": 45,
+      "fields": [
+        {
+          "name": "Id",
+          "go_type": "int64",
+          "json": "id",
+          "gorm": "primaryKey",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "TokenHash",
+          "go_type": "string",
+          "json": "-",
+          "gorm": "type:char(64);not null;uniqueIndex",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Purpose",
+          "go_type": "string",
+          "json": "purpose",
+          "gorm": "type:varchar(32);not null;index:idx_auth_flow_purpose_expiry",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Provider",
+          "go_type": "string",
+          "json": "provider,omitempty",
+          "gorm": "type:varchar(64)",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Intent",
+          "go_type": "string",
+          "json": "intent,omitempty",
+          "gorm": "type:varchar(16)",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "UserId",
+          "go_type": "int",
+          "json": "user_id,omitempty",
+          "gorm": "index",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "SessionId",
+          "go_type": "string",
+          "json": "session_id,omitempty",
+          "gorm": "type:varchar(64);index",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Payload",
+          "go_type": "string",
+          "json": "-",
+          "gorm": "type:text",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "CreatedAt",
+          "go_type": "time.Time",
+          "json": "created_at",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "ExpiresAt",
+          "go_type": "time.Time",
+          "json": "expires_at",
+          "gorm": "not null;index:idx_auth_flow_purpose_expiry",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "ConsumedAt",
+          "go_type": "*time.Time",
+          "json": "consumed_at,omitempty",
+          "gorm": "index",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        }
+      ],
+      "table_name_override": "auth_flows",
+      "raw": "type AuthFlow struct {\n\tId         int64      `json:\"id\" gorm:\"primaryKey\"`\n\tTokenHash  string     `json:\"-\" gorm:\"type:char(64);not null;uniqueIndex\"`\n\tPurpose    string     `json:\"purpose\" gorm:\"type:varchar(32);not null;index:idx_auth_flow_purpose_expiry\"`\n\tProvider   string     `json:\"provider,omitempty\" gorm:\"type:varchar(64)\"`\n\tIntent     string     `json:\"intent,omitempty\" gorm:\"type:varchar(16)\"`\n\tUserId     int        `json:\"user_id,omitempty\" gorm:\"index\"`\n\tSessionId  string     `json:\"session_id,omitempty\" gorm:\"type:varchar(64);index\"`\n\tPayload    string     `json:\"-\" gorm:\"type:text\"`\n\tCreatedAt  time.Time  `json:\"created_at\"`\n\tExpiresAt  time.Time  `json:\"expires_at\" gorm:\"not null;index:idx_auth_flow_purpose_expiry\"`\n\tConsumedAt *time.Time `json:\"consumed_at,omitempty\" gorm:\"index\"`\n}",
+      "unmatched": []
+    },
+    {
+      "name": "ExternalIdentityClaim",
+      "source": "model/external_identity_claim.go",
+      "line": 21,
+      "fields": [
+        {
+          "name": "Id",
+          "go_type": "int64",
+          "json": "id",
+          "gorm": "primaryKey",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Provider",
+          "go_type": "string",
+          "json": "provider",
+          "gorm": "type:varchar(32);not null;uniqueIndex:idx_external_identity_subject,priority:1;uniqueIndex:idx_external_identity_user,priority:1",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Subject",
+          "go_type": "string",
+          "json": "subject",
+          "gorm": "type:varchar(128);not null;uniqueIndex:idx_external_identity_subject,priority:2",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "UserId",
+          "go_type": "int",
+          "json": "user_id",
+          "gorm": "not null;index;uniqueIndex:idx_external_identity_user,priority:2",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "CreatedAt",
+          "go_type": "time.Time",
+          "json": "created_at",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        }
+      ],
+      "table_name_override": "external_identity_claims",
+      "raw": "type ExternalIdentityClaim struct {\n\tId        int64     `json:\"id\" gorm:\"primaryKey\"`\n\tProvider  string    `json:\"provider\" gorm:\"type:varchar(32);not null;uniqueIndex:idx_external_identity_subject,priority:1;uniqueIndex:idx_external_identity_user,priority:1\"`\n\tSubject   string    `json:\"subject\" gorm:\"type:varchar(128);not null;uniqueIndex:idx_external_identity_subject,priority:2\"`\n\tUserId    int       `json:\"user_id\" gorm:\"not null;index;uniqueIndex:idx_external_identity_user,priority:2\"`\n\tCreatedAt time.Time `json:\"created_at\"`\n}",
+      "unmatched": []
+    },
+    {
+      "name": "PasskeyCredential",
+      "source": "model/passkey.go",
+      "line": 22,
+      "fields": [
+        {
+          "name": "ID",
+          "go_type": "int",
+          "json": "id",
+          "gorm": "primaryKey",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "UserID",
+          "go_type": "int",
+          "json": "user_id",
+          "gorm": "uniqueIndex;not null",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "RPID",
+          "go_type": "*string",
+          "json": "rp_id,omitempty",
+          "gorm": "column:rp_id;type:varchar(253)",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "CredentialID",
+          "go_type": "string",
+          "json": "credential_id",
+          "gorm": "type:varchar(512);uniqueIndex;not null",
+          "validate": "",
+          "persisted": true,
+          "comment": "base64 encoded"
+        },
+        {
+          "name": "PublicKey",
+          "go_type": "string",
+          "json": "public_key",
+          "gorm": "type:text;not null",
+          "validate": "",
+          "persisted": true,
+          "comment": "base64 encoded"
+        },
+        {
+          "name": "AttestationType",
+          "go_type": "string",
+          "json": "attestation_type",
+          "gorm": "type:varchar(255)",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "AAGUID",
+          "go_type": "string",
+          "json": "aaguid",
+          "gorm": "type:varchar(512)",
+          "validate": "",
+          "persisted": true,
+          "comment": "base64 encoded"
+        },
+        {
+          "name": "SignCount",
+          "go_type": "uint32",
+          "json": "sign_count",
+          "gorm": "default:0",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "CloneWarning",
+          "go_type": "bool",
+          "json": "clone_warning",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "UserPresent",
+          "go_type": "bool",
+          "json": "user_present",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "UserVerified",
+          "go_type": "bool",
+          "json": "user_verified",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "BackupEligible",
+          "go_type": "bool",
+          "json": "backup_eligible",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "BackupState",
+          "go_type": "bool",
+          "json": "backup_state",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Transports",
+          "go_type": "string",
+          "json": "transports",
+          "gorm": "type:text",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Attachment",
+          "go_type": "string",
+          "json": "attachment",
+          "gorm": "type:varchar(32)",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "LastUsedAt",
+          "go_type": "*time.Time",
+          "json": "last_used_at",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "CreatedAt",
+          "go_type": "time.Time",
+          "json": "created_at",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "UpdatedAt",
+          "go_type": "time.Time",
+          "json": "updated_at",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "DeletedAt",
+          "go_type": "gorm.DeletedAt",
+          "json": "-",
+          "gorm": "index",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        }
+      ],
+      "table_name_override": null,
+      "raw": "type PasskeyCredential struct {\n\tID              int            `json:\"id\" gorm:\"primaryKey\"`\n\tUserID          int            `json:\"user_id\" gorm:\"uniqueIndex;not null\"`\n\tRPID            *string        `json:\"rp_id,omitempty\" gorm:\"column:rp_id;type:varchar(253)\"`\n\tCredentialID    string         `json:\"credential_id\" gorm:\"type:varchar(512);uniqueIndex;not null\"` // base64 encoded\n\tPublicKey       string         `json:\"public_key\" gorm:\"type:text;not null\"`                        // base64 encoded\n\tAttestationType string         `json:\"attestation_type\" gorm:\"type:varchar(255)\"`\n\tAAGUID          string         `json:\"aaguid\" gorm:\"type:varchar(512)\"` // base64 encoded\n\tSignCount       uint32         `json:\"sign_count\" gorm:\"default:0\"`\n\tCloneWarning    bool           `json:\"clone_warning\"`\n\tUserPresent     bool           `json:\"user_present\"`\n\tUserVerified    bool           `json:\"user_verified\"`\n\tBackupEligible  bool           `json:\"backup_eligible\"`\n\tBackupState     bool           `json:\"backup_state\"`\n\tTransports      string         `json:\"transports\" gorm:\"type:text\"`\n\tAttachment      string         `json:\"attachment\" gorm:\"type:varchar(32)\"`\n\tLastUsedAt      *time.Time     `json:\"last_used_at\"`\n\tCreatedAt       time.Time      `json:\"created_at\"`\n\tUpdatedAt       time.Time      `json:\"updated_at\"`\n\tDeletedAt       gorm.DeletedAt `json:\"-\" gorm:\"index\"`\n}",
+      "unmatched": []
+    },
+    {
+      "name": "Option",
+      "source": "model/option.go",
+      "line": 21,
+      "fields": [
+        {
+          "name": "Key",
+          "go_type": "string",
+          "json": "key",
+          "gorm": "primaryKey",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Value",
+          "go_type": "string",
+          "json": "value",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        }
+      ],
+      "table_name_override": null,
+      "raw": "type Option struct {\n\tKey   string `json:\"key\" gorm:\"primaryKey\"`\n\tValue string `json:\"value\"`\n}",
+      "unmatched": []
+    },
+    {
+      "name": "LoginEncryptionKey",
+      "source": "model/password_crypto.go",
+      "line": 17,
+      "fields": [
+        {
+          "name": "ID",
+          "go_type": "uint",
+          "json": "-",
+          "gorm": "primaryKey",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Slot",
+          "go_type": "string",
+          "json": "-",
+          "gorm": "type:varchar(32);not null;uniqueIndex",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "PrivateKeyPEM",
+          "go_type": "string",
+          "json": "-",
+          "gorm": "type:text;not null",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        }
+      ],
+      "table_name_override": null,
+      "raw": "type LoginEncryptionKey struct {\n\tID            uint   `json:\"-\" gorm:\"primaryKey\"`\n\tSlot          string `json:\"-\" gorm:\"type:varchar(32);not null;uniqueIndex\"`\n\tPrivateKeyPEM string `json:\"-\" gorm:\"type:text;not null\"`\n}",
+      "unmatched": []
+    },
+    {
+      "name": "Redemption",
+      "source": "model/redemption.go",
+      "line": 13,
+      "fields": [
+        {
+          "name": "Id",
+          "go_type": "int",
+          "json": "id",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "UserId",
+          "go_type": "int",
+          "json": "user_id",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Key",
+          "go_type": "string",
+          "json": "key",
+          "gorm": "type:char(32);uniqueIndex",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Status",
+          "go_type": "int",
+          "json": "status",
+          "gorm": "default:1",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Name",
+          "go_type": "string",
+          "json": "name",
+          "gorm": "index",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Quota",
+          "go_type": "int",
+          "json": "quota",
+          "gorm": "default:100",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "CreatedTime",
+          "go_type": "int64",
+          "json": "created_time",
+          "gorm": "bigint",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "RedeemedTime",
+          "go_type": "int64",
+          "json": "redeemed_time",
+          "gorm": "bigint",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Count",
+          "go_type": "int",
+          "json": "count",
+          "gorm": "-:all",
+          "validate": "",
+          "persisted": false,
+          "comment": "only for api request"
+        },
+        {
+          "name": "UsedUserId",
+          "go_type": "int",
+          "json": "used_user_id",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "DeletedAt",
+          "go_type": "gorm.DeletedAt",
+          "json": "(未声明)",
+          "gorm": "index",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "ExpiredTime",
+          "go_type": "int64",
+          "json": "expired_time",
+          "gorm": "bigint",
+          "validate": "",
+          "persisted": true,
+          "comment": "过期时间，0 表示不过期"
+        }
+      ],
+      "table_name_override": null,
+      "raw": "type Redemption struct {\n\tId           int            `json:\"id\"`\n\tUserId       int            `json:\"user_id\"`\n\tKey          string         `json:\"key\" gorm:\"type:char(32);uniqueIndex\"`\n\tStatus       int            `json:\"status\" gorm:\"default:1\"`\n\tName         string         `json:\"name\" gorm:\"index\"`\n\tQuota        int            `json:\"quota\" gorm:\"default:100\"`\n\tCreatedTime  int64          `json:\"created_time\" gorm:\"bigint\"`\n\tRedeemedTime int64          `json:\"redeemed_time\" gorm:\"bigint\"`\n\tCount        int            `json:\"count\" gorm:\"-:all\"` // only for api request\n\tUsedUserId   int            `json:\"used_user_id\"`\n\tDeletedAt    gorm.DeletedAt `gorm:\"index\"`\n\tExpiredTime  int64          `json:\"expired_time\" gorm:\"bigint\"` // 过期时间，0 表示不过期\n}",
+      "unmatched": []
+    },
+    {
+      "name": "Ability",
+      "source": "model/ability.go",
+      "line": 18,
+      "fields": [
+        {
+          "name": "Group",
+          "go_type": "string",
+          "json": "group",
+          "gorm": "type:varchar(64);primaryKey;autoIncrement:false",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Model",
+          "go_type": "string",
+          "json": "model",
+          "gorm": "type:varchar(255);primaryKey;autoIncrement:false",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "ChannelId",
+          "go_type": "int",
+          "json": "channel_id",
+          "gorm": "primaryKey;autoIncrement:false;index",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Enabled",
+          "go_type": "bool",
+          "json": "enabled",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Priority",
+          "go_type": "*int64",
+          "json": "priority",
+          "gorm": "bigint;default:0;index",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Weight",
+          "go_type": "uint",
+          "json": "weight",
+          "gorm": "default:0;index",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Tag",
+          "go_type": "*string",
+          "json": "tag",
+          "gorm": "index",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        }
+      ],
+      "table_name_override": null,
+      "raw": "type Ability struct {\n\tGroup     string  `json:\"group\" gorm:\"type:varchar(64);primaryKey;autoIncrement:false\"`\n\tModel     string  `json:\"model\" gorm:\"type:varchar(255);primaryKey;autoIncrement:false\"`\n\tChannelId int     `json:\"channel_id\" gorm:\"primaryKey;autoIncrement:false;index\"`\n\tEnabled   bool    `json:\"enabled\"`\n\tPriority  *int64  `json:\"priority\" gorm:\"bigint;default:0;index\"`\n\tWeight    uint    `json:\"weight\" gorm:\"default:0;index\"`\n\tTag       *string `json:\"tag\" gorm:\"index\"`\n}",
+      "unmatched": []
+    },
+    {
+      "name": "Log",
+      "source": "model/log.go",
+      "line": 57,
+      "fields": [
+        {
+          "name": "Id",
+          "go_type": "int",
+          "json": "id",
+          "gorm": "index:idx_created_at_id,priority:2;index:idx_user_id_id,priority:2",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "UserId",
+          "go_type": "int",
+          "json": "user_id",
+          "gorm": "index;index:idx_user_id_id,priority:1",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "CreatedAt",
+          "go_type": "int64",
+          "json": "created_at",
+          "gorm": "bigint;index:idx_created_at_id,priority:1;index:idx_created_at_type",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Type",
+          "go_type": "int",
+          "json": "type",
+          "gorm": "index:idx_created_at_type",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Content",
+          "go_type": "string",
+          "json": "content",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Username",
+          "go_type": "string",
+          "json": "username",
+          "gorm": "index;index:index_username_model_name,priority:2;default:''",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "TokenName",
+          "go_type": "string",
+          "json": "token_name",
+          "gorm": "index;default:''",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "ModelName",
+          "go_type": "string",
+          "json": "model_name",
+          "gorm": "index;index:index_username_model_name,priority:1;default:''",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Quota",
+          "go_type": "int",
+          "json": "quota",
+          "gorm": "default:0",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "PromptTokens",
+          "go_type": "int",
+          "json": "prompt_tokens",
+          "gorm": "default:0",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "CompletionTokens",
+          "go_type": "int",
+          "json": "completion_tokens",
+          "gorm": "default:0",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "UseTime",
+          "go_type": "int",
+          "json": "use_time",
+          "gorm": "default:0",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "IsStream",
+          "go_type": "bool",
+          "json": "is_stream",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "ChannelId",
+          "go_type": "int",
+          "json": "channel",
+          "gorm": "index",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "ChannelName",
+          "go_type": "string",
+          "json": "channel_name",
+          "gorm": "->",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "TokenId",
+          "go_type": "int",
+          "json": "token_id",
+          "gorm": "default:0;index",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Group",
+          "go_type": "string",
+          "json": "group",
+          "gorm": "index",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Ip",
+          "go_type": "string",
+          "json": "ip",
+          "gorm": "index;default:''",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "RequestId",
+          "go_type": "string",
+          "json": "request_id,omitempty",
+          "gorm": "type:varchar(64);index:idx_logs_request_id;default:''",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "UpstreamRequestId",
+          "go_type": "string",
+          "json": "upstream_request_id,omitempty",
+          "gorm": "type:varchar(128);index:idx_logs_upstream_request_id;default:''",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Other",
+          "go_type": "string",
+          "json": "other",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        }
+      ],
+      "table_name_override": null,
+      "raw": "type Log struct {\n\tId                int    `json:\"id\" gorm:\"index:idx_created_at_id,priority:2;index:idx_user_id_id,priority:2\"`\n\tUserId            int    `json:\"user_id\" gorm:\"index;index:idx_user_id_id,priority:1\"`\n\tCreatedAt         int64  `json:\"created_at\" gorm:\"bigint;index:idx_created_at_id,priority:1;index:idx_created_at_type\"`\n\tType              int    `json:\"type\" gorm:\"index:idx_created_at_type\"`\n\tContent           string `json:\"content\"`\n\tUsername          string `json:\"username\" gorm:\"index;index:index_username_model_name,priority:2;default:''\"`\n\tTokenName         string `json:\"token_name\" gorm:\"index;default:''\"`\n\tModelName         string `json:\"model_name\" gorm:\"index;index:index_username_model_name,priority:1;default:''\"`\n\tQuota             int    `json:\"quota\" gorm:\"default:0\"`\n\tPromptTokens      int    `json:\"prompt_tokens\" gorm:\"default:0\"`\n\tCompletionTokens  int    `json:\"completion_tokens\" gorm:\"default:0\"`\n\tUseTime           int    `json:\"use_time\" gorm:\"default:0\"`\n\tIsStream          bool   `json:\"is_stream\"`\n\tChannelId         int    `json:\"channel\" gorm:\"index\"`\n\tChannelName       string `json:\"channel_name\" gorm:\"->\"`\n\tTokenId           int    `json:\"token_id\" gorm:\"default:0;index\"`\n\tGroup             string `json:\"group\" gorm:\"index\"`\n\tIp                string `json:\"ip\" gorm:\"index;default:''\"`\n\tRequestId         string `json:\"request_id,omitempty\" gorm:\"type:varchar(64);index:idx_logs_request_id;default:''\"`\n\tUpstreamRequestId string `json:\"upstream_request_id,omitempty\" gorm:\"type:varchar(128);index:idx_logs_upstream_request_id;default:''\"`\n\tOther             string `json:\"other\"`\n}",
+      "unmatched": []
+    },
+    {
+      "name": "Midjourney",
+      "source": "model/midjourney.go",
+      "line": 3,
+      "fields": [
+        {
+          "name": "Id",
+          "go_type": "int",
+          "json": "id",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Code",
+          "go_type": "int",
+          "json": "code",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "UserId",
+          "go_type": "int",
+          "json": "user_id",
+          "gorm": "index",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Action",
+          "go_type": "string",
+          "json": "action",
+          "gorm": "type:varchar(40);index",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "MjId",
+          "go_type": "string",
+          "json": "mj_id",
+          "gorm": "index",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Prompt",
+          "go_type": "string",
+          "json": "prompt",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "PromptEn",
+          "go_type": "string",
+          "json": "prompt_en",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Description",
+          "go_type": "string",
+          "json": "description",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "State",
+          "go_type": "string",
+          "json": "state",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "SubmitTime",
+          "go_type": "int64",
+          "json": "submit_time",
+          "gorm": "index",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "StartTime",
+          "go_type": "int64",
+          "json": "start_time",
+          "gorm": "index",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "FinishTime",
+          "go_type": "int64",
+          "json": "finish_time",
+          "gorm": "index",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "ImageUrl",
+          "go_type": "string",
+          "json": "image_url",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "VideoUrl",
+          "go_type": "string",
+          "json": "video_url",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "VideoUrls",
+          "go_type": "string",
+          "json": "video_urls",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Status",
+          "go_type": "string",
+          "json": "status",
+          "gorm": "type:varchar(20);index",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Progress",
+          "go_type": "string",
+          "json": "progress",
+          "gorm": "type:varchar(30);index",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "FailReason",
+          "go_type": "string",
+          "json": "fail_reason",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "ChannelId",
+          "go_type": "int",
+          "json": "channel_id",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Quota",
+          "go_type": "int",
+          "json": "quota",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Buttons",
+          "go_type": "string",
+          "json": "buttons",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Properties",
+          "go_type": "string",
+          "json": "properties",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "TokenId",
+          "go_type": "int",
+          "json": "-",
+          "gorm": "default:0",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "BillingChannelId",
+          "go_type": "int",
+          "json": "-",
+          "gorm": "default:0",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        }
+      ],
+      "table_name_override": null,
+      "raw": "type Midjourney struct {\n\tId          int    `json:\"id\"`\n\tCode        int    `json:\"code\"`\n\tUserId      int    `json:\"user_id\" gorm:\"index\"`\n\tAction      string `json:\"action\" gorm:\"type:varchar(40);index\"`\n\tMjId        string `json:\"mj_id\" gorm:\"index\"`\n\tPrompt      string `json:\"prompt\"`\n\tPromptEn    string `json:\"prompt_en\"`\n\tDescription string `json:\"description\"`\n\tState       string `json:\"state\"`\n\tSubmitTime  int64  `json:\"submit_time\" gorm:\"index\"`\n\tStartTime   int64  `json:\"start_time\" gorm:\"index\"`\n\tFinishTime  int64  `json:\"finish_time\" gorm:\"index\"`\n\tImageUrl    string `json:\"image_url\"`\n\tVideoUrl    string `json:\"video_url\"`\n\tVideoUrls   string `json:\"video_urls\"`\n\tStatus      string `json:\"status\" gorm:\"type:varchar(20);index\"`\n\tProgress    string `json:\"progress\" gorm:\"type:varchar(30);index\"`\n\tFailReason  string `json:\"fail_reason\"`\n\tChannelId   int    `json:\"channel_id\"`\n\tQuota       int    `json:\"quota\"`\n\tButtons     string `json:\"buttons\"`\n\tProperties  string `json:\"properties\"`\n\n\tTokenId          int `json:\"-\" gorm:\"default:0\"`\n\tBillingChannelId int `json:\"-\" gorm:\"default:0\"`\n}",
+      "unmatched": []
+    },
+    {
+      "name": "TopUp",
+      "source": "model/topup.go",
+      "line": 15,
+      "fields": [
+        {
+          "name": "Id",
+          "go_type": "int",
+          "json": "id",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "UserId",
+          "go_type": "int",
+          "json": "user_id",
+          "gorm": "index",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Amount",
+          "go_type": "int64",
+          "json": "amount",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Money",
+          "go_type": "float64",
+          "json": "money",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "TradeNo",
+          "go_type": "string",
+          "json": "trade_no",
+          "gorm": "unique;type:varchar(255);index",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "PaymentMethod",
+          "go_type": "string",
+          "json": "payment_method",
+          "gorm": "type:varchar(50)",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "PaymentProvider",
+          "go_type": "string",
+          "json": "payment_provider",
+          "gorm": "type:varchar(50);default:''",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "CreateTime",
+          "go_type": "int64",
+          "json": "create_time",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "CompleteTime",
+          "go_type": "int64",
+          "json": "complete_time",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Status",
+          "go_type": "string",
+          "json": "status",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        }
+      ],
+      "table_name_override": null,
+      "raw": "type TopUp struct {\n\tId              int     `json:\"id\"`\n\tUserId          int     `json:\"user_id\" gorm:\"index\"`\n\tAmount          int64   `json:\"amount\"`\n\tMoney           float64 `json:\"money\"`\n\tTradeNo         string  `json:\"trade_no\" gorm:\"unique;type:varchar(255);index\"`\n\tPaymentMethod   string  `json:\"payment_method\" gorm:\"type:varchar(50)\"`\n\tPaymentProvider string  `json:\"payment_provider\" gorm:\"type:varchar(50);default:''\"`\n\tCreateTime      int64   `json:\"create_time\"`\n\tCompleteTime    int64   `json:\"complete_time\"`\n\tStatus          string  `json:\"status\"`\n}",
+      "unmatched": []
+    },
+    {
+      "name": "QuotaData",
+      "source": "model/usedata.go",
+      "line": 13,
+      "fields": [
+        {
+          "name": "Id",
+          "go_type": "int",
+          "json": "id",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "UserID",
+          "go_type": "int",
+          "json": "user_id",
+          "gorm": "index",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Username",
+          "go_type": "string",
+          "json": "username",
+          "gorm": "index:idx_qdt_model_user_name,priority:2;size:64;default:''",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "ModelName",
+          "go_type": "string",
+          "json": "model_name",
+          "gorm": "index:idx_qdt_model_user_name,priority:1;size:64;default:''",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "CreatedAt",
+          "go_type": "int64",
+          "json": "created_at",
+          "gorm": "bigint;index:idx_qdt_created_at,priority:2",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "UseGroup",
+          "go_type": "string",
+          "json": "use_group",
+          "gorm": "index;size:64;default:''",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "TokenID",
+          "go_type": "int",
+          "json": "token_id",
+          "gorm": "index;default:0",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "ChannelID",
+          "go_type": "int",
+          "json": "channel_id",
+          "gorm": "index;default:0",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "NodeName",
+          "go_type": "string",
+          "json": "node_name",
+          "gorm": "index;size:64;default:''",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "TokenUsed",
+          "go_type": "int",
+          "json": "token_used",
+          "gorm": "default:0",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Count",
+          "go_type": "int",
+          "json": "count",
+          "gorm": "default:0",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Quota",
+          "go_type": "int",
+          "json": "quota",
+          "gorm": "default:0",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "CacheReadTokens",
+          "go_type": "int64",
+          "json": "cache_read_tokens",
+          "gorm": "default:0",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "CacheCreationTokens",
+          "go_type": "int64",
+          "json": "cache_creation_tokens",
+          "gorm": "default:0",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        }
+      ],
+      "table_name_override": null,
+      "raw": "type QuotaData struct {\n\tId                  int    `json:\"id\"`\n\tUserID              int    `json:\"user_id\" gorm:\"index\"`\n\tUsername            string `json:\"username\" gorm:\"index:idx_qdt_model_user_name,priority:2;size:64;default:''\"`\n\tModelName           string `json:\"model_name\" gorm:\"index:idx_qdt_model_user_name,priority:1;size:64;default:''\"`\n\tCreatedAt           int64  `json:\"created_at\" gorm:\"bigint;index:idx_qdt_created_at,priority:2\"`\n\tUseGroup            string `json:\"use_group\" gorm:\"index;size:64;default:''\"`\n\tTokenID             int    `json:\"token_id\" gorm:\"index;default:0\"`\n\tChannelID           int    `json:\"channel_id\" gorm:\"index;default:0\"`\n\tNodeName            string `json:\"node_name\" gorm:\"index;size:64;default:''\"`\n\tTokenUsed           int    `json:\"token_used\" gorm:\"default:0\"`\n\tCount               int    `json:\"count\" gorm:\"default:0\"`\n\tQuota               int    `json:\"quota\" gorm:\"default:0\"`\n\tCacheReadTokens     int64  `json:\"cache_read_tokens\" gorm:\"default:0\"`\n\tCacheCreationTokens int64  `json:\"cache_creation_tokens\" gorm:\"default:0\"`\n}",
+      "unmatched": []
+    },
+    {
+      "name": "Task",
+      "source": "model/task.go",
+      "line": 50,
+      "fields": [
+        {
+          "name": "ID",
+          "go_type": "int64",
+          "json": "id",
+          "gorm": "primary_key;AUTO_INCREMENT",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "CreatedAt",
+          "go_type": "int64",
+          "json": "created_at",
+          "gorm": "index",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "UpdatedAt",
+          "go_type": "int64",
+          "json": "updated_at",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "TaskID",
+          "go_type": "string",
+          "json": "task_id",
+          "gorm": "type:varchar(191);index",
+          "validate": "",
+          "persisted": true,
+          "comment": "第三方id，不一定有/ song id\\ Task id"
+        },
+        {
+          "name": "Platform",
+          "go_type": "constant.TaskPlatform",
+          "json": "platform",
+          "gorm": "type:varchar(30);index",
+          "validate": "",
+          "persisted": true,
+          "comment": "平台"
+        },
+        {
+          "name": "UserId",
+          "go_type": "int",
+          "json": "user_id",
+          "gorm": "index",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Group",
+          "go_type": "string",
+          "json": "group",
+          "gorm": "type:varchar(50)",
+          "validate": "",
+          "persisted": true,
+          "comment": "修正计费用"
+        },
+        {
+          "name": "ChannelId",
+          "go_type": "int",
+          "json": "channel_id",
+          "gorm": "index",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Quota",
+          "go_type": "int",
+          "json": "quota",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Action",
+          "go_type": "string",
+          "json": "action",
+          "gorm": "type:varchar(40);index",
+          "validate": "",
+          "persisted": true,
+          "comment": "任务类型, song, lyrics, description-mode"
+        },
+        {
+          "name": "Status",
+          "go_type": "TaskStatus",
+          "json": "status",
+          "gorm": "type:varchar(20);index",
+          "validate": "",
+          "persisted": true,
+          "comment": "任务状态"
+        },
+        {
+          "name": "FailReason",
+          "go_type": "string",
+          "json": "fail_reason",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "SubmitTime",
+          "go_type": "int64",
+          "json": "submit_time",
+          "gorm": "index",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "StartTime",
+          "go_type": "int64",
+          "json": "start_time",
+          "gorm": "index",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "FinishTime",
+          "go_type": "int64",
+          "json": "finish_time",
+          "gorm": "index",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Progress",
+          "go_type": "string",
+          "json": "progress",
+          "gorm": "type:varchar(20);index",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Properties",
+          "go_type": "Properties",
+          "json": "properties",
+          "gorm": "type:json",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Username",
+          "go_type": "string",
+          "json": "username,omitempty",
+          "gorm": "-",
+          "validate": "",
+          "persisted": false,
+          "comment": ""
+        },
+        {
+          "name": "PrivateData",
+          "go_type": "TaskPrivateData",
+          "json": "-",
+          "gorm": "column:private_data;type:json",
+          "validate": "",
+          "persisted": true,
+          "comment": "禁止返回给用户，内部可能包含key等隐私信息"
+        },
+        {
+          "name": "Data",
+          "go_type": "json.RawMessage",
+          "json": "data",
+          "gorm": "type:json",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        }
+      ],
+      "table_name_override": null,
+      "raw": "type Task struct {\n\tID         int64                 `json:\"id\" gorm:\"primary_key;AUTO_INCREMENT\"`\n\tCreatedAt  int64                 `json:\"created_at\" gorm:\"index\"`\n\tUpdatedAt  int64                 `json:\"updated_at\"`\n\tTaskID     string                `json:\"task_id\" gorm:\"type:varchar(191);index\"` // 第三方id，不一定有/ song id\\ Task id\n\tPlatform   constant.TaskPlatform `json:\"platform\" gorm:\"type:varchar(30);index\"` // 平台\n\tUserId     int                   `json:\"user_id\" gorm:\"index\"`\n\tGroup      string                `json:\"group\" gorm:\"type:varchar(50)\"` // 修正计费用\n\tChannelId  int                   `json:\"channel_id\" gorm:\"index\"`\n\tQuota      int                   `json:\"quota\"`\n\tAction     string                `json:\"action\" gorm:\"type:varchar(40);index\"` // 任务类型, song, lyrics, description-mode\n\tStatus     TaskStatus            `json:\"status\" gorm:\"type:varchar(20);index\"` // 任务状态\n\tFailReason string                `json:\"fail_reason\"`\n\tSubmitTime int64                 `json:\"submit_time\" gorm:\"index\"`\n\tStartTime  int64                 `json:\"start_time\" gorm:\"index\"`\n\tFinishTime int64                 `json:\"finish_time\" gorm:\"index\"`\n\tProgress   string                `json:\"progress\" gorm:\"type:varchar(20);index\"`\n\tProperties Properties            `json:\"properties\" gorm:\"type:json\"`\n\tUsername   string                `json:\"username,omitempty\" gorm:\"-\"`\n\t// 禁止返回给用户，内部可能包含key等隐私信息\n\tPrivateData TaskPrivateData `json:\"-\" gorm:\"column:private_data;type:json\"`\n\tData        json.RawMessage `json:\"data\" gorm:\"type:json\"`\n}",
+      "unmatched": []
+    },
+    {
+      "name": "TaskPlugin",
+      "source": "model/task_plugin.go",
+      "line": 78,
+      "fields": [
+        {
+          "name": "Id",
+          "go_type": "int64",
+          "json": "id",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Key",
+          "go_type": "string",
+          "json": "key",
+          "gorm": "size:128;not null;uniqueIndex:uk_task_plugin_key_version,priority:1",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "APIVersion",
+          "go_type": "int",
+          "json": "api_version",
+          "gorm": "not null",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Version",
+          "go_type": "string",
+          "json": "version",
+          "gorm": "size:64;not null;uniqueIndex:uk_task_plugin_key_version,priority:2",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Source",
+          "go_type": "LongText",
+          "json": "source",
+          "gorm": "not null",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "SourceHash",
+          "go_type": "string",
+          "json": "source_hash",
+          "gorm": "size:64;not null",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Icon",
+          "go_type": "LongText",
+          "json": "-",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": "Icon is the plugin logo shipped as a sidecar icon.svg / icon.png next to plugin.js, stored as a data URI so one column carries both the media type and the bytes. It never travels inside list or detail JSON; the UI loads it through GET /api/plugin/task/:key/icon. LongText keeps the 512 KiB icon cap storable on MySQL, where a bare TEXT holds only 64 KiB."
+        },
+        {
+          "name": "Enabled",
+          "go_type": "bool",
+          "json": "enabled",
+          "gorm": "not null",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Active",
+          "go_type": "bool",
+          "json": "active",
+          "gorm": "not null;index",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "CreatedAt",
+          "go_type": "int64",
+          "json": "created_at",
+          "gorm": "not null",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Remark",
+          "go_type": "string",
+          "json": "remark",
+          "gorm": "type:text",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        }
+      ],
+      "table_name_override": null,
+      "raw": "type TaskPlugin struct {\n\tId         int64    `json:\"id\"`\n\tKey        string   `json:\"key\" gorm:\"size:128;not null;uniqueIndex:uk_task_plugin_key_version,priority:1\"`\n\tAPIVersion int      `json:\"api_version\" gorm:\"not null\"`\n\tVersion    string   `json:\"version\" gorm:\"size:64;not null;uniqueIndex:uk_task_plugin_key_version,priority:2\"`\n\tSource     LongText `json:\"source\" gorm:\"not null\"`\n\tSourceHash string   `json:\"source_hash\" gorm:\"size:64;not null\"`\n\t// Icon is the plugin logo shipped as a sidecar icon.svg / icon.png next to\n\t// plugin.js, stored as a data URI so one column carries both the media\n\t// type and the bytes. It never travels inside list or detail JSON; the UI\n\t// loads it through GET /api/plugin/task/:key/icon. LongText keeps the\n\t// 512 KiB icon cap storable on MySQL, where a bare TEXT holds only 64 KiB.\n\tIcon      LongText `json:\"-\"`\n\tEnabled   bool     `json:\"enabled\" gorm:\"not null\"`\n\tActive    bool     `json:\"active\" gorm:\"not null;index\"`\n\tCreatedAt int64    `json:\"created_at\" gorm:\"not null\"`\n\tRemark    string   `json:\"remark\" gorm:\"type:text\"`\n}",
+      "unmatched": []
+    },
+    {
+      "name": "Model",
+      "source": "model/model_meta.go",
+      "line": 35,
+      "fields": [
+        {
+          "name": "Id",
+          "go_type": "int",
+          "json": "id",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "ModelName",
+          "go_type": "string",
+          "json": "model_name",
+          "gorm": "size:128;not null;uniqueIndex:uk_model_name_delete_at,priority:1",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Description",
+          "go_type": "string",
+          "json": "description,omitempty",
+          "gorm": "type:text",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Icon",
+          "go_type": "string",
+          "json": "icon,omitempty",
+          "gorm": "type:varchar(128)",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Tags",
+          "go_type": "string",
+          "json": "tags,omitempty",
+          "gorm": "type:varchar(255)",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "VendorID",
+          "go_type": "int",
+          "json": "vendor_id,omitempty",
+          "gorm": "index",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Endpoints",
+          "go_type": "string",
+          "json": "endpoints,omitempty",
+          "gorm": "type:text",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "SupportedEndpoints",
+          "go_type": "[]string",
+          "json": "supported_endpoints,omitempty",
+          "gorm": "-",
+          "validate": "",
+          "persisted": false,
+          "comment": ""
+        },
+        {
+          "name": "Status",
+          "go_type": "int",
+          "json": "status",
+          "gorm": "default:1",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "SyncOfficial",
+          "go_type": "int",
+          "json": "sync_official",
+          "gorm": "default:1",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "CreatedTime",
+          "go_type": "int64",
+          "json": "created_time",
+          "gorm": "bigint",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "UpdatedTime",
+          "go_type": "int64",
+          "json": "updated_time",
+          "gorm": "bigint",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "DeletedAt",
+          "go_type": "gorm.DeletedAt",
+          "json": "-",
+          "gorm": "index;uniqueIndex:uk_model_name_delete_at,priority:2",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "BoundChannels",
+          "go_type": "[]BoundChannel",
+          "json": "bound_channels,omitempty",
+          "gorm": "-",
+          "validate": "",
+          "persisted": false,
+          "comment": ""
+        },
+        {
+          "name": "EnableGroups",
+          "go_type": "[]string",
+          "json": "enable_groups,omitempty",
+          "gorm": "-",
+          "validate": "",
+          "persisted": false,
+          "comment": ""
+        },
+        {
+          "name": "QuotaTypes",
+          "go_type": "[]int",
+          "json": "quota_types,omitempty",
+          "gorm": "-",
+          "validate": "",
+          "persisted": false,
+          "comment": ""
+        },
+        {
+          "name": "NameRule",
+          "go_type": "int",
+          "json": "name_rule",
+          "gorm": "default:0",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "MatchedModels",
+          "go_type": "[]string",
+          "json": "matched_models,omitempty",
+          "gorm": "-",
+          "validate": "",
+          "persisted": false,
+          "comment": ""
+        },
+        {
+          "name": "MatchedCount",
+          "go_type": "int",
+          "json": "matched_count,omitempty",
+          "gorm": "-",
+          "validate": "",
+          "persisted": false,
+          "comment": ""
+        },
+        {
+          "name": "HasMetadata",
+          "go_type": "bool",
+          "json": "has_metadata",
+          "gorm": "-",
+          "validate": "",
+          "persisted": false,
+          "comment": ""
+        },
+        {
+          "name": "ConfiguredChannelCount",
+          "go_type": "int",
+          "json": "configured_channel_count",
+          "gorm": "-",
+          "validate": "",
+          "persisted": false,
+          "comment": ""
+        },
+        {
+          "name": "SquareState",
+          "go_type": "ModelSquareState",
+          "json": "square_state",
+          "gorm": "-",
+          "validate": "",
+          "persisted": false,
+          "comment": ""
+        }
+      ],
+      "table_name_override": null,
+      "raw": "type Model struct {\n\tId                 int            `json:\"id\"`\n\tModelName          string         `json:\"model_name\" gorm:\"size:128;not null;uniqueIndex:uk_model_name_delete_at,priority:1\"`\n\tDescription        string         `json:\"description,omitempty\" gorm:\"type:text\"`\n\tIcon               string         `json:\"icon,omitempty\" gorm:\"type:varchar(128)\"`\n\tTags               string         `json:\"tags,omitempty\" gorm:\"type:varchar(255)\"`\n\tVendorID           int            `json:\"vendor_id,omitempty\" gorm:\"index\"`\n\tEndpoints          string         `json:\"endpoints,omitempty\" gorm:\"type:text\"`\n\tSupportedEndpoints []string       `json:\"supported_endpoints,omitempty\" gorm:\"-\"`\n\tStatus             int            `json:\"status\" gorm:\"default:1\"`\n\tSyncOfficial       int            `json:\"sync_official\" gorm:\"default:1\"`\n\tCreatedTime        int64          `json:\"created_time\" gorm:\"bigint\"`\n\tUpdatedTime        int64          `json:\"updated_time\" gorm:\"bigint\"`\n\tDeletedAt          gorm.DeletedAt `json:\"-\" gorm:\"index;uniqueIndex:uk_model_name_delete_at,priority:2\"`\n\n\tBoundChannels []BoundChannel `json:\"bound_channels,omitempty\" gorm:\"-\"`\n\tEnableGroups  []string       `json:\"enable_groups,omitempty\" gorm:\"-\"`\n\tQuotaTypes    []int          `json:\"quota_types,omitempty\" gorm:\"-\"`\n\tNameRule      int            `json:\"name_rule\" gorm:\"default:0\"`\n\n\tMatchedModels []string `json:\"matched_models,omitempty\" gorm:\"-\"`\n\tMatchedCount  int      `json:\"matched_count,omitempty\" gorm:\"-\"`\n\n\tHasMetadata            bool             `json:\"has_metadata\" gorm:\"-\"`\n\tConfiguredChannelCount int              `json:\"configured_channel_count\" gorm:\"-\"`\n\tSquareState            ModelSquareState `json:\"square_state\" gorm:\"-\"`\n}",
+      "unmatched": []
+    },
+    {
+      "name": "Vendor",
+      "source": "model/vendor_meta.go",
+      "line": 15,
+      "fields": [
+        {
+          "name": "ModelCount",
+          "go_type": "int64",
+          "json": "model_count",
+          "gorm": "-",
+          "validate": "",
+          "persisted": false,
+          "comment": ""
+        },
+        {
+          "name": "Version",
+          "go_type": "string",
+          "json": "version,omitempty",
+          "gorm": "-",
+          "validate": "",
+          "persisted": false,
+          "comment": ""
+        },
+        {
+          "name": "Id",
+          "go_type": "int",
+          "json": "id",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Name",
+          "go_type": "string",
+          "json": "name",
+          "gorm": "size:128;not null;uniqueIndex:uk_vendor_name_delete_at,priority:1",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Description",
+          "go_type": "string",
+          "json": "description,omitempty",
+          "gorm": "type:text",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Icon",
+          "go_type": "string",
+          "json": "icon,omitempty",
+          "gorm": "type:varchar(128)",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Status",
+          "go_type": "int",
+          "json": "status",
+          "gorm": "default:1",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "CreatedTime",
+          "go_type": "int64",
+          "json": "created_time",
+          "gorm": "bigint",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "UpdatedTime",
+          "go_type": "int64",
+          "json": "updated_time",
+          "gorm": "bigint",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "DeletedAt",
+          "go_type": "gorm.DeletedAt",
+          "json": "-",
+          "gorm": "index;uniqueIndex:uk_vendor_name_delete_at,priority:2",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        }
+      ],
+      "table_name_override": null,
+      "raw": "type Vendor struct {\n\tModelCount  int64          `json:\"model_count\" gorm:\"-\"`\n\tVersion     string         `json:\"version,omitempty\" gorm:\"-\"`\n\tId          int            `json:\"id\"`\n\tName        string         `json:\"name\" gorm:\"size:128;not null;uniqueIndex:uk_vendor_name_delete_at,priority:1\"`\n\tDescription string         `json:\"description,omitempty\" gorm:\"type:text\"`\n\tIcon        string         `json:\"icon,omitempty\" gorm:\"type:varchar(128)\"`\n\tStatus      int            `json:\"status\" gorm:\"default:1\"`\n\tCreatedTime int64          `json:\"created_time\" gorm:\"bigint\"`\n\tUpdatedTime int64          `json:\"updated_time\" gorm:\"bigint\"`\n\tDeletedAt   gorm.DeletedAt `json:\"-\" gorm:\"index;uniqueIndex:uk_vendor_name_delete_at,priority:2\"`\n}",
+      "unmatched": []
+    },
+    {
+      "name": "PrefillGroup",
+      "source": "model/prefill_group.go",
+      "line": 78,
+      "fields": [
+        {
+          "name": "Id",
+          "go_type": "int",
+          "json": "id",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Name",
+          "go_type": "string",
+          "json": "name",
+          "gorm": "size:64;not null;uniqueIndex:uk_prefill_name,where:deleted_at IS NULL",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Type",
+          "go_type": "string",
+          "json": "type",
+          "gorm": "size:32;index;not null",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Items",
+          "go_type": "JSONValue",
+          "json": "items",
+          "gorm": "type:json",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Description",
+          "go_type": "string",
+          "json": "description,omitempty",
+          "gorm": "type:varchar(255)",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "CreatedTime",
+          "go_type": "int64",
+          "json": "created_time",
+          "gorm": "bigint",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "UpdatedTime",
+          "go_type": "int64",
+          "json": "updated_time",
+          "gorm": "bigint",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "DeletedAt",
+          "go_type": "gorm.DeletedAt",
+          "json": "-",
+          "gorm": "index",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        }
+      ],
+      "table_name_override": null,
+      "raw": "type PrefillGroup struct {\n\tId          int            `json:\"id\"`\n\tName        string         `json:\"name\" gorm:\"size:64;not null;uniqueIndex:uk_prefill_name,where:deleted_at IS NULL\"`\n\tType        string         `json:\"type\" gorm:\"size:32;index;not null\"`\n\tItems       JSONValue      `json:\"items\" gorm:\"type:json\"`\n\tDescription string         `json:\"description,omitempty\" gorm:\"type:varchar(255)\"`\n\tCreatedTime int64          `json:\"created_time\" gorm:\"bigint\"`\n\tUpdatedTime int64          `json:\"updated_time\" gorm:\"bigint\"`\n\tDeletedAt   gorm.DeletedAt `json:\"-\" gorm:\"index\"`\n}",
+      "unmatched": []
+    },
+    {
+      "name": "Setup",
+      "source": "model/setup.go",
+      "line": 3,
+      "fields": [
+        {
+          "name": "ID",
+          "go_type": "uint",
+          "json": "id",
+          "gorm": "primaryKey",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Version",
+          "go_type": "string",
+          "json": "version",
+          "gorm": "type:varchar(50);not null",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "InitializedAt",
+          "go_type": "int64",
+          "json": "initialized_at",
+          "gorm": "type:bigint;not null",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        }
+      ],
+      "table_name_override": null,
+      "raw": "type Setup struct {\n\tID            uint   `json:\"id\" gorm:\"primaryKey\"`\n\tVersion       string `json:\"version\" gorm:\"type:varchar(50);not null\"`\n\tInitializedAt int64  `json:\"initialized_at\" gorm:\"type:bigint;not null\"`\n}",
+      "unmatched": []
+    },
+    {
+      "name": "TwoFA",
+      "source": "model/twofa.go",
+      "line": 14,
+      "fields": [
+        {
+          "name": "Id",
+          "go_type": "int",
+          "json": "id",
+          "gorm": "primaryKey",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "UserId",
+          "go_type": "int",
+          "json": "user_id",
+          "gorm": "unique;not null;index",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Secret",
+          "go_type": "string",
+          "json": "-",
+          "gorm": "type:varchar(255);not null",
+          "validate": "",
+          "persisted": true,
+          "comment": "TOTP密钥，不返回给前端"
+        },
+        {
+          "name": "IsEnabled",
+          "go_type": "bool",
+          "json": "is_enabled",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "FailedAttempts",
+          "go_type": "int",
+          "json": "failed_attempts",
+          "gorm": "default:0",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "LockedUntil",
+          "go_type": "*time.Time",
+          "json": "locked_until,omitempty",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "LastUsedAt",
+          "go_type": "*time.Time",
+          "json": "last_used_at,omitempty",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "CreatedAt",
+          "go_type": "time.Time",
+          "json": "created_at",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "UpdatedAt",
+          "go_type": "time.Time",
+          "json": "updated_at",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "DeletedAt",
+          "go_type": "gorm.DeletedAt",
+          "json": "-",
+          "gorm": "index",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        }
+      ],
+      "table_name_override": null,
+      "raw": "type TwoFA struct {\n\tId             int            `json:\"id\" gorm:\"primaryKey\"`\n\tUserId         int            `json:\"user_id\" gorm:\"unique;not null;index\"`\n\tSecret         string         `json:\"-\" gorm:\"type:varchar(255);not null\"` // TOTP密钥，不返回给前端\n\tIsEnabled      bool           `json:\"is_enabled\"`\n\tFailedAttempts int            `json:\"failed_attempts\" gorm:\"default:0\"`\n\tLockedUntil    *time.Time     `json:\"locked_until,omitempty\"`\n\tLastUsedAt     *time.Time     `json:\"last_used_at,omitempty\"`\n\tCreatedAt      time.Time      `json:\"created_at\"`\n\tUpdatedAt      time.Time      `json:\"updated_at\"`\n\tDeletedAt      gorm.DeletedAt `json:\"-\" gorm:\"index\"`\n}",
+      "unmatched": []
+    },
+    {
+      "name": "TwoFABackupCode",
+      "source": "model/twofa.go",
+      "line": 28,
+      "fields": [
+        {
+          "name": "Id",
+          "go_type": "int",
+          "json": "id",
+          "gorm": "primaryKey",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "UserId",
+          "go_type": "int",
+          "json": "user_id",
+          "gorm": "not null;index",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "CodeHash",
+          "go_type": "string",
+          "json": "-",
+          "gorm": "type:varchar(255);not null",
+          "validate": "",
+          "persisted": true,
+          "comment": "备用码哈希"
+        },
+        {
+          "name": "IsUsed",
+          "go_type": "bool",
+          "json": "is_used",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "UsedAt",
+          "go_type": "*time.Time",
+          "json": "used_at,omitempty",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "CreatedAt",
+          "go_type": "time.Time",
+          "json": "created_at",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "DeletedAt",
+          "go_type": "gorm.DeletedAt",
+          "json": "-",
+          "gorm": "index",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        }
+      ],
+      "table_name_override": null,
+      "raw": "type TwoFABackupCode struct {\n\tId        int            `json:\"id\" gorm:\"primaryKey\"`\n\tUserId    int            `json:\"user_id\" gorm:\"not null;index\"`\n\tCodeHash  string         `json:\"-\" gorm:\"type:varchar(255);not null\"` // 备用码哈希\n\tIsUsed    bool           `json:\"is_used\"`\n\tUsedAt    *time.Time     `json:\"used_at,omitempty\"`\n\tCreatedAt time.Time      `json:\"created_at\"`\n\tDeletedAt gorm.DeletedAt `json:\"-\" gorm:\"index\"`\n}",
+      "unmatched": []
+    },
+    {
+      "name": "Checkin",
+      "source": "model/checkin.go",
+      "line": 13,
+      "fields": [
+        {
+          "name": "Id",
+          "go_type": "int",
+          "json": "id",
+          "gorm": "primaryKey;autoIncrement",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "UserId",
+          "go_type": "int",
+          "json": "user_id",
+          "gorm": "not null;uniqueIndex:idx_user_checkin_date",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "CheckinDate",
+          "go_type": "string",
+          "json": "checkin_date",
+          "gorm": "type:varchar(10);not null;uniqueIndex:idx_user_checkin_date",
+          "validate": "",
+          "persisted": true,
+          "comment": "格式: YYYY-MM-DD"
+        },
+        {
+          "name": "QuotaAwarded",
+          "go_type": "int",
+          "json": "quota_awarded",
+          "gorm": "not null",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "CreatedAt",
+          "go_type": "int64",
+          "json": "created_at",
+          "gorm": "bigint",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        }
+      ],
+      "table_name_override": "checkins",
+      "raw": "type Checkin struct {\n\tId           int    `json:\"id\" gorm:\"primaryKey;autoIncrement\"`\n\tUserId       int    `json:\"user_id\" gorm:\"not null;uniqueIndex:idx_user_checkin_date\"`\n\tCheckinDate  string `json:\"checkin_date\" gorm:\"type:varchar(10);not null;uniqueIndex:idx_user_checkin_date\"` // 格式: YYYY-MM-DD\n\tQuotaAwarded int    `json:\"quota_awarded\" gorm:\"not null\"`\n\tCreatedAt    int64  `json:\"created_at\" gorm:\"bigint\"`\n}",
+      "unmatched": []
+    },
+    {
+      "name": "SubscriptionOrder",
+      "source": "model/subscription.go",
+      "line": 214,
+      "fields": [
+        {
+          "name": "Id",
+          "go_type": "int",
+          "json": "id",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "UserId",
+          "go_type": "int",
+          "json": "user_id",
+          "gorm": "index",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "PlanId",
+          "go_type": "int",
+          "json": "plan_id",
+          "gorm": "index",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Money",
+          "go_type": "float64",
+          "json": "money",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "TradeNo",
+          "go_type": "string",
+          "json": "trade_no",
+          "gorm": "unique;type:varchar(255);index",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "PaymentMethod",
+          "go_type": "string",
+          "json": "payment_method",
+          "gorm": "type:varchar(50)",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "PaymentProvider",
+          "go_type": "string",
+          "json": "payment_provider",
+          "gorm": "type:varchar(50);default:''",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Status",
+          "go_type": "string",
+          "json": "status",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "CreateTime",
+          "go_type": "int64",
+          "json": "create_time",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "CompleteTime",
+          "go_type": "int64",
+          "json": "complete_time",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "ProviderPayload",
+          "go_type": "string",
+          "json": "provider_payload",
+          "gorm": "type:text",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        }
+      ],
+      "table_name_override": null,
+      "raw": "type SubscriptionOrder struct {\n\tId     int     `json:\"id\"`\n\tUserId int     `json:\"user_id\" gorm:\"index\"`\n\tPlanId int     `json:\"plan_id\" gorm:\"index\"`\n\tMoney  float64 `json:\"money\"`\n\n\tTradeNo         string `json:\"trade_no\" gorm:\"unique;type:varchar(255);index\"`\n\tPaymentMethod   string `json:\"payment_method\" gorm:\"type:varchar(50)\"`\n\tPaymentProvider string `json:\"payment_provider\" gorm:\"type:varchar(50);default:''\"`\n\tStatus          string `json:\"status\"`\n\tCreateTime      int64  `json:\"create_time\"`\n\tCompleteTime    int64  `json:\"complete_time\"`\n\n\tProviderPayload string `json:\"provider_payload\" gorm:\"type:text\"`\n}",
+      "unmatched": []
+    },
+    {
+      "name": "UserSubscription",
+      "source": "model/subscription.go",
+      "line": 253,
+      "fields": [
+        {
+          "name": "Id",
+          "go_type": "int",
+          "json": "id",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "UserId",
+          "go_type": "int",
+          "json": "user_id",
+          "gorm": "index;index:idx_user_sub_active,priority:1",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "PlanId",
+          "go_type": "int",
+          "json": "plan_id",
+          "gorm": "index",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "AmountTotal",
+          "go_type": "int64",
+          "json": "amount_total",
+          "gorm": "type:bigint;not null;default:0",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "AmountUsed",
+          "go_type": "int64",
+          "json": "amount_used",
+          "gorm": "type:bigint;not null;default:0",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "StartTime",
+          "go_type": "int64",
+          "json": "start_time",
+          "gorm": "bigint",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "EndTime",
+          "go_type": "int64",
+          "json": "end_time",
+          "gorm": "bigint;index;index:idx_user_sub_active,priority:3",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Status",
+          "go_type": "string",
+          "json": "status",
+          "gorm": "type:varchar(32);index;index:idx_user_sub_active,priority:2",
+          "validate": "",
+          "persisted": true,
+          "comment": "active/expired/cancelled"
+        },
+        {
+          "name": "Source",
+          "go_type": "string",
+          "json": "source",
+          "gorm": "type:varchar(32);default:'order'",
+          "validate": "",
+          "persisted": true,
+          "comment": "order/admin"
+        },
+        {
+          "name": "LastResetTime",
+          "go_type": "int64",
+          "json": "last_reset_time",
+          "gorm": "type:bigint;default:0",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "NextResetTime",
+          "go_type": "int64",
+          "json": "next_reset_time",
+          "gorm": "type:bigint;default:0;index",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "UpgradeGroup",
+          "go_type": "string",
+          "json": "upgrade_group",
+          "gorm": "type:varchar(64);default:''",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "PrevUserGroup",
+          "go_type": "string",
+          "json": "prev_user_group",
+          "gorm": "type:varchar(64);default:''",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "DowngradeGroup",
+          "go_type": "string",
+          "json": "downgrade_group",
+          "gorm": "type:varchar(64);default:''",
+          "validate": "",
+          "persisted": true,
+          "comment": "Downgrade target group on expiry (snapshot from plan; empty = revert to PrevUserGroup)"
+        },
+        {
+          "name": "AllowWalletOverflow",
+          "go_type": "bool",
+          "json": "allow_wallet_overflow",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": "Whether wallet fallback is allowed after this subscription's quota is exhausted (snapshot from plan)"
+        },
+        {
+          "name": "CreatedAt",
+          "go_type": "int64",
+          "json": "created_at",
+          "gorm": "bigint",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "UpdatedAt",
+          "go_type": "int64",
+          "json": "updated_at",
+          "gorm": "bigint",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        }
+      ],
+      "table_name_override": null,
+      "raw": "type UserSubscription struct {\n\tId     int `json:\"id\"`\n\tUserId int `json:\"user_id\" gorm:\"index;index:idx_user_sub_active,priority:1\"`\n\tPlanId int `json:\"plan_id\" gorm:\"index\"`\n\n\tAmountTotal int64 `json:\"amount_total\" gorm:\"type:bigint;not null;default:0\"`\n\tAmountUsed  int64 `json:\"amount_used\" gorm:\"type:bigint;not null;default:0\"`\n\n\tStartTime int64  `json:\"start_time\" gorm:\"bigint\"`\n\tEndTime   int64  `json:\"end_time\" gorm:\"bigint;index;index:idx_user_sub_active,priority:3\"`\n\tStatus    string `json:\"status\" gorm:\"type:varchar(32);index;index:idx_user_sub_active,priority:2\"` // active/expired/cancelled\n\n\tSource string `json:\"source\" gorm:\"type:varchar(32);default:'order'\"` // order/admin\n\n\tLastResetTime int64 `json:\"last_reset_time\" gorm:\"type:bigint;default:0\"`\n\tNextResetTime int64 `json:\"next_reset_time\" gorm:\"type:bigint;default:0;index\"`\n\n\tUpgradeGroup  string `json:\"upgrade_group\" gorm:\"type:varchar(64);default:''\"`\n\tPrevUserGroup string `json:\"prev_user_group\" gorm:\"type:varchar(64);default:''\"`\n\n\t// Downgrade target group on expiry (snapshot from plan; empty = revert to PrevUserGroup)\n\tDowngradeGroup string `json:\"downgrade_group\" gorm:\"type:varchar(64);default:''\"`\n\n\t// Whether wallet fallback is allowed after this subscription's quota is exhausted (snapshot from plan)\n\tAllowWalletOverflow bool `json:\"allow_wallet_overflow\"`\n\n\tCreatedAt int64 `json:\"created_at\" gorm:\"bigint\"`\n\tUpdatedAt int64 `json:\"updated_at\" gorm:\"bigint\"`\n}",
+      "unmatched": []
+    },
+    {
+      "name": "SubscriptionPreConsumeRecord",
+      "source": "model/subscription.go",
+      "line": 1244,
+      "fields": [
+        {
+          "name": "Id",
+          "go_type": "int",
+          "json": "id",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "RequestId",
+          "go_type": "string",
+          "json": "request_id",
+          "gorm": "type:varchar(64);uniqueIndex",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "UserId",
+          "go_type": "int",
+          "json": "user_id",
+          "gorm": "index",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "UserSubscriptionId",
+          "go_type": "int",
+          "json": "user_subscription_id",
+          "gorm": "index",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "PreConsumed",
+          "go_type": "int64",
+          "json": "pre_consumed",
+          "gorm": "type:bigint;not null;default:0",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Status",
+          "go_type": "string",
+          "json": "status",
+          "gorm": "type:varchar(32);index",
+          "validate": "",
+          "persisted": true,
+          "comment": "consumed/refunded"
+        },
+        {
+          "name": "CreatedAt",
+          "go_type": "int64",
+          "json": "created_at",
+          "gorm": "bigint",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "UpdatedAt",
+          "go_type": "int64",
+          "json": "updated_at",
+          "gorm": "bigint;index",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        }
+      ],
+      "table_name_override": null,
+      "raw": "type SubscriptionPreConsumeRecord struct {\n\tId                 int    `json:\"id\"`\n\tRequestId          string `json:\"request_id\" gorm:\"type:varchar(64);uniqueIndex\"`\n\tUserId             int    `json:\"user_id\" gorm:\"index\"`\n\tUserSubscriptionId int    `json:\"user_subscription_id\" gorm:\"index\"`\n\tPreConsumed        int64  `json:\"pre_consumed\" gorm:\"type:bigint;not null;default:0\"`\n\tStatus             string `json:\"status\" gorm:\"type:varchar(32);index\"` // consumed/refunded\n\tCreatedAt          int64  `json:\"created_at\" gorm:\"bigint\"`\n\tUpdatedAt          int64  `json:\"updated_at\" gorm:\"bigint;index\"`\n}",
+      "unmatched": []
+    },
+    {
+      "name": "CustomOAuthProvider",
+      "source": "model/custom_oauth_provider.go",
+      "line": 40,
+      "fields": [
+        {
+          "name": "Id",
+          "go_type": "int",
+          "json": "id",
+          "gorm": "primaryKey",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Name",
+          "go_type": "string",
+          "json": "name",
+          "gorm": "type:varchar(64);not null",
+          "validate": "",
+          "persisted": true,
+          "comment": "Display name, e.g., \"GitHub Enterprise\""
+        },
+        {
+          "name": "Slug",
+          "go_type": "string",
+          "json": "slug",
+          "gorm": "type:varchar(64);uniqueIndex;not null",
+          "validate": "",
+          "persisted": true,
+          "comment": "URL identifier, e.g., \"github-enterprise\""
+        },
+        {
+          "name": "Icon",
+          "go_type": "string",
+          "json": "icon",
+          "gorm": "type:varchar(128);default:''",
+          "validate": "",
+          "persisted": true,
+          "comment": "Icon name from @lobehub/icons"
+        },
+        {
+          "name": "Enabled",
+          "go_type": "bool",
+          "json": "enabled",
+          "gorm": "default:false",
+          "validate": "",
+          "persisted": true,
+          "comment": "Whether this provider is enabled"
+        },
+        {
+          "name": "ClientId",
+          "go_type": "string",
+          "json": "client_id",
+          "gorm": "type:varchar(256)",
+          "validate": "",
+          "persisted": true,
+          "comment": "OAuth client ID"
+        },
+        {
+          "name": "ClientSecret",
+          "go_type": "string",
+          "json": "-",
+          "gorm": "type:varchar(512)",
+          "validate": "",
+          "persisted": true,
+          "comment": "OAuth client secret (not returned to frontend)"
+        },
+        {
+          "name": "AuthorizationEndpoint",
+          "go_type": "string",
+          "json": "authorization_endpoint",
+          "gorm": "type:varchar(512)",
+          "validate": "",
+          "persisted": true,
+          "comment": "Authorization URL"
+        },
+        {
+          "name": "TokenEndpoint",
+          "go_type": "string",
+          "json": "token_endpoint",
+          "gorm": "type:varchar(512)",
+          "validate": "",
+          "persisted": true,
+          "comment": "Token exchange URL"
+        },
+        {
+          "name": "UserInfoEndpoint",
+          "go_type": "string",
+          "json": "user_info_endpoint",
+          "gorm": "type:varchar(512)",
+          "validate": "",
+          "persisted": true,
+          "comment": "User info URL"
+        },
+        {
+          "name": "Scopes",
+          "go_type": "string",
+          "json": "scopes",
+          "gorm": "type:varchar(256);default:'openid profile email'",
+          "validate": "",
+          "persisted": true,
+          "comment": "OAuth scopes"
+        },
+        {
+          "name": "UserIdField",
+          "go_type": "string",
+          "json": "user_id_field",
+          "gorm": "type:varchar(128);default:'sub'",
+          "validate": "",
+          "persisted": true,
+          "comment": "Field mapping configuration (supports JSONPath via gjson) User ID field path, e.g., \"sub\", \"id\", \"data.user.id\""
+        },
+        {
+          "name": "UsernameField",
+          "go_type": "string",
+          "json": "username_field",
+          "gorm": "type:varchar(128);default:'preferred_username'",
+          "validate": "",
+          "persisted": true,
+          "comment": "Username field path"
+        },
+        {
+          "name": "DisplayNameField",
+          "go_type": "string",
+          "json": "display_name_field",
+          "gorm": "type:varchar(128);default:'name'",
+          "validate": "",
+          "persisted": true,
+          "comment": "Display name field path"
+        },
+        {
+          "name": "EmailField",
+          "go_type": "string",
+          "json": "email_field",
+          "gorm": "type:varchar(128);default:'email'",
+          "validate": "",
+          "persisted": true,
+          "comment": "Email field path"
+        },
+        {
+          "name": "WellKnown",
+          "go_type": "string",
+          "json": "well_known",
+          "gorm": "type:varchar(512)",
+          "validate": "",
+          "persisted": true,
+          "comment": "Advanced options OIDC discovery endpoint (optional)"
+        },
+        {
+          "name": "AuthStyle",
+          "go_type": "int",
+          "json": "auth_style",
+          "gorm": "default:0",
+          "validate": "",
+          "persisted": true,
+          "comment": "0=auto, 1=params, 2=header (Basic Auth)"
+        },
+        {
+          "name": "AccessPolicy",
+          "go_type": "string",
+          "json": "access_policy",
+          "gorm": "type:text",
+          "validate": "",
+          "persisted": true,
+          "comment": "JSON policy for access control based on user info"
+        },
+        {
+          "name": "AccessDeniedMessage",
+          "go_type": "string",
+          "json": "access_denied_message",
+          "gorm": "type:varchar(512)",
+          "validate": "",
+          "persisted": true,
+          "comment": "Custom error message template when access is denied"
+        },
+        {
+          "name": "CreatedAt",
+          "go_type": "time.Time",
+          "json": "created_at",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "UpdatedAt",
+          "go_type": "time.Time",
+          "json": "updated_at",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        }
+      ],
+      "table_name_override": "custom_oauth_providers",
+      "raw": "type CustomOAuthProvider struct {\n\tId                    int    `json:\"id\" gorm:\"primaryKey\"`\n\tName                  string `json:\"name\" gorm:\"type:varchar(64);not null\"`                          // Display name, e.g., \"GitHub Enterprise\"\n\tSlug                  string `json:\"slug\" gorm:\"type:varchar(64);uniqueIndex;not null\"`              // URL identifier, e.g., \"github-enterprise\"\n\tIcon                  string `json:\"icon\" gorm:\"type:varchar(128);default:''\"`                       // Icon name from @lobehub/icons\n\tEnabled               bool   `json:\"enabled\" gorm:\"default:false\"`                                   // Whether this provider is enabled\n\tClientId              string `json:\"client_id\" gorm:\"type:varchar(256)\"`                             // OAuth client ID\n\tClientSecret          string `json:\"-\" gorm:\"type:varchar(512)\"`                                     // OAuth client secret (not returned to frontend)\n\tAuthorizationEndpoint string `json:\"authorization_endpoint\" gorm:\"type:varchar(512)\"`                // Authorization URL\n\tTokenEndpoint         string `json:\"token_endpoint\" gorm:\"type:varchar(512)\"`                        // Token exchange URL\n\tUserInfoEndpoint      string `json:\"user_info_endpoint\" gorm:\"type:varchar(512)\"`                    // User info URL\n\tScopes                string `json:\"scopes\" gorm:\"type:varchar(256);default:'openid profile email'\"` // OAuth scopes\n\n\t// Field mapping configuration (supports JSONPath via gjson)\n\tUserIdField      string `json:\"user_id_field\" gorm:\"type:varchar(128);default:'sub'\"`                 // User ID field path, e.g., \"sub\", \"id\", \"data.user.id\"\n\tUsernameField    string `json:\"username_field\" gorm:\"type:varchar(128);default:'preferred_username'\"` // Username field path\n\tDisplayNameField string `json:\"display_name_field\" gorm:\"type:varchar(128);default:'name'\"`           // Display name field path\n\tEmailField       string `json:\"email_field\" gorm:\"type:varchar(128);default:'email'\"`                 // Email field path\n\n\t// Advanced options\n\tWellKnown           string `json:\"well_known\" gorm:\"type:varchar(512)\"`            // OIDC discovery endpoint (optional)\n\tAuthStyle           int    `json:\"auth_style\" gorm:\"default:0\"`                    // 0=auto, 1=params, 2=header (Basic Auth)\n\tAccessPolicy        string `json:\"access_policy\" gorm:\"type:text\"`                 // JSON policy for access control based on user info\n\tAccessDeniedMessage string `json:\"access_denied_message\" gorm:\"type:varchar(512)\"` // Custom error message template when access is denied\n\n\tCreatedAt time.Time `json:\"created_at\"`\n\tUpdatedAt time.Time `json:\"updated_at\"`\n}",
+      "unmatched": []
+    },
+    {
+      "name": "UserOAuthBinding",
+      "source": "model/user_oauth_binding.go",
+      "line": 11,
+      "fields": [
+        {
+          "name": "Id",
+          "go_type": "int",
+          "json": "id",
+          "gorm": "primaryKey",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "UserId",
+          "go_type": "int",
+          "json": "user_id",
+          "gorm": "not null;uniqueIndex:ux_user_provider",
+          "validate": "",
+          "persisted": true,
+          "comment": "User ID - one binding per user per provider"
+        },
+        {
+          "name": "ProviderId",
+          "go_type": "int",
+          "json": "provider_id",
+          "gorm": "not null;uniqueIndex:ux_user_provider;uniqueIndex:ux_provider_userid",
+          "validate": "",
+          "persisted": true,
+          "comment": "Custom OAuth provider ID"
+        },
+        {
+          "name": "ProviderUserId",
+          "go_type": "string",
+          "json": "provider_user_id",
+          "gorm": "type:varchar(256);not null;uniqueIndex:ux_provider_userid",
+          "validate": "",
+          "persisted": true,
+          "comment": "User ID from OAuth provider - one OAuth account per provider"
+        },
+        {
+          "name": "CreatedAt",
+          "go_type": "time.Time",
+          "json": "created_at",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        }
+      ],
+      "table_name_override": "user_oauth_bindings",
+      "raw": "type UserOAuthBinding struct {\n\tId             int       `json:\"id\" gorm:\"primaryKey\"`\n\tUserId         int       `json:\"user_id\" gorm:\"not null;uniqueIndex:ux_user_provider\"`                                    // User ID - one binding per user per provider\n\tProviderId     int       `json:\"provider_id\" gorm:\"not null;uniqueIndex:ux_user_provider;uniqueIndex:ux_provider_userid\"` // Custom OAuth provider ID\n\tProviderUserId string    `json:\"provider_user_id\" gorm:\"type:varchar(256);not null;uniqueIndex:ux_provider_userid\"`       // User ID from OAuth provider - one OAuth account per provider\n\tCreatedAt      time.Time `json:\"created_at\"`\n}",
+      "unmatched": []
+    },
+    {
+      "name": "PerfMetric",
+      "source": "model/perf_metric.go",
+      "line": 11,
+      "fields": [
+        {
+          "name": "Id",
+          "go_type": "int",
+          "json": "id",
+          "gorm": "primaryKey",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "ModelName",
+          "go_type": "string",
+          "json": "model_name",
+          "gorm": "size:128;uniqueIndex:idx_perf_model_group_bucket,priority:1",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Group",
+          "go_type": "string",
+          "json": "group",
+          "gorm": "column:group;size:64;uniqueIndex:idx_perf_model_group_bucket,priority:2",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "BucketTs",
+          "go_type": "int64",
+          "json": "bucket_ts",
+          "gorm": "uniqueIndex:idx_perf_model_group_bucket,priority:3;index:idx_perf_bucket_ts",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "RequestCount",
+          "go_type": "int64",
+          "json": "-",
+          "gorm": "default:0",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "SuccessCount",
+          "go_type": "int64",
+          "json": "-",
+          "gorm": "default:0",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "TotalLatencyMs",
+          "go_type": "int64",
+          "json": "-",
+          "gorm": "default:0",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "TtftSumMs",
+          "go_type": "int64",
+          "json": "-",
+          "gorm": "default:0",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "TtftCount",
+          "go_type": "int64",
+          "json": "-",
+          "gorm": "default:0",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "OutputTokens",
+          "go_type": "int64",
+          "json": "-",
+          "gorm": "default:0",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "GenerationMs",
+          "go_type": "int64",
+          "json": "-",
+          "gorm": "default:0",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        }
+      ],
+      "table_name_override": "perf_metrics",
+      "raw": "type PerfMetric struct {\n\tId             int    `json:\"id\" gorm:\"primaryKey\"`\n\tModelName      string `json:\"model_name\" gorm:\"size:128;uniqueIndex:idx_perf_model_group_bucket,priority:1\"`\n\tGroup          string `json:\"group\" gorm:\"column:group;size:64;uniqueIndex:idx_perf_model_group_bucket,priority:2\"`\n\tBucketTs       int64  `json:\"bucket_ts\" gorm:\"uniqueIndex:idx_perf_model_group_bucket,priority:3;index:idx_perf_bucket_ts\"`\n\tRequestCount   int64  `json:\"-\" gorm:\"default:0\"`\n\tSuccessCount   int64  `json:\"-\" gorm:\"default:0\"`\n\tTotalLatencyMs int64  `json:\"-\" gorm:\"default:0\"`\n\tTtftSumMs      int64  `json:\"-\" gorm:\"default:0\"`\n\tTtftCount      int64  `json:\"-\" gorm:\"default:0\"`\n\tOutputTokens   int64  `json:\"-\" gorm:\"default:0\"`\n\tGenerationMs   int64  `json:\"-\" gorm:\"default:0\"`\n}",
+      "unmatched": []
+    },
+    {
+      "name": "SystemInstance",
+      "source": "model/system_instance.go",
+      "line": 17,
+      "fields": [
+        {
+          "name": "NodeName",
+          "go_type": "string",
+          "json": "node_name",
+          "gorm": "type:varchar(128);primaryKey",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Info",
+          "go_type": "string",
+          "json": "info",
+          "gorm": "type:text",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "StartedAt",
+          "go_type": "int64",
+          "json": "started_at",
+          "gorm": "bigint;index",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "LastSeenAt",
+          "go_type": "int64",
+          "json": "last_seen_at",
+          "gorm": "bigint;index",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "CreatedAt",
+          "go_type": "int64",
+          "json": "created_at",
+          "gorm": "bigint;index",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "UpdatedAt",
+          "go_type": "int64",
+          "json": "updated_at",
+          "gorm": "bigint;index",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        }
+      ],
+      "table_name_override": null,
+      "raw": "type SystemInstance struct {\n\tNodeName   string `json:\"node_name\" gorm:\"type:varchar(128);primaryKey\"`\n\tInfo       string `json:\"info\" gorm:\"type:text\"`\n\tStartedAt  int64  `json:\"started_at\" gorm:\"bigint;index\"`\n\tLastSeenAt int64  `json:\"last_seen_at\" gorm:\"bigint;index\"`\n\tCreatedAt  int64  `json:\"created_at\" gorm:\"bigint;index\"`\n\tUpdatedAt  int64  `json:\"updated_at\" gorm:\"bigint;index\"`\n}",
+      "unmatched": []
+    },
+    {
+      "name": "SystemTask",
+      "source": "model/system_task.go",
+      "line": 28,
+      "fields": [
+        {
+          "name": "ID",
+          "go_type": "int64",
+          "json": "id",
+          "gorm": "primary_key",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "TaskID",
+          "go_type": "string",
+          "json": "task_id",
+          "gorm": "type:varchar(64);uniqueIndex",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Type",
+          "go_type": "string",
+          "json": "type",
+          "gorm": "type:varchar(64);index",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Status",
+          "go_type": "SystemTaskStatus",
+          "json": "status",
+          "gorm": "type:varchar(32);index",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "ActiveKey",
+          "go_type": "*string",
+          "json": "active_key,omitempty",
+          "gorm": "type:varchar(64);uniqueIndex",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Payload",
+          "go_type": "string",
+          "json": "payload",
+          "gorm": "type:text",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "State",
+          "go_type": "string",
+          "json": "state",
+          "gorm": "type:text",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Result",
+          "go_type": "string",
+          "json": "result",
+          "gorm": "type:text",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Error",
+          "go_type": "string",
+          "json": "error",
+          "gorm": "type:text",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "LockedBy",
+          "go_type": "string",
+          "json": "locked_by",
+          "gorm": "type:varchar(128);index",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "CreatedAt",
+          "go_type": "int64",
+          "json": "created_at",
+          "gorm": "bigint;index",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "UpdatedAt",
+          "go_type": "int64",
+          "json": "updated_at",
+          "gorm": "bigint;index",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        }
+      ],
+      "table_name_override": null,
+      "raw": "type SystemTask struct {\n\tID        int64            `json:\"id\" gorm:\"primary_key\"`\n\tTaskID    string           `json:\"task_id\" gorm:\"type:varchar(64);uniqueIndex\"`\n\tType      string           `json:\"type\" gorm:\"type:varchar(64);index\"`\n\tStatus    SystemTaskStatus `json:\"status\" gorm:\"type:varchar(32);index\"`\n\tActiveKey *string          `json:\"active_key,omitempty\" gorm:\"type:varchar(64);uniqueIndex\"`\n\tPayload   string           `json:\"payload\" gorm:\"type:text\"`\n\tState     string           `json:\"state\" gorm:\"type:text\"`\n\tResult    string           `json:\"result\" gorm:\"type:text\"`\n\tError     string           `json:\"error\" gorm:\"type:text\"`\n\tLockedBy  string           `json:\"locked_by\" gorm:\"type:varchar(128);index\"`\n\tCreatedAt int64            `json:\"created_at\" gorm:\"bigint;index\"`\n\tUpdatedAt int64            `json:\"updated_at\" gorm:\"bigint;index\"`\n}",
+      "unmatched": []
+    },
+    {
+      "name": "SystemTaskLock",
+      "source": "model/system_task.go",
+      "line": 43,
+      "fields": [
+        {
+          "name": "Type",
+          "go_type": "string",
+          "json": "type",
+          "gorm": "type:varchar(64);primaryKey",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "TaskID",
+          "go_type": "string",
+          "json": "task_id",
+          "gorm": "type:varchar(64);index",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "LockedBy",
+          "go_type": "string",
+          "json": "locked_by",
+          "gorm": "type:varchar(128);index",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "LockedUntil",
+          "go_type": "int64",
+          "json": "locked_until",
+          "gorm": "bigint;index",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "UpdatedAt",
+          "go_type": "int64",
+          "json": "updated_at",
+          "gorm": "bigint;index",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        }
+      ],
+      "table_name_override": null,
+      "raw": "type SystemTaskLock struct {\n\tType        string `json:\"type\" gorm:\"type:varchar(64);primaryKey\"`\n\tTaskID      string `json:\"task_id\" gorm:\"type:varchar(64);index\"`\n\tLockedBy    string `json:\"locked_by\" gorm:\"type:varchar(128);index\"`\n\tLockedUntil int64  `json:\"locked_until\" gorm:\"bigint;index\"`\n\tUpdatedAt   int64  `json:\"updated_at\" gorm:\"bigint;index\"`\n}",
+      "unmatched": []
+    },
+    {
+      "name": "CasbinRule",
+      "source": "model/casbin_rule.go",
+      "line": 3,
+      "fields": [
+        {
+          "name": "Id",
+          "go_type": "uint",
+          "json": "(未声明)",
+          "gorm": "primaryKey;autoIncrement",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Ptype",
+          "go_type": "string",
+          "json": "(未声明)",
+          "gorm": "size:100;index:idx_casbin_rule,priority:1;uniqueIndex:idx_casbin_rule_unique,priority:1",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "V0",
+          "go_type": "string",
+          "json": "(未声明)",
+          "gorm": "size:100;index:idx_casbin_rule,priority:2;uniqueIndex:idx_casbin_rule_unique,priority:2",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "V1",
+          "go_type": "string",
+          "json": "(未声明)",
+          "gorm": "size:100;index:idx_casbin_rule,priority:3;uniqueIndex:idx_casbin_rule_unique,priority:3",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "V2",
+          "go_type": "string",
+          "json": "(未声明)",
+          "gorm": "size:100;index:idx_casbin_rule,priority:4;uniqueIndex:idx_casbin_rule_unique,priority:4",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "V3",
+          "go_type": "string",
+          "json": "(未声明)",
+          "gorm": "size:100;index:idx_casbin_rule,priority:5;uniqueIndex:idx_casbin_rule_unique,priority:5",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "V4",
+          "go_type": "string",
+          "json": "(未声明)",
+          "gorm": "size:100;index:idx_casbin_rule,priority:6;uniqueIndex:idx_casbin_rule_unique,priority:6",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "V5",
+          "go_type": "string",
+          "json": "(未声明)",
+          "gorm": "size:100;index:idx_casbin_rule,priority:7;uniqueIndex:idx_casbin_rule_unique,priority:7",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        }
+      ],
+      "table_name_override": "casbin_rule",
+      "raw": "type CasbinRule struct {\n\tId    uint   `gorm:\"primaryKey;autoIncrement\"`\n\tPtype string `gorm:\"size:100;index:idx_casbin_rule,priority:1;uniqueIndex:idx_casbin_rule_unique,priority:1\"`\n\tV0    string `gorm:\"size:100;index:idx_casbin_rule,priority:2;uniqueIndex:idx_casbin_rule_unique,priority:2\"`\n\tV1    string `gorm:\"size:100;index:idx_casbin_rule,priority:3;uniqueIndex:idx_casbin_rule_unique,priority:3\"`\n\tV2    string `gorm:\"size:100;index:idx_casbin_rule,priority:4;uniqueIndex:idx_casbin_rule_unique,priority:4\"`\n\tV3    string `gorm:\"size:100;index:idx_casbin_rule,priority:5;uniqueIndex:idx_casbin_rule_unique,priority:5\"`\n\tV4    string `gorm:\"size:100;index:idx_casbin_rule,priority:6;uniqueIndex:idx_casbin_rule_unique,priority:6\"`\n\tV5    string `gorm:\"size:100;index:idx_casbin_rule,priority:7;uniqueIndex:idx_casbin_rule_unique,priority:7\"`\n}",
+      "unmatched": []
+    },
+    {
+      "name": "AuthzRole",
+      "source": "model/authz_role.go",
+      "line": 3,
+      "fields": [
+        {
+          "name": "Id",
+          "go_type": "uint",
+          "json": "id",
+          "gorm": "primaryKey;autoIncrement",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Key",
+          "go_type": "string",
+          "json": "key",
+          "gorm": "size:64;uniqueIndex;not null",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Name",
+          "go_type": "string",
+          "json": "name",
+          "gorm": "size:100;not null",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Description",
+          "go_type": "string",
+          "json": "description",
+          "gorm": "type:text",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "BuiltIn",
+          "go_type": "bool",
+          "json": "built_in",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Enabled",
+          "go_type": "bool",
+          "json": "enabled",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Sort",
+          "go_type": "int",
+          "json": "sort",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "CreatedAt",
+          "go_type": "int64",
+          "json": "created_at",
+          "gorm": "autoCreateTime;column:created_at",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "UpdatedAt",
+          "go_type": "int64",
+          "json": "updated_at",
+          "gorm": "autoUpdateTime;column:updated_at",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        }
+      ],
+      "table_name_override": "authz_roles",
+      "raw": "type AuthzRole struct {\n\tId          uint   `json:\"id\" gorm:\"primaryKey;autoIncrement\"`\n\tKey         string `json:\"key\" gorm:\"size:64;uniqueIndex;not null\"`\n\tName        string `json:\"name\" gorm:\"size:100;not null\"`\n\tDescription string `json:\"description\" gorm:\"type:text\"`\n\tBuiltIn     bool   `json:\"built_in\"`\n\tEnabled     bool   `json:\"enabled\"`\n\tSort        int    `json:\"sort\"`\n\tCreatedAt   int64  `json:\"created_at\" gorm:\"autoCreateTime;column:created_at\"`\n\tUpdatedAt   int64  `json:\"updated_at\" gorm:\"autoUpdateTime;column:updated_at\"`\n}",
+      "unmatched": []
+    },
+    {
+      "name": "UserAccessToken",
+      "source": "model/user_access_token.go",
+      "line": 41,
+      "fields": [
+        {
+          "name": "Id",
+          "go_type": "int",
+          "json": "id",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "UserId",
+          "go_type": "int",
+          "json": "-",
+          "gorm": "index",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Name",
+          "go_type": "string",
+          "json": "name",
+          "gorm": "type:varchar(64)",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "TokenHash",
+          "go_type": "string",
+          "json": "token_ref",
+          "gorm": "type:varchar(64);uniqueIndex",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "TokenHint",
+          "go_type": "string",
+          "json": "token_hint",
+          "gorm": "type:varchar(8)",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Scopes",
+          "go_type": "string",
+          "json": "-",
+          "gorm": "type:varchar(2048)",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "ExpiresAt",
+          "go_type": "int64",
+          "json": "expires_at",
+          "gorm": "type:bigint;index",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "LastUsedAt",
+          "go_type": "int64",
+          "json": "last_used_at",
+          "gorm": "type:bigint",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "LastUsedIp",
+          "go_type": "string",
+          "json": "last_used_ip",
+          "gorm": "type:varchar(64)",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "CreatedAt",
+          "go_type": "int64",
+          "json": "created_at",
+          "gorm": "type:bigint",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        }
+      ],
+      "table_name_override": "user_access_tokens",
+      "raw": "type UserAccessToken struct {\n\tId         int    `json:\"id\"`\n\tUserId     int    `json:\"-\" gorm:\"index\"`\n\tName       string `json:\"name\" gorm:\"type:varchar(64)\"`\n\tTokenHash  string `json:\"token_ref\" gorm:\"type:varchar(64);uniqueIndex\"`\n\tTokenHint  string `json:\"token_hint\" gorm:\"type:varchar(8)\"`\n\tScopes     string `json:\"-\" gorm:\"type:varchar(2048)\"`\n\tExpiresAt  int64  `json:\"expires_at\" gorm:\"type:bigint;index\"`\n\tLastUsedAt int64  `json:\"last_used_at\" gorm:\"type:bigint\"`\n\tLastUsedIp string `json:\"last_used_ip\" gorm:\"type:varchar(64)\"`\n\tCreatedAt  int64  `json:\"created_at\" gorm:\"type:bigint\"`\n}",
+      "unmatched": []
+    },
+    {
+      "name": "SubscriptionPlan",
+      "source": "model/subscription.go",
+      "line": 146,
+      "fields": [
+        {
+          "name": "Id",
+          "go_type": "int",
+          "json": "id",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Title",
+          "go_type": "string",
+          "json": "title",
+          "gorm": "type:varchar(128);not null",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Subtitle",
+          "go_type": "string",
+          "json": "subtitle",
+          "gorm": "type:varchar(255);default:''",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "PriceAmount",
+          "go_type": "float64",
+          "json": "price_amount",
+          "gorm": "type:decimal(10,6);not null;default:0",
+          "validate": "",
+          "persisted": true,
+          "comment": "Display money amount (follow existing code style: float64 for money)"
+        },
+        {
+          "name": "Currency",
+          "go_type": "string",
+          "json": "currency",
+          "gorm": "type:varchar(8);not null;default:'USD'",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "DurationUnit",
+          "go_type": "string",
+          "json": "duration_unit",
+          "gorm": "type:varchar(16);not null;default:'month'",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "DurationValue",
+          "go_type": "int",
+          "json": "duration_value",
+          "gorm": "type:int;not null;default:1",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "CustomSeconds",
+          "go_type": "int64",
+          "json": "custom_seconds",
+          "gorm": "type:bigint;not null;default:0",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Enabled",
+          "go_type": "bool",
+          "json": "enabled",
+          "gorm": "default:true",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "SortOrder",
+          "go_type": "int",
+          "json": "sort_order",
+          "gorm": "type:int;default:0",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "AllowBalancePay",
+          "go_type": "*bool",
+          "json": "allow_balance_pay",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "AllowWalletOverflow",
+          "go_type": "*bool",
+          "json": "allow_wallet_overflow",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": "Allow falling back to wallet balance after subscription quota is exhausted (empty = true)"
+        },
+        {
+          "name": "StripePriceId",
+          "go_type": "string",
+          "json": "stripe_price_id",
+          "gorm": "type:varchar(128);default:''",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "CreemProductId",
+          "go_type": "string",
+          "json": "creem_product_id",
+          "gorm": "type:varchar(128);default:''",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "WaffoPancakeProductId",
+          "go_type": "string",
+          "json": "waffo_pancake_product_id",
+          "gorm": "type:varchar(128);default:''",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "MaxPurchasePerUser",
+          "go_type": "int",
+          "json": "max_purchase_per_user",
+          "gorm": "type:int;default:0",
+          "validate": "",
+          "persisted": true,
+          "comment": "Max purchases per user (0 = unlimited)"
+        },
+        {
+          "name": "UpgradeGroup",
+          "go_type": "string",
+          "json": "upgrade_group",
+          "gorm": "type:varchar(64);default:''",
+          "validate": "",
+          "persisted": true,
+          "comment": "Upgrade user group after purchase (empty = no change)"
+        },
+        {
+          "name": "DowngradeGroup",
+          "go_type": "string",
+          "json": "downgrade_group",
+          "gorm": "type:varchar(64);default:''",
+          "validate": "",
+          "persisted": true,
+          "comment": "Downgrade user group on expiry (empty = revert to the group held before purchase)"
+        },
+        {
+          "name": "TotalAmount",
+          "go_type": "int64",
+          "json": "total_amount",
+          "gorm": "type:bigint;not null;default:0",
+          "validate": "",
+          "persisted": true,
+          "comment": "Total quota (amount in quota units, 0 = unlimited)"
+        },
+        {
+          "name": "QuotaResetPeriod",
+          "go_type": "string",
+          "json": "quota_reset_period",
+          "gorm": "type:varchar(16);default:'never'",
+          "validate": "",
+          "persisted": true,
+          "comment": "Quota reset period for plan"
+        },
+        {
+          "name": "QuotaResetCustomSeconds",
+          "go_type": "int64",
+          "json": "quota_reset_custom_seconds",
+          "gorm": "type:bigint;default:0",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "CreatedAt",
+          "go_type": "int64",
+          "json": "created_at",
+          "gorm": "bigint",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "UpdatedAt",
+          "go_type": "int64",
+          "json": "updated_at",
+          "gorm": "bigint",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        }
+      ],
+      "table_name_override": null,
+      "raw": "type SubscriptionPlan struct {\n\tId int `json:\"id\"`\n\n\tTitle    string `json:\"title\" gorm:\"type:varchar(128);not null\"`\n\tSubtitle string `json:\"subtitle\" gorm:\"type:varchar(255);default:''\"`\n\n\t// Display money amount (follow existing code style: float64 for money)\n\tPriceAmount float64 `json:\"price_amount\" gorm:\"type:decimal(10,6);not null;default:0\"`\n\tCurrency    string  `json:\"currency\" gorm:\"type:varchar(8);not null;default:'USD'\"`\n\n\tDurationUnit  string `json:\"duration_unit\" gorm:\"type:varchar(16);not null;default:'month'\"`\n\tDurationValue int    `json:\"duration_value\" gorm:\"type:int;not null;default:1\"`\n\tCustomSeconds int64  `json:\"custom_seconds\" gorm:\"type:bigint;not null;default:0\"`\n\n\tEnabled   bool `json:\"enabled\" gorm:\"default:true\"`\n\tSortOrder int  `json:\"sort_order\" gorm:\"type:int;default:0\"`\n\n\tAllowBalancePay *bool `json:\"allow_balance_pay\"`\n\n\t// Allow falling back to wallet balance after subscription quota is exhausted (empty = true)\n\tAllowWalletOverflow *bool `json:\"allow_wallet_overflow\"`\n\n\tStripePriceId         string `json:\"stripe_price_id\" gorm:\"type:varchar(128);default:''\"`\n\tCreemProductId        string `json:\"creem_product_id\" gorm:\"type:varchar(128);default:''\"`\n\tWaffoPancakeProductId string `json:\"waffo_pancake_product_id\" gorm:\"type:varchar(128);default:''\"`\n\n\t// Max purchases per user (0 = unlimited)\n\tMaxPurchasePerUser int `json:\"max_purchase_per_user\" gorm:\"type:int;default:0\"`\n\n\t// Upgrade user group after purchase (empty = no change)\n\tUpgradeGroup string `json:\"upgrade_group\" gorm:\"type:varchar(64);default:''\"`\n\n\t// Downgrade user group on expiry (empty = revert to the group held before purchase)\n\tDowngradeGroup string `json:\"downgrade_group\" gorm:\"type:varchar(64);default:''\"`\n\n\t// Total quota (amount in quota units, 0 = unlimited)\n\tTotalAmount int64 `json:\"total_amount\" gorm:\"type:bigint;not null;default:0\"`\n\n\t// Quota reset period for plan\n\tQuotaResetPeriod        string `json:\"quota_reset_period\" gorm:\"type:varchar(16);default:'never'\"`\n\tQuotaResetCustomSeconds int64  `json:\"quota_reset_custom_seconds\" gorm:\"type:bigint;default:0\"`\n\n\tCreatedAt int64 `json:\"created_at\" gorm:\"bigint\"`\n\tUpdatedAt int64 `json:\"updated_at\" gorm:\"bigint\"`\n}",
+      "unmatched": []
+    },
+    {
+      "name": "AuditLog",
+      "source": "model/audit_log.go",
+      "line": 26,
+      "fields": [
+        {
+          "name": "Id",
+          "go_type": "int",
+          "json": "id",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "EventId",
+          "go_type": "string",
+          "json": "event_id",
+          "gorm": "type:varchar(64);uniqueIndex;index:idx_audit_time_event,priority:2",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "UserId",
+          "go_type": "int",
+          "json": "user_id",
+          "gorm": "index:idx_audit_user_time,priority:1",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Username",
+          "go_type": "string",
+          "json": "username",
+          "gorm": "type:varchar(64);index",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "ActorRole",
+          "go_type": "int",
+          "json": "actor_role",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": "Immutable role of the actor when the event began, not the log owner."
+        },
+        {
+          "name": "CreatedAt",
+          "go_type": "int64",
+          "json": "created_at",
+          "gorm": "type:bigint;index:idx_audit_user_time,priority:2;index:idx_audit_token_time,priority:2;index;index:idx_audit_time_event,priority:1",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Category",
+          "go_type": "string",
+          "json": "category",
+          "gorm": "type:varchar(24);index",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Action",
+          "go_type": "string",
+          "json": "action",
+          "gorm": "type:varchar(128)",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "TokenRef",
+          "go_type": "string",
+          "json": "token_ref",
+          "gorm": "type:varchar(64);index:idx_audit_token_time,priority:1",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "AuthMethod",
+          "go_type": "string",
+          "json": "auth_method",
+          "gorm": "type:varchar(24)",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Ip",
+          "go_type": "string",
+          "json": "ip",
+          "gorm": "type:varchar(64)",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "UserAgent",
+          "go_type": "string",
+          "json": "user_agent",
+          "gorm": "type:varchar(512)",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Method",
+          "go_type": "string",
+          "json": "method",
+          "gorm": "type:varchar(16)",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Route",
+          "go_type": "string",
+          "json": "route",
+          "gorm": "type:varchar(255)",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Status",
+          "go_type": "int",
+          "json": "status",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Success",
+          "go_type": "bool",
+          "json": "success",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "RequestId",
+          "go_type": "string",
+          "json": "request_id",
+          "gorm": "type:varchar(64);index",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Content",
+          "go_type": "string",
+          "json": "content",
+          "gorm": "type:text",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Other",
+          "go_type": "AuditOther",
+          "json": "other",
+          "gorm": "type:json",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        }
+      ],
+      "table_name_override": null,
+      "raw": "type AuditLog struct {\n\tId         int        `json:\"id\"`\n\tEventId    string     `json:\"event_id\" gorm:\"type:varchar(64);uniqueIndex;index:idx_audit_time_event,priority:2\"`\n\tUserId     int        `json:\"user_id\" gorm:\"index:idx_audit_user_time,priority:1\"`\n\tUsername   string     `json:\"username\" gorm:\"type:varchar(64);index\"`\n\tActorRole  int        `json:\"actor_role\"` // Immutable role of the actor when the event began, not the log owner.\n\tCreatedAt  int64      `json:\"created_at\" gorm:\"type:bigint;index:idx_audit_user_time,priority:2;index:idx_audit_token_time,priority:2;index;index:idx_audit_time_event,priority:1\"`\n\tCategory   string     `json:\"category\" gorm:\"type:varchar(24);index\"`\n\tAction     string     `json:\"action\" gorm:\"type:varchar(128)\"`\n\tTokenRef   string     `json:\"token_ref\" gorm:\"type:varchar(64);index:idx_audit_token_time,priority:1\"`\n\tAuthMethod string     `json:\"auth_method\" gorm:\"type:varchar(24)\"`\n\tIp         string     `json:\"ip\" gorm:\"type:varchar(64)\"`\n\tUserAgent  string     `json:\"user_agent\" gorm:\"type:varchar(512)\"`\n\tMethod     string     `json:\"method\" gorm:\"type:varchar(16)\"`\n\tRoute      string     `json:\"route\" gorm:\"type:varchar(255)\"`\n\tStatus     int        `json:\"status\"`\n\tSuccess    bool       `json:\"success\"`\n\tRequestId  string     `json:\"request_id\" gorm:\"type:varchar(64);index\"`\n\tContent    string     `json:\"content\" gorm:\"type:text\"`\n\tOther      AuditOther `json:\"other\" gorm:\"type:json\"`\n}",
+      "unmatched": []
+    }
+  ],
+  "nested_types": [
+    {
+      "name": "ChannelInfo",
+      "source": "model/channel.go",
+      "line": 64,
+      "fields": [
+        {
+          "name": "IsMultiKey",
+          "go_type": "bool",
+          "json": "is_multi_key",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": "是否多Key模式"
+        },
+        {
+          "name": "MultiKeySize",
+          "go_type": "int",
+          "json": "multi_key_size",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": "多Key模式下的Key数量"
+        },
+        {
+          "name": "MultiKeyStatusList",
+          "go_type": "map[int]int",
+          "json": "multi_key_status_list",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": "key状态列表，key index -> status"
+        },
+        {
+          "name": "MultiKeyDisabledReason",
+          "go_type": "map[int]string",
+          "json": "multi_key_disabled_reason,omitempty",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": "key禁用原因列表，key index -> reason"
+        },
+        {
+          "name": "MultiKeyDisabledTime",
+          "go_type": "map[int]int64",
+          "json": "multi_key_disabled_time,omitempty",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": "key禁用时间列表，key index -> time"
+        },
+        {
+          "name": "MultiKeyPollingIndex",
+          "go_type": "int",
+          "json": "multi_key_polling_index",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": "多Key模式下轮询的key索引"
+        },
+        {
+          "name": "MultiKeyMode",
+          "go_type": "constant.MultiKeyMode",
+          "json": "multi_key_mode",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        }
+      ],
+      "table_name_override": null,
+      "raw": "type ChannelInfo struct {\n\tIsMultiKey             bool                  `json:\"is_multi_key\"`                        // 是否多Key模式\n\tMultiKeySize           int                   `json:\"multi_key_size\"`                      // 多Key模式下的Key数量\n\tMultiKeyStatusList     map[int]int           `json:\"multi_key_status_list\"`               // key状态列表，key index -> status\n\tMultiKeyDisabledReason map[int]string        `json:\"multi_key_disabled_reason,omitempty\"` // key禁用原因列表，key index -> reason\n\tMultiKeyDisabledTime   map[int]int64         `json:\"multi_key_disabled_time,omitempty\"`   // key禁用时间列表，key index -> time\n\tMultiKeyPollingIndex   int                   `json:\"multi_key_polling_index\"`             // 多Key模式下轮询的key索引\n\tMultiKeyMode           constant.MultiKeyMode `json:\"multi_key_mode\"`\n}",
+      "unmatched": []
+    },
+    {
+      "name": "Properties",
+      "source": "model/task.go",
+      "line": 83,
+      "fields": [
+        {
+          "name": "Input",
+          "go_type": "string",
+          "json": "input",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "UpstreamModelName",
+          "go_type": "string",
+          "json": "upstream_model_name,omitempty",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "OriginModelName",
+          "go_type": "string",
+          "json": "origin_model_name,omitempty",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        }
+      ],
+      "table_name_override": null,
+      "raw": "type Properties struct {\n\tInput             string `json:\"input\"`\n\tUpstreamModelName string `json:\"upstream_model_name,omitempty\"`\n\tOriginModelName   string `json:\"origin_model_name,omitempty\"`\n}",
+      "unmatched": []
+    },
+    {
+      "name": "TaskPrivateData",
+      "source": "model/task.go",
+      "line": 111,
+      "fields": [
+        {
+          "name": "Key",
+          "go_type": "string",
+          "json": "key,omitempty",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "UpstreamTaskID",
+          "go_type": "string",
+          "json": "upstream_task_id,omitempty",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": "上游真实 task ID"
+        },
+        {
+          "name": "ResultURL",
+          "go_type": "string",
+          "json": "result_url,omitempty",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": "任务成功后的结果 URL（视频地址等）"
+        },
+        {
+          "name": "Execution",
+          "go_type": "*TaskExecutionSnapshot",
+          "json": "execution,omitempty",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": "Execution records safe, immutable request provenance. It lives next to other private task state so public task DTOs cannot expose it by accident."
+        },
+        {
+          "name": "BillingSource",
+          "go_type": "string",
+          "json": "billing_source,omitempty",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": "计费上下文：用于异步退款/差额结算（轮询阶段读取） \"wallet\" 或 \"subscription\""
+        },
+        {
+          "name": "SubscriptionId",
+          "go_type": "int",
+          "json": "subscription_id,omitempty",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": "订阅 ID，用于订阅退款"
+        },
+        {
+          "name": "TokenId",
+          "go_type": "int",
+          "json": "token_id,omitempty",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": "令牌 ID，用于令牌额度退款"
+        },
+        {
+          "name": "NodeName",
+          "go_type": "string",
+          "json": "node_name,omitempty",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": "发起任务的节点名，轮询结算阶段据此归属日志而非最后查询节点"
+        },
+        {
+          "name": "BillingContext",
+          "go_type": "*TaskBillingContext",
+          "json": "billing_context,omitempty",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": "计费参数快照（用于轮询阶段重新计算）"
+        },
+        {
+          "name": "ResponsesBackground",
+          "go_type": "bool",
+          "json": "responses_background,omitempty",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": "ResponsesBackground records that the openai_responses create request asked for background:true. Every task is durable and survives client disconnect regardless; this only echoes the protocol-level request attribute back on retrieval snapshots."
+        },
+        {
+          "name": "PluginState",
+          "go_type": "json.RawMessage",
+          "json": "plugin_state,omitempty",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": "PluginState is plugin-owned cross-round data. Unlike Task.Data it is only replaced when a hook explicitly returns state."
+        },
+        {
+          "name": "PollFailures",
+          "go_type": "int",
+          "json": "poll_failures,omitempty",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": "PollFailures counts consecutive unrecognized or transient poll outcomes."
+        },
+        {
+          "name": "ResultDiscarded",
+          "go_type": "bool",
+          "json": "result_discarded,omitempty",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": "ResultDiscarded marks an immediate terminal result whose submit route declared retainResult: false. The upstream snapshot was never written and every retrieval surface treats the task as not found. The zero value keeps historical rows retained and retrievable."
+        }
+      ],
+      "table_name_override": null,
+      "raw": "type TaskPrivateData struct {\n\tKey            string `json:\"key,omitempty\"`\n\tUpstreamTaskID string `json:\"upstream_task_id,omitempty\"` // 上游真实 task ID\n\tResultURL      string `json:\"result_url,omitempty\"`       // 任务成功后的结果 URL（视频地址等）\n\t// Execution records safe, immutable request provenance. It lives next to\n\t// other private task state so public task DTOs cannot expose it by accident.\n\tExecution *TaskExecutionSnapshot `json:\"execution,omitempty\"`\n\t// 计费上下文：用于异步退款/差额结算（轮询阶段读取）\n\tBillingSource  string              `json:\"billing_source,omitempty\"`  // \"wallet\" 或 \"subscription\"\n\tSubscriptionId int                 `json:\"subscription_id,omitempty\"` // 订阅 ID，用于订阅退款\n\tTokenId        int                 `json:\"token_id,omitempty\"`        // 令牌 ID，用于令牌额度退款\n\tNodeName       string              `json:\"node_name,omitempty\"`       // 发起任务的节点名，轮询结算阶段据此归属日志而非最后查询节点\n\tBillingContext *TaskBillingContext `json:\"billing_context,omitempty\"` // 计费参数快照（用于轮询阶段重新计算）\n\t// ResponsesBackground records that the openai_responses create request\n\t// asked for background:true. Every task is durable and survives client\n\t// disconnect regardless; this only echoes the protocol-level request\n\t// attribute back on retrieval snapshots.\n\tResponsesBackground bool `json:\"responses_background,omitempty\"`\n\t// PluginState is plugin-owned cross-round data. Unlike Task.Data it is\n\t// only replaced when a hook explicitly returns state.\n\tPluginState json.RawMessage `json:\"plugin_state,omitempty\"`\n\t// PollFailures counts consecutive unrecognized or transient poll outcomes.\n\tPollFailures int `json:\"poll_failures,omitempty\"`\n\t// ResultDiscarded marks an immediate terminal result whose submit route\n\t// declared retainResult: false. The upstream snapshot was never written\n\t// and every retrieval surface treats the task as not found. The zero\n\t// value keeps historical rows retained and retrievable.\n\tResultDiscarded bool `json:\"result_discarded,omitempty\"`\n}",
+      "unmatched": []
+    },
+    {
+      "name": "TaskExecutionSnapshot",
+      "source": "model/task.go",
+      "line": 141,
+      "fields": [
+        {
+          "name": "RequestID",
+          "go_type": "string",
+          "json": "request_id,omitempty",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "RequestPath",
+          "go_type": "string",
+          "json": "request_path,omitempty",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "TaskPlugin",
+          "go_type": "*TaskPluginSnapshot",
+          "json": "task_plugin,omitempty",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        }
+      ],
+      "table_name_override": null,
+      "raw": "type TaskExecutionSnapshot struct {\n\tRequestID   string              `json:\"request_id,omitempty\"`\n\tRequestPath string              `json:\"request_path,omitempty\"`\n\tTaskPlugin  *TaskPluginSnapshot `json:\"task_plugin,omitempty\"`\n}",
+      "unmatched": []
+    },
+    {
+      "name": "TaskPluginSnapshot",
+      "source": "model/task.go",
+      "line": 149,
+      "fields": [
+        {
+          "name": "Key",
+          "go_type": "string",
+          "json": "key",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Name",
+          "go_type": "string",
+          "json": "name",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Version",
+          "go_type": "string",
+          "json": "version",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Author",
+          "go_type": "*TaskPluginAuthorSnapshot",
+          "json": "author,omitempty",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "APIVersion",
+          "go_type": "int",
+          "json": "api_version",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Generation",
+          "go_type": "uint64",
+          "json": "generation",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        }
+      ],
+      "table_name_override": null,
+      "raw": "type TaskPluginSnapshot struct {\n\tKey        string                    `json:\"key\"`\n\tName       string                    `json:\"name\"`\n\tVersion    string                    `json:\"version\"`\n\tAuthor     *TaskPluginAuthorSnapshot `json:\"author,omitempty\"`\n\tAPIVersion int                       `json:\"api_version\"`\n\tGeneration uint64                    `json:\"generation\"`\n}",
+      "unmatched": []
+    },
+    {
+      "name": "TaskPluginAuthorSnapshot",
+      "source": "model/task.go",
+      "line": 158,
+      "fields": [
+        {
+          "name": "Name",
+          "go_type": "string",
+          "json": "name",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "URL",
+          "go_type": "string",
+          "json": "url,omitempty",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        }
+      ],
+      "table_name_override": null,
+      "raw": "type TaskPluginAuthorSnapshot struct {\n\tName string `json:\"name\"`\n\tURL  string `json:\"url,omitempty\"`\n}",
+      "unmatched": []
+    },
+    {
+      "name": "TaskBillingContext",
+      "source": "model/task.go",
+      "line": 164,
+      "fields": [
+        {
+          "name": "ModelPrice",
+          "go_type": "float64",
+          "json": "model_price,omitempty",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": "模型单价"
+        },
+        {
+          "name": "GroupRatio",
+          "go_type": "float64",
+          "json": "group_ratio,omitempty",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": "分组倍率"
+        },
+        {
+          "name": "ModelRatio",
+          "go_type": "float64",
+          "json": "model_ratio,omitempty",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": "模型倍率"
+        },
+        {
+          "name": "OtherRatios",
+          "go_type": "map[string]float64",
+          "json": "other_ratios,omitempty",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": "附加倍率（时长、分辨率等）"
+        },
+        {
+          "name": "OriginModelName",
+          "go_type": "string",
+          "json": "origin_model_name,omitempty",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": "模型名称，必须为OriginModelName"
+        },
+        {
+          "name": "PerCallBilling",
+          "go_type": "bool",
+          "json": "per_call_billing,omitempty",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": "按次计费：跳过轮询阶段的差额结算"
+        },
+        {
+          "name": "TieredSnapshot",
+          "go_type": "*billingexpr.BillingSnapshot",
+          "json": "tiered_snapshot,omitempty",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        }
+      ],
+      "table_name_override": null,
+      "raw": "type TaskBillingContext struct {\n\tModelPrice      float64                      `json:\"model_price,omitempty\"`       // 模型单价\n\tGroupRatio      float64                      `json:\"group_ratio,omitempty\"`       // 分组倍率\n\tModelRatio      float64                      `json:\"model_ratio,omitempty\"`       // 模型倍率\n\tOtherRatios     map[string]float64           `json:\"other_ratios,omitempty\"`      // 附加倍率（时长、分辨率等）\n\tOriginModelName string                       `json:\"origin_model_name,omitempty\"` // 模型名称，必须为OriginModelName\n\tPerCallBilling  bool                         `json:\"per_call_billing,omitempty\"`  // 按次计费：跳过轮询阶段的差额结算\n\tTieredSnapshot  *billingexpr.BillingSnapshot `json:\"tiered_snapshot,omitempty\"`\n}",
+      "unmatched": []
+    },
+    {
+      "name": "AuditOther",
+      "source": "model/audit_other.go",
+      "line": 13,
+      "fields": [
+        {
+          "name": "Op",
+          "go_type": "*AuditOperation",
+          "json": "op,omitempty",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "AdminInfo",
+          "go_type": "*AuditAdminInfo",
+          "json": "admin_info,omitempty",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "AuditInfo",
+          "go_type": "*AuditRequestInfo",
+          "json": "audit_info,omitempty",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "RootInfo",
+          "go_type": "AuditFields",
+          "json": "root_info,omitempty",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "LoginMethod",
+          "go_type": "string",
+          "json": "login_method,omitempty",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "UserAgent",
+          "go_type": "string",
+          "json": "user_agent,omitempty",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        }
+      ],
+      "table_name_override": null,
+      "raw": "type AuditOther struct {\n\tOp          *AuditOperation   `json:\"op,omitempty\"`\n\tAdminInfo   *AuditAdminInfo   `json:\"admin_info,omitempty\"`\n\tAuditInfo   *AuditRequestInfo `json:\"audit_info,omitempty\"`\n\tRootInfo    AuditFields       `json:\"root_info,omitempty\"`\n\tLoginMethod string            `json:\"login_method,omitempty\"`\n\tUserAgent   string            `json:\"user_agent,omitempty\"`\n}",
+      "unmatched": []
+    },
+    {
+      "name": "AuditOperation",
+      "source": "model/audit_other.go",
+      "line": 22,
+      "fields": [
+        {
+          "name": "Action",
+          "go_type": "string",
+          "json": "action",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Params",
+          "go_type": "AuditFields",
+          "json": "params,omitempty",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        }
+      ],
+      "table_name_override": null,
+      "raw": "type AuditOperation struct {\n\tAction string      `json:\"action\"`\n\tParams AuditFields `json:\"params,omitempty\"`\n}",
+      "unmatched": []
+    },
+    {
+      "name": "AuditAdminInfo",
+      "source": "model/audit_other.go",
+      "line": 27,
+      "fields": [
+        {
+          "name": "AdminID",
+          "go_type": "int",
+          "json": "admin_id,omitempty",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "AdminUsername",
+          "go_type": "string",
+          "json": "admin_username,omitempty",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "AdminRole",
+          "go_type": "int",
+          "json": "admin_role,omitempty",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "AuthMethod",
+          "go_type": "string",
+          "json": "auth_method,omitempty",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        }
+      ],
+      "table_name_override": null,
+      "raw": "type AuditAdminInfo struct {\n\tAdminID       int    `json:\"admin_id,omitempty\"`\n\tAdminUsername string `json:\"admin_username,omitempty\"`\n\tAdminRole     int    `json:\"admin_role,omitempty\"`\n\tAuthMethod    string `json:\"auth_method,omitempty\"`\n}",
+      "unmatched": []
+    },
+    {
+      "name": "AuditRequestInfo",
+      "source": "model/audit_other.go",
+      "line": 34,
+      "fields": [
+        {
+          "name": "Method",
+          "go_type": "string",
+          "json": "method",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Route",
+          "go_type": "string",
+          "json": "route",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Path",
+          "go_type": "string",
+          "json": "path",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Status",
+          "go_type": "int",
+          "json": "status",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Success",
+          "go_type": "bool",
+          "json": "success",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        },
+        {
+          "name": "Params",
+          "go_type": "map[string]string",
+          "json": "params,omitempty",
+          "gorm": "",
+          "validate": "",
+          "persisted": true,
+          "comment": ""
+        }
+      ],
+      "table_name_override": null,
+      "raw": "type AuditRequestInfo struct {\n\tMethod  string            `json:\"method\"`\n\tRoute   string            `json:\"route\"`\n\tPath    string            `json:\"path\"`\n\tStatus  int               `json:\"status\"`\n\tSuccess bool              `json:\"success\"`\n\tParams  map[string]string `json:\"params,omitempty\"`\n}",
+      "unmatched": []
+    }
+  ]
+}
