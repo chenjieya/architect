@@ -1,0 +1,237 @@
+{
+  "title": "Linux与运维基础实战",
+  "author": "Sunny",
+  "description": "",
+  "playerPath": "AI大全栈 / 云计算 / Linux与运维基础实战",
+  "resourceUrl": "https://gitee.com/dev-edu/linux-core",
+  "skills": [
+    "Linux内核",
+    "Linux发行版",
+    "Rocky Linux",
+    "VMware",
+    "Linux系统安装",
+    "SSH远程连接",
+    "Linux目录结构",
+    "文件与目录管理",
+    "文件内容查看",
+    "tail日志跟踪",
+    "grep文本检索",
+    "find文件查找",
+    "nano文本编辑",
+    "文件备份与恢复",
+    "tar打包与压缩",
+    "dnf软件包管理",
+    "rpm软件包查询",
+    "ps进程查看",
+    "kill进程控制",
+    "systemctl服务管理",
+    "journalctl日志查询",
+    "Linux文件权限",
+    "chmod权限修改",
+    "chown所有权管理",
+    "curl",
+    "HTTP状态码",
+    "ss端口查询",
+    "firewalld防火墙配置",
+    "Load Average",
+    "top性能监控",
+    "CPU使用率分析",
+    "free内存分析",
+    "Swap交换空间",
+    "df磁盘空间分析",
+    "du目录空间统计",
+    "vmstat性能分析",
+    "iostat磁盘IO分析",
+    "IO等待分析",
+    "lsof文件分析",
+    "ulimit资源限制",
+    "dmesg内核日志分析",
+    "OOM故障排查",
+    "Shell脚本编写",
+    "Bash",
+    "Shell变量与环境变量",
+    "Shell位置参数",
+    "Shell退出状态码",
+    "if条件判断",
+    "for与while循环",
+    "Shell函数",
+    "管道与重定向",
+    "awk文本处理"
+],
+  "type": "录播",
+  "status": "已上架",
+  "catalog": [
+    {
+      "title": "课程导言",
+      "showIndex": true
+    },
+    {
+      "title": "Linux历史和版本介绍",
+      "showIndex": true
+    },
+    {
+      "title": "安装虚拟机",
+      "showIndex": true
+    },
+    {
+      "title": "配置虚拟机",
+      "showIndex": true
+    },
+    {
+      "title": "安装Rocky Linux",
+      "showIndex": true
+    },
+    {
+      "title": "远程连接Rocky Linux",
+      "showIndex": true
+    },
+    {
+      "title": "Linux目录解释&环境准备",
+      "showIndex": true
+    },
+    {
+      "title": "基础命令 - 查看",
+      "showIndex": true
+    },
+    {
+      "title": "基础命令 - 搜索",
+      "showIndex": true
+    },
+    {
+      "title": "基础命令 - 文件",
+      "showIndex": true
+    },
+    {
+      "title": "基础命令 - 打包压缩",
+      "showIndex": true
+    },
+    {
+      "title": "核心命令 - 软件安装",
+      "showIndex": true
+    },
+    {
+      "title": "核心命令 - 进程与服务",
+      "showIndex": true
+    },
+    {
+      "title": "核心命令 - 权限与用户",
+      "showIndex": true
+    },
+    {
+      "title": "网络命令 - 通信与传输",
+      "showIndex": true
+    },
+    {
+      "title": "网络命令 - 端口和防火墙",
+      "showIndex": true
+    },
+    {
+      "title": "网络命令 - 综合练习",
+      "showIndex": true
+    },
+    {
+      "title": "系统资源 - CPU",
+      "showIndex": true
+    },
+    {
+      "title": "系统资源 - 内存和硬盘",
+      "showIndex": true
+    },
+    {
+      "title": "系统资源 - 磁盘IO",
+      "showIndex": true
+    },
+    {
+      "title": "性能排查 - lsof和dmesg",
+      "showIndex": true
+    },
+    {
+      "title": "Shell - 第一个Shell脚本",
+      "showIndex": true
+    },
+    {
+      "title": "Shell - 变量和脚本参数",
+      "showIndex": true
+    },
+    {
+      "title": "Shell - 环境变量和退出码",
+      "showIndex": true
+    },
+    {
+      "title": "Shell - if语句",
+      "showIndex": true
+    },
+    {
+      "title": "Shell - for循环",
+      "showIndex": true
+    },
+    {
+      "title": "Shell - while循环",
+      "showIndex": true
+    },
+    {
+      "title": "Shell - 函数入门",
+      "showIndex": true
+    },
+    {
+      "title": "Shell - return返回状态码",
+      "showIndex": true
+    },
+    {
+      "title": "Shell - local和返回数据",
+      "showIndex": true
+    },
+    {
+      "title": "Shell - 重定向输出",
+      "showIndex": true
+    },
+    {
+      "title": "Shell - awk",
+      "showIndex": true
+    },
+   {
+      "title": "网络基础 - 引子",
+      "showIndex": true
+    },
+    {
+      "title": "网络基础 - IP和子网",
+      "showIndex": true
+    },
+    {
+      "title": "网络基础 - MAC地址",
+      "showIndex": true
+    },
+    {
+      "title": "网络基础 - 网关和路由表",
+      "showIndex": true
+    },
+    {
+      "title": "网络基础 - 域名解析",
+      "showIndex": true
+    },
+    {
+      "title": "网络基础 - DNS类型",
+      "showIndex": true
+    },
+    {
+      "title": "网络基础 - TCP和UDP",
+      "showIndex": true
+    },
+    {
+      "title": "网络基础 - 监听和握手",
+      "showIndex": true
+    },
+    {
+      "title": "网络基础 - 桥接和NAT",
+      "showIndex": true
+    },
+    {
+      "title": "网络基础 - 动态IP和静态IP（一）",
+      "showIndex": true
+    },
+    {
+      "title": "网络基础 - 动态IP和静态IP（二）",
+      "showIndex": true
+    }
+  ]
+}
