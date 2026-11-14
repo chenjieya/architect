@@ -6,7 +6,7 @@ refs:
   pages: []
   raw: []
 updated_by: ai
-updated: 2026-11-13
+updated: 2026-11-14
 ---
 
 ## 1. 全库目录
@@ -142,7 +142,9 @@ updated: 2026-11-13
 - [[01-集合框架与泛型 — 参考答案]]：答：Collection；Map
 - [[02-函数式编程与常用类库 — 参考答案]]：答：表达式（或「表达式/返回值」）
 
-### 1.6 Linux · AI 区（可维护）
+### 1.6 Linux · 两版笔记（v1 / v2）
+
+#### v1 · operations 运维实战（可维护）
 
 - [[【SSH】Linux SSH 服务管理与配置详解]]：SSH（Secure Shell）是 Linux/Unix 系统中最常用的远程登录和管理工具。通过 SSH，我们可以安全地连接到远程主机，执行命令、传输文件，甚至做端口…
 - [[【命令】Linux 常用命令总结]]：在日常运维或开发工作中，经常需要使用一些基础的 Linux 命令来进行系统管理、文件操作、网络调试等。本文对常见命令进行了整理，方便查阅。
@@ -176,6 +178,15 @@ updated: 2026-11-13
 - [[【服务】防火墙 firewalld 区域管理]]：FirewallD 通过把网络划分成不同区域，每个区域有不同的信任级别，实现不同的访问控制策略。
 - [[【日志】ELK 日志平台部署与 Logstash 采集]]：ELK = Elasticsearch（搜索存储） + Logstash（日志采集处理） + Kibana（可视化），用于日志的集中采集、分析、检索和展示。
 - [[【监控】Zabbix 监控平台部署与配置]]：Zabbix 是企业级开源监控平台，采用 Server/Agent 架构：Zabbix Server 汇总数据，Agent 安装在被监控主机上采集数据。本文以 Zabb…
+
+#### v2 · linux-core 核心基础（AI 整理）
+
+- [[【导言】Linux 基础与运维学习地图]]：Linux 基础与运维的学习地图：为什么先学 Linux、要掌握哪些内容、实验环境怎么配、命令该怎么记，以及一张可自查的验收清单。
+- [[【环境】Linux 历史、发行版与安装]]：从 Unix 到 Linux 发行版，讲清内核与发行版的区别、两大发行版家族，并完整走一遍虚拟机创建、Rocky Linux 安装与 SSH 首次连接。
+- [[【命令】Linux 基础核心与网络命令]]：Linux 日常操作全览：目录与文件、搜索、打包、dnf/rpm、进程与服务、权限、SSH 传输，以及 ping/curl/ss/防火墙的排查套路。
+- [[【性能】系统资源与性能排查]]：服务器变慢怎么查：从 uptime/top/free/df/du/vmstat/iostat 判断 CPU、内存、磁盘瓶颈，再用 lsof、ulimit、dmesg 排查句柄与内核问题。
+- [[【Shell】Shell 脚本入门与命令组合]]：Shell 脚本入门：Shebang、变量与引号、脚本参数、环境变量、退出码，if/for/while、函数、重定向与管道、awk 文本处理，以及 bash -n/-x 调试。
+- [[【网络】计算机网络基础]]：从一次网页访问出发，讲透 IP 与子网、MAC/ARP、网关与路由、DNS 解析、TCP/UDP 与监听，再落到 VMware 三种网络模式和静态 IP 配置。
 
 ### 1.7 NestJs · 人类笔记（只读）
 
