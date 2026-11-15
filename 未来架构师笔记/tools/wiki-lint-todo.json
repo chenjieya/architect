@@ -1,0 +1,38 @@
+{
+  "note": "wiki-lint 每次运行都会打印 status=pending 的条目。确认处理完成后，直接删除对应条目，后续体检不再提醒。",
+  "items": [
+    {
+      "id": "ai-comic-drama-image-dirs",
+      "status": "pending",
+      "title": "AI 漫剧源目录的「示意图 / 图片」目录尚未处理（8 张 PNG，未被任何笔记引用）",
+      "detail": "用途待确认：可能是 PPT 素材或旧版配图。当前未复制进 wiki，也未嵌入任何页面。源目录：/Users/chenjie/Desktop/temp/ai-langgraph-comedic-drama",
+      "paths": [
+        "03. 搭建项目/示意图/依赖示意图.png",
+        "04. 需求结构化part1/示意图/模型注入.png",
+        "05. 需求结构化part2/示意图/模型注入.png",
+        "06. 故事大纲与设定/示意图/模型注入.png",
+        "19. 人工审核分镜part1/图片/工作流.png",
+        "20. 人工审核分镜part2/图片/工作流.png",
+        "21. 人工审核分镜part3/图片/工作流.png",
+        "21. 人工审核分镜part3/图片/checkpointer.png"
+      ]
+    },
+    {
+      "id": "ai-comic-drama-pptx",
+      "status": "pending",
+      "title": "AI 漫剧源目录的 9 个 PPTX 尚未决定是否入库存档",
+      "detail": "笔记正文未引用这些 PPT，目前只转存了 Markdown。确认需要后，再放入项目资料目录或外部存储。源目录：/Users/chenjie/Desktop/temp/ai-langgraph-comedic-drama",
+      "paths": [
+        "02. 项目设计/项目设计.pptx",
+        "13. 修订不合格分镜part1/修订不合格分镜.pptx",
+        "14. 修订不合格分镜part2/修订不合格分镜.pptx",
+        "15. 修订不合格分镜part3/修订不合格分镜.pptx",
+        "16. 修订不合格分镜part4/修订不合格分镜.pptx",
+        "17. 修订不合格分镜part5/修订不合格分镜.pptx",
+        "18. 修正不合格分镜part6/修订不合格分镜.pptx",
+        "24. 生成角色和场景图part2/生成角色和场景图.pptx",
+        "28. 生成首尾帧part1/生成首尾帧.pptx"
+      ]
+    }
+  ]
+}

@@ -8,6 +8,7 @@ const ROOT = process.cwd();
 const WIKI_DIR = join(ROOT, 'wiki');
 const RAW_DIR = join(ROOT, 'raw');
 const INDEX_FILE = join(ROOT, 'index.md');
+const TODO_FILE = join(ROOT, 'tools', 'wiki-lint-todo.json');
 const SHOW_ALL_WARNINGS = process.argv.includes('--all');
 const WARNING_LIMIT = 80;
 const ASSET_EXTS = new Set([
@@ -245,7 +246,25 @@ function checkWiki() {
     console.log(`WARN 仅展示前 ${WARNING_LIMIT} 条；查看全部请运行：node tools/wiki-lint.mjs --all`);
   }
 
+  const pending = checkPending();
+  console.log(`待处理提醒：${pending.length}`);
+  for (const item of pending) {
+    console.log(`TODO ${item.title}`);
+    if (item.detail) console.log(`     ${item.detail}`);
+    for (const path of item.paths || []) console.log(`     - ${path}`);
+  }
+
   if (errors.length) process.exitCode = 1;
+}
+
+function checkPending() {
+  if (!existsSync(TODO_FILE)) return [];
+  try {
+    const data = JSON.parse(readFileSync(TODO_FILE, 'utf8'));
+    return (data.items || []).filter((item) => item.status !== 'resolved');
+  } catch (error) {
+    return [{ title: `待办清单解析失败：${error.message}`, paths: [toRepoPath(TODO_FILE)] }];
+  }
 }
 
 function checkIndex(wikiFiles, titleMap) {
