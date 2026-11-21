@@ -41,6 +41,13 @@ class AskUserQuestionInput(BaseModel):
         return options
 
 
+
+"""
+由于AI可能返回多次调用该工具，ToolNode节点内部就会并行调用该工具。
+并行执行造成了返回的顺序不一致，就会导致，第一次执行中断恢复之后，
+还是会两个都重新执行，而顺序可能不一致，就会导致，之前的恢复回答，匹配到先返回的这个上面。
+解决方法就是不要让节点内部并行，要让节点并行，也就是超步。具体实现方案看动态扇出Send
+"""
 @tool(args_schema=AskUserQuestionInput)
 def ask_user_question(question: str, options: list[QuestionOption]) -> str:
     """

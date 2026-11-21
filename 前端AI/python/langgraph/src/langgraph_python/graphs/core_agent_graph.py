@@ -1,17 +1,20 @@
 from langchain_core.messages import AIMessage
 from langgraph.errors import NodeError
 from langgraph.graph import StateGraph, START, END
-from langgraph.types import Command, RetryPolicy, TimeoutPolicy
+from langgraph.types import Command, RetryPolicy, Send, TimeoutPolicy
 from langgraph_python.states.core_agent_state import ContextSchema, CoreAgentState
 from langgraph_python.nodes.call_model import call_model
 from langgraph.prebuilt import ToolNode
 from langgraph_python.tools import tools
 
 
-def should_continue(state: CoreAgentState) -> str:
+def should_continue(state: CoreAgentState) -> str | list[Send]:
     """判断是否需要调用工具：最后一个消息带 tool_calls 则路由到 tools，否则结束"""
     last_message = state["messages"][-1]
-    return "tools" if last_message.tool_calls else END  # type: ignore
+    if not isinstance(last_message, AIMessage) or not last_message.tool_calls:
+        return END
+    # return "tools" if last_message.tool_calls else END  # type: ignore
+    return [Send("tools", [tool_call]) for tool_call in last_message.tool_calls]
 
 def error_handler(state: CoreAgentState, error: NodeError):
     msg = f"{error.node}节点发生了错误：{error.error}"
