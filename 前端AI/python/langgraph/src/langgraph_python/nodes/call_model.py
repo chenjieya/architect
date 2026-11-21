@@ -1,3 +1,4 @@
+from logging import debug
 import os
 import subprocess
 from typing import Any
@@ -41,10 +42,10 @@ def _get_systen_message(context: ContextSchema) -> list[SystemMessage]:
 
 # 根据配置获取可以调用的工具
 def _get_tool(context: ContextSchema) -> list[BaseTool]:
-    "根据配置获取工具"
-    if not context or context.tools is None:
-        return tools
-    return get_tools(context.tools)
+    "根据配置获取工具"  
+    if context and context.tools is not None and len(context.tools) != 0:
+        return get_tools(context.tools)
+    return tools
 
 
 def _get_model_config(context: ContextSchema) -> RunnableConfig:

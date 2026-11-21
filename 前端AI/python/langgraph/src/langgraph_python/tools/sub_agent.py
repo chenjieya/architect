@@ -39,7 +39,9 @@ async def call_sub_agent(sub_name: str, task: str) -> str:
         task: 要委托给子Agent的任务描述
 
     """
-    
+   
+    # core_agent_graph.py  →  nodes/call_model.py  →  tools/__init__.py  →  tools/sub_agent.py  →  core_agent_graph.py
+    # 动态导入是为了打破循环依赖
     from langgraph_python.graphs.core_agent_graph import build_graph
 
     # 编译图
