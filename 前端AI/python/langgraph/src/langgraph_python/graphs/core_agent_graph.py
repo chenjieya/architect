@@ -1,7 +1,7 @@
 from langchain_core.messages import AIMessage
 from langgraph.errors import NodeError
 from langgraph.graph import StateGraph, START, END
-from langgraph.types import RetryPolicy, TimeoutPolicy
+from langgraph.types import Command, RetryPolicy, TimeoutPolicy
 from langgraph_python.states.core_agent_state import ContextSchema, CoreAgentState
 from langgraph_python.nodes.call_model import call_model
 from langgraph.prebuilt import ToolNode
@@ -15,7 +15,8 @@ def should_continue(state: CoreAgentState) -> str:
 
 def error_handler(state: CoreAgentState, error: NodeError):
     msg = f"{error.node}节点发生了错误：{error.error}"
-    return { "messages": [AIMessage(msg)] }
+    # Command update是为了更新节点状态， goto是指定吓一跳。 坑：静态边节点和goto节点都会执行
+    return Command(update={"messages": [AIMessage(msg)]}, goto=END)
 
 def build_graph():
     """生成核心 Agent 图（未编译）"""
