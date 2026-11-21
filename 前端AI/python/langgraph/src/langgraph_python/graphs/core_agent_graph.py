@@ -1,4 +1,7 @@
+from langchain_core.messages import AIMessage
+from langgraph.errors import NodeError
 from langgraph.graph import StateGraph, START, END
+from langgraph.types import RetryPolicy, TimeoutPolicy
 from langgraph_python.states.core_agent_state import ContextSchema, CoreAgentState
 from langgraph_python.nodes.call_model import call_model
 from langgraph.prebuilt import ToolNode
@@ -10,10 +13,21 @@ def should_continue(state: CoreAgentState) -> str:
     last_message = state["messages"][-1]
     return "tools" if last_message.tool_calls else END  # type: ignore
 
+def error_handler(state: CoreAgentState, error: NodeError):
+    msg = f"{error.node}节点发生了错误：{error.error}"
+    return { "messages": [AIMessage(msg)] }
 
 def build_graph():
     """生成核心 Agent 图（未编译）"""
     workflow = StateGraph(CoreAgentState, context_schema=ContextSchema)
+
+    # 容错机制
+    workflow.set_node_defaults(
+        # retry_policy=RetryPolicy(max_attempts=3),
+        # timeout=TimeoutPolicy(run_timeout=3, idle_timeout=1),
+        error_handler=error_handler # type: ignore
+    )
+
     # 生成节点
     workflow.add_node("model", call_model)
     workflow.add_node("tools", ToolNode(tools))
