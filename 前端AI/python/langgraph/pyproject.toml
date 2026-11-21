@@ -1,0 +1,29 @@
+[project]
+name = "langgraph_python"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "mac:jie.Chen", email = "chenjie.goodday@gmail.com" }
+]
+requires-python = ">=3.14.5"
+dependencies = [
+    "langchain==1.3.14",
+    "langchain-anthropic==1.5.3",
+    "langchain-openai==1.4.1",
+    "langgraph==1.2.10",
+    "langgraph-cli[inmem]==0.4.31",
+    "pydantic-settings==2.14.1",
+    "tavily-python==0.7.26",
+]
+
+[project.scripts]
+main="langgraph_python.graph.my_first_graph:main"
+
+[tool.pyright]
+venvPath = "."
+venv = ".venv"
+
+[build-system]
+requires = ["uv_build>=0.11.25,<0.12.0"]
+build-backend = "uv_build"
