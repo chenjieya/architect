@@ -1,12 +1,14 @@
 ---
 author: ai
 ai_editable: true
-summary: 'Command 同时改状态和决定走向，interrupt 让图停在任意位置等待外部输入。本文讲清四个参数、恢复流程、HITL 契约与五条避坑实践。'
+summary: 'Command 与 interrupt 的组合用法与幂等要求，补全 ToolNode 的输入与参数分发、ValidationError 处理，以及同一工具并发中断的坑与 Send 拆任务方案。'
 refs:
   pages:
     - 【基础】状态与 Reducer
+    - 【基础】工具与工具节点
     - 【实战】Agent Server 与线程检查点
     - 【实战】事件流
+    - 【实战】动态扇出与运行控制
     - 【概念】驾驭工程
   raw:
     - path: raw/langgraph-python/27. Command.md
@@ -89,7 +91,50 @@ def node(state):
 
 ![[中断恢复.svg]]
 
-### 2.2 查看中断
+### 2.2 为什么中断前必须幂等
+
+因为恢复时节点是**从头再跑一遍**，不是从 `interrupt()` 那一行继续。所以 `interrupt()` 之前的代码，用户每回复一次，就会再执行一次。
+
+```python
+def node(state):
+    order = create_order(state)      # 中断前：每次恢复都会再执行
+    ans = interrupt({"order": order})
+    return {"answer": ans}
+```
+
+如果 `create_order` 里写库、发消息、扣款，那么中断几次、恢复几次，副作用就重复几次。**检查点只保存图的状态，不会回滚数据库、消息、支付这些外部副作用。**
+
+幂等不是说“执行后什么都不变”，而是：
+
+> **执行 1 次和执行 N 次，最终结果一样，副作用不会叠加。**
+
+不幂等：
+
+```python
+db.insert({"id": state["order_id"], "status": "created"})  # 每恢复一次多一条
+```
+
+幂等：
+
+```python
+db.upsert({"id": state["order_id"], "status": "created"})  # 同一个 id 重复执行结果一样
+```
+
+或者把写操作挪到中断之后：
+
+```python
+ans = interrupt("确认下单吗？")
+if ans == "yes":
+    db.insert(...)   # 只在中点之后写，恢复时不会重复插入
+```
+
+更稳的做法是用唯一业务键或 `runtime.tool_call_id` 去重，或者在状态里记一个 `order_created=True`，恢复时跳过。
+
+还有一个容易忽略的点：不只是 `interrupt()` **前面**的代码会重跑。只要节点里还有后续的 `interrupt()`，恢复时同样会从节点开头再跑一遍。所以最保守的规则是：
+
+> **带 `interrupt()` 的节点，整体都要能安全重复执行；至少 `interrupt()` 之前的代码必须幂等。**
+
+### 2.3 查看中断
 
 中断信息有两个来源：
 
@@ -108,7 +153,7 @@ state = await client.threads.get_state(thread_id)
 state["interrupts"]
 ```
 
-### 2.3 恢复
+### 2.4 恢复
 
 手动模式：
 
@@ -179,17 +224,155 @@ HITL 的典型实现是一个"询问用户"的工具。工具、中断、回复�
 
 前端拿到中断后渲染选项卡，用户选择后把字符串作为 `resume` 值传回，工具重新执行并拿到这个值，流程继续。
 
-## 4. 五条避坑实践
+## 4. ToolNode 到底做了什么
 
-1. **不要捕获 `interrupt` 异常**，至少不要吞掉 `GraphBubbleUp`，否则中断机制失效。
-2. **被中断的节点恢复时会重新执行**，中断前的副作用（写库、发消息、扣费）必须幂等。
-3. **一个节点内多次中断时，数量与顺序必须稳定**，否则恢复值会对不上。
-4. **子图的 `checkpointer` 必须是 `None` 或 `True`**，否则父图无法正常中断。
-5. **时间旅行会重新触发中断**，回放时要预留处理逻辑。
+用 `ask` 工具举例，AI 返回几个 `tool_calls`，ToolNode 就做几件事：
+
+1. 取出 `tool_calls`。
+2. 有多个就并发执行。
+3. 每个调用按 `name` 找到对应工具，把 `args` 交给它。
+4. 工具用自己的 Pydantic 模型校验参数。
+5. 参数错 → 包成 error `ToolMessage`；参数对 → 执行工具 → 结果包成 `ToolMessage`。
+
+### 4.1 ToolNode 接受什么
+
+常见有三种输入：
+
+| 输入形式     | 长什么样                                                | 输出                             |
+| ------------ | ------------------------------------------------------- | -------------------------------- |
+| 图状态       | `{"messages": [AIMessage(..., tool_calls=[...])]}`      | `{"messages": [ToolMessage...]}` |
+| 消息列表     | `[AIMessage(..., tool_calls=[...])]`                    | `[ToolMessage...]`               |
+| 直接工具调用 | `[{"name": "ask", "args": {"q": "A"}, "id": "call_A"}]` | `[ToolMessage...]`               |
+
+默认从最后一条 `AIMessage` 的 `tool_calls` 里取调用；如果工具返回 `Command`，输出里会是 `Command` 或 `ToolMessage` 与 `Command` 的混合列表。
+
+### 4.2 AI 的参数怎么落到对应工具
+
+每个 `tool_call` 就三个关键字段：
+
+```python
+{"name": "ask", "args": {"q": "A"}, "id": "call_A"}
+```
+
+ToolNode 初始化时会把工具做成一张表：
+
+```python
+tools_by_name = {"ask": ask_tool}
+```
+
+执行时按 `name` 查表：
+
+```python
+tool = tools_by_name.get(call["name"])
+```
+
+- `name` 找不到：返回 error `ToolMessage`，内容会列出可用工具名。
+- 找到了：把 `call["args"]` 交给工具；`@tool` 生成的 `args_schema`（Pydantic 模型）负责校验和类型转换。
+- `id`：原样写进结果的 `ToolMessage.tool_call_id`，这样每条结果都知道自己对应哪个调用。
+- `state`、`store`、`runtime` 这类参数不是 AI 给的，由 ToolNode 注入。
+
+### 4.3 ValidationError 怎么变成 Message
+
+参数缺失或类型不对时，Pydantic 先抛 `ValidationError`，然后 ToolNode 把它包装成 `ToolInvocationError`，默认错误处理再把它变成一条 `ToolMessage`：
+
+```text
+AI 给了错误参数
+→ Pydantic 抛 ValidationError
+→ ToolNode 包装成 ToolInvocationError
+→ 默认错误处理捕获它
+→ 返回 ToolMessage(status="error")
+→ 下一条 AI 消息能看到这个错误
+```
+
+例如调用 `ask` 少了 `q`：
+
+```text
+Error invoking tool 'ask' with kwargs {} with error:
+ q: Field required
+```
+
+但默认只兜这一种：
+
+| 错误                                            | 默认行为                          |
+| ----------------------------------------------- | --------------------------------- |
+| 参数校验失败（`ValidationError`）、工具名不存在 | 包成 error `ToolMessage`，还给 AI |
+| 工具代码自己抛 `ValueError`、`TimeoutError` 等  | **不包**，直接抛，节点失败        |
+| `interrupt()` 的内部异常                        | **永远不包**，必须让它冒泡        |
+
+一句话：**`ValidationError` 会被包成 Message，普通运行异常不会，`interrupt` 更不能。**
+
+## 5. 同一个 ask 工具被并发调用，才是重灾区
+
+你说的场景不是“多个不同工具”，而是 **AI 一次返回了两个 `ask` 调用，而 `ask` 里面有 `interrupt`**。这时 ToolNode 会把同一个工具并发跑两次。
+
+```python
+tool_calls = [
+    {"name": "ask", "args": {"q": "A"}, "id": "call_A"},
+    {"name": "ask", "args": {"q": "B"}, "id": "call_B"},
+]
+```
+
+接下来发生的事：
+
+1. ToolNode 同时执行 A、B 两次 `ask`。
+2. A 调 `interrupt()`，B 也调 `interrupt()`。
+3. 运行时只把第一个中断交出来，另一个被盖住；这一次**不会返回任何 `ToolMessage`**。
+4. 恢复时 ToolNode **从头再跑 A、B**，不是只跑被中断的那个。
+5. resume 值按 interrupt 出现顺序配对，**不按 `call_A` / `call_B` 配对**；并发下顺序不稳，A/B 的答案可能对调。
+6. 两个中断的 id 还可能相同（都来自同一个 ToolNode 任务），`Command(resume={id: value})` 也分不开。
+
+实测 langgraph 1.2.10：两个 `ask` 并行，第一次只出现 `q=A`，恢复后才出现 `q=B`，两次中断 id 相同。
+
+混合情况更麻烦：
+
+- 一个 `ask` 中断 + 一个 `ask` 参数错：第一次只看到中断，参数错误被盖住；恢复后才一起返回“成功 + error ToolMessage”。
+- 两个 `ask` 都参数错：两个 error ToolMessage 都正常返回，没有中断。
+- 一个 `ask` 中断 + 一个 `ask` 运行时报错：谁先冒出来不稳定，另一个结果丢掉。
+
+所以结论很硬：**同一个带 `interrupt` 的工具，不能并发调用。**
+
+### 5.1 怎么办
+
+1. 一次只让模型返回一个工具调用：`parallel_tool_calls=False`。
+2. 把 `interrupt` 从工具里拿出来，做成单独节点，一次只问一个问题。
+3. 要一次问多个问题，就只调用一次 `interrupt`，把问题放进数组：`interrupt({"questions": [...]})`，恢复时用业务 id 映射答案。
+4. 工具里用 `runtime.tool_call_id` 做幂等，防止恢复重跑时重复副作用。
+
+### 5.2 真的要并发：用 Send 拆任务
+
+如果确实要同时问多个问题，不要把多个调用塞进同一个 ToolNode，而是用 **动态扇出（`Send`）**，让每个 `ask` 变成**独立任务**：
+
+```python
+from langgraph.types import Send
+
+
+def fan_out(state):
+    return [Send("ask_node", {"q": q}) for q in state["questions"]]
+
+
+builder.add_node("ask_node", ask_node)
+builder.add_conditional_edges(START, fan_out, ["ask_node"])
+```
+
+每个 `Send` 都会创建一个独立任务，**中断作用域也跟着独立**。这样：
+
+- 多个 `ask` 可以同时停下，`__interrupt__` 里会出现多个中断；
+- 每个中断有自己的 id，可以一次性用 `Command(resume={id: 答案})` 分别恢复；
+- 不会出现“同一个 ToolNode 任务里只露第一个中断”的问题。
+
+实测 langgraph 1.2.10：两个 `Send` 分支各自中断，返回两个不同的中断 id，用 id 映射一次恢复后，两个结果都正确写回。
+
+`Send` 的完整用法、结果汇合与并发控制见 [[【实战】动态扇出与运行控制]]。
+
+## 6. 另外三个容易忘的点
+
+- `interrupt` 必须配 `checkpointer`，否则暂停后没有现场可恢复。
+- 被中断的节点恢复时整体重跑，中断前的副作用必须幂等。
+- 时间旅行会重新触发中断，回放时要预留处理逻辑。
 
 恢复之后的运行同样可以流式观察，见 [[【实战】事件流]]；人工审批这类"最小权限"设计属于 [[【概念】驾驭工程]] 讨论的护栏范畴。
 
-## 5. 延伸阅读
+## 7. 延伸阅读
 
 - [[LangGraph中断]]：结合 AI 漫剧人工审核，深入 interrupt 的异常暂停、检查点恢复与节点整体重放。
 - [[01 目录]]：AI 漫剧工作流项目目录（中断用于分镜人工审核）。

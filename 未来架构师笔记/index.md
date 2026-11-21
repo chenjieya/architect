@@ -428,7 +428,7 @@ updated: 2026-11-14
 - [[【实战】System API、MCP 与 A2A]]：健康检查与监控指标，把 Agent 暴露成 MCP 工具，并通过 A2A 与其他 Agent 协作。
 - [[【实战】时间旅行]]：从任意检查点 Replay 或 Fork 重跑，含手动模式、SDK 写法与子图限制。
 - [[【基础】容错与错误重试]]：RetryPolicy、TimeoutPolicy、error_handler 三件套，以及错误后检查点停在哪、如何手动重试。
-- [[【实战】Command、中断与人在回路]]：Command 的四个参数、interrupt 的暂停与恢复流程、HITL 契约与五条避坑实践。
+- [[【实战】Command、中断与人在回路]]：Command 与 interrupt 的组合用法与幂等要求，补全 ToolNode 的输入与参数分发、ValidationError 处理，以及同一工具并发中断的坑与 Send 拆任务方案。
 - [[【实战】动态扇出与运行控制]]：用 Send 动态生成并行分支做 map-reduce，配合 cancel 与多任务策略控制并发。
 - [[【实战】事件流]]：stream_mode 的几种取值、子图命名空间，以及从消息块区分思考、正文与工具调用。
 - [[【基础】Store 与长期记忆]]：namespace/key/value 模型、两套读写 API，以及长期记忆的四个改造步骤。
