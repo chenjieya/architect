@@ -9,8 +9,8 @@ from langchain.agents.middleware.types import (
 )
 from langchain.agents import AgentState
 from langchain_core.messages import AIMessage
-from langchain_python.schemas.prompt_context_shcema import PromptContext
 from langchain.messages import SystemMessage
+from langchain_python.schemas.prompt_context_schema import PromptContext
 
 
 @wrap_model_call
