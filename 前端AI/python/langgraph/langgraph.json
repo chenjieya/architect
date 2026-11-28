@@ -1,12 +1,13 @@
 {
-	"dependencies": [
-		"."
-	],
-	"graphs": {
-		"agent": "langgraph_python.dev:agent",
-		"parallel_graph": "langgraph_python.dev:parallel_graph",
-		"branch_graph": "langgraph_python.dev:branch_graph",
-		"loop_graph": "langgraph_python.dev:loop_graph"
-	},
-	"env": ".env"
+  "dependencies": ["."],
+  "graphs": {
+    "agent": "langgraph_python.dev:agent",
+    "parallel_graph": "langgraph_python.dev:parallel_graph",
+    "branch_graph": "langgraph_python.dev:branch_graph",
+    "loop_graph": "langgraph_python.dev:loop_graph",
+    "chain_agent": "langchain_python.agents.main_agent:agent",
+    "address_agent": "langchain_python.agents.address_parser:agent",
+    "middleware_test": "langchain_python.agents.middleware_test:agent"
+  },
+  "env": ".env"
 }
