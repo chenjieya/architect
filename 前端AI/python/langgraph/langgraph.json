@@ -7,7 +7,13 @@
     "loop_graph": "langgraph_python.dev:loop_graph",
     "chain_agent": "langchain_python.agents.main_agent:agent",
     "address_agent": "langchain_python.agents.address_parser:agent",
-    "middleware_test": "langchain_python.agents.middleware_test:agent"
+    "middleware_test": "langchain_python.agents.middleware_test:agent",
+    "pii_input": "langchain_python.agents.pii_agent:pii_input_agent",
+    "pii_block": "langchain_python.agents.pii_agent:pii_block_agent",
+    "pii_custom": "langchain_python.agents.pii_agent:pii_custom_agent",
+    "pii_custom_detector": "langchain_python.agents.pii_agent:pii_custom_detector_agent",
+    "pii_output": "langchain_python.agents.pii_agent:pii_output_agent",
+    "pii_tool_result": "langchain_python.agents.pii_agent:pii_tool_result_agent"
   },
   "env": ".env"
 }
