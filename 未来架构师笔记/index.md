@@ -6,7 +6,7 @@ refs:
   pages: []
   raw: []
 updated_by: ai
-updated: 2026-11-14
+updated: 2026-11-28
 ---
 
 ## 1. 全库目录
@@ -433,6 +433,22 @@ updated: 2026-11-14
 - [[【实战】事件流]]：stream_mode 的几种取值、子图命名空间，以及从消息块区分思考、正文与工具调用。
 - [[【基础】Store 与长期记忆]]：namespace/key/value 模型、两套读写 API，以及长期记忆的四个改造步骤。
 - [[【实战】Agent 部署]]：用 Docker 起 Postgres、pgAdmin、Redis，配置 langgraph.json 与环境变量并容器化启动。
+
+**DeepAgent（子目录）**
+
+- [[【导言】DeepAgent 生态与学习地图]]：梳理 LangGraph/LangChain/DeepAgent/Agent Server/LangSmith 五层分工、技术选型与本系列知识地图。
+- [[【基础】Agent 创建与结构化输出]]：`create_agent` 参数表、结构化输出场景、ProviderStrategy 与 ToolStrategy 的选型。
+- [[【基础】中间件机制与预置中间件]]：节点钩子与包裹钩子的洋葱模型，以及 19 个预置中间件分类清单。
+- [[【中间件】PII 个人信息脱敏]]：内置检查类型、四种处理策略、三个拦截位置与自定义 detector。
+- [[【中间件】HITL 人工审批]]：`interrupt_on` 三种配置、动态说明与触发条件，四种恢复决定。
+- [[【中间件】Skills 技能系统]]：技能目录规范、后端选型与渐进式披露的执行流程。
+- [[【基础】文件系统、权限与多模态]]：文件工具、`FilesystemPermission` 匹配顺序、`execute` 逃逸与按模型 profile 重排多模态消息。
+- [[【基础】上下文压缩]]：新消息防爆（窗口控量、卸载兜底）与上下文摘要的 `trigger`/`keep` 配置。
+- [[【中间件】代码解释器]]：隔离 QuickJS REPL 的全部配置项，PTC、状态模式与审批边界。
+- [[【基础】子代理与多智能体]]：`task` 工具与上下文隔离，以及尚未展开的多代理主题标记。
+- [[【沙箱】技术选型与 E2B 实战]]：四种隔离方案对比、E2B 创建读写、OSS 挂载与按线程复用沙箱。
+- [[【实战】服务端 CodingAgent 完整实现]]：整体架构、`deploy` 工具、系统提示词边界、结构化响应与两个验证用例。
+- [[【补充】Agent Server 安全与 MCP 工具注入]]：Bearer 认证授权、隔离键与 Store 命名空间隔离、`MultiServerMCPClient` 注入工具。
 
 **LangGraph 实战项目 · AI 漫剧工作流（子目录）**
 
@@ -958,7 +974,6 @@ updated: 2026-11-14
 - [[【new-api】21-离线证据与附件索引]]：索引源码、接口、字段与截图的固定版本附件，提供校验方法和覆盖边界。
 
 离线附件：`附件/new-api离线参考-9b473a3/`；含字段/接口数据、源码证据及四张中文演示图。后续 Python 版 ModelDock 从 14、20 开始。
-
 
 ---
 
